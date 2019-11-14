@@ -165,6 +165,7 @@ ALL SUBMISSIONS start as form objects then become admin_entries for approval;
 Once approved they become Business Listings objects, Review Objects, or Image Objects, or
 
 DATABASE BREAKDOWN
+
 Admin
 	has_many admin_entries
 
@@ -175,7 +176,7 @@ Admin
 
 Admin_Entry
 	belongs_to a photo, listing, or review
-	belongs_to a category
+	belongs_to a category?
 	has_many businesses through reviews, listings and photos
 
 	AdminEntry:  type
@@ -187,7 +188,6 @@ Admin_Entry
 	AdminEntry:  status
 	AdminEntry:  resolved_date - nil? true
 
-
 Business
 	belongs_to one_or_many Categories
 	has a Listing
@@ -196,7 +196,7 @@ Business
 	has a Map
 	has many_Admin Entries through photos, listings, and reviews
 
-	Business :name,
+	Business :name
 
 Category
 	has_many businesses

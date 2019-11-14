@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  date: MyString
+  contributor: MyString
+  contributor_email: MyString
+  data_object_string: MyString
+  notes: MyString
+  resolved_date: MyString
+
+two:
+  type: 
+  date: MyString
+  contributor: MyString
+  contributor_email: MyString
+  data_object_string: MyString
+  notes: MyString
+  resolved_date: MyString
