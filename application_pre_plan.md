@@ -1,4 +1,4 @@
-Directory Cozumel  Phone Book App with listing reviews, images and map
+Directory Cozumel   - Phone Book App with listing reviews, images and map
 
 User Story
 Search by Name
