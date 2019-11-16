@@ -1,10 +1,13 @@
 class Business < ApplicationRecord
 	has_and_belongs_to_many :categories
-	has_one :listing
-	has_many :reviews
-	has_many :images
-	has_one :map
+	has_one :listing, dependent: :delete_all
+	has_many :reviews, dependent: :delete_all
+	has_many :images, dependent: :delete_all
+	has_one :map, dependent: :delete_all
 	has_many :admin_entries, through: :photos
 	has_many :admin_entries, through: :listings
 	has_many :admin_entries, through: :reviews
 end
+
+#:destroy causes all the associated objects to also be destroyed
+#:delete_all causes all the associated objects to be deleted directly from the database (so callbacks will not execute)
