@@ -14,74 +14,76 @@ categories_list = [
 	'car rentals'
 ]
 
-businesses_list = [
-{ 'Hotel Zilla', 1 },
-{ 'Kernel Hotel', 1 },
-{ 'Verge Hotel', 1 },
-{ 'Liquid Hotel', 1 },
-{ 'Citywide Hotel', 1 },
-{ 'Hotel Best', 1 },
-{ 'Moonlight Hotel', 1 },
-{ 'Hotel Artist', 1 },
-{ 'Leather Hotel', 1 },
-{ 'Protection Hotel', 1 },
-{ 'Name Hotel', 1 },
-{ 'Championship Hotel', 1 },
-{ 'Exclusive Hotel', 1 },
-{ 'Shire Hotel', 1 },
-{ 'Print Hotel', 1 },
-{ 'Hotel Hawk', 1 },
-{ 'Kid Hotel', 1 },
-{ 'Pascal Hotel', 1 },
-{ 'Hotel Storage', 1 },
-{ 'Hardware Mate', 2 },
-{ 'All Hardware', 2 },
-{ 'FourStar Hardware', 2 },
-{ 'Secret Hardware', 2 },
-{ 'Insight Hardware', 2 },
-{ 'Metropolis Hardware' 2 },
-{ 'Intrepid Hardware', 2 },
-{ 'Hardware Chef', 2 },
-{ 'Link Hardware', 2 },
-{ 'Swift Hardware', 2 },
-{ 'Shift Hardware', 2 },
-{ 'Capricorn Hardware', 2 },
-{ 'Hardware Widget', 2 },
-{ 'Hybrid Hardware', 2 },
-{ 'Dodge Hardware', 2 },
-{ 'Measure Hardware', 2 },
-{ 'Hardware Department', 2 },
-{ 'Kayak Hardware', 2 },
-{ 'FineLine Hardware', 2 },
-{ 'Mainline Hardware', 2 },
-{ 'Gas Station Time', 3 },
-{ 'Cupcake Gas Station', 3 },
-{ 'Gas Station Candy', 3 },
-{ 'EaglEeye Gas Station', 3 },
-{ 'Compare Gas Station', 3 },
-{ 'Objective Gas Station', 3 },
-{ 'Shadow Gas Station', 3 },
-{ 'Tiger Gas Station', 3 },
-{ 'Gifted Gas Station', 3 },
-{ 'Gas Station Thread', 3 },
-{ 'Sunshine Gas Station', 3 },
-{ 'Candy Store Bounce', 4 },
-{ 'Pre Candy Store', 4 },
-{ 'Corpus Candy Store', 4 },
-{ 'Net Candy Store', 4 },
-{ 'ZeroPoint Candy Store', 4 },
-{ 'BlueDiamond Candy Store', 4 },
-{ 'Bigfoot Candy Store', 4 },
-{ 'OffRoad Candy Store', 4 },
-{ 'Car Rentals Savers', 5 },
-{ 'OneWorld Car Rentals', 5 },
-{ 'Simulation Car Rentals', 5 },
-{ 'Augmented Car Rentals', 5 },
-{ 'Turbine Car Rentals', 5 },
-{ 'Acrylic Car Rentals', 5 },
-{ 'Strength Car Rentals', 5 },
-{ 'OneMinute Car Rentals', 5 },
-{ 'Car Rentals Mega', 5 }
+businesses_list_1 = [
+[ 'Hotel Zilla', 1 ],
+[ 'Kernel Hotel', 1 ],
+[ 'Verge Hotel', 1 ],
+[ 'Liquid Hotel', 1 ],
+[ 'Citywide Hotel', 1 ],
+[ 'Hotel Best', 1 ],
+[ 'Moonlight Hotel', 1 ],
+[ 'Hotel Artist', 1 ],
+[ 'Leather Hotel', 1 ],
+[ 'Protection Hotel', 1 ],
+[ 'Name Hotel', 1 ],
+[ 'Championship Hotel', 1 ],
+[ 'Exclusive Hotel', 1 ]
+]
+businesses_list2 = [
+[ 'Shire Hotel', 1 ],
+[ 'Print Hotel', 1 ],
+[ 'Hotel Hawk', 1 ],
+[ 'Kid Hotel', 1 ],
+[ 'Pascal Hotel', 1 ],
+[ 'Hotel Storage', 1 ],
+[ 'Hardware Mate', 2 ],
+[ 'All Hardware', 2 ],
+[ 'FourStar Hardware', 2 ],
+[ 'Secret Hardware', 2 ],
+[ 'Insight Hardware', 2 ],
+[ 'Metropolis Hardware', 2 ],
+[ 'Intrepid Hardware', 2 ],
+[ 'Hardware Chef', 2 ],
+[ 'Link Hardware', 2 ],
+[ 'Swift Hardware', 2 ],
+[ 'Shift Hardware', 2 ],
+[ 'Capricorn Hardware', 2 ],
+[ 'Hardware Widget', 2 ],
+[ 'Hybrid Hardware', 2 ],
+[ 'Dodge Hardware', 2 ],
+[ 'Measure Hardware', 2 ],
+[ 'Hardware Department', 2 ],
+[ 'Kayak Hardware', 2 ],
+[ 'FineLine Hardware', 2 ],
+[ 'Mainline Hardware', 2 ],
+[ 'Gas Station Time', 3 ],
+[ 'Cupcake Gas Station', 3 ],
+[ 'Gas Station Candy', 3 ],
+[ 'EaglEeye Gas Station', 3 ],
+[ 'Compare Gas Station', 3 ],
+[ 'Objective Gas Station', 3 ],
+[ 'Shadow Gas Station', 3 ],
+[ 'Tiger Gas Station', 3 ],
+[ 'Gifted Gas Station', 3 ],
+[ 'Gas Station Thread', 3 ],
+[ 'Sunshine Gas Station', 3 ],
+[ 'Candy Store Bounce', 4 ],
+[ 'Pre Candy Store', 4 ],
+[ 'Corpus Candy Store', 4 ],
+[ 'Net Candy Store', 4 ],
+[ 'ZeroPoint Candy Store', 4 ],
+[ 'BlueDiamond Candy Store', 4 ],
+[ 'Bigfoot Candy Store', 4 ],
+[ 'OffRoad Candy Store', 4 ],
+[ 'Car Rentals Savers', 5 ],
+[ 'OneWorld Car Rentals', 5 ],
+[ 'Simulation Car Rentals', 5 ],
+[ 'Augmented Car Rentals', 5 ],
+[ 'Turbine Car Rentals', 5 ],
+[ 'Acrylic Car Rentals', 5 ],
+[ 'Strength Car Rentals', 5 ],
+[ 'OneMinute Car Rentals', 5 ],
+[ 'Car Rentals Mega', 5 ]
 ]
 
 listings_list = [
@@ -173,3 +175,23 @@ listings_list = [
 	"business_id": 51
 	}
 ]
+
+
+categories_list.each do |name|
+	Category.create( name: name )
+end
+
+businesses_list_1.each do |name, category_id|
+	Business.create( name: name)
+	Business.category = Category.find(category_id).name
+end
+
+businesses_list_2.each do |name, category_id|
+	Business.create( name: name)
+	Business.category = Category.find(category_id).name
+end
+
+
+listings_list.each do |rating, phone_number, address, website, business_id |
+	Listing.create(rating: rating, phone_number: phone_number, address: address, website: website, business_id: business_id)
+end

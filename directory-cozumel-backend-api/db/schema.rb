@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_022730) do
     t.string "data_object_string"
     t.string "notes"
     t.string "resolved_date"
-    t.string "admin_id"
+    t.integer "admin_id"
     t.string "entryable_type"
     t.integer "entryable_id"
     t.datetime "created_at", null: false
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_022730) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.string "rating"
+    t.integer "overall_rating"
     t.string "address"
     t.string "phone_number"
     t.string "website"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_022730) do
     t.string "content"
     t.string "contributor"
     t.string "contributor_email"
-    t.string "rating"
+    t.integer "rating"
     t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -65,3 +65,5 @@
 35. blog post
 
 36. assessment
+
+Watch out for admin controller loading before application controller alphabetically

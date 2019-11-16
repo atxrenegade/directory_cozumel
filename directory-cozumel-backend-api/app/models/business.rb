@@ -1,10 +1,10 @@
 class Business < ApplicationRecord
 	has_many :business_categories
 	has_many :businesses, through: :business_categories
-	has_one :listing, dependent: :delete_all
-	has_many :reviews, dependent: :delete_all
-	has_many :images, dependent: :delete_all
-	has_one :map, dependent: :delete_all
+	has_one :listing #, dependent: :delete_all
+	has_many :reviews#, dependent: :delete_all
+	has_many :images#, dependent: :delete_all
+	has_one :map#, dependent: :delete_all
 	has_many :entries, through: :photos
 	has_many :entries, through: :listings
 	has_many :entries, through: :reviews
