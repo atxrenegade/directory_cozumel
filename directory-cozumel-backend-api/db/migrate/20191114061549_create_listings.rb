@@ -1,7 +1,7 @@
 class CreateListings < ActiveRecord::Migration[5.2]
   def change
     create_table :listings do |t|
-      t.string :rating
+      t.integer :overall_rating
       t.string :address
       t.string :phone_number
       t.string :website

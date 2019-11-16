@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.string :content
       t.string :contributor
       t.string :contributor_email
-      t.string :rating
+      t.integer :rating
 
 			t.references :business
 
