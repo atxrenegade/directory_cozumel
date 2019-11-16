@@ -6,7 +6,7 @@ class CreateImages < ActiveRecord::Migration[5.2]
       t.string :url
       t.string :contributor
 
-			t.reference :business
+			t.references :business
 
       t.timestamps
     end
