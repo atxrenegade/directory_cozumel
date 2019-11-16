@@ -9,7 +9,7 @@ class CreateEntries < ActiveRecord::Migration[5.2]
       t.string :data_object_string
       t.string :notes
       t.string :resolved_date
-			t.string :admin_id
+			t.integer :admin_id
 
 			t.references :entryable, polymorphic: true, index: true
 
