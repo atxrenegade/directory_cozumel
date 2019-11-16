@@ -1,4 +1,5 @@
-class AdminEntry < ApplicationRecord
+class AdminEntry <
+	belongs_to :admin_entryable, polymorphic: true
 	#polymorphic belongs to photo, listing, or review
 	#polymorphic has_many businesses through, photos, listings, and reviews
 	has_many :businesses, through: :listings
