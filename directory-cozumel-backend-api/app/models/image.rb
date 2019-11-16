@@ -1,4 +1,4 @@
 class Image < ApplicationRecord
 	belongs_to :business
-	has_many :admin_entries, as: :admin_entryable
+	has_many :entries, as: :entryable
 end

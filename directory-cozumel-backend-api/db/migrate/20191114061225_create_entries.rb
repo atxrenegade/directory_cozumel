@@ -1,6 +1,6 @@
-class CreateAdminEntries < ActiveRecord::Migration[5.2]
+class CreateEntries < ActiveRecord::Migration[5.2]
   def change
-    create_table :admin_entries do |t|
+    create_table :entries do |t|
 
       t.string :type
       t.string :date
@@ -11,7 +11,7 @@ class CreateAdminEntries < ActiveRecord::Migration[5.2]
       t.string :resolved_date
 			t.string :admin_id
 
-			t.references :admin_entryable, polymorphic: true, index: true
+			t.references :entryable, polymorphic: true, index: true
 
       t.timestamps
     end

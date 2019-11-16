@@ -5,9 +5,9 @@ class Business < ApplicationRecord
 	has_many :reviews, dependent: :delete_all
 	has_many :images, dependent: :delete_all
 	has_one :map, dependent: :delete_all
-	has_many :admin_entries, through: :photos
-	has_many :admin_entries, through: :listings
-	has_many :admin_entries, through: :reviews
+	has_many :entries, through: :photos
+	has_many :entries, through: :listings
+	has_many :entries, through: :reviews
 end
 
 #:destroy causes all the associated objects to also be destroyed

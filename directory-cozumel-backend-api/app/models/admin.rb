@@ -1,3 +1,3 @@
 class Admin < ApplicationRecord
-	has_many :admin_entries
+	has_many :entries
 end
