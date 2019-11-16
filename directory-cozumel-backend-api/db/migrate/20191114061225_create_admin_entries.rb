@@ -11,7 +11,7 @@ class CreateAdminEntries < ActiveRecord::Migration[5.2]
       t.string :resolved_date
 			t.string :admin_id
 
-			t.references :commentable, polymorphic: true, index: true
+			t.references :admin_entryable, polymorphic: true, index: true
 
       t.timestamps
     end
