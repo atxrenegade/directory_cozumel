@@ -12,35 +12,18 @@
 
 ActiveRecord::Schema.define(version: 2019_11_16_022730) do
 
-  create_table "admin_entries", force: :cascade do |t|
-    t.string "type"
-    t.string "date"
-    t.string "contributor"
-    t.string "contributor_email"
-    t.string "data_object_string"
-    t.string "notes"
-    t.string "resolved_date"
-    t.string "admin_id"
-    t.string "commentable_type"
-    t.integer "commentable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["commentable_type", "commentable_id"], name: "index_admin_entries_on_commentable_type_and_commentable_id"
-  end
-
   create_table "admins", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "businesses", force: :cascade do |t|
     t.string "name"
-    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_businesses_on_category_id"
   end
 
   create_table "businesses_categories", id: false, force: :cascade do |t|
@@ -52,6 +35,22 @@ ActiveRecord::Schema.define(version: 2019_11_16_022730) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.string "type"
+    t.string "date"
+    t.string "contributor"
+    t.string "contributor_email"
+    t.string "data_object_string"
+    t.string "notes"
+    t.string "resolved_date"
+    t.string "admin_id"
+    t.string "entryable_type"
+    t.integer "entryable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entryable_type", "entryable_id"], name: "index_entries_on_entryable_type_and_entryable_id"
   end
 
   create_table "images", force: :cascade do |t|
