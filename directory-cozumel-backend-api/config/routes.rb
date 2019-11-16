@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :reviews [:new, :create, :show, :update, :delete]
+  resources :reviews, only: [:new, :create, :show, :update, :delete]
   resources :maps, only: [:show]
   resources :listings, only: [:new, :create, :show, :update, :delete]
   resources :images, only: [:new, :create, :show, :update, :delete]
