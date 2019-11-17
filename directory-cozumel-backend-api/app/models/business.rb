@@ -8,25 +8,22 @@ class Business < ApplicationRecord
 	has_many :entries, through: :photos
 	has_many :entries, through: :listings
 	has_many :entries, through: :reviews
+
+	def categories_names
+    self.categories.pluck(:name)
+  end
+
+	def add_category(cat_name)
+		new_cat = Category.find_by(name: cat_name)
+		self.categories << new_cat
+	end
+
+	def remove_cat(cat_name)
+		del_cat = Category.find_by(name: cat_name)
+		self.categories.delete(del_cat)
+	end
 end
 
-# models/movie.rb
-class Movie < ActiveRecord::Base
-  has_many :showtimes
-  has_many :theatres, through: :showtimes
-end
-
-# models/theatre.rb
-class Theatre < ActiveRecord::Base
-  has_many :showtimes
-  has_many :movies, through: :showtimes
-end
-
-# models/showtime.rb
-class ShowTime < ActiveRecord::Base
-  belongs_to :movie
-  belongs_to :theatre
-end
 
 #:destroy causes all the associated objects to also be destroyed
 #:delete_all causes all the associated objects to be deleted directly from the database (so callbacks will not execute)
