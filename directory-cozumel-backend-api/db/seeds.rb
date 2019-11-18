@@ -542,11 +542,11 @@ businesses_list_2.each do |name, category_name|
 end
 
 listings_list.each do |rating, phone_number, address, website, business_id |
-	Listing.create(rating: rating, phone_number: phone_number, address: address, website: website, business_id: business_id)
+	Listing.create(overall_rating: rating, phone_number: phone_number, address: address, website: website, business_id: business_id)
 end
 
 reviews_list.each do |content, contributor, contributor_email, rating, business_id|
-	Review.create(content: content, contributor:contrbutor, contributor_email: contributor_email, rating: rating, business_id: business_id)
+	Review.create(content: content, contributor: contributor, contributor_email: contributor_email, rating: rating, business_id: business_id)
 end
 
 images_list.each do |description, date, url, contributor, contributor_email, business_id|
