@@ -15,7 +15,8 @@ class Review < ApplicationRecord
 			review["content"] = x.content
 			review["contributor"] = x.contributor
 			review["contributor_email"] = x.contributor_email
-			return review
+			review
 		end
+		return formatted_collection
 	end
 end
