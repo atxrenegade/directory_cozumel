@@ -13,6 +13,22 @@ class Business < ApplicationRecord
     self.categories.pluck(:name)
   end
 
+	def address
+		self.listing.address
+	end
+
+	def rating
+		self.listing.overall_rating
+	end
+
+	def phone_number
+		self.listing.phone_number
+	end
+
+	def website
+		self.listing.website
+	end
+
 	def add_category(cat_name)
 		new_cat = Category.find_by(name: cat_name)
 		self.categories << new_cat
@@ -33,7 +49,6 @@ class Business < ApplicationRecord
 		#create biz hash for api export
 		#include business, name, categories, listings, reviews, map
 	end
-
 end
 
 
