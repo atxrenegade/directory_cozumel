@@ -29,7 +29,7 @@ businesses_list_1 = [
 [ 'Championship Hotel', 'hotel' ],
 [ 'Exclusive Hotel', 'hotel' ]
 ]
-businesses_list2 = [
+businesses_list_2 = [
 [ 'Shire Hotel', 'hotel' ],
 [ 'Print Hotel', 'hotel' ],
 [ 'Hotel Hawk', 'hotel' ],

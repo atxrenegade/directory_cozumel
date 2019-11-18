@@ -11,7 +11,7 @@ class Business < ApplicationRecord
 
 	def category_names
     self.categories.pluck(:name)
-  end
+	end
 
 	def address
 		self.listing.address
