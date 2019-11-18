@@ -46,15 +46,17 @@ class Business < ApplicationRecord
 		biz.add_category_to_business(cat_name)
 	end
 
-	def build_business_object(business)
+	def build_business_object
 		bus_obj = {}
-		bus_id = business.id
-		bus_name = business.name
-		bus_listing = format_listings(bus_id)
-		bus_map = format_maps(bus_id)
-		bus_reviews = format_reviews(bus_id)
-		bus_images = format_images(bus_id)
-		bus_obj << bus_name + bus_listing + bus_map + bus_reviews + bus_images
+		bus_id = self.id
+		bus_obj["id"] = bus_id
+		bus_obj["name"] = self.name.to_s
+		bus_obj["categories"] = self.category_names.flatten
+		#bus_obj["listings"] = Listing.format_listings(bus_id)
+		#bus_obj["map"] = Map.format_maps(bus_id)
+		#bus_obj["reviews"] = Review.format_reviews(bus_id)
+		#bus_obj["images"] = Image.format_images(bus_id)
+		return bus_obj
 	end
 end
 
