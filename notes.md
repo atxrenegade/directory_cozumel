@@ -1,8 +1,4 @@
-
-
 1. fix business methods: add_category, build_business to not duplicate category_id
-
-1.5 fix seed file iterating over array of hashes
 
 2. Test database
 

@@ -1,4 +1,6 @@
 class Business < ApplicationRecord
+	validates :name, uniqueness: true
+
 	has_many :business_categories
 	has_many :categories, through: :business_categories
 	has_one :listing #, dependent: :delete_all
@@ -29,19 +31,19 @@ class Business < ApplicationRecord
 		self.listing.website
 	end
 
-	def add_category(cat_name)
+	def add_category_to_business(cat_name)
 		new_cat = Category.find_by(name: cat_name)
 		self.categories << new_cat
 	end
 
-	def remove_category(cat_name)
+	def remove_category_from_business(cat_name)
 		del_cat = Category.find_by(name: cat_name)
 		self.categories.delete(del_cat)
 	end
 
 	def self.build_new_business(name, cat_name)
-		biz = Business.create(name:name)
-		biz.add_category(cat_name)
+		biz = Business.create!(name:name)
+		biz.add_category_to_business(cat_name)
 	end
 
 	def build_business_object(biz_name)
