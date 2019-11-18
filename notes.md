@@ -1,3 +1,5 @@
+0.5 delete extra business_categories table
+
 1. Create seed file
 
 2. Test database

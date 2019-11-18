@@ -100,5 +100,4 @@ ActiveRecord::Schema.define(version: 2019_11_17_195657) do
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_reviews_on_business_id"
   end
-
 end
