@@ -293,24 +293,253 @@ listings_list = [
 	"phone_number": "123-456-7890",
 	"website": "www.example.com",
 	"business_id": 28
+},
+{
+"rating": 2,
+"address": "Ave. Rafael E. Melgar, Esquina Calle 2 Norte",
+"phone_number": "123-456-7890",
+"website": "www.example.com",
+"business_id": 29
+},
+{
+"rating": 2,
+"address": "Ave. Rafael E. Melgar, Esquina Calle 2 Norte",
+"phone_number": "123-456-7890",
+"website": "www.example.com",
+"business_id": 30
+}
+]
+
+images_list = [
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 2
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 3
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 4
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 7
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 8
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 9
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 10
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 11
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 12
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 13
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 14
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 15
+	},
+
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 16
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 17
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 18
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 19
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 20
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 21
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 22
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 23
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 24
+	},{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 25
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 26
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 27
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 28
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 29
+	},
+	{
+		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 30
 	}
 ]
 
+reviews_list = [
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 1
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 2
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 3
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 4
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 5
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 6
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 7
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 8
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 9
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 10
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 11
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 12
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 13
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 14
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 15
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 16
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 17
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 18
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 19
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 20
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 21
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 22
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 23
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 24
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 25
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 26
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 27
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 28
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 29
+	},
+	{
+		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 30
+	}
+]
+
+maps_list = [
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 1 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 2 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 3 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 4 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 5 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 6 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 7 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 8 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 9 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 10 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 11 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 12 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 13 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 14 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 15 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 16 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 17 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 18 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 19 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 20 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 21 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 22 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 23 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 24 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 25 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 26 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 27 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 28 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 29 },
+	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 30 },
+]
 
 categories_list.each do |name|
 	Category.create( name: name )
 end
 
-businesses_list_1.each do |name, category_id|
-	Business.create( name: name)
-	Business.category = Category.find(category_id).name
+businesses_list_1.each do |name, category_name|
+	Business.build_new_business(name, category_name)
 end
 
-businesses_list_2.each do |name, category_id|
-	Business.create( name: name)
-	Business.category = Category.find(category_id).name
+businesses_list_2.each do |name, category_name|
+	Business.build_new_business(name, category_name)
 end
-
 
 listings_list.each do |rating, phone_number, address, website, business_id |
 	Listing.create(rating: rating, phone_number: phone_number, address: address, website: website, business_id: business_id)
@@ -320,10 +549,10 @@ reviews_list.each do |content, contributor, contributor_email, rating, business_
 	Review.create(content: content, contributor:contrbutor, contributor_email: contributor_email, rating: rating, business_id: business_id)
 end
 
-images_list.each do |description, date, url, contributor, constibutor_email, business_id|
-	Image.create(description: description, date: date , url: url, contributor: contributor, constibutor_email: contributor_email, business_id: business_id)
+images_list.each do |description, date, url, contributor, contributor_email, business_id|
+	Image.create(description: description, date: date , url: url, contributor: contributor, contributor_email: contributor_email, business_id: business_id)
 end
 
 maps_list.each do |map_coords, business_id|
 	Map.create(map_coords: map_coords, business_id: business_id)
-end		
+end
