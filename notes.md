@@ -4,6 +4,8 @@ X 1. fix business methods: add_category, build_business to not duplicate categor
 
 3. Create Business Objects to export as JSON Objects
 
+4. Change db map columns to lat and long in model, migrations, and methods, and seeds
+
 5. Add basic HTML for directory view
 
 7. Add radio button for search by name and search by category
