@@ -52,7 +52,7 @@ class Business < ApplicationRecord
 		bus_obj["id"] = bus_id
 		bus_obj["name"] = self.name.to_s
 		bus_obj["categories"] = self.category_names.flatten
-		#bus_obj["listings"] = Listing.format_listings(bus_id)
+		bus_obj["listing"] = Listing.format_listing(bus_id)
 		#bus_obj["map"] = Map.format_maps(bus_id)
 		#bus_obj["reviews"] = Review.format_reviews(bus_id)
 		#bus_obj["images"] = Image.format_images(bus_id)
