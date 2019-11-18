@@ -9,7 +9,7 @@ class Business < ApplicationRecord
 	has_many :entries, through: :listings
 	has_many :entries, through: :reviews
 
-	def categories_names
+	def category_names
     self.categories.pluck(:name)
   end
 
@@ -18,10 +18,22 @@ class Business < ApplicationRecord
 		self.categories << new_cat
 	end
 
-	def remove_cat(cat_name)
+	def remove_category(cat_name)
 		del_cat = Category.find_by(name: cat_name)
 		self.categories.delete(del_cat)
 	end
+
+	def self.build_new_business(name, cat_name)
+		biz = Business.create(name:name)
+		biz.add_category(cat_name)
+	end
+
+	def build_business_object(biz_name)
+		#find biz object by name
+		#create biz hash for api export
+		#include business, name, categories, listings, reviews, map
+	end
+
 end
 
 
