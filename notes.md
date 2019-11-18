@@ -1,4 +1,4 @@
-1. fix business methods: add_category, build_business to not duplicate category_id
+X 1. fix business methods: add_category, build_business to not duplicate category_id
 
 2. Test database
 
@@ -57,6 +57,8 @@
 31. make design responsive to mobile and desktop
 
 32. complete styling
+
+33. add validations to models
 
 33. deploy to Heroku
 

@@ -46,10 +46,15 @@ class Business < ApplicationRecord
 		biz.add_category_to_business(cat_name)
 	end
 
-	def build_business_object(biz_name)
-		#find biz object by name
-		#create biz hash for api export
-		#include business, name, categories, listings, reviews, map
+	def build_business_object(business)
+		bus_obj = {}
+		bus_id = business.id
+		bus_name = business.name
+		bus_listing = format_listings(bus_id)
+		bus_map = format_maps(bus_id)
+		bus_reviews = format_reviews(bus_id)
+		bus_images = format_images(bus_id)
+		bus_obj << bus_name + bus_listing + bus_map + bus_reviews + bus_images
 	end
 end
 
