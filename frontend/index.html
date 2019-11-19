@@ -13,28 +13,36 @@
 			<div id="title-container" class="tile">
 				<h2>Directory Cozumel</h2>
 			</div>
+
 			<div id="searchbar-container" class="tile">
-			 <h3> Search Listings: <h3>
-
-				<input type = "radio"
-							 name = "searchType"
-							 id = "byName"
-							 value = "byName"/>
-				<label for = "byName"> by name &nbsp;</label>
-
-				<input type = "radio"
-							 name = "searchType"
-							 id = "byCategory"
-							 value = "byCatgeory" checked = "checked"/>
-				<label for = "sizeSmall">by category</label>
+				<fieldset>
+				 	<legend>Search Listings:</legend>
+					<br>
+					<input type = "radio" name = "searchType" id = "byName" value = "byName"/>
+					<label for = "byName"> by name &nbsp;</label>
+					<input type = "radio" name = "searchType" id = "byCategory" value = "byCatgeory" checked = "checked"/>
+					<label for = "byCategory">by category</label>
 				  <div id='search-by-category'>
-					 drop down menu
-					 submit button
+					<br>
+						<form action="/search_by_category">
+							<fieldset>
+								<legend>Search By Category:</legend>
+								<input type="text" name="category" value="Select Category"><br>
+								<input type="submit" value="Search">
+							</fieldset>
+						</form>
 				  </div>
-				  <div	id='search-by-name'>
-					 input text field
-					 submit button
+					<br>
+				  <div id='search-by-name'>
+						<form action="/search_by_name">
+							<fieldset>
+								<legend>Search By Name:</legend>
+								<input type="text" name="name" value="Enter Business to Search For"><br>
+								<input type="submit" value="Search">
+							</fieldset>
+						</form>
 				  </div>
+				</fieldset>
 			</div>
 			<div id="menu-container" class="tile">
 			</div>
