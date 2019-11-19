@@ -58,6 +58,15 @@ class Business < ApplicationRecord
 		#bus_obj["images"] = Image.format_images(bus_id)
 		return bus_obj
 	end
+
+	def self.build_filtered_list_for_export(bus_list)
+		#binding.pry
+		export_list = bus_list.map do | bus_id |
+			bus = Business.find_by(id: bus_id)
+			bus.build_business_object
+		end
+		return export_list
+	end
 end
 
 
