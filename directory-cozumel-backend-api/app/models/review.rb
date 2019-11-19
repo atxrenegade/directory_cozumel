@@ -8,14 +8,18 @@ class Review < ApplicationRecord
 
 	def self.format_reviews(bus_id)
 		unformatted_collection = Review.where(business_id: bus_id)
-		formatted_collection  = unformatted_collection.map do |x|
-			review = {}
-			review["id"] = x.id
-			review["rating"] = x.rating
-			review["content"] = x.content
-			review["contributor"] = x.contributor
-			review["contributor_email"] = x.contributor_email
-			review
+		if unformatted_collection == nil
+			formatted_collection = nil
+		else
+			formatted_collection  = unformatted_collection.map do |x|
+				review = {}
+				review["id"] = x.id
+				review["rating"] = x.rating
+				review["content"] = x.content
+				review["contributor"] = x.contributor
+				review["contributor_email"] = x.contributor_email
+				review
+			end
 		end
 		return formatted_collection
 	end
