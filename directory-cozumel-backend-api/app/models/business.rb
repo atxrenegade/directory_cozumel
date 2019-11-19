@@ -55,7 +55,7 @@ class Business < ApplicationRecord
 		bus_obj["listing"] = Listing.format_listing(bus_id)
 		bus_obj["map"] = Map.format_map(bus_id)
 		bus_obj["reviews"] = Review.format_reviews(bus_id)
-		#bus_obj["images"] = Image.format_images(bus_id)
+		bus_obj["images"] = Image.format_images(bus_id)
 		return bus_obj
 	end
 
