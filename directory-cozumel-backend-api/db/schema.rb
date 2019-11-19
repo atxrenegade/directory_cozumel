@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2019_11_18_055052) do
 
   create_table "maps", force: :cascade do |t|
     t.integer "lat"
-    t.integer "long"
+    t.integer "lng"
     t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

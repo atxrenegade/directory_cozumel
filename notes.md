@@ -71,3 +71,5 @@ X 1. fix business methods: add_category, build_business to not duplicate categor
 36. assessment
 
 Watch out for admin controller loading before application controller alphabetically
+
+watch out for rounding of map lat and lng values
