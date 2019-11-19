@@ -312,71 +312,71 @@ listings_list = [
 
 images_list = [
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
 	},
 	{
-		description: 'Here is a different picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
+		description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 2
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 2
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 3
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 3
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 4
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 4
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 7
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 7
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 8
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 8
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 9
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 9
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 10
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 10
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 11
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 11
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 12
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 12
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 13
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 13
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 14
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 14
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 15
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 15
 	},
 
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 16
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 16
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 17
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 17
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 18
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 18
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 19
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 19
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 20
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 20
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 21
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 21
 	},
 	{
 		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 22
@@ -385,24 +385,24 @@ images_list = [
 		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 23
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 24
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 24
 	},{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 25
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 25
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 26
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 26
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 27
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 27
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 28
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 28
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 29
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 29
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: '', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 30
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 30
 	}
 ]
 
@@ -503,36 +503,36 @@ reviews_list = [
 ]
 
 maps_list = [
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 1 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 2 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 3 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 4 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 5 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 6 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 7 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 8 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 9 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 10 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 11 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 12 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 13 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 14 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 15 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 16 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 17 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 18 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 19 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 20 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 21 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 22 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 23 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 24 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 25 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 26 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 27 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 28 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 29 },
-	{ map_coords:'{lat: -25.344, lng: 131.036}', business_id: 30 },
+	{ lat: -25.344, lng: 131.036, business_id: 1 },
+	{ lat: -25.344, lng: 131.036, business_id: 2 },
+	{ lat: -25.344, lng: 131.036, business_id: 3 },
+	{ lat: -25.344, lng: 131.036, business_id: 4 },
+	{ lat: -25.344, lng: 131.036, business_id: 5 },
+	{ lat: -25.344, lng: 131.036, business_id: 6 },
+	{ lat: -25.344, lng: 131.036, business_id: 7 },
+	{ lat: -25.344, lng: 131.036, business_id: 8 },
+	{ lat: -25.344, lng: 131.036, business_id: 9 },
+	{ lat: -25.344, lng: 131.036, business_id: 10 },
+	{ lat: -25.344, lng: 131.036, business_id: 11 },
+	{ lat: -25.344, lng: 131.036, business_id: 12 },
+	{ lat: -25.344, lng: 131.036, business_id: 13 },
+	{ lat: -25.344, lng: 131.036, business_id: 14 },
+	{ lat: -25.344, lng: 131.036, business_id: 15 },
+	{ lat: -25.344, lng: 131.036, business_id: 16 },
+	{ lat: -25.344, lng: 131.036, business_id: 17 },
+	{ lat: -25.344, lng: 131.036, business_id: 18 },
+	{ lat: -25.344, lng: 131.036, business_id: 19 },
+	{ lat: -25.344, lng: 131.036, business_id: 20 },
+	{ lat: -25.344, lng: 131.036, business_id: 21 },
+	{ lat: -25.344, lng: 131.036, business_id: 22 },
+	{ lat: -25.344, lng: 131.036, business_id: 23 },
+	{ lat: -25.344, lng: 131.036, business_id: 24 },
+	{ lat: -25.344, lng: 131.036, business_id: 25 },
+	{ lat: -25.344, lng: 131.036, business_id: 26 },
+	{ lat: -25.344, lng: 131.036, business_id: 27 },
+	{ lat: -25.344, lng: 131.036, business_id: 28 },
+	{ lat: -25.344, lng: 131.036, business_id: 29 },
+	{ lat: -25.344, lng: 131.036, business_id: 30 }
 ]
 
 categories_list.each do |name|
