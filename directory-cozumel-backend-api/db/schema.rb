@@ -79,7 +79,8 @@ ActiveRecord::Schema.define(version: 2019_11_18_055052) do
   end
 
   create_table "maps", force: :cascade do |t|
-    t.string "map_coords"
+    t.integer "lat"
+    t.integer "long"
     t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
