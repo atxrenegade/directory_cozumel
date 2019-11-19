@@ -8,21 +8,41 @@
   </head>
   <body>
     <header>
-      <h2>Directory Cozumel</h2>
     </header>
-
     <main>
-			<div id="title-container">
+			<div id="title-container" class="tile">
+				<h2>Directory Cozumel</h2>
 			</div>
-			<div id="searchbar-container">
+			<div id="searchbar-container" class="tile">
+			 <h3> Search Listings: <h3>
+
+				<input type = "radio"
+							 name = "searchType"
+							 id = "byName"
+							 value = "byName"/>
+				<label for = "byName"> by name &nbsp;</label>
+
+				<input type = "radio"
+							 name = "searchType"
+							 id = "byCategory"
+							 value = "byCatgeory" checked = "checked"/>
+				<label for = "sizeSmall">by category</label>
+				  <div id='search-by-category'>
+					 drop down menu
+					 submit button
+				  </div>
+				  <div	id='search-by-name'>
+					 input text field
+					 submit button
+				  </div>
 			</div>
-			<div id="menu-container">
+			<div id="menu-container" class="tile">
 			</div>
-			<div id="ads-container">
+			<div id="ads-container" class="tile">
 			</div>
-			<div id="sponsored-listing-container">
+			<div id="sponsored-listing-container" class="tile">
 			</div>
-			<div id='form-container'>
+			<div id='form-container' class="tile">
 				<div id="add-business-form-container">
 				</div>
 				<div id="flag-business-form-container">
