@@ -7,3 +7,19 @@ html {
 h2, h3, h4, legend {
 	color: white;
 }
+
+#searchByName	{
+	display: block;
+}
+
+#searchByCategory {
+	display: none;
+ }
+
+fieldset {
+	margin:  30px 15px;
+}
+
+input {
+	 margin-left: 15px;
+}

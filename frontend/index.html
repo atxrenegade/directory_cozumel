@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>Directory Cozumel</title>
     <link rel="stylesheet" href="styles.css">
-		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script
-		<script src="index.js" defer ></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+		<script src="index.js"></script>
   </head>
   <body>
     <header>
@@ -20,25 +20,23 @@
 				 	<legend>Search Listings:</legend>
 					<br>
 					<input type = "radio" name = "searchType" id = "byName" value = "byName"/>
-					<label for = "byName"> By Name &nbsp;</label>
-					<input type = "radio" name = "searchType" id = "byCategory" value = "byCatgeory" checked = "checked"/>
+					<label for = "byName"> By Name </label>
+					<input type = "radio" name = "searchType" id = "byCategory" value = "byCategory"/>
 					<label for = "byCategory">By Category</label>
-				  <div id='search-by-category'>
-					<br>
+				  <div id='searchByCategory'>
 						<form action="/search_by_category">
-							<fieldset>
+							<fieldset id="categorySearch">
 								<legend>Search By Category:</legend>
-								<input type="text" name="category" value="Select Category"><br>
-								<input type="submit" value="Search">
+								<input type="text" name="category" value="Select Category"/><br>
+								<input type="submit" value="Search"/>
 							</fieldset>
 						</form>
 				  </div>
-					<br>
-				  <div id='search-by-name'>
+				  <div id='searchByName'>
 						<form action="/search_by_name">
-							<fieldset>
+							<fieldset id='nameSearch'>
 								<legend>Search By Name:</legend>
-								<input type="text" name="name" value="Enter Business to Search For"><br>
+								<input type="text" name="name" value="Enter Business to Search For" checked = "checked"/><br>
 								<input type="submit" value="Search">
 							</fieldset>
 						</form>

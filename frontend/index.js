@@ -1,15 +1,24 @@
 
-
+window.onload = function() {
 /* Search Menu Buttons */
-function toggleSearchMenus() {
-	function toggleSearchMenus() {
-		$( "#search_by_name" ).toggle()
-		$( "#search_by_category" ).toggle()
+
+	function toggleCategoryMenu() {
+		let searchByName = document.getElementById('searchByName')
+		searchByName.style.display = 'none';
+		let searchByCategory = document.getElementById('searchByCategory')
+		searchByCategory.style.display = 'block';
 	}
+
+	function toggleNameMenu() {
+		let searchByName = document.getElementById('searchByName');
+		searchByName.style.display = 'block';
+		let searchByCategory = document.getElementById('searchByCategory');
+		searchByCategory.style.display = 'none';
+	}
+
+	let nameRadioSelect = document.getElementById('byName');
+	nameRadioSelect.addEventListener("click", toggleNameMenu);
+
+	let categoryRadioSelect = document.getElementById('byCategory');
+	categoryRadioSelect.addEventListener("click", toggleCategoryMenu);
 }
-
-let byNameRadioSelect = document.getElementById("byName")
-byNameRadioSelect.addEventListener('click', toggleSearchMenus)
-
-let byCategoryRadioSelect = document.getElementById("byCategory")
-byCategoryRadioSelect.addEventListener('click', toggleSearchMenus)
