@@ -88,7 +88,13 @@
 				<div id="flag-business-form-container">
 					<form action="/business/flag">
 						<fieldset id='bus-flag'>
-							<legend>Flag Business</legend>
+							<legend>Flag Business Listing</legend>
+							<label for="flag-content">Reason for flagging:</label>
+							<input type="text" id="new-flag-content"/><br>
+							<label for="flag-contributor">Your Name:</label>
+							<input type="text" id="flag-contributor"/><br>
+							<label for="flag-email">Your Email</label>
+							<input type="text" id="flag-contributor-email"/><br>
 							<input type="submit" value="Save">
 						</fieldset>
 					</form>
@@ -109,7 +115,7 @@
 							<label for="review-rating">Rating:</label>
 							<input type="text" id="new-review-rating"/><br>
 							<label for="content">Your Review:</label>
-							<input type="text" id="new-review-content"/><br>
+							<input type="textarea" id="new-review-content"/><br>
 							<label for="review-contributor">Your Name:</label>
 							<input type="text" id="new-review-contributor"/><br>
 							<label for="contributor-email">Your Email</label>
