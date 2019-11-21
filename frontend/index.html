@@ -55,8 +55,8 @@
 					<br>
 					<input type="checkbox" id= "add-review-checkbox" name="review" value="review">Add Review<br>
 					<input type="checkbox" id="add-image-checkbox" name="image" value="image">Add Image<br>
-					<input type="checkbox" name="edit" value="edit">Suggest Edit<br>
-					<input type="checkbox" name="flag" value="flag">Flag Business<br>
+					<input type="checkbox" id="edit-business-checkbox" name="edit" value="edit">Suggest Edit<br>
+					<input type="checkbox" id='flag-business-checkbox' name="flag" value="flag">Flag Business<br>
 					<div id="google-maps-container">
 						<img src="https://s23219.pcdn.co/wp-content/uploads/2014/10/London-Google-Maps.jpg" id='map-placeholder' />
 					<div>
@@ -106,7 +106,7 @@
 				<div id="suggest-edit-form-container">
 					<form action="/business/edit">
 						<fieldset id='bus-edit'>
-							<legend>Suggest Edit Form</legend>
+							<legend>Suggest Edit</legend>
 							<label for="edit-content">How can we improve this listing?:</label>
 							<input type="textarea" id="edit-content"/><br>
 							<label for="edit-contributor">Your Name:</label>
