@@ -41,4 +41,37 @@ input {
   max-width:45%;
   max-height:45%;
 	margin: 20px;
+	display: none;
+}
+
+#listings-container {
+	display: none;
+}
+
+#business-index-container {
+	display: none;
+}
+
+#form-container {
+	display: none;
+}
+
+#add-business-form-container {
+	display: none;
+}
+
+#flag-business-form-container {
+	display: none;
+}
+
+#suggest-edit-form-container {
+	display: none;
+}
+
+#add-review-form-container {
+	display: none;
+}
+
+#add-image-form-container {
+	display: none;
 }
