@@ -73,3 +73,6 @@ X5. Add basic HTML for directory view
 Watch out for admin controller loading before application controller alphabetically
 
 watch out for rounding of map lat and lng values
+add image date column to images db
+Overall rating is an average of all review ratings defaults is n/a
+Add a maps container
