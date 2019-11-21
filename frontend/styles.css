@@ -1,9 +1,11 @@
 
 html {
 	background-image: url('https://img1.coastalliving.timeinc.net/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2018/05/main/palancar-beach-cozumel912441986.jpg');
-	background-size:100%;
-
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: sticky:
 }
+
 
 h2, h3, h4, legend {
 	color: black;
