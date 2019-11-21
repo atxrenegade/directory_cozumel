@@ -104,13 +104,19 @@
 					<form action="/business/edit">
 						<fieldset id='bus-edit'>
 							<legend>Suggest Edit Form</legend>
+							<label for="edit-content">How can we improve this listing?:</label>
+							<input type="textarea" id="edit-content"/><br>
+							<label for="edit-contributor">Your Name:</label>
+							<input type="text" id="edit-contributor"/><br>
+							<label for="edit-email">Your Email</label>
+							<input type="text" id="edit-contributor-email"/><br>
 							<input type="submit" value="Save">
 						</fieldset>
 					</form>
 				</div>
 				<div id="add-review-form-container">
 					<form action="/review/new">
-						<fieldset id='add-rewiew'>
+						<fieldset id='add-review'>
 							<legend>Add Review</legend>
 							<label for="review-rating">Rating:</label>
 							<input type="text" id="new-review-rating"/><br>
