@@ -22,6 +22,11 @@ window.onload = function() {
 		$('#add-review-form-container').toggle();
 	}
 
+	function toggleImageForm() {
+		$('#form-container').toggle()
+		$('#add-image-form-container').toggle();
+	}
+
 	let nameRadioSelect = document.getElementById('byName');
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
 
@@ -30,4 +35,7 @@ window.onload = function() {
 
 	let reviewCheckBox = document.getElementById('add-review-checkbox');
 	reviewCheckBox.addEventListener("change", toggleReviewForm);
+
+	let imageCheckBox = document.getElementById('add-image-checkbox');
+	imageCheckBox.addEventListener("change", toggleImageForm);
 }
