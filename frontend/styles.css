@@ -6,7 +6,6 @@ html {
 	position: sticky:
 }
 
-
 h2, h3, h4, legend {
 	color: black;
 }
@@ -53,7 +52,6 @@ input {
 }
 
 #form-container {
-	display: none;
 }
 
 #add-business-form-container {

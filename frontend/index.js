@@ -18,34 +18,24 @@ window.onload = function() {
 
 	/* Check box toggle forms functions */
 	function toggleReviewForm() {
-		document.getElementById('form-container').style.display = 'block';
 		$('#add-review-form-container').toggle();
 	}
 
 	function toggleImageForm() {
-		document.getElementById('form-container').style.display = 'block';
 		$('#add-image-form-container').toggle();
 	}
 
 	function toggleEditForm() {
-		document.getElementById('form-container').style.display = 'block';
 		$('#suggest-edit-form-container').toggle();
 	}
 
 	function toggleFlagForm() {
-		document.getElementById('form-container').style.display = 'block';
 		$('#flag-business-form-container').toggle();
 	}
 
 	function toggleNewBusinessForm() {
-		document.getElementById('form-container').style.display = 'block';
 		$('#add-business-form-container').toggle();
 	}
-
-	function hideFormContainer() {
-		/* hide all forms if no checked boxes are selected */
-	}
-
 
 	let nameRadioSelect = document.getElementById('byName');
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
