@@ -37,6 +37,16 @@ window.onload = function() {
 		$('#add-business-form-container').toggle();
 	}
 
+	function busNameSearch() {
+		url = 'http://localhost/3000/businesses'
+		fetch(url)
+		.then(resp => resp.json())
+		.then(json => console.log(json))
+		.catch(err) {
+			console.log(error.message);
+		}
+	}
+
 	let nameRadioSelect = document.getElementById('byName');
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
 
@@ -57,5 +67,8 @@ window.onload = function() {
 
 	let newBusinessButton = document.getElementById('add-button');
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
+
+	let searchByName = document.getElementById('by-name-button');
+	searchByName.addEventListener("click", busNameSearch);
 
 }

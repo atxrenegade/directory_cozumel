@@ -8,9 +8,9 @@ X 4. Change db map columns to lat and long in model, migrations, and methods, an
 
 X5. Add basic HTML for directory view
 
-7. Add radio button for search by name and search by category
+X 7. Add radio button for search by name and search by category
 
-8. Add event listeners for search by name that add search input field when by name is selected
+X 8. Add event listeners for search by name that add search input field when by name is selected
 
 9. Add event listeners that show drop down category menu when radio button
 
