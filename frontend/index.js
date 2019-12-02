@@ -3,38 +3,38 @@ window.onload = function() {
 /* Search Menu Buttons */
 
 	function toggleCategoryMenu() {
-		let searchByName = document.getElementById('searchByName')
+		let searchByName = document.getElementById('js-search-by-name')
 		searchByName.style.display = 'none';
-		let searchByCategory = document.getElementById('searchByCategory')
+		let searchByCategory = document.getElementById('js-search-by-category')
 		searchByCategory.style.display = 'block';
 	}
 
 	function toggleNameMenu() {
-		let searchByName = document.getElementById('searchByName');
+		let searchByName = document.getElementById('js-search-by-name');
 		searchByName.style.display = 'block';
-		let searchByCategory = document.getElementById('searchByCategory');
+		let searchByCategory = document.getElementById('js-search-by-category');
 		searchByCategory.style.display = 'none';
 	}
 
 	/* Check box toggle forms functions */
 	function toggleReviewForm() {
-		$('#add-review-form-container').toggle();
+		$('#js-add-review-form-container').toggle();
 	}
 
 	function toggleImageForm() {
-		$('#add-image-form-container').toggle();
+		$('#js-add-image-form-container').toggle();
 	}
 
 	function toggleEditForm() {
-		$('#suggest-edit-form-container').toggle();
+		$('#js-suggest-edit-form-container').toggle();
 	}
 
 	function toggleFlagForm() {
-		$('#flag-business-form-container').toggle();
+		$('#js-flag-business-form-container').toggle();
 	}
 
 	function toggleNewBusinessForm() {
-		$('#add-business-form-container').toggle();
+		$('#js-add-business-form-container').toggle();
 	}
 
 	function busNameSearch(event) {
@@ -50,28 +50,28 @@ window.onload = function() {
 		}
 	}
 
-	let nameRadioSelect = document.getElementById('byName');
+	let nameRadioSelect = document.getElementById('js-by-name');
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
 
-	let categoryRadioSelect = document.getElementById('byCategory');
+	let categoryRadioSelect = document.getElementById('js-by-category');
 	categoryRadioSelect.addEventListener("click", toggleCategoryMenu);
 
-	let reviewCheckBox = document.getElementById('add-review-checkbox');
+	let reviewCheckBox = document.getElementById('js-add-review-checkbox');
 	reviewCheckBox.addEventListener("change", toggleReviewForm);
 
-	let imageCheckBox = document.getElementById('add-image-checkbox');
+	let imageCheckBox = document.getElementById('js-add-image-checkbox');
 	imageCheckBox.addEventListener("change", toggleImageForm);
 
-	let flagCheckBox = document.getElementById('flag-business-checkbox');
+	let flagCheckBox = document.getElementById('js-flag-business-checkbox');
 	flagCheckBox.addEventListener("change", toggleFlagForm);
 
-	let editCheckBox = document.getElementById('edit-business-checkbox');
+	let editCheckBox = document.getElementById('js-edit-business-checkbox');
 	editCheckBox.addEventListener("change", toggleEditForm);
 
-	let newBusinessButton = document.getElementById('add-button');
+	let newBusinessButton = document.getElementById('js-add-button');
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
 
-	let searchByName = document.getElementById('by-name-button');
+	let searchByName = document.getElementById('js-by-name-button');
 	searchByName.addEventListener("click", busNameSearch(event));
 
 }

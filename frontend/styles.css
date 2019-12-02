@@ -10,14 +10,6 @@ h2, h3, h4, legend {
 	color: black;
 }
 
-#searchByName	{
-	display: block;
-}
-
-#searchByCategory {
-	display: none;
- }
-
 fieldset {
 	margin:  20px 15px;
 }
@@ -36,40 +28,48 @@ input {
   border-radius: 15px;
 }
 
-#map-placeholder {
+#js-search-by-name	{
+	display: block;
+}
+
+#js-search-by-category {
+	display: none;
+}
+
+#js-map-placeholder {
   max-width:45%;
   max-height:45%;
 	margin: 20px;
 	display: none;
 }
 
-#listings-container {
+#js-listings-container {
 	display: block;
 }
 
-#business-index-container {
+#js-business-index-container {
 	display: none;
 }
 
-#form-container {
+#js-form-container {
 }
 
-#add-business-form-container {
+#js-add-business-form-container {
 	display: none;
 }
 
-#flag-business-form-container {
+#js-flag-business-form-container {
 	display: none;
 }
 
-#suggest-edit-form-container {
+#js-suggest-edit-form-container {
 	display: none;
 }
 
-#add-review-form-container {
+#js-add-review-form-container {
 	display: none;
 }
 
-#add-image-form-container {
+#js-add-image-form-container {
 	display: none;
 }
