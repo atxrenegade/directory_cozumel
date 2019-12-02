@@ -48,6 +48,7 @@
 				  </div>
 				</fieldset>
 			</div>
+
 			<div id="listings-container" class="tile">
 				Business Listings Search Results
 				<div id='business-show' class='tile'>
@@ -65,94 +66,93 @@
 					All business with links to individual pages from category search
 				</div>
 			</div>
-			<div id="js-menu-container" class="tile">
-				<button id='add-button'>Add New Business</button>
+
+			<div id="js-add-review-form-container">
+				<form action="/review/new">
+					<fieldset id='add-review'>
+						<legend>Add Review</legend>
+						<label for="review-rating">Rating:</label>
+						<input type="text" id="new-review-rating"/><br>
+						<label for="content">Your Review:</label>
+						<input type="textarea" id="new-review-content"/><br>
+						<label for="review-contributor">Your Name:</label>
+						<input type="text" id="new-review-contributor"/><br>
+						<label for="contributor-email">Your Email</label>
+						<input type="text" id="new-review-contributor-email"/><br>
+						<input type="submit" value="Save">
+					</fieldset>
+				</form>
 			</div>
 
-			<div id='form-container'>
-				<div id="js-add-business-form-container">
-					<form action="/business/new">
-						<fieldset id='bus-form'>
-							<legend>Add Business</legend>
-							<label for="name">Business Name:</label>
-							<input type="text" id="new_bus_name"/><br>
-							<label for="address">Address:</label>
-							<input type="text" id="new-bus-address"/><br>
-							<label for="phone-number">Phone Number:</label>
-							<input type="text" id="phone-number"/><br>
-							<label for="website">Website:</label>
-							<input type="text" id="website"/><br>
-							<input type="submit" value="Save">
-						</fieldset>
-					</form>
-				</div>
+			<div id="js-add-image-form-container">
+				<form action="/image/new">
+					<fieldset id='new-image'>
+						<legend>Add Image</legend>
+						<label for="image-url">URL:</label>
+						<input type="text" id="image-url"/><br>
+						<label for="image-description">Description:</label>
+						<input type="text" id="image-description"/><br>
+						<label for="image-date">Date:</label>
+						<input type="text" id="image-date"/><br>
+						<label for="image-contributor">Your Name:</label>
+						<input type="text" id="image-contributor"/><br>
+						<label for="image-email">Your Email</label>
+						<input type="text" id="image-contributor-email"/><br>
+						<input type="submit" value="Save">
+					</fieldset>
+				</form>
+			</div>
 
-				<div id="js-add-review-form-container">
-					<form action="/review/new">
-						<fieldset id='add-review'>
-							<legend>Add Review</legend>
-							<label for="review-rating">Rating:</label>
-							<input type="text" id="new-review-rating"/><br>
-							<label for="content">Your Review:</label>
-							<input type="textarea" id="new-review-content"/><br>
-							<label for="review-contributor">Your Name:</label>
-							<input type="text" id="new-review-contributor"/><br>
-							<label for="contributor-email">Your Email</label>
-							<input type="text" id="new-review-contributor-email"/><br>
-							<input type="submit" value="Save">
-						</fieldset>
-					</form>
-				</div>
+			<div id="js-suggest-edit-form-container">
+				<form action="/business/edit">
+					<fieldset id='bus-edit'>
+						<legend>Suggest Edit</legend>
+						<label for="edit-content">How can we improve this listing?:</label>
+						<input type="textarea" id="edit-content"/><br>
+						<label for="edit-contributor">Your Name:</label>
+						<input type="text" id="edit-contributor"/><br>
+						<label for="edit-email">Your Email</label>
+						<input type="text" id="edit-contributor-email"/><br>
+						<input type="submit" value="Save">
+					</fieldset>
+				</form>
+			</div>
 
-				<div id="js-add-image-form-container">
-					<form action="/image/new">
-						<fieldset id='new-image'>
-							<legend>Add Image</legend>
-							<label for="image-url">URL:</label>
-							<input type="text" id="image-url"/><br>
-							<label for="image-description">Description:</label>
-							<input type="text" id="image-description"/><br>
-							<label for="image-date">Date:</label>
-							<input type="text" id="image-date"/><br>
-							<label for="image-contributor">Your Name:</label>
-							<input type="text" id="image-contributor"/><br>
-							<label for="image-email">Your Email</label>
-							<input type="text" id="image-contributor-email"/><br>
-							<input type="submit" value="Save">
-						</fieldset>
-					</form>
-				</div>
-
-				<div id="js-suggest-edit-form-container">
-					<form action="/business/edit">
-						<fieldset id='bus-edit'>
-							<legend>Suggest Edit</legend>
-							<label for="edit-content">How can we improve this listing?:</label>
-							<input type="textarea" id="edit-content"/><br>
-							<label for="edit-contributor">Your Name:</label>
-							<input type="text" id="edit-contributor"/><br>
-							<label for="edit-email">Your Email</label>
-							<input type="text" id="edit-contributor-email"/><br>
-							<input type="submit" value="Save">
-						</fieldset>
-					</form>
-				</div>
-
-				<div id="js-flag-business-form-container">
-					<form action="/business/flag">
-						<fieldset id='bus-flag'>
-							<legend>Flag Business Listing</legend>
-							<label for="flag-content">Reason for flagging:</label>
-							<input type="text" id="new-flag-content"/><br>
-							<label for="flag-contributor">Your Name:</label>
-							<input type="text" id="flag-contributor"/><br>
-							<label for="flag-email">Your Email</label>
-							<input type="text" id="flag-contributor-email"/><br>
-							<input type="submit" value="Save">
-						</fieldset>
-					</form>
-				</div>
-
+			<div id="js-flag-business-form-container">
+				<form action="/business/flag">
+					<fieldset id='bus-flag'>
+						<legend>Flag Business Listing</legend>
+						<label for="flag-content">Reason for flagging:</label>
+						<input type="text" id="new-flag-content"/><br>
+						<label for="flag-contributor">Your Name:</label>
+						<input type="text" id="flag-contributor"/><br>
+						<label for="flag-email">Your Email</label>
+						<input type="text" id="flag-contributor-email"/><br>
+						<input type="submit" value="Save">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="js-menu-container" class="tile">
+		<fieldset id='js-add-business'>
+			<legend>Add New Business:</legend>
+			<button id='js-add-button'>Add New Business</button>
+			<div id="js-add-business-form-container">
+				<form action="/business/new">
+					<fieldset id='bus-form'>
+						<legend>Add Business</legend>
+						<label for="name">Business Name:</label>
+						<input type="text" id="new_bus_name"/><br>
+						<label for="address">Address:</label>
+						<input type="text" id="new-bus-address"/><br>
+						<label for="phone-number">Phone Number:</label>
+						<input type="text" id="phone-number"/><br>
+						<label for="website">Website:</label>
+						<input type="text" id="website"/><br>
+						<input type="submit" value="Save">
+					</fieldset>
+				</form>
 			</div>
     </main>
   </body>
