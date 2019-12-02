@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+	#resources :businesses, only: [:index_all]
+	get 'businesses/index_all', to: 'businesses#index_all'
   resources :reviews, only: [:new, :create, :show, :update, :delete]
   resources :maps, only: [:show]
   resources :listings, only: [:new, :create, :show, :update, :delete]

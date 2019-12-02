@@ -19,7 +19,7 @@ class Business < ApplicationRecord
 		self.listing.address
 	end
 
-	def rating
+	def overall_rating
 		self.listing.overall_rating
 	end
 
@@ -65,6 +65,12 @@ class Business < ApplicationRecord
 			bus.build_business_object
 		end
 		return export_list
+	end
+
+	def self.build_all_for_export
+		bus_list = Business.all
+		bus = build_filtered_list_for_export(bus_list)
+		return bus
 	end
 end
 
