@@ -87,16 +87,37 @@
 					</form>
 				</div>
 
-				<div id="js-flag-business-form-container">
-					<form action="/business/flag">
-						<fieldset id='bus-flag'>
-							<legend>Flag Business Listing</legend>
-							<label for="flag-content">Reason for flagging:</label>
-							<input type="text" id="new-flag-content"/><br>
-							<label for="flag-contributor">Your Name:</label>
-							<input type="text" id="flag-contributor"/><br>
-							<label for="flag-email">Your Email</label>
-							<input type="text" id="flag-contributor-email"/><br>
+				<div id="js-add-review-form-container">
+					<form action="/review/new">
+						<fieldset id='add-review'>
+							<legend>Add Review</legend>
+							<label for="review-rating">Rating:</label>
+							<input type="text" id="new-review-rating"/><br>
+							<label for="content">Your Review:</label>
+							<input type="textarea" id="new-review-content"/><br>
+							<label for="review-contributor">Your Name:</label>
+							<input type="text" id="new-review-contributor"/><br>
+							<label for="contributor-email">Your Email</label>
+							<input type="text" id="new-review-contributor-email"/><br>
+							<input type="submit" value="Save">
+						</fieldset>
+					</form>
+				</div>
+
+				<div id="js-add-image-form-container">
+					<form action="/image/new">
+						<fieldset id='new-image'>
+							<legend>Add Image</legend>
+							<label for="image-url">URL:</label>
+							<input type="text" id="image-url"/><br>
+							<label for="image-description">Description:</label>
+							<input type="text" id="image-description"/><br>
+							<label for="image-date">Date:</label>
+							<input type="text" id="image-date"/><br>
+							<label for="image-contributor">Your Name:</label>
+							<input type="text" id="image-contributor"/><br>
+							<label for="image-email">Your Email</label>
+							<input type="text" id="image-contributor-email"/><br>
 							<input type="submit" value="Save">
 						</fieldset>
 					</form>
@@ -116,40 +137,22 @@
 						</fieldset>
 					</form>
 				</div>
-				<div id="js-add-review-form-container">
-					<form action="/review/new">
-						<fieldset id='add-review'>
-							<legend>Add Review</legend>
-							<label for="review-rating">Rating:</label>
-							<input type="text" id="new-review-rating"/><br>
-							<label for="content">Your Review:</label>
-							<input type="textarea" id="new-review-content"/><br>
-							<label for="review-contributor">Your Name:</label>
-							<input type="text" id="new-review-contributor"/><br>
-							<label for="contributor-email">Your Email</label>
-							<input type="text" id="new-review-contributor-email"/><br>
+
+				<div id="js-flag-business-form-container">
+					<form action="/business/flag">
+						<fieldset id='bus-flag'>
+							<legend>Flag Business Listing</legend>
+							<label for="flag-content">Reason for flagging:</label>
+							<input type="text" id="new-flag-content"/><br>
+							<label for="flag-contributor">Your Name:</label>
+							<input type="text" id="flag-contributor"/><br>
+							<label for="flag-email">Your Email</label>
+							<input type="text" id="flag-contributor-email"/><br>
 							<input type="submit" value="Save">
 						</fieldset>
 					</form>
 				</div>
-				<div id="js-add-image-form-container">
-					<form action="/image/new">
-						<fieldset id='new-image'>
-							<legend>Add Image</legend>
-							<label for="image-url">URL:</label>
-							<input type="text" id="image-url"/><br>
-							<label for="image-description">Description:</label>
-							<input type="text" id="image-description"/><br>
-							<label for="image-date">Date:</label>
-							<input type="text" id="image-date"/><br>
-							<label for="image-contributor">Your Name:</label>
-							<input type="text" id="image-contributor"/><br>
-							<label for="image-email">Your Email</label>
-							<input type="text" id="image-contributor-email"/><br>
-							<input type="submit" value="Save">
-						</fieldset>
-					</form>
-				</div>
+
 			</div>
     </main>
   </body>
