@@ -40,7 +40,7 @@ window.onload = function() {
 	function busNameSearch(event) {
 		try {
 			event.preventDefault();
-			url = 'http://localhost/3000/listing'
+			url = 'https://localhost/3000/businesses/index_all'
 			fetch(url)
 			.then(resp => resp.json())
 			.then(json => console.log(json))
