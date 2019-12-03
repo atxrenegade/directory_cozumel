@@ -37,10 +37,14 @@ window.onload = function() {
 		$('#js-add-business-form-container').toggle();
 	}
 
-	function toggleAdminLogIn () {
+	function toggleAdminLogIn() {
 		$('#js-admin-login-container').toggle();
 	}
-	
+
+	function toggleAdminPanel() {
+		$('#js-admin-panel').toggle();
+	}
+
 	function busNameSearch(event) {
 		try {
 			event.preventDefault();
@@ -53,6 +57,8 @@ window.onload = function() {
 			console.log(error.message);
 		}
 	}
+	let searchByName = document.getElementById('js-by-name-button');
+	searchByName.addEventListener("click", busNameSearch(event));
 
 	let nameRadioSelect = document.getElementById('js-by-name');
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
@@ -78,7 +84,7 @@ window.onload = function() {
 	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
 
-	let searchByName = document.getElementById('js-by-name-button');
-	searchByName.addEventListener("click", busNameSearch(event));
+	let adminPanelLogin = document.getElementById('js-admin-login-button');
+	adminPanelLogin.addEvenListener("click", toggleAdminPanel);
 
 }
