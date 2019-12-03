@@ -73,3 +73,11 @@ input {
 #js-add-image-form-container {
 	display: none;
 }
+
+#js-admin-login-container {
+	display: none;
+}
+
+#js-admin-panel-container {
+	display: none;
+}

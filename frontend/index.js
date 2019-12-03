@@ -37,6 +37,10 @@ window.onload = function() {
 		$('#js-add-business-form-container').toggle();
 	}
 
+	function toggleAdminLogIn () {
+		$('#js-admin-login-container').toggle();
+	}
+	
 	function busNameSearch(event) {
 		try {
 			event.preventDefault();
@@ -70,6 +74,9 @@ window.onload = function() {
 
 	let newBusinessButton = document.getElementById('js-add-button');
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
+
+	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
+	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
 
 	let searchByName = document.getElementById('js-by-name-button');
 	searchByName.addEventListener("click", busNameSearch(event));
