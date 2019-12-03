@@ -37,14 +37,6 @@ window.onload = function() {
 		$('#js-add-business-form-container').toggle();
 	}
 
-	function toggleAdminLogIn() {
-		$('#js-admin-login-container').toggle();
-	}
-
-	function toggleAdminPanel() {
-		$('#js-admin-panel').toggle();
-	}
-
 	function busNameSearch(event) {
 		try {
 			event.preventDefault();
@@ -57,6 +49,29 @@ window.onload = function() {
 			console.log(error.message);
 		}
 	}
+
+	function toggleAdminLogIn() {
+		$('#js-admin-login-container').toggle();
+	}
+
+	function toggleAdminPanel(username, password) {
+		logInAdmin(username, password);
+		if (loggedIn === true) {
+			$('#js-admin-panel').toggle();
+		} else {
+			alert('You are not authorized to access admininstrative tasks!')
+		}
+	}
+
+	function logInAdmin(username, password) {
+		/* login admin user upon secure authentication and authorization)*/
+		loggedIn();
+	}
+
+	function loggedIn() {
+		return true;
+	}
+
 	let searchByName = document.getElementById('js-by-name-button');
 	searchByName.addEventListener("click", busNameSearch(event));
 
@@ -86,5 +101,4 @@ window.onload = function() {
 
 	let adminPanelLogin = document.getElementById('js-admin-login-button');
 	adminPanelLogin.addEvenListener("click", toggleAdminPanel);
-
 }
