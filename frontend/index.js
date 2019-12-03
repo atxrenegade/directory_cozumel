@@ -1,7 +1,7 @@
 
 window.onload = function() {
-/* Search Menu Buttons */
 
+/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
 		let searchByName = document.getElementById('js-search-by-name')
 		searchByName.style.display = 'none';
@@ -16,7 +16,7 @@ window.onload = function() {
 		searchByCategory.style.display = 'none';
 	}
 
-	/* Check box toggle forms functions */
+/* Listings Checkbox Toggle Forms Functions */
 	function toggleReviewForm() {
 		$('#js-add-review-form-container').toggle();
 	}
@@ -37,6 +37,8 @@ window.onload = function() {
 		$('#js-add-business-form-container').toggle();
 	}
 
+/* Search Bar API request functions */
+
 	function busNameSearch(event) {
 		try {
 			event.preventDefault();
@@ -50,6 +52,7 @@ window.onload = function() {
 		}
 	}
 
+/* Admin Panel functions */
 	function toggleAdminLogIn() {
 		$('#js-admin-login-container').toggle();
 	}
@@ -72,6 +75,9 @@ window.onload = function() {
 		return true;
 	}
 
+/* EVENT LISTENERS */
+
+/* Search Bar Listeners */
 	let searchByName = document.getElementById('js-by-name-button');
 	searchByName.addEventListener("click", busNameSearch(event));
 
@@ -81,6 +87,7 @@ window.onload = function() {
 	let categoryRadioSelect = document.getElementById('js-by-category');
 	categoryRadioSelect.addEventListener("click", toggleCategoryMenu);
 
+/* Business Listings Checkbox Listeners */
 	let reviewCheckBox = document.getElementById('js-add-review-checkbox');
 	reviewCheckBox.addEventListener("change", toggleReviewForm);
 
@@ -93,9 +100,11 @@ window.onload = function() {
 	let editCheckBox = document.getElementById('js-edit-business-checkbox');
 	editCheckBox.addEventListener("change", toggleEditForm);
 
+/* New Business Form Listener */
 	let newBusinessButton = document.getElementById('js-add-button');
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
 
+/* Admin Panel Listeners */
 	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
 
