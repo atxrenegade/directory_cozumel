@@ -133,45 +133,114 @@
 				</form>
 			</div>
 		</div>
-	</div>
-	<div id="js-menu-container" class="tile">
-		<fieldset id='js-add-business'>
-			<legend>Add New Business:</legend>
-			<button id='js-add-button'>Add New Business</button>
-			<div id="js-add-business-form-container">
-				<form action="/business/new">
-					<fieldset id='bus-form'>
-						<legend>Add Business</legend>
-						<label for="name">Business Name:</label>
-						<input type="text" id="new_bus_name"/><br>
-						<label for="address">Address:</label>
-						<input type="text" id="new-bus-address"/><br>
-						<label for="phone-number">Phone Number:</label>
-						<input type="text" id="phone-number"/><br>
-						<label for="website">Website:</label>
-						<input type="text" id="website"/><br>
-						<input type="submit" value="Save">
-					</fieldset>
-				</form>
+		<div id="js-menu-container" class="tile">
+			<fieldset id='js-add-business'>
+				<legend>Add New Business:</legend>
+				<button id='js-add-button'>Add New Business</button>
+				<div id="js-add-business-form-container">
+					<form action="/business/new">
+						<fieldset id='bus-form'>
+							<legend>Add Business</legend>
+							<label for="name">Business Name:</label>
+							<input type="text" id="new_bus_name"/><br>
+							<label for="address">Address:</label>
+							<input type="text" id="new-bus-address"/><br>
+							<label for="phone-number">Phone Number:</label>
+							<input type="text" id="phone-number"/><br>
+							<label for="website">Website:</label>
+							<input type="text" id="website"/><br>
+							<input type="submit" value="Save">
+						</fieldset>
+					</form>
+				</div>
 			</div>
 		</div>
-		<div id='js-admin-hidden-button-container'>
-			<button id='js-admin-hidden-button'>Admin</button>
-		</div>
-		<div id="js-admin-login-container" class="tile">
-			<fieldset id='js-admin-login'>
-				<legend>Admin Login</legend>
-				<label>Admin Username:</label>
-				<input type="text"><br>
-				<label>Admin Password:</label>
-				<input type="text"><br>
-				<button id='js-admin-login-button'>Login</button>
-		</div>
-		<div id="js-admin-panel-container" class="tile">
-			<legend>Admin Panel</legend>
-			<fieldset id='js-admin-panel'>
-			</fieldset>
-		</div>
+			<div id='js-admin-hidden-button-container'>
+				<button id='js-admin-hidden-button'>Admin</button>
+			</div>
+			<div id="js-admin-login-container" class="tile">
+				<fieldset id='js-admin-login'>
+					<legend>Admin Login</legend>
+					<label>Admin Username:</label>
+					<input type="text"><br>
+					<label>Admin Password:</label>
+					<input type="text"><br>
+					<button id='js-admin-login-button'>Login</button>
+			</div>
+			<div id="js-admin-panel-container" class="tile">
+				<fieldset id='js-admin-panel'>
+					<legend>Admin Panel</legend>
+					<table id='admin_entry-log'>
+						<h2> ENTRIES FOR REVIEW </h2>
+						<tr>
+							<th>ID </th>
+							<th>DATE </th>
+							<th>TYPE </th>
+							<th>STATUS </th>
+							<th>RESOLVED DATE</th>
+							<th>ADMIN ID</th>
+							<th> REVIEW </th>
+						</tr>
+						<tbody>
+							<tr> <!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
+								<td> 1 </td>
+								<td> 12/23/19 </td>
+								<td> LISTING </td>
+								<td> APPROVED </td>
+								<td> 12/24/19 </td>
+								<td> 001 </td>
+								<td> <button id='admin-entry-show-details'> More </button> </td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<table id='admin-entry-show-details-table-1'>
+						<h2> ENTRY DETAILS AND ADMIN FUNCTIONS </h2>
+						<!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
+							<tr>
+								<th>ID </th>
+								<th>ENTRY DATE </th>
+								<th>TYPE </th>
+								<th>CONTRIBUTOR </th>
+								<th>EMAIL </th>
+							</tr>
+							<tbody>
+								<tr>
+									<td>1 </td>
+									<td>12/23/19 </td>
+									<td> LISTING </td>
+									<td> Mike Brownstone </td>
+									<td> bigmike@gmail.com </td>
+								<tr>
+							</tbody>
+						</table>
+						<table id='admin-entry-show-details-table-2'>
+							<tr>
+								<th>RESOLVED DATE</th>
+								<th>ADMIN ID</th>
+								<th>NOTES</th>
+							</tr>
+							<tbody>
+								<tr>
+									<td> 12/26/19 </td>
+									<td> 001 </td>
+									<td> Check business phone number in 30 days</td>
+								</tr>
+							</tbody>
+						</table>
+						<table id='admin-entry-show-details-table-3'>
+							<tr>
+								<th>DATA FOR REVIEW </th>
+							</tr>
+							<tbody>
+								<tr>
+									<td> {LISTING OBJECT HERE} </td>
+								</tr>
+							</tbody>
+						</table>
+				</fieldset>
+			</div>
+			<!-- ADMIN MENU HERE TO ADMIN EDIT FORM AND DELETE ENTRIES -->
     </main>
   </body>
 </html>
