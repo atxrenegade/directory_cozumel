@@ -15,6 +15,7 @@ window.onload = function() {
 
 	/* add business form elements */
 	let newBusinessButton = document.getElementById('js-add-button');
+	let newBusForm = document.getElementById('js-new-bus-form');
 
 	/* admin hidden button element */
 	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
@@ -125,6 +126,7 @@ window.onload = function() {
 		searchCategoryField.value = '';
 		adminUsernameField.value = '';
 		adminPasswordField.value = '';
+		newBusForm.reset();
 	}
 	resetPage();
 }
