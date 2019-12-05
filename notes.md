@@ -22,23 +22,23 @@ X 8. Add event listeners for search by name that add search input field when by 
 
 13. Add event listener that appends the business listing, images, reviews, and map when the business name is clicked on.
 
-14. create menus for add/edit/flag business
+X 14. create menus for add/edit/flag business
 
-15. append to DOM
+X 15. append to DOM
 
-16. create add form
+X 16. create add form
 
-17. create edit form
+X 17. create edit form
 
-18. create flag form
+X 18. create flag form
 
-19. append forms to DOM
+X 19. append forms to DOM
 
 20. create JS admin_entries object
 
 21. send them through post fetch request to db
 
-22. create js admin interface
+X 22. create js admin interface
 
 23. create methods to approve admin new business entries and turn objects into persisted instances in the database
 
@@ -52,7 +52,7 @@ X 8. Add event listeners for search by name that add search input field when by 
 
 28. add styling to menus, forms, and listings
 
-29. add containers for sponsored listings and ads
+X 29. add containers for sponsored listings and ads
 
 30. create google maps functionality for listings
 
