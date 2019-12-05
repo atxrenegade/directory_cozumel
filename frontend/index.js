@@ -1,22 +1,41 @@
-
 window.onload = function() {
+	/* searchbar elements */
+	let searchByName = document.getElementById('js-search-by-name');
+	let searchByCategory = document.getElementById('js-search-by-category');
+	let nameRadioSelect = document.getElementById('js-radio-by-name');
+	let categoryRadioSelect = document.getElementById('js-radio-by-category');
+	let searchNameField = document.getElementById('js-search-name-text-field')
+	let searchCategoryField = document.getElementById('js-search-category-text-field')
 
-/* Search Bar Toggle Functions */
+	/* checkbox elements */
+	let reviewCheckBox = document.getElementById('js-add-review-checkbox');
+	let imageCheckBox = document.getElementById('js-add-image-checkbox');
+	let flagCheckBox = document.getElementById('js-flag-business-checkbox');
+	let editCheckBox = document.getElementById('js-edit-business-checkbox');
+
+	/* add business form elements */
+	let newBusinessButton = document.getElementById('js-add-button');
+
+	/* admin hidden button element */
+	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
+
+	/* admin login panel elements */
+	let adminPanelLogin = document.getElementById('js-admin-login-button');
+	let adminUsernameField = document.getElementById('js-admin-username')
+	let adminPasswordField = document.getElementById('js-admin-password')
+
+	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
-		let searchByName = document.getElementById('js-search-by-name')
 		searchByName.style.display = 'none';
-		let searchByCategory = document.getElementById('js-search-by-category')
 		searchByCategory.style.display = 'block';
 	}
 
 	function toggleNameMenu() {
-		let searchByName = document.getElementById('js-search-by-name');
 		searchByName.style.display = 'block';
-		let searchByCategory = document.getElementById('js-search-by-category');
 		searchByCategory.style.display = 'none';
 	}
 
-/* Listings Checkbox Toggle Forms Functions */
+	/* Listings Checkbox Toggle Forms Functions */
 	function toggleReviewForm() {
 		$('#js-add-review-form-container').toggle();
 	}
@@ -37,8 +56,7 @@ window.onload = function() {
 		$('#js-add-business-form-container').toggle();
 	}
 
-/* Search Bar API request functions */
-
+	/* Search Bar API request functions */
 	function busNameSearch(event) {
 		try {
 			event.preventDefault();
@@ -52,7 +70,7 @@ window.onload = function() {
 		}
 	}
 
-/* Admin Panel functions */
+	/* Admin Panel functions */
 	function toggleAdminLogIn() {
 		$('#js-admin-login-container').toggle();
 	}
@@ -75,56 +93,38 @@ window.onload = function() {
 		return true;
 	}
 
-/* EVENT LISTENERS */
+	/* EVENT LISTENERS */
 
-/* Search Bar Listeners */
-	let searchByName = document.getElementById('js-by-name-button');
+	/* Search Bar Listeners */
 	searchByName.addEventListener("click", busNameSearch(event));
-
-	let nameRadioSelect = document.getElementById('js-radio-by-name');
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
-
-	let categoryRadioSelect = document.getElementById('js-radio-by-category');
 	categoryRadioSelect.addEventListener("click", toggleCategoryMenu);
 
-/* Business Listings Checkbox Listeners */
-	let reviewCheckBox = document.getElementById('js-add-review-checkbox');
+	/* Business Listings Checkbox Listeners */
 	reviewCheckBox.addEventListener("change", toggleReviewForm);
-
-	let imageCheckBox = document.getElementById('js-add-image-checkbox');
 	imageCheckBox.addEventListener("change", toggleImageForm);
-
-	let flagCheckBox = document.getElementById('js-flag-business-checkbox');
 	flagCheckBox.addEventListener("change", toggleFlagForm);
-
-	let editCheckBox = document.getElementById('js-edit-business-checkbox');
 	editCheckBox.addEventListener("change", toggleEditForm);
 
-
-
-/* New Business Form Listener */
-	let newBusinessButton = document.getElementById('js-add-button');
+	/* New Business Form Listener */
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
 
-/* Admin Panel Listeners */
-	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
+	/* Admin Panel Listeners */
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
-
-	let adminPanelLogin = document.getElementById('js-admin-login-button');
 	adminPanelLogin.addEventListener("click", toggleAdminPanel);
 
-/* Clear Form to set initial state */
+	/* Clear Form to set initial state */
 	function resetPage() {
-	  document.getElementById('js-add-review-checkbox').checked = false;
-		document.getElementById('js-add-image-checkbox').checked = false;
-		document.getElementById('js-edit-business-checkbox').checked = false;
-		document.getElementById('js-flag-business-checkbox').checked = false;
-		document.getElementById('js-radio-by-name').checked = true;
-		document.getElementById('js-radio-by-category').checked = false;
-		document.getElementById('js-search-name-text-field').value = '';
-		document.getElementById('js-search-category-text-field').value = '';
-		document.getElementById('js-admin-username').value = '';
-		document.getElementById('js-admin-password').value = '';
+	  reviewCheckBox.checked = false;
+		imageCheckBox.checked = false;
+		flagCheckBox.checked = false;
+		editCheckBox.checked = false;
+		nameRadioSelect.checked = true;
+		categoryRadioSelect.checked = false;
+		searchNameField.value = '';
+		searchCategoryField.value = '';
+		adminUsernameField.value = '';
+		adminPasswordField.value = '';
 	}
 	resetPage();
 }
