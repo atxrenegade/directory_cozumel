@@ -1,232 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title>Directory Cozumel</title>
-    <link rel="stylesheet" href="styles.css">
-		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-		<script src="index.js"></script>
+    <link rel='stylesheet' href='styles.css'>
+		<script src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js'></script>
+		<script src='index.js'></script>
   </head>
   <body>
     <header>
     </header>
     <main>
-			<div id="title-container" class="tile">
+
+			<div id='title-container' class='tile'>
 				<h2>Directory Cozumel</h2>
 			</div>
-			<div id="sponsored-listing-container" class="tile">
+
+			<div id='sponsored-listing-container' class='tile'>
 				Sponsored Listings
 			</div>
-			<div id="ads-container" class="tile">
+
+			<div id='ads-container' class='tile'>
 				Google Ads
 			</div>
-			<div id="searchbar-container" class="tile">
+
+			<div id='searchbar-container' class='tile'>
 				<fieldset>
 				 	<legend>Search Listings:</legend>
 					<br>
-					<input type = "radio" name = "js-search-type" id = "js-by-name" value = "js-by-name"/>
-					<label for = "js-by-name"> By Name </label>
-					<input type = "radio" name = "js-search-type" id = "js-by-category" value = "js-by-category"/>
-					<label for = "js-by-category">By Category</label>
+					<input type = 'radio' name = 'js-search-type' id = 'js-by-name' value = 'js-by-name'/>
+					<label for = 'js-by-name'> By Name </label>
+					<input type = 'radio' name = 'js-search-type' id = 'js-by-category' value = 'js-by-category'/>
+					<label for = 'js-by-category'>By Category</label>
 				  <div id='js-search-by-category'>
-						<form action="/search_by_category">
-							<fieldset id="js-category-search">
+						<form action='/search_by_category'>
+							<fieldset id='js-category-search'>
 								<legend>Search By Category:</legend>
-								<input type="text" name="category" value="Select Category"/><br>
-								<input type="submit" id='js-by-category-button' value="Search"/>
+								<input type='text' name='category' value='Select Category'/><br>
+								<input type='submit' id='js-by-category-button' value='Search'/>
 							</fieldset>
 						</form>
 				  </div>
 				  <div id='js-search-by-name'>
-						<form action="/listing">
+						<form action='/listing'>
 							<fieldset id='js-name-search'>
 								<legend>Search By Name:</legend>
-								<input type="text" name="name" value="" checked = "checked"/><br>
-								<input type="submit" id='js-by-name-button' value="Search">
+								<input type='text' name='name' value='' checked = 'checked'/><br>
+								<input type='submit' id='js-by-name-button' value='Search'>
 							</fieldset>
 						</form>
 				  </div>
 				</fieldset>
 			</div>
 
-			<div id="listings-container" class="tile">
+			<div id='listings-container' class='tile'>
 				Business Listings Search Results
-				<div id='business-show' class='tile'>
+				<div id='js-business-show'>
 					Show listings here
 					<br>
-					<input type="checkbox" id= "js-add-review-checkbox" name="review" value="review">Add Review<br>
-					<input type="checkbox" id="js-add-image-checkbox" name="image" value="image">Add Image<br>
-					<input type="checkbox" id="js-edit-business-checkbox" name="edit" value="edit">Suggest Edit<br>
-					<input type="checkbox" id='js-flag-business-checkbox' name="flag" value="flag">Flag Business<br>
-					<div id="js-google-maps-container">
-						<img src="https://s23219.pcdn.co/wp-content/uploads/2014/10/London-Google-Maps.jpg" id='js-map-placeholder' />
+					<input type='checkbox' id= 'js-add-review-checkbox' name='review' value='review'>Add Review<br>
+					<input type='checkbox' id='js-add-image-checkbox' name='image' value='image'>Add Image<br>
+					<input type='checkbox' id='js-edit-business-checkbox' name='edit' value='edit'>Suggest Edit<br>
+					<input type='checkbox' id='js-flag-business-checkbox' name='flag' value='flag'>Flag Business<br>
+					<div id='js-google-maps-container'>
+						<img src='https://s23219.pcdn.co/wp-content/uploads/2014/10/London-Google-Maps.jpg' id='js-map-placeholder' />
 					</div>
 				</div>
-				<div id='js-business-index-container' class='tile'>
+				<div id='js-business-index-container'>
 					All business with links to individual pages from category search
 				</div>
-			</div>
-
-			<div id="js-add-review-form-container">
-				<form action="/review/new">
-					<fieldset id='add-review'>
-						<legend>Add Review</legend>
-						<label for="review-rating">Rating:</label>
-						<input type="text" id="new-review-rating"/><br>
-						<label for="content">Your Review:</label>
-						<input type="textarea" id="new-review-content"/><br>
-						<label for="review-contributor">Your Name:</label>
-						<input type="text" id="new-review-contributor"/><br>
-						<label for="contributor-email">Your Email</label>
-						<input type="text" id="new-review-contributor-email"/><br>
-						<input type="submit" value="Save">
-					</fieldset>
-				</form>
-			</div>
-
-			<div id="js-add-image-form-container">
-				<form action="/image/new">
-					<fieldset id='new-image'>
-						<legend>Add Image</legend>
-						<label for="image-url">URL:</label>
-						<input type="text" id="image-url"/><br>
-						<label for="image-description">Description:</label>
-						<input type="text" id="image-description"/><br>
-						<label for="image-date">Date:</label>
-						<input type="text" id="image-date"/><br>
-						<label for="image-contributor">Your Name:</label>
-						<input type="text" id="image-contributor"/><br>
-						<label for="image-email">Your Email</label>
-						<input type="text" id="image-contributor-email"/><br>
-						<input type="submit" value="Save">
-					</fieldset>
-				</form>
-			</div>
-
-			<div id="js-suggest-edit-form-container">
-				<form action="/business/edit">
-					<fieldset id='bus-edit'>
-						<legend>Suggest Edit</legend>
-						<label for="edit-content">How can we improve this listing?:</label>
-						<input type="textarea" id="edit-content"/><br>
-						<label for="edit-contributor">Your Name:</label>
-						<input type="text" id="edit-contributor"/><br>
-						<label for="edit-email">Your Email</label>
-						<input type="text" id="edit-contributor-email"/><br>
-						<input type="submit" value="Save">
-					</fieldset>
-				</form>
-			</div>
-
-			<div id="js-flag-business-form-container">
-				<form action="/business/flag">
-					<fieldset id='bus-flag'>
-						<legend>Flag Business Listing</legend>
-						<label for="flag-content">Reason for flagging:</label>
-						<input type="text" id="new-flag-content"/><br>
-						<label for="flag-contributor">Your Name:</label>
-						<input type="text" id="flag-contributor"/><br>
-						<label for="flag-email">Your Email</label>
-						<input type="text" id="flag-contributor-email"/><br>
-						<input type="submit" value="Save">
-					</fieldset>
-				</form>
-			</div>
-
-		<div id="js-menu-container" class="tile">
-			<fieldset id='js-add-business'>
-				<legend>Add New Business:</legend>
-				<button id='js-add-button'>Add New Business</button>
-				<div id="js-add-business-form-container">
-					<form action="/business/new">
-						<fieldset id='bus-form'>
-							<legend>Add Business</legend>
-							<label for="name">Business Name:</label>
-							<input type="text" id="new_bus_name"/><br>
-							<label for="address">Address:</label>
-							<input type="text" id="new-bus-address"/><br>
-							<label for="phone-number">Phone Number:</label>
-							<input type="text" id="phone-number"/><br>
-							<label for="website">Website:</label>
-							<input type="text" id="website"/><br>
-							<input type="submit" value="Save">
+				<div id='js-add-review-form-container'>
+					<form action='/review/new'>
+						<fieldset id='add-review'>
+							<legend>Add Review</legend>
+							<label for='review-rating'>Rating:</label>
+							<input type='text' id='new-review-rating'/><br>
+							<label for='content'>Your Review:</label>
+							<input type='textarea' id='new-review-content'/><br>
+							<label for='review-contributor'>Your Name:</label>
+							<input type='text' id='new-review-contributor'/><br>
+							<label for='contributor-email'>Your Email</label>
+							<input type='text' id='new-review-contributor-email'/><br>
+							<input type='submit' value='Save'>
 						</fieldset>
 					</form>
 				</div>
-			</fieldset>
-		</div>
-		<div id='js-admin-hidden-button-container'>
-			<button id='js-admin-hidden-button'>Admin</button>
-		</div>
+				<div id='js-add-image-form-container'>
+					<form action='/image/new'>
+						<fieldset id='new-image'>
+							<legend>Add Image</legend>
+							<label for='image-url'>URL:</label>
+							<input type='text' id='image-url'/><br>
+							<label for='image-description'>Description:</label>
+							<input type='text' id='image-description'/><br>
+							<label for='image-date'>Date:</label>
+							<input type='text' id='image-date'/><br>
+							<label for='image-contributor'>Your Name:</label>
+							<input type='text' id='image-contributor'/><br>
+							<label for='image-email'>Your Email</label>
+							<input type='text' id='image-contributor-email'/><br>
+							<input type='submit' value='Save'>
+						</fieldset>
+					</form>
+				</div>
+				<div id='js-suggest-edit-form-container'>
+					<form action='/business/edit'>
+						<fieldset id='bus-edit'>
+							<legend>Suggest Edit</legend>
+							<label for='edit-content'>How can we improve this listing?:</label>
+							<input type='textarea' id='edit-content'/><br>
+							<label for='edit-contributor'>Your Name:</label>
+							<input type='text' id='edit-contributor'/><br>
+							<label for='edit-email'>Your Email</label>
+							<input type='text' id='edit-contributor-email'/><br>
+							<input type='submit' value='Save'>
+						</fieldset>
+					</form>
+				</div>
+				<div id='js-flag-business-form-container'>
+					<form action='/business/flag'>
+						<fieldset id='bus-flag'>
+							<legend>Flag Business Listing</legend>
+							<label for='flag-content'>Reason for flagging:</label>
+							<input type='text' id='new-flag-content'/><br>
+							<label for='flag-contributor'>Your Name:</label>
+							<input type='text' id='flag-contributor'/><br>
+							<label for='flag-email'>Your Email</label>
+							<input type='text' id='flag-contributor-email'/><br>
+							<input type='submit' value='Save'>
+						</fieldset>
+					</form>
+				</div>
+			</div>
 
-		<div id="js-admin-login-container" class="tile">
-			<fieldset id='js-admin-login'>
-				<legend>Admin Login</legend>
-				<label>Admin Username:</label>
-				<input type="text"><br>
-				<label>Admin Password:</label>
-				<input type="text"><br>
-				<button id='js-admin-login-button'>Login</button>
-			</fieldset>
-		</div>
+			<div id='js-new-business-container' class='tile'>
+				<fieldset id='js-add-business'>
+					<legend>Add New Business:</legend>
+					<button id='js-add-button'>Add New Business</button>
+					<div id='js-add-business-form-container'>
+						<form action='/business/new'>
+							<fieldset id='bus-form'>
+								<legend>Add Business</legend>
+								<label for='name'>Business Name:</label>
+								<input type='text' id='new_bus_name'/><br>
+								<label for='address'>Address:</label>
+								<input type='text' id='new-bus-address'/><br>
+								<label for='phone-number'>Phone Number:</label>
+								<input type='text' id='phone-number'/><br>
+								<label for='website'>Website:</label>
+								<input type='text' id='website'/><br>
+								<input type='submit' value='Save'>
+							</fieldset>
+						</form>
+					</div>
+				</fieldset>
+			</div>
 
-				<!-- ADMIN MENU HERE TO ADMIN EDIT FORM AND DELETE ENTRIES -->
-		<div id="js-admin-menu-container" class="tile">
-			<fieldset id='js-admin-menu'>
-				<legend>Admin Menu</legend>
-				<fieldset>
-					<legend>ADMIN LOGS</legend>
-						<button id='admin-show-resolved-button'>SHOW RESOLVED LOGS</button>
-						<button id='admin-search-resolved-button'>SEARCH RESOLVED LOGS</button>
-				</fieldset>
-				<fieldset>
-					<legend>BUSINESS LOG AND RECORDS</legend>
-						<button id='admin-search-business-with-records-button'>SEARCH/DISPLAY BUSINESS WITH ASSOCIATED RECORDS </button>
-				</fieldset>
-				<fieldset>
-					<legend>MODIFY CATEGORIES</legend>
-					<button id='admin-revise-categories-button'>ADD/UPATE/DELETE CATEGORIES</button>
-				</fieldset>
-				<fieldset>
-					<legend>UPDATE OR DELETE DATABASE RECORDS</legend>
-					<button id='admin-delete-business-button'>	EDIT/DELETE BUSINESS</button>
-					<button id='admin-revise-review-button'>EDIT/DELETE REVIEW</button>
-					<button id='admin-revise-image-button'>EDIT/DELETE IMAGE</button>
-					<button id='admin-revise-map-button'>EDIT/DELETE MAP</button>
-				</fieldset>
-			</fieldset>
-		</div>
+			<div id='js-admin-hidden-button-container'>
+				<button id='js-admin-hidden-button'>Admin</button>
+			</div>
 
-		<div id="js-admin-panel-container" class="tile">
-			<fieldset id='js-admin-panel'>
-				<legend>Admin Panel</legend>
-				<table id='admin_entry-log'>
-					<h2> ENTRIES FOR REVIEW </h2>
-					<tr>
-						<th>ID </th>
-						<th>DATE </th>
-						<th>TYPE </th>
-						<th>STATUS </th>
-						<th>RESOLVED DATE</th>
-						<th>ADMIN ID</th>
-						<th> REVIEW </th>
-					</tr>
-					<tbody>
-						<tr> <!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
-							<td> 1 </td>
-							<td> 12/23/19 </td>
-							<td> LISTING </td>
-							<td> APPROVED </td>
-							<td> 12/24/19 </td>
-							<td> 001 </td>
-							<td> <button id='admin-entry-show-details'> More </button> </td>
+			<div id='js-admin-login-container' class='tile'>
+				<fieldset id='js-admin-login'>
+					<legend>Admin Login</legend>
+					<label>Admin Username:</label>
+					<input type='text'><br>
+					<label>Admin Password:</label>
+					<input type='text'><br>
+					<button id='js-admin-login-button'>Login</button>
+				</fieldset>
+			</div>
+
+					<!-- ADMIN MENU HERE TO ADMIN EDIT FORM AND DELETE ENTRIES -->
+			<div id='js-admin-menu-container' class='tile'>
+				<fieldset id='js-admin-menu'>
+					<legend>Admin Menu</legend>
+					<fieldset>
+						<legend>ADMIN LOGS</legend>
+							<button id='admin-show-resolved-button'>SHOW RESOLVED LOGS</button>
+							<button id='admin-search-resolved-button'>SEARCH RESOLVED LOGS</button>
+					</fieldset>
+					<fieldset>
+						<legend>BUSINESS LOG AND RECORDS</legend>
+							<button id='admin-search-business-with-records-button'>SEARCH/DISPLAY BUSINESS WITH ASSOCIATED RECORDS </button>
+					</fieldset>
+					<fieldset>
+						<legend>MODIFY CATEGORIES</legend>
+						<button id='admin-revise-categories-button'>ADD/UPATE/DELETE CATEGORIES</button>
+					</fieldset>
+					<fieldset>
+						<legend>UPDATE OR DELETE DATABASE RECORDS</legend>
+						<button id='admin-delete-business-button'>	EDIT/DELETE BUSINESS</button>
+						<button id='admin-revise-review-button'>EDIT/DELETE REVIEW</button>
+						<button id='admin-revise-image-button'>EDIT/DELETE IMAGE</button>
+						<button id='admin-revise-map-button'>EDIT/DELETE MAP</button>
+					</fieldset>
+				</fieldset>
+			</div>
+
+			<div id='js-admin-panel-container' class='tile'>
+				<fieldset id='js-admin-panel'>
+					<legend>Admin Panel</legend>
+					<table id='admin_entry-log'>
+						<h2> ENTRIES FOR REVIEW </h2>
+						<tr>
+							<th>ID </th>
+							<th>DATE </th>
+							<th>TYPE </th>
+							<th>STATUS </th>
+							<th>RESOLVED DATE</th>
+							<th>ADMIN ID</th>
+							<th> REVIEW </th>
 						</tr>
-					</tbody>
-				</table>
-				<br>
-				<table id='admin-entry-show-details-table-1'>
-					<h2> ENTRY DETAILS AND ADMIN FUNCTIONS </h2>
-					<!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
+						<tbody>
+							<tr> <!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
+								<td> 1 </td>
+								<td> 12/23/19 </td>
+								<td> LISTING </td>
+								<td> APPROVED </td>
+								<td> 12/24/19 </td>
+								<td> 001 </td>
+								<td> <button id='admin-entry-show-details'> More </button> </td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<table id='admin-entry-show-details-table-1'>
+						<h2> ENTRY DETAILS AND ADMIN FUNCTIONS </h2>
+						<!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
 						<tr>
 							<th>ID </th>
 							<th>ENTRY DATE </th>
@@ -273,7 +274,6 @@
 					<button id='admin-revise'>REVISE</button>
 				</fieldset>
 			</div>
-
     </main>
   </body>
 </html>
