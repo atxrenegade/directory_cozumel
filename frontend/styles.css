@@ -75,11 +75,11 @@ input {
 }
 
 #js-admin-login-container {
-	/* display: none; */
+	display: none;
 }
 
 #js-admin-panel-container {
-	/* display: none; */
+	display: none;
 	margin: auto;
 }
 
@@ -95,6 +95,10 @@ input {
 	border-style: none;
 	background: none;
 	opacity: 0.7;
+}
+
+#js-admin-menu-container {
+	display: none;
 }
 
 /* Admin Tables Styling */

@@ -109,5 +109,5 @@ window.onload = function() {
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
 
 	let adminPanelLogin = document.getElementById('js-admin-login-button');
-	adminPanelLogin.addEvenListener("click", toggleAdminPanel);
+	adminPanelLogin.addEventListener("click", toggleAdminPanel);
 }
