@@ -81,10 +81,10 @@ window.onload = function() {
 	let searchByName = document.getElementById('js-by-name-button');
 	searchByName.addEventListener("click", busNameSearch(event));
 
-	let nameRadioSelect = document.getElementById('js-by-name');
+	let nameRadioSelect = document.getElementById('js-radio-by-name');
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
 
-	let categoryRadioSelect = document.getElementById('js-by-category');
+	let categoryRadioSelect = document.getElementById('js-radio-by-category');
 	categoryRadioSelect.addEventListener("click", toggleCategoryMenu);
 
 /* Business Listings Checkbox Listeners */
@@ -100,6 +100,8 @@ window.onload = function() {
 	let editCheckBox = document.getElementById('js-edit-business-checkbox');
 	editCheckBox.addEventListener("change", toggleEditForm);
 
+
+
 /* New Business Form Listener */
 	let newBusinessButton = document.getElementById('js-add-button');
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
@@ -110,4 +112,17 @@ window.onload = function() {
 
 	let adminPanelLogin = document.getElementById('js-admin-login-button');
 	adminPanelLogin.addEventListener("click", toggleAdminPanel);
+
+/* Clear Form to set initial state */
+	function resetForm() {
+	  document.getElementById('js-add-review-checkbox').checked = false;
+		document.getElementById('js-add-image-checkbox').checked = false;
+		document.getElementById('js-edit-business-checkbox').checked = false;
+		document.getElementById('js-flag-business-checkbox').checked = false;
+		document.getElementById('js-radio-by-name').checked = true;
+		document.getElementById('js-radio-by-category').checked = false;
+		document.getElementById('js-search-name-text-field').value = '';
+		document.getElementById('js-search-category-text-field').value = '';
+	}
+	resetForm();
 }

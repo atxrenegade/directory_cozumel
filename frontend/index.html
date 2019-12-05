@@ -28,15 +28,15 @@
 				<fieldset>
 				 	<legend>Search Listings:</legend>
 					<br>
-					<input type = 'radio' name = 'js-search-type' id = 'js-by-name' value = 'js-by-name'/>
-					<label for = 'js-by-name'> By Name </label>
-					<input type = 'radio' name = 'js-search-type' id = 'js-by-category' value = 'js-by-category'/>
-					<label for = 'js-by-category'>By Category</label>
+					<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-name'>
+					<label for = 'js-radio-by-name'> By Name </label>
+					<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-category'>
+					<label for = 'js-radio-by-category'>By Category</label>
 				  <div id='js-search-by-category'>
 						<form action='/search_by_category'>
 							<fieldset id='js-category-search'>
 								<legend>Search By Category:</legend>
-								<input type='text' name='category' value='Select Category'/><br>
+								<input type='text' id='js-search-category-text-field' value=''/><br>
 								<input type='submit' id='js-by-category-button' value='Search'/>
 							</fieldset>
 						</form>
@@ -45,7 +45,7 @@
 						<form action='/listing'>
 							<fieldset id='js-name-search'>
 								<legend>Search By Name:</legend>
-								<input type='text' name='name' value='' checked = 'checked'/><br>
+								<input type='text' id='js-search-name-text-field' name='name' value=''/><br>
 								<input type='submit' id='js-by-name-button' value='Search'>
 							</fieldset>
 						</form>
@@ -58,10 +58,10 @@
 				<div id='js-business-show'>
 					Show listings here
 					<br>
-					<input type='checkbox' id= 'js-add-review-checkbox' name='review' value='review'>Add Review<br>
-					<input type='checkbox' id='js-add-image-checkbox' name='image' value='image'>Add Image<br>
-					<input type='checkbox' id='js-edit-business-checkbox' name='edit' value='edit'>Suggest Edit<br>
-					<input type='checkbox' id='js-flag-business-checkbox' name='flag' value='flag'>Flag Business<br>
+					<input type='checkbox' id= 'js-add-review-checkbox' name='review'>Add Review<br>
+					<input type='checkbox' id='js-add-image-checkbox' name='image'>Add Image<br>
+					<input type='checkbox' id='js-edit-business-checkbox' name='edit'>Suggest Edit<br>
+					<input type='checkbox' id='js-flag-business-checkbox' name='flag'>Flag Business<br>
 					<div id='js-google-maps-container'>
 						<img src='https://s23219.pcdn.co/wp-content/uploads/2014/10/London-Google-Maps.jpg' id='js-map-placeholder' />
 					</div>
