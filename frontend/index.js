@@ -21,9 +21,29 @@ window.onload = function() {
 	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
 
 	/* admin login panel elements */
+	let adminPanel = document.getElementById('js-admin-panel-container');
+	let adminMenu = document.getElementById('js-admin-menu-container');
 	let adminPanelLogin = document.getElementById('js-admin-login-button');
 	let adminUsernameField = document.getElementById('js-admin-username')
 	let adminPasswordField = document.getElementById('js-admin-password')
+
+	let adminPanelLogout = document.getElementById('js-admin-logout-button')
+
+	let adminPanelForm = document.getElementById('js-admin-login')
+
+	let adminUserInfo = document.getElementById('js-admin-user-info')
+
+
+	/* container elements */
+	sponsListContainer = document.getElementById('sponsored-listing-container')
+
+	adsContainer = document.getElementById('ads-container')
+
+	searchBarContainer = document.getElementById('js-searchbar-container')
+
+	listingsContainer = document.getElementById('listings-container')
+
+	newBusContainer = document.getElementById('js-new-business-container')
 
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
@@ -76,10 +96,24 @@ window.onload = function() {
 		$('#js-admin-login-container').toggle();
 	}
 
-	function toggleAdminPanel(username, password) {
+	function showAdminView(username, password) {
 		logInAdmin(username, password);
-		if (loggedIn === true) {
-			$('#js-admin-panel').toggle();
+		if (loggedIn() === true) {
+			sponsListContainer.style.display = "none";
+			adsContainer.style.display = "none";
+			searchBarContainer.style.display = "none";
+			listingsContainer.style.display = "none";
+			newBusContainer.style.display = "none";
+			adminPanel.style.display = "block";
+			adminMenu.style.display = "block";
+			hiddenAdminButton.style.display = "none";
+
+			adminPanelLogin.style.display = "none";
+			adminPanelLogout.style.display = "block";
+
+			adminPanelForm.style.display = "none";
+			adminUserInfo.style.display = "block";
+
 		} else {
 			alert('You are not authorized to access admininstrative tasks!')
 		}
@@ -112,7 +146,7 @@ window.onload = function() {
 
 	/* Admin Panel Listeners */
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
-	adminPanelLogin.addEventListener("click", toggleAdminPanel);
+	adminPanelLogin.addEventListener("click", showAdminView);
 
 	/* Clear Form to set initial state */
 	function resetPage() {
