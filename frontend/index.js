@@ -114,7 +114,7 @@ window.onload = function() {
 	adminPanelLogin.addEventListener("click", toggleAdminPanel);
 
 /* Clear Form to set initial state */
-	function resetForm() {
+	function resetPage() {
 	  document.getElementById('js-add-review-checkbox').checked = false;
 		document.getElementById('js-add-image-checkbox').checked = false;
 		document.getElementById('js-edit-business-checkbox').checked = false;
@@ -123,6 +123,8 @@ window.onload = function() {
 		document.getElementById('js-radio-by-category').checked = false;
 		document.getElementById('js-search-name-text-field').value = '';
 		document.getElementById('js-search-category-text-field').value = '';
+		document.getElementById('js-admin-username').value = '';
+		document.getElementById('js-admin-password').value = '';
 	}
-	resetForm();
+	resetPage();
 }
