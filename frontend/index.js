@@ -80,8 +80,7 @@ window.onload = function() {
 	/* Search Bar API request functions */
 	function busNameSearch(event) {
 		try {
-			event.preventDefault();
-			url = 'http://localhost/3000/businesses'
+			url = 'http://localhost:3000/businesses'
 			fetch(url)
 			.then(resp => resp.json())
 			.then(json => console.log(json))
