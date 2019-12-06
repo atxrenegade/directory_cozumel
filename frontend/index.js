@@ -76,12 +76,12 @@ window.onload = function() {
 	function toggleNewBusinessForm() {
 		$('#js-add-business-form-container').toggle();
 	}
-
+	/* API REQUESTS */
 	/* Search Bar API request functions */
 	function busNameSearch(event) {
 		try {
 			event.preventDefault();
-			url = 'http://localhost/3000/index_all'
+			url = 'http://localhost/3000/businesses'
 			fetch(url)
 			.then(resp => resp.json())
 			.then(json => console.log(json))

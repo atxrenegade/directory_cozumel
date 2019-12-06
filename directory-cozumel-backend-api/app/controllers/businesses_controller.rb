@@ -1,7 +1,5 @@
 class BusinessesController < ApplicationController
-
-
-	def index_all
+	def index
 		@businesses = Business.build_all_for_export
 		render json: @businesses
 	end
