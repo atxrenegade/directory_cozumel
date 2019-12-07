@@ -29,21 +29,14 @@ window.onload = function() {
 	let adminPasswordField = document.getElementById('js-admin-password')
 
 	let adminPanelLogout = document.getElementById('js-admin-logout-button')
-
 	let adminPanelForm = document.getElementById('js-admin-login')
-
 	let adminUserInfo = document.getElementById('js-admin-user-info')
-
 
 	/* container elements */
 	sponsListContainer = document.getElementById('sponsored-listing-container')
-
 	adsContainer = document.getElementById('ads-container')
-
 	searchBarContainer = document.getElementById('js-searchbar-container')
-
 	listingsContainer = document.getElementById('listings-container')
-
 	newBusContainer = document.getElementById('js-new-business-container')
 
 	/* Search Bar Toggle Functions */
@@ -61,6 +54,7 @@ window.onload = function() {
 		searchByCategory.style.display = 'none';
 	}
 
+	/* search by category functions */
 	function renderCategories(data) {
 		let categoryObjects = Array.from(data);
 		categoriesNames = categoryObjects.map((el) => {
@@ -72,7 +66,7 @@ window.onload = function() {
 	function renderCategoriesMenu(categoriesNames) {
 		if (searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
-			let html = '<select>';
+			let html = '<select id= "js-category-select">';
 			let cats = categoriesNames.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
@@ -80,6 +74,12 @@ window.onload = function() {
 			catMenu.innerHTML = html;
 			searchCategoryMenu.appendChild(catMenu)
 		}
+	}
+
+	function retrieveSearchCategory() {
+		let category = document.getElementById('js-category-select').value
+		console.log(category)
+		postSearchByCategory(category)
 	}
 
 	/* Listings Checkbox Toggle Forms Functions */
@@ -128,6 +128,12 @@ window.onload = function() {
 		}
 	}
 
+	function postSearchByCategory(category){
+		data = category;
+	}
+
+	function getCategoryResults(){}
+
 	/* Admin Panel functions */
 	function toggleAdminLogIn() {
 		$('#js-admin-login-container').toggle();
@@ -171,6 +177,8 @@ window.onload = function() {
 	searchByName.addEventListener("click", busNameSearch(event));
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
 	categoryRadioSelect.addEventListener("click", toggleCategoryMenu);
+
+	document.getElementById('js-by-category-button').addEventListener('click', retrieveSearchCategory);
 
 	/* Business Listings Checkbox Listeners */
 	reviewCheckBox.addEventListener("change", toggleReviewForm);
