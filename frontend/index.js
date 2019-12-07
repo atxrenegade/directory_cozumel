@@ -50,7 +50,6 @@ window.onload = function() {
 		searchByName.style.display = 'none';
 		searchByCategory.style.display = 'block';
 		let cats = collectCategories();
-		console.log(cats)
 	}
 
 	function toggleNameMenu() {
@@ -67,12 +66,16 @@ window.onload = function() {
 	}
 
 	function renderCategoriesMenu(categoriesNames) {
-		let catMenu = document.createElement('div');
-		let html = '<select>';
-		html += '</select>';
-		catMenu.innerHTML = html;
-		searchCategoryMenu.appendChild(catMenu)
-		console.log(categoriesNames)
+		if (searchCategoryMenu.children.length === 0 ){
+			let catMenu = document.createElement('div');
+			let html = '<br><select>';
+			let cats = categoriesNames.map((el) => {
+				return `<option value='${el}'> ${el} </option>`;
+			})
+			html += cats + '</select>';
+			catMenu.innerHTML = html;
+			searchCategoryMenu.appendChild(catMenu)
+		}
 	}
 
 	/* Listings Checkbox Toggle Forms Functions */
