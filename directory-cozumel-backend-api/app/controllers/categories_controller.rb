@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
 
 	def index_by_category
 		category = 'gas station'
-		filtered_results = filter_by_categories(category)
+		filtered_results = Business.filter_by_category(category)
 		render json: filtered_results
 	end
 end
