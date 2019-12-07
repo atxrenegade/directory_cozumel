@@ -4,8 +4,9 @@ window.onload = function() {
 	let searchByCategory = document.getElementById('js-search-by-category');
 	let nameRadioSelect = document.getElementById('js-radio-by-name');
 	let categoryRadioSelect = document.getElementById('js-radio-by-category');
-	let searchNameField = document.getElementById('js-search-name-text-field')
-	let searchCategoryMenu = document.getElementById('js-search-category-menu')
+	let searchNameField = document.getElementById('js-search-name-text-field');
+	let searchCategoryMenu = document.getElementById('js-search-category-menu');
+	let categoriesNames = [];
 
 	/* checkbox elements */
 	let reviewCheckBox = document.getElementById('js-add-review-checkbox');
@@ -49,7 +50,10 @@ window.onload = function() {
 	function toggleCategoryMenu() {
 		searchByName.style.display = 'none';
 		searchByCategory.style.display = 'block';
-		let cats = collectCategories();
+		/* prevent redundant calls to api */
+		if (categoriesNames.length === 0) {
+				collectCategories();
+		};
 	}
 
 	function toggleNameMenu() {
@@ -59,10 +63,10 @@ window.onload = function() {
 
 	function renderCategories(data) {
 		let categoryObjects = Array.from(data);
-		let categoryNames = categoryObjects.map((el) => {
+		categoriesNames = categoryObjects.map((el) => {
 			return el["name"]
 		})
-		renderCategoriesMenu(categoryNames)
+		renderCategoriesMenu(categoriesNames)
 	}
 
 	function renderCategoriesMenu(categoriesNames) {
