@@ -72,7 +72,7 @@ window.onload = function() {
 	function renderCategoriesMenu(categoriesNames) {
 		if (searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
-			let html = '<br><select>';
+			let html = '<select>';
 			let cats = categoriesNames.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
