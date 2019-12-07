@@ -5,7 +5,7 @@ window.onload = function() {
 	let nameRadioSelect = document.getElementById('js-radio-by-name');
 	let categoryRadioSelect = document.getElementById('js-radio-by-category');
 	let searchNameField = document.getElementById('js-search-name-text-field')
-	let searchCategoryField = document.getElementById('js-search-category-text-field')
+	let searchCategoryMenu = document.getElementById('js-search-category-menu')
 
 	/* checkbox elements */
 	let reviewCheckBox = document.getElementById('js-add-review-checkbox');
@@ -67,6 +67,11 @@ window.onload = function() {
 	}
 
 	function renderCategoriesMenu(categoriesNames) {
+		let catMenu = document.createElement('div');
+		let html = '<select>';
+		html += '</select>';
+		catMenu.innerHTML = html;
+		searchCategoryMenu.appendChild(catMenu)
 		console.log(categoriesNames)
 	}
 
@@ -183,7 +188,7 @@ window.onload = function() {
 		nameRadioSelect.checked = true;
 		categoryRadioSelect.checked = false;
 		searchNameField.value = '';
-		searchCategoryField.value = '';
+		searchCategoryMenu.value = '';
 		adminUsernameField.value = '';
 		adminPasswordField.value = '';
 		newBusForm.reset();
