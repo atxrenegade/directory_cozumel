@@ -72,6 +72,12 @@ class Business < ApplicationRecord
 		bus = build_filtered_list_for_export(bus_list)
 		return bus
 	end
+
+	def self.filter_by_name(name)
+		filtered_businesses =  Business.select("id").where("name = ?", name).map{|el| el.id }
+		results = Business.build_filtered_list_for_export(filtered_businesses)
+    return results
+	end
 end
 
 

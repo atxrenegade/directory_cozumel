@@ -4,16 +4,17 @@ class BusinessesController < ApplicationController
 		render json: @businesses
 	end
 
-	def index_by_name
+	def index
+		name = params[:name]
+		if name
+			filtered_results = Business.filter_by_name(name)
+			render json: filtered_results
+		else
+			render json: {message: 'ERROR: Input Error' }
+		end
 	end
 
-	def index_by_category
-	end
 
-
-	def show_by_name
-	end
-
-	def show_by_category
+	def show
 	end
 end

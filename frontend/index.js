@@ -4,8 +4,8 @@ window.onload = function() {
 	let searchByCategory = document.getElementById('js-search-by-category');
 	let nameRadioSelect = document.getElementById('js-radio-by-name');
 	let categoryRadioSelect = document.getElementById('js-radio-by-category');
-	let searchNameField = document.getElementById('js-search-name-text-field');
 	let searchCategoryMenu = document.getElementById('js-search-category-menu');
+	let searchNameField = document.getElementById('js-search-name-text-field');
 	let categoriesNames = [];
 
 	/* checkbox elements */
@@ -54,6 +54,12 @@ window.onload = function() {
 		searchByCategory.style.display = 'none';
 	}
 
+	/* search by name functions */
+	function retrieveSearchNameResults(){
+		let name = searchNameField.value
+		postSearchByName(name)
+	}
+
 	/* search by category functions */
 	function renderCategories(data) {
 		let categoryObjects = Array.from(data);
@@ -76,9 +82,8 @@ window.onload = function() {
 		}
 	}
 
-	function retrieveSearchCategory() {
+	function retrieveSearchCategoryResults() {
 		let category = document.getElementById('js-category-select').value
-		console.log(category)
 		postSearchByCategory(category)
 	}
 
@@ -102,19 +107,9 @@ window.onload = function() {
 	function toggleNewBusinessForm() {
 		$('#js-add-business-form-container').toggle();
 	}
+
 	/* API REQUESTS */
 	/* Search Bar API request functions */
-	function busNameSearch(event) {
-		try {
-			url = 'http://localhost:3000/businesses'
-			fetch(url)
-			.then(resp => resp.json())
-			.then(json => console.log(json))
-		}
-		catch(err) {
-			console.log(error.message);
-		}
-	}
 
 	function collectCategories() {
 		try {
@@ -124,6 +119,31 @@ window.onload = function() {
 			.then(json => renderCategories(json))
 		}
 		catch(err) {
+			console.log(error.message);
+		}
+	}
+
+	function postSearchByName(name) {
+		let data = {'name': name}
+		console.log(data)
+		let configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/index_by_name', configObj)
+			.then(resp => {
+				return resp.json();
+		})
+			.then(json => console.log(json)
+		)
+	}
+	catch(err) {
+			alert('Post request failed see console for further details!');
 			console.log(error.message);
 		}
 	}
@@ -195,11 +215,12 @@ window.onload = function() {
 	/* EVENT LISTENERS */
 
 	/* Search Bar Listeners */
-	searchByName.addEventListener("click", busNameSearch(event));
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
 	categoryRadioSelect.addEventListener("click", toggleCategoryMenu);
 
-	document.getElementById('js-by-category-button').addEventListener('click', retrieveSearchCategory);
+	document.getElementById('js-by-category-button').addEventListener('click', retrieveSearchCategoryResults);
+
+	document.getElementById('js-by-name-button').addEventListener('click', retrieveSearchNameResults)
 
 	/* Business Listings Checkbox Listeners */
 	reviewCheckBox.addEventListener("change", toggleReviewForm);
