@@ -49,11 +49,25 @@ window.onload = function() {
 	function toggleCategoryMenu() {
 		searchByName.style.display = 'none';
 		searchByCategory.style.display = 'block';
+		let cats = collectCategories();
+		console.log(cats)
 	}
 
 	function toggleNameMenu() {
 		searchByName.style.display = 'block';
 		searchByCategory.style.display = 'none';
+	}
+
+	function renderCategories(data) {
+		let categoryObjects = Array.from(data);
+		let categoryNames = categoryObjects.map((el) => {
+			return el["name"]
+		})
+		renderCategoriesMenu(categoryNames)
+	}
+
+	function renderCategoriesMenu(categoriesNames) {
+		console.log(categoriesNames)
 	}
 
 	/* Listings Checkbox Toggle Forms Functions */
@@ -89,6 +103,19 @@ window.onload = function() {
 			console.log(error.message);
 		}
 	}
+
+	function collectCategories() {
+		try {
+			url = 'http://localhost:3000/categories'
+			fetch(url)
+			.then(resp => resp.json())
+			.then(json => renderCategories(json))
+		}
+		catch(err) {
+			console.log(error.message);
+		}
+	}
+
 
 	/* Admin Panel functions */
 	function toggleAdminLogIn() {
