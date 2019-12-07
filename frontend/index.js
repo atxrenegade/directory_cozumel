@@ -128,7 +128,6 @@ window.onload = function() {
 		}
 	}
 
-
 	/* Admin Panel functions */
 	function toggleAdminLogIn() {
 		$('#js-admin-login-container').toggle();
