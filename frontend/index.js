@@ -129,10 +129,31 @@ window.onload = function() {
 	}
 
 	function postSearchByCategory(category){
-		data = category;
+		let data = {'name': category}
+		console.log(data)
+		let configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/index_by_category', configObj)
+			.then(resp => {
+				return resp.json();
+		})
+			.then(json => console.log(json)
+		)
+	}
+	catch(err) {
+			alert('Post request failed see console for further details!');
+			console.log(error.message);
+		}
 	}
 
-	function getCategoryResults(){}
+	function appendCategoryResults(){}
 
 	/* Admin Panel functions */
 	function toggleAdminLogIn() {

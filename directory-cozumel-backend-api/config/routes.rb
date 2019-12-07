@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-	get '/index_by_category', to: 'categories#index_by_category'
+	post '/index_by_category', to: 'categories#index_by_category'
+	
 	resources :businesses, only: [:index]
 	#get 'business/index_all', to: 'businesses#index_all'
   resources :reviews, only: [:new, :create, :show, :update, :delete]
