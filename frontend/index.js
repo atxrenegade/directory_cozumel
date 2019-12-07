@@ -139,7 +139,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => console.log(json)
+			.then(json => objectBuilder(json)
 		)
 	}
 	catch(err) {
@@ -176,7 +176,18 @@ window.onload = function() {
 	function appendCategoryResults(){}
 
 	/* Mass Assignment Constructor Functions */
-	function objectsBuilder(){
+	function objectBuilder(data){
+		console.log(data)
+		let busName = data[0]['name'];
+		let categories = data[0]['categories'];
+		console.log(categories)
+		let busArray = data[0]["listing"];
+		let busDetails = Object.values(busArray);
+		let busObj = busName + categories + busDetails
+		console.log(busObj)
+	}
+
+	function objMassAssign(data){
 
 	}
 
