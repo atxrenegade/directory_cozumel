@@ -175,6 +175,45 @@ window.onload = function() {
 
 	function appendCategoryResults(){}
 
+	/* Mass Assignment Constructor Functions */
+	function objectsBuilder(){
+
+	}
+
+	function busObjBuilder(){
+
+	}
+
+	function mapObjBuilder(){
+
+	}
+
+	function imagesObjBuilder(){
+
+	}
+
+	/* append new Objects to DOM */
+	function appendBusinesses(){
+
+	}
+
+	function appendBusDetails(){
+
+	}
+
+	function appendMap(){
+
+	}
+
+	function appendReviews(){
+
+	}
+
+	function appendImages(){
+
+	}
+
+
 	/* Admin Panel functions */
 	function toggleAdminLogIn() {
 		$('#js-admin-login-container').toggle();
