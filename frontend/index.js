@@ -139,7 +139,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => objectBuilder(json)
+			.then(json => objectMassAssign(json)
 		)
 	}
 	catch(err) {
@@ -164,7 +164,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => console.log(json)
+			.then(json => objMassAssign(json)
 		)
 	}
 	catch(err) {
@@ -173,57 +173,53 @@ window.onload = function() {
 		}
 	}
 
-	function appendCategoryResults(){}
-
-	/* Mass Assignment Constructor Functions */
-	function objectBuilder(data){
-		console.log(data)
-		let busName = data[0]['name'];
-		let categories = data[0]['categories'];
-		console.log(categories)
-		let busArray = data[0]["listing"];
-		let busDetails = Object.values(busArray);
-		let busObj = busName + categories + busDetails
-		console.log(busObj)
-	}
+	/* Business Listing Search Results Object Creation and DOM appending functions */
 
 	function objMassAssign(data){
-
+		data.forEach((el) => busObjBuilder(el))
 	}
 
-	function busObjBuilder(){
-
+	function busObjBuilder(elData){
+		let listingData = [elData["name"], elData["categories"], elData["listing"]];
+		let mapData = elData["map"];
+		let imagesData = elData["images"];
+		let reviewsData = elData["reviews"];
+		let a = busListingBuilder(listingData);
+		let b = mapBuilder(mapData);
+		let c = imagesBuilder(imagesData);
+		let d = reviewsBuilder(reviewsData);
+		let results = [a, b, c, d];
+		appendResults(results);
 	}
 
-	function mapObjBuilder(){
-
+	function busListingBuilder(listingData){
+		let busName = listingData[0];
+		let busCategories = listingData[1];
+		let busOverallRating = listingData[2]['overall_rating'];
+		let busAddress = listingData[2]["address"];
+		let busPhone = listingData[2]["phone_number"];
+		let busWebsite = listingData[2]["website"];
+		let busData = [busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite]
+		return busData
 	}
 
-	function imagesObjBuilder(){
-
+	function mapBuilder(mapData){
+		return mapData
 	}
 
-	/* append new Objects to DOM */
-	function appendBusinesses(){
-
+	function imagesBuilder(imagesData){
+			/* collection of images */
+		return imagesData
 	}
 
-	function appendBusDetails(){
-
+	function reviewsBuilder(reviewsData){
+		/* collection of reviews */
+		return reviewsData
 	}
 
-	function appendMap(){
-
+	function appendResults(results){
+		console.log(results)
 	}
-
-	function appendReviews(){
-
-	}
-
-	function appendImages(){
-
-	}
-
 
 	/* Admin Panel functions */
 	function toggleAdminLogIn() {
