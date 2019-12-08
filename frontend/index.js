@@ -150,7 +150,6 @@ window.onload = function() {
 
 	function postSearchByCategory(category){
 		let data = {'name': category}
-		console.log(data)
 		let configObj = {
 			method: 'POST',
 			headers: {
@@ -200,7 +199,8 @@ window.onload = function() {
 		let busPhone = listingData[2]["phone_number"];
 		let busWebsite = listingData[2]["website"];
 		let busData = [busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite]
-		return busData
+		let newBus = new Business(busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
+		return newBus
 	}
 
 	function mapBuilder(mapData){
