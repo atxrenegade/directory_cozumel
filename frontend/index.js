@@ -21,8 +21,7 @@ class Business {
 }
 
 class Map {
-	constructor(business_name, lat, long) {
-		this.business_name = business_name;
+	constructor(lat, lng) {
 		this.lat = lat;
 		this.lng = lng;
 	}
@@ -258,11 +257,14 @@ window.onload = function() {
 		let busPhone = listingData[2]["phone_number"];
 		let busWebsite = listingData[2]["website"];
 		let newBus = new Business(busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
-		return newBus
+		return newBus;
 	}
 
-	function mapBuilder(mapData){
-		return mapData
+	function mapBuilder(mapData) {
+		let lat = mapData['lat'];
+		let lng = mapData['lng'];
+		let newMap = new Map(lat, lng);
+		return newMap;
 	}
 
 	function imagesBuilder(imagesData){
@@ -276,19 +278,15 @@ window.onload = function() {
 	}
 
 	function renderBusListing(busObj){
-
 	}
 
 	function renderMap(mapObj){
-
 	}
 
 	function renderImage(imageObj){
-
 	}
 
 	function renderReview(reviewObj){
-
 	}
 
 	function appendResults(results){

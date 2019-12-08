@@ -1,6 +1,5 @@
 export default class Map {
-	constructor(business_name, lat, long) {
-		this.business_name = business_name;
+	constructor(lat, long) {
 		this.lat = lat;
 		this.lng = lng;
 	}
