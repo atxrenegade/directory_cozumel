@@ -1,4 +1,12 @@
+/*
+import Business from './src/business.js';
+import Image from '.src/image.js';
+import Map from './src/map.js';
+import Review from '.src/review.js';
+*/
+
 window.onload = function() {
+
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
 	let searchByCategory = document.getElementById('js-search-by-category');

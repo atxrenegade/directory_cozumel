@@ -1,4 +1,4 @@
-class Business {
+export default class Business {
 	constructor(name, categories, overall_rating, address, phone_number, website) {
 		this.name = name;
 		this.categories = categories;

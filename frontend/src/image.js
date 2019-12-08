@@ -1,4 +1,4 @@
-class Image {
+export default class Image {
 	constructor(contributor, contributor_email, date, description, email, id, url){
 		this.contributor = contributor;
 		this.contributor_email = contributor_email;

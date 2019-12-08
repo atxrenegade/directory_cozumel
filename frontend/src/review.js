@@ -1,4 +1,4 @@
-class Review {
+export default class Review {
 	constructor(content, contributor, contributor_email, date, description, email, id, url){
 		this.content = content;
 		this.contributor = contributor;
