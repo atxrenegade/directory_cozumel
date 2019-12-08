@@ -1,11 +1,10 @@
 export default class Review {
-	constructor(content, contributor, contributor_email, date, description, email, id, url){
+	constructor(rating, content, contributor, contributorEmail, date, id){
+		this.rating = rating;
 		this.content = content;
 		this.contributor = contributor;
-		this.contributor_email = contributor_email;
-		this.description = description;
-		this.id = id;
-		this.rating = rating;
+		this.contributor_email = contributorEmail;
 		this.date = new Date();
+		this.id = id;
 	}
 }

@@ -40,14 +40,13 @@ class Image {
 }
 
 class Review {
-	constructor(content, contributor, contributor_email, date, description, email, id, url){
+	constructor(rating, content, contributor, contributorEmail, date, id){
+		this.rating = rating;
 		this.content = content;
 		this.contributor = contributor;
-		this.contributor_email = contributor_email;
-		this.description = description;
-		this.id = id;
-		this.rating = rating;
+		this.contributor_email = contributorEmail;
 		this.date = new Date();
+		this.id = id;
 	}
 }
 
@@ -269,24 +268,30 @@ window.onload = function() {
 
 	function imagesBuilder(imagesData){
 		let imageCollection = imagesData.map((el) => {
-			console.log(el)
 			let contributor = el["contributor"];
 			let contributorEmail = el["contributorEmail"];
 			let date = el["date"];
 			let description = el["description"];
-			let email = el["email"];
 			let id = el["id"];
 			let url = el["url"];
-			let newImage = new Image(contributor, contributorEmail, date, description, email, id, url)
+			let newImage = new Image(contributor, contributorEmail, date, description, id, url)
 			return newImage;
 		})
-			/* collection of images */
 		return imageCollection;
 	}
 
 	function reviewsBuilder(reviewsData){
-		/* collection of reviews */
-		return reviewsData
+		let reviewsCollection = reviewsData.map((el) => {
+			let content = el['content'];
+			let contributor = el["contributor"];
+			let contributorEmail = el["contributorEmail"];
+			let date = new Date();
+			let id = el["id"];
+			let rating = el["rating"];
+			let newReview = new Review(content, contributor, contributorEmail, date, id, rating)
+			return newReview;
+		})
+		return reviewsCollection;
 	}
 
 	function renderBusListing(busObj){
