@@ -257,13 +257,8 @@ window.onload = function() {
 		let busAddress = listingData[2]["address"];
 		let busPhone = listingData[2]["phone_number"];
 		let busWebsite = listingData[2]["website"];
-		/* let busData = [busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite]
-		return busData
-		*/
-
 		let newBus = new Business(busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
 		return newBus
-
 	}
 
 	function mapBuilder(mapData){
@@ -278,6 +273,22 @@ window.onload = function() {
 	function reviewsBuilder(reviewsData){
 		/* collection of reviews */
 		return reviewsData
+	}
+
+	function renderBusListing(busObj){
+
+	}
+
+	function renderMap(mapObj){
+
+	}
+
+	function renderImage(imageObj){
+
+	}
+
+	function renderReview(reviewObj){
+
 	}
 
 	function appendResults(results){
