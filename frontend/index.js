@@ -70,6 +70,8 @@ window.onload = function() {
 	let imageCheckBox = document.getElementById('js-add-image-checkbox');
 	let flagCheckBox = document.getElementById('js-flag-business-checkbox');
 	let editCheckBox = document.getElementById('js-edit-business-checkbox');
+	/* business listing elements */
+	let businessListings = document.getElementById('js-business-show');
 
 	/* add business form elements */
 	let newBusinessButton = document.getElementById('js-add-button');
@@ -244,8 +246,7 @@ window.onload = function() {
 		let b = mapBuilder(mapData);
 		let c = imagesBuilder(imagesData);
 		let d = reviewsBuilder(reviewsData);
-		let results = [a, b, c, d];
-		appendResults(results);
+		appendResults(a, b, c, d);
 	}
 
 	function busListingBuilder(listingData){
@@ -275,7 +276,7 @@ window.onload = function() {
 			let id = el["id"];
 			let url = el["url"];
 			let newImage = new Image(contributor, contributorEmail, date, description, id, url)
-			newImage;
+			return newImage;
 		})
 		return imageCollection;
 	}
@@ -289,12 +290,18 @@ window.onload = function() {
 			let id = el["id"];
 			let rating = el["rating"];
 			let newReview = new Review(content, contributor, contributorEmail, date, id, rating)
-			newReview;
+			return newReview;
 		})
 		return reviewsCollection;
 	}
 
 	function renderBusListing(busObj){
+		let newDiv = document.createElement('div');
+		newDiv.innerHTML = `${busObj.name}<input type='button' value='View Details'> </input>`;
+		businessListings.appendChild(newDiv);
+	}
+
+	function renderBusListingDetailed(busObj){
 	}
 
 	function renderMap(mapObj){
@@ -306,8 +313,8 @@ window.onload = function() {
 	function renderReview(reviewObj){
 	}
 
-	function appendResults(results){
-		console.log(results)
+	function appendResults(a, b, c, d){
+		renderBusListing(a);
 	}
 
 	/* Admin Panel functions */
@@ -383,6 +390,7 @@ window.onload = function() {
 		adminUsernameField.value = '';
 		adminPasswordField.value = '';
 		newBusForm.reset();
+		businessListings.innerHTML = '';
 	}
 	resetPage();
 }
