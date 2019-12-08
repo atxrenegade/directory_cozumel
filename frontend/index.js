@@ -275,7 +275,7 @@ window.onload = function() {
 			let id = el["id"];
 			let url = el["url"];
 			let newImage = new Image(contributor, contributorEmail, date, description, id, url)
-			return newImage;
+			newImage;
 		})
 		return imageCollection;
 	}
@@ -289,7 +289,7 @@ window.onload = function() {
 			let id = el["id"];
 			let rating = el["rating"];
 			let newReview = new Review(content, contributor, contributorEmail, date, id, rating)
-			return newReview;
+			newReview;
 		})
 		return reviewsCollection;
 	}
