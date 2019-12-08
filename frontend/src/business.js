@@ -7,8 +7,4 @@ export default class Business {
 		this.phone_number = phone_number;
 		this.website = website;
 	}
-
-	get businessListing {
-
-	}
 }

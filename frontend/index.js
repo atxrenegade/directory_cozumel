@@ -147,7 +147,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => objectMassAssign(json)
+			.then(json => objMassAssign(json)
 		)
 	}
 	catch(err) {
@@ -207,8 +207,11 @@ window.onload = function() {
 		let busPhone = listingData[2]["phone_number"];
 		let busWebsite = listingData[2]["website"];
 		let busData = [busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite]
+		return busData
+		/*
 		let newBus = new Business(busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
 		return newBus
+		*/
 	}
 
 	function mapBuilder(mapData){
