@@ -5,6 +5,57 @@ import Map from './src/map.js';
 import Review from '.src/review.js';
 */
 
+/*
+temp location for JS classes while debugging module/Rack Cors issue
+*/
+
+class Business {
+	constructor(name, categories, overall_rating, address, phone_number, website) {
+		this.name = name;
+		this.categories = categories;
+		this.overall_rating = overall_rating;
+		this.address = address;
+		this.phone_number = phone_number;
+		this.website = website;
+	}
+}
+
+class Map {
+	constructor(business_name, lat, long) {
+		this.business_name = business_name;
+		this.lat = lat;
+		this.lng = lng;
+	}
+}
+
+class Image {
+	constructor(contributor, contributor_email, date, description, email, id, url){
+		this.contributor = contributor;
+		this.contributor_email = contributor_email;
+		this.date = date;
+		this.description = description;
+		this.email = email;
+		this.id = id;
+		this.url = url;
+	}
+}
+
+class Review {
+	constructor(content, contributor, contributor_email, date, description, email, id, url){
+		this.content = content;
+		this.contributor = contributor;
+		this.contributor_email = contributor_email;
+		this.description = description;
+		this.id = id;
+		this.rating = rating;
+		this.date = new Date();
+	}
+}
+
+/*
+ ***************************************************************************
+*/
+
 window.onload = function() {
 
 	/* searchbar elements */
@@ -206,12 +257,13 @@ window.onload = function() {
 		let busAddress = listingData[2]["address"];
 		let busPhone = listingData[2]["phone_number"];
 		let busWebsite = listingData[2]["website"];
-		let busData = [busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite]
+		/* let busData = [busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite]
 		return busData
-		/*
+		*/
+
 		let newBus = new Business(busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
 		return newBus
-		*/
+
 	}
 
 	function mapBuilder(mapData){
