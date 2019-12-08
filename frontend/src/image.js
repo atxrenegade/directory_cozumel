@@ -1,7 +1,7 @@
 export default class Image {
-	constructor(contributor, contributor_email, date, description, email, id, url){
+	constructor(contributor, contributorEmail, date, description, email, id, url){
 		this.contributor = contributor;
-		this.contributor_email = contributor_email;
+		this.contributorEmail = contributorEmail;
 		this.date = date;
 		this.description = description;
 		this.email = email;

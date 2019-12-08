@@ -268,8 +268,20 @@ window.onload = function() {
 	}
 
 	function imagesBuilder(imagesData){
+		let imageCollection = imagesData.map((el) => {
+			console.log(el)
+			let contributor = el["contributor"];
+			let contributorEmail = el["contributorEmail"];
+			let date = el["date"];
+			let description = el["description"];
+			let email = el["email"];
+			let id = el["id"];
+			let url = el["url"];
+			let newImage = new Image(contributor, contributorEmail, date, description, email, id, url)
+			return newImage;
+		})
 			/* collection of images */
-		return imagesData
+		return imageCollection;
 	}
 
 	function reviewsBuilder(reviewsData){
