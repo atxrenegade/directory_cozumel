@@ -30,7 +30,7 @@ class Map {
 class Image {
 	constructor(contributor, contributorEmail, date, description, id, url){
 		this.contributor = contributor;
-		this.contributoeEmail = contributorEmail;
+		this.contributorEmail = contributorEmail;
 		this.date = date;
 		this.description = description;
 		this.id = id;
