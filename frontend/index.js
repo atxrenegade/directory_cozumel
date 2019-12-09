@@ -28,12 +28,11 @@ class Map {
 }
 
 class Image {
-	constructor(contributor, contributor_email, date, description, email, id, url){
+	constructor(contributor, contributorEmail, date, description, id, url){
 		this.contributor = contributor;
-		this.contributor_email = contributor_email;
+		this.contributoeEmail = contributorEmail;
 		this.date = date;
 		this.description = description;
-		this.email = email;
 		this.id = id;
 		this.url = url;
 	}
@@ -269,6 +268,7 @@ window.onload = function() {
 
 	function imagesBuilder(imagesData){
 		let imageCollection = imagesData.map((el) => {
+			console.log(el);
 			let contributor = el["contributor"];
 			let contributorEmail = el["contributorEmail"];
 			let date = el["date"];
@@ -312,8 +312,9 @@ window.onload = function() {
 	}
 
 	function renderImage(imageObj){
+		console.log(imageObj)
 		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `<img src='${imageObj.url}'><br><p>${imageObj.contributor}</p><p>${imageObj.date}</p><p>${imageObj.description}</<p><br>`;
+		newDiv.innerHTML = `<img src="${imageObj.url}"></img><br><p>${imageObj.contributor}</p><p>${imageObj.date}</p><p>${imageObj.description}</<p><br>`;
 		businessListings.appendChild(newDiv);
 	}
 
