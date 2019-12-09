@@ -10,12 +10,12 @@ temp location for JS classes while debugging module/Rack Cors issue
 */
 
 class Business {
-	constructor(name, categories, overall_rating, address, phone_number, website) {
+	constructor(name, categories, overallRating, address, phoneNumber, website) {
 		this.name = name;
 		this.categories = categories;
-		this.overall_rating = overall_rating;
+		this.overallRating = overallRating;
 		this.address = address;
-		this.phone_number = phone_number;
+		this.phoneNumber = phoneNumber;
 		this.website = website;
 	}
 }
@@ -302,6 +302,10 @@ window.onload = function() {
 	}
 
 	function renderBusListingDetailed(busObj){
+		let newDiv = document.createElement('div');
+		let categories = busObj.categories.join(', ');
+		newDiv.innerHTML = `<p>${busObj.name}</p><p>${busObj.overallRating}</p><p>${categories}</p><p>${busObj.address}</p><p>${busObj.phoneNumber}</p><p><a href='${busObj.website}'>${busObj.website}</a></p><br>`;
+		businessListings.appendChild(newDiv);
 	}
 
 	function renderMap(mapObj){
@@ -314,7 +318,8 @@ window.onload = function() {
 	}
 
 	function appendResults(a, b, c, d){
-		renderBusListing(a);
+		/* renderBusListing(a); */
+		renderBusListingDetailed(a);
 	}
 
 	/* Admin Panel functions */

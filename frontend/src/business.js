@@ -1,10 +1,10 @@
 export default class Business {
-	constructor(name, categories, overall_rating, address, phone_number, website) {
+	constructor(name, categories, overallRating, address, phoneNumber, website) {
 		this.name = name;
 		this.categories = categories;
-		this.overall_rating = overall_rating;
+		this.overallRating = overallRating;
 		this.address = address;
-		this.phone_number = phone_number;
+		this.phoneNumber = phoneNumber;
 		this.website = website;
 	}
 }
