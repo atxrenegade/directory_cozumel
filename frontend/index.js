@@ -312,6 +312,9 @@ window.onload = function() {
 	}
 
 	function renderImage(imageObj){
+		let newDiv = document.createElement('div');
+		newDiv.innerHTML = `<img src='${imageObj.url}'><br><p>${imageObj.contributor}</p><p>${imageObj.date}</p><p>${imageObj.description}</<p><br>`;
+		businessListings.appendChild(newDiv);
 	}
 
 	function renderReview(reviewObj){
@@ -320,6 +323,7 @@ window.onload = function() {
 	function appendResults(a, b, c, d){
 		/* renderBusListing(a); */
 		renderBusListingDetailed(a);
+		c.forEach(renderImage);
 	}
 
 	/* Admin Panel functions */
