@@ -69,6 +69,7 @@ window.onload = function() {
 	let imageCheckBox = document.getElementById('js-add-image-checkbox');
 	let flagCheckBox = document.getElementById('js-flag-business-checkbox');
 	let editCheckBox = document.getElementById('js-edit-business-checkbox');
+
 	/* business listing elements */
 	let businessListings = document.getElementById('js-business-show');
 
@@ -99,6 +100,7 @@ window.onload = function() {
 
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
+		businessListings.innerHTML = '';
 		searchByName.style.display = 'none';
 		searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
@@ -108,6 +110,7 @@ window.onload = function() {
 	}
 
 	function toggleNameMenu() {
+		businessListings.innerHTML = '';
 		searchByName.style.display = 'block';
 		searchByCategory.style.display = 'none';
 	}
@@ -268,7 +271,6 @@ window.onload = function() {
 
 	function imagesBuilder(imagesData){
 		let imageCollection = imagesData.map((el) => {
-			console.log(el);
 			let contributor = el["contributor"];
 			let contributorEmail = el["contributorEmail"];
 			let date = el["date"];
@@ -289,7 +291,7 @@ window.onload = function() {
 			let date = new Date();
 			let id = el["id"];
 			let rating = el["rating"];
-			let newReview = new Review(content, contributor, contributorEmail, date, id, rating)
+			let newReview = new Review(rating, content, contributor, contributorEmail, date, id)
 			return newReview;
 		})
 		return reviewsCollection;
@@ -312,19 +314,22 @@ window.onload = function() {
 	}
 
 	function renderImage(imageObj){
-		console.log(imageObj)
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = `<img src="${imageObj.url}"></img><br><p>${imageObj.contributor}</p><p>${imageObj.date}</p><p>${imageObj.description}</<p><br>`;
 		businessListings.appendChild(newDiv);
 	}
 
 	function renderReview(reviewObj){
+		let newDiv = document.createElement('div');
+		newDiv.innerHTML = `<p>${reviewObj.content}<br>Rating: ${reviewObj.rating}<br>${reviewObj.contributor}<br>${reviewObj.date}</p><br>`;
+		businessListings.appendChild(newDiv);
 	}
 
 	function appendResults(a, b, c, d){
 		/* renderBusListing(a); */
 		renderBusListingDetailed(a);
 		c.forEach(renderImage);
+		d.forEach(renderReview);
 	}
 
 	/* Admin Panel functions */
@@ -343,6 +348,8 @@ window.onload = function() {
 			adminPanel.style.display = "block";
 			adminMenu.style.display = "block";
 			hiddenAdminButton.style.display = "none";
+
+			reviewsDiv.style.display = 'none';
 
 			adminPanelLogin.style.display = "none";
 			adminPanelLogout.style.display = "block";

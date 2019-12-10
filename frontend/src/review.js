@@ -3,7 +3,7 @@ export default class Review {
 		this.rating = rating;
 		this.content = content;
 		this.contributor = contributor;
-		this.contributor_email = contributorEmail;
+		this.contributorEmail = contributorEmail;
 		this.date = new Date();
 		this.id = id;
 	}
