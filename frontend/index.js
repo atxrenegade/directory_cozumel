@@ -244,11 +244,11 @@ window.onload = function() {
 		let mapData = elData["map"];
 		let imagesData = elData["images"];
 		let reviewsData = elData["reviews"];
-		let a = busListingBuilder(listingData);
-		let b = mapBuilder(mapData);
-		let c = imagesBuilder(imagesData);
-		let d = reviewsBuilder(reviewsData);
-		appendResults(a, b, c, d);
+		let busObj = busListingBuilder(listingData);
+		let mapObj = mapBuilder(mapData);
+		let imgsCollection = imagesBuilder(imagesData);
+		let reviewsCollection = reviewsBuilder(reviewsData);
+		appendResults(busObj, mapObj, imgsCollection, reviewsCollection);
 	}
 
 	function busListingBuilder(listingData){
