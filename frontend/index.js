@@ -105,7 +105,7 @@ window.onload = function() {
 
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
-		businessListings.innerHTML = '';
+		listingsContainer.style.display = 'none';
 		searchByName.style.display = 'none';
 		searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
@@ -115,15 +115,16 @@ window.onload = function() {
 	}
 
 	function toggleNameMenu() {
-		businessListings.innerHTML = '';
+		listingsContainer.style.display = 'none';
 		searchByName.style.display = 'block';
 		searchByCategory.style.display = 'none';
 	}
 
 	/* search by name functions */
 	function retrieveSearchNameResults(){
-		let name = searchNameField.value;
-		postSearchByName(name)
+		listingsContainer.style.display = 'block';
+		postSearchByName(searchNameField.value);
+		searchNameField.value = '';
 	}
 
 	/* search by category functions */
@@ -149,6 +150,7 @@ window.onload = function() {
 	}
 
 	function retrieveSearchCategoryResults() {
+		listingsContainer.style.display = 'block';
 		let category = document.getElementById('js-category-select').value
 		postSearchByCategory(category)
 	}
@@ -374,6 +376,7 @@ window.onload = function() {
 			searchBarContainer.style.display = "none";
 			listingsContainer.style.display = "none";
 			newBusContainer.style.display = "none";
+			listingsContainer.innerHTML = '';
 			adminPanel.style.display = "block";
 			adminMenu.style.display = "block";
 			hiddenAdminButton.style.display = "none";
@@ -435,8 +438,8 @@ window.onload = function() {
 		searchCategoryMenu.value = '';
 		adminUsernameField.value = '';
 		adminPasswordField.value = '';
+		listingsContainer.style.display = 'none';
 		newBusForm.reset();
-		businessListings.innerHTML = '';
 	}
 	resetPage();
 }
