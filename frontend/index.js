@@ -298,12 +298,22 @@ window.onload = function() {
 	}
 
 	function renderBusListing(busObj){
+		businessListings.innerHTML = '';
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = `${busObj.name}<input type='button' value='View Details'> </input>`;
 		businessListings.appendChild(newDiv);
+
+		/* document.querySelector().addEventListener('click', ((event) => renderBusinessListingDetailed(busObj))
+		document.querySelector('body').addEventListener('click', function(event) {
+		  if (event.target.tagName.toLowerCase() === 'li') {
+		    // do your action on your 'li' or whatever it is you're listening for
+		  }
+		});
+	*/	
 	}
 
 	function renderBusListingDetailed(busObj){
+		businessListings.innerHTML = '';
 		let newDiv = document.createElement('div');
 		let categories = busObj.categories.join(', ');
 		newDiv.innerHTML = `<p>${busObj.name}<br>${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
