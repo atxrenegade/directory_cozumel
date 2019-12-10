@@ -313,9 +313,9 @@ window.onload = function() {
 	function renderMap(mapObj){
 	}
 
-	function renderImage(imageObj){
+	function renderImage(imgObj){
 		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `<img src="${imageObj.url}"></img><br><p>${imageObj.contributor}</p><p>${imageObj.date}</p><p>${imageObj.description}</<p><br>`;
+		newDiv.innerHTML = `<img src="${imgObj.url}"></img><br><p>${imgObj.contributor}<br>${imgObj.date}<br>${imgObj.description}<br><br></<p>`;
 		businessListings.appendChild(newDiv);
 	}
 
