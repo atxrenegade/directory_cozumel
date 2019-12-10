@@ -116,6 +116,7 @@ window.onload = function() {
 	}
 
 	function toggleNameMenu() {
+		searchNameField.value = '';
 		listingsContainer.style.display = 'none';
 		searchByName.style.display = 'block';
 		searchByCategory.style.display = 'none';
@@ -260,10 +261,6 @@ window.onload = function() {
 	function appendResults(resultsList){
 		businessListings.innerHTML = '';
 		resultsList.forEach((busObj) => renderBus(busObj));
-	}
-
-	function objMassAssign(data){
-		data.forEach((el) => busObjBuilder(el))
 	}
 
 	function busObjBuilder(elData){
