@@ -208,7 +208,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => objMassAssign(json)
+			.then(json => returnResults(json)
 		)
 	}
 	catch(err) {
@@ -232,7 +232,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => objMassAssign(json)
+			.then(json => returnResults(json)
 		)
 	}
 	catch(err) {
@@ -242,6 +242,25 @@ window.onload = function() {
 	}
 
 	/* Business Listing Search Results Object Creation and DOM appending functions */
+
+	function returnResults(data) {
+		let resultsList = buildResults(data);
+		appendResults(resultsList);
+	}
+
+	function buildResults(data) {
+		let results = []
+		data.forEach((el) => {
+			let busObj = busObjBuilder(el);
+			results.push(busObj);
+		})
+		return results;
+	}
+
+	function appendResults(resultsList){
+		businessListings.innerHTML = '';
+		resultsList.forEach((busObj) => renderBus(busObj));
+	}
 
 	function objMassAssign(data){
 		data.forEach((el) => busObjBuilder(el))
@@ -257,6 +276,7 @@ window.onload = function() {
 		let mapObj = mapBuilder(busID, mapData);
 		let imgsCollection = imagesBuilder(busID, imagesData);
 		let reviewsCollection = reviewsBuilder(busID, reviewsData);
+		return busObj
 	}
 
 	function busListingBuilder(listingData){
@@ -306,8 +326,7 @@ window.onload = function() {
 		return reviewsCollection;
 	}
 
-	function renderBusListing(busObj){
-		businessListings.innerHTML = '';
+	function renderBus(busObj){
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = `${busObj.name}<input type='button' value='View Details'> </input>`;
 		businessListings.appendChild(newDiv);
