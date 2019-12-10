@@ -77,6 +77,7 @@ window.onload = function() {
 
 	/* business listing elements */
 	let businessListings = document.getElementById('js-business-show');
+	let detailedListingMenu = document.getElementById('js-detailed-listing-menu');
 
 	/* add business form elements */
 	let newBusinessButton = document.getElementById('js-add-button');
@@ -97,11 +98,11 @@ window.onload = function() {
 	let adminUserInfo = document.getElementById('js-admin-user-info')
 
 	/* container elements */
-	sponsListContainer = document.getElementById('sponsored-listing-container')
-	adsContainer = document.getElementById('ads-container')
-	searchBarContainer = document.getElementById('js-searchbar-container')
-	listingsContainer = document.getElementById('listings-container')
-	newBusContainer = document.getElementById('js-new-business-container')
+	let sponsListContainer = document.getElementById('sponsored-listing-container')
+	let adsContainer = document.getElementById('ads-container')
+	let searchBarContainer = document.getElementById('js-searchbar-container')
+	let listingsContainer = document.getElementById('listings-container')
+	let newBusContainer = document.getElementById('js-new-business-container')
 
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
@@ -267,7 +268,6 @@ window.onload = function() {
 		let busPhone = listingData[3]["phone_number"];
 		let busWebsite = listingData[3]["website"];
 		let newBus = new Business(busID, busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
-		console.log(newBus);
 		return newBus;
 	}
 
@@ -332,6 +332,7 @@ window.onload = function() {
 
 	function renderBusListingDetailed(busObj){
 		businessListings.innerHTML = '';
+		detailedListingMenu.style.display = 'block';
 		let newDiv = document.createElement('div');
 		let categories = busObj.categories.join(', ');
 		newDiv.innerHTML = `<p>${busObj.name}<br>${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
@@ -376,16 +377,11 @@ window.onload = function() {
 			searchBarContainer.style.display = "none";
 			listingsContainer.style.display = "none";
 			newBusContainer.style.display = "none";
-			listingsContainer.innerHTML = '';
 			adminPanel.style.display = "block";
 			adminMenu.style.display = "block";
 			hiddenAdminButton.style.display = "none";
-
-			reviewsDiv.style.display = 'none';
-
 			adminPanelLogin.style.display = "none";
 			adminPanelLogout.style.display = "block";
-
 			adminPanelForm.style.display = "none";
 			adminUserInfo.style.display = "block";
 
@@ -439,6 +435,8 @@ window.onload = function() {
 		adminUsernameField.value = '';
 		adminPasswordField.value = '';
 		listingsContainer.style.display = 'none';
+		listingsContainer.innerHTML = '';
+		detailedListingMenu.style.display = 'none';
 		newBusForm.reset();
 	}
 	resetPage();
