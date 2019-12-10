@@ -122,7 +122,7 @@ window.onload = function() {
 
 	/* search by name functions */
 	function retrieveSearchNameResults(){
-		let name = searchNameField.value
+		let name = searchNameField.value;
 		postSearchByName(name)
 	}
 
@@ -132,7 +132,7 @@ window.onload = function() {
 		categoriesNames = categoryObjects.map((el) => {
 			return el["name"]
 		})
-		renderCategoriesMenu(categoriesNames)
+		renderCategoriesMenu(categoriesNames);
 	}
 
 	function renderCategoriesMenu(categoriesNames) {
@@ -259,17 +259,17 @@ window.onload = function() {
 	function busListingBuilder(listingData){
 		let busID = listingData[0];
 		let busName = listingData[1];
-		let busCategories = listingData[3];
+		let busCategories = listingData[2];
 		let busOverallRating = listingData[3]['overall_rating'];
 		let busAddress = listingData[3]["address"];
 		let busPhone = listingData[3]["phone_number"];
 		let busWebsite = listingData[3]["website"];
-		let newBus = new Business(busId busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
+		let newBus = new Business(busID, busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
+		console.log(newBus);
 		return newBus;
 	}
 
 	function mapBuilder(busID, mapData) {
-		let busID = busID;
 		let lat = mapData['lat'];
 		let lng = mapData['lng'];
 		let newMap = new Map(busID, lat, lng);
