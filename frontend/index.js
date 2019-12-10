@@ -435,7 +435,6 @@ window.onload = function() {
 		adminUsernameField.value = '';
 		adminPasswordField.value = '';
 		listingsContainer.style.display = 'none';
-		listingsContainer.innerHTML = '';
 		detailedListingMenu.style.display = 'none';
 		newBusForm.reset();
 	}
