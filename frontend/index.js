@@ -22,14 +22,17 @@ class Business {
 }
 
 class Map {
-	constructor(lat, lng) {
+	constructor(busID, lat, lng) {
+		this.busId = busID;
 		this.lat = lat;
 		this.lng = lng;
+
 	}
 }
 
 class Image {
-	constructor(contributor, contributorEmail, date, description, id, url){
+	constructor(busID, contributor, contributorEmail, date, description, id, url){
+		this.busID = busID;
 		this.contributor = contributor;
 		this.contributorEmail = contributorEmail;
 		this.date = date;
@@ -40,11 +43,12 @@ class Image {
 }
 
 class Review {
-	constructor(rating, content, contributor, contributorEmail, date, id){
+	constructor(busID, rating, content, contributor, contributorEmail, date, id){
+		this.busID = busID;
 		this.rating = rating;
 		this.content = content;
 		this.contributor = contributor;
-		this.contributor_email = contributorEmail;
+		this.contributorEmail = contributorEmail;
 		this.date = new Date();
 		this.id = id;
 	}
@@ -241,18 +245,19 @@ window.onload = function() {
 	}
 
 	function busObjBuilder(elData){
-		let listingData = [elData["id"], elData["name"], elData["categories"], elData["listing"]];
+		let busID = elData["id"]
+		let listingData = [busID, elData["name"], elData["categories"], elData["listing"]];
 		let mapData = elData["map"];
 		let imagesData = elData["images"];
 		let reviewsData = elData["reviews"];
 		let busObj = busListingBuilder(listingData);
-		let mapObj = mapBuilder(mapData);
-		let imgsCollection = imagesBuilder(imagesData);
-		let reviewsCollection = reviewsBuilder(reviewsData);
+		let mapObj = mapBuilder(busID, mapData);
+		let imgsCollection = imagesBuilder(busID, imagesData);
+		let reviewsCollection = reviewsBuilder(busID, reviewsData);
 	}
 
 	function busListingBuilder(listingData){
-		let busId = listingData[0];
+		let busID = listingData[0];
 		let busName = listingData[1];
 		let busCategories = listingData[3];
 		let busOverallRating = listingData[3]['overall_rating'];
@@ -263,14 +268,15 @@ window.onload = function() {
 		return newBus;
 	}
 
-	function mapBuilder(mapData) {
+	function mapBuilder(busID, mapData) {
+		let busID = busID;
 		let lat = mapData['lat'];
 		let lng = mapData['lng'];
-		let newMap = new Map(lat, lng);
+		let newMap = new Map(busID, lat, lng);
 		return newMap;
 	}
 
-	function imagesBuilder(imagesData){
+	function imagesBuilder(busID, imagesData){
 		let imageCollection = imagesData.map((el) => {
 			let contributor = el["contributor"];
 			let contributorEmail = el["contributorEmail"];
@@ -278,13 +284,13 @@ window.onload = function() {
 			let description = el["description"];
 			let id = el["id"];
 			let url = el["url"];
-			let newImage = new Image(contributor, contributorEmail, date, description, id, url)
+			let newImage = new Image(busID, contributor, contributorEmail, date, description, id, url)
 			return newImage;
 		})
 		return imageCollection;
 	}
 
-	function reviewsBuilder(reviewsData){
+	function reviewsBuilder(busID, reviewsData){
 		let reviewsCollection = reviewsData.map((el) => {
 			let content = el['content'];
 			let contributor = el["contributor"];
@@ -292,7 +298,7 @@ window.onload = function() {
 			let date = new Date();
 			let id = el["id"];
 			let rating = el["rating"];
-			let newReview = new Review(rating, content, contributor, contributorEmail, date, id)
+			let newReview = new Review(busID, rating, content, contributor, contributorEmail, date, id)
 			return newReview;
 		})
 		return reviewsCollection;
