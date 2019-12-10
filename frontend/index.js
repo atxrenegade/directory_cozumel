@@ -306,7 +306,7 @@ window.onload = function() {
 	function renderBusListingDetailed(busObj){
 		let newDiv = document.createElement('div');
 		let categories = busObj.categories.join(', ');
-		newDiv.innerHTML = `<p>${busObj.name}</p><p>${busObj.overallRating}</p><p>${categories}</p><p>${busObj.address}</p><p>${busObj.phoneNumber}</p><p><a href='${busObj.website}'>${busObj.website}</a></p><br>`;
+		newDiv.innerHTML = `<p>${busObj.name}<br>${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
 	}
 
