@@ -10,7 +10,8 @@ temp location for JS classes while debugging module/Rack Cors issue
 */
 
 class Business {
-	constructor(name, categories, overallRating, address, phoneNumber, website) {
+	constructor(id, name, categories, overallRating, address, phoneNumber, website) {
+		this.id = id;
 		this.name = name;
 		this.categories = categories;
 		this.overallRating = overallRating;
@@ -240,7 +241,7 @@ window.onload = function() {
 	}
 
 	function busObjBuilder(elData){
-		let listingData = [elData["name"], elData["categories"], elData["listing"]];
+		let listingData = [elData["id"], elData["name"], elData["categories"], elData["listing"]];
 		let mapData = elData["map"];
 		let imagesData = elData["images"];
 		let reviewsData = elData["reviews"];
@@ -248,17 +249,17 @@ window.onload = function() {
 		let mapObj = mapBuilder(mapData);
 		let imgsCollection = imagesBuilder(imagesData);
 		let reviewsCollection = reviewsBuilder(reviewsData);
-		appendResults(busObj, mapObj, imgsCollection, reviewsCollection);
 	}
 
 	function busListingBuilder(listingData){
-		let busName = listingData[0];
-		let busCategories = listingData[1];
-		let busOverallRating = listingData[2]['overall_rating'];
-		let busAddress = listingData[2]["address"];
-		let busPhone = listingData[2]["phone_number"];
-		let busWebsite = listingData[2]["website"];
-		let newBus = new Business(busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
+		let busId = listingData[0];
+		let busName = listingData[1];
+		let busCategories = listingData[3];
+		let busOverallRating = listingData[3]['overall_rating'];
+		let busAddress = listingData[3]["address"];
+		let busPhone = listingData[3]["phone_number"];
+		let busWebsite = listingData[3]["website"];
+		let newBus = new Business(busId busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
 		return newBus;
 	}
 
@@ -302,14 +303,23 @@ window.onload = function() {
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = `${busObj.name}<input type='button' value='View Details'> </input>`;
 		businessListings.appendChild(newDiv);
+		console.log(busObj);
+		/* document.().addEventListener(('click') => console.log(busObj)) */
+;		/* document.querySelector().addEventListener('click',  function(busObj) { renderBusListingDetailed(busObj)
+		Retrieve busObj and pass in mpa images and reviews for render
+		renderBusListingDetailed(busObj);
+		imgsCollection.forEach(renderImage);
+		reviewsCollection.forEach(renderReview);
+	} function(renderBusinessListingDetailed(busObj))
 
-		/* document.querySelector().addEventListener('click', ((event) => renderBusinessListingDetailed(busObj))
+
+
 		document.querySelector('body').addEventListener('click', function(event) {
 		  if (event.target.tagName.toLowerCase() === 'li') {
 		    // do your action on your 'li' or whatever it is you're listening for
 		  }
 		});
-	*/	
+	*/
 	}
 
 	function renderBusListingDetailed(busObj){
@@ -318,6 +328,7 @@ window.onload = function() {
 		let categories = busObj.categories.join(', ');
 		newDiv.innerHTML = `<p>${busObj.name}<br>${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
+		appendDetails(busObj);
 	}
 
 	function renderMap(mapObj){
@@ -335,11 +346,13 @@ window.onload = function() {
 		businessListings.appendChild(newDiv);
 	}
 
-	function appendResults(a, b, c, d){
-		/* renderBusListing(a); */
-		renderBusListingDetailed(a);
-		c.forEach(renderImage);
-		d.forEach(renderReview);
+	function appendDetails(busObj){
+		/* how do I access these details for each function from my business object?"
+		renderBusListingDetailed(busObj);
+		renderMap(mapObj);
+		imgsCollection.forEach(renderImage);
+		reviewsCollection.forEach(renderReview); */
+
 	}
 
 	/* Admin Panel functions */
