@@ -284,16 +284,29 @@ window.onload = function() {
 	}
 
 	function busObjBuilder(elData){
-		let busID = elData["id"]
-		let listingData = [busID, elData["name"], elData["categories"], elData["listing"]];
-		let mapData = elData["map"];
-		let imagesData = elData["images"];
-		let reviewsData = elData["reviews"];
-		let busObj = busListingBuilder(listingData);
-		let mapObj = mapBuilder(busID, mapData);
-		let imgsCollection = imagesBuilder(busID, imagesData);
-		let reviewsCollection = reviewsBuilder(busID, reviewsData);
-		return busObj
+		let duplicate = findDuplicate(elData["name"])
+		if (duplicate == false) {
+			let busID = elData["id"]
+			let listingData = [busID, elData["name"], elData["categories"], elData["listing"]];
+			let mapData = elData["map"];
+			let imagesData = elData["images"];
+			let reviewsData = elData["reviews"];
+			let busObj = busListingBuilder(listingData);
+			let mapObj = mapBuilder(busID, mapData);
+			let imgsCollection = imagesBuilder(busID, imagesData);
+			let reviewsCollection = reviewsBuilder(busID, reviewsData);
+			return busObj;
+		}
+	}
+
+	function findDuplicate(elDataName) {
+		let response;
+		if (RESULTS == undefined || RESULTS[0] == undefined || RESULTS.length == 0) {response = false};
+		let search = RESULTS.find((el) => {
+			return (el['name'] == elDataName)
+		});
+		if (search === undefined) {response = false}
+		return response;
 	}
 
 	function busListingBuilder(listingData){
@@ -488,6 +501,7 @@ window.onload = function() {
 		adminPasswordField.value = '';
 		listingsContainer.style.display = 'none';
 		detailedListingMenu.style.display = 'none';
+		RESULTS = [];
 		newBusForm.reset();
 	}
 	resetPage();
