@@ -123,6 +123,8 @@ window.onload = function() {
 
 	/* search by name functions */
 	function retrieveSearchNameResults(){
+		detailedListingMenu.style.display = 'none';
+		RESULTS = [];
 		listingsContainer.style.display = 'block';
 		postSearchByName(searchNameField.value);
 		searchNameField.value = '';
@@ -151,6 +153,8 @@ window.onload = function() {
 	}
 
 	function retrieveSearchCategoryResults() {
+		detailedListingMenu.style.display = 'none';
+		RESULTS = [];
 		listingsContainer.style.display = 'block';
 		let category = document.getElementById('js-category-select').value
 		postSearchByCategory(category)
@@ -207,7 +211,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => returnResults(json)
+			.then(json => returnDetailResults(json)
 		)
 	}
 	catch(err) {
@@ -231,7 +235,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => returnResults(json)
+			.then(json => returnIndexResults(json)
 		)
 	}
 	catch(err) {
@@ -241,9 +245,14 @@ window.onload = function() {
 	}
 
 	/* Business Listing Search Results Object Creation and DOM appending functions */
-	function returnResults(data) {
-		let resultsList = buildResults(data);
-		appendResults(resultsList);
+	function returnIndexResults(data) {
+		let results = buildResults(data);
+		appendResults('index', results);
+	}
+
+	function returnDetailResults(type, data) {
+		let results = buildResults(data);
+		appendResults('detailed', buildResults(data));
 	}
 
 	function buildResults(data) {
@@ -255,9 +264,13 @@ window.onload = function() {
 		return RESULTS;
 	}
 
-	function appendResults(resultsList){
+	function appendResults(type, resultsList){
 		businessListings.innerHTML = '';
-		resultsList.forEach((busObj) => renderBus(busObj));
+		if (type === 'index'){
+			resultsList.forEach((busObj) => renderBus(busObj));
+		} else {
+			resultsList.forEach((busObj) => renderBusListingDetailed(busObj));
+		}
 	}
 
 	function busObjBuilder(elData){
