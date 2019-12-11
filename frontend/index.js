@@ -309,13 +309,16 @@ window.onload = function() {
 	}
 
 	function mapBuilder(busID, mapData) {
+		MAPS = [];
 		let lat = mapData['lat'];
 		let lng = mapData['lng'];
 		let newMap = new Map(busID, lat, lng);
+		MAPS.push(newMap);
 		return newMap;
 	}
 
 	function imagesBuilder(busID, imagesData){
+		IMAGES = []
 		let imageCollection = imagesData.map((el) => {
 			let contributor = el["contributor"];
 			let contributorEmail = el["contributorEmail"];
@@ -324,12 +327,14 @@ window.onload = function() {
 			let id = el["id"];
 			let url = el["url"];
 			let newImage = new Image(busID, contributor, contributorEmail, date, description, id, url)
+			IMAGES.push(newImage);
 			return newImage;
 		})
 		return imageCollection;
 	}
 
 	function reviewsBuilder(busID, reviewsData){
+		REVIEWS = [];
 		let reviewsCollection = reviewsData.map((el) => {
 			let content = el['content'];
 			let contributor = el["contributor"];
@@ -338,6 +343,7 @@ window.onload = function() {
 			let id = el["id"];
 			let rating = el["rating"];
 			let newReview = new Review(busID, rating, content, contributor, contributorEmail, date, id)
+			REVIEWS.push(newReview);
 			return newReview;
 		})
 		return reviewsCollection;
@@ -368,7 +374,27 @@ window.onload = function() {
 		appendDetails(busObj);
 	}
 
+	function collectMapImgRev(busObj) {
+		let busID = busObj.id
+		let detailsCollection = []
+		/*
+		let mapMatch = MAPS.find(obj => obj.busID == busID);
+		let imagesMatch = IMAGES.find(obj => obj.busID == busID);
+		let reviewsMatch = REVIEWS.find(obj => obj.busID == busID);
+		*/
+		let mapMatch = MAPS;
+		let imagesMatch = IMAGES;
+		let reviewsMatch = REVIEWS;
+
+		detailsCollection.push(mapMatch, imagesMatch, reviewsMatch);
+		return detailsCollection;
+	}
+
 	function renderMap(mapObj){
+		/* console.log('map rendered') */
+		let newDiv = document.createElement('div');
+		newDiv.innerHTML = '<br> This is a map <br>'
+		businessListings.appendChild(newDiv);
 	}
 
 	function renderImage(imgObj){
@@ -384,12 +410,10 @@ window.onload = function() {
 	}
 
 	function appendDetails(busObj){
-		/* how do I access these details for each function from my business object?"
-		renderBusListingDetailed(busObj);
-		renderMap(mapObj);
-		imgsCollection.forEach(renderImage);
-		reviewsCollection.forEach(renderReview); */
-
+		let detailsCollect = Array.from(collectMapImgRev(busObj))
+		renderMap(detailsCollect[0]);
+		detailsCollect[1].forEach(el => renderImage(el));
+		detailsCollect[2].forEach(el => renderReview(el));
 	}
 
 	/* Admin Panel functions */
