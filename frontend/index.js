@@ -124,7 +124,6 @@ window.onload = function() {
 	/* search by name functions */
 	function retrieveSearchNameResults(){
 		detailedListingMenu.style.display = 'none';
-		RESULTS = [];
 		listingsContainer.style.display = 'block';
 		postSearchByName(searchNameField.value);
 		searchNameField.value = '';
@@ -154,7 +153,6 @@ window.onload = function() {
 
 	function retrieveSearchCategoryResults() {
 		detailedListingMenu.style.display = 'none';
-		RESULTS = [];
 		listingsContainer.style.display = 'block';
 		let category = document.getElementById('js-category-select').value
 		postSearchByCategory(category)
@@ -197,7 +195,6 @@ window.onload = function() {
 
 	function postSearchByName(name) {
 		let data = {'name': name}
-		console.log(data)
 		let configObj = {
 			method: 'POST',
 			headers: {
@@ -250,9 +247,22 @@ window.onload = function() {
 		appendResults('index', results);
 	}
 
-	function returnDetailResults(type, data) {
+	function returnDetailResults(data) {
+		businessListings.innerHTML = '';
+		if (data.length == 0) {
+			appendNotFound();
+		} else {
 		let results = buildResults(data);
-		appendResults('detailed', buildResults(data));
+		appendResults('detailed', results);
+		}
+	}
+
+	function appendNotFound(){
+		businessListings.innerHTML = '';
+		let errorMessage = document.createElement('h4');
+		errorMessage.innerHTML = 'Nothing with that name found!'
+		businessListings.appendChild(errorMessage);
+
 	}
 
 	function buildResults(data) {
