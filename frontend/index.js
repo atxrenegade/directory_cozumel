@@ -26,7 +26,6 @@ class Map {
 		this.busId = busID;
 		this.lat = lat;
 		this.lng = lng;
-
 	}
 }
 
@@ -180,7 +179,6 @@ window.onload = function() {
 
 	/* API REQUESTS */
 	/* Search Bar API request functions */
-
 	function collectCategories() {
 		try {
 			url = 'http://localhost:3000/categories'
@@ -243,19 +241,18 @@ window.onload = function() {
 	}
 
 	/* Business Listing Search Results Object Creation and DOM appending functions */
-
 	function returnResults(data) {
 		let resultsList = buildResults(data);
 		appendResults(resultsList);
 	}
 
 	function buildResults(data) {
-		let results = []
+		RESULTS = []
 		data.forEach((el) => {
 			let busObj = busObjBuilder(el);
-			results.push(busObj);
+			RESULTS.push(busObj);
 		})
-		return results;
+		return RESULTS;
 	}
 
 	function appendResults(resultsList){
@@ -325,25 +322,17 @@ window.onload = function() {
 
 	function renderBus(busObj){
 		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `${busObj.name}<input type='button' value='View Details'> </input>`;
+		let button =
+		newDiv.innerHTML = `<input type='button' class='js-bus-select' value='${busObj.name}'>`;
 		businessListings.appendChild(newDiv);
-		console.log(busObj);
-		/* document.().addEventListener(('click') => console.log(busObj)) */
-;		/* document.querySelector().addEventListener('click',  function(busObj) { renderBusListingDetailed(busObj)
-		Retrieve busObj and pass in mpa images and reviews for render
-		renderBusListingDetailed(busObj);
-		imgsCollection.forEach(renderImage);
-		reviewsCollection.forEach(renderReview);
-	} function(renderBusinessListingDetailed(busObj))
-
-
-
-		document.querySelector('body').addEventListener('click', function(event) {
-		  if (event.target.tagName.toLowerCase() === 'li') {
-		    // do your action on your 'li' or whatever it is you're listening for
-		  }
-		});
-	*/
+		let buttonCollection = document.querySelectorAll('input.js-bus-select')
+		buttonCollection.forEach((busButton) => {
+			busButton.addEventListener('click', bus => {
+				let name = bus.target.value
+				let busObj = RESULTS.find((obj) => obj.name == name)
+				renderBusListingDetailed(busObj);
+			})
+		})
 	}
 
 	function renderBusListingDetailed(busObj){
