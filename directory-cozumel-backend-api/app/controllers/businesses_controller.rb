@@ -2,8 +2,7 @@ class BusinessesController < ApplicationController
 	def show
 		id = params[:id]
 		if id
-			business = Business.find(id)
-			busObj = business.buildDetails
+			busObj = Business.find(id)
 			render json: busObj
 		else
 			render json: {message: 'ERROR: Input Error' }
@@ -15,6 +14,7 @@ class BusinessesController < ApplicationController
 		if name
 			filtered_results = Business.filter_by_name(name)
 			render json: filtered_results
+			#render bus name and id only
 		else
 			render json: {message: 'ERROR: Input Error' }
 		end
@@ -25,6 +25,7 @@ class BusinessesController < ApplicationController
 		if category
 			filtered_results = BusinessCategory.filter_by_category(category)
 			render json: filtered_results
+			#render bus name and id only
 		else
 			render json: {message: 'ERROR: Category not found' }
 		end
