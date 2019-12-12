@@ -244,7 +244,7 @@ window.onload = function() {
 
 	/* Business Listing Search Results Object Creation and DOM appending functions */
 	function returnIndexResults(data) {
-		let results = buildResults('index', data);
+		let results = buildResults(data);
 		appendResults('index', results);
 	}
 
@@ -253,8 +253,8 @@ window.onload = function() {
 		if (data.length == 0) {
 			appendNotFound();
 		} else {
-		let results = buildResults('detailed', data);
-		appendResults('detailed', results);
+		let results = buildResults(data);
+		appendResults('details', results);
 		}
 	}
 
@@ -266,21 +266,13 @@ window.onload = function() {
 
 	}
 
-	function buildResults(type, data) {
+	function buildResults(data) {
 		RESULTS = []
-		if (type == 'detailed'){
-			data.forEach((el) => {
-				let busObj = busListingBuilder(el);
-				RESULTS.push(busObj);
-			})
-		} else {
-			data.forEach((el) => {
-				let busObj = busListingBuilder(el);
-				RESULTS.push(busObj);
-			})
-		}
+		data.forEach((el) => {
+			let busObj = busListingBuilder(el);
+			RESULTS.push(busObj);
+		})
 		return RESULTS;
-
 	}
 
 	function appendResults(type, resultsList){
@@ -294,17 +286,7 @@ window.onload = function() {
 			})
 		}
 	}
-/*
-	function busObjBuilder(elData){
-		let duplicate = findDuplicate(elData["name"])
-		if (duplicate == false) {
-			let busID = elData["id"]
-			let listingData = [busID, elData["name"], elData["categories"], elData["listing"]];
-			let busObj = busListingBuilder(listingData);
-			return busObj;
-		}
-	}
-*/
+
 	function findDuplicate(elDataName) {
 		let response;
 		if (RESULTS == undefined || RESULTS[0] == undefined || RESULTS.length == 0) {response = false};
@@ -314,7 +296,6 @@ window.onload = function() {
 		if (search === undefined) {response = false}
 		return response;
 	}
-
 
 	function busListingBuilder(listingData) {
 		let duplicate = findDuplicate(listingData["name"])
