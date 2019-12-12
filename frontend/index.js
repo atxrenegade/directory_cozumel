@@ -270,7 +270,7 @@ window.onload = function() {
 		RESULTS = []
 		if (type == 'detailed'){
 			data.forEach((el) => {
-				let busObj = busObjBuilder(el);
+				let busObj = busListingBuilder(el);
 				RESULTS.push(busObj);
 			})
 		} else {
@@ -294,7 +294,7 @@ window.onload = function() {
 			})
 		}
 	}
-
+/*
 	function busObjBuilder(elData){
 		let duplicate = findDuplicate(elData["name"])
 		if (duplicate == false) {
@@ -304,16 +304,7 @@ window.onload = function() {
 			return busObj;
 		}
 	}
-
-	function buildDetails(elData){
-		let mapData = elData["map"];
-		let imagesData = elData["images"];
-		let reviewsData = elData["reviews"];
-		let mapObj = mapBuilder(mapData);
-		let imgsCollection = imagesBuilder(imagesData);
-		let reviewsCollection = reviewsBuilder(reviewsData);
-	}
-
+*/
 	function findDuplicate(elDataName) {
 		let response;
 		if (RESULTS == undefined || RESULTS[0] == undefined || RESULTS.length == 0) {response = false};
@@ -324,16 +315,20 @@ window.onload = function() {
 		return response;
 	}
 
-	function busListingBuilder(listingData){
-		let busID = listingData['id'];
-		let busName = listingData["name"];
-		let busCategories = listingData['categories'];
-		let busOverallRating = listingData['listing']['overall_rating'];
-		let busAddress = listingData['listing']["address"];
-		let busPhone = listingData['listing']["phone_number"];
-		let busWebsite = listingData['listing']["website"];
-		let newBus = new Business(busID, busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
-		return newBus;
+
+	function busListingBuilder(listingData) {
+		let duplicate = findDuplicate(listingData["name"])
+		if (duplicate == false) {
+			let busID = listingData['id'];
+			let busName = listingData["name"];
+			let busCategories = listingData['categories'];
+			let busOverallRating = listingData['listing']['overall_rating'];
+			let busAddress = listingData['listing']["address"];
+			let busPhone = listingData['listing']["phone_number"];
+			let busWebsite = listingData['listing']["website"];
+			let newBus = new Business(busID, busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
+			return newBus;
+		}
 	}
 
 	function mapBuilder(mapData) {
@@ -392,26 +387,13 @@ window.onload = function() {
 	}
 
 	function renderBusListingDetailed(busObj){
+		console.busObj
 		businessListings.innerHTML = '';
 		detailedListingMenu.style.display = 'block';
 		let newDiv = document.createElement('div');
 		let categories = busObj.categories.join(', ');
 		newDiv.innerHTML = `<p>${busObj.name}<br>${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
-		appendDetails(busObj);
-	}
-
-	function collectMapImgRev(busObj) {
-		console.log(busObj) /* undefined */
-		let busID = busObj.id
-		let detailsCollection = [];
-
-		let mapMatch = MAPS.find(obj => {return (obj.busID == busID)});
-		let imagesMatch = IMAGES.filter(obj => {return  obj.busID == busID});
-		let reviewsMatch = REVIEWS.filter(obj => {return obj.busID == busID});
-		detailsCollection.push(mapMatch, imagesMatch, reviewsMatch);
-
-		return detailsCollection;
 	}
 
 	function renderMap(mapObj){
@@ -431,14 +413,6 @@ window.onload = function() {
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = `<p>${reviewObj.content}<br>Rating: ${reviewObj.rating}<br>${reviewObj.contributor}<br>${reviewObj.date}</p><br>`;
 		businessListings.appendChild(newDiv);
-	}
-
-	function appendDetails(busObj){
-		let detailsCollect = collectMapImgRev(busObj)
-		console.log(detailsCollect)
-		renderMap(detailsCollect[0]);
-		detailsCollect[1].forEach((el) => {renderImage(el)});
-		detailsCollect[2].forEach((el) => {renderReview(el)});
 	}
 
 	/* JS Search Instances */
