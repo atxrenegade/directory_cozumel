@@ -1,64 +1,4 @@
-/*
-import Business from './src/business.js';
-import Image from '.src/image.js';
-import Map from './src/map.js';
-import Review from '.src/review.js';
-*/
-
-/*
-temp location for JS classes while debugging module/Rack Cors issue
-*/
-
-class Business {
-	constructor(id, name, categories, overallRating, address, phoneNumber, website) {
-		this.id = id;
-		this.name = name;
-		this.categories = categories;
-		this.overallRating = overallRating;
-		this.address = address;
-		this.phoneNumber = phoneNumber;
-		this.website = website;
-	}
-}
-
-class Map {
-	constructor(busID, lat, lng) {
-		this.busID = busID;
-		this.lat = lat;
-		this.lng = lng;
-	}
-}
-
-class Image {
-	constructor(busID, contributor, date, description, id, url) {
-		this.busID = busID;
-		this.contributor = contributor;
-		this.date = date;
-		this.description = description;
-		this.id = id;
-		this.url = url;
-	}
-}
-
-class Review {
-	constructor(busID, rating, content, contributor, date, id){
-		this.busID = busID;
-		this.rating = rating;
-		this.content = content;
-		this.contributor = contributor;
-		this.date = new Date();
-		this.id = id;
-	}
-}
-
-/*
- ***************************************************************************
-*/
-
 window.onload = function() {
-	MAPS = [];
-	REVIEWS = [];
-	IMAGES = [];
 
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
@@ -255,7 +195,10 @@ window.onload = function() {
 		} else {
 		let results = buildResults(data);
 		appendResults('details', results);
+		let details = buildDetails(data);
 		}
+
+		/* renderDetails(details) */
 	}
 
 	function appendNotFound(){
@@ -275,13 +218,33 @@ window.onload = function() {
 		return RESULTS;
 	}
 
+	function buildDetails(data) {
+		let assocObjs = [];
+		let images = [];
+		let reviews = [];
+		let mapObj = mapBuilder(data[0]["map"]);
+		console.log(data[0]['images'])
+		images.push(data[0]['images']);
+		let imgObjs = images.forEach(el => imagesBuilder(el));
+		reviews.push(data[0]["reviews"]);
+		let revObjs = reviews.forEach(el => reviewsBuilder(el));
+		assocObjs.push(mapObj, imgObjs, revObjs);
+		console.log(assocObjs)
+
+		/* return buildAssociated(associated); */
+	}
+
+
+	function renderDetails() {
+
+	}
+
 	function appendResults(type, resultsList){
 		businessListings.innerHTML = '';
 		if (type === 'index'){
 			resultsList.forEach((busObj) => renderBus(busObj));
 		} else {
 			resultsList.forEach((busObj) => {
-				console.log(busObj)
 				renderBusListingDetailed(busObj);
 			})
 		}
@@ -332,7 +295,7 @@ window.onload = function() {
 			let url = el["url"];
 			let newImage = new Image(busID, contributor, date, description, id, url)
 			IMAGES.push(newImage);
-			newImage
+			newImage;
 		})
 		return imageCollection;
 	}
@@ -395,9 +358,6 @@ window.onload = function() {
 		newDiv.innerHTML = `<p>${reviewObj.content}<br>Rating: ${reviewObj.rating}<br>${reviewObj.contributor}<br>${reviewObj.date}</p><br>`;
 		businessListings.appendChild(newDiv);
 	}
-
-	/* JS Search Instances */
-
 
 	/* Admin Panel functions */
 	function toggleAdminLogIn() {
@@ -471,8 +431,8 @@ window.onload = function() {
 		adminPasswordField.value = '';
 		listingsContainer.style.display = 'none';
 		detailedListingMenu.style.display = 'none';
-		RESULTS = [];
 		newBusForm.reset();
+		RESULTS = [];
 	}
 	resetPage();
 }

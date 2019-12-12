@@ -1,5 +1,6 @@
-export default class Business {
-	constructor(name, categories, overallRating, address, phoneNumber, website) {
+class Business {
+	constructor(id, name, categories, overallRating, address, phoneNumber, website) {
+		this.id = id;
 		this.name = name;
 		this.categories = categories;
 		this.overallRating = overallRating;
