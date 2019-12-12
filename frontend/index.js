@@ -149,7 +149,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => returnDetailResults(json)
+			.then(json => returnIndexResults(json)
 		)
 	}
 	catch(err) {
@@ -182,13 +182,43 @@ window.onload = function() {
 		}
 	}
 
+	function postRetrieveObject(id){
+		let data = {'id': id}
+		let configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/business/show', configObj)
+			.then(resp => {
+				return resp.json();
+		})
+			.then(json => returnDetailedResults(json)
+		)
+	}
+	catch(err) {
+			alert('Post request failed see console for further details!');
+			console.log(error.message);
+		}
+	}
+
+
 	/* Business Listing Search Results Object Creation and DOM appending functions */
-	function returnIndexResults(data) {
+	function returnIndexResults(data){
+		console.log(data);
+		/*
 		let results = buildResults(data);
 		appendResults('index', results);
+		*/
 	}
 
 	function returnDetailResults(data) {
+		console.log(data);
+		/*
 		businessListings.innerHTML = '';
 		if (data.length == 0) {
 			appendNotFound();
@@ -197,8 +227,8 @@ window.onload = function() {
 		appendResults('details', results);
 		let details = buildDetails(data);
 		}
-
 		/* renderDetails(details) */
+		*/
 	}
 
 	function appendNotFound(){
