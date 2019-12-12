@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-	post '/index_by_category', to: 'categories#index_by_category'
-	post '/index_by_name', to: 'businesses#index'
+	post '/index_by_category', to: 'businesses#index_by_category'
+	post '/index_by_name', to: 'businesses#index_by_name'
+	post '/business', to: 'business#show'
 	resources :businesses, only: [:create]
 
   resources :reviews, only: [:new, :create, :show, :update, :delete]
