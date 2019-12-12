@@ -46,6 +46,13 @@ class Business < ApplicationRecord
 		biz.add_category_to_business(cat_name)
 	end
 
+	def build_bus_index
+		bus_obj = {}
+		bus_obj["id"] = self.id
+		bus_obj["name"] = self.name.to_s
+		return bus_obj
+	end
+
 	def build_business_object
 		bus_obj = {}
 		bus_id = self.id
@@ -62,21 +69,20 @@ class Business < ApplicationRecord
 	def self.build_filtered_list_for_export(bus_list)
 		export_list = bus_list.map do | bus_id |
 			bus = Business.find_by(id: bus_id)
-			bus.build_business_object
+			bus.build_business_index
 		end
 		return export_list
-	end
-
-	def self.build_all_for_export
-		bus_list = Business.all
-		bus = build_filtered_list_for_export(bus_list)
-		return bus
 	end
 
 	def self.filter_by_name(name)
 		filtered_businesses =  Business.select("id").where("lower(name) = ?", name.downcase).map{|el| el.id }
 		results = Business.build_filtered_list_for_export(filtered_businesses)
     return results
+	end
+
+	def self.business_details(id)
+		let busObj = buildBusinessObject(Business.find(id))
+		return busObj
 	end
 end
 
