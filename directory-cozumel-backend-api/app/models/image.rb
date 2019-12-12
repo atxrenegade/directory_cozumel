@@ -15,6 +15,7 @@ class Image < ApplicationRecord
 			image["url"] = x.url
 			image["contributor"] = x.contributor
 			image["contributor_email"] = x.contributor_email
+			image['business_id'] = x.business_id
 			image
 		end
 		return formatted_collection

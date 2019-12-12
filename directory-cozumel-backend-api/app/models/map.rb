@@ -12,6 +12,7 @@ class Map < ApplicationRecord
 		if to_convert == nil
 			formatted_map = nil
 		else
+			formatted_map['business_id'] = to_convert.business_id
 			formatted_map["lat"] = to_convert.lat
 			formatted_map["lng"] = to_convert.lng
 		end
