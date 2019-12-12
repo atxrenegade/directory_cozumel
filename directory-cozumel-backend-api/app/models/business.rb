@@ -72,11 +72,6 @@ class Business < ApplicationRecord
 		results = Business.build_filtered_list_for_export(filtered_businesses)
     return results
 	end
-
-	def self.business_details(id)
-		let busObj = buildBusinessObject(Business.find(id))
-		return busObj
-	end
 end
 
 
