@@ -46,13 +46,6 @@ class Business < ApplicationRecord
 		biz.add_category_to_business(cat_name)
 	end
 
-	def build_bus_index
-		bus_obj = {}
-		bus_obj["id"] = self.id
-		bus_obj["name"] = self.name.to_s
-		return bus_obj
-	end
-
 	def build_business_object
 		bus_obj = {}
 		bus_id = self.id
