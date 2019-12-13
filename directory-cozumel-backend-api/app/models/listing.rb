@@ -9,7 +9,7 @@ class Listing < ApplicationRecord
 	def self.format_listing(bus_id)
 		listing = {}
 		listObj = Listing.find_by(business_id: bus_id)
-		if listing["overall_rating"] != nil
+		if listing
 			listing["overall_rating"] = listObj.overall_rating
 		else
 			listing["overall_rating"] = "not yet rated"

@@ -5,17 +5,4 @@ class Map < ApplicationRecord
 	def business_name
 		self.business.name
 	end
-
-	def self.format_map(bus_id)
-		formatted_map = {}
-		to_convert = Map.find_by(business_id: bus_id)
-		if to_convert == nil
-			formatted_map = nil
-		else
-			formatted_map['business_id'] = to_convert.business_id
-			formatted_map["lat"] = to_convert.lat
-			formatted_map["lng"] = to_convert.lng
-		end
-		return formatted_map
-	end
 end
