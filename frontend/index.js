@@ -211,9 +211,10 @@ window.onload = function() {
 	function returnResults(data){
 		console.log(data);
 		data = Array.from(data)
+		console.log(data[0])
 		if (data[0] == undefined){
 			appendErrorMsg("NOT FOUND");
-		} else if (data[0].length < 3) {
+		} else if (data[0]["giraffe"] == undefined) {
 			renderIndex(data)
 		} else {}
 		 console.log(data);
