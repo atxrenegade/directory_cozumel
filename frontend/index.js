@@ -210,14 +210,13 @@ window.onload = function() {
 	/* Business Listing Search Results Object Creation and DOM appending functions */
 	function returnResults(data){
 		console.log(data);
-
 		data = Array.from(data)
 		if (data[0] == undefined){
 			appendErrorMsg("NOT FOUND");
-		} else {
+		} else if data[0].length < 3 {
 			renderIndex(data)
-		}
-		/* if data is index only name and id properties see above*/
+		} else {}
+		 console.log(data);
 		/* else appendResults(buildResults(data)) */
 	}
 
