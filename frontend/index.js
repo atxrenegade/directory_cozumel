@@ -213,7 +213,7 @@ window.onload = function() {
 		data = Array.from(data)
 		if (data[0] == undefined){
 			appendErrorMsg("NOT FOUND");
-		} else if data[0].length < 3 {
+		} else if (data[0].length < 3) {
 			renderIndex(data)
 		} else {}
 		 console.log(data);
