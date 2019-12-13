@@ -2,7 +2,6 @@ class BusinessesController < ApplicationController
 	def show
 		business = Business.find_by(id: params[:id])
 		if business.present?
-			#busObj = business.build_business_object
 			render json: business.to_json(include: {categories: {only: :names}}, map: {only: [:lat, :lng]}, images: {except: [:id, :contributor_email, :created_at, :updated_at]}, reviews: {except:[:id, :contributor_email, :updated_at]})
 		else
 			render json: {message: 'No Record of that Business!' }

@@ -4,7 +4,7 @@ class Review {
 		this.rating = rating;
 		this.content = content;
 		this.contributor = contributor;
-		this.date = new Date();
+		this.date = this.date;
 		this.id = id;
 	}
 }
