@@ -216,7 +216,7 @@ window.onload = function() {
 		} else if (data[0]["categories"] == undefined) {
 			renderIndex(data)
 		} else {}
-		
+
 		/* else appendResults(buildResults(data)) */
 	}
 
@@ -236,41 +236,38 @@ window.onload = function() {
 		businessListings.appendChild(errorMessage);
 	}
 
-/*
 	function busListingBuilder(listingData) {
-		let duplicate = findDuplicate(listingData["name"])
-		if (duplicate == false) {
+		/* prevent object duplication */
 			let busID = listingData['id'];
 			let busName = listingData["name"];
 			let busCategories = listingData['categories'];
+			/*
 			let busOverallRating = listingData['listing']['overall_rating'];
 			let busAddress = listingData['listing']["address"];
 			let busPhone = listingData['listing']["phone_number"];
 			let busWebsite = listingData['listing']["website"];
 			let newBus = new Business(busID, busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
-			return newBus;
+			*/
+			console.log(newBus);
 		}
 	}
 
 	function mapBuilder(mapData) {
-		let busID = mapData['business_id'];
 		let lat = mapData['lat'];
 		let lng = mapData['lng'];
-		let newMap = new Map(busID, lat, lng);
-		MAPS.push(newMap);
+		let newMap = new Map(lat, lng);
 		return newMap;
 	}
 
 	function imagesBuilder(imagesData){
 		console.log(imagesData)
 		let imageCollection = imagesData.map((el) => {
-			let busID = el["business_id"];
 			let contributor = el["contributor"];
 			let date = el["date"];
 			let description = el["description"];
 			let id = el["id"];
 			let url = el["url"];
-			let newImage = new Image(busID, contributor, date, description, id, url)
+			let newImage = new Image(contributor, date, description, id, url)
 			IMAGES.push(newImage);
 			newImage;
 		})
@@ -279,14 +276,12 @@ window.onload = function() {
 
 	function reviewsBuilder(reviewsData){
 		let reviewsCollection = reviewsData.map((el) => {
-			let busID = el["business_id"];
 			let content = el['content'];
 			let contributor = el["contributor"];
 			let date = new Date();
 			let id = el["id"];
 			let rating = el["rating"];
-			let newReview = new Review(busID, rating, content, contributor, date, id)
-			REVIEWS.push(newReview);
+			let newReview = new Review(rating, content, contributor, date, id)
 			return newReview;
 		})
 		return reviewsCollection;
@@ -302,7 +297,6 @@ window.onload = function() {
 		businessListings.appendChild(newDiv);
 	}
 
-*/
 	function renderBus(busObj){
 		let newDiv = document.createElement('div');
 		let button =
