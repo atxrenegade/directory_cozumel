@@ -96,7 +96,7 @@ window.onload = function() {
 		detailedListingMenu.style.display = 'none';
 		listingsContainer.style.display = 'block';
 		let category = document.getElementById('js-category-select').value
-		postSearchByCategory(category)
+		let results = postSearchByCategory(category);
 	}
 
 	/* Listings Checkbox Toggle Forms Functions */
@@ -149,7 +149,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => returnIndexResults(json)
+			.then(json => returnResults(json)
 		)
 	}
 	catch(err) {
@@ -174,7 +174,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => returnIndexResults(json)
+			.then(json => returnResults(json)
 		)
 	}
 	catch(err) {
@@ -198,7 +198,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => returnDetailedResults(json)
+			.then(json => returnResults(json)
 		)
 	}
 	catch(err) {
@@ -207,89 +207,34 @@ window.onload = function() {
 		}
 	}
 
-
 	/* Business Listing Search Results Object Creation and DOM appending functions */
-	function returnIndexResults(data){
+	function returnResults(data){
 		console.log(data);
-		/*
-		let results = buildResults(data);
-		appendResults('index', results);
-		*/
-	}
-
-	function returnDetailResults(data) {
-		console.log(data);
-		/*
-		businessListings.innerHTML = '';
-		if (data.length == 0) {
-			appendNotFound();
+		data = Array.from(data)
+		if (data[0]["name"] == undefined){
+			appendErrorMsg(data["message"]);
 		} else {
-		let results = buildResults(data);
-		appendResults('details', results);
-		let details = buildDetails(data);
+			renderIndex(data)
 		}
-		*/
+		/* if data is index only name and id properties see above*/
+		/* else appendResults(buildResults(data)) */
 	}
 
-	function appendNotFound(){
+	function renderIndex(resultsList){
+		businessListings.innerHTML = '';
+		resultsList.forEach(busObj => renderBus(busObj));
+	}
+
+
+
+	function appendErrorMsg(msg){
 		businessListings.innerHTML = '';
 		let errorMessage = document.createElement('h4');
-		errorMessage.innerHTML = 'Nothing with that name found!'
+		errorMessage.innerHTML = `${msg}`
 		businessListings.appendChild(errorMessage);
-
 	}
 
-	function buildResults(data) {
-		RESULTS = []
-		data.forEach((el) => {
-			let busObj = busListingBuilder(el);
-			RESULTS.push(busObj);
-		})
-		return RESULTS;
-	}
-
-	function buildDetails(data) {
-		let assocObjs = [];
-		let images = [];
-		let reviews = [];
-		let mapObj = mapBuilder(data[0]["map"]);
-		console.log(data[0]['images'])
-		images.push(data[0]['images']);
-		let imgObjs = images.forEach(el => imagesBuilder(el));
-		reviews.push(data[0]["reviews"]);
-		let revObjs = reviews.forEach(el => reviewsBuilder(el));
-		assocObjs.push(mapObj, imgObjs, revObjs);
-		console.log(assocObjs)
-
-		/* return buildAssociated(associated); */
-	}
-
-
-	function renderDetails() {
-
-	}
-
-	function appendResults(type, resultsList){
-		businessListings.innerHTML = '';
-		if (type === 'index'){
-			resultsList.forEach((busObj) => renderBus(busObj));
-		} else {
-			resultsList.forEach((busObj) => {
-				renderBusListingDetailed(busObj);
-			})
-		}
-	}
-
-	function findDuplicate(elDataName) {
-		let response;
-		if (RESULTS == undefined || RESULTS[0] == undefined || RESULTS.length == 0) {response = false};
-		let search = RESULTS.find((el) => {
-			return (el['name'] == elDataName)
-		});
-		if (search === undefined) {response = false}
-		return response;
-	}
-
+/*
 	function busListingBuilder(listingData) {
 		let duplicate = findDuplicate(listingData["name"])
 		if (duplicate == false) {
@@ -345,6 +290,17 @@ window.onload = function() {
 		return reviewsCollection;
 	}
 
+	function renderBusListingDetailed(busObj){
+		console.busObj
+		businessListings.innerHTML = '';
+		detailedListingMenu.style.display = 'block';
+		let newDiv = document.createElement('div');
+		let categories = busObj.categories.join(', ');
+		newDiv.innerHTML = `<p>${busObj.name}<br>${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
+		businessListings.appendChild(newDiv);
+	}
+
+*/
 	function renderBus(busObj){
 		let newDiv = document.createElement('div');
 		let button =
@@ -354,20 +310,8 @@ window.onload = function() {
 		buttonCollection.forEach((busButton) => {
 			busButton.addEventListener('click', bus => {
 				let name = bus.target.value
-				let busObj = RESULTS.find((obj) => obj.name == name)
-				renderBusListingDetailed(busObj);
 			})
 		})
-	}
-
-	function renderBusListingDetailed(busObj){
-		console.busObj
-		businessListings.innerHTML = '';
-		detailedListingMenu.style.display = 'block';
-		let newDiv = document.createElement('div');
-		let categories = busObj.categories.join(', ');
-		newDiv.innerHTML = `<p>${busObj.name}<br>${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
-		businessListings.appendChild(newDiv);
 	}
 
 	function renderMap(mapObj){
@@ -462,7 +406,6 @@ window.onload = function() {
 		listingsContainer.style.display = 'none';
 		detailedListingMenu.style.display = 'none';
 		newBusForm.reset();
-		RESULTS = [];
 	}
 	resetPage();
 }
