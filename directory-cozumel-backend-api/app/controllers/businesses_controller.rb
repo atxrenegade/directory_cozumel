@@ -1,9 +1,9 @@
 class BusinessesController < ApplicationController
 	def show
 		business = Business.find_by(id: params[:id])
-		if business
-			busObj = business.build_business_object
-			render json: busObj
+		if business.present?
+			#busObj = business.build_business_object
+			render json: business.to_json(include: {categories: {only: :names}}, map: {only: [:lat, :lng]}, images: {except: [:id, :contributor_email, :created_at, :updated_at]}, reviews: {except:[:id, :contributor_email, :updated_at]})
 		else
 			render json: {message: 'No Record of that Business!' }
 		end
@@ -11,7 +11,7 @@ class BusinessesController < ApplicationController
 
 	def index_by_category
 		businesses = BusinessCategory.filter_by_category(params[:category_name])
-		if businesses
+		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
 			render json: {message: 'No businesses match that category'}
@@ -20,7 +20,7 @@ class BusinessesController < ApplicationController
 
 	def index_by_name
 		businesses = Business.filter_by_name(params[:name])
-		if businesses
+		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
 			render json: {message: 'No Business by that name on record'}
