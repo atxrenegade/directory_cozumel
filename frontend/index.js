@@ -183,8 +183,8 @@ window.onload = function() {
 		}
 	}
 
-	function postRetrieveObject(id){
-		let data = {'id': id}
+	function postRetrieveObject(name){
+		let data = {'name': name}
 		let configObj = {
 			method: 'POST',
 			headers: {
@@ -225,7 +225,9 @@ window.onload = function() {
 		resultsList.forEach(busObj => renderBus(busObj));
 	}
 
-
+	function renderDetails(resultsCollection) {
+		console.log(resultsCollection);
+	}
 
 	function appendErrorMsg(msg){
 		businessListings.innerHTML = '';
@@ -310,6 +312,7 @@ window.onload = function() {
 		buttonCollection.forEach((busButton) => {
 			busButton.addEventListener('click', bus => {
 				let name = bus.target.value
+				postRetrieveObject(name);
 			})
 		})
 	}
