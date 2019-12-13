@@ -1,6 +1,5 @@
 class Map {
-	constructor(busID, lat, lng) {
-		this.busID = busID;
+	constructor(lat, lng) {
 		this.lat = lat;
 		this.lng = lng;
 	}

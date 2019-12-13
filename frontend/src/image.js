@@ -1,10 +1,8 @@
 class Image {
-	constructor(busID, contributor, date, description, id, url) {
-		this.busID = busID;
+	constructor(contributor, date, description, url) {
 		this.contributor = contributor;
 		this.date = date;
 		this.description = description;
-		this.id = id;
 		this.url = url;
 	}
 }
