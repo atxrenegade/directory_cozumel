@@ -210,9 +210,10 @@ window.onload = function() {
 	/* Business Listing Search Results Object Creation and DOM appending functions */
 	function returnResults(data){
 		console.log(data);
+
 		data = Array.from(data)
-		if (data[0]["name"] == undefined){
-			appendErrorMsg(data["message"]);
+		if (data[0] == undefined){
+			appendErrorMsg("NOT FOUND");
 		} else {
 			renderIndex(data)
 		}
