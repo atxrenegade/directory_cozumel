@@ -194,7 +194,7 @@ window.onload = function() {
 		body: JSON.stringify(data)
 	};
 	try {
-		fetch('http://localhost:3000/business/show', configObj)
+		fetch('http://localhost:3000/business', configObj)
 			.then(resp => {
 				return resp.json();
 		})
