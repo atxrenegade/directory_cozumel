@@ -5,7 +5,7 @@ class BusinessesController < ApplicationController
 			render json: business.to_json(:include => {
 				:categories => {:only => [:name]},
 				:map => {:only => [:lat, :lng]},
-				:images => {:only => [:id, :contributor_email, :created_at]},
+				:images => {:except => [:id, :contributor_email, :created_at]},
 				:reviews => {:except => [:id, :contributor_email]},
 			}, :except => [:updated_at])
 		else
