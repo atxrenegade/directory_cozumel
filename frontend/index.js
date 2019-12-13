@@ -249,7 +249,6 @@ window.onload = function() {
 			let newBus = new Business(busID, busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
 			*/
 			console.log(newBus);
-		}
 	}
 
 	function mapBuilder(mapData) {
