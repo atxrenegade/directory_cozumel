@@ -7,16 +7,16 @@ class Listing < ApplicationRecord
 	end
 
 	def self.format_listing(bus_id)
-		formatted_listing = {}
-		to_convert = Listing.find_by(business_id: bus_id)
-		if formatted_listing["overall_rating"] != nil
-			formatted_listing["overall_rating"] = to_convert.overall_rating
+		listing = {}
+		listObj = Listing.find_by(business_id: bus_id)
+		if listing["overall_rating"] != nil
+			listing["overall_rating"] = listObj.overall_rating
 		else
-			formatted_listing["overall_rating"] = "not yet rated"
+			listing["overall_rating"] = "not yet rated"
 		end
-		formatted_listing["address"] = to_convert.address
-		formatted_listing["phone_number"] = to_convert.phone_number
-		formatted_listing["website"] = to_convert.website
-		return formatted_listing
+		listing["address"] = listObj.address
+		listing["phone_number"] = listObj.phone_number
+		listing["website"] = listObj.website
+		return listing
 	end
 end
