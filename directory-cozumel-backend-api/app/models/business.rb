@@ -32,18 +32,17 @@ class Business < ApplicationRecord
 	end
 
 	def add_category_to_business(cat_name)
-		new_cat = Category.find_by(name: cat_name)
-		self.categories << new_cat
+		self.categories << (Category.find_by(name: cat_name))
 	end
 
 	def remove_category_from_business(cat_name)
-		del_cat = Category.find_by(name: cat_name)
-		self.categories.delete(del_cat)
+
+		self.categories.delete(Category.find_by(name: cat_name))
 	end
 
 	def self.build_new_business(name, cat_name)
-		biz = Business.create!(name:name)
-		biz.add_category_to_business(cat_name)
+		bus = Business.create!(name:name)
+		bus.add_category_to_business(cat_name)
 	end
 
 	def build_business_object
@@ -60,17 +59,12 @@ class Business < ApplicationRecord
 	end
 
 	def self.build_filtered_list_for_export(bus_list)
-		export_list = bus_list.map do | bus_id |
-			bus = Business.find_by(id: bus_id)
-			bus.build_business_index
-		end
-		return export_list
+		return bus_list.map {|id| Business.find(id)}
 	end
 
 	def self.filter_by_name(name)
 		filtered_businesses =  Business.select("id").where("lower(name) = ?", name.downcase).map{|el| el.id }
-		results = Business.build_filtered_list_for_export(filtered_businesses)
-    return results
+		return Business.build_filtered_list_for_export(filtered_businesses)
 	end
 end
 

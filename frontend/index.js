@@ -159,7 +159,8 @@ window.onload = function() {
 	}
 
 	function postSearchByCategory(category){
-		let data = {'name': category}
+		console.log(category)
+		let data = {'category_name': category}
 		let configObj = {
 			method: 'POST',
 			headers: {
@@ -227,7 +228,6 @@ window.onload = function() {
 		appendResults('details', results);
 		let details = buildDetails(data);
 		}
-		/* renderDetails(details) */
 		*/
 	}
 

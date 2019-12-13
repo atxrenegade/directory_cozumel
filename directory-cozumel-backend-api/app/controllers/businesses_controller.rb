@@ -1,33 +1,29 @@
 class BusinessesController < ApplicationController
 	def show
-		id = params[:id]
-		if id
-			busObj = Business.find(id)
+		business = Business.find_by(id: params[:id])
+		if business
+			busObj = business.build_business_object
 			render json: busObj
 		else
-			render json: {message: 'ERROR: Input Error' }
-		end
-	end
-
-	def index_by_name
-		name = params[:name]
-		if name
-			filtered_results = Business.filter_by_name(name)
-			render json: filtered_results
-			#render bus name and id only
-		else
-			render json: {message: 'ERROR: Input Error' }
+			render json: {message: 'No Record of that Business!' }
 		end
 	end
 
 	def index_by_category
-		category = params[:name]
-		if category
-			filtered_results = BusinessCategory.filter_by_category(category)
-			render json: filtered_results
-			#render bus name and id only
+		businesses = BusinessCategory.filter_by_category(params[:category_name])
+		if businesses
+			render json: businesses, except: [:created_at, :updated_at]
 		else
-			render json: {message: 'ERROR: Category not found' }
+			render json: {message: 'No businesses match that category'}
+		end
+	end
+
+	def index_by_name
+		businesses = Business.filter_by_name(params[:name])
+		if businesses
+			render json: businesses, except: [:created_at, :updated_at]
+		else
+			render json: {message: 'No Business by that name on record'}
 		end
 	end
 end
