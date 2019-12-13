@@ -211,7 +211,7 @@ window.onload = function() {
 	function returnResults(data){
 		console.log(data);
 		data = Array.from(data)
-		if (data[0] == undefined){
+		if (data[0] == undefined) {
 			appendErrorMsg("NOT FOUND");
 		} else if (data[0]["categories"] == undefined) {
 			renderIndex(data)
@@ -237,6 +237,7 @@ window.onload = function() {
 	}
 
 	function busListingBuilder(listingData) {
+		console.log(listingData)
 		/* prevent object duplication */
 			let busID = listingData['id'];
 			let busName = listingData["name"];
