@@ -265,10 +265,8 @@ window.onload = function() {
 			let contributor = el["contributor"];
 			let date = el["date"];
 			let description = el["description"];
-			let id = el["id"];
 			let url = el["url"];
-			let newImage = new Image(contributor, date, description, id, url)
-			IMAGES.push(newImage);
+			let newImage = new Image(contributor, date, description, url)
 			newImage;
 		})
 		return imageCollection;
@@ -279,9 +277,8 @@ window.onload = function() {
 			let content = el['content'];
 			let contributor = el["contributor"];
 			let date = new Date();
-			let id = el["id"];
 			let rating = el["rating"];
-			let newReview = new Review(rating, content, contributor, date, id)
+			let newReview = new Review(rating, content, contributor, date)
 			return newReview;
 		})
 		return reviewsCollection;
