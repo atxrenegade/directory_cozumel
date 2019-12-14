@@ -3,11 +3,12 @@ class BusinessesController < ApplicationController
 		business = Business.find_by_name(params[:name]);
 		if business.present?
 			render json: business.to_json(:include => {
+				:listing => {:except => [:id, :created_at, :updated_at, :business_id]},
 				:categories => {:only => [:name]},
 				:map => {:only => [:lat, :lng]},
-				:images => {:except => [:id, :contributor_email, :created_at]},
-				:reviews => {:except => [:id, :contributor_email]},
-			}, :except => [:updated_at])
+				:images => {:except => [:id, :contributor_email, :business_id, :created_at, :updated_at]},
+				:reviews => {:except => [:id, :contributor_email, :business_id, :updated_at]},
+			})
 		else
 			render json: {message: 'No Record of that Business!' }
 		end
