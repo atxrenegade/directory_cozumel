@@ -221,7 +221,10 @@ window.onload = function() {
 
 	function returnDetailedResults(data){
 		let busObj = buildBusObj(data);
-		renderBusListingDetailed(busObj[0]);
+		console.log(data);
+		console.log(busObj);
+		console.log(busObj[0])
+		renderDetailedBusListing(busObj[0]);
 		renderMap(busObj[1]);
 		renderReview(busObj[2])  /* iterate through collection */
 		renderImage(busObj[3])  /* iterate through collection */
@@ -235,8 +238,8 @@ window.onload = function() {
 
 	function buildBusObj(data) {
 		let duplicate = checkDuplicate(data["name"]);
-		let busObjArray = [];
 		if (duplicate == false) {
+			let busObjArray = [];
 			let id = data["id"];
 			let name = data["name"]
 			let categories = ['hardcoded', 'misc'] ;
@@ -244,16 +247,14 @@ window.onload = function() {
 			let address = data["listing"]["address"];
 			let phoneNumber = data["listing"]["phone_number"];
 			let website = data["listing"]["website"];
-			let busObjArray = [];
 			let business = new Business(id, name, categories, overallRating, address, phoneNumber, website);
 			let map = mapBuilder(data["map"]);
 			let imagesCollection = imagesBuilder(data["images"]);
 			let reviewsCollection = reviewsBuilder(data["reviews"]);
 			busObjArray.push(business, map, imagesCollection, reviewsCollection)
-		}
-		return busObjArray
+		 return busObjArray;
+	 	}
 	}
-
 
 	function renderIndex(resultsList){
 		businessListings.innerHTML = '';
@@ -304,13 +305,12 @@ window.onload = function() {
 		return reviewsCollection;
 	}
 
-	function renderBusListingDetailed(busObj){
-		console.busObj
+	function renderDetailedBusListing(busObj){
 		businessListings.innerHTML = '';
 		detailedListingMenu.style.display = 'block';
 		let newDiv = document.createElement('div');
-		let categories = busObj.categories.join(', ');
-		newDiv.innerHTML = `<p>${busObj.name}<br>${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
+		let categories = "hardcoded for testing"
+		newDiv.innerHTML = `<p>${busObj.name}<br>Rating: ${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
 	}
 
