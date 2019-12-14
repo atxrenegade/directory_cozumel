@@ -263,21 +263,11 @@ window.onload = function() {
 		businessListings.appendChild(errorMessage);
 	}
 
-	function busListingBuilder(listingData) {
-		console.log(listingData)
-		/* prevent object duplication */
-			let busID = listingData['id'];
-			let busName = listingData["name"];
-			let busCategories = listingData['categories'];
-			/*
-			let busOverallRating = listingData['listing']['overall_rating'];
-			let busAddress = listingData['listing']["address"];
-			let busPhone = listingData['listing']["phone_number"];
-			let busWebsite = listingData['listing']["website"];
-			let newBus = new Business(busID, busName, busCategories, busOverallRating, busAddress, busPhone, busWebsite);
-			*/
-			console.log(newBus);
-	}
+	function checkDuplicate(busName) {
+		let allNames = Business.all.map {|el| return el.name }
+		let duplicate = allNames.includes(busName)
+		return duplicate;
+	end
 
 	function mapBuilder(mapData) {
 		let lat = mapData['lat'];
