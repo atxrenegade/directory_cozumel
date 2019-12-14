@@ -223,11 +223,10 @@ window.onload = function() {
 		let busObj = buildBusObj(data);
 		renderDetailedBusListing(busObj[0]);
 		renderMap(busObj[1]);
-		debugger;
 		let imgs = busObj[2].flat();
-		console.log(imgs);
-		imgs.forEach(el => renderImage(el))  /* iterate through collection */
-		renderReview(busObj[3])  /* iterate through collection */
+		let reviews = busObj[3].flat();
+		imgs.forEach(el => renderImage(el))
+		reviews.forEach(el => renderReview(el))
 	}
 
 	function checkDuplicate(busName) {
@@ -336,7 +335,6 @@ window.onload = function() {
 	}
 
 	function renderImage(imgObj){
-		debugger;
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = `<img src="${imgObj.url}"></img><br><p>${imgObj.contributor}<br>${imgObj.date}<br>${imgObj.description}<br><br></<p>`;
 		businessListings.appendChild(newDiv);
