@@ -198,7 +198,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => returnResults(json)
+			.then(json => returnDetailedResults(json)
 		)
 	}
 	catch(err) {
@@ -213,13 +213,39 @@ window.onload = function() {
 			console.log(data);
 		if (data[0] == undefined) {
 			appendErrorMsg("NOT FOUND");
-		} else if (data[0]["categories"] == undefined) {
-			renderIndex(data)
 		} else {
-			busListingBuilder(data)
+			renderIndex(data)
 		}
-		/* else appendResults(buildResults(data)) */
 	}
+
+	function returnDetailedResults(data){
+		let busObj = buildBusObj(data);
+		renderBusListingDetailed(busObj[0]);
+		renderMap(busObj[1]);
+		renderReview(busObj[2])  /* iterate through collection */
+		renderImage(busObj[3])  /* iterate through collection */
+	}
+
+	function buildBusObj(data) {
+		let duplicate = checkDuplicate(data["name"]);
+		if (duplicate == false) {
+				let data = Array.from(data).flat();
+				let id = data["id"];
+				let categories = data["categories"];
+				let overallRating = data["overall_rating"];
+				let address = data["address"];
+				let phoneNumber = data["phone_number"];
+				let website = data["website"];
+				let businessObjArray = [];
+				let business = new Business(id, categories, overallRating, address, website);
+				let map = mapBuilder(data["map"]);
+				let images = imagesBuilder(data["images"]);
+				let reviews = reviewsBuilder(data["reviews"]);
+				businessObjArray.push(business, map, images, reviews);
+			}
+		return businessObjArray;
+	}
+
 
 	function renderIndex(resultsList){
 		businessListings.innerHTML = '';
