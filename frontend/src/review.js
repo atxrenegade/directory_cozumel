@@ -3,6 +3,6 @@ class Review {
 		this.rating = rating;
 		this.content = content;
 		this.contributor = contributor;
-		this.date = this.date;
+		this.date = date;
 	}
 }

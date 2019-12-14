@@ -1,5 +1,5 @@
 window.onload = function() {
-	let ALL = [];
+	ALL = [];
 
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
@@ -227,24 +227,31 @@ window.onload = function() {
 		renderImage(busObj[3])  /* iterate through collection */
 	}
 
+	function checkDuplicate(busName) {
+		let allNames = ALL.map(el => el.name)
+		let duplicate = allNames.includes(busName)
+		return duplicate;
+	}
+
 	function buildBusObj(data) {
 		let duplicate = checkDuplicate(data["name"]);
+		let busObjArray = [];
 		if (duplicate == false) {
-				let data = Array.from(data).flat();
-				let id = data["id"];
-				let categories = data["categories"];
-				let overallRating = data["overall_rating"];
-				let address = data["address"];
-				let phoneNumber = data["phone_number"];
-				let website = data["website"];
-				let businessObjArray = [];
-				let business = new Business(id, categories, overallRating, address, website);
-				let map = mapBuilder(data["map"]);
-				let images = imagesBuilder(data["images"]);
-				let reviews = reviewsBuilder(data["reviews"]);
-				businessObjArray.push(business, map, images, reviews);
-			}
-		return businessObjArray;
+			let id = data["id"];
+			let name = data["name"]
+			let categories = ['hardcoded', 'misc'] ;
+			let overallRating = data["listing"]["overall_rating"];
+			let address = data["listing"]["address"];
+			let phoneNumber = data["listing"]["phone_number"];
+			let website = data["listing"]["website"];
+			let busObjArray = [];
+			let business = new Business(id, name, categories, overallRating, address, phoneNumber, website);
+			let map = mapBuilder(data["map"]);
+			let imagesCollection = imagesBuilder(data["images"]);
+			let reviewsCollection = reviewsBuilder(data["reviews"]);
+			busObjArray.push(business, map, imagesCollection, reviewsCollection)
+		}
+		return busObjArray
 	}
 
 
@@ -264,12 +271,6 @@ window.onload = function() {
 		businessListings.appendChild(errorMessage);
 	}
 
-	function checkDuplicate(busName) {
-		let allNames = ALL.map {|el| return el.name }
-		let duplicate = allNames.includes(busName)
-		return duplicate;
-	}
-
 	function mapBuilder(mapData) {
 		let lat = mapData['lat'];
 		let lng = mapData['lng'];
@@ -278,26 +279,27 @@ window.onload = function() {
 	}
 
 	function imagesBuilder(imagesData){
-		console.log(imagesData)
-		let imageCollection = imagesData.map((el) => {
+		let imageCollection = []
+		imagesData.map((el) => {
 			let contributor = el["contributor"];
 			let date = el["date"];
 			let description = el["description"];
 			let url = el["url"];
-			let newImage = new Image(contributor, date, description, url)
-			newImage;
+			let newImage = new Image(contributor, date, description, url);
+			imageCollection.push(newImage);
 		})
 		return imageCollection;
 	}
 
 	function reviewsBuilder(reviewsData){
-		let reviewsCollection = reviewsData.map((el) => {
+		let reviewsCollection = []
+		reviewsData.map(el => {
 			let content = el['content'];
 			let contributor = el["contributor"];
 			let date = new Date();
 			let rating = el["rating"];
 			let newReview = new Review(rating, content, contributor, date)
-			return newReview;
+			reviewsCollection.push(newReview);
 		})
 		return reviewsCollection;
 	}
