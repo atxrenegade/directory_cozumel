@@ -1,5 +1,4 @@
-class Business
-
+class Business {
 	constructor(id, name, categories, overallRating, address, phoneNumber, website) {
 		this.id = id;
 		this.name = name;

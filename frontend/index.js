@@ -268,7 +268,7 @@ window.onload = function() {
 		let allNames = ALL.map {|el| return el.name }
 		let duplicate = allNames.includes(busName)
 		return duplicate;
-	end
+	}
 
 	function mapBuilder(mapData) {
 		let lat = mapData['lat'];
