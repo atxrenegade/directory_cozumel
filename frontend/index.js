@@ -1,4 +1,5 @@
 window.onload = function() {
+	let ALL = [];
 
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
@@ -264,7 +265,7 @@ window.onload = function() {
 	}
 
 	function checkDuplicate(busName) {
-		let allNames = Business.all.map {|el| return el.name }
+		let allNames = ALL.map {|el| return el.name }
 		let duplicate = allNames.includes(busName)
 		return duplicate;
 	end

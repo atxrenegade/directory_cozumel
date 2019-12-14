@@ -1,4 +1,5 @@
-class Business {
+class Business
+
 	constructor(id, name, categories, overallRating, address, phoneNumber, website) {
 		this.id = id;
 		this.name = name;
@@ -7,5 +8,6 @@ class Business {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.website = website;
+		ALL.push(this);
 	}
 }
