@@ -419,6 +419,7 @@ window.onload = function() {
 		listingsContainer.style.display = 'none';
 		detailedListingMenu.style.display = 'none';
 		newBusForm.reset();
+		ALL = [];
 	}
 	resetPage();
 }
