@@ -160,7 +160,6 @@ window.onload = function() {
 	}
 
 	function postSearchByCategory(category){
-		console.log(category)
 		let data = {'category_name': category}
 		let configObj = {
 			method: 'POST',
@@ -211,7 +210,6 @@ window.onload = function() {
 	/* Business Listing Search Results Object Creation and DOM appending functions */
 	function returnResults(data){
 		data = Array.from(data)
-			console.log(data);
 		if (data[0] == undefined) {
 			appendErrorMsg("NOT FOUND");
 		} else {
@@ -220,13 +218,17 @@ window.onload = function() {
 	}
 
 	function returnDetailedResults(data){
+		console.log(data)
 		let busObj = buildBusObj(data);
-		renderDetailedBusListing(busObj[0]);
-		renderMap(busObj[1]);
-		let imgs = busObj[2].flat();
-		let reviews = busObj[3].flat();
-		imgs.forEach(el => renderImage(el))
-		reviews.forEach(el => renderReview(el))
+		if (busObj != undefined) {
+			renderDetailedBusListing(busObj[0]);
+			renderMap(busObj[1]);
+			let imgs = busObj[2].flat();
+			console.log(imgs)
+			let reviews = busObj[3].flat();
+			imgs.forEach(el => renderImage(el))
+			reviews.forEach(el => renderReview(el))
+		}
 	}
 
 	function checkDuplicate(busName) {
@@ -328,7 +330,6 @@ window.onload = function() {
 	}
 
 	function renderMap(mapObj){
-		/* console.log('map rendered') */
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = '<br> This is a map <br>'
 		businessListings.appendChild(newDiv);

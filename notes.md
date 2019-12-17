@@ -77,3 +77,8 @@ add image date column to images db
 Overall rating is an average of all review ratings defaults is n/a
 remove display css form form box?
 Check naming conventions
+
+TO DEBUG LATER:
+
+REPEAT DB QUERIES, ONE FOR EACH DYNAMIC ELEMENT - reduce to on query for all buttons
+RENDERING RELATED OBJECTS in BUSINESS CONTROLLER SHOW ACTION - db is returning an array or reviews and images and controller is only rendering one.

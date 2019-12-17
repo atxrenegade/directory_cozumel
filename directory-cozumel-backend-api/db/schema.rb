@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_234544) do
+ActiveRecord::Schema.define(version: 2019_11_18_055052) do
 
   create_table "admins", force: :cascade do |t|
     t.string "username"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 2019_12_16_234544) do
   end
 
   create_table "maps", force: :cascade do |t|
-    t.decimal "lat", precision: 13, scale: 9
-    t.decimal "lng", precision: 13, scale: 9
+    t.float "lat"
+    t.float "lng"
     t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

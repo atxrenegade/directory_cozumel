@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
 	def show
-		business = Business.find_by_name(params[:name]);
+		business = Business.find_by_name(params[:name])
 		if business.present?
 			render json: business.to_json(:include => {
 				:listing => {:except => [:id, :created_at, :updated_at, :business_id]},
