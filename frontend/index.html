@@ -5,11 +5,13 @@
     <title>Directory Cozumel</title>
     <link rel='stylesheet' href='styles.css'>
 		<script src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js'></script>
+
 		<script src='src/business.js'></script>
 		<script src='src/image.js'></script>
-		<script src='src/map.js'></script>
+		<script src='src/googleMap.js'></script>
 		<script src='src/review.js'></script>
 		<script src='index.js'></script>
+
   </head>
   <body>
     <header>
@@ -65,7 +67,8 @@
 					<input type='checkbox' id='js-edit-business-checkbox' name='edit'>Suggest Edit<br>
 					<input type='checkbox' id='js-flag-business-checkbox' name='flag'>Flag Business<br>
 					<div id='js-google-maps-container'>
-						<img src='https://s23219.pcdn.co/wp-content/uploads/2014/10/London-Google-Maps.jpg' id='js-map-placeholder' />
+						<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzjZUcSO6FmW4MbNB6saSuOxnvDM0cnAE&callback=initMap"
+						async defer></script>
 					</div>
 				</div>
 				<div id='js-business-index-container'>

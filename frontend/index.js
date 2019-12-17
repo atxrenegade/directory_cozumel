@@ -44,6 +44,7 @@ window.onload = function() {
 	let searchBarContainer = document.getElementById('js-searchbar-container')
 	let listingsContainer = document.getElementById('listings-container')
 	let newBusContainer = document.getElementById('js-new-business-container')
+	let mapContainer = document.getElementById('js-google-maps-container')
 
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
@@ -268,9 +269,10 @@ window.onload = function() {
 	}
 
 	function mapBuilder(mapData) {
+		console.log(mapData)
 		let lat = mapData['lat'];
 		let lng = mapData['lng'];
-		let newMap = new Map(lat, lng);
+		let newMap = new GoogleMap(lat, lng);
 		return newMap;
 	}
 
@@ -323,9 +325,13 @@ window.onload = function() {
 	}
 
 	function renderMap(mapObj){
-		let newDiv = document.createElement('div');
-		newDiv.innerHTML = '<br> This is a map <br>'
-		businessListings.appendChild(newDiv);
+		mapContainer.style.display = 'block';
+		let mapEl = document.createElement('div');
+		let map = mapObj.initMap();
+		console.log(map)
+		mapEl.innerHTML = `${map}`
+		console.log(mapEl);
+		mapContainer.appendChild('mapEl');
 	}
 
 	function renderImage(imgObj){
@@ -412,6 +418,7 @@ window.onload = function() {
 		adminPasswordField.value = '';
 		listingsContainer.style.display = 'none';
 		detailedListingMenu.style.display = 'none';
+		mapContainer.style.display = "none";
 		newBusForm.reset();
 		ALL = [];
 	}
