@@ -218,13 +218,11 @@ window.onload = function() {
 	}
 
 	function returnDetailedResults(data){
-		console.log(data)
 		let busObj = buildBusObj(data);
 		if (busObj != undefined) {
 			renderDetailedBusListing(busObj[0]);
 			renderMap(busObj[1]);
 			let imgs = busObj[2].flat();
-			console.log(imgs)
 			let reviews = busObj[3].flat();
 			imgs.forEach(el => renderImage(el))
 			reviews.forEach(el => renderReview(el))
@@ -243,7 +241,7 @@ window.onload = function() {
 			let busObjArray = [];
 			let id = data["id"];
 			let name = data["name"]
-			let categories = ['hardcoded', 'misc'] ;
+			let categories = Object.values((data["categories"][0]))
 			let overallRating = data["listing"]["overall_rating"];
 			let address = data["listing"]["address"];
 			let phoneNumber = data["listing"]["phone_number"];
@@ -260,10 +258,6 @@ window.onload = function() {
 	function renderIndex(resultsList){
 		businessListings.innerHTML = '';
 		resultsList.forEach(busObj => renderBus(busObj));
-	}
-
-	function renderDetails(resultsCollection) {
-		console.log(resultsCollection);
 	}
 
 	function appendErrorMsg(msg){
@@ -310,8 +304,7 @@ window.onload = function() {
 		businessListings.innerHTML = '';
 		detailedListingMenu.style.display = 'block';
 		let newDiv = document.createElement('div');
-		let categories = "hardcoded for testing"
-		newDiv.innerHTML = `<p>${busObj.name}<br>Rating: ${busObj.overallRating}<br>${categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
+		newDiv.innerHTML = `<p>${busObj.name}<br>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
 	}
 
