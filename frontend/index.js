@@ -438,11 +438,31 @@ window.onload = function() {
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
 
  /* Form Submit Listeners */
+ function formSubmitted(event) {
+	 event.target.reset();
+	 let submittedEl = document.createElement('p');
+	 submittedEl.className = "succMsg"
+	 submittedEl.innerHTML = "Successfully submitted!";
+	 event.target.appendChild(submittedEl)
+ }
+
+/* Form Event Listeners */
 	document.addEventListener( "submit", function ( event ) {
 		event.preventDefault();
 		createPostData(event);
+		formSubmitted(event);
 	} );
- 
+
+	/* remove form success message */
+	document.addEventListener( 'click', function (event) {
+
+		[].forEach.call(document.querySelectorAll('.succMsg'),function(e){
+		  e.parentNode.removeChild(e);
+		});
+	})
+
+
+
 	/* Admin Panel Listeners */
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
 	adminPanelLogin.addEventListener("click", showAdminView);
