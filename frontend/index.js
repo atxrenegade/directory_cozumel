@@ -48,6 +48,7 @@ window.onload = function() {
 
 	/* Form Submit Elements */
 	let newBusForm = document.getElementById( 'js-new-bus-form');
+	let newReviewForm = document.getElementById( 'js-new-review-form');
 
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
@@ -433,6 +434,14 @@ window.onload = function() {
 		postDataArray(data);
 	} );
 
+	newReviewForm.addEventListener( "submit", function ( event ) {
+	  event.preventDefault();
+		let data = Object.values(newBusForm.elements[0].elements)
+		postDataArray(data);
+	} );
+
+
+
 	function postDataArray(data) {
 		let dataArray = []
 		data = data.forEach(el => {
@@ -441,7 +450,6 @@ window.onload = function() {
 		dataArray.pop();
 		postForm(dataArray);
 	}
-
 
 	/* Admin Panel Listeners */
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
