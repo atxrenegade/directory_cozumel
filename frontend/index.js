@@ -435,8 +435,9 @@ window.onload = function() {
 
 	newReviewForm.addEventListener( "submit", function ( event ) {
 	  event.preventDefault();
-		let data = Object.values(newBusForm.elements[0].elements)
+		let data = Object.values(newReviewForm.elements[0].elements)
 		postDataArray(data);
+
 	} );
 
 
