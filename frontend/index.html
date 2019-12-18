@@ -74,7 +74,7 @@
 					All business with links to individual pages from category search
 				</div>
 				<div id='js-add-review-form-container'>
-					<form action='/review/new'>
+					<form action='/entries/new_review'>
 						<fieldset id='add-review'>
 							<legend>Add Review</legend>
 							<label for='review-rating'>Rating:</label>
@@ -84,13 +84,13 @@
 							<label for='review-contributor'>Your Name:</label>
 							<input type='text' id='new-review-contributor'/><br>
 							<label for='contributor-email'>Your Email</label>
-							<input type='text' id='new-review-contributor-email'/><br>
-							<input type='submit' value='Save'>
+							<input type='text' id='new-review-contributor-email' name='contributor_email'/><br>
+							<input type='submit' value='Submit'>
 						</fieldset>
 					</form>
 				</div>
 				<div id='js-add-image-form-container'>
-					<form action='/image/new'>
+					<form action='/entries/new_image'>
 						<fieldset id='new-image'>
 							<legend>Add Image</legend>
 							<label for='image-url'>URL:</label>
@@ -103,12 +103,12 @@
 							<input type='text' id='image-contributor'/><br>
 							<label for='image-email'>Your Email</label>
 							<input type='text' id='image-contributor-email'/><br>
-							<input type='submit' value='Save'>
+							<input type='submit' value='Submit'>
 						</fieldset>
 					</form>
 				</div>
 				<div id='js-suggest-edit-form-container'>
-					<form action='/business/edit'>
+					<form action='/entries/new_business_edit'>
 						<fieldset id='bus-edit'>
 							<legend>Suggest Edit</legend>
 							<label for='edit-content'>How can we improve this listing?:</label>
@@ -117,12 +117,12 @@
 							<input type='text' id='edit-contributor'/><br>
 							<label for='edit-email'>Your Email</label>
 							<input type='text' id='edit-contributor-email'/><br>
-							<input type='submit' value='Save'>
+							<input type='submit' value='Submit'>
 						</fieldset>
 					</form>
 				</div>
 				<div id='js-flag-business-form-container'>
-					<form action='/business/flag'>
+					<form action='entries/new_business_flag'>
 						<fieldset id='bus-flag'>
 							<legend>Flag Business Listing</legend>
 							<label for='flag-content'>Reason for flagging:</label>
@@ -131,7 +131,7 @@
 							<input type='text' id='flag-contributor'/><br>
 							<label for='flag-email'>Your Email</label>
 							<input type='text' id='flag-contributor-email'/><br>
-							<input type='submit' value='Save'>
+							<input type='submit' value='Submit'>
 						</fieldset>
 					</form>
 				</div>
@@ -142,7 +142,7 @@
 					<legend>Add New Business:</legend>
 					<button id='js-add-button'>Add New Business</button>
 					<div id='js-add-business-form-container'>
-						<form action='/business/new' id='js-new-bus-form'>
+						<form action='entries/new_business' id='js-new-bus-form'>
 							<fieldset id='bus-form'>
 								<legend>Add Business</legend>
 								<label for='name'>Business Name:</label>
@@ -153,7 +153,7 @@
 								<input type='text' id='phone-number'/><br>
 								<label for='website'>Website:</label>
 								<input type='text' id='website'/><br>
-								<input type='submit' value='Save'>
+								<input type='submit' value='Submit'>
 							</fieldset>
 						</form>
 					</div>

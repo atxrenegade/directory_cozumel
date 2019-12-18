@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 	post '/business', to: 'businesses#show'
 	resources :businesses, only: [:create]
 
+	post '/entries/new'
+
   resources :reviews, only: [:new, :create, :show, :update, :delete]
   resources :maps, only: [:show]
   resources :listings, only: [:new, :create, :show, :update, :delete]

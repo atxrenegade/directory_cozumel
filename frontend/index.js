@@ -23,7 +23,6 @@ window.onload = function() {
 
 	/* add business form elements */
 	let newBusinessButton = document.getElementById('js-add-button');
-	let newBusForm = document.getElementById('js-new-bus-form');
 
 	/* admin hidden button element */
 	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
@@ -46,6 +45,9 @@ window.onload = function() {
 	let listingsContainer = document.getElementById('listings-container')
 	let newBusContainer = document.getElementById('js-new-business-container')
 	let mapContainer = document.getElementById('js-google-maps-container')
+
+	/* Form Submit Elements */
+	let newBusForm = document.getElementById( 'js-new-bus-form');
 
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
@@ -209,8 +211,7 @@ window.onload = function() {
 		}
 	}
 
-	function postForm(type, contributor, contributor_email, data, notes) {
-		let data = {'type': type, 'date': Time.now, "contributor": contributor, "contributor_email": contributor_email, "data_object_string": data, notes:'notes'}
+	function postForm(data) {
 		let configObj = {
 			method: 'POST',
 			headers: {
@@ -232,8 +233,6 @@ window.onload = function() {
 			console.log(error.message);
 		}
 	}
-
-
 
 	/* Business Listing Search Results Object Creation and DOM appending functions */
 	function returnResults(data){
@@ -426,6 +425,23 @@ window.onload = function() {
 
 	/* New Business Form Listener */
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
+
+ /* Form Submit Listeners */
+	newBusForm.addEventListener( "submit", function ( event ) {
+	  event.preventDefault();
+		let data = Object.values(newBusForm.elements[0].elements)
+		postDataArray(data);
+	} );
+
+	function postDataArray(data) {
+		let dataArray = []
+		data = data.forEach(el => {
+			dataArray.push([el["id"], el["value"]])
+		})
+		dataArray.pop();
+		postForm(dataArray);
+	}
+
 
 	/* Admin Panel Listeners */
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
