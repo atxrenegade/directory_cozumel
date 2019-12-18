@@ -85,19 +85,6 @@ window.onload = function() {
 		renderCategoriesMenu(categoriesNames);
 	}
 
-	function renderCategoriesMenu(categoriesNames) {
-		if (searchCategoryMenu.children.length === 0 ){
-			let catMenu = document.createElement('div');
-			let html = '<select id= "js-category-select">';
-			let cats = categoriesNames.map((el) => {
-				return `<option value='${el}'> ${el} </option>`;
-			})
-			html += cats + '</select>';
-			catMenu.innerHTML = html;
-			searchCategoryMenu.appendChild(catMenu)
-		}
-	}
-
 	function retrieveSearchCategoryResults() {
 		detailedListingMenu.style.display = 'none';
 		listingsContainer.style.display = 'block';
@@ -235,7 +222,7 @@ window.onload = function() {
 		}
 	}
 
-	/* Business Listing Search Results Object Creation and DOM appending functions */
+	/* Search Results functions */
 	function returnResults(data){
 		data = Array.from(data)
 		if (data[0] == undefined) {
@@ -257,6 +244,14 @@ window.onload = function() {
 		}
 	}
 
+	function appendErrorMsg(msg){
+		businessListings.innerHTML = '';
+		let errorMessage = document.createElement('h4');
+		errorMessage.innerHTML = `${msg}`
+		businessListings.appendChild(errorMessage);
+	}
+
+	/* Instance builder functions */
 	function checkDuplicate(busName) {
 		let allNames = ALL.map(el => el.name)
 		let duplicate = allNames.includes(busName)
@@ -281,18 +276,6 @@ window.onload = function() {
 			busObjArray.push(business, map, imagesCollection, reviewsCollection)
 		 return busObjArray;
 	 	}
-	}
-
-	function renderIndex(resultsList){
-		businessListings.innerHTML = '';
-		resultsList.forEach(busObj => renderBus(busObj));
-	}
-
-	function appendErrorMsg(msg){
-		businessListings.innerHTML = '';
-		let errorMessage = document.createElement('h4');
-		errorMessage.innerHTML = `${msg}`
-		businessListings.appendChild(errorMessage);
 	}
 
 	function mapBuilder(mapData) {
@@ -328,12 +311,31 @@ window.onload = function() {
 		return reviewsCollection;
 	}
 
+	/* Render functions */
+	function renderCategoriesMenu(categoriesNames) {
+		if (searchCategoryMenu.children.length === 0 ){
+			let catMenu = document.createElement('div');
+			let html = '<select id= "js-category-select">';
+			let cats = categoriesNames.map((el) => {
+				return `<option value='${el}'> ${el} </option>`;
+			})
+			html += cats + '</select>';
+			catMenu.innerHTML = html;
+			searchCategoryMenu.appendChild(catMenu)
+		}
+	}
+
 	function renderDetailedBusListing(busObj){
 		businessListings.innerHTML = '';
 		detailedListingMenu.style.display = 'block';
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = `<p>${busObj.name}<br>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
+	}
+
+	function renderIndex(resultsList){
+		businessListings.innerHTML = '';
+		resultsList.forEach(busObj => renderBus(busObj));
 	}
 
 	function renderBus(busObj){
@@ -446,7 +448,7 @@ window.onload = function() {
 	 event.target.appendChild(submittedEl)
  }
 
-/* Form Event Listeners */
+	/* Form Event Listeners */
 	document.addEventListener( "submit", function ( event ) {
 		event.preventDefault();
 		createPostData(event);
@@ -455,7 +457,6 @@ window.onload = function() {
 
 	/* remove form success message */
 	document.addEventListener( 'click', function (event) {
-
 		[].forEach.call(document.querySelectorAll('.succMsg'),function(e){
 		  e.parentNode.removeChild(e);
 		});
