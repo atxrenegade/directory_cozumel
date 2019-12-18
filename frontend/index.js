@@ -461,8 +461,6 @@ window.onload = function() {
 		});
 	})
 
-
-
 	/* Admin Panel Listeners */
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
 	adminPanelLogin.addEventListener("click", showAdminView);
@@ -475,14 +473,11 @@ window.onload = function() {
 		editCheckBox.checked = false;
 		nameRadioSelect.checked = true;
 		categoryRadioSelect.checked = false;
-		searchNameField.value = '';
-		searchCategoryMenu.value = '';
-		adminUsernameField.value = '';
-		adminPasswordField.value = '';
 		listingsContainer.style.display = 'none';
 		detailedListingMenu.style.display = 'none';
 		mapContainer.style.display = "none";
-		newBusForm.reset();
+		let elements = document.querySelectorAll('input[type="text"]');
+		Array.from(elements).forEach(el => el.value = '')
 		ALL = [];
 	}
 	resetPage();
