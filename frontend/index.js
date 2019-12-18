@@ -1,4 +1,5 @@
 window.onload = function() {
+	const mykey = config.MY_KEY;
 	ALL = [];
 
 	/* searchbar elements */
