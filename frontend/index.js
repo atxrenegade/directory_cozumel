@@ -47,8 +47,8 @@ window.onload = function() {
 	let mapContainer = document.getElementById('js-google-maps-container')
 
 	/* Form Submit Elements */
-	let newBusForm = document.getElementById( 'js-new-bus-form');
-	let newReviewForm = document.getElementById( 'js-new-review-form');
+	let newBusForm = document.getElementById('js-new-bus-form');
+	let newReviewForm = document.getElementById('js-new-review-form');
 
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
@@ -372,6 +372,17 @@ window.onload = function() {
 		businessListings.appendChild(newDiv);
 	}
 
+	/* Form Post functions */
+	function createPostData(event) {
+	let data = Array.from(event.target.elements)
+	let dataArray = []
+	data = data.forEach(el => {
+		dataArray.push([el["id"], el["value"]])
+	})
+	dataArray.pop();
+	postForm(dataArray);
+	}
+
 	/* Admin Panel functions */
 	function toggleAdminLogIn() {
 		$('#js-admin-login-container').toggle();
@@ -427,30 +438,11 @@ window.onload = function() {
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
 
  /* Form Submit Listeners */
-	newBusForm.addEventListener( "submit", function ( event ) {
-	  event.preventDefault();
-		let data = Object.values(newBusForm.elements[0].elements)
-		postDataArray(data);
+	document.addEventListener( "submit", function ( event ) {
+		event.preventDefault();
+		createPostData(event);
 	} );
-
-	newReviewForm.addEventListener( "submit", function ( event ) {
-	  event.preventDefault();
-		let data = Object.values(newReviewForm.elements[0].elements)
-		postDataArray(data);
-
-	} );
-
-
-
-	function postDataArray(data) {
-		let dataArray = []
-		data = data.forEach(el => {
-			dataArray.push([el["id"], el["value"]])
-		})
-		dataArray.pop();
-		postForm(dataArray);
-	}
-
+ 
 	/* Admin Panel Listeners */
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
 	adminPanelLogin.addEventListener("click", showAdminView);
