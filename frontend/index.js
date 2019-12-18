@@ -209,6 +209,32 @@ window.onload = function() {
 		}
 	}
 
+	function postForm(type, contributor, contributor_email, data, notes) {
+		let data = {'type': type, 'date': Time.now, "contributor": contributor, "contributor_email": contributor_email, "data_object_string": data, notes:'notes'}
+		let configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/entries/new', configObj)
+			.then(resp => {
+				return resp.json();
+		})
+			.then(json => console.log(json)
+		)
+	}
+	catch(err) {
+			alert('Post request failed see console for further details!');
+			console.log(error.message);
+		}
+	}
+
+
+
 	/* Business Listing Search Results Object Creation and DOM appending functions */
 	function returnResults(data){
 		data = Array.from(data)
