@@ -296,7 +296,6 @@ window.onload = function() {
 	}
 
 	function mapBuilder(mapData) {
-		console.log(mapData)
 		let lat = mapData['lat'];
 		let lng = mapData['lng'];
 		let newMap = new GoogleMap(lat, lng);
