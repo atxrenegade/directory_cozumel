@@ -12,7 +12,6 @@
 		<script src='src/GoogleMap.js'></script>
 		<script src='index.js'></script>
 
-
   </head>
   <body>
     <header>
@@ -39,7 +38,7 @@
 					<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-category'>
 					<label for = 'js-radio-by-category'>By Category</label>
 				  <div id='js-search-by-category'>
-						<form action='/search_by_category'>
+						<form>
 							<fieldset id='js-category-search'>
 								<legend >Search By Category:</legend>
 								<div id='js-search-category-menu'></div>
@@ -74,23 +73,23 @@
 					All business with links to individual pages from category search
 				</div>
 				<div id='js-add-review-form-container'>
-					<form id='js-new-review-form' action='/entries/new_review'>
+					<form>
 						<fieldset id='add-review'>
 							<legend>Add Review</legend>
 							<label for='review-rating'>Rating:</label>
-							<input type='text' id='new-review-rating'/><br>
+							<input type='text' id='review-rating'/><br>
 							<label for='content'>Your Review:</label>
-							<input type='textarea' id='new-review-content'/><br>
+							<input type='textarea' id='review-content'/><br>
 							<label for='review-contributor'>Your Name:</label>
-							<input type='text' id='new-review-contributor'/><br>
+							<input type='text' id='review-contributor'/><br>
 							<label for='contributor-email'>Your Email</label>
-							<input type='text' id='new-review-contributor-email' name='contributor_email'/><br>
+							<input type='text' id='review-contributor-email' name='contributor_email'/><br>
 							<input type='submit' value='Submit'>
 						</fieldset>
 					</form>
 				</div>
 				<div id='js-add-image-form-container'>
-					<form action='/entries/new_image'>
+					<form>
 						<fieldset id='new-image'>
 							<legend>Add Image</legend>
 							<label for='image-url'>URL:</label>
@@ -108,7 +107,7 @@
 					</form>
 				</div>
 				<div id='js-suggest-edit-form-container'>
-					<form action='/entries/new_business_edit'>
+					<form>
 						<fieldset id='bus-edit'>
 							<legend>Suggest Edit</legend>
 							<label for='edit-content'>How can we improve this listing?:</label>
@@ -122,11 +121,11 @@
 					</form>
 				</div>
 				<div id='js-flag-business-form-container'>
-					<form action='entries/new_business_flag'>
-						<fieldset id='bus-flag'>
+					<form>
+						<fieldset id='js-flag-bus'>
 							<legend>Flag Business Listing</legend>
 							<label for='flag-content'>Reason for flagging:</label>
-							<input type='text' id='new-flag-content'/><br>
+							<input type='text' id='flag-content'/><br>
 							<label for='flag-contributor'>Your Name:</label>
 							<input type='text' id='flag-contributor'/><br>
 							<label for='flag-email'>Your Email</label>
@@ -142,17 +141,17 @@
 					<legend>Add New Business:</legend>
 					<button id='js-add-button'>Add New Business</button>
 					<div id='js-add-business-form-container'>
-						<form action='entries/new_business' id='js-new-bus-form'>
-							<fieldset id='bus-form'>
+						<form>
+							<fieldset id='js-new-bus">
 								<legend>Add Business</legend>
 								<label for='name'>Business Name:</label>
-								<input type='text' id='new_bus_name'/><br>
+								<input type='text' id='new-bus-name'/><br>
 								<label for='address'>Address:</label>
 								<input type='text' id='new-bus-address'/><br>
 								<label for='phone-number'>Phone Number:</label>
-								<input type='text' id='phone-number'/><br>
+								<input type='text' id='new-bus-phone-number'/><br>
 								<label for='website'>Website:</label>
-								<input type='text' id='website'/><br>
+								<input type='text' id='new-bus-website'/><br>
 								<input type='submit' value='Submit'>
 							</fieldset>
 						</form>
