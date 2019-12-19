@@ -370,7 +370,7 @@ window.onload = function() {
 	function renderReview(reviewObj){
 		businessDetails.style.display = "block";
 		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `<p>${reviewObj.content}<br>Rating: ${reviewObj.rating}<br>${reviewObj.contributor}<br>${reviewObj.date}</p><br>`;
+		newDiv.innerHTML = `<p>${reviewObj.content}<br>Rating: ${reviewObj.rating}<br>${reviewObj.contributor}<br>${reviewObj.date}</p>`;
 		businessDetails.appendChild(newDiv);
 	}
 
