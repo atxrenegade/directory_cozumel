@@ -279,28 +279,25 @@ listings_list = [
 
 images_list = [
 	{
-		description: 'Hotel', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
+		description: 'Hotel', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
 	},
 	{
-		description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 2
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 2
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 3
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 3
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 4
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 4
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
 	},
 	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
-	},
-	{
-		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 7
+		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 7
 	},
 	{
 		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 8
@@ -370,6 +367,23 @@ images_list = [
 	},
 	{
 		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 30
+	},
+	{
+		description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://www.jetsetter.com/uploads/sites/7/2018/06/7iBtDD5x-1380x1035.jpeg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
+	},
+
+		description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://www.jetsetter.com/uploads/sites/7/2018/06/7iBtDD5x-1380x1035.jpeg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 2
+	},
+
+	description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://www.jetsetter.com/uploads/sites/7/2018/06/7iBtDD5x-1380x1035.jpeg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 3
+	},
+
+	description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://www.jetsetter.com/uploads/sites/7/2018/06/7iBtDD5x-1380x1035.jpeg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 4
+	},
+
+	description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://www.jetsetter.com/uploads/sites/7/2018/06/7iBtDD5x-1380x1035.jpeg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 5
+	},
+	description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://www.jetsetter.com/uploads/sites/7/2018/06/7iBtDD5x-1380x1035.jpeg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 6
 	}
 ]
 
@@ -470,36 +484,36 @@ reviews_list = [
 ]
 
 maps_list = [
-	{ lat: -25.344, lng: 131.036, business_id: 1 },
-	{ lat: -25.344, lng: 131.036, business_id: 2 },
-	{ lat: -25.344, lng: 131.036, business_id: 3 },
-	{ lat: -25.344, lng: 131.036, business_id: 4 },
-	{ lat: -25.344, lng: 131.036, business_id: 5 },
-	{ lat: -25.344, lng: 131.036, business_id: 6 },
-	{ lat: -25.344, lng: 131.036, business_id: 7 },
-	{ lat: -25.344, lng: 131.036, business_id: 8 },
-	{ lat: -25.344, lng: 131.036, business_id: 9 },
-	{ lat: -25.344, lng: 131.036, business_id: 10 },
-	{ lat: -25.344, lng: 131.036, business_id: 11 },
-	{ lat: -25.344, lng: 131.036, business_id: 12 },
-	{ lat: -25.344, lng: 131.036, business_id: 13 },
-	{ lat: -25.344, lng: 131.036, business_id: 14 },
-	{ lat: -25.344, lng: 131.036, business_id: 15 },
-	{ lat: -25.344, lng: 131.036, business_id: 16 },
-	{ lat: -25.344, lng: 131.036, business_id: 17 },
-	{ lat: -25.344, lng: 131.036, business_id: 18 },
-	{ lat: -25.344, lng: 131.036, business_id: 19 },
-	{ lat: -25.344, lng: 131.036, business_id: 20 },
-	{ lat: -25.344, lng: 131.036, business_id: 21 },
-	{ lat: -25.344, lng: 131.036, business_id: 22 },
-	{ lat: -25.344, lng: 131.036, business_id: 23 },
-	{ lat: -25.344, lng: 131.036, business_id: 24 },
-	{ lat: -25.344, lng: 131.036, business_id: 25 },
-	{ lat: -25.344, lng: 131.036, business_id: 26 },
-	{ lat: -25.344, lng: 131.036, business_id: 27 },
-	{ lat: -25.344, lng: 131.036, business_id: 28 },
-	{ lat: -25.344, lng: 131.036, business_id: 29 },
-	{ lat: -25.344, lng: 131.036, business_id: 30 }
+	{ lat: 20.509130, lng:  -86.950238, business_id: 1 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 2 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 3 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 4 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 5 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 6 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 7 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 8 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 9 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 10 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 11 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 12 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 13 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 14 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 15 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 16 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 17 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 18 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 19 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 20 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 21 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 22 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 23 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 24 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 25 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 26 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 27 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 28 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 29 },
+	{ lat: 20.509130, lng:  -86.950238, business_id: 30 }
 ]
 
 categories_list.each do |name|
