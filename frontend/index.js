@@ -1,6 +1,8 @@
 window.onload = function() {
-	const mykey = config.MY_KEY;
+	mykey = config.MY_KEY;
 	ALL = [];
+	LAT = 20.42;
+	LNG = -86.92;
 
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
@@ -44,7 +46,7 @@ window.onload = function() {
 	let searchBarContainer = document.getElementById('js-searchbar-container')
 	let listingsContainer = document.getElementById('listings-container')
 	let newBusContainer = document.getElementById('js-new-business-container')
-	let mapContainer = document.getElementById('js-google-maps-container')
+	let mapContainer = document.getElementById('js-map')
 
 	/* Form Submit Elements */
 	let newBusForm = document.getElementById('js-new-bus-form');
@@ -354,12 +356,8 @@ window.onload = function() {
 
 	function renderMap(mapObj){
 		mapContainer.style.display = 'block';
-		let mapEl = document.createElement('div');
-		let map = mapObj.initMap();
-		console.log(map)
-		mapEl.innerHTML = `${map}`
-		console.log(mapEl);
-		mapContainer.appendChild('mapEl');
+		let mapEL = mapObj.initMap(mapObj.lat, mapObj.lng);
+		mapContainer.appendChild('mapEL');
 	}
 
 	function renderImage(imgObj){

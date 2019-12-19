@@ -3,14 +3,19 @@ class GoogleMap {
 		this.lat = lat;
 		this.lng = lng;
 	}
+
+	initMap(lat, lng){
+		let options = {
+			 center: {lat: LAT, lng: LNG},
+			 zoom:11
+		 }
+
+		let map = new google.maps.Map(document.getElementById('js-map'), options);
+
+		let marker = new google.maps.Marker({
+			position:({lat: lat, lng: lng }),
+			map:map,
+			icon: 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
+		});
+	}
 }
-/*
-initMap(){
-	let map = new google.maps.Map(document.getElementById('js-google-maps-container'), {
-		center: {lat: this.lat, lng: this.lng},
-		zoom: 8
-	});
-}
-<script src="https://maps.googleapis.com/maps/api/js?key=" + mykey + "&callback=initMap"
-async defer></script>
-*/
