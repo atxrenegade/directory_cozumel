@@ -17,5 +17,6 @@ class GoogleMap {
 			map:map,
 			icon: 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
 		});
+
 	}
 }

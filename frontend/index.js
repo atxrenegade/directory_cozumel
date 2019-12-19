@@ -47,7 +47,7 @@ window.onload = function() {
 	let listingsContainer = document.getElementById('listings-container')
 	let newBusContainer = document.getElementById('js-new-business-container')
 	let mapContainer = document.getElementById('js-map')
-
+	let businessDetails = document.getElementById('js-business-listing-details')
 	/* Form Submit Elements */
 	let newBusForm = document.getElementById('js-new-bus-form');
 	let newReviewForm = document.getElementById('js-new-review-form');
@@ -238,6 +238,7 @@ window.onload = function() {
 		let busObj = buildBusObj(data);
 		if (busObj != undefined) {
 			renderDetailedBusListing(busObj[0]);
+			debugger;
 			renderMap(busObj[1]);
 			let imgs = busObj[2].flat();
 			let reviews = busObj[3].flat();
@@ -356,20 +357,21 @@ window.onload = function() {
 
 	function renderMap(mapObj){
 		mapContainer.style.display = 'block';
-		let mapEL = mapObj.initMap(mapObj.lat, mapObj.lng);
-		mapContainer.appendChild('mapEL');
+		mapObj.initMap(mapObj.lat, mapObj.lng);
 	}
 
 	function renderImage(imgObj){
+		businessDetails.style.display = "block";
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = `<img src="${imgObj.url}"></img><br><p>${imgObj.contributor}<br>${imgObj.date}<br>${imgObj.description}<br><br></<p>`;
-		businessListings.appendChild(newDiv);
+		businessDetails.appendChild(newDiv);
 	}
 
 	function renderReview(reviewObj){
+		businessDetails.style.display = "block";
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = `<p>${reviewObj.content}<br>Rating: ${reviewObj.rating}<br>${reviewObj.contributor}<br>${reviewObj.date}</p><br>`;
-		businessListings.appendChild(newDiv);
+		businessDetails.appendChild(newDiv);
 	}
 
 	/* Form Post functions */
@@ -475,6 +477,7 @@ window.onload = function() {
 		listingsContainer.style.display = 'none';
 		detailedListingMenu.style.display = 'none';
 		mapContainer.style.display = "none";
+		businessDetails.style.display = "none";
 		let elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
 		ALL = [];

@@ -43,6 +43,16 @@ input {
 	display: none;
 }
 
+#js-map {
+		display: none;
+    height: 400px;
+		width: 100%;
+}
+
+#js-business-listing-details {
+	display: none;
+}
+
 #js-form-container {
 }
 
@@ -101,11 +111,7 @@ input {
 	display: none;
 }
 
-#js-map {
-		display: none;
-    height: 400px;
-		width: 100%;
-}
+
 
 
 /* Admin Tables Styling */
@@ -130,4 +136,9 @@ th, td {
 table, th, td {
   border: 2px solid black;
   border-collapse: collapse;
+}
+
+map {
+	padding: 10px;
+	margin: 10px;
 }
