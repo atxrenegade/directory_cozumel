@@ -2,7 +2,7 @@ class Entry < ApplicationRecord
 	belongs_to :entryable, polymorphic: true
 	belongs_to :category
 
-	def build_record(type, bus_id, date, data_object_string, contributor='n/a', contributor_email='n/a', notes='n/a', )
+	def build_record(type, bus_id, date, data_object_string, contributor='n/a', contributor_email='n/a', notes='n/a')
 		recordObj = {}
 		recordObj.type = data["type"]
 		recordObj.bus_id = data['bus_id']
@@ -38,26 +38,67 @@ class Entry < ApplicationRecord
 
 		def newBusEntry(data)
 			# format json data for record instance creation
-			build_record(formatted_data)
+			dataArray = []
+			type = data['type']
+			bus_id = data[""]
+			date = data[]
+			data_object_string = {name, overall_rating, address, phone_number, website}
+			contributor = data[""]
+			contributor_email = data[""]
+			notes = data[""]
+			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			build_record(dataArray)
 		end
 
 		def newImageEntry(data)
-			# format json data for record instance creation
-			build_record(formatted_data)
+			dataArray = []
+			type = data['type']
+			bus_id = data[""]
+			date = data[]
+			data_object_string = {description, date, url, contributor, contributor_email}
+			contributor = data[""]
+			contributor_email = data[""]
+			notes= data[""]
+			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			build_record(dataArray)
 		end
 
 		def newReviewEntry(data)
-			# format json data for record instance creation
-			build_record(formatted_data)
+			dataArray = []
+			type = data['type']
+			bus_id = data[""]
+			date = data[]
+			data_object_string = {description, date, url, contributor, contributor_email}
+			contributor = data[""]
+			contributor_email = data[""]
+			notes= data[""]
+			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			build_record(dataArray)
 		end
 
 		def newFlagEntry(data)
-			# format json data for record instance creation
-			build_record(formatted_data)
+			dataArray = []
+			type = data['type']
+			bus_id = data[""]
+			date = data[]
+			data_object_string = {content, date, contributor, contributor_email}
+			contributor = data[""]
+			contributor_email = data[""]
+			notes= data[""]
+			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			build_record(dataArray)
 		end
 
 		def newFlagEntry(data)
-			# format json data for record instance creation
-			build_record(formatted_data)
+			dataArray = []
+			type = data['type']
+			bus_id = data[""]
+			date = data[]
+			data_object_string = {content, date, contributor, contributor_email}
+			contributor = data[""]
+			contributor_email = data[""]
+			notes= data[""]
+			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			build_record(dataArray)
 		end
 end
