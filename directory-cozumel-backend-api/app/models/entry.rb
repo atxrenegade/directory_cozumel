@@ -58,7 +58,7 @@ class Entry < ApplicationRecord
 			data_object_string = {description, date, url, contributor, contributor_email}
 			contributor = data[""]
 			contributor_email = data[""]
-			notes= data[""]
+			notes = data[""]
 			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
 			build_record(dataArray)
 		end
@@ -71,7 +71,7 @@ class Entry < ApplicationRecord
 			data_object_string = {description, date, url, contributor, contributor_email}
 			contributor = data[""]
 			contributor_email = data[""]
-			notes= data[""]
+			notes = data[""]
 			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
 			build_record(dataArray)
 		end
@@ -84,7 +84,7 @@ class Entry < ApplicationRecord
 			data_object_string = {content, date, contributor, contributor_email}
 			contributor = data[""]
 			contributor_email = data[""]
-			notes= data[""]
+			notes = data[""]
 			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
 			build_record(dataArray)
 		end
@@ -97,7 +97,7 @@ class Entry < ApplicationRecord
 			data_object_string = {content, date, contributor, contributor_email}
 			contributor = data[""]
 			contributor_email = data[""]
-			notes= data[""]
+			notes = data[""]
 			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
 			build_record(dataArray)
 		end
@@ -148,5 +148,5 @@ class Entry < ApplicationRecord
 
 		def deleteReview
 
-		end				
+		end
 end
