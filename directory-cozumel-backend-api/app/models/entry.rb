@@ -117,9 +117,14 @@ class Entry < ApplicationRecord
 			resolve_entry();
 		end
 
+		def resolve_entry
+			#update admin_id
+			#save admin_id change to status to resolved with date
+		end
+
 		def reject_entry
-			#save admin_id change to status to rejected with date
-			resolve_entry();
+			#update admin_id
+			#save admin_id change to status to rejected
 		end
 
 		def search_records(query_type, query_param)
