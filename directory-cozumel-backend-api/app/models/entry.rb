@@ -17,28 +17,28 @@ class Entry < ApplicationRecord
 		recordObj.save
 	end
 
-	def resolveRecord(data)
-		case RecordType if type[0]
+	def resolve_record(data)
+		case record_type if type[0]
 			case1 'bus'
-				newBusEntry(data)
+				new_bus_entry(data)
 				break
 			case2 'image'
-				newImageEntry(data)
+				new_image_entry(data)
 				break
 			case3 'review'
-				newReviewEntry(data)
+				new_review_entry(data)
 				break
 			case4 'flag'
-				newFlagEntry(data)
+				new_flag_entry(data)
 				break
 			case5 'update'
 				busUpdate(data)
 				break
 		end
 
-		def newBusEntry(data)
+		def new_bus_entry(data)
 			# format json data for record instance creation
-			dataArray = []
+			data_array = []
 			type = data['type']
 			bus_id = data[""]
 			date = data[]
@@ -46,12 +46,12 @@ class Entry < ApplicationRecord
 			contributor = data[""]
 			contributor_email = data[""]
 			notes = data[""]
-			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
-			build_record(dataArray)
+			data_array.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			build_record(data_array)
 		end
 
-		def newImageEntry(data)
-			dataArray = []
+		def new_image_entry(data)
+			data_array = []
 			type = data['type']
 			bus_id = data[""]
 			date = data[]
@@ -59,12 +59,12 @@ class Entry < ApplicationRecord
 			contributor = data[""]
 			contributor_email = data[""]
 			notes = data[""]
-			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			data_array.push(type, bus_id, date, data_object_string, contributor, contributor_email)
 			build_record(dataArray)
 		end
 
-		def newReviewEntry(data)
-			dataArray = []
+		def new_review_entry(data)
+			data_array = []
 			type = data['type']
 			bus_id = data[""]
 			date = data[]
@@ -72,12 +72,12 @@ class Entry < ApplicationRecord
 			contributor = data[""]
 			contributor_email = data[""]
 			notes = data[""]
-			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
-			build_record(dataArray)
+			data_array.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			build_record(data_array)
 		end
 
-		def newFlagEntry(data)
-			dataArray = []
+		def new_flag_entry(data)
+			data_array = []
 			type = data['type']
 			bus_id = data[""]
 			date = data[]
@@ -85,12 +85,12 @@ class Entry < ApplicationRecord
 			contributor = data[""]
 			contributor_email = data[""]
 			notes = data[""]
-			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
-			build_record(dataArray)
+			data_array.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			build_record(data_array)
 		end
 
-		def newFlagEntry(data)
-			dataArray = []
+		def new_flag_entry(data)
+			data_array = []
 			type = data['type']
 			bus_id = data[""]
 			date = data[]
@@ -98,55 +98,51 @@ class Entry < ApplicationRecord
 			contributor = data[""]
 			contributor_email = data[""]
 			notes = data[""]
-			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
-			build_record(dataArray)
+			data_array.push(type, bus_id, date, data_object_string, contributor, contributor_email)
+			build_record(data_array)
 		end
 
-		def resolveNewBusiness
+		def resolve_new_business
 			#create new business and persist to database
-			resolveEntry();
+			resolve_entry();
 		end
 
-		def resolveNewReview
+		def resolve_new_review
 			#create new business and persist to database
-			resolveEntry();
+			resolve_entry();
 		end
 
-		def resolveNewImage
+		def resolve_new_image
 			#create new image and persist to database
-			resolveEntry();
+			resolve_entry();
 		end
 
-		def rejectEntry
+		def reject_entry
 			#save admin_id change to status to rejected with date
-			resolveEntry();
+			resolve_entry();
 		end
 
-		def searchRecords(query_type, query_param)
+		def search_records(query_type, query_param)
 			#create search by business, date, admin, contributor, status, contributor_email
 		end
 
-		def updateBusiness
+		def update_business
 
 		end
 
-		def deleteBusiness
+		def delete_business
 
 		end
 
-		def editMap
+		def edit_map
 
 		end
 
-		def deleteMap
+		def delete_map
 
 		end
 
-		def deleteImage
-
-		end
-
-		def deleteReview
+		def delete_review
 
 		end
 end
