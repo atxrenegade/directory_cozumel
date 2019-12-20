@@ -101,4 +101,52 @@ class Entry < ApplicationRecord
 			dataArray.push(type, bus_id, date, data_object_string, contributor, contributor_email)
 			build_record(dataArray)
 		end
+
+		def resolveNewBusiness
+			#create new business and persist to database
+			resolveEntry();
+		end
+
+		def resolveNewReview
+			#create new business and persist to database
+			resolveEntry();
+		end
+
+		def resolveNewImage
+			#create new image and persist to database
+			resolveEntry();
+		end
+
+		def rejectEntry
+			#save admin_id change to status to rejected with date
+			resolveEntry();
+		end
+
+		def searchRecords(query_type, query_param)
+			#create search by business, date, admin, contributor, status, contributor_email
+		end
+
+		def updateBusiness
+
+		end
+
+		def deleteBusiness
+
+		end
+
+		def editMap
+
+		end
+
+		def deleteMap
+
+		end
+
+		def deleteImage
+
+		end
+
+		def deleteReview
+
+		end				
 end
