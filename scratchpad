@@ -1,0 +1,50 @@
+create new entries object that takes in form dataArray and converts to entry objects persisted in the database
+
+schema
+
+t.string "type"
+t.string "date"
+t.string "contributor"
+t.string "contributor_email"
+t.string "data_object_string"
+t.string "notes"
+t.string "resolved_date"
+t.integer "admin_id"
+
+class Entries < Application:: Record
+end
+
+form data
+new business
+[['id', 'new-bus'],
+['bus-name', name],
+['bus_address', address],
+['bus-phone-number', phone_number],
+'bus-website', website]]
+
+new image
+[['id', 'new-image'],
+['image-url', url],
+['image-description', description],
+['image-date','date'],
+['image-contributor', contributor],
+['image-email', contributor_email]]
+
+new review
+[["id", add-review],
+["review-rating", input],
+["review-content", content],
+["review_contributor", contributor],
+["review_email", contributor_email]]
+
+update business
+[['type', 'bus-edit'],
+['edit-content', content],
+['edit-contributor', contributor],
+['edit-email', contributor_email]]
+
+flag business
+[['type', 'bus-flag'],
+['flag-content', content],
+['flag-contributor', flag contributor],
+['flag-email', contributor_email]]
