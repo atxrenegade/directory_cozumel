@@ -1,9 +1,8 @@
 class Entry < ApplicationRecord
-	belongs_to :admin
 
 	def build_record(formatted_data)
 		record = Entry.new
-		record['type'] = formatted_data[0]
+		record['entry_type'] = formatted_data[0]
 		record['bus_id'] = formatted_data[1]
 		record['date'] = formatted_data[2]
 		record['contributor'] = formatted_data[3]
