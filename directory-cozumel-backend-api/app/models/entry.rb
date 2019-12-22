@@ -2,19 +2,25 @@ class Entry < ApplicationRecord
 	belongs_to :entryable, polymorphic: true
 	belongs_to :category
 
-	def build_record(formattedData)
-		# combine formatted data with recordObj for new recordObj with spread operator
-		recordObj = {}
-		recordObj.status = "pending"
-		recordObj.resolved_date = 'n/a'
-		recordObj.admin_id = 1
-		recordObj.notes = ''
-		recordObj.save
+	def build_record(formatted_data)
+		record = Entry.new
+		record['type'] = formatted_data[0]
+		record['bus_id'] = formatted_data[1]
+		record['date'] = formatted_data[2]
+		record['contributor'] = formatted_data[3]
+		record['contributor_email'] = formatted_data[4]
+		record['data_array'] = formatted_data[5]
+		record['status'] = "pending"
+		record['resolved_date'] = 'n/a'
+		record['admin_id'] = 1
+		record['notes'] = ''
+		binding.pry
+		record.save
 	end
 
 	def handle_record(params)
 		data = params["_json"]
-		record_type = data[0]
+		record_type = data[0][0]
 		case record_type
 		when 'new-bus'
 				new_bus_entry(data)
@@ -32,16 +38,16 @@ class Entry < ApplicationRecord
 	end
 
 	def new_bus_entry(data)
-		data_obj = {}
-		data_obj['type'] = "new bus"
-		data_obj['bus_id'] = 'not yet assigned'
-		data_obj['date'] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
-		data_obj['contributor'] = "unspecified"
-		data_obj['contributor_email'] = "unspecified"
+		data_array = []
+		data_array[0] = "new bus"
+		data_array[1] = 99
+		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+		data_array[3] = "unspecified"
+		data_array[4] = "unspecified"
 		#data array should include name, categories, overall rating, address, phone number, website
 		#add categories to from for user to select values to be included in data_array
-		data_obj['data_array'] = [data[1][1], "hardcoded categories for testing", 'not yet rated', data[2][1], data[3][1], data[4][1]]
-		build_record(data_obj)
+		data_array[5] = [data[1][1], "hardcoded categories for testing", 'not yet rated', data[2][1], data[3][1], data[4][1]]
+		build_record(data_array)
 	end
 
 	def new_image_entry(data)

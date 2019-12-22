@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
 	def new
-		obj = params
-		render json: obj
+		entry = Entry.new.handle_record(params)
+		render json: entry
 	end
 end

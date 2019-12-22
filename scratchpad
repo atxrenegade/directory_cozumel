@@ -20,7 +20,13 @@ new business
 ['bus-name', name],
 ['bus_address', address],
 ['bus-phone-number', phone_number],
-'bus-website', website]]
+['bus-website', website]]
+
+bus1 = [['id', 'new-bus'],
+['bus-name', 'Hotel California'],
+['bus_address', '1234 Main st.'],
+['bus-phone-number', '987-114-4339'],
+['bus-website', 'http://www.hotelcalifornia.mx.com']]
 
 new image
 [['id', 'new-image'],
