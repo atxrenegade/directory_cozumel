@@ -239,7 +239,6 @@ window.onload = function() {
 		let busObj = buildBusObj(data);
 		if (busObj != undefined) {
 			renderDetailedBusListing(busObj[0]);
-			debugger;
 			renderMap(busObj[1]);
 			let imgs = busObj[2].flat();
 			let reviews = busObj[3].flat();
@@ -377,7 +376,6 @@ window.onload = function() {
 
 	/* Form Post functions */
 	function createPostData(event) {
-		debugger;
 	let data = Array.from(event.target.elements)
 	let dataArray = []
 	data = data.forEach(el => {
