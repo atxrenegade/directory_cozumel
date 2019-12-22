@@ -37,7 +37,7 @@ class Entry < ApplicationRecord
 	def new_bus_entry(data)
 		data_array = []
 		data_array[0] = "new bus"
-		data_array[1] = 99
+		data_array[1] = 000
 		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
 		data_array[3] = "unspecified"
 		data_array[4] = "unspecified"
@@ -60,15 +60,15 @@ class Entry < ApplicationRecord
 	end
 
 	def new_review_entry(data)
-		data_obj = {}
-		data_obj.type = "new review"
-		data_obj.bus_id = data[""]
-		data_obj.date = data[""]
-		data_obj.data_array = [description, date, url, contributor, contributor_email]
-		data_obj.contributor = data[""]
-		data_obj.contributor_email = data[" "]
-		data_obj.notes = data[""]
-		build_record(data_obj)
+		data_array = []
+		data_array[0] = "new review"
+		data_array[1] = 0 #get business_id through post request
+		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+		data_array[3] = data[3][1] #contributor
+		data_array[4] = data[4][1] #contributor_email
+		#data_array content, contributor, contributor_email, rating, business_id
+		data_array[5] = [data[2][1], data[3][1], data[4][1],  data[1][1]]
+		build_record(data_array)
 	end
 
 	def new_update_entry(data)
