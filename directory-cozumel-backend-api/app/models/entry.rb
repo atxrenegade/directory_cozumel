@@ -1,6 +1,5 @@
 class Entry < ApplicationRecord
-	belongs_to :entryable, polymorphic: true
-	belongs_to :category
+	belongs_to :admin
 
 	def build_record(formatted_data)
 		record = Entry.new
@@ -14,7 +13,7 @@ class Entry < ApplicationRecord
 		record['resolved_date'] = 'n/a'
 		record['admin_id'] = 1
 		record['notes'] = ''
-		record.save
+		record.save!
 	end
 
 	def handle_record(params)
