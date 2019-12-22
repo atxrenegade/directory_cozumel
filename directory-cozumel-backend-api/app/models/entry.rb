@@ -31,11 +31,9 @@ class Entry < ApplicationRecord
 	end
 
 	def new_bus_entry(data)
-		binding.pry
 		data_obj = {}
 		data_obj['type'] = "new bus"
-		data_obj['date'] = ''
-		data_obj['contributor'] = ''
+		data_obj['date'] = ""
 		data_obj['contributor_email'] = ""
 		data_obj['bus_id'] = 'not yet assigned'
 		data_obj['data_array'] = [data[1][1], 'not yet rated', data[2][1], data[3][1], data[4][1]]
