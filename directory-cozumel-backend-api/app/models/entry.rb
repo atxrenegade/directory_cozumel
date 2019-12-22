@@ -11,27 +11,31 @@ class Entry < ApplicationRecord
 		recordObj.save
 	end
 
-	def resolve_record(data)
-		case record_type if data[0]['id']
-			case1 'new-bus'
+	def handle_record(data)
+		record_type = data[0]['id']
+		case record_type
+		when 'new-bus'
 				new_bus_entry(data)
 				break
-			case2 'new-review'
+			when 'new-review'
 				new_review_entry(data)
 				break
-			case3 'new-image'
+			when 'new-image'
 				new_image_entry(data)
 				break
-			case4 'bus-flag'
+			when 'bus-flag'
 				new_flag_entry(data)
 				break
-			case5 'bus-edit'
+			when 'bus-edit'
 				busUpdate(data)
 				break
+			else
+				return 'Entry type error'
 		end
 	end
 
 	def new_bus_entry(data)
+		binding.pry
 		data_obj = {}
 		data_obj.type = "new bus"
 		data_obj.date = data[""]
@@ -91,12 +95,12 @@ class Entry < ApplicationRecord
 
 	def resolve_new_business
 		#create new business and persist to database
-		resolve_entry();
+		resolve_entry()
 	end
 
 	def resolve_new_review
 		#create new business and persist to database
-		resolve_entry();
+		resolve_entry()
 	end
 
 	def resolve_new_image
