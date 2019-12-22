@@ -40,7 +40,7 @@ class Entry < ApplicationRecord
 		data_obj['contributor_email'] = "unspecified"
 		#data array should include name, categories, overall rating, address, phone number, website
 		#add categories to from for user to select values to be included in data_array
-		data_obj['data_array'] = [data[1][1], "hardcoded categories for testing", 'not yet rated',  data[2][1], data[3][1], data[4][1]]
+		data_obj['data_array'] = [data[1][1], "hardcoded categories for testing", 'not yet rated', data[2][1], data[3][1], data[4][1]]
 		build_record(data_obj)
 	end
 
