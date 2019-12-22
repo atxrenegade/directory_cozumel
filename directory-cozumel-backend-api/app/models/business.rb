@@ -7,9 +7,6 @@ class Business < ApplicationRecord
 	has_many :reviews#, dependent: :delete_all
 	has_many :images#, dependent: :delete_all
 	has_one :map#, dependent: :delete_all
-	has_many :entries, through: :photos
-	has_many :entries, through: :listings
-	has_many :entries, through: :reviews
 
 	def category_names
     self.categories.pluck(:name)

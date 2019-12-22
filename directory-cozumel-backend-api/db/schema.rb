@@ -50,11 +50,8 @@ ActiveRecord::Schema.define(version: 2019_11_18_055052) do
     t.string "resolved_date"
     t.integer "admin_id"
     t.string "notes"
-    t.string "entryable_type"
-    t.integer "entryable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["entryable_type", "entryable_id"], name: "index_entries_on_entryable_type_and_entryable_id"
   end
 
   create_table "images", force: :cascade do |t|

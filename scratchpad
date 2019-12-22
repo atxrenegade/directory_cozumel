@@ -54,3 +54,30 @@ flag business
 ['flag-content', content],
 ['flag-contributor', flag contributor],
 ['flag-email', contributor_email]]
+
+record = Entry.new
+record['type'] = "bus-new"
+record['bus_id'] = 99
+record['date'] = "2019-12-22 17:11:20"
+record['contributor'] = 'not specified'
+record['contributor_email'] = 'not specified'
+record['data_array'] = 'a bucnh of data'
+record['status'] = "pending"
+record['resolved_date'] = 'n/a'
+record['admin_id'] = 1
+record['notes'] = ''
+record.save
+
+
+type = "bus-new"
+bus_id = 99
+date = "2019-12-22 17:11:20"
+contributor = 'not specified'
+contributor_email = 'not specified'
+data_array = 'a bucnh of data'
+status = "pending"
+resolved_date = 'n/a'
+admin_id = 1
+notes = ''
+record = Entry.new(type, bus_id, date, contributor, contributor_email, data_array, status, resolved_date, admin_id, notes)
+record.save
