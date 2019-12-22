@@ -14,7 +14,6 @@ class Entry < ApplicationRecord
 		record['resolved_date'] = 'n/a'
 		record['admin_id'] = 1
 		record['notes'] = ''
-		binding.pry
 		record.save
 	end
 
