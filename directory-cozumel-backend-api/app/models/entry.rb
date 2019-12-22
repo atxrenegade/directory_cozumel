@@ -41,22 +41,10 @@ class Entry < ApplicationRecord
 		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
 		data_array[3] = "unspecified"
 		data_array[4] = "unspecified"
-		#data array should include name, categories, overall rating, address, phone number, website
+		#data_array[5] should include name, categories, overall rating, address, phone number, website
 		#add categories to from for user to select values to be included in data_array
 		data_array[5] = [data[1][1], "hardcoded categories for testing", 'not yet rated', data[2][1], data[3][1], data[4][1]]
 		build_record(data_array)
-	end
-
-	def new_image_entry(data)
-		data_obj = {}
-		data_obj.type = "new img"
-		data_obj.bus_id = data[""]
-		data_obj.date = data[""]
-		data_obj.data_array = [data['description'], data['date'], data['image-url'], data['image-contributor'], data['email']]
-		data_obj.contributor = data[""]
-		data_obj.contributor_email = data[""]
-		data_obj.notes = data[""]
-		build_record(data_obj)
 	end
 
 	def new_review_entry(data)
@@ -66,8 +54,20 @@ class Entry < ApplicationRecord
 		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
 		data_array[3] = data[3][1] #contributor
 		data_array[4] = data[4][1] #contributor_email
-		#data_array content, contributor, contributor_email, rating, business_id
+		#data_array[5] content, contributor, contributor_email, rating, business_id
 		data_array[5] = [data[2][1], data[3][1], data[4][1],  data[1][1]]
+		build_record(data_array)
+	end
+
+	def new_image_entry(data)
+		data_array = []
+		data_array[0] = "new image"
+		data_array[1] = 0 #get business_id through post request
+		data_array[2] = data[3][1] #date of image
+		data_array[3] = data[4][1] #contributor
+		data_array[4] = data[5][1] #contributor_email
+		#data_array[5] should include description, date, url, contributor, contributor_email, business_id
+		data_array[5] = [data[2][1], data_array[2], data[1][2], data_array[3], data_array[4], data_array[1]]
 		build_record(data_array)
 	end
 
