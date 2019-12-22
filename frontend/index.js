@@ -202,6 +202,7 @@ window.onload = function() {
 	}
 
 	function postForm(data) {
+		console.log(data)
 		let configObj = {
 			method: 'POST',
 			headers: {
@@ -376,6 +377,7 @@ window.onload = function() {
 
 	/* Form Post functions */
 	function createPostData(event) {
+		debugger;
 	let data = Array.from(event.target.elements)
 	let dataArray = []
 	data = data.forEach(el => {

@@ -11,24 +11,20 @@ class Entry < ApplicationRecord
 		recordObj.save
 	end
 
-	def handle_record(data)
-		record_type = data[0]['id']
+	def handle_record(params)
+		data = params["_json"]
+		record_type = data[0]
 		case record_type
 		when 'new-bus'
 				new_bus_entry(data)
-				break
 			when 'new-review'
 				new_review_entry(data)
-				break
 			when 'new-image'
 				new_image_entry(data)
-				break
 			when 'bus-flag'
 				new_flag_entry(data)
-				break
 			when 'bus-edit'
 				busUpdate(data)
-				break
 			else
 				return 'Entry type error'
 		end
@@ -37,11 +33,12 @@ class Entry < ApplicationRecord
 	def new_bus_entry(data)
 		binding.pry
 		data_obj = {}
-		data_obj.type = "new bus"
-		data_obj.date = data[""]
-		data_obj.overall_rating = 'not yet rated'
-		data_obj.data_array = [data['bus-name'], overall_rating, data['address'], data['bus-phone_number'], data['bus-website']]
-		data_obj.notes = data[""]
+		data_obj['type'] = "new bus"
+		data_obj['date'] = ''
+		data_obj['contributor'] = ''
+		data_obj['contributor_email'] = ""
+		data_obj['bus_id'] = 'not yet assigned'
+		data_obj['data_array'] = [data[1][1], 'not yet rated', data[2][1], data[3][1], data[4][1]]
 		build_record(data_obj)
 	end
 
