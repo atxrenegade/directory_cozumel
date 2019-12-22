@@ -7,7 +7,8 @@ class Entry < ApplicationRecord
 		recordObj = {}
 		recordObj.status = "pending"
 		recordObj.resolved_date = 'n/a'
-		recordObj.admin_id = 1;
+		recordObj.admin_id = 1
+		recordObj.notes = ''
 		recordObj.save
 	end
 
@@ -33,10 +34,13 @@ class Entry < ApplicationRecord
 	def new_bus_entry(data)
 		data_obj = {}
 		data_obj['type'] = "new bus"
-		data_obj['date'] = ""
-		data_obj['contributor_email'] = ""
 		data_obj['bus_id'] = 'not yet assigned'
-		data_obj['data_array'] = [data[1][1], 'not yet rated', data[2][1], data[3][1], data[4][1]]
+		data_obj['date'] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+		data_obj['contributor'] = "unspecified"
+		data_obj['contributor_email'] = "unspecified"
+		#data array should include name, categories, overall rating, address, phone number, website
+		#add categories to from for user to select values to be included in data_array
+		data_obj['data_array'] = [data[1][1], "hardcoded categories for testing", 'not yet rated',  data[2][1], data[3][1], data[4][1]]
 		build_record(data_obj)
 	end
 

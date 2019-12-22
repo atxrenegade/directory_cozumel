@@ -41,13 +41,15 @@ ActiveRecord::Schema.define(version: 2019_11_18_055052) do
 
   create_table "entries", force: :cascade do |t|
     t.string "type"
+    t.integer "bus_id"
     t.string "date"
     t.string "contributor"
     t.string "contributor_email"
-    t.string "data_object_string"
-    t.string "notes"
+    t.string "data_array"
+    t.string "status"
     t.string "resolved_date"
     t.integer "admin_id"
+    t.string "notes"
     t.string "entryable_type"
     t.integer "entryable_id"
     t.datetime "created_at", null: false
