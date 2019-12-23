@@ -78,8 +78,8 @@ class Entry < ApplicationRecord
 		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S") #date of update request
 		data_array[3] = data[2][1] #contributor
 		data_array[4] = data[3][1] #contributor_email
-		#data_array[5] should include content, business_id
-		data_array[5] = [data[1][2], data_array[1]]
+		#data_array[5] should include business_id and content
+		data_array[5] = [data_array[1], data[1][1]]
 		build_record(data_array)
 	end
 
@@ -90,8 +90,8 @@ class Entry < ApplicationRecord
 		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S") #date of update request
 		data_array[3] = data[2][1] #contributor
 		data_array[4] = data[3][1] #contributor_email
-		#data_array[5] should include content, business_id
-		data_array[5] = [data[1][2], data_array[1]]
+		#data_array[5] should include business_id and content
+		data_array[5] = [data_array[1], data[1][1]]
 		build_record(data_array)
 	end
 
