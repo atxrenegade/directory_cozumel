@@ -50,7 +50,7 @@ class Entry < ApplicationRecord
 	def new_review_entry(data)
 		data_array = []
 		data_array[0] = "new review"
-		data_array[1] = 0 #get business_id through post request
+		data_array[1] = getBusId(data[6])
 		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
 		data_array[3] = data[3][1] #contributor
 		data_array[4] = data[4][1] #contributor_email
@@ -62,7 +62,7 @@ class Entry < ApplicationRecord
 	def new_image_entry(data)
 		data_array = []
 		data_array[0] = "new image"
-		data_array[1] = 0 #get business_id through post request
+		data_array[1] = getBusId(data[6])
 		data_array[2] = data[3][1] #date of image
 		data_array[3] = data[4][1] #contributor
 		data_array[4] = data[5][1] #contributor_email
@@ -74,7 +74,7 @@ class Entry < ApplicationRecord
 	def new_update_entry(data)
 		data_array = []
 		data_array[0] = "update business"
-		data_array[1] = 0 #get business_id through post request
+		data_array[1] = getBusId(data[6])
 		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S") #date of update request
 		data_array[3] = data[2][1] #contributor
 		data_array[4] = data[3][1] #contributor_email
@@ -86,13 +86,17 @@ class Entry < ApplicationRecord
 	def new_flag_entry(data)
 		data_array = []
 		data_array[0] = "flag business"
-		data_array[1] = 0 #get business_id through post request
+		data_array[1] = getBusId(data[6])
 		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S") #date of update request
 		data_array[3] = data[2][1] #contributor
 		data_array[4] = data[3][1] #contributor_email
 		#data_array[5] should include business_id and content
 		data_array[5] = [data_array[1], data[1][1]]
 		build_record(data_array)
+	end
+
+	def getBusId(id)
+		return Business.find_by_name(id).id
 	end
 
 	def resolve_new_business

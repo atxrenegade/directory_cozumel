@@ -332,7 +332,7 @@ window.onload = function() {
 		businessListings.innerHTML = '';
 		detailedListingMenu.style.display = 'block';
 		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `<p>${busObj.name}<br>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
+		newDiv.innerHTML = `<h3 id='bus_name'>   ${busObj.name}</h3><p>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
 	}
 
@@ -375,14 +375,20 @@ window.onload = function() {
 	}
 
 	/* Form Post functions */
-	function createPostData(event) {
+	function createPostData(event, busName) {
 	let data = Array.from(event.target.elements)
 	let dataArray = []
 	data = data.forEach(el => {
 		dataArray.push([el["id"], el["value"]])
 	})
-	dataArray.pop();
+	dataArray.pop
+	dataArray.push(busName);
+	console.log(dataArray);
 	postForm(dataArray);
+	}
+
+	function getBusNameForAssoForm(){
+		return document.querySelector('h3#bus_name').innerText;
 	}
 
 	/* Admin Panel functions */
@@ -451,7 +457,8 @@ window.onload = function() {
 	/* Form Event Listeners */
 	document.addEventListener( "submit", function ( event ) {
 		event.preventDefault();
-		createPostData(event);
+		let busName = getBusNameForAssoForm();
+		createPostData(event, busName);
 		formSubmitted(event);
 	} );
 
