@@ -28,7 +28,7 @@ class Entry < ApplicationRecord
 			when 'bus-flag'
 				new_flag_entry(data)
 			when 'bus-edit'
-				busUpdate(data)
+				new_update_entry(data)
 			else
 				return 'Entry type error'
 		end
