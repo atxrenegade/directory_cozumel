@@ -107,6 +107,10 @@ window.onload = function() {
 
 	function toggleNewBusinessForm() {
 		$('#js-add-business-form-container').toggle();
+		if (CATS.length === 0) {
+					collectCategories();
+			};
+			renderNewBusCatSelect();
 	}
 
 	/* API REQUESTS */
@@ -317,6 +321,7 @@ window.onload = function() {
 
 	/* Render functions */
 	function renderCategoriesMenu() {
+		debugger;
 		if (searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
@@ -374,6 +379,21 @@ window.onload = function() {
 		newDiv.innerHTML = `<p>${reviewObj.content}<br>Rating: ${reviewObj.rating}<br>${reviewObj.contributor}<br>${reviewObj.date}</p>`;
 		businessDetails.appendChild(newDiv);
 	}
+
+	/* New Bus Form Select */
+		function renderNewBusCatSelect(){
+			if (CATS.length == 0){
+				collectCategories();
+			}
+			let catMenu = document.createElement('div');
+			let html = '<select id= "cat-select" multiple>';
+			let cats = CATS.map((el) => {
+				return `<option value='${el}'> ${el} </option>`;
+			})
+			html += cats + '</select>';
+			catMenu.innerHTML = html;
+			newBusCatSelect.appendChild(catMenu)
+	};
 
 	/* Form Post functions */
 	function createPostData(event, busName) {
