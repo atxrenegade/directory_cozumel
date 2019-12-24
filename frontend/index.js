@@ -337,7 +337,7 @@ window.onload = function() {
 		businessListings.innerHTML = '';
 		detailedListingMenu.style.display = 'block';
 		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `<h3 id='bus_name'>   ${busObj.name}</h3><p>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
+		newDiv.innerHTML = `<h3 id='bus-name'>   ${busObj.name}</h3><p>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
 	}
 
@@ -407,8 +407,12 @@ window.onload = function() {
 	}
 
 	function getBusNameForAssoForm(){
-		/* add if statement for nil value for new bus form */
-		return document.querySelector('h3#bus_name').innerText;
+ 		let busName =
+		 document.querySelector('h3#bus-name').innerText;
+		 if (busName === nil){
+			 busName =  document.getElementById('bus-name').innerText;
+		 }
+		 return busName
 	}
 
 	/* Admin Panel functions */
