@@ -25,6 +25,7 @@ window.onload = function() {
 
 	/* add business form elements */
 	let newBusinessButton = document.getElementById('js-add-button');
+	let newBusCatSelect = document.getElementById('js-new-bus-select');
 
 	/* admin hidden button element */
 	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
@@ -35,7 +36,6 @@ window.onload = function() {
 	let adminPanelLogin = document.getElementById('js-admin-login-button');
 	let adminUsernameField = document.getElementById('js-admin-username')
 	let adminPasswordField = document.getElementById('js-admin-password')
-
 	let adminPanelLogout = document.getElementById('js-admin-logout-button')
 	let adminPanelForm = document.getElementById('js-admin-login')
 	let adminUserInfo = document.getElementById('js-admin-user-info')
