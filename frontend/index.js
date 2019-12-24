@@ -321,7 +321,6 @@ window.onload = function() {
 
 	/* Render functions */
 	function renderCategoriesMenu() {
-		debugger;
 		if (searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
@@ -510,6 +509,7 @@ window.onload = function() {
 		Array.from(elements).forEach(el => el.value = '')
 		ALL = [];
 		CATS = [];
+		collectCategories();
 	}
 	resetPage();
 }
