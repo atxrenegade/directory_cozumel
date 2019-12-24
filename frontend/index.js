@@ -60,9 +60,10 @@ window.onload = function() {
 		searchByName.style.display = 'none';
 		searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
-		if (categoriesNames.length === 0) {
+		if (CATS.length === 0) {
 				collectCategories();
 		};
+		renderCategoriesMenu();
 	}
 
 	function toggleNameMenu() {
@@ -80,15 +81,6 @@ window.onload = function() {
 		searchNameField.value = '';
 	}
 
-	/* search by category functions */
-	/*function renderCategories(data) {
-		let categoryObjects = Array.from(data);
-		categoriesNames = categoryObjects.map((el) => {
-			return el["name"]
-		})
-		renderCategoriesMenu(categoriesNames);
-	}
-*/
 	function retrieveSearchCategoryResults() {
 		detailedListingMenu.style.display = 'none';
 		listingsContainer.style.display = 'block';
@@ -125,7 +117,6 @@ window.onload = function() {
 			fetch(url)
 			.then(resp => resp.json())
 			.then(json => storeCategories(json))
-			/* renderCategories */
 		}
 		catch(err) {
 			console.log(error.message);
@@ -325,11 +316,11 @@ window.onload = function() {
 	}
 
 	/* Render functions */
-	function renderCategoriesMenu(categoriesNames) {
+	function renderCategoriesMenu() {
 		if (searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
-			let cats = categoriesNames.map((el) => {
+			let cats = CATS.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
 			html += cats + '</select>';
@@ -393,11 +384,11 @@ window.onload = function() {
 	})
 	dataArray.pop
 	dataArray.push(busName);
-	console.log(dataArray);
 	postForm(dataArray);
 	}
 
 	function getBusNameForAssoForm(){
+		/* add if statement for nil value for new bus form */
 		return document.querySelector('h3#bus_name').innerText;
 	}
 
