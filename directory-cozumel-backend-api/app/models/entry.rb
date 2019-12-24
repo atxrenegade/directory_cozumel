@@ -43,7 +43,7 @@ class Entry < ApplicationRecord
 		data_array[4] = "unspecified"
 		#data_array[5] should include name, categories, overall rating, address, phone number, website
 		#add categories to from for user to select values to be included in data_array
-		data_array[5] = [data[1][1], "hardcoded categories for testing", 'not yet rated', data[2][1], data[3][1], data[4][1]]
+		data_array[5] = [data[1][1], data[5][1], 'not yet rated', data[2][1], data[3][1], data[4][1]]
 		build_record(data_array)
 	end
 
