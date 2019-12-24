@@ -1,8 +1,10 @@
 window.onload = function() {
 	mykey = config.MY_KEY;
 	ALL = [];
+	CATS = [];
 	LAT = 20.42;
 	LNG = -86.92;
+
 
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
@@ -79,14 +81,14 @@ window.onload = function() {
 	}
 
 	/* search by category functions */
-	function renderCategories(data) {
+	/*function renderCategories(data) {
 		let categoryObjects = Array.from(data);
 		categoriesNames = categoryObjects.map((el) => {
 			return el["name"]
 		})
 		renderCategoriesMenu(categoriesNames);
 	}
-
+*/
 	function retrieveSearchCategoryResults() {
 		detailedListingMenu.style.display = 'none';
 		listingsContainer.style.display = 'block';
@@ -122,7 +124,8 @@ window.onload = function() {
 			url = 'http://localhost:3000/categories'
 			fetch(url)
 			.then(resp => resp.json())
-			.then(json => renderCategories(json))
+			.then(json => storeCategories(json))
+			/* renderCategories */
 		}
 		catch(err) {
 			console.log(error.message);
@@ -226,6 +229,13 @@ window.onload = function() {
 	}
 
 	/* Search Results functions */
+	function storeCategories(data){
+		let categoryObjects = Array.from(data);
+		CATS = categoryObjects.map((el) => {
+			return el["name"]
+		})
+	}
+
 	function returnResults(data){
 		data = Array.from(data)
 		if (data[0] == undefined) {
@@ -488,6 +498,7 @@ window.onload = function() {
 		let elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
 		ALL = [];
+		CATS = [];
 	}
 	resetPage();
 }
