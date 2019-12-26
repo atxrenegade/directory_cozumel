@@ -337,7 +337,7 @@ window.onload = function() {
 		businessListings.innerHTML = '';
 		detailedListingMenu.style.display = 'block';
 		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `<h3 id='bus-name'>   ${busObj.name}</h3><p>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
+		newDiv.innerHTML = `<h3 id='listing-bus-name'>   ${busObj.name}</h3><p>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
 	}
 
@@ -380,39 +380,41 @@ window.onload = function() {
 	}
 
 	/* New Bus Form Select */
-		function renderNewBusCatSelect(){
-			if (CATS.length == 0){
-				collectCategories();
-			}
-			let catMenu = document.createElement('div');
-			let html = '<select id= "cat-select" multiple>';
-			let cats = CATS.map((el) => {
-				return `<option value='${el}'> ${el} </option>`;
-			})
-			html += cats + '</select>';
-			catMenu.innerHTML = html;
-			newBusCatSelect.appendChild(catMenu)
+	function renderNewBusCatSelect(){
+		if (CATS.length == 0){
+			collectCategories();
+		}
+		let catMenu = document.createElement('div');
+		let html = '<select id= "cat-select" multiple>';
+		let cats = CATS.map((el) => {
+			return `<option value='${el}'> ${el} </option>`;
+		})
+		html += cats + '</select>';
+		catMenu.innerHTML = html;
+		newBusCatSelect.appendChild(catMenu)
 	};
 
 	/* Form Post functions */
 	function createPostData(event, busName) {
-	let data = Array.from(event.target.elements)
-	let dataArray = []
-	data = data.forEach(el => {
-		dataArray.push([el["id"], el["value"]])
-	})
-	dataArray.pop
-	dataArray.push(busName);
-	postForm(dataArray);
+		let data = Array.from(event.target.elements)
+		let dataArray = []
+		data = data.forEach(el => {
+			dataArray.push([el["id"], el["value"]])
+		})
+		dataArray.pop
+		dataArray.push(busName);
+		postForm(dataArray);
 	}
 
-	function getBusNameForAssoForm(){
- 		let busName =
-		 document.querySelector('h3#bus-name').innerText;
-		 if (busName === nil){
-			 busName =  document.getElementById('bus-name').innerText;
-		 }
-		 return busName
+	function getBusNameForAssoForm(event){
+		let busName = ''
+		/* checks for new business form vs. forms for reviews, image, update, or flag exisiting */
+		if (event.target[0].id === 'new-bus'){
+			busName = document.getElementById('bus-name').value;
+		} else {
+			busName = document.getElementById('listing-bus-name').innerText;
+		}
+		return busName;
 	}
 
 	/* Admin Panel functions */
@@ -481,10 +483,11 @@ window.onload = function() {
 	/* Form Event Listeners */
 	document.addEventListener( "submit", function ( event ) {
 		event.preventDefault();
-		let busName = getBusNameForAssoForm();
+		let busName = getBusNameForAssoForm(event);
+		debugger;
 		createPostData(event, busName);
 		formSubmitted(event);
-	} );
+	});
 
 	/* remove form success message */
 	document.addEventListener( 'click', function (event) {
