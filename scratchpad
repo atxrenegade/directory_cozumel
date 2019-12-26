@@ -90,3 +90,13 @@ admin_id = 1
 notes = ''
 record = Entry.new(type, bus_id, date, contributor, contributor_email, data_array, status, resolved_date, admin_id, notes)
 record.save
+
+<tr> <!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
+	<td> 1 </td>
+	<td> 12/23/19 </td>
+	<td> LISTING </td>
+	<td> APPROVED </td>
+	<td> 12/24/19 </td>
+	<td> 001 </td>
+	<td> <button id='admin-entry-show-details'> More </button> </td>
+</tr>

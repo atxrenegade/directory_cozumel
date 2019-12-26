@@ -222,23 +222,17 @@
 						<h2> ENTRIES FOR REVIEW </h2>
 						<tr>
 							<th>ID </th>
-							<th>DATE </th>
+							<th>DATE CREATED</th>
+							<th>BUS ID </th>
 							<th>TYPE </th>
-							<th>STATUS </th>
-							<th>RESOLVED DATE</th>
+							<th>DATA ARRAY</th>
 							<th>ADMIN ID</th>
-							<th> REVIEW </th>
+							<th>STATUS </th>
+							<th>ADMIN ID</th>
+							<th>REVIEW DETAILS</th>
 						</tr>
-						<tbody>
-							<tr> <!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
-								<td> 1 </td>
-								<td> 12/23/19 </td>
-								<td> LISTING </td>
-								<td> APPROVED </td>
-								<td> 12/24/19 </td>
-								<td> 001 </td>
-								<td> <button id='admin-entry-show-details'> More </button> </td>
-							</tr>
+						<tbody id= 'admin-index-table'>
+							<!-- dynamically generate pending entries here -->
 						</tbody>
 					</table>
 					<br>
