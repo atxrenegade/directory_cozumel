@@ -223,6 +223,19 @@ window.onload = function() {
 		}
 	}
 
+	/* ADMIN API FUNCTIONS  */
+	function indexPendingEntries() {
+		try {
+			url = 'http://localhost:3000/entries'
+			fetch(url)
+			.then(resp => resp.json())
+			.then(json => buildEntries(json))
+		}
+		catch(err) {
+			console.log(error.message);
+		}
+	}
+
 	/* Search Results functions */
 	function storeCategories(data){
 		let categoryObjects = Array.from(data);
@@ -437,7 +450,7 @@ window.onload = function() {
 			adminPanelLogout.style.display = "block";
 			adminPanelForm.style.display = "none";
 			adminUserInfo.style.display = "block";
-
+			generatePendingEntryTable();
 		} else {
 			alert('You are not authorized to access admininstrative tasks!')
 		}
@@ -450,6 +463,16 @@ window.onload = function() {
 
 	function loggedIn() {
 		return true;
+	}
+
+	function generatePendingEntryTable(){
+		let entries = Array.from(indexPendingEntries());
+		console.log(entries);
+	}
+
+	function buildEntries(json){
+		console.log(json)
+		debugger;
 	}
 
 	/* EVENT LISTENERS */
@@ -499,6 +522,7 @@ window.onload = function() {
 	/* Admin Panel Listeners */
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
 	adminPanelLogin.addEventListener("click", showAdminView);
+
 
 	/* Clear Form to set initial state */
 	function resetPage() {
