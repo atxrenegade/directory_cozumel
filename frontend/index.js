@@ -481,6 +481,7 @@ window.onload = function() {
 			let cell6 = row.insertCell(5);
 			let cell7 = row.insertCell(6);
 			let cell8 = row.insertCell(7);
+			let cell9 = row.insertCell(8);
 			cell1.innerHTML = el.id;
 			cell2.innerHTML = el.dateCreated;
 			cell3.innerHTML = el.busId;
@@ -489,6 +490,7 @@ window.onload = function() {
 			cell6.innerHTML = el.adminId;
 			cell7.innerHTML = el.status;
 			cell8.innerHTML = el.notes;
+			cell9.innerHTML = "<button id='admin-entry-show-details'> More </button>"
 			i += 1;
 		})
 	}
