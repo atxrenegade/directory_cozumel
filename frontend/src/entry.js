@@ -1,15 +1,16 @@
 class Entry {
-	constructor(id, dateCreated, busId, entryType, contributor, contributorEmail, dataArray, adminId, resolvedDate, status, notes) {
+	constructor(id, entryType, busId, dateCreated, contributor, contributorEmail, dataArray, status, resolvedDate, adminId, notes) {
 		this.id = id;
-		this.dateCreated = dateCreated;
-		this.busId = busId;
 		this.entryType = entryType;
+		this.busId = busId;
+		this.dateCreated = dateCreated;
 		this.contributor = contributor;
 		this.contributorEmail = contributorEmail;
 		this.dataArray = dataArray;
-		this.adminId = adminId;
-		this.resolvedDate = resolvedDate;
 		this.status = status;
+		this.resolvedDate = resolvedDate;
+		this.adminId = adminId;
 		this.notes = notes;
+		ENTRIES.push(this)
 	}
 }

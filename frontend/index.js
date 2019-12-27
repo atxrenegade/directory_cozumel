@@ -2,6 +2,7 @@ window.onload = function() {
 	mykey = config.MY_KEY;
 	ALL = [];
 	CATS = [];
+	ENTRIES = [];
 	LAT = 20.42;
 	LNG = -86.92;
 
@@ -466,14 +467,26 @@ window.onload = function() {
 	}
 
 	function generatePendingEntryTable(){
-		let entries = Array.from(indexPendingEntries());
-		/* let dbArray = Array.from() */
-		buildEntries(entries);
+		indexPendingEntries();
+		console.log(ENTRIES)
 	}
 
-	function buildEntries(json){
-		debugger;
-		/* build JS entry objects with JS Entry class*/
+	function buildEntries(entries){
+		entries.forEach(el => {
+			id = el['id'];
+			entryType = el['entry_type'];
+			busId = el['bus_id'];
+			dateCreated = el['date'];
+			contributor = el['contributor'];
+			contributorEmail = el['contributor_email'];
+			dataArray = el['data_array'];
+			status = el['status'];
+			resolvedDate = el['resolved_date'];
+			adminId = el['admin_id'];
+			notes = el['notes'];
+
+			newEntry = new Entry(id, entryType, busId, dateCreated, contributor, contributorEmail, dataArray, status, resolvedDate, adminId, notes)
+		})
 	}
 
 	/* EVENT LISTENERS */
@@ -508,7 +521,6 @@ window.onload = function() {
 	document.addEventListener( "submit", function ( event ) {
 		event.preventDefault();
 		let busName = getBusNameForAssoForm(event);
-		debugger;
 		createPostData(event, busName);
 		formSubmitted(event);
 	});
@@ -541,6 +553,7 @@ window.onload = function() {
 		Array.from(elements).forEach(el => el.value = '')
 		ALL = [];
 		CATS = [];
+		ENTRIES = [];
 		collectCategories();
 	}
 	resetPage();
