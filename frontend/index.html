@@ -239,48 +239,37 @@
 					<br>
 					<table id='admin-entry-show-details-table-1'>
 						<h2> ENTRY DETAILS AND ADMIN FUNCTIONS </h2>
-						<!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
 						<tr>
-							<th>ID </th>
-							<th>ENTRY DATE </th>
-							<th>TYPE </th>
-							<th>CONTRIBUTOR </th>
-							<th>EMAIL </th>
+							<th>ID</th>
+							<th>DATE CREATED</th>
+							<th>BUS ID</th>
+							<th>BUS NAME</th>
+							<th>TYPE</th>
 						</tr>
-						<tbody>
-							<tr>
-								<td>1 </td>
-								<td>12/23/19 </td>
-								<td> LISTING </td>
-								<td> Mike Brownstone </td>
-								<td> bigmike@gmail.com </td>
-							<tr>
+						<tbody id='detailed-entry-table-1'>
 						</tbody>
 					</table>
 					<table id='admin-entry-show-details-table-2'>
 						<tr>
-							<th>RESOLVED DATE</th>
-							<th>ADMIN ID</th>
-							<th>NOTES</th>
+							<th>CONTRIBUTOR </th>
+							<th>CONTRIBUTOR EMAIL </th>
+							<th>DATA ARRAY</th>
 						</tr>
-						<tbody>
-							<tr>
-								<td> 12/26/19 </td>
-								<td> 001 </td>
-								<td> Check business phone number in 30 days</td>
-							</tr>
+						<tbody id='detailed-entry-table-2'>
 						</tbody>
 					</table>
 					<table id='admin-entry-show-details-table-3'>
 						<tr>
-							<th>DATA FOR REVIEW </th>
+							<th>ADMIN ID</th>
+							<th>STATUS </th>
+							<th>RESOLVED DATE</th>
+							<th>NOTES</th>
 						</tr>
-						<tbody>
-							<tr>
-								<td> {LISTING OBJECT HERE} </td>
-							</tr>
+						<tbody id='detailed-entry-table-3'>
 						</tbody>
 					</table>
+					<br>
+					<button id='admin-approve'>ADD NOTES</button>
 					<button id='admin-approve'>APPROVE</button>
 					<button id='admin-reject'>REJECT</button>
 					<button id='admin-revise'>REVISE</button>
