@@ -147,4 +147,8 @@ class Entry < ApplicationRecord
 	def delete_review
 
 	end
+
+	def self.collect_pending
+		return Entry.where(status: 'pending')
+	end
 end

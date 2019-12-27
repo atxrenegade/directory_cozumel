@@ -467,12 +467,13 @@ window.onload = function() {
 
 	function generatePendingEntryTable(){
 		let entries = Array.from(indexPendingEntries());
-		console.log(entries);
+		/* let dbArray = Array.from() */
+		buildEntries(entries);
 	}
 
 	function buildEntries(json){
-		console.log(json)
 		debugger;
+		/* build JS entry objects with JS Entry class*/
 	}
 
 	/* EVENT LISTENERS */
