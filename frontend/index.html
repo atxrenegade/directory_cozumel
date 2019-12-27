@@ -12,7 +12,6 @@
 		<script src='src/GoogleMap.js'></script>
 		<script src='src/entry.js'></script>
 		<script src='index.js'></script>
-
   </head>
   <body>
     <header>
@@ -218,61 +217,65 @@
 
 			<div id='js-admin-panel-container' class='tile'>
 				<fieldset id='js-admin-panel'>
-					<legend>Admin Panel</legend>
-					<table id='admin-entry-log'>
-						<h2> ENTRIES FOR REVIEW </h2>
-						<tr>
-							<th>ID </th>
-							<th>DATE CREATED</th>
-							<th>BUS ID </th>
-							<th>TYPE </th>
-							<th>DATA ARRAY</th>
-							<th>ADMIN ID</th>
-							<th>STATUS </th>
-							<th>NOTES</th>
-							<th>REVIEW DETAILS BUTTON</th>
-						</tr>
-						<tbody id='index-entry-table-body'>
-							<!-- dynamically generate pending entries here -->
-						</tbody>
-					</table>
-					<br>
-					<table id='admin-entry-show-details-table-1'>
-						<h2> ENTRY DETAILS AND ADMIN FUNCTIONS </h2>
-						<tr>
-							<th>ID</th>
-							<th>DATE CREATED</th>
-							<th>BUS ID</th>
-							<th>BUS NAME</th>
-							<th>TYPE</th>
-						</tr>
-						<tbody id='detailed-entry-table-1'>
-						</tbody>
-					</table>
-					<table id='admin-entry-show-details-table-2'>
-						<tr>
-							<th>CONTRIBUTOR </th>
-							<th>CONTRIBUTOR EMAIL </th>
-							<th>DATA ARRAY</th>
-						</tr>
-						<tbody id='detailed-entry-table-2'>
-						</tbody>
-					</table>
-					<table id='admin-entry-show-details-table-3'>
-						<tr>
-							<th>ADMIN ID</th>
-							<th>STATUS </th>
-							<th>RESOLVED DATE</th>
-							<th>NOTES</th>
-						</tr>
-						<tbody id='detailed-entry-table-3'>
-						</tbody>
-					</table>
-					<br>
-					<button id='admin-approve'>ADD NOTES</button>
-					<button id='admin-approve'>APPROVE</button>
-					<button id='admin-reject'>REJECT</button>
-					<button id='admin-revise'>REVISE</button>
+					<div id='admin-entry-table'
+						<legend>Admin Panel</legend>
+						<table id='admin-entry-log'>
+							<h2> ENTRIES FOR REVIEW </h2>
+							<tr>
+								<th>ID </th>
+								<th>DATE CREATED</th>
+								<th>BUS ID </th>
+								<th>TYPE </th>
+								<th>DATA ARRAY</th>
+								<th>ADMIN ID</th>
+								<th>STATUS </th>
+								<th>NOTES</th>
+								<th>REVIEW DETAILS BUTTON</th>
+							</tr>
+							<tbody id='index-entry-table-body'>
+								<!-- dynamically generate pending entries here -->
+							</tbody>
+						</table>
+						<br>
+					</div>	
+					<div id='entry-details-tables'>
+						<table id='admin-entry-show-details-table-1'>
+							<h2> ENTRY DETAILS AND ADMIN FUNCTIONS </h2>
+							<tr>
+								<th>ID</th>
+								<th>DATE CREATED</th>
+								<th>BUS ID</th>
+								<th>BUS NAME</th>
+								<th>TYPE</th>
+							</tr>
+							<tbody id='detailed-entry-table-1'>
+							</tbody>
+						</table>
+						<table id='admin-entry-show-details-table-2'>
+							<tr>
+								<th>CONTRIBUTOR </th>
+								<th>CONTRIBUTOR EMAIL </th>
+								<th>DATA ARRAY</th>
+							</tr>
+							<tbody id='detailed-entry-table-2'>
+							</tbody>
+						</table>
+						<table id='admin-entry-show-details-table-3'>
+							<tr>
+								<th>ADMIN ID</th>
+								<th>STATUS </th>
+								<th>RESOLVED DATE</th>
+								<th>NOTES</th>
+							</tr>
+							<tbody id='detailed-entry-table-3'>
+							</tbody>
+						</table>
+						<br>
+						<button id='admin-approve'>ADD NOTES</button>
+						<button id='admin-approve'>APPROVE</button>
+						<button id='admin-reject'>REJECT</button>
+						<button id='admin-revise'>REVISE</button>
+					</div>
 				</fieldset>
 			</div>
     </main>

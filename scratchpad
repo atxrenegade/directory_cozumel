@@ -120,3 +120,16 @@ updated_at	2019-12-26T22:51:18.446Z
 	/* cell9.innerHTML = "<button id='admin-entry-show-details'> More </button>" */
 
 	RACE CONDITION WITH indexPendingEntries()?
+
+ADMIN - reject entry
+		add Event Listener to reject button
+		create reject function:
+			change entry values /status/date resolved/admin_id
+			reject function should create post request to entries entry table
+			return to updated entries index
+
+			3 FUNCTIONS
+
+			rejectEntry() - calls all other rejectFunctions;
+			postReject() - posts updated reject values;
+			displayReject() - updates DOM, returns to updated entries index

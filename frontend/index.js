@@ -42,6 +42,10 @@ window.onload = function() {
 	let adminPanelLogout = document.getElementById('js-admin-logout-button')
 	let adminPanelForm = document.getElementById('js-admin-login')
 	let adminUserInfo = document.getElementById('js-admin-user-info')
+	/* admin index table elements */
+	let indexTable = document.getElementById('admin-entry-table')
+	/* admin details table elements */
+	let detailsTable = document.getElementById('entry-details-tables')
 
 	/* container elements */
 	let sponsListContainer = document.getElementById('sponsored-listing-container')
@@ -499,6 +503,8 @@ window.onload = function() {
 			detailedEntryButtons.forEach(button => {
 				document.addEventListener('click', event => {
 					if (document.getElementById('detailed-entry-table-1').children.length === 0) {
+						indexTable.style.display = 'none';
+						detailsTable.style.display = 'block';
 						generateDetailedEntryTable(event);
 					}
 				})
@@ -621,6 +627,8 @@ window.onload = function() {
 		businessDetails.style.display = "none";
 		let elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
+		indexTable.style.display = 'block';
+		detailsTable.style.display = 'none';
 		ALL = [];
 		CATS = [];
 		ENTRIES = [];
