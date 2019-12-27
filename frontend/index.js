@@ -467,32 +467,33 @@ window.onload = function() {
 	}
 
 	function generatePendingEntryTable(){
-		debugger;
 		indexPendingEntries();
-		let indexBody = document.getElementById('index-entry-table-body');
-		let i = 0;
-		ENTRIES.forEach(el => {
-			let row = indexBody.insertRow(i);
-			let cell1 = row.insertCell(0);
-			let cell2 = row.insertCell(1);
-			let cell3 = row.insertCell(2);
-			let cell4 = row.insertCell(3);
-			let cell5 = row.insertCell(4);
-			let cell6 = row.insertCell(5);
-			let cell7 = row.insertCell(6);
-			let cell8 = row.insertCell(7);
-			let cell9 = row.insertCell(8);
-			cell1.innerHTML = el.id;
-			cell2.innerHTML = el.dateCreated;
-			cell3.innerHTML = el.busId;
-			cell4.innerHTML = el.entryType;
-			cell5.innerHTML = el.dataArray;
-			cell6.innerHTML = el.adminId;
-			cell7.innerHTML = el.status;
-			cell8.innerHTML = el.notes;
-			cell9.innerHTML = "<button id='admin-entry-show-details'> More </button>"
-			i += 1;
-		})
+		setTimeout(function(){
+			let indexBody = document.getElementById('index-entry-table-body');
+			let i = 0;
+			ENTRIES.forEach(el => {
+				let row = indexBody.insertRow(i);
+				let cell1 = row.insertCell(0);
+				let cell2 = row.insertCell(1);
+				let cell3 = row.insertCell(2);
+				let cell4 = row.insertCell(3);
+				let cell5 = row.insertCell(4);
+				let cell6 = row.insertCell(5);
+				let cell7 = row.insertCell(6);
+				let cell8 = row.insertCell(7);
+				let cell9 = row.insertCell(8);
+				cell1.innerHTML = el.id;
+				cell2.innerHTML = el.dateCreated;
+				cell3.innerHTML = el.busId;
+				cell4.innerHTML = el.entryType;
+				cell5.innerHTML = el.dataArray;
+				cell6.innerHTML = el.adminId;
+				cell7.innerHTML = el.status;
+				cell8.innerHTML = el.notes;
+				cell9.innerHTML = "<button id='admin-entry-show-details'> Review </button>"
+				i += 1;
+			})
+		}, 200);
 	}
 
 	function buildEntries(entries){
