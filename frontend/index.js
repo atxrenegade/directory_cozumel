@@ -498,7 +498,9 @@ window.onload = function() {
 			let detailedEntryButtons = document.querySelectorAll('button.admin-entry-show-details')
 			detailedEntryButtons.forEach(button => {
 				document.addEventListener('click', event => {
-					generateDetailedEntryTable(event)
+					if (document.getElementById('detailed-entry-table-1').children.length === 0) {
+						generateDetailedEntryTable(event);
+					}
 				})
 			})
 		}, 800);
@@ -523,7 +525,6 @@ window.onload = function() {
 	}
 
 	function generateDetailedEntryTable(event){
-		debugger;
 		let id = event.target.parentNode.parentElement.firstChild.textContent
 		let entry = ENTRIES.find(entry => entry.id === parseInt(id, 10));
 		let entryTable1 = document.getElementById('detailed-entry-table-1')
