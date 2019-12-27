@@ -490,10 +490,18 @@ window.onload = function() {
 				cell6.innerHTML = el.adminId;
 				cell7.innerHTML = el.status;
 				cell8.innerHTML = el.notes;
-				cell9.innerHTML = "<button id='admin-entry-show-details'> Review </button>"
+				cell9.innerHTML = "<button class='admin-entry-show-details'> Review </button>"
 				i += 1;
 			})
-		}, 200);
+		}, 800);
+		setTimeout(function(){
+			let detailedEntryButtons = document.querySelectorAll('button.admin-entry-show-details')
+			detailedEntryButtons.forEach(button => {
+				document.addEventListener('click', event => {
+					generateDetailedEntryTable(event)
+				})
+			})
+		}, 800);
 	}
 
 	function buildEntries(entries){
@@ -512,6 +520,42 @@ window.onload = function() {
 
 			newEntry = new Entry(id, entryType, busId, dateCreated, contributor, contributorEmail, dataArray, status, resolvedDate, adminId, notes)
 		})
+	}
+
+	function generateDetailedEntryTable(event){
+		debugger;
+		let id = event.target.parentNode.parentElement.firstChild.textContent
+		let entry = ENTRIES.find(entry => entry.id === parseInt(id, 10));
+		let entryTable1 = document.getElementById('detailed-entry-table-1')
+		let row1 = entryTable1.insertRow(0);
+		let cell1 = row1.insertCell(0);
+		let cell2 = row1.insertCell(1);
+		let cell3 = row1.insertCell(2);
+		let cell4 = row1.insertCell(3);
+		let cell5 = row1.insertCell(4);
+		cell1.innerHTML = entry.id;
+		cell2.innerHTML = entry.dateCreated;
+		cell3.innerHTML = entry.busId;
+		cell4.innerHTML = 'get Business Name';
+		cell5.innerHTML = entry.entryType;
+		let entryTable2 = document.getElementById('detailed-entry-table-2')
+		let row2 = entryTable2.insertRow(0);
+		let cell6 = row2.insertCell(0);
+		let cell7 = row2.insertCell(1);
+		let cell8 = row2.insertCell(2);
+		cell6.innerHTML = entry.contributor;
+		cell7.innerHTML = entry.contributorEmail;
+		cell8.innerHTML = entry.dataArray;
+		let entryTable3 = document.getElementById('detailed-entry-table-3')
+		let row3 = entryTable3.insertRow(0);
+		let cell9 = row3.insertCell(0);
+		let cell10 = row3.insertCell(1);
+		let cell11 = row3.insertCell(2);
+		let cell12 = row3.insertCell(3);
+		cell9.innerHTML = entry.adminId;
+		cell10.innerHTML = entry.status;
+		cell11.innerHTML = entry.resolvedDate;
+		cell12.innerHTML = entry.notes;
 	}
 
 	/* EVENT LISTENERS */
