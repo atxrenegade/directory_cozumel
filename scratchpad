@@ -100,3 +100,23 @@ record.save
 	<td> 001 </td>
 	<td> <button id='admin-entry-show-details'> More </button> </td>
 </tr>
+
+
+id	1
+entry_type	new review
+bus_id	1
+date	2019-12-26 17:51:18
+contributor	Harleigh
+contributor_email	Harleigh@gmail.com
+data_array	["My favorite hotel a bit expensive though.", "Harleigh", "Harleigh@gmail.com", "4"]
+status	pending
+resolved_date	n/a
+admin_id	1
+notes
+created_at	2019-12-26T22:51:18.446Z
+updated_at	2019-12-26T22:51:18.446Z
+
+	let cell9 = row.insertCell(8);
+	/* cell9.innerHTML = "<button id='admin-entry-show-details'> More </button>" */
+
+	RACE CONDITION WITH indexPendingEntries()?
