@@ -8,4 +8,12 @@ class EntriesController < ApplicationController
 		entries = Entry.collect_pending
 		render json: entries
 	end
+
+	def update
+		entry = Entry.find(params[:id])
+		status = params[:status]
+		admin_id = params[:admin_id]
+		date_resolved = params[:date_resolved]
+		entry.update(status, admin_id, date_resolved)
+	end
 end

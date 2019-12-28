@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 	resources :businesses, only: [:create]
 
 	post '/entries/new'
+	post '/entries/update'
 	get '/entries', to: 'entries#index'
 
   resources :reviews, only: [:new, :create, :show, :update, :delete]
