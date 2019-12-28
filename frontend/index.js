@@ -567,13 +567,39 @@ window.onload = function() {
 
 	function rejectEntry(event){
 		let entryId = event.target.parentElement.children[1].childNodes[2].firstChild.nextElementSibling.childNodes[0].innerText;
-		postReject(entryId);
+		/* let adminId = getAdminId();
+		postRejected(entryId, adminId);
 		displayRejected();
 	*/
 	}
 
-	function postReject(data) {
-		console.log(data)
+	function getAdminId(){
+		/* return adminId = ; finish function */
+
+	}
+
+	function postRejected(entryId, adminId) {
+		data = { id: entryId, status: 'rejected', admin_id: adminId, date_resolved: 'HARDCODED DATE TIME' }
+		let configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/entries/update', configObj)
+			.then(resp => {
+				return resp.json();
+		})
+			.then(json => console.log(json)
+		)
+	}
+	catch(err) {
+			alert('Update failed see console for further details!');
+			console.log(error.message);
+		}
 	}
 
 	function displayRejected() {
