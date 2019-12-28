@@ -46,7 +46,7 @@ window.onload = function() {
 	let indexTable = document.getElementById('admin-entry-table')
 	/* admin details table elements */
 	let detailsTable = document.getElementById('entry-details-tables')
-
+	let rejectButton = document.getElementById('admin-reject')
 	/* container elements */
 	let sponsListContainer = document.getElementById('sponsored-listing-container')
 	let adsContainer = document.getElementById('ads-container')
@@ -565,6 +565,21 @@ window.onload = function() {
 		cell12.innerHTML = entry.notes;
 	}
 
+	function rejectEntry(event){
+		let entryId = event.target.parentElement.children[1].childNodes[2].firstChild.nextElementSibling.childNodes[0].innerText;
+		postReject(entryId);
+		displayRejected();
+	*/
+	}
+
+	function postReject(data) {
+		console.log(data)
+	}
+
+	function displayRejected() {
+
+	}
+
 	/* EVENT LISTENERS */
 
 	/* Search Bar Listeners */
@@ -611,6 +626,9 @@ window.onload = function() {
 	/* Admin Panel Listeners */
 	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
 	adminPanelLogin.addEventListener("click", showAdminView);
+	rejectButton.addEventListener("click", function(event) {
+		rejectEntry(event);
+	})
 
 
 	/* Clear Form to set initial state */
