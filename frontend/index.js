@@ -604,8 +604,17 @@ window.onload = function() {
 		}
 	}
 
-	function displayRejected() {
+	function entryUpdateSucess() {
+		let rejectSuccess = document.createElement('h4');
+		rejectSuccess.innerText = "Entry Successfully Updated"
+		detailsTable.appendChild('rejectSuccess');
+	}
 
+	function displayRejected() {
+		entryUpdateSuccess();
+
+		/* select elements adminId, status, date resolved */
+		/* update values on DOM */
 	}
 
 	/* EVENT LISTENERS */
