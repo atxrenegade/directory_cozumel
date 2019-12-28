@@ -568,8 +568,10 @@ window.onload = function() {
 	function rejectEntry(event){
 		let entryId = event.target.parentElement.children[1].childNodes[2].firstChild.nextElementSibling.childNodes[0].innerText;
 		/* let adminId = getAdminId();
-		postRejected(entryId, adminId);
-		displayRejected();
+		let resolvedDate = Time.Now();
+		let status = "rejected"
+		postRejected(entryId, adminId, resolvedDaten, status);
+		displayRejected(adminId, resolvedDate, status);
 	*/
 	}
 
@@ -578,8 +580,8 @@ window.onload = function() {
 
 	}
 
-	function postRejected(entryId, adminId) {
-		data = { id: entryId, status: 'rejected', admin_id: adminId, date_resolved: 'HARDCODED DATE TIME' }
+	function postRejected(entryId, adminId, resolvedDate, status) {
+		data = { id: entryId, status: status, admin_id: adminId, date_resolved: resolvedDate }
 		let configObj = {
 			method: 'POST',
 			headers: {
