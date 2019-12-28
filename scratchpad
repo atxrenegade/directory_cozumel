@@ -133,3 +133,15 @@ ADMIN - reject entry
 			rejectEntry() - calls all other rejectFunctions;
 			postReject() - posts updated reject values;
 			displayReject() - updates DOM, returns to updated entries index
+
+			POST Request
+			updating Entry values
+			:admin_id
+			:resolved_date
+			:status
+
+			persist in database
+
+			update DOM with new entry values
+
+			add back button to details menu
