@@ -611,7 +611,7 @@ window.onload = function() {
 		}
 	}
 
-	function entryUpdateSucess() {
+	function entryUpdateSuccess() {
 		let updateSuccess = document.createElement('h4');
 		updateSuccess.innerText = "Entry Successfully Updated"
 		detailsTable.appendChild('updateSuccess');
@@ -637,13 +637,12 @@ window.onload = function() {
 
 	function addNotes() {
 		let notes = document.getElementById('js-entry-notes').value
-		data = {notes: notes}
+		let entryId = document.getElementById('detailed-entry-table-3').lastChild.firstChild.textContent
+		data = {id: entryId, notes: notes}
 		postEntryUpdate(data);
-		let noteCell = document.getElementById('detailed-entry-table-3').lastChild.lastChild.value
+		let noteCell = document.getElementById('detailed-entry-table-3').lastChild.lastChild
 		updateCell(noteCell, notes)
-		debugger;
 		notesForm.style.display = 'none';
-		entryUpdateSuccess();
 	}
 
 	function updateCell(cell, tableData){
