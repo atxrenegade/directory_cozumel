@@ -570,14 +570,13 @@ window.onload = function() {
 	}
 
 	function rejectEntry(event){
-		let entryId = event.target.parentElement.children[1].childNodes[2].firstChild.nextElementSibling.childNodes[0].innerText;
-		debugger;
-		/* let adminId = getAdminId();
-		let resolvedDate = Time.Now();
+		let entryId = document.getElementById('detailed-entry-table-3').lastChild.firstChild.textContent
+		let adminId = getAdminId();
+		let resolvedDate = new Date();
 		let status = "rejected"
-		postRejected(entryId, adminId, resolvedDaten, status);
+		data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, status: status, }
+		postEntryUpdate(data);
 		displayRejected(adminId, resolvedDate, status);
-	*/
 	}
 
 	function getAdminId(){
