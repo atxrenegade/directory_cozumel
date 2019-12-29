@@ -46,6 +46,7 @@ window.onload = function() {
 	let indexTable = document.getElementById('admin-entry-table')
 	/* admin details table elements */
 	let detailsTable = document.getElementById('entry-details-tables')
+	let backButton = document.getElementById('admin-back-button')
 	let rejectButton = document.getElementById('admin-reject-button')
 	let addNotesButton = document.getElementById('admin-notes-button')
 	let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
@@ -617,7 +618,6 @@ window.onload = function() {
 	}
 
 	function displayRejected(adminId, resolvedDate, status) {
-		/* entryUpdateSuccess(); */
 		let adminIdEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[0];
 		let resolvedDateEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[2];
 		let statusEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[1];
@@ -694,6 +694,13 @@ window.onload = function() {
 	})
 	addNotesButton.addEventListener("click", showNotesForm);
 	newNotesSubmitButton.addEventListener("click", addNotes)
+	backButton.addEventListener("click", function() {
+		ENTRIES = [];
+		generatePendingEntryTable();
+		detailsTable.style.display = "none";
+		indexTable.style.display = "block";
+
+})
 
 	/* Clear Form to set initial state */
 	function resetPage() {
