@@ -581,12 +581,14 @@ window.onload = function() {
 	}
 
 	function getAdminId(){
-		/* return adminId = ; finish function */
+		/*let adminId = document.getGetElementById('')
+		return adminId.value;
+		finish function */
+		return adminId = 001;
 
 	}
 
 	function postEntryUpdate(data) {
-		data = { id: entryId, status: status, admin_id: adminId, date_resolved: resolvedDate }
 		let configObj = {
 			method: 'POST',
 			headers: {
@@ -700,7 +702,6 @@ window.onload = function() {
 	addNotesButton.addEventListener("click", showNotesForm);
 	newNotesSubmitButton.addEventListener("click", addNotes)
 
-
 	/* Clear Form to set initial state */
 	function resetPage() {
 	  reviewCheckBox.checked = false;
@@ -715,12 +716,17 @@ window.onload = function() {
 		businessDetails.style.display = "none";
 		let elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
+		/* clear admin forms and fields */
 		indexTable.style.display = 'block';
 		detailsTable.style.display = 'none';
 		document.getElementById('admin-notes-form').style.display = 'none';
+
+		/* clear global variables */
 		ALL = [];
 		CATS = [];
 		ENTRIES = [];
+
+		/* repopulate categories for drop down menu */
 		collectCategories();
 	}
 	resetPage();
