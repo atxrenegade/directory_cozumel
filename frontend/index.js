@@ -607,9 +607,9 @@ window.onload = function() {
 	}
 
 	function entryUpdateSucess() {
-		let rejectSuccess = document.createElement('h4');
-		rejectSuccess.innerText = "Entry Successfully Updated"
-		detailsTable.appendChild('rejectSuccess');
+		let updateSuccess = document.createElement('h4');
+		updateSuccess.innerText = "Entry Successfully Updated"
+		detailsTable.appendChild('updateSuccess');
 	}
 
 	function displayRejected(adminId, resolvedDate, status) {
@@ -618,9 +618,11 @@ window.onload = function() {
 		let adminIdEl = document.getElementById('');
 		let resolvedDateEl = document.getElementById();
 		let statusEl = document.getElementById();
+
 		adminIdEl.innerHTML = adminId;
 		resolvedDateEl.innerHTML = resolvedDate;
 		statusEL.innerHTML = status;
+		refactor to use updateCell function
 		*/
 	}
 
@@ -630,12 +632,12 @@ window.onload = function() {
 		let notes = document.getElementById('admin-submit-notes-field').innerText;
 		data = {notes: notes}
 		postUpdate(data);
-		appendNotes(notes);
+		let notesField = document.getElementById('');
+		updateCell(notesField, notes)
 	}
 
-	function appendNotes(notes){
-		let notesField = document.getElementById('');
-		notesField.innerText = notes;
+	function updateCell(cell, tableData){
+		cell.innerText = tableData;
 	}
 
 	/* EVENT LISTENERS */
