@@ -48,7 +48,9 @@ window.onload = function() {
 	let detailsTable = document.getElementById('entry-details-tables')
 	let rejectButton = document.getElementById('admin-reject-button')
 	let addNotesButton = document.getElementById('admin-notes-button')
-	let notesForm = getElementById('admin-notes-form')
+	let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
+	let notesForm = document.getElementById('admin-notes-form')
+
 	/* container elements */
 	let sponsListContainer = document.getElementById('sponsored-listing-container')
 	let adsContainer = document.getElementById('ads-container')
@@ -569,6 +571,7 @@ window.onload = function() {
 
 	function rejectEntry(event){
 		let entryId = event.target.parentElement.children[1].childNodes[2].firstChild.nextElementSibling.childNodes[0].innerText;
+		debugger;
 		/* let adminId = getAdminId();
 		let resolvedDate = Time.Now();
 		let status = "rejected"
@@ -626,14 +629,19 @@ window.onload = function() {
 		*/
 	}
 
-	function addNotes {
-		entryUpdateSuccess();
-		notesForm.display.style = 'block';
-		let notes = document.getElementById('admin-submit-notes-field').innerText;
+	function showNotesForm(){
+		notesForm.style.display = 'block';
+	}
+
+	function addNotes() {
+		let notes = document.getElementById('js-entry-notes').value
 		data = {notes: notes}
-		postUpdate(data);
-		let notesField = document.getElementById('');
-		updateCell(notesField, notes)
+		postEntryUpdate(data);
+		let noteCell = document.getElementById('detailed-entry-table-3').lastChild.lastChild.value
+		updateCell(noteCell, notes)
+		debugger;
+		notesForm.style.display = 'none';
+		entryUpdateSuccess();
 	}
 
 	function updateCell(cell, tableData){
@@ -689,6 +697,8 @@ window.onload = function() {
 	rejectButton.addEventListener("click", function(event) {
 		rejectEntry(event);
 	})
+	addNotesButton.addEventListener("click", showNotesForm);
+	newNotesSubmitButton.addEventListener("click", addNotes)
 
 
 	/* Clear Form to set initial state */
@@ -707,6 +717,7 @@ window.onload = function() {
 		Array.from(elements).forEach(el => el.value = '')
 		indexTable.style.display = 'block';
 		detailsTable.style.display = 'none';
+		document.getElementById('admin-notes-form').style.display = 'none';
 		ALL = [];
 		CATS = [];
 		ENTRIES = [];
