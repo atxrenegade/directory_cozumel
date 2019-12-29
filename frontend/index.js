@@ -617,17 +617,12 @@ window.onload = function() {
 	}
 
 	function displayRejected(adminId, resolvedDate, status) {
-		/*
-		entryUpdateSuccess();
-		let cellDataArray = []
-		let adminIdEl = document.getElementById('');
-		let resolvedDateEl = document.getElementById();
-		let statusEl = document.getElementById();
-		cellDataArray[0] = [adminIdEl, adminId];
-		cellDataArray[1] = [resolvedDateEl, resolvedDate];
-		cellDataArray[2] = [statusEl, status];
-		cellDataArray.forEach( el => updateCell(el))
-		*/
+		/* entryUpdateSuccess(); */
+		let adminIdEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[0];
+		let resolvedDateEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[2];
+		let statusEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[1];
+		let cellDataArray = [[adminIdEl, adminId], [resolvedDateEl, resolvedDate],[statusEl, status]]
+		cellDataArray.forEach( el => updateCell(el[0], el[1]))
 	}
 
 	function showNotesForm(){
