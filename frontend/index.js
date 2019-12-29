@@ -582,7 +582,7 @@ window.onload = function() {
 
 	}
 
-	function postRejected(entryId, adminId, resolvedDate, status) {
+	function postEntryUpdate(data) {
 		data = { id: entryId, status: status, admin_id: adminId, date_resolved: resolvedDate }
 		let configObj = {
 			method: 'POST',
@@ -623,20 +623,20 @@ window.onload = function() {
 		statusEL.innerHTML = status;
 		*/
 	}
-	function postNotes(data) {
-
-	}
 
 	function addNotes {
 		entryUpdateSuccess();
 		notesForm.display.style = 'block';
-		let data = document.getElementById('admin-submit-notes-field').innerText;
-		postNotes(data);
-		appendNotes(data);
+		let notes = document.getElementById('admin-submit-notes-field').innerText;
+		data = {notes: notes}
+		postUpdate(data);
+		appendNotes(notes);
 	}
 
-
-
+	function appendNotes(notes){
+		let notesField = document.getElementById('');
+		notesField.innerText = notes;
+	}
 
 	/* EVENT LISTENERS */
 
