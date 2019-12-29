@@ -610,11 +610,16 @@ window.onload = function() {
 		detailsTable.appendChild('rejectSuccess');
 	}
 
-	function displayRejected() {
+	function displayRejected(adminId, resolvedDate, status) {
+		/*
 		entryUpdateSuccess();
-
-		/* select elements adminId, status, date resolved */
-		/* update values on DOM */
+		let adminIdEl = document.getElementById('');
+		let resolvedDateEl = document.getElementById();
+		let statusEl = document.getElementById();
+		adminIdEl.innerHTML = adminId;
+		resolvedDateEl.innerHTML = resolvedDate;
+		statusEL.innerHTML = status;
+		*/
 	}
 
 	/* EVENT LISTENERS */
