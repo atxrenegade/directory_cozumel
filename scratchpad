@@ -144,4 +144,13 @@ ADMIN - reject entry
 
 			update DOM with new entry values
 
-		
+		TO DO
+
+		ADMIN LOGIN Panel
+		get userID
+		get businessName
+		reformat dataArray to Data Object
+
+		FIX post Request for reject, and add notes
+		FIX back button missing event listeners
+		clear notes field on submission and page relaod

@@ -581,11 +581,9 @@ window.onload = function() {
 	}
 
 	function getAdminId(){
-		/*let adminId = document.getGetElementById('')
-		return adminId.value;
-		finish function */
-		return adminId = 001;
-
+		/* refactor when login functionality is added */
+		let adminId = document.getElementById('admin-number').nextSibling.textContent.split("\n")[0].split(" ")[1]
+		return adminId;
 	}
 
 	function postEntryUpdate(data) {

@@ -184,41 +184,22 @@
 					<br><br>
 					<button id='js-admin-login-button'>Login</button>
 				</fieldset>
+
 				<div id="js-admin-user-info">
-					AdminName: admin_name <br>
-					AdminNumber: 0032 <br>
-					Logged In At: 12/24/19 23:01:45 EST<br><br>
-					<button id='js-admin-logout-button'>Log Out</button>
+					<fieldset id='js-admin-user-panel'>
+						<legend>Admin LOGIN</legend>
+						<br>
+						<label id='admin-name'> AdminName: </label> ADMIN NAME 
+						<br>
+						<label id='admin-number'> AdminNumber: </label> 0003
+						<br>
+						<label id='admin-login-date'> Logged In At: </label> Dec 29 2019 14:32:12
+						<br>
+						<br>
+						<button id='js-admin-logout-button'>Log Out</button>
+					</fieldset>
 				</div>
 			</div>
-
-					<!-- ADMIN MENU HERE TO ADMIN EDIT FORM AND DELETE ENTRIES -->
-			<div id='js-admin-menu-container' class='tile'>
-				<fieldset id='js-admin-menu'>
-					<legend>Admin Menu</legend>
-					<fieldset>
-						<legend>ADMIN LOGS</legend>
-							<button id='admin-show-resolved-button'>SHOW RESOLVED LOGS</button>
-							<button id='admin-search-resolved-button'>SEARCH RESOLVED LOGS</button>
-					</fieldset>
-					<fieldset>
-						<legend>BUSINESS LOG AND RECORDS</legend>
-							<button id='admin-search-business-with-records-button'>SEARCH/DISPLAY BUSINESS WITH ASSOCIATED RECORDS </button>
-					</fieldset>
-					<fieldset>
-						<legend>MODIFY CATEGORIES</legend>
-						<button id='admin-revise-categories-button'>ADD/UPATE/DELETE CATEGORIES</button>
-					</fieldset>
-					<fieldset>
-						<legend>UPDATE OR DELETE DATABASE RECORDS</legend>
-						<button id='admin-delete-business-button'>	EDIT/DELETE BUSINESS</button>
-						<button id='admin-revise-review-button'>EDIT/DELETE REVIEW</button>
-						<button id='admin-revise-image-button'>EDIT/DELETE IMAGE</button>
-						<button id='admin-revise-map-button'>EDIT/DELETE MAP</button>
-					</fieldset>
-				</fieldset>
-			</div>
-
 			<div id='js-admin-panel-container' class='tile'>
 				<fieldset id='js-admin-panel'>
 					<div id='admin-entry-table'
@@ -288,6 +269,32 @@
 						<br><br>
 							<input id='admin-submit-notes-field' type='submit' value='Submit'>
 					<div>
+				</fieldset>
+			</div>
+					<!-- ADMIN MENU HERE TO ADMIN EDIT FORM AND DELETE ENTRIES -->
+			<div id='js-admin-menu-container' class='tile'>
+				<fieldset id='js-admin-menu'>
+					<legend>Admin Menu</legend>
+					<fieldset>
+						<legend>ADMIN LOGS</legend>
+							<button id='admin-show-resolved-button'>SHOW RESOLVED LOGS</button>
+							<button id='admin-search-resolved-button'>SEARCH RESOLVED LOGS</button>
+					</fieldset>
+					<fieldset>
+						<legend>BUSINESS LOG AND RECORDS</legend>
+							<button id='admin-search-business-with-records-button'>SEARCH/DISPLAY BUSINESS WITH ASSOCIATED RECORDS </button>
+					</fieldset>
+					<fieldset>
+						<legend>MODIFY CATEGORIES</legend>
+						<button id='admin-revise-categories-button'>ADD/UPATE/DELETE CATEGORIES</button>
+					</fieldset>
+					<fieldset>
+						<legend>UPDATE OR DELETE DATABASE RECORDS</legend>
+						<button id='admin-delete-business-button'>	EDIT/DELETE BUSINESS</button>
+						<button id='admin-revise-review-button'>EDIT/DELETE REVIEW</button>
+						<button id='admin-revise-image-button'>EDIT/DELETE IMAGE</button>
+						<button id='admin-revise-map-button'>EDIT/DELETE MAP</button>
+					</fieldset>
 				</fieldset>
 			</div>
     </main>
