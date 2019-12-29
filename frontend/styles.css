@@ -111,6 +111,10 @@ input {
 	display: none;
 }
 
+#js-notes-form {
+	display: none;
+}
+
 #entry-details-table {
 	display: none;
 }

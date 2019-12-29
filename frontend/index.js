@@ -46,7 +46,9 @@ window.onload = function() {
 	let indexTable = document.getElementById('admin-entry-table')
 	/* admin details table elements */
 	let detailsTable = document.getElementById('entry-details-tables')
-	let rejectButton = document.getElementById('admin-reject')
+	let rejectButton = document.getElementById('admin-reject-button')
+	let addNotesButton = document.getElementById('admin-notes-button')
+	let notesForm = getElementById('admin-notes-form')
 	/* container elements */
 	let sponsListContainer = document.getElementById('sponsored-listing-container')
 	let adsContainer = document.getElementById('ads-container')
@@ -621,6 +623,20 @@ window.onload = function() {
 		statusEL.innerHTML = status;
 		*/
 	}
+	function postNotes(data) {
+
+	}
+
+	function addNotes {
+		entryUpdateSuccess();
+		notesForm.display.style = 'block';
+		let data = document.getElementById('admin-submit-notes-field').innerText;
+		postNotes(data);
+		appendNotes(data);
+	}
+
+
+
 
 	/* EVENT LISTENERS */
 
