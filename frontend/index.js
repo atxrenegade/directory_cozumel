@@ -615,14 +615,14 @@ window.onload = function() {
 	function displayRejected(adminId, resolvedDate, status) {
 		/*
 		entryUpdateSuccess();
+		let cellDataArray = []
 		let adminIdEl = document.getElementById('');
 		let resolvedDateEl = document.getElementById();
 		let statusEl = document.getElementById();
-
-		adminIdEl.innerHTML = adminId;
-		resolvedDateEl.innerHTML = resolvedDate;
-		statusEL.innerHTML = status;
-		refactor to use updateCell function
+		cellDataArray[0] = [adminIdEl, adminId];
+		cellDataArray[1] = [resolvedDateEl, resolvedDate];
+		cellDataArray[2] = [statusEl, status];
+		cellDataArray.forEach( el => updateCell(el))
 		*/
 	}
 
