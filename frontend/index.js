@@ -696,7 +696,7 @@ window.onload = function() {
 	newNotesSubmitButton.addEventListener("click", addNotes)
 	backButton.addEventListener("click", function() {
 		let indexBody = document.getElementById('index-entry-table-body');
-		indexBody.innerHTML = ""
+		indexBody.innerHTML = "";
 		ENTRIES = [];
 		generatePendingEntryTable();
 		detailsTable.style.display = "none";
