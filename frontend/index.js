@@ -695,11 +695,12 @@ window.onload = function() {
 	addNotesButton.addEventListener("click", showNotesForm);
 	newNotesSubmitButton.addEventListener("click", addNotes)
 	backButton.addEventListener("click", function() {
+		let indexBody = document.getElementById('index-entry-table-body');
+		indexBody.innerHTML = ""
 		ENTRIES = [];
 		generatePendingEntryTable();
 		detailsTable.style.display = "none";
 		indexTable.style.display = "block";
-
 })
 
 	/* Clear Form to set initial state */
