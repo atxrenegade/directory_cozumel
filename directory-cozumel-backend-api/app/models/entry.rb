@@ -8,7 +8,7 @@ class Entry < ApplicationRecord
 		record['date'] = formatted_data[2]
 		record['contributor'] = formatted_data[3]
 		record['contributor_email'] = formatted_data[4]
-		record['data_array'] = formatted_data[5]
+		record['data_object'] = formatted_data[5]
 		record['status'] = "pending"
 		record['resolved_date'] = 'n/a'
 		record['admin_id'] = 1
@@ -36,6 +36,7 @@ class Entry < ApplicationRecord
 	end
 
 	def new_bus_entry(data)
+		binding.pry
 		data_array = []
 		data_array[0] = "new bus"
 		data_array[1] = 0
@@ -56,6 +57,7 @@ class Entry < ApplicationRecord
 	end
 
 	def new_review_entry(data)
+		binding.pry
 		data_array = []
 		data_array[0] = "new review"
 		data_array[1] = getBusId(data[6])
@@ -64,11 +66,11 @@ class Entry < ApplicationRecord
 		data_array[4] = data[4][1] #contributor_email
 		#data_array[5] content, contributor, contributor_email, rating, business_id
 		data_array[5] = {}
-		data_array[5].content = data[2][1]
-		data_array[5].contributor = data[3][1]
-		data_array[5].contributor_email = data[4][1]
-		data_array[5].rating = data[1][1]
-		data_array[5].bus_id = dataArray[1]
+		data_array[5]["content"] = data[2][1]
+		data_array[5]["contributor"] = data[3][1]
+		data_array[5]["contributor_email"] = data[4][1]
+		data_array[5]["rating"] = data[1][1]
+		data_array[5]["bus_id"] = data_array[1]
 		build_record(data_array)
 	end
 

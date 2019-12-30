@@ -497,7 +497,7 @@ window.onload = function() {
 				cell2.innerHTML = el.dateCreated;
 				cell3.innerHTML = el.busId;
 				cell4.innerHTML = el.entryType;
-				cell5.innerHTML = el.dataArray;
+				cell5.innerHTML = el.dataObject;
 				cell6.innerHTML = el.adminId;
 				cell7.innerHTML = el.status;
 				cell8.innerHTML = el.notes;
@@ -524,45 +524,20 @@ window.onload = function() {
 			id = el['id'];
 			entryType = el['entry_type'];
 			busId = el['bus_id'];
+			busName = el['bus_name'];
 			dateCreated = el['date'];
 			contributor = el['contributor'];
 			contributorEmail = el['contributor_email'];
-			dataArray = el['data_array'];
+			dataObject = el['data_object'];
 			status = el['status'];
 			resolvedDate = el['resolved_date'];
 			adminId = el['admin_id'];
 			notes = el['notes'];
 
-			newEntry = new Entry(id, entryType, busId, dateCreated, contributor, contributorEmail, dataArray, status, resolvedDate, adminId, notes)
+			newEntry = new Entry(id, entryType, busId, busName, dateCreated, contributor, contributorEmail, dataObject, status, resolvedDate, adminId, notes)
 		})
 	}
 
-	function getBusinessName(data){
-		let configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
-	};
-	try {
-		fetch('http://localhost:3000/businesses/show', configObj)
-			.then(resp => {
-				return resp.json();
-		})
-			.then(json => storeBusName(json)
-		)
-	}
-	catch(err) {
-			alert('Post request failed see console for further details!');
-			console.log(error.message);
-		}
-	}
-
-	function storeBusName(json){
-		return json
-	}
 
 	function generateDetailedEntryTable(event){
 		let id = event.target.parentNode.parentElement.firstChild.textContent
@@ -577,7 +552,7 @@ window.onload = function() {
 		cell1.innerHTML = entry.id;
 		cell2.innerHTML = entry.dateCreated;
 		cell3.innerHTML = entry.busId;
-		cell4.innerHTML = 'BUSNAME';
+		cell4.innerHTML = entry.busName;
 		cell5.innerHTML = entry.entryType;
 		let entryTable2 = document.getElementById('detailed-entry-table-2')
 		let row2 = entryTable2.insertRow(0);
@@ -586,7 +561,7 @@ window.onload = function() {
 		let cell8 = row2.insertCell(2);
 		cell6.innerHTML = entry.contributor;
 		cell7.innerHTML = entry.contributorEmail;
-		cell8.innerHTML = entry.dataArray;
+		cell8.innerHTML = entry.dataObject;
 		let entryTable3 = document.getElementById('detailed-entry-table-3')
 		let row3 = entryTable3.insertRow(0);
 		let cell9 = row3.insertCell(0);

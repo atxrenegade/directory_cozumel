@@ -7,7 +7,7 @@ class CreateEntries < ActiveRecord::Migration[5.2]
       t.string :date
       t.string :contributor
       t.string :contributor_email
-      t.string :data_array
+      t.string :data_object
 			t.string :status
       t.string :resolved_date
 			t.integer :admin_id
