@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2019_11_18_055052) do
   create_table "entries", force: :cascade do |t|
     t.string "entry_type"
     t.integer "bus_id"
+    t.string "bus_name"
     t.string "date"
     t.string "contributor"
     t.string "contributor_email"

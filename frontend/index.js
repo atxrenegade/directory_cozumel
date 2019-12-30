@@ -537,6 +537,33 @@ window.onload = function() {
 		})
 	}
 
+	function getBusinessName(data){
+		let configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/businesses/show', configObj)
+			.then(resp => {
+				return resp.json();
+		})
+			.then(json => storeBusName(json)
+		)
+	}
+	catch(err) {
+			alert('Post request failed see console for further details!');
+			console.log(error.message);
+		}
+	}
+
+	function storeBusName(json){
+		return json
+	}
+
 	function generateDetailedEntryTable(event){
 		let id = event.target.parentNode.parentElement.firstChild.textContent
 		let entry = ENTRIES.find(entry => entry.id === parseInt(id, 10));
@@ -550,7 +577,7 @@ window.onload = function() {
 		cell1.innerHTML = entry.id;
 		cell2.innerHTML = entry.dateCreated;
 		cell3.innerHTML = entry.busId;
-		cell4.innerHTML = 'get Business Name';
+		cell4.innerHTML = 'BUSNAME';
 		cell5.innerHTML = entry.entryType;
 		let entryTable2 = document.getElementById('detailed-entry-table-2')
 		let row2 = entryTable2.insertRow(0);

@@ -4,6 +4,7 @@ class Entry < ApplicationRecord
 		record = Entry.new
 		record['entry_type'] = formatted_data[0]
 		record['bus_id'] = formatted_data[1]
+		record['bus_name'] = getBusName(formatted_data[1])
 		record['date'] = formatted_data[2]
 		record['contributor'] = formatted_data[3]
 		record['contributor_email'] = formatted_data[4]
@@ -43,7 +44,14 @@ class Entry < ApplicationRecord
 		data_array[4] = "unspecified"
 		#data_array[5] should include name, categories, overall rating, address, phone number, website
 		#add categories to from for user to select values to be included in data_array
-		data_array[5] = [data[1][1], data[5][1], 'not yet rated', data[2][1], data[3][1], data[4][1]]
+		data_array[5] = {}
+		data_array[5].bus_name = data[1][1]
+		data_array[5].categories = data[5][1]
+		data_array[5].overall_rating = 'not yet rated'
+		data_array[5].address = data[2][1]
+		data_array[5].phone_number = data[3][1]
+		data_array[5].website = data[4][1]
+
 		build_record(data_array)
 	end
 
@@ -55,7 +63,12 @@ class Entry < ApplicationRecord
 		data_array[3] = data[3][1] #contributor
 		data_array[4] = data[4][1] #contributor_email
 		#data_array[5] content, contributor, contributor_email, rating, business_id
-		data_array[5] = [data[2][1], data[3][1], data[4][1],  data[1][1]]
+		data_array[5] = {}
+		data_array[5].content = data[2][1]
+		data_array[5].contributor = data[3][1]
+		data_array[5].contributor_email = data[4][1]
+		data_array[5].rating = data[1][1]
+		data_array[5].bus_id = dataArray[1]
 		build_record(data_array)
 	end
 
@@ -66,8 +79,13 @@ class Entry < ApplicationRecord
 		data_array[2] = data[3][1] #date of image
 		data_array[3] = data[4][1] #contributor
 		data_array[4] = data[5][1] #contributor_email
-		#data_array[5] should include description, date, url, contributor, contributor_email, business_id
-		data_array[5] = [data[2][1], data_array[2], data[1][2], data_array[3], data_array[4], data_array[1]]
+		data_array[5] = {}
+		data_array[5].description = data[2][1]
+		data_array[5].date = data_array[2]
+		data_array[5].url = data[1][2]
+		data_array[5].contributor = data_array[3]
+		data_array[5].contributor_email = data_array[4]
+		data_array[5].business_id = data_array[1]
 		build_record(data_array)
 	end
 
@@ -79,7 +97,9 @@ class Entry < ApplicationRecord
 		data_array[3] = data[2][1] #contributor
 		data_array[4] = data[3][1] #contributor_email
 		#data_array[5] should include business_id and content
-		data_array[5] = [data_array[1], data[1][1]]
+		data_array[5] = {}
+		data_array[5].bus_id = data_array[1]
+		data_array[5].content = data[1][1]
 		build_record(data_array)
 	end
 
@@ -91,12 +111,18 @@ class Entry < ApplicationRecord
 		data_array[3] = data[2][1] #contributor
 		data_array[4] = data[3][1] #contributor_email
 		#data_array[5] should include business_id and content
-		data_array[5] = [data_array[1], data[1][1]]
+		data_array[5] = {}
+		data_array[5].bus_id = data_array[1]
+		data_array[5].content = data[1][1]
 		build_record(data_array)
 	end
 
-	def getBusId(id)
-		return Business.find_by_name(id).id
+	def getBusId(name)
+		return Business.find_by_name(name).id
+	end
+
+	def getBusName(id)
+		return Business.find_by_id(id).name
 	end
 
 	def resolve_new_business

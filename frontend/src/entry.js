@@ -1,8 +1,10 @@
 class Entry {
-	constructor(id, entryType, busId, dateCreated, contributor, contributorEmail, dataArray, status, resolvedDate, adminId, notes) {
+	constructor(id, entryType, busId, busName, dateCreated, contributor, contributorEmail, dataArray, status, resolvedDate, adminId, notes) {
+		debugger;
 		this.id = id;
 		this.entryType = entryType;
 		this.busId = busId;
+		this.busName = busName;
 		this.dateCreated = dateCreated;
 		this.contributor = contributor;
 		this.contributorEmail = contributorEmail;
