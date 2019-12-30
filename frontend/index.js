@@ -632,9 +632,11 @@ window.onload = function() {
 	}
 
 	function addNotes() {
+		let id = document.getElementById('detailed-entry-table-1').lastChild.children[0].innerText
+		let entryId = parseInt(id, 10);
 		let notes = document.getElementById('js-entry-notes').value
-		let entryId = document.getElementById('detailed-entry-table-3').lastChild.firstChild.textContent
-		data = {id: entryId, notes: notes}
+		let adminId = document.getElementById('detailed-entry-table-3').lastChild.firstChild.textContent
+		data = { id: entryId, admin_id: adminId, notes: notes}
 		postEntryUpdate(data);
 		let noteCell = document.getElementById('detailed-entry-table-3').lastChild.lastChild
 		updateCell(noteCell, notes)

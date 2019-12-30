@@ -169,3 +169,19 @@ ADMIN - reject entry
 		13. Add Styling
 		14. Demo Video
 		15. Blog Post
+
+
+		"id": 1,
+	"entry_type": "new review",
+	"bus_id": 1,
+	"bus_name": "Hotel Zilla",
+	"date": "2019-12-30 14:04:53",
+	"contributor": "George",
+	"contributor_email": "me@gmail.com",
+	"data_array": "{\"content\"=>\"ertert\", \"contributor\"=>\"George\", \"contributor_email\"=>\"me@gmail.com\", \"rating\"=>\"4\", \"bus_id\"=>1}",
+	"status": "pending",
+	"resolved_date": "n/a",
+	"admin_id": 1,
+	"notes": "",
+	"created_at": "2019-12-30T19:04:53.530Z",
+	"updated_at": "2019-12-30T19:04:53.530Z"
