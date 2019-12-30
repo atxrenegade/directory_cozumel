@@ -57,7 +57,6 @@ class Entry < ApplicationRecord
 	end
 
 	def new_review_entry(data)
-		binding.pry
 		data_array = []
 		data_array[0] = "new review"
 		data_array[1] = getBusId(data[6])

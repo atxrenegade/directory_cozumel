@@ -641,6 +641,7 @@ window.onload = function() {
 		let noteCell = document.getElementById('detailed-entry-table-3').lastChild.lastChild
 		updateCell(noteCell, notes)
 		notesForm.style.display = 'none';
+		document.getElementById('js-entry-notes').value = '';
 	}
 
 	function updateCell(cell, tableData){
@@ -732,6 +733,7 @@ window.onload = function() {
 		indexTable.style.display = 'block';
 		detailsTable.style.display = 'none';
 		document.getElementById('admin-notes-form').style.display = 'none';
+	document.getElementById('js-entry-notes').value = '';
 
 		/* clear global variables */
 		ALL = [];
