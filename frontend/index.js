@@ -51,6 +51,7 @@ window.onload = function() {
 	let addNotesButton = document.getElementById('admin-notes-button')
 	let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
 	let notesForm = document.getElementById('admin-notes-form')
+	let timeDateEl = document.getElementById('admin-login-date')
 
 	/* container elements */
 	let sponsListContainer = document.getElementById('sponsored-listing-container')
@@ -460,6 +461,7 @@ window.onload = function() {
 			adminPanelLogout.style.display = "block";
 			adminPanelForm.style.display = "none";
 			adminUserInfo.style.display = "block";
+			appendCurrentDateTime();
 			generatePendingEntryTable();
 		} else {
 			alert('You are not authorized to access admininstrative tasks!')
@@ -641,6 +643,12 @@ window.onload = function() {
 		cell.innerText = tableData;
 	}
 
+	function appendCurrentDateTime(){
+		let timeDate = document.createElement('span')
+		timeDate.innerText = new Date;
+		timeDateEl.appendChild(timeDate)
+	}
+
 	/* EVENT LISTENERS */
 
 	/* Search Bar Listeners */
@@ -700,6 +708,7 @@ window.onload = function() {
 		detailsTable.style.display = "none";
 		indexTable.style.display = "block";
 })
+
 
 	/* Clear Form to set initial state */
 	function resetPage() {

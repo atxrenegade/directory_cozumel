@@ -147,10 +147,26 @@ ADMIN - reject entry
 		TO DO
 
 		ADMIN LOGIN Panel
-		get userID
-		get businessName
-		reformat dataArray to Data Object
+		1. get userID
+		2. add Login Date
+		2. get businessName
+		3. reformat dataArray to Data Object
 
-		FIX post Request for reject, and add notes
-		FIX back button missing event listeners
-		clear notes field on submission and page relaod
+		4. FIX post Request for reject, and add notes
+		5. FIX back button missing event listeners
+		6. clear notes field on submission and page reload
+
+		7. Add functionality to Resolve
+
+		8. Add functionality to Revise
+*******************************************
+
+		9. add functionality to admin menu buttons
+		9.5 user forms display only one at a time
+		10. add user authentication and encryption for admin login
+		11. googlemaps pin
+
+		12. refactor create js classes and move methods to classes.
+		13. Add Styling
+		14. Demo Video
+		15. Blog Post
