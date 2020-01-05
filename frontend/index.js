@@ -98,31 +98,23 @@ window.onload = function() {
 		let category = document.getElementById('js-category-select').value
 		let results = postSearchByCategory(category);
 	}
-
-	/* Listings Checkbox Toggle Forms Functions */
-	function toggleReviewForm() {
-		$('#js-add-review-form-container').toggle();
-	}
-
-	function toggleImageForm() {
-		$('#js-add-image-form-container').toggle();
-	}
-
-	function toggleEditForm() {
-		$('#js-suggest-edit-form-container').toggle();
-	}
-
-	function toggleFlagForm() {
-		$('#js-flag-business-form-container').toggle();
+	function toggleForm(event, el) {
+		if (event === 'submit' || el.style.display == "block") {
+			el.style.display = "none"
+		} else {
+			el.style.display = "block"
+		}
 	}
 
 	function toggleNewBusinessForm() {
-		$('#js-add-business-form-container').toggle();
+		let el = document.getElementById('js-add-business-form-container')
+		toggleForm('click', el)
 		if (CATS.length === 0) {
 					collectCategories();
 			};
 			renderNewBusCatSelect();
 	}
+
 
 	/* API REQUESTS */
 	/* Search Bar API request functions */
@@ -449,10 +441,6 @@ window.onload = function() {
 
 
 	/* Admin Panel functions */
-	function toggleAdminLogIn() {
-		$('#js-admin-login-container').toggle();
-	}
-
 	function showAdminView(username, password) {
 		logInAdmin(username, password);
 		if (loggedIn() === true) {
@@ -672,10 +660,25 @@ window.onload = function() {
 	document.getElementById('js-by-name-button').addEventListener('click', retrieveSearchNameResults)
 
 	/* Business Listings Checkbox Listeners */
-	reviewCheckBox.addEventListener("change", toggleReviewForm);
-	imageCheckBox.addEventListener("change", toggleImageForm);
-	flagCheckBox.addEventListener("change", toggleFlagForm);
-	editCheckBox.addEventListener("change", toggleEditForm);
+	reviewCheckBox.addEventListener("change", function() {
+		let el = document.getElementById('js-add-review-form-container')
+		toggleForm('checkbox', el);
+	})
+
+	imageCheckBox.addEventListener("change", function() {
+		let el = document.getElementById('js-add-image-form-container')
+	 	toggleForm('checkbox', el);
+	})
+
+	flagCheckBox.addEventListener("change", function() {
+		let el = document.getElementById('js-flag-business-form-container')
+	 	toggleForm('checkbox', el);
+	})
+
+	editCheckBox.addEventListener("change", function() {
+		let el = document.getElementById('js-suggest-edit-form-container')
+	 	toggleForm('checkbox', el);
+	})
 
 	/* New Business Form Listener */
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
@@ -686,7 +689,8 @@ window.onload = function() {
 		let submittedEl = document.createElement('p');
 		submittedEl.className = "succMsg"
 		submittedEl.innerHTML = "Successfully submitted!";
-		event.target.style.display = "none";
+		/* event.target.style.display = "none"; */
+		toggleForm('submit', event.target);
 		detailedListingMenu.appendChild(submittedEl)
  }
 
@@ -696,17 +700,21 @@ window.onload = function() {
 		let busName = getBusNameForAssoForm(event);
 		createPostData(event, busName);
 		formSubmitted(event);
-	});
+	})
 
 	/* remove form success message */
 	document.addEventListener( 'click', function (event) {
 		[].forEach.call(document.querySelectorAll('.succMsg'),function(e){
 		  e.parentNode.removeChild(e);
-		});
+		})
 	})
 
 	/* Admin Panel Listeners */
-	hiddenAdminButton.addEventListener("click", toggleAdminLogIn);
+	hiddenAdminButton.addEventListener("click", function() {
+		let el = document.getElementById('js-admin-login-container')
+		toggleForm('click', el);
+	})
+
 	adminPanelLogin.addEventListener("click", showAdminView);
 	rejectButton.addEventListener("click", function(event) {
 		rejectEntry(event);
@@ -741,7 +749,7 @@ window.onload = function() {
 		indexTable.style.display = 'block';
 		detailsTable.style.display = 'none';
 		document.getElementById('admin-notes-form').style.display = 'none';
-	document.getElementById('js-entry-notes').value = '';
+	  document.getElementById('js-entry-notes').value = '';
 
 		/* clear global variables */
 		ALL = [];
