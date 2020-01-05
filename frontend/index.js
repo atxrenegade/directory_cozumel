@@ -99,6 +99,7 @@ window.onload = function() {
 		let results = postSearchByCategory(category);
 	}
 	function toggleForm(event, el) {
+		debugger;
 		if (event === 'submit' || el.style.display == "block") {
 			el.style.display = "none"
 		} else {
@@ -689,9 +690,12 @@ window.onload = function() {
 		let submittedEl = document.createElement('p');
 		submittedEl.className = "succMsg"
 		submittedEl.innerHTML = "Successfully submitted!";
-		/* event.target.style.display = "none"; */
-		toggleForm('submit', event.target);
+		event.target.style.display = "none";
+
+		debugger;
 		detailedListingMenu.appendChild(submittedEl)
+
+		/* event.target.style.display = 'none'; */
  }
 
 	/* Form Event Listeners */
