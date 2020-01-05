@@ -441,6 +441,13 @@ window.onload = function() {
 		return busName;
 	}
 
+
+
+
+
+
+
+
 	/* Admin Panel functions */
 	function toggleAdminLogIn() {
 		$('#js-admin-login-container').toggle();
@@ -575,7 +582,7 @@ window.onload = function() {
 	}
 
 	function rejectEntry(event){
-		let entryId = document.getElementById('detailed-entry-table-3').lastChild.firstChild.textContent
+		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
 		let adminId = getAdminId();
 		let resolvedDate = new Date();
 		let status = "rejected"

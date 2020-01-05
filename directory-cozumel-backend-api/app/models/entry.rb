@@ -36,7 +36,6 @@ class Entry < ApplicationRecord
 	end
 
 	def new_bus_entry(data)
-		binding.pry
 		data_array = []
 		data_array[0] = "new bus"
 		data_array[1] = 0

@@ -22,6 +22,8 @@ class EntriesController < ApplicationController
 
 		update_vals["notes"] = params[:notes] if params[:notes].present?
 
-		entry.update!(update_vals)
+		if entry.update!(update_vals)
+			render json: { message: "Update Successful!"}
+		end
 	end
 end

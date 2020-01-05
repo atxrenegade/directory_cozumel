@@ -147,16 +147,19 @@ ADMIN - reject entry
 		TO DO
 
 		ADMIN LOGIN Panel
-		1. get userID
-		2. add Login Date
-		2. get businessName
-		3. reformat dataArray to Data Object
+	X	1. get userID
+	X	2. add Login Date
+	X	2. get businessName
+	X	3. reformat dataArray to Data Object
 
-		4. FIX post Request for reject, and add notes
+	X	4. FIX post Request for reject, and add notes
 		5. FIX back button missing event listeners
-		6. clear notes field on submission and page reload
+	X	6. clear notes field on submission and page reload
+		6.5 check update id
 
 		7. Add functionality to Resolve
+
+		8. Fix new_update, new_flag, new_image entry update requests
 ***************************************************
 		8. Add functionality to Revise
 
