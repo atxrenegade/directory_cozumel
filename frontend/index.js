@@ -426,7 +426,7 @@ window.onload = function() {
 			dataArray.push([el["id"], el["value"]])
 		})
 		dataArray.pop
-		dataArray.push(busName);
+		dataArray.push(["name", busName]);
 		postForm(dataArray);
 	}
 
