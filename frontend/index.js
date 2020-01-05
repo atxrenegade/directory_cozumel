@@ -682,11 +682,12 @@ window.onload = function() {
 
  /* Form Submit Listeners */
  function formSubmitted(event) {
-	 event.target.reset();
-	 let submittedEl = document.createElement('p');
-	 submittedEl.className = "succMsg"
-	 submittedEl.innerHTML = "Successfully submitted!";
-	 event.target.appendChild(submittedEl)
+		event.target.reset();
+		let submittedEl = document.createElement('p');
+		submittedEl.className = "succMsg"
+		submittedEl.innerHTML = "Successfully submitted!";
+		event.target.style.display = "none";
+		detailedListingMenu.appendChild(submittedEl)
  }
 
 	/* Form Event Listeners */
