@@ -691,11 +691,7 @@ window.onload = function() {
 		submittedEl.className = "succMsg"
 		submittedEl.innerHTML = "Successfully submitted!";
 		event.target.style.display = "none";
-
-		debugger;
 		detailedListingMenu.appendChild(submittedEl)
-
-		/* event.target.style.display = 'none'; */
  }
 
 	/* Form Event Listeners */
