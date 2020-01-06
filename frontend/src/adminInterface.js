@@ -9,21 +9,24 @@ class adminInterface {
 		let addNotesButton = document.getElementById('admin-notes-button')
 		let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
 		let notesForm = document.getElementById('admin-notes-form')
+
 		adminInterface.appendCurrentDateTime();
 		adminInterface.generatePendingEntryTable();
 		addNotesButton.addEventListener("click", adminInterface.showNotesForm);
-		newNotesSubmitButton.addEventListener("click", adminInterface.addNotes)
-		backButton.addEventListener("click", function() {
-			let indexBody = document.getElementById('index-entry-table-body');
-			indexBody.innerHTML = "";
-			ENTRIES = [];
-			detailsTable.style.display = "none";
-			indexTable.style.display = "block";
-			adminInterface.generatePendingEntryTable();
-		})
+		newNotesSubmitButton.addEventListener("click", adminInterface.addNotes);
+		backButton.addEventListener("click", adminInterface.returnToIndex);
 		rejectButton.addEventListener("click", function(event) {
 			adminInterface.rejectEntry(event);
 		})
+	}
+
+	static returnToIndex(){
+		let indexBody = document.getElementById('index-entry-table-body');
+		indexBody.innerHTML = "";
+		ENTRIES = [];
+		detailsTable.style.display = "none";
+		indexTable.style.display = "block";
+		adminInterface.generatePendingEntryTable();
 	}
 
 	static getAdminId(){

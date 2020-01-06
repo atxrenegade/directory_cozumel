@@ -43,19 +43,6 @@ window.onload = function() {
 	let adminPanelForm = document.getElementById('js-admin-login')
 	let adminUserInfo = document.getElementById('js-admin-user-info')
 
-	/* admin index table elements */
-	/*
-	let indexTable = document.getElementById('admin-entry-table') */
-	/* admin details table elements */
-	/*
-	let detailsTable = document.getElementById('entry-details-tables')
-	let backButton = document.getElementById('admin-back-button')
-	let rejectButton = document.getElementById('admin-reject-button')
-	let addNotesButton = document.getElementById('admin-notes-button')
-	let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
-	let notesForm = document.getElementById('admin-notes-form')
-	let timeDateEl = document.getElementById('admin-login-date')
-*/
 	/* container elements */
 	let sponsListContainer = document.getElementById('sponsored-listing-container')
 	let adsContainer = document.getElementById('ads-container')
@@ -64,10 +51,12 @@ window.onload = function() {
 	let newBusContainer = document.getElementById('js-new-business-container')
 	let mapContainer = document.getElementById('js-map')
 	let businessDetails = document.getElementById('js-business-listing-details')
+
 	/* Form Submit Elements */
 	let newBusForm = document.getElementById('js-new-bus-form');
 	let newReviewForm = document.getElementById('js-new-review-form');
 
+	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
 		listingsContainer.style.display = 'none';
@@ -109,6 +98,8 @@ window.onload = function() {
 		}
 	}
 
+	/* TOGGLE FORM FUNCTIONS */
+
 	function toggleNewBusinessForm() {
 		let el = document.getElementById('js-add-business-form-container')
 		toggleForm('click', el)
@@ -119,7 +110,7 @@ window.onload = function() {
 	}
 
 
-	/* API REQUESTS */
+	/* API REQUEST FUNCTIONS */
 	/* Search Bar API request functions */
 	function collectCategories() {
 		try {
@@ -229,20 +220,7 @@ window.onload = function() {
 		}
 	}
 
-	/* ADMIN API FUNCTIONS  */
-/*
-	function indexPendingEntries() {
-		try {
-			url = 'http://localhost:3000/entries'
-			fetch(url)
-			.then(resp => resp.json())
-			.then(json => buildEntries(json))
-		}
-		catch(err) {
-			console.log(error.message);
-		}
-	}
-*/
+	/* RESULTS FUNCTIONS */
 	/* Search Results functions */
 	function storeCategories(data){
 		let categoryObjects = Array.from(data);
@@ -399,7 +377,8 @@ window.onload = function() {
 		businessDetails.appendChild(newDiv);
 	}
 
-	/* New Bus Form Select */
+	/* FORM FUNCTIONs */
+	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect(){
 		if (CATS.length == 0){
 			collectCategories();
@@ -414,6 +393,34 @@ window.onload = function() {
 		newBusCatSelect.appendChild(catMenu)
 	};
 
+	/* Retrieve Bus Name From DOM for Associated Form */
+	/* works for new bus form and all other forms */
+	function getBusNameForAssoForm(event){
+		let busName = ''
+		if (event.target[0].id === 'new-bus'){
+			busName = document.getElementById('bus-name').value;
+		} else {
+			busName = document.getElementById('listing-bus-name').innerText;
+		}
+		return busName;
+	}
+
+	function submitForm(event) {
+		event.preventDefault();
+		let busName = getBusNameForAssoForm(event);
+		createPostData(event, busName);
+		formSubmitted(event);
+	}
+
+	function formSubmitted(event) {
+		 event.target.reset();
+		 let submittedEl = document.createElement('p');
+		 submittedEl.className = "succMsg"
+		 submittedEl.innerHTML = "Successfully submitted!";
+		 event.target.style.display = "none";
+		 detailedListingMenu.appendChild(submittedEl)
+	}
+
 	/* Form Post functions */
 	function createPostData(event, busName) {
 		let data = Array.from(event.target.elements)
@@ -426,48 +433,29 @@ window.onload = function() {
 		postForm(dataArray);
 	}
 
-	function getBusNameForAssoForm(event){
-		let busName = ''
-		/* checks for new business form vs. forms for reviews, image, update, or flag exisiting */
-		if (event.target[0].id === 'new-bus'){
-			busName = document.getElementById('bus-name').value;
-		} else {
-			busName = document.getElementById('listing-bus-name').innerText;
-		}
-		return busName;
-	}
+	/* ADMIN LOGIN FUNCTIONS */
+	function clearDirectoryForAdmin(){
+		sponsListContainer.style.display = "none";
+		adsContainer.style.display = "none";
+		searchBarContainer.style.display = "none";
+		listingsContainer.style.display = "none";
+		newBusContainer.style.display = "none";
+		hiddenAdminButton.style.display = "none";
 
+		adminPanel.style.display = "block";
+		adminMenu.style.display = "block";
+		adminPanelLogin.style.display = "none";
+		adminPanelLogout.style.display = "block";
+		adminPanelForm.style.display = "none";
+		adminUserInfo.style.display = "block";
 
-
-
-
-
-
-
-	/* Admin Panel functions */
-	/*
-	function showAdminView(username, password) {
-		logInAdmin(username, password);
-		if (loggedIn() === true) {
-			sponsListContainer.style.display = "none";
-			adsContainer.style.display = "none";
-			searchBarContainer.style.display = "none";
-			listingsContainer.style.display = "none";
-			newBusContainer.style.display = "none";
-			adminPanel.style.display = "block";
-			adminMenu.style.display = "block";
-			hiddenAdminButton.style.display = "none";
-			adminPanelLogin.style.display = "none";
-			adminPanelLogout.style.display = "block";
-			adminPanelForm.style.display = "none";
-			adminUserInfo.style.display = "block";
-			appendCurrentDateTime();
-			generatePendingEntryTable();
+		if (loggedIn() === true){
+				adminInterface.launchAdminInterface();
 		} else {
 			alert('You are not authorized to access admininstrative tasks!')
 		}
 	}
-*/
+
 	function logInAdmin(username, password) {
 		/* login admin user upon secure authentication and authorization)*/
 		loggedIn();
@@ -477,194 +465,32 @@ window.onload = function() {
 		return true;
 	}
 
-	/*
+	/* PAGE RESET FUNCTION */
+	function resetPage() {
+		reviewCheckBox.checked = false;
+		imageCheckBox.checked = false;
+		flagCheckBox.checked = false;
+		editCheckBox.checked = false;
+		nameRadioSelect.checked = true;
+		categoryRadioSelect.checked = false;
+		listingsContainer.style.display = 'none';
+		detailedListingMenu.style.display = 'none';
+		mapContainer.style.display = "none";
+		businessDetails.style.display = "none";
+		let elements = document.querySelectorAll('input[type="text"]');
+		Array.from(elements).forEach(el => el.value = '')
 
-	function generatePendingEntryTable(){
-		indexPendingEntries();
-		setTimeout(function(){
-			let indexBody = document.getElementById('index-entry-table-body');
-			let i = 0;
-			ENTRIES.forEach(el => {
-				let row = indexBody.insertRow(i);
-				let cell1 = row.insertCell(0);
-				let cell2 = row.insertCell(1);
-				let cell3 = row.insertCell(2);
-				let cell4 = row.insertCell(3);
-				let cell5 = row.insertCell(4);
-				let cell6 = row.insertCell(5);
-				let cell7 = row.insertCell(6);
-				let cell8 = row.insertCell(7);
-				let cell9 = row.insertCell(8);
-				cell1.innerHTML = el.id;
-				cell2.innerHTML = el.dateCreated;
-				cell3.innerHTML = el.busId;
-				cell4.innerHTML = el.entryType;
-				cell5.innerHTML = el.dataObject;
-				cell6.innerHTML = el.adminId;
-				cell7.innerHTML = el.status;
-				cell8.innerHTML = el.notes;
-				cell9.innerHTML = "<button class='admin-entry-show-details'> Review </button>"
-				i += 1;
-			})
-		}, 800);
-		setTimeout(function(){
-			let detailedEntryButtons = document.querySelectorAll('button.admin-entry-show-details')
-			detailedEntryButtons.forEach(button => {
-				document.addEventListener('click', event => {
-					debugger;
-					if (document.getElementById('detailed-entry-table-1').children.length === 0) {
-						indexTable.style.display = 'none';
-						detailsTable.style.display = 'block';
-						generateDetailedEntryTable(event);
-					}
-				})
-			})
-		}, 800);
-	}
+		/* clear global variables */
+		ALL = [];
+		CATS = [];
+		ENTRIES = [];
 
-	function buildEntries(entries){
-		entries.forEach(el => {
-			id = el['id'];
-			entryType = el['entry_type'];
-			busId = el['bus_id'];
-			busName = el['bus_name'];
-			dateCreated = el['date'];
-			contributor = el['contributor'];
-			contributorEmail = el['contributor_email'];
-			dataObject = el['data_object'];
-			status = el['status'];
-			resolvedDate = el['resolved_date'];
-			adminId = el['admin_id'];
-			notes = el['notes'];
-
-			newEntry = new Entry(id, entryType, busId, busName, dateCreated, contributor, contributorEmail, dataObject, status, resolvedDate, adminId, notes)
-		})
+		/* repopulate categories for drop down menu */
+		collectCategories();
 	}
 
 
-	function generateDetailedEntryTable(event){
-		let id = event.target.parentNode.parentElement.firstChild.textContent
-		let entry = ENTRIES.find(entry => entry.id === parseInt(id, 10));
-		let entryTable1 = document.getElementById('detailed-entry-table-1')
-		let row1 = entryTable1.insertRow(0);
-		let cell1 = row1.insertCell(0);
-		let cell2 = row1.insertCell(1);
-		let cell3 = row1.insertCell(2);
-		let cell4 = row1.insertCell(3);
-		let cell5 = row1.insertCell(4);
-		cell1.innerHTML = entry.id;
-		cell2.innerHTML = entry.dateCreated;
-		cell3.innerHTML = entry.busId;
-		cell4.innerHTML = entry.busName;
-		cell5.innerHTML = entry.entryType;
-		let entryTable2 = document.getElementById('detailed-entry-table-2')
-		let row2 = entryTable2.insertRow(0);
-		let cell6 = row2.insertCell(0);
-		let cell7 = row2.insertCell(1);
-		let cell8 = row2.insertCell(2);
-		cell6.innerHTML = entry.contributor;
-		cell7.innerHTML = entry.contributorEmail;
-		cell8.innerHTML = entry.dataObject;
-		let entryTable3 = document.getElementById('detailed-entry-table-3')
-		let row3 = entryTable3.insertRow(0);
-		let cell9 = row3.insertCell(0);
-		let cell10 = row3.insertCell(1);
-		let cell11 = row3.insertCell(2);
-		let cell12 = row3.insertCell(3);
-		cell9.innerHTML = entry.adminId;
-		cell10.innerHTML = entry.status;
-		cell11.innerHTML = entry.resolvedDate;
-		cell12.innerHTML = entry.notes;
-	}
-
-	function rejectEntry(event){
-		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
-		let adminId = getAdminId();
-		let resolvedDate = new Date();
-		let status = "rejected"
-		data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, status: status, }
-		postEntryUpdate(data);
-		displayRejected(adminId, resolvedDate, status);
-	}
-*/
-/*
-	function getAdminId(){
-*/
-		/* refactor when login functionality is added */
-/*
-		let adminId = document.getElementById('admin-number').nextSibling.textContent.split("\n")[0].split(" ")[1]
-		return adminId;
-	}
-*/
-/*
-
-
-	function postEntryUpdate(data) {
-		let configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
-	};
-	try {
-		fetch('http://localhost:3000/entries/update', configObj)
-			.then(resp => {
-				return resp.json();
-		})
-			.then(json => console.log(json)
-		)
-	}
-	catch(err) {
-			alert('Update failed see console for further details!');
-			console.log(error.message);
-		}
-	}
-/*
-	function entryUpdateSuccess() {
-		let updateSuccess = document.createElement('h4');
-		updateSuccess.innerText = "Entry Successfully Updated"
-		detailsTable.appendChild('updateSuccess');
-	}
-
-	function displayRejected(adminId, resolvedDate, status) {
-		let adminIdEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[0];
-		let resolvedDateEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[2];
-		let statusEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[1];
-		let cellDataArray = [[adminIdEl, adminId], [resolvedDateEl, resolvedDate],[statusEl, status]]
-		cellDataArray.forEach( el => updateCell(el[0], el[1]))
-	}
-
-	function showNotesForm(){
-		notesForm.style.display = 'block';
-	}
-
-	function addNotes() {
-		let id = document.getElementById('detailed-entry-table-1').lastChild.children[0].innerText
-		let entryId = parseInt(id, 10);
-		let notes = document.getElementById('js-entry-notes').value
-		let adminId = document.getElementById('detailed-entry-table-3').lastChild.firstChild.textContent
-		data = { id: entryId, admin_id: adminId, notes: notes}
-		postEntryUpdate(data);
-		let noteCell = document.getElementById('detailed-entry-table-3').lastChild.lastChild
-		updateCell(noteCell, notes)
-		notesForm.style.display = 'none';
-		document.getElementById('js-entry-notes').value = '';
-	}
-
-	function updateCell(cell, tableData){
-		cell.innerText = tableData;
-	}
-
-	function appendCurrentDateTime(){
-		let timeDate = document.createElement('span')
-		timeDate.innerText = new Date;
-		timeDateEl.appendChild(timeDate)
-	}
-*/
 	/* EVENT LISTENERS */
-
 	/* Search Bar Listeners */
 	nameRadioSelect.addEventListener("click", toggleNameMenu);
 	categoryRadioSelect.addEventListener("click", toggleCategoryMenu);
@@ -673,7 +499,7 @@ window.onload = function() {
 
 	document.getElementById('js-by-name-button').addEventListener('click', retrieveSearchNameResults)
 
-	/* Business Listings Checkbox Listeners */
+	/* Checkbox Listeners */
 	reviewCheckBox.addEventListener("change", function() {
 		let el = document.getElementById('js-add-review-form-container')
 		toggleForm('checkbox', el);
@@ -697,24 +523,8 @@ window.onload = function() {
 	/* New Business Form Listener */
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
 
- /* Form Submit Listeners */
- function formSubmitted(event) {
-		event.target.reset();
-		let submittedEl = document.createElement('p');
-		submittedEl.className = "succMsg"
-		submittedEl.innerHTML = "Successfully submitted!";
-		event.target.style.display = "none";
-		detailedListingMenu.appendChild(submittedEl)
- }
-
 	/* Form Event Listeners */
-	document.addEventListener( "submit", function ( event ) {
-		event.preventDefault();
-		let busName = getBusNameForAssoForm(event);
-		createPostData(event, busName);
-		formSubmitted(event);
-	})
-
+	document.addEventListener( "submit", submitForm(event));
 	/* remove form success message */
 	document.addEventListener( 'click', function (event) {
 		[].forEach.call(document.querySelectorAll('.succMsg'),function(e){
@@ -727,78 +537,9 @@ window.onload = function() {
 		let el = document.getElementById('js-admin-login-container')
 		toggleForm('click', el);
 	})
+	adminPanelLogin.addEventListener("click", clearDirectoryForAdmin);
 
-	adminPanelLogin.addEventListener("click", function(){
-		sponsListContainer.style.display = "none";
-		adsContainer.style.display = "none";
-		searchBarContainer.style.display = "none";
-		listingsContainer.style.display = "none";
-		newBusContainer.style.display = "none";
-		hiddenAdminButton.style.display = "none";
-
-		adminPanel.style.display = "block";
-		adminMenu.style.display = "block";
-		adminPanelLogin.style.display = "none";
-		adminPanelLogout.style.display = "block";
-		adminPanelForm.style.display = "none";
-		adminUserInfo.style.display = "block";
-		adminInterface.launchAdminInterface();
-		/* if (loggedIn(username, password) === true){
-			new adminInteface;
-		} else {
-			alert('You are not authorized to access admininstrative tasks!')
-		}
-		*/
-	});
-
-	/*
-	rejectButton.addEventListener("click", function(event) {
-		rejectEntry(event);
-	})
- */
-/*
-	addNotesButton.addEventListener("click", showNotesForm);
-	newNotesSubmitButton.addEventListener("click", addNotes)
-	backButton.addEventListener("click", function() {
-		let indexBody = document.getElementById('index-entry-table-body');
-		indexBody.innerHTML = "";
-		ENTRIES = [];
-		detailsTable.style.display = "none";
-		indexTable.style.display = "block";
-		generatePendingEntryTable();
-})
-*/
-
-	/* Clear Form to set initial state */
-	function resetPage() {
-	  reviewCheckBox.checked = false;
-		imageCheckBox.checked = false;
-		flagCheckBox.checked = false;
-		editCheckBox.checked = false;
-		nameRadioSelect.checked = true;
-		categoryRadioSelect.checked = false;
-		listingsContainer.style.display = 'none';
-		detailedListingMenu.style.display = 'none';
-		mapContainer.style.display = "none";
-		businessDetails.style.display = "none";
-		let elements = document.querySelectorAll('input[type="text"]');
-		Array.from(elements).forEach(el => el.value = '')
-		/* clear admin forms and fields */
-
-		/*
-		indexTable.style.display = 'block';
-		detailsTable.style.display = 'none';
-		document.getElementById('admin-notes-form').style.display = 'none';
-	  document.getElementById('js-entry-notes').value = '';
-		*/
-		/* clear global variables */
-		ALL = [];
-		CATS = [];
-		ENTRIES = [];
-
-		/* repopulate categories for drop down menu */
-		collectCategories();
-	}
+	/* SET PAGE LOAD VALUES */
 	resetPage();
 	adminInterface.resetAdmin();
 }
