@@ -42,9 +42,12 @@ window.onload = function() {
 	let adminPanelLogout = document.getElementById('js-admin-logout-button')
 	let adminPanelForm = document.getElementById('js-admin-login')
 	let adminUserInfo = document.getElementById('js-admin-user-info')
+
 	/* admin index table elements */
-	let indexTable = document.getElementById('admin-entry-table')
+	/*
+	let indexTable = document.getElementById('admin-entry-table') */
 	/* admin details table elements */
+	/*
 	let detailsTable = document.getElementById('entry-details-tables')
 	let backButton = document.getElementById('admin-back-button')
 	let rejectButton = document.getElementById('admin-reject-button')
@@ -52,7 +55,7 @@ window.onload = function() {
 	let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
 	let notesForm = document.getElementById('admin-notes-form')
 	let timeDateEl = document.getElementById('admin-login-date')
-
+*/
 	/* container elements */
 	let sponsListContainer = document.getElementById('sponsored-listing-container')
 	let adsContainer = document.getElementById('ads-container')
@@ -99,7 +102,6 @@ window.onload = function() {
 		let results = postSearchByCategory(category);
 	}
 	function toggleForm(event, el) {
-		debugger;
 		if (event === 'submit' || el.style.display == "block") {
 			el.style.display = "none"
 		} else {
@@ -228,6 +230,7 @@ window.onload = function() {
 	}
 
 	/* ADMIN API FUNCTIONS  */
+/*
 	function indexPendingEntries() {
 		try {
 			url = 'http://localhost:3000/entries'
@@ -239,7 +242,7 @@ window.onload = function() {
 			console.log(error.message);
 		}
 	}
-
+*/
 	/* Search Results functions */
 	function storeCategories(data){
 		let categoryObjects = Array.from(data);
@@ -442,6 +445,7 @@ window.onload = function() {
 
 
 	/* Admin Panel functions */
+	/*
 	function showAdminView(username, password) {
 		logInAdmin(username, password);
 		if (loggedIn() === true) {
@@ -463,7 +467,7 @@ window.onload = function() {
 			alert('You are not authorized to access admininstrative tasks!')
 		}
 	}
-
+*/
 	function logInAdmin(username, password) {
 		/* login admin user upon secure authentication and authorization)*/
 		loggedIn();
@@ -472,6 +476,8 @@ window.onload = function() {
 	function loggedIn() {
 		return true;
 	}
+
+	/*
 
 	function generatePendingEntryTable(){
 		indexPendingEntries();
@@ -505,6 +511,7 @@ window.onload = function() {
 			let detailedEntryButtons = document.querySelectorAll('button.admin-entry-show-details')
 			detailedEntryButtons.forEach(button => {
 				document.addEventListener('click', event => {
+					debugger;
 					if (document.getElementById('detailed-entry-table-1').children.length === 0) {
 						indexTable.style.display = 'none';
 						detailsTable.style.display = 'block';
@@ -579,12 +586,18 @@ window.onload = function() {
 		postEntryUpdate(data);
 		displayRejected(adminId, resolvedDate, status);
 	}
-
+*/
+/*
 	function getAdminId(){
+*/
 		/* refactor when login functionality is added */
+/*
 		let adminId = document.getElementById('admin-number').nextSibling.textContent.split("\n")[0].split(" ")[1]
 		return adminId;
 	}
+*/
+/*
+
 
 	function postEntryUpdate(data) {
 		let configObj = {
@@ -608,7 +621,7 @@ window.onload = function() {
 			console.log(error.message);
 		}
 	}
-
+/*
 	function entryUpdateSuccess() {
 		let updateSuccess = document.createElement('h4');
 		updateSuccess.innerText = "Entry Successfully Updated"
@@ -649,7 +662,7 @@ window.onload = function() {
 		timeDate.innerText = new Date;
 		timeDateEl.appendChild(timeDate)
 	}
-
+*/
 	/* EVENT LISTENERS */
 
 	/* Search Bar Listeners */
@@ -715,21 +728,46 @@ window.onload = function() {
 		toggleForm('click', el);
 	})
 
-	adminPanelLogin.addEventListener("click", showAdminView);
+	adminPanelLogin.addEventListener("click", function(){
+		sponsListContainer.style.display = "none";
+		adsContainer.style.display = "none";
+		searchBarContainer.style.display = "none";
+		listingsContainer.style.display = "none";
+		newBusContainer.style.display = "none";
+		hiddenAdminButton.style.display = "none";
+
+		adminPanel.style.display = "block";
+		adminMenu.style.display = "block";
+		adminPanelLogin.style.display = "none";
+		adminPanelLogout.style.display = "block";
+		adminPanelForm.style.display = "none";
+		adminUserInfo.style.display = "block";
+		adminInterface.launchAdminInterface();
+		/* if (loggedIn(username, password) === true){
+			new adminInteface;
+		} else {
+			alert('You are not authorized to access admininstrative tasks!')
+		}
+		*/
+	});
+
+	/*
 	rejectButton.addEventListener("click", function(event) {
 		rejectEntry(event);
 	})
+ */
+/*
 	addNotesButton.addEventListener("click", showNotesForm);
 	newNotesSubmitButton.addEventListener("click", addNotes)
 	backButton.addEventListener("click", function() {
 		let indexBody = document.getElementById('index-entry-table-body');
 		indexBody.innerHTML = "";
 		ENTRIES = [];
-		generatePendingEntryTable();
 		detailsTable.style.display = "none";
 		indexTable.style.display = "block";
+		generatePendingEntryTable();
 })
-
+*/
 
 	/* Clear Form to set initial state */
 	function resetPage() {
@@ -746,11 +784,13 @@ window.onload = function() {
 		let elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
 		/* clear admin forms and fields */
+
+		/*
 		indexTable.style.display = 'block';
 		detailsTable.style.display = 'none';
 		document.getElementById('admin-notes-form').style.display = 'none';
 	  document.getElementById('js-entry-notes').value = '';
-
+		*/
 		/* clear global variables */
 		ALL = [];
 		CATS = [];
@@ -760,4 +800,5 @@ window.onload = function() {
 		collectCategories();
 	}
 	resetPage();
+	adminInterface.resetAdmin();
 }
