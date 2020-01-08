@@ -17,6 +17,12 @@ class GoogleMap {
 			map:map,
 			icon: 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
 		});
+	}
 
+	static mapBuilder(mapData) {
+		let lat = mapData['lat'];
+		let lng = mapData['lng'];
+		let newMap = new GoogleMap(lat, lng);
+		return newMap;
 	}
 }

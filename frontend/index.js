@@ -187,7 +187,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => returnDetailedResults(json)
+			.then(json => returnBusObjDetails(json)
 		)
 	}
 	catch(err) {
@@ -238,9 +238,20 @@ window.onload = function() {
 		}
 	}
 
-	function returnDetailedResults(data){
-		let busObj = buildBusObj(data);
+	function returnBusObjDetails(data){
+		debugger;
+		/*
+		let map = mapBuilder(data["map"]);
+		let imagesCollection = imagesBuilder(data["images"]);
+		let reviewsCollection = reviewsBuilder(data["reviews"]);
+		busObjArray.push(business, map, imagesCollection, reviewsCollection)
+	 return busObjArray;
+	 */
+		let busObj = Business.buildBusObj(data);
+		let map = GoogleMap.mapBuilder(data["map"])
+		debugger;
 		if (busObj != undefined) {
+
 			renderDetailedBusListing(busObj[0]);
 			renderMap(busObj[1]);
 			let imgs = busObj[2].flat();
@@ -262,13 +273,6 @@ window.onload = function() {
 		let allNames = ALL.map(el => el.name)
 		let duplicate = allNames.includes(busName)
 		return duplicate;
-	}
-
-	function mapBuilder(mapData) {
-		let lat = mapData['lat'];
-		let lng = mapData['lng'];
-		let newMap = new GoogleMap(lat, lng);
-		return newMap;
 	}
 
 	function imagesBuilder(imagesData){
