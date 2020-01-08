@@ -90,6 +90,8 @@ window.onload = function() {
 		let category = document.getElementById('js-category-select').value
 		let results = postSearchByCategory(category);
 	}
+
+	/* TOGGLE FORM FUNCTIONS */
 	function toggleForm(event, el) {
 		if (event === 'submit' || el.style.display == "block") {
 			el.style.display = "none"
@@ -97,8 +99,6 @@ window.onload = function() {
 			el.style.display = "block"
 		}
 	}
-
-	/* TOGGLE FORM FUNCTIONS */
 
 	function toggleNewBusinessForm() {
 		let el = document.getElementById('js-add-business-form-container')
@@ -172,7 +172,7 @@ window.onload = function() {
 		}
 	}
 
-	function postRetrieveObject(name){
+	function postBusObjToRetrieve(name){
 		let data = {'name': name}
 		let configObj = {
 			method: 'POST',
@@ -319,36 +319,30 @@ window.onload = function() {
 		businessListings.appendChild(newDiv);
 	}
 */
+
+	function renderIndex(resultsList){
+		businessListings.innerHTML = '';
+		resultsList.forEach(function(busObj) {
+			renderButton(busObj, postBusObjToRetrieve, businessListings);
+		});
+	}
+
+	function renderButton(obj, functionToExec, elToAppendTo){
+		let buttonHTML =`<input id='button_${obj.id}' type='button' class='js-bus-select' value='${obj.name}'>`;
+		renderComponent(buttonHTML, elToAppendTo);
+		let el = `button_${obj.id}`
+		let button = document.getElementById(el)
+		button.addEventListener('click', buttonFunction);
+		function buttonFunction(evt){
+			functionToExec(evt.target.value)
+		}
+	}
+
 	function renderComponent(generatedHtml, el){
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = generatedHtml;
 		el.appendChild(newDiv);
 	}
-
-	function renderIndex(resultsList){
-		businessListings.innerHTML = '';
-		resultsList.forEach(function(bus) {
-			let listingHTML = renderIndexObj(bus);
-			renderComponent(listingHTML, businessListings);
-			renderIndexButtons();
-		});
-	}
-
-	function renderIndexObj(obj){
-		let listingHTML =`<input type='button' class='js-bus-select' value='${obj.name}'>`;
-		return listingHTML;
-	}
-
-	function renderIndexButtons() {
-		let buttonCollection = document.querySelectorAll('input.js-bus-select')
-		buttonCollection.forEach((busButton) => {
-			busButton.addEventListener('click', bus => {
-				let name = bus.target.value
-				postRetrieveObject(name);
-			})
-		})
-	}
-
 
 
 /*
@@ -535,6 +529,14 @@ window.onload = function() {
 		let el = document.getElementById('js-suggest-edit-form-container')
 	 	toggleForm('checkbox', el);
 	})
+
+	/* Index Button Event Listeners */
+	/*
+	button.addEventListener('click', busObj => {
+		let name = button.target.value
+		postBusObjToRetrieve(name);
+	})
+	*/
 
 	/* New Business Form Listener */
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
