@@ -10,7 +10,6 @@ class Business {
 		ALL.push(this);
 	}
 
-
 	renderBusListing(){
 		let listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3><p>Rating: ${this.overallRating}<br>Categories: ${this.categories}<br>${this.address}<br>${this.phoneNumber}<br><a href='${this.website}'>${this.website}</a><br></p>`
 		return listingHTML;

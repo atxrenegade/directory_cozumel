@@ -238,7 +238,6 @@ window.onload = function() {
 	}
 
 	function displayBusObj(data){
-		debugger;
 		renderListing(buildListing(data));
 	}
 
@@ -253,8 +252,22 @@ window.onload = function() {
 	}
 
 	function renderListing(objArray){
-		console.log('We made it here!')
-		/* if (busObj != undefined) {
+		if (objArray != undefined) {
+			businessListings.innerHTML = '';
+			detailedListingMenu.style.display = 'block';
+			let el = businessListings
+			let busHTML = objArray[0].renderBusListing();
+			debugger;
+			let mapHTML = objArray[1].renderMap();
+			let reviewHTML = objArray[2].renderReview();
+			let imagesHTML = objArray[3].imagesMap();
+			renderComponent(busHTML, el);
+			renderComponent(mapHTML, el);
+			renderComponent(reviewsHTML, el);
+			renderComponent(imagesHTML, el);
+		}
+	}
+		/*
 			let el = 'element to render to'
 			busHTML = busObj.Business.renderBusListing()
 			renderComponent(bus)
@@ -264,8 +277,8 @@ window.onload = function() {
 			let reviews = busObj[3].flat();
 			imgs.forEach(el => renderImage(el))
 			reviews.forEach(el => renderReview(el))
-		} */
-	}
+	 */
+
 
 	function appendErrorMsg(msg){
 		businessListings.innerHTML = '';
@@ -294,15 +307,6 @@ window.onload = function() {
 			searchCategoryMenu.appendChild(catMenu);
 		}
 	}
-/*
-	function renderDetailedBusListing(busObj){
-		businessListings.innerHTML = '';
-		detailedListingMenu.style.display = 'block';
-		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `<h3 id='listing-bus-name'>   ${busObj.name}</h3><p>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
-		businessListings.appendChild(newDiv);
-	}
-*/
 
 	function renderIndex(resultsList){
 		businessListings.innerHTML = '';
@@ -323,6 +327,7 @@ window.onload = function() {
 	}
 
 	function renderComponent(generatedHtml, el){
+		debugger;
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = generatedHtml;
 		el.appendChild(newDiv);
