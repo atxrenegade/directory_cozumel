@@ -252,33 +252,21 @@ window.onload = function() {
 	}
 
 	function renderListing(objArray){
+		debugger;
 		if (objArray != undefined) {
 			businessListings.innerHTML = '';
 			detailedListingMenu.style.display = 'block';
 			let el = businessListings
 			let busHTML = objArray[0].renderBusListing();
-			debugger;
-			let mapHTML = objArray[1].renderMap();
-			let reviewHTML = objArray[2].renderReview();
-			let imagesHTML = objArray[3].imagesMap();
+			/* let mapHTML = objArray[1].renderMap(); */
+			let reviewsHTML = objArray[3].map((rev) => rev.renderReview());
+			let imagesHTML = objArray[2].map((img) => img.renderImage());
 			renderComponent(busHTML, el);
-			renderComponent(mapHTML, el);
+			/* renderComponent(mapHTML, el); */
 			renderComponent(reviewsHTML, el);
 			renderComponent(imagesHTML, el);
 		}
 	}
-		/*
-			let el = 'element to render to'
-			busHTML = busObj.Business.renderBusListing()
-			renderComponent(bus)
-			Business.renderBusList(busObj);
-			Map.renderMap(map);
-			let imgs = busObj[2].flat();
-			let reviews = busObj[3].flat();
-			imgs.forEach(el => renderImage(el))
-			reviews.forEach(el => renderReview(el))
-	 */
-
 
 	function appendErrorMsg(msg){
 		businessListings.innerHTML = '';
@@ -336,20 +324,6 @@ window.onload = function() {
 	function renderMap(mapObj){
 		mapContainer.style.display = 'block';
 		mapObj.initMap(mapObj.lat, mapObj.lng);
-	}
-
-	function renderImage(imgObj){
-		businessDetails.style.display = "block";
-		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `<img src="${imgObj.url}"></img><br><p>${imgObj.contributor}<br>${imgObj.date}<br>${imgObj.description}<br><br></<p>`;
-		businessDetails.appendChild(newDiv);
-	}
-
-	function renderReview(reviewObj){
-		businessDetails.style.display = "block";
-		let newDiv = document.createElement('div');
-		newDiv.innerHTML = `<p>${reviewObj.content}<br>Rating: ${reviewObj.rating}<br>${reviewObj.contributor}<br>${reviewObj.date}</p>`;
-		businessDetails.appendChild(newDiv);
 	}
 
 	/* FORM FUNCTIONs */

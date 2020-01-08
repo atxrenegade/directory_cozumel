@@ -6,6 +6,10 @@ class Image {
 		this.url = url;
 	}
 
+	renderImage(){
+		return `<img src="${this.url}"></img><br><p>${this.contributor}<br>${this.date}<br>${this.description}<br><br></<p>`
+	}
+
 	static imagesBuilder(imagesData){
 		let imageCollection = []
 		imagesData.map((el) => {

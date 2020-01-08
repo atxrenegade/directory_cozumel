@@ -6,6 +6,10 @@ class Review {
 		this.date = date;
 	}
 
+	renderReview(){
+		return `<p>${this.content}<br>Rating: ${this.rating}<br>${this.contributor}<br>${this.date}</p>`
+	}
+
 	static reviewsBuilder(reviewsData){
 		let reviewsCollection = []
 		reviewsData.map(el => {
