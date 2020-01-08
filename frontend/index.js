@@ -264,26 +264,6 @@ window.onload = function() {
 		return duplicate;
 	}
 
-	function buildBusObj(data) {
-		let duplicate = checkDuplicate(data["name"]);
-		if (duplicate == false) {
-			let busObjArray = [];
-			let id = data["id"];
-			let name = data["name"]
-			let categories = Object.values((data["categories"][0]))
-			let overallRating = data["listing"]["overall_rating"];
-			let address = data["listing"]["address"];
-			let phoneNumber = data["listing"]["phone_number"];
-			let website = data["listing"]["website"];
-			let business = new Business(id, name, categories, overallRating, address, phoneNumber, website);
-			let map = mapBuilder(data["map"]);
-			let imagesCollection = imagesBuilder(data["images"]);
-			let reviewsCollection = reviewsBuilder(data["reviews"]);
-			busObjArray.push(business, map, imagesCollection, reviewsCollection)
-		 return busObjArray;
-	 	}
-	}
-
 	function mapBuilder(mapData) {
 		let lat = mapData['lat'];
 		let lng = mapData['lng'];
@@ -327,10 +307,10 @@ window.onload = function() {
 			})
 			html += cats + '</select>';
 			catMenu.innerHTML = html;
-			searchCategoryMenu.appendChild(catMenu)
+			searchCategoryMenu.appendChild(catMenu);
 		}
 	}
-
+/*
 	function renderDetailedBusListing(busObj){
 		businessListings.innerHTML = '';
 		detailedListingMenu.style.display = 'block';
@@ -338,12 +318,40 @@ window.onload = function() {
 		newDiv.innerHTML = `<h3 id='listing-bus-name'>   ${busObj.name}</h3><p>Rating: ${busObj.overallRating}<br>Categories: ${busObj.categories}<br>${busObj.address}<br>${busObj.phoneNumber}<br><a href='${busObj.website}'>${busObj.website}</a><br></p>`;
 		businessListings.appendChild(newDiv);
 	}
+*/
+	function renderComponent(generatedHtml, el){
+		let newDiv = document.createElement('div');
+		newDiv.innerHTML = generatedHtml;
+		el.appendChild(newDiv);
+	}
 
 	function renderIndex(resultsList){
 		businessListings.innerHTML = '';
-		resultsList.forEach(busObj => renderBus(busObj));
+		resultsList.forEach(function(bus) {
+			let listingHTML = renderIndexObj(bus);
+			renderComponent(listingHTML, businessListings);
+			renderIndexButtons();
+		});
 	}
 
+	function renderIndexObj(obj){
+		let listingHTML =`<input type='button' class='js-bus-select' value='${obj.name}'>`;
+		return listingHTML;
+	}
+
+	function renderIndexButtons() {
+		let buttonCollection = document.querySelectorAll('input.js-bus-select')
+		buttonCollection.forEach((busButton) => {
+			busButton.addEventListener('click', bus => {
+				let name = bus.target.value
+				postRetrieveObject(name);
+			})
+		})
+	}
+
+
+
+/*
 	function renderBus(busObj){
 		let newDiv = document.createElement('div');
 		let button =
@@ -357,6 +365,14 @@ window.onload = function() {
 			})
 		})
 	}
+
+	let map = mapBuilder(data["map"]);
+	let imagesCollection = imagesBuilder(data["images"]);
+	let reviewsCollection = reviewsBuilder(data["reviews"]);
+	busObjArray.push(business, map, imagesCollection, reviewsCollection)
+ return busObjArray;
+*/
+
 
 	function renderMap(mapObj){
 		mapContainer.style.display = 'block';

@@ -155,7 +155,7 @@ ADMIN - reject entry
 	X	4. FIX post Request for reject, and add notes
 		5. FIX back button missing event listeners
 	X	6. clear notes field on submission and page reload
-		6.5 check update id
+	X	6.5 check update id
 
 		7. Add functionality to Resolve
 
@@ -168,7 +168,7 @@ ADMIN - reject entry
 		10. add user authentication and encryption for admin login
 		11. googlemaps pin
 
-		12. refactor create js classes and move methods to classes.
+		X 12. refactor create js classes and move methods to classes.
 		13. Add Styling
 		14. Demo Video
 		15. Blog Post
@@ -188,3 +188,16 @@ ADMIN - reject entry
 	"notes": "",
 	"created_at": "2019-12-30T19:04:53.530Z",
 	"updated_at": "2019-12-30T19:04:53.530Z"
+
+	XHRPOSThttp://localhost:3000/entries/new
+	[HTTP/1.1 500 Internal Server Error 307ms]
+
+
+	Request payload
+
+
+	1
+
+	[["new-image",null],["image-url","http://thisisatest.com"],["image-description","my favorite"],["image-date","12/14/20"],["image-contributor","h butler"],["image-email","h@gmail.com"],["","Submit"],"Hotel Zilla"]
+
+	TypeError: event.target[0]
