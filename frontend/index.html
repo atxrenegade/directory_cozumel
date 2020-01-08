@@ -62,23 +62,19 @@
 			<div id='listings-container' class='tile'>
 				Search Results
 				<br><br>
-				<div id='js-business-show'>
+				<div id='js-listing-show'> </div>
+				<div id='js-google-maps-container'>
+					<div id='js-map'>
+						<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBX29nIU-xhny3UjlJ1M-zuOf-btW-3780&callback=initMap'
+						async defer></script>
+					</div>
 				</div>
-				<div id='js-map'>
-					<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBX29nIU-xhny3UjlJ1M-zuOf-btW-3780&callback=initMap'
-					async defer></script>
-				</div>
-				<br><br>
-				<div id="js-business-listing-details">
-				</div>
-				<br>
-				<div id='js-detailed-listing-menu'>
+				<div id='js-listing-menu'>
 					<input type='checkbox' id= 'js-add-review-checkbox' name='review'>Add Review<br>
 					<input type='checkbox' id='js-add-image-checkbox' name='image'>Add Image<br>
 					<input type='checkbox' id='js-edit-business-checkbox' name='edit'>Suggest Edit<br>
 					<input type='checkbox' id='js-flag-business-checkbox' name='flag'>Flag Business<br>
-					<div id='js-google-maps-container'>
-					</div>
+
 				</div>
 				<div id='js-business-index-container'>
 				</div>

@@ -22,8 +22,8 @@ window.onload = function() {
 	let editCheckBox = document.getElementById('js-edit-business-checkbox');
 
 	/* business listing elements */
-	let businessListings = document.getElementById('js-business-show');
-	let detailedListingMenu = document.getElementById('js-detailed-listing-menu');
+	let businessListings = document.getElementById('js-listing-show');
+	let listingMenu = document.getElementById('js-listing-menu');
 
 	/* add business form elements */
 	let newBusinessButton = document.getElementById('js-add-button');
@@ -77,14 +77,14 @@ window.onload = function() {
 
 	/* search by name functions */
 	function retrieveSearchNameResults(){
-		detailedListingMenu.style.display = 'none';
+		listingMenu.style.display = 'none';
 		listingsContainer.style.display = 'block';
 		postSearchByName(searchNameField.value);
 		searchNameField.value = '';
 	}
 
 	function retrieveSearchCategoryResults() {
-		detailedListingMenu.style.display = 'none';
+		listingMenu.style.display = 'none';
 		listingsContainer.style.display = 'block';
 		let category = document.getElementById('js-category-select').value
 		let results = postSearchByCategory(category);
@@ -252,18 +252,15 @@ window.onload = function() {
 	}
 
 	function renderListing(objArray){
-		debugger;
 		if (objArray != undefined) {
 			businessListings.innerHTML = '';
-			detailedListingMenu.style.display = 'block';
+			listingMenu.style.display = 'block';
 			let el = businessListings
 			let busHTML = objArray[0].renderBusListing();
-			debugger;
 			let mapHTML = objArray[1].renderMap();
 			let reviewsHTML = objArray[3].map((rev) => rev.renderReview());
 			let imagesHTML = objArray[2].map((img) => img.renderImage());
 			renderComponent(busHTML, el);
-			debugger;
 			renderComponent(mapHTML, el);
 			/* renderComponent(mapHTML, el); */
 			renderComponent(reviewsHTML, el);
@@ -301,6 +298,7 @@ window.onload = function() {
 
 	function renderIndex(resultsList){
 		businessListings.innerHTML = '';
+		businessListings.style.display = "block";
 		resultsList.forEach(function(busObj) {
 			renderButton(busObj, postBusObjToRetrieve, businessListings);
 		});
@@ -318,7 +316,6 @@ window.onload = function() {
 	}
 
 	function renderComponent(generatedHtml, el){
-		debugger;
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = generatedHtml;
 		el.appendChild(newDiv);
@@ -344,7 +341,6 @@ window.onload = function() {
 	/* works for new bus form and all other forms */
 	function getBusNameForAssoForm(event){
 		let busName = '';
-		debugger;
 		if (event.target[0].id === 'new-bus'){
 			busName = document.getElementById('bus-name').value;
 		} else {
@@ -354,9 +350,9 @@ window.onload = function() {
 	}
 
 	function submitForm(event) {
+		debugger;
 		if (event.type === 'submit') {
 			event.preventDefault();
-			debugger;
 			let busName = getBusNameForAssoForm(event);
 			createPostData(event, busName);
 			formSubmitted(event);
@@ -425,9 +421,9 @@ window.onload = function() {
 		nameRadioSelect.checked = true;
 		categoryRadioSelect.checked = false;
 		listingsContainer.style.display = 'none';
-		detailedListingMenu.style.display = 'none';
+		listingMenu.style.display = 'none';
 		mapContainer.style.display = "none";
-		businessDetails.style.display = "none";
+		businessListings.style.display = "none";
 		let elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
 
