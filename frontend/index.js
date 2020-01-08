@@ -343,7 +343,8 @@ window.onload = function() {
 	/* Retrieve Bus Name From DOM for Associated Form */
 	/* works for new bus form and all other forms */
 	function getBusNameForAssoForm(event){
-		let busName = ''
+		let busName = '';
+		debugger;
 		if (event.target[0].id === 'new-bus'){
 			busName = document.getElementById('bus-name').value;
 		} else {
@@ -353,10 +354,13 @@ window.onload = function() {
 	}
 
 	function submitForm(event) {
-		event.preventDefault();
-		let busName = getBusNameForAssoForm(event);
-		createPostData(event, busName);
-		formSubmitted(event);
+		if (event.type === 'submit') {
+			event.preventDefault();
+			debugger;
+			let busName = getBusNameForAssoForm(event);
+			createPostData(event, busName);
+			formSubmitted(event);
+		}
 	}
 
 	function formSubmitted(event) {
