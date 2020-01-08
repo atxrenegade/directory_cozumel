@@ -238,27 +238,33 @@ window.onload = function() {
 		}
 	}
 
-	function returnBusObjDetails(data){
+	function displayBusObj(data){
 		debugger;
-		/*
-		let map = mapBuilder(data["map"]);
-		let imagesCollection = imagesBuilder(data["images"]);
-		let reviewsCollection = reviewsBuilder(data["reviews"]);
-		busObjArray.push(business, map, imagesCollection, reviewsCollection)
-	 return busObjArray;
-	 */
+		renderListing(buildListing(data));
+	}
+
+	function buildListing(data){
+		let objArray = []
 		let busObj = Business.buildBusObj(data);
 		let map = GoogleMap.mapBuilder(data["map"])
-		debugger;
-		if (busObj != undefined) {
+		let imagesCollection = Image.imagesBuilder(data["images"]);
+		let reviewsCollection = Review.reviewsBuilder(data["reviews"]);
+		objArray.push(business, map, imagesCollection, reviewsCollection)
+		return objArray;
+	}
 
-			renderDetailedBusListing(busObj[0]);
-			renderMap(busObj[1]);
+	function renderListing(objArray){
+		/* if (busObj != undefined) {
+			let el = 'element to render to'
+			busHTML = busObj.Business.renderBusListing()
+			renderComponent(bus)
+			Business.renderBusList(busObj);
+			Map.renderMap(map);
 			let imgs = busObj[2].flat();
 			let reviews = busObj[3].flat();
 			imgs.forEach(el => renderImage(el))
 			reviews.forEach(el => renderReview(el))
-		}
+		} */
 	}
 
 	function appendErrorMsg(msg){
@@ -348,23 +354,7 @@ window.onload = function() {
 		el.appendChild(newDiv);
 	}
 
-
 /*
-	function renderBus(busObj){
-		let newDiv = document.createElement('div');
-		let button =
-		newDiv.innerHTML = `<input type='button' class='js-bus-select' value='${busObj.name}'>`;
-		businessListings.appendChild(newDiv);
-		let buttonCollection = document.querySelectorAll('input.js-bus-select')
-		buttonCollection.forEach((busButton) => {
-			busButton.addEventListener('click', bus => {
-				let name = bus.target.value
-				postRetrieveObject(name);
-			})
-		})
-	}
-
-	let map = mapBuilder(data["map"]);
 	let imagesCollection = imagesBuilder(data["images"]);
 	let reviewsCollection = reviewsBuilder(data["reviews"]);
 	busObjArray.push(business, map, imagesCollection, reviewsCollection)
