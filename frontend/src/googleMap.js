@@ -6,17 +6,25 @@ class GoogleMap {
 
 	initMap(lat, lng){
 		let options = {
-			 center: {lat: LAT, lng: LNG},
+			 center: {lat: lat, lng: lng},
 			 zoom:11
 		 }
 
 		let map = new google.maps.Map(document.getElementById('js-map'), options);
 
-		let marker = new google.maps.Marker({
+		/*
+			let marker = new google.maps.Marker({
 			position:({lat: lat, lng: lng }),
 			map:map,
 			icon: 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
 		});
+
+		return map;
+		*/
+	}
+
+	renderMap(){
+		this.initMap(this.lat, this.lng);
 	}
 
 	static mapBuilder(mapData) {

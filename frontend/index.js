@@ -258,10 +258,13 @@ window.onload = function() {
 			detailedListingMenu.style.display = 'block';
 			let el = businessListings
 			let busHTML = objArray[0].renderBusListing();
-			/* let mapHTML = objArray[1].renderMap(); */
+			debugger;
+			let mapHTML = objArray[1].renderMap();
 			let reviewsHTML = objArray[3].map((rev) => rev.renderReview());
 			let imagesHTML = objArray[2].map((img) => img.renderImage());
 			renderComponent(busHTML, el);
+			debugger;
+			renderComponent(mapHTML, el);
 			/* renderComponent(mapHTML, el); */
 			renderComponent(reviewsHTML, el);
 			renderComponent(imagesHTML, el);
@@ -319,11 +322,6 @@ window.onload = function() {
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = generatedHtml;
 		el.appendChild(newDiv);
-	}
-
-	function renderMap(mapObj){
-		mapContainer.style.display = 'block';
-		mapObj.initMap(mapObj.lat, mapObj.lng);
 	}
 
 	/* FORM FUNCTIONs */
