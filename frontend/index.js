@@ -6,7 +6,6 @@ window.onload = function() {
 	LAT = 20.42;
 	LNG = -86.92;
 
-
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
 	let searchByCategory = document.getElementById('js-search-by-category');
@@ -187,7 +186,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => returnBusObjDetails(json)
+			.then(json => displayBusObj(json)
 		)
 	}
 	catch(err) {
@@ -249,11 +248,12 @@ window.onload = function() {
 		let map = GoogleMap.mapBuilder(data["map"])
 		let imagesCollection = Image.imagesBuilder(data["images"]);
 		let reviewsCollection = Review.reviewsBuilder(data["reviews"]);
-		objArray.push(business, map, imagesCollection, reviewsCollection)
+		objArray.push(busObj, map, imagesCollection, reviewsCollection)
 		return objArray;
 	}
 
 	function renderListing(objArray){
+		console.log('We made it here!')
 		/* if (busObj != undefined) {
 			let el = 'element to render to'
 			busHTML = busObj.Business.renderBusListing()
@@ -279,32 +279,6 @@ window.onload = function() {
 		let allNames = ALL.map(el => el.name)
 		let duplicate = allNames.includes(busName)
 		return duplicate;
-	}
-
-	function imagesBuilder(imagesData){
-		let imageCollection = []
-		imagesData.map((el) => {
-			let contributor = el["contributor"];
-			let date = el["date"];
-			let description = el["description"];
-			let url = el["url"];
-			let newImage = new Image(contributor, date, description, url);
-			imageCollection.push(newImage);
-		})
-		return imageCollection;
-	}
-
-	function reviewsBuilder(reviewsData){
-		let reviewsCollection = []
-		reviewsData.map(el => {
-			let content = el['content'];
-			let contributor = el["contributor"];
-			let date = new Date();
-			let rating = el["rating"];
-			let newReview = new Review(rating, content, contributor, date)
-			reviewsCollection.push(newReview);
-		})
-		return reviewsCollection;
 	}
 
 	/* Render functions */
@@ -353,14 +327,6 @@ window.onload = function() {
 		newDiv.innerHTML = generatedHtml;
 		el.appendChild(newDiv);
 	}
-
-/*
-	let imagesCollection = imagesBuilder(data["images"]);
-	let reviewsCollection = reviewsBuilder(data["reviews"]);
-	busObjArray.push(business, map, imagesCollection, reviewsCollection)
- return busObjArray;
-*/
-
 
 	function renderMap(mapObj){
 		mapContainer.style.display = 'block';
@@ -523,14 +489,6 @@ window.onload = function() {
 		let el = document.getElementById('js-suggest-edit-form-container')
 	 	toggleForm('checkbox', el);
 	})
-
-	/* Index Button Event Listeners */
-	/*
-	button.addEventListener('click', busObj => {
-		let name = button.target.value
-		postBusObjToRetrieve(name);
-	})
-	*/
 
 	/* New Business Form Listener */
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
