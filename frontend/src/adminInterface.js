@@ -9,6 +9,7 @@ class adminInterface {
 		let addNotesButton = document.getElementById('admin-notes-button')
 		let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
 		let notesForm = document.getElementById('admin-notes-form')
+		let superAdminMenuButton = document.getElementById('js-admin-show-super-admin')
 
 		adminInterface.appendCurrentDateTime();
 		adminInterface.generatePendingEntryTable();
@@ -18,6 +19,18 @@ class adminInterface {
 		rejectButton.addEventListener("click", function(event) {
 			adminInterface.rejectEntry(event);
 		})
+		superAdminMenuButton.addEventListener("click", function() {
+			let el = document.getElementById('js-admin-super-admin-open');
+			adminInterface.toggleElement(el);
+		})
+	}
+
+	static toggleElement(el) {
+		if (el.style.display === 'none') {
+			el.style.display = 'block'
+		} else {
+			el.style.display = 'none'
+		}
 	}
 
 	static returnToIndex(){
@@ -242,5 +255,6 @@ class adminInterface {
 		detailsTable.style.display = 'none';
 		document.getElementById('admin-notes-form').style.display = 'none';
 	  document.getElementById('js-entry-notes').value = '';
+		document.getElementById('js-admin-super-admin-open').style.display = 'none';
 	}
 }
