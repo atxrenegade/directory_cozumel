@@ -364,7 +364,6 @@ window.onload = function() {
 		submittedEl.innerHTML = "Successfully submitted for Review!";
 		event.target.style.display = "none";
 		event.target.reset();
-		debugger;
 		if (event.originalTarget[0].id === 'new-bus'){
 			newBusContainer.appendChild(submittedEl)
 		} else {

@@ -1,14 +1,13 @@
 class Entry < ApplicationRecord
-
 	def build_record(formatted_data)
 		record = Entry.new
 		record['entry_type'] = formatted_data[0]
 		record['bus_id'] = formatted_data[1]
-		record['bus_name'] = getBusName(formatted_data[1])
-		record['date'] = formatted_data[2]
-		record['contributor'] = formatted_data[3]
-		record['contributor_email'] = formatted_data[4]
-		record['data_object'] = formatted_data[5]
+		record['bus_name'] = formatted_data[2]
+		record['date'] = formatted_data[3]
+		record['contributor'] = formatted_data[4]
+		record['contributor_email'] = formatted_data[5]
+		record['data_object'] = formatted_data[6]
 		record['status'] = "pending"
 		record['resolved_date'] = 'n/a'
 		record['admin_id'] = 1
@@ -39,19 +38,19 @@ class Entry < ApplicationRecord
 		data_array = []
 		data_array[0] = "new bus"
 		data_array[1] = 0
-		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
-		data_array[3] = "unspecified"
+		data_array[2] = data[1][1]
+		data_array[3] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
 		data_array[4] = "unspecified"
-		#data_array[5] should include name, categories, overall rating, address, phone number, website
+		data_array[5] = "unspecified"
+		#data_array[6] should include name, categories, overall rating, address, phone number, website
 		#add categories to from for user to select values to be included in data_array
-		data_array[5] = {}
-		data_array[5].bus_name = data[1][1]
-		data_array[5].categories = data[5][1]
-		data_array[5].overall_rating = 'not yet rated'
-		data_array[5].address = data[2][1]
-		data_array[5].phone_number = data[3][1]
-		data_array[5].website = data[4][1]
-
+		data_array[6] = {}
+		data_array[6]['bus_name'] = data[1][1]
+		data_array[6]['categories'] = data[5][1]
+		data_array[6]['overall_rating'] = 'not yet rated'
+		data_array[6]['address'] = data[2][1]
+		data_array[6]['phone_number'] = data[3][1]
+		data_array[6]['website'] = data[4][1]
 		build_record(data_array)
 	end
 
@@ -59,33 +58,36 @@ class Entry < ApplicationRecord
 		data_array = []
 		data_array[0] = "new review"
 		data_array[1] = getBusId(data[6])
-		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
-		data_array[3] = data[3][1] #contributor
-		data_array[4] = data[4][1] #contributor_email
+		data_array[2] = data[6][1]
+		data_array[3] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+		data_array[4] = data[3][1] #contributor
+		data_array[5] = data[4][1] #contributor_email
 		#data_array[5] content, contributor, contributor_email, rating, business_id
-		data_array[5] = {}
-		data_array[5]["content"] = data[2][1]
-		data_array[5]["contributor"] = data[3][1]
-		data_array[5]["contributor_email"] = data[4][1]
-		data_array[5]["rating"] = data[1][1]
-		data_array[5]["bus_id"] = data_array[1]
+		data_array[6] = {}
+		data_array[6]["content"] = data[2][1]
+		data_array[6]["contributor"] = data[3][1]
+		data_array[6]["contributor_email"] = data[4][1]
+		data_array[6]["rating"] = data[1][1]
+		data_array[6]["bus_id"] = data_array[1]
 		build_record(data_array)
 	end
 
 	def new_image_entry(data)
+		binding.pry
 		data_array = []
 		data_array[0] = "new image"
 		data_array[1] = getBusId(data[7])
-		data_array[2] = data[3][1] #date of image
-		data_array[3] = data[4][1] #contributor
-		data_array[4] = data[5][1] #contributor_email
-		data_array[5] = {}
-		data_array[5]["description"] = data[2][1]
-		data_array[5]["date"] = data_array[2]
-		data_array[5]["url"] = data[1][2]
-		data_array[5]["contributor"] = data_array[3]
-		data_array[5]["contributor_email"] = data_array[4]
-		data_array[5]["bus_id"] = data_array[1]
+		data_array[2] = data[7][1]
+		data_array[3] = data[3][1] #date of image
+		data_array[4] = data[4][1] #contributor
+		data_array[5] = data[5][1] #contributor_email
+		data_array[6] = {}
+		data_array[6]["description"] = data[2][1]
+		data_array[6]["date"] = data_array[2]
+		data_array[6]["url"] = data[1][1]
+		data_array[6]["contributor"] = data_array[3]
+		data_array[6]["contributor_email"] = data_array[4]
+		data_array[6]["bus_id"] = data_array[1]
 		build_record(data_array)
 	end
 
@@ -93,13 +95,14 @@ class Entry < ApplicationRecord
 		data_array = []
 		data_array[0] = "update business"
 		data_array[1] = getBusId(data[5])
-		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S") #date of update request
-		data_array[3] = data[2][1] #contributor
-		data_array[4] = data[3][1] #contributor_email
-		#data_array[5] should include business_id and content
-		data_array[5] = {}
-		data_array[5]["bus_id"] = data_array[1]
-		data_array[5]["content"] = data[1][1]
+		data_array[2] = data[5][1]
+		data_array[3] = Time.now.strftime("%Y-%m-%d %H:%M:%S") #date of update request
+		data_array[4] = data[2][1] #contributor
+		data_array[5] = data[3][1] #contributor_email
+		#data_array[6] should include business_id and content
+		data_array[6] = {}
+		data_array[6]["bus_id"] = data_array[1]
+		data_array[6]["content"] = data[1][1]
 		build_record(data_array)
 	end
 
@@ -107,13 +110,14 @@ class Entry < ApplicationRecord
 		data_array = []
 		data_array[0] = "flag business"
 		data_array[1] = getBusId(data[5])
-		data_array[2] = Time.now.strftime("%Y-%m-%d %H:%M:%S") #date of update request
-		data_array[3] = data[2][1] #contributor
-		data_array[4] = data[3][1] #contributor_email
-		#data_array[5] should include business_id and content
-		data_array[5] = {}
-		data_array[5]["bus_id"] = data_array[1]
-		data_array[5]["content"] = data[1][1]
+		data_array[2] = data[5][1]
+		data_array[3] = Time.now.strftime("%Y-%m-%d %H:%M:%S") #date of update request
+		data_array[4] = data[2][1] #contributor
+		data_array[5] = data[3][1] #contributor_email
+		#data_array[6] should include business_id and content
+		data_array[6] = {}
+		data_array[6]["bus_id"] = data_array[1]
+		data_array[6]["content"] = data[1][1]
 		build_record(data_array)
 	end
 
