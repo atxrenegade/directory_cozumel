@@ -73,7 +73,6 @@ class Entry < ApplicationRecord
 	end
 
 	def new_image_entry(data)
-		binding.pry
 		data_array = []
 		data_array[0] = "new image"
 		data_array[1] = getBusId(data[7])
@@ -178,7 +177,7 @@ class Entry < ApplicationRecord
 
 	end
 
-	def self.collect_pending
-		return Entry.where(status: 'pending')
+	def self.collect(status)
+		return Entry.where(status: 'status')
 	end
 end

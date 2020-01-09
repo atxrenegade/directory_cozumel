@@ -4,8 +4,13 @@ class EntriesController < ApplicationController
 		render json: entry
 	end
 
-	def index
-		entries = Entry.collect_pending
+	def index_pending
+		entries = Entry.collect('pending')
+		render json: entries
+	end
+
+	def index_resolved
+		entries = Entry.collect('resolved')
 		render json: entries
 	end
 

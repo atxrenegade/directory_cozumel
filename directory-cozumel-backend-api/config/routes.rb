@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
 	post '/entries/new'
 	post '/entries/update'
-	get '/entries', to: 'entries#index'
+	get '/entries/pending', to: 'entries#index_pending'
+	get '/entries/resolved', to: 'entries#index_resolved'
 
   resources :reviews, only: [:new, :create, :show, :update, :delete]
   resources :maps, only: [:show]

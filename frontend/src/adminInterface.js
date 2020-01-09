@@ -13,6 +13,7 @@ class adminInterface {
 		let superAdminMenuButton = document.getElementById('js-admin-show-super-admin')
 		let pendingIndexButton = document.getElementById('admin-show-pending-button')
 		let resolvedIndexButton = document.getElementById('admin-show-resolved-button')
+		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime();
 
 		addNotesButton.addEventListener("click", adminInterface.showNotesForm);
@@ -26,15 +27,20 @@ class adminInterface {
 			adminInterface.toggleElement(el);
 		})
 
-		pendingIndexButton.addEventListener("click", adminInterface.toggleTable('pending'));
-		resolvedIndexButton.addEventListener("click", adminInterface.toggleTable('resolved'));
+		pendingIndexButton.addEventListener("click", function() {
+			adminInterface.toggleTable('pending')
+		})
+
+		resolvedIndexButton.addEventListener("click", function() {
+			adminInterface.toggleTable('resolved')
+		})
 	}
 
 	static toggleTable(type) {
 		let adminTableContainer = document.getElementById('js-admin-panel-container')
 		let indexTable = document.getElementById('admin-entry-table')
-		adminInterface.toggleElement(adminTableContainer);
-		adminInterface.toggleElement(indexTable);
+		adminTableContainer.style.display = 'block';
+		indexTable.style.display = 'block';
 		adminInterface.generateEntryTable(type);
 	}
 
@@ -74,13 +80,7 @@ class adminInterface {
 	}
 
 	static indexEntries(type) {
-		debugger;
-		url = ""
-		if (type === 'resolved'){
-			url = 'http://localhost:3000/resolved_entries'
-		} else {
-			url = 'http://localhost:3000/pending_entries'
-		}
+		url = `http://localhost:3000/entries/${type}`
 		try {
 			fetch(url)
 			.then(resp => resp.json())
@@ -91,8 +91,8 @@ class adminInterface {
 		}
 	}
 
-	static generateEntryTable(){
-		adminInterface.indexEntries('pending');
+	static generateEntryTable(type){
+		adminInterface.indexEntries('type');
 		setTimeout(function(){
 			let indexBody = document.getElementById('index-entry-table-body');
 			let i = 0;
