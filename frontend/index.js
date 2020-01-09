@@ -350,7 +350,6 @@ window.onload = function() {
 	}
 
 	function submitForm(event) {
-		debugger;
 		if (event.type === 'submit') {
 			event.preventDefault();
 			let busName = getBusNameForAssoForm(event);
@@ -360,12 +359,25 @@ window.onload = function() {
 	}
 
 	function formSubmitted(event) {
-		 event.target.reset();
-		 let submittedEl = document.createElement('p');
-		 submittedEl.className = "succMsg"
-		 submittedEl.innerHTML = "Successfully submitted!";
-		 event.target.style.display = "none";
-		 detailedListingMenu.appendChild(submittedEl)
+		let submittedEl = document.createElement('p');
+		submittedEl.className = "succMsg"
+		submittedEl.innerHTML = "Successfully submitted for Review!";
+		event.target.style.display = "none";
+		event.target.reset();
+		debugger;
+		if (event.originalTarget[0].id === 'new-bus'){
+			newBusContainer.appendChild(submittedEl)
+		} else {
+			listingMenu.appendChild(submittedEl)
+			clearCheckBox();
+		}
+	}
+
+	function clearCheckBox(){
+		reviewCheckBox.checked = false;
+		imageCheckBox.checked = false;
+		flagCheckBox.checked = false;
+		editCheckBox.checked = false;
 	}
 
 	/* Form Post functions */
@@ -471,7 +483,9 @@ window.onload = function() {
 	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
 
 	/* Form Event Listeners */
-	document.addEventListener( "submit", submitForm(event));
+	document.addEventListener( "submit", function(){
+		submitForm(event);
+	});
 	/* remove form success message */
 	document.addEventListener( 'click', function (event) {
 		[].forEach.call(document.querySelectorAll('.succMsg'),function(e){
