@@ -22,7 +22,7 @@ class adminInterface {
 
 	static returnToIndex(){
 		let indexBody = document.getElementById('index-entry-table-body');
-			let indexTable = document.getElementById('admin-entry-table');
+		let indexTable = document.getElementById('admin-entry-table');
 		let detailsTable = document.getElementById('entry-details-tables');
 		indexBody.innerHTML = "";
 		ENTRIES = [];
@@ -66,6 +66,10 @@ class adminInterface {
 			let i = 0;
 			ENTRIES.forEach(el => {
 				let row = indexBody.insertRow(i);
+				/* how can I dynamiccaly create table cells using for loop?
+				for (let k = 0; k < 9; k++) {
+  				let cell${k + 1} = row.insertCell(${k})
+				}*/
 				let cell1 = row.insertCell(0);
 				let cell2 = row.insertCell(1);
 				let cell3 = row.insertCell(2);
@@ -83,7 +87,6 @@ class adminInterface {
 				cell6.innerHTML = el.adminId;
 				cell7.innerHTML = el.status;
 				cell8.innerHTML = el.notes;
-				/* cell9.innerHTML = "<button class='admin-entry-show-details'> Review </button>" */
 				let button = adminInterface.buildAdminButton(el.id);
 				cell9.appendChild(button)
 				i += 1;
