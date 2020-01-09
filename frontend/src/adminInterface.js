@@ -60,10 +60,7 @@ class adminInterface {
 		ENTRIES = [];
 		detailsTable.style.display = "none";
 		indexTable.style.display = "block";
-		adminInterface.generatePendingEntryTable();
-		document.getElementById('detailed-entry-table-1').innerHTML = '';
-		document.getElementById('detailed-entry-table-2').innerHTML = '';
-		document.getElementById('detailed-entry-table-3').innerHTML = '';
+		adminInterface.generateEntryTable('pending');
 	}
 
 	static getAdminId(){
@@ -80,7 +77,7 @@ class adminInterface {
 	}
 
 	static indexEntries(type) {
-		url = `http://localhost:3000/entries/${type}`
+		let url = `http://localhost:3000/entries/${type}`
 		try {
 			fetch(url)
 			.then(resp => resp.json())
@@ -92,9 +89,13 @@ class adminInterface {
 	}
 
 	static generateEntryTable(type){
-		adminInterface.indexEntries('type');
+		document.getElementById('detailed-entry-table-1').innerHTML = '';
+		document.getElementById('detailed-entry-table-2').innerHTML = '';
+		document.getElementById('detailed-entry-table-3').innerHTML = '';
+		adminInterface.indexEntries(type);
 		setTimeout(function(){
 			let indexBody = document.getElementById('index-entry-table-body');
+			indexBody.innerHTML = "";
 			let i = 0;
 			ENTRIES.forEach(el => {
 				let row = indexBody.insertRow(i);
@@ -216,11 +217,11 @@ class adminInterface {
 		document.getElementById('js-entry-notes').value = '';
 	}
 
-	static updateCell(cell, tableData){
+	static updateCell(cell, tableData) {
 		cell.innerText = tableData;
 	}
 
-	static rejectEntry(event){
+	static rejectEntry(event) {
 		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
 		let adminId = adminInterface.getAdminId();
 		let resolvedDate = new Date();

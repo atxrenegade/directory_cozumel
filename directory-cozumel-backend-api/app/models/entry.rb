@@ -178,6 +178,6 @@ class Entry < ApplicationRecord
 	end
 
 	def self.collect(status)
-		return Entry.where(status: 'status')
+		return Entry.where(status: status)
 	end
 end
