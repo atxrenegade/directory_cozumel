@@ -22,6 +22,8 @@ class adminInterface {
 
 	static returnToIndex(){
 		let indexBody = document.getElementById('index-entry-table-body');
+			let indexTable = document.getElementById('admin-entry-table');
+		let detailsTable = document.getElementById('entry-details-tables');
 		indexBody.innerHTML = "";
 		ENTRIES = [];
 		detailsTable.style.display = "none";

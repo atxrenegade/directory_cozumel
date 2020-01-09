@@ -62,7 +62,7 @@ class Entry < ApplicationRecord
 		data_array[3] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
 		data_array[4] = data[3][1] #contributor
 		data_array[5] = data[4][1] #contributor_email
-		#data_array[5] content, contributor, contributor_email, rating, business_id
+		#data_array[6] content, contributor, contributor_email, rating, business_id
 		data_array[6] = {}
 		data_array[6]["content"] = data[2][1]
 		data_array[6]["contributor"] = data[3][1]
