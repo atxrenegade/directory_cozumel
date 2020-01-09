@@ -29,6 +29,9 @@ class adminInterface {
 		detailsTable.style.display = "none";
 		indexTable.style.display = "block";
 		adminInterface.generatePendingEntryTable();
+		document.getElementById('detailed-entry-table-1').innerHTML = '';
+		document.getElementById('detailed-entry-table-2').innerHTML = '';
+		document.getElementById('detailed-entry-table-3').innerHTML = '';
 	}
 
 	static getAdminId(){
@@ -80,24 +83,30 @@ class adminInterface {
 				cell6.innerHTML = el.adminId;
 				cell7.innerHTML = el.status;
 				cell8.innerHTML = el.notes;
-				cell9.innerHTML = "<button class='admin-entry-show-details'> Review </button>"
+				/* cell9.innerHTML = "<button class='admin-entry-show-details'> Review </button>" */
+				let button = adminInterface.buildAdminButton(el.id);
+				cell9.appendChild(button)
 				i += 1;
 			})
 		}, 800);
-		setTimeout(function(){
-			let detailedEntryButtons = document.querySelectorAll('button.admin-entry-show-details')
-			detailedEntryButtons.forEach(button => {
-				document.addEventListener('click', event => {
-					if (document.getElementById('detailed-entry-table-1').children.length === 0) {
-						let indexTable = document.getElementById('admin-entry-table');
-						let detailsTable = document.getElementById('entry-details-tables');
-						indexTable.style.display = 'none';
-						detailsTable.style.display = 'block';
-						adminInterface.generateDetailedEntryTable(event);
-					}
-				})
-			})
-		}, 800);
+	}
+
+	static buildAdminButton(id){
+		let newButton = document.createElement('input');
+		newButton.setAttribute('id', `admin_entry_${id}`);
+		newButton.setAttribute('type', 'button');
+		newButton.setAttribute('class', 'admin-details-button');
+		newButton.setAttribute('value', 'Review');
+		newButton.setAttribute('onclick', 'adminInterface.displayDetails()');
+		return newButton;
+	}
+
+	static displayDetails() {
+		let indexTable = document.getElementById('admin-entry-table');
+		let detailsTable = document.getElementById('entry-details-tables');
+		indexTable.style.display = 'none';
+		detailsTable.style.display = 'block';
+		adminInterface.generateDetailedEntryTable(event);
 	}
 
 	static buildEntries(entries){
