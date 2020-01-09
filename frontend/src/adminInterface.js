@@ -1,6 +1,7 @@
 class adminInterface {
 	static launchAdminInterface(){
 		/* admin index table elements */
+		let adminTableContainer = document.getElementById('js-admin-panel-container')
 		let indexTable = document.getElementById('admin-entry-table')
 		/* admin details table elements */
 		let detailsTable = document.getElementById('entry-details-tables')
@@ -10,9 +11,10 @@ class adminInterface {
 		let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
 		let notesForm = document.getElementById('admin-notes-form')
 		let superAdminMenuButton = document.getElementById('js-admin-show-super-admin')
-
+		let pendingIndexButton = document.getElementById('admin-show-pending-button')
+		let resolvedIndexButton = document.getElementById('admin-show-resolved-button')
 		adminInterface.appendCurrentDateTime();
-		adminInterface.generatePendingEntryTable();
+
 		addNotesButton.addEventListener("click", adminInterface.showNotesForm);
 		newNotesSubmitButton.addEventListener("click", adminInterface.addNotes);
 		backButton.addEventListener("click", adminInterface.returnToIndex);
@@ -23,6 +25,17 @@ class adminInterface {
 			let el = document.getElementById('js-admin-super-admin-open');
 			adminInterface.toggleElement(el);
 		})
+
+		pendingIndexButton.addEventListener("click", adminInterface.toggleTable('pending'));
+		resolvedIndexButton.addEventListener("click", adminInterface.toggleTable('resolved'));
+	}
+
+	static toggleTable(type) {
+		let adminTableContainer = document.getElementById('js-admin-panel-container')
+		let indexTable = document.getElementById('admin-entry-table')
+		adminInterface.toggleElement(adminTableContainer);
+		adminInterface.toggleElement(indexTable);
+		adminInterface.generateEntryTable(type);
 	}
 
 	static toggleElement(el) {
@@ -60,9 +73,15 @@ class adminInterface {
 		timeDateEl.appendChild(timeDate)
 	}
 
-	static indexPendingEntries() {
+	static indexEntries(type) {
+		debugger;
+		url = ""
+		if (type === 'resolved'){
+			url = 'http://localhost:3000/resolved_entries'
+		} else {
+			url = 'http://localhost:3000/pending_entries'
+		}
 		try {
-			url = 'http://localhost:3000/entries'
 			fetch(url)
 			.then(resp => resp.json())
 			.then(json => adminInterface.buildEntries(json))
@@ -72,8 +91,8 @@ class adminInterface {
 		}
 	}
 
-	static generatePendingEntryTable(){
-		adminInterface.indexPendingEntries();
+	static generateEntryTable(){
+		adminInterface.indexEntries('pending');
 		setTimeout(function(){
 			let indexBody = document.getElementById('index-entry-table-body');
 			let i = 0;
@@ -251,7 +270,9 @@ class adminInterface {
 	static resetAdmin(){
 		let indexTable = document.getElementById('admin-entry-table');
 		let detailsTable = document.getElementById('entry-details-tables');
-		indexTable.style.display = 'block';
+		let adminTableContainer = document.getElementById('js-admin-panel-container')
+		adminTableContainer.style.display = 'none';
+		indexTable.style.display = 'none';
 		detailsTable.style.display = 'none';
 		document.getElementById('admin-notes-form').style.display = 'none';
 	  document.getElementById('js-entry-notes').value = '';
