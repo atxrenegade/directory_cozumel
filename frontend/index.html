@@ -211,6 +211,7 @@
 				</fieldset>
 				<fieldset id='js-super-admin-menu'>
 					<legend>Super Admin Menu</legend>
+						<button id='js-admin-show-super-admin'>DISPLAY SUPER ADMIN MENU </button>
 					<fieldset>
 						<legend>ADMIN AUTHORIZATION</legend>
 							<button id='js-admin-create-admin'>CREATE ADMIN </button>
@@ -226,28 +227,28 @@
 						<button id='js-super-admin-delete-cat-button'>DELETE CATEGORY</button>
 					</fieldset>
 					<fieldset>
+						<br>
 						<legend>SEARCH/UPDATE RECORDS</legend>
 						<form id="js-super-admin-search">
-							<label id='admin-search-database'>RECORDS TO SEARCH: </label>
-								<input type='radio' >
-								DATABASE
-								ADMIN ENTRIES
-
-							<label id='admin-search-database'>SEARCH FOR: </label>
-							<input type='radio' >
-								business
-								map
-								review
-								image
-
-							SEARCH DATABASE RECORDS BY:
-								business_name
-								business_id
-								contributor
-								contributor_email
-								date
-								id
-							<button id='admin-search-database'>SEARCH RECORDS </button>
+							<label id='admin-search-type'>RECORDS TO SEARCH: </label><br>
+								<input type="radio" name="admin_entries" value="admin"> admin entries <br>
+								<input type="radio" name="db_entries" value="db"> database <br>
+							<br>
+							<label id='admin-search-for'>SEARCH FOR RECORD TYPE: </label><br>
+									<input type="radio" name="admin_search_business" value="business"> Business <br>
+									<input type="radio" name="admin_search_map" value="map"> Map <br>
+									<input type="radio" name="admin_search_review" value="review"> Review <br>
+									<input type="radio" name="admin_search_image" value="image"> Image <br><br>
+							<label id='admin-search-by'>SEARCH RECORDS BY: </label><br>
+								<input type="radio" name="admin_search_by_name" value="bus_name"> Business NAME <br>
+								<input type="radio" name="admin_search_by_id" value="bus_id"> Business ID <br>
+								<input type="radio" name="admin_search_by_record_id" value="record_id"> Database Record ID <br>
+								<input type="radio" name="admin_search_by_contributor" value="contributor"> Contributor <br>
+								<input type="radio" name="admin_search_by_contributor_email" value="contributor_email"> Contributor EMAIL <br>
+								<input type="radio" name="admin_search_by_date" value="date"> Date <br><br>
+								<label id='admin-search-by'>INPUT TO SEARCH FOR: </label>
+								<input type="text" name="admin_search_by_input">
+							<button id='super-admin-search'>SEARCH RECORDS </button>
 					</form>
 					</fieldset>
 				</fieldset>
