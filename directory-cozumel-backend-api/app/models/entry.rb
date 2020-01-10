@@ -185,5 +185,4 @@ class Entry < ApplicationRecord
 		end
 		return entries
 	end
-
 end
