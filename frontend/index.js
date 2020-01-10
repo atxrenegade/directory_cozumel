@@ -286,7 +286,7 @@ window.onload = function() {
 	function renderCategoriesMenu() {
 		if (searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
-			let html = '<select id= 'js-category-select'>';
+			let html = '<select id= "js-category-select">';
 			let cats = CATS.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
@@ -328,7 +328,7 @@ window.onload = function() {
 			collectCategories();
 		}
 		let catMenu = document.createElement('div');
-		let html = '<select id= 'cat-select' multiple>';
+		let html = '<select id="cat-select" multiple>';
 		let cats = CATS.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
 		})
@@ -435,7 +435,7 @@ window.onload = function() {
 		listingMenu.style.display = 'none';
 		mapContainer.style.display = 'none';
 		businessListings.style.display = 'none';
-		let elements = document.querySelectorAll('input[type='text']');
+		let elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
 
 		/* clear global variables */
