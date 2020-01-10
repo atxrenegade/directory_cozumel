@@ -44,10 +44,10 @@ class Business < ApplicationRecord
 	def build_business_object
 		bus_obj = {}
 		bus_id = self.id
-		bus_obj["id"] = bus_id
-		bus_obj["name"] = self.name.to_s
-		bus_obj["categories"] = self.category_names.flatten
-		bus_obj["listing"] = Listing.format_listing(bus_id)
+		bus_obj['id'] = bus_id
+		bus_obj['name'] = self.name.to_s
+		bus_obj['categories'] = self.category_names.flatten
+		bus_obj['listing'] = Listing.format_listing(bus_id)
 		return bus_obj
 	end
 
@@ -56,8 +56,8 @@ class Business < ApplicationRecord
 	end
 
 	def self.filter_by_name(name)
-		wildcard_search = "%#{name.downcase}%"
- 		filtered = Business.select("id").where("lower(name) LIKE ?", wildcard_search).map{|el| el.id }
+		wildcard_search = '%#{name.downcase}%'
+ 		filtered = Business.select('id').where('lower(name) LIKE ?', wildcard_search).map{|el| el.id }
 		return Business.build_filtered_list_for_export(filtered)
 	end
 end

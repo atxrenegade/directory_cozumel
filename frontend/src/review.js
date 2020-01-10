@@ -14,9 +14,9 @@ class Review {
 		let reviewsCollection = []
 		reviewsData.map(el => {
 			let content = el['content'];
-			let contributor = el["contributor"];
+			let contributor = el['contributor'];
 			let date = new Date();
-			let rating = el["rating"];
+			let rating = el['rating'];
 			let newReview = new Review(rating, content, contributor, date)
 			reviewsCollection.push(newReview);
 		})

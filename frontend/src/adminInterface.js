@@ -16,22 +16,22 @@ class adminInterface {
 		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime();
 
-		addNotesButton.addEventListener("click", adminInterface.showNotesForm);
-		newNotesSubmitButton.addEventListener("click", adminInterface.addNotes);
-		backButton.addEventListener("click", adminInterface.returnToIndex);
-		rejectButton.addEventListener("click", function(event) {
+		addNotesButton.addEventListener('click', adminInterface.showNotesForm);
+		newNotesSubmitButton.addEventListener('click', adminInterface.addNotes);
+		backButton.addEventListener('click', adminInterface.returnToIndex);
+		rejectButton.addEventListener('click', function(event) {
 			adminInterface.rejectEntry(event);
 		})
-		superAdminMenuButton.addEventListener("click", function() {
+		superAdminMenuButton.addEventListener('click', function() {
 			let el = document.getElementById('js-admin-super-admin-open');
 			adminInterface.toggleElement(el);
 		})
 
-		pendingIndexButton.addEventListener("click", function() {
+		pendingIndexButton.addEventListener('click', function() {
 			adminInterface.toggleTable('pending')
 		})
 
-		resolvedIndexButton.addEventListener("click", function() {
+		resolvedIndexButton.addEventListener('click', function() {
 			adminInterface.toggleTable('resolved')
 		})
 	}
@@ -56,16 +56,16 @@ class adminInterface {
 		let indexBody = document.getElementById('index-entry-table-body');
 		let indexTable = document.getElementById('admin-entry-table');
 		let detailsTable = document.getElementById('entry-details-tables');
-		indexBody.innerHTML = "";
+		indexBody.innerHTML = '';
 		ENTRIES = [];
-		detailsTable.style.display = "none";
-		indexTable.style.display = "block";
+		detailsTable.style.display = 'none';
+		indexTable.style.display = 'block';
 		adminInterface.generateEntryTable('pending');
 	}
 
 	static getAdminId(){
 		/* refactor when login functionality is added */
-		let adminId = document.getElementById('admin-number').nextSibling.textContent.split("\n")[0].split(" ")[1]
+		let adminId = document.getElementById('admin-number').nextSibling.textContent.split('\n')[0].split(' ')[1]
 		return adminId;
 	}
 
@@ -95,7 +95,7 @@ class adminInterface {
 		adminInterface.indexEntries(type);
 		setTimeout(function(){
 			let indexBody = document.getElementById('index-entry-table-body');
-			indexBody.innerHTML = "";
+			indexBody.innerHTML = '';
 			let i = 0;
 			ENTRIES.forEach(el => {
 				let row = indexBody.insertRow(i);
@@ -225,7 +225,7 @@ class adminInterface {
 		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
 		let adminId = adminInterface.getAdminId();
 		let resolvedDate = new Date();
-		let status = "rejected"
+		let status = 'rejected'
 		let data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, status: status, }
 		adminInterface.postEntryUpdate(data);
 		adminInterface.displayRejected(adminId, resolvedDate, status);
@@ -264,7 +264,7 @@ class adminInterface {
 
 	static entryUpdateSuccess() {
 		let updateSuccess = document.createElement('h4');
-		updateSuccess.innerText = "Entry Successfully Updated"
+		updateSuccess.innerText = 'Entry Successfully Updated'
 		detailsTable.appendChild('updateSuccess');
 	}
 

@@ -17,13 +17,13 @@ class Business {
 
 
 	static buildBusObj(data) {
-			let id = data["id"];
-			let name = data["name"]
-			let categories = Object.values((data["categories"][0]))
-			let overallRating = data["listing"]["overall_rating"];
-			let address = data["listing"]["address"];
-			let phoneNumber = data["listing"]["phone_number"];
-			let website = data["listing"]["website"];
+			let id = data['id'];
+			let name = data['name']
+			let categories = Object.values((data['categories'][0]))
+			let overallRating = data['listing']['overall_rating'];
+			let address = data['listing']['address'];
+			let phoneNumber = data['listing']['phone_number'];
+			let website = data['listing']['website'];
 			let business = new Business(id, name, categories, overallRating, address, phoneNumber, website);
 			return business
 		}

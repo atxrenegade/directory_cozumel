@@ -92,10 +92,10 @@ window.onload = function() {
 
 	/* TOGGLE FORM FUNCTIONS */
 	function toggleForm(event, el) {
-		if (event === 'submit' || el.style.display == "block") {
-			el.style.display = "none"
+		if (event === 'submit' || el.style.display == 'block') {
+			el.style.display = 'none'
 		} else {
-			el.style.display = "block"
+			el.style.display = 'block'
 		}
 	}
 
@@ -224,14 +224,14 @@ window.onload = function() {
 	function storeCategories(data){
 		let categoryObjects = Array.from(data);
 		CATS = categoryObjects.map((el) => {
-			return el["name"]
+			return el['name']
 		})
 	}
 
 	function returnResults(data){
 		data = Array.from(data)
 		if (data[0] == undefined) {
-			appendErrorMsg("NOT FOUND");
+			appendErrorMsg('NOT FOUND');
 		} else {
 			renderIndex(data)
 		}
@@ -244,9 +244,9 @@ window.onload = function() {
 	function buildListing(data){
 		let objArray = []
 		let busObj = Business.buildBusObj(data);
-		let map = GoogleMap.mapBuilder(data["map"])
-		let imagesCollection = Image.imagesBuilder(data["images"]);
-		let reviewsCollection = Review.reviewsBuilder(data["reviews"]);
+		let map = GoogleMap.mapBuilder(data['map'])
+		let imagesCollection = Image.imagesBuilder(data['images']);
+		let reviewsCollection = Review.reviewsBuilder(data['reviews']);
 		objArray.push(busObj, map, imagesCollection, reviewsCollection)
 		return objArray;
 	}
@@ -286,7 +286,7 @@ window.onload = function() {
 	function renderCategoriesMenu() {
 		if (searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
-			let html = '<select id= "js-category-select">';
+			let html = '<select id= 'js-category-select'>';
 			let cats = CATS.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
@@ -298,7 +298,7 @@ window.onload = function() {
 
 	function renderIndex(resultsList){
 		businessListings.innerHTML = '';
-		businessListings.style.display = "block";
+		businessListings.style.display = 'block';
 		resultsList.forEach(function(busObj) {
 			renderButton(busObj, postBusObjToRetrieve, businessListings);
 		});
@@ -328,7 +328,7 @@ window.onload = function() {
 			collectCategories();
 		}
 		let catMenu = document.createElement('div');
-		let html = '<select id= "cat-select" multiple>';
+		let html = '<select id= 'cat-select' multiple>';
 		let cats = CATS.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
 		})
@@ -360,9 +360,9 @@ window.onload = function() {
 
 	function formSubmitted(event) {
 		let submittedEl = document.createElement('p');
-		submittedEl.className = "succMsg"
-		submittedEl.innerHTML = "Successfully submitted for Review!";
-		event.target.style.display = "none";
+		submittedEl.className = 'succMsg'
+		submittedEl.innerHTML = 'Successfully submitted for Review!';
+		event.target.style.display = 'none';
 		event.target.reset();
 		if (event.originalTarget[0].id === 'new-bus'){
 			newBusContainer.appendChild(submittedEl)
@@ -384,28 +384,28 @@ window.onload = function() {
 		let data = Array.from(event.target.elements)
 		let dataArray = []
 		data = data.forEach(el => {
-			dataArray.push([el["id"], el["value"]])
+			dataArray.push([el['id'], el['value']])
 		})
 		dataArray.pop
-		dataArray.push(["name", busName]);
+		dataArray.push(['name', busName]);
 		postForm(dataArray);
 	}
 
 	/* ADMIN LOGIN FUNCTIONS */
 	function clearDirectoryForAdmin(){
-		sponsListContainer.style.display = "none";
-		adsContainer.style.display = "none";
-		searchBarContainer.style.display = "none";
-		listingsContainer.style.display = "none";
-		newBusContainer.style.display = "none";
-		hiddenAdminButton.style.display = "none";
+		sponsListContainer.style.display = 'none';
+		adsContainer.style.display = 'none';
+		searchBarContainer.style.display = 'none';
+		listingsContainer.style.display = 'none';
+		newBusContainer.style.display = 'none';
+		hiddenAdminButton.style.display = 'none';
 
-		adminPanel.style.display = "block";
-		adminMenu.style.display = "block";
-		adminPanelLogin.style.display = "none";
-		adminPanelLogout.style.display = "block";
-		adminPanelForm.style.display = "none";
-		adminUserInfo.style.display = "block";
+		adminPanel.style.display = 'block';
+		adminMenu.style.display = 'block';
+		adminPanelLogin.style.display = 'none';
+		adminPanelLogout.style.display = 'block';
+		adminPanelForm.style.display = 'none';
+		adminUserInfo.style.display = 'block';
 
 		if (loggedIn() === true){
 				adminInterface.launchAdminInterface();
@@ -433,9 +433,9 @@ window.onload = function() {
 		categoryRadioSelect.checked = false;
 		listingsContainer.style.display = 'none';
 		listingMenu.style.display = 'none';
-		mapContainer.style.display = "none";
-		businessListings.style.display = "none";
-		let elements = document.querySelectorAll('input[type="text"]');
+		mapContainer.style.display = 'none';
+		businessListings.style.display = 'none';
+		let elements = document.querySelectorAll('input[type='text']');
 		Array.from(elements).forEach(el => el.value = '')
 
 		/* clear global variables */
@@ -450,39 +450,39 @@ window.onload = function() {
 
 	/* EVENT LISTENERS */
 	/* Search Bar Listeners */
-	nameRadioSelect.addEventListener("click", toggleNameMenu);
-	categoryRadioSelect.addEventListener("click", toggleCategoryMenu);
+	nameRadioSelect.addEventListener('click', toggleNameMenu);
+	categoryRadioSelect.addEventListener('click', toggleCategoryMenu);
 
 	document.getElementById('js-by-category-button').addEventListener('click', retrieveSearchCategoryResults);
 
 	document.getElementById('js-by-name-button').addEventListener('click', retrieveSearchNameResults)
 
 	/* Checkbox Listeners */
-	reviewCheckBox.addEventListener("change", function() {
+	reviewCheckBox.addEventListener('change', function() {
 		let el = document.getElementById('js-add-review-form-container')
 		toggleForm('checkbox', el);
 	})
 
-	imageCheckBox.addEventListener("change", function() {
+	imageCheckBox.addEventListener('change', function() {
 		let el = document.getElementById('js-add-image-form-container')
 	 	toggleForm('checkbox', el);
 	})
 
-	flagCheckBox.addEventListener("change", function() {
+	flagCheckBox.addEventListener('change', function() {
 		let el = document.getElementById('js-flag-business-form-container')
 	 	toggleForm('checkbox', el);
 	})
 
-	editCheckBox.addEventListener("change", function() {
+	editCheckBox.addEventListener('change', function() {
 		let el = document.getElementById('js-suggest-edit-form-container')
 	 	toggleForm('checkbox', el);
 	})
 
 	/* New Business Form Listener */
-	newBusinessButton.addEventListener("click", toggleNewBusinessForm);
+	newBusinessButton.addEventListener('click', toggleNewBusinessForm);
 
 	/* Form Event Listeners */
-	document.addEventListener( "submit", function(){
+	document.addEventListener( 'submit', function(){
 		submitForm(event);
 	});
 	/* remove form success message */
@@ -493,11 +493,11 @@ window.onload = function() {
 	})
 
 	/* Admin Panel Listeners */
-	hiddenAdminButton.addEventListener("click", function() {
+	hiddenAdminButton.addEventListener('click', function() {
 		let el = document.getElementById('js-admin-login-container')
 		toggleForm('click', el);
 	})
-	adminPanelLogin.addEventListener("click", clearDirectoryForAdmin);
+	adminPanelLogin.addEventListener('click', clearDirectoryForAdmin);
 
 	/* SET PAGE LOAD VALUES */
 	resetPage();
