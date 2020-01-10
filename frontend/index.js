@@ -379,6 +379,12 @@ window.onload = function() {
 		editCheckBox.checked = false;
 	}
 
+	function clearGlobalVariables(){
+		ALL = [];
+		CATS = [];
+		ENTRIES = [];
+	}
+
 	/* Form Post functions */
 	function createPostData(event, busName) {
 		let data = Array.from(event.target.elements)
@@ -399,7 +405,6 @@ window.onload = function() {
 		listingsContainer.style.display = 'none';
 		newBusContainer.style.display = 'none';
 		hiddenAdminButton.style.display = 'none';
-
 		adminPanel.style.display = 'block';
 		adminMenu.style.display = 'block';
 		adminPanelLogin.style.display = 'none';
@@ -425,10 +430,8 @@ window.onload = function() {
 
 	/* PAGE RESET FUNCTION */
 	function resetPage() {
-		reviewCheckBox.checked = false;
-		imageCheckBox.checked = false;
-		flagCheckBox.checked = false;
-		editCheckBox.checked = false;
+		clearCheckBox();
+		clearGlobalVariables();
 		nameRadioSelect.checked = true;
 		categoryRadioSelect.checked = false;
 		listingsContainer.style.display = 'none';
@@ -437,12 +440,6 @@ window.onload = function() {
 		businessListings.style.display = 'none';
 		let elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
-
-		/* clear global variables */
-		ALL = [];
-		CATS = [];
-		ENTRIES = [];
-
 		/* repopulate categories for drop down menu */
 		collectCategories();
 	}
