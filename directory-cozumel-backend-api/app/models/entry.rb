@@ -178,6 +178,12 @@ class Entry < ApplicationRecord
 	end
 
 	def self.collect(status)
-		return Entry.where(status: status)
+		if status == 'resolved'
+			entries =  Entry.where.not(status: "pending")
+		else
+			entries = Entry.where(status: status)
+		end
+		return entries
 	end
+
 end
