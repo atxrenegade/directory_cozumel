@@ -35,7 +35,7 @@ class adminInterface {
 		})
 
 		searchPendingButton.addEventListener('click', function() {
-			adminInterface.displaySearch('resolved')
+			adminInterface.displaySearch('pending')
 		})
 
 		/* Super Admin Menu Button */
