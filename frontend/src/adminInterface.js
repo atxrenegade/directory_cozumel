@@ -21,21 +21,7 @@ class adminInterface {
 		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime();
 
-		addNotesButton.addEventListener('click', adminInterface.showNotesForm);
-		newNotesSubmitButton.addEventListener('click', adminInterface.addNotes);
-		rejectButton.addEventListener('click', function(event) {
-			adminInterface.rejectEntry(event);
-		})
-
-		backButton.addEventListener('click', function() {
-			adminInterface.displayIndex('pending')
-		})
-		
-		superAdminMenuButton.addEventListener('click', function() {
-			let el = document.getElementById('js-admin-super-admin-open');
-			adminInterface.toggleElement(el);
-		})
-
+		/* Admin panel menu buttons */
 		pendingIndexButton.addEventListener('click', function() {
 			adminInterface.displayIndex('pending')
 		})
@@ -45,16 +31,28 @@ class adminInterface {
 		})
 
 		searchResolvedButton.addEventListener('click', function() {
-				adminTableContainer.style.display = 'none';
-				adminEntrySearch.style.display = 'block';
-				/* change class attribute to 'resolved' */
+			adminInterface.displaySearch('resolved')
 		})
 
-		searchPendingButton.addEventListener('click',
-		function() {
-				adminTableContainer.style.display = 'none';
-				adminEntrySearch.style.display = 'block';
-				/* change class attribute to 'pending' */
+		searchPendingButton.addEventListener('click', function() {
+			adminInterface.displaySearch('resolved')
+		})
+
+		/* Super Admin Menu Button */
+		superAdminMenuButton.addEventListener('click', function() {
+			let el = document.getElementById('js-admin-super-admin-open');
+			adminInterface.toggleElement(el);
+		})
+
+		/* Detailed Entry Panel Buttons */
+		addNotesButton.addEventListener('click', adminInterface.showNotesForm);
+		newNotesSubmitButton.addEventListener('click', adminInterface.addNotes);
+		rejectButton.addEventListener('click', function(event) {
+			adminInterface.rejectEntry(event);
+		})
+
+		backButton.addEventListener('click', function() {
+			adminInterface.displayIndex('pending')
 		})
 	}
 
@@ -67,7 +65,6 @@ class adminInterface {
 	}
 
 	static displayIndex(type){
-		debugger;
 		let adminTableContainer = document.getElementById('js-admin-panel-container')
 		let indexBody = document.getElementById('index-entry-table-body');
 		let indexTable = document.getElementById('admin-entry-table');
@@ -91,6 +88,19 @@ class adminInterface {
 		let timeDate = document.createElement('span')
 		timeDate.innerText = new Date;
 		timeDateEl.appendChild(timeDate)
+	}
+
+	static displaySearch(type){
+		let adminTableContainer = document.getElementById('js-admin-panel-container')
+		let adminEntrySearch = document.getElementById('js-search-admin-entries')
+		adminTableContainer.style.display = 'none';
+		adminEntrySearch.style.display = 'block';
+		let button = document.getElementById('jr-admin-search')
+		button.innerHTML  = `Search ${type.toUpperCase()}`
+	}
+
+	static searchEntries(type){
+		console.log('Searching')
 	}
 
 	static indexEntries(type) {

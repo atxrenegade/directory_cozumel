@@ -350,7 +350,7 @@ window.onload = function() {
 	}
 
 	function submitForm(event) {
-		if (event.type === 'submit') {
+		if (event.type === 'submit' &&  event.target.className !== 'admin-form') {
 			event.preventDefault();
 			let busName = getBusNameForAssoForm(event);
 			createPostData(event, busName);
