@@ -89,7 +89,7 @@
 							<label for='review-contributor'>Your Name:</label>
 							<input type='text' id='review-contributor'/><br>
 							<label for='contributor-email'>Your Email</label>
-							<input type='text' id='review-contributor-email' name='contributor_email'/><br>
+							<input type='text' id='review-contributor-email' name='contributor-email'/><br>
 							<input type='submit' value='Submit'>
 						</fieldset>
 					</form>
@@ -182,7 +182,7 @@
 					<button id='js-admin-login-button'>Login</button>
 				</fieldset>
 
-				<div id="js-admin-user-info">
+				<div id='js-admin-user-info'>
 					<fieldset id='js-admin-user-panel'>
 						<legend>Admin LOGIN</legend>
 						<br>
@@ -207,7 +207,21 @@
 							<button id='admin-show-pending-button'>SHOW PENDING ENTRIES</button>
 							<button id='admin-search-resolved-button'>SEARCH RESOLVED ENTRIES</button>
 							<button id='admin-search-pending-button'>SEARCH PENDING ENTRIES</button>
+							<br><br>
+							<form>
+								<label id='jr-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br>
+									<input type='radio' name='jr-admin-search-by-name' value='bus-name'> Business NAME <br>
+									<input type='radio' name='jr-admin-search-by-id' value='bus-id'> Business ID <br>
+									<input type='radio' name='jr-admin-search-by-record-id' value='record-id'> Entry ID <br>
+									<input type='radio' name='jr-admin-search-by-contributor' value='contributor'> Contributor <br>
+									<input type='radio' name='jr-admin-search-by-contributor-email' value='contributor-email'> Contributor EMAIL <br>
+									<input type='radio' name='jr-admin-search-by-date' value='date'> Date <br><br>
+									<label id='jr-admin-search-by'>INPUT TO SEARCH FOR: </label>
+									<input type='text' name='jr-admin-search-by-input'>
+								<button id='jr-admin-search'>SEARCH ENTRIES </button>
+						</form>
 					</fieldset>
+
 				</fieldset>
 				<fieldset id='js-super-admin-menu'>
 					<legend>Super Admin Menu</legend>
@@ -230,25 +244,25 @@
 						<fieldset>
 							<br>
 							<legend>SEARCH/UPDATE RECORDS</legend>
-							<form id="js-super-admin-search">
+							<form id='js-super-admin-search'>
 								<label id='admin-search-type'>RECORDS TO SEARCH: </label><br>
-									<input type="radio" name="admin_entries" value="admin"> admin entries <br>
-									<input type="radio" name="db_entries" value="db"> database <br>
+									<input type='radio' name='admin-entries' value='admin'> admin entries <br>
+									<input type='radio' name='db-entries' value='db'> database <br>
 								<br>
 								<label id='admin-search-for'>SEARCH FOR RECORD TYPE: </label><br>
-										<input type="radio" name="admin_search_business" value="business"> Business <br>
-										<input type="radio" name="admin_search_map" value="map"> Map <br>
-										<input type="radio" name="admin_search_review" value="review"> Review <br>
-										<input type="radio" name="admin_search_image" value="image"> Image <br><br>
+										<input type='radio' name='admin-search-business' value='business'> Business <br>
+										<input type='radio' name='admin-search-map' value='map'> Map <br>
+										<input type='radio' name='admin-search-review' value='review'> Review <br>
+										<input type='radio' name='admin-search-image' value='image'> Image <br><br>
 								<label id='admin-search-by'>SEARCH RECORDS BY: </label><br>
-									<input type="radio" name="admin_search_by_name" value="bus_name"> Business NAME <br>
-									<input type="radio" name="admin_search_by_id" value="bus_id"> Business ID <br>
-									<input type="radio" name="admin_search_by_record_id" value="record_id"> Database Record ID <br>
-									<input type="radio" name="admin_search_by_contributor" value="contributor"> Contributor <br>
-									<input type="radio" name="admin_search_by_contributor_email" value="contributor_email"> Contributor EMAIL <br>
-									<input type="radio" name="admin_search_by_date" value="date"> Date <br><br>
+									<input type='radio' name='admin-search-by-name' value='bus-name'> Business NAME <br>
+									<input type='radio' name='admin-search-by-id' value='bus-id'> Business ID <br>
+									<input type='radio' name='admin-search-by-record-id' value='record-id'> Database Record ID <br>
+									<input type='radio' name='admin-search-by-contributor' value='contributor'> Contributor <br>
+									<input type='radio' name='admin-search-by-contributor-email' value='contributor-email'> Contributor EMAIL <br>
+									<input type='radio' name='admin-search-by-date' value='date'> Date <br><br>
 									<label id='admin-search-by'>INPUT TO SEARCH FOR: </label>
-									<input type="text" name="admin_search_by_input">
+									<input type='text' name='admin-search-by-input'>
 								<button id='super-admin-search'>SEARCH RECORDS </button>
 						</form>
 						</fieldset>
@@ -319,7 +333,7 @@
 					</div>
 					<br>
 					<div id='admin-notes-form'>
-						<input type="hidden" name="_method" value="patch">
+						<input type='hidden' name='-method' value='patch'>
 						<label>Notes:</label>
 							<input type='text-field' id='js-entry-notes'>
 						<br><br>
