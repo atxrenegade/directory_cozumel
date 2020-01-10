@@ -14,8 +14,8 @@ class adminInterface {
 		let pendingIndexButton = document.getElementById('admin-show-pending-button')
 		let resolvedIndexButton = document.getElementById('admin-show-resolved-button')
 		let adminEntrySearch = document.getElementById('js-search-admin-entries')
-		let searchPendingButton = document.getElementById('admin-search-resolved-button')
-		let searchResolvedButton = document.getElementById('admin-search-pending-button')
+		let searchPendingButton = document.getElementById('admin-search-pending-button')
+		let searchResolvedButton = document.getElementById('admin-search-resolved-button')
 
 		adminEntrySearch.style.display = 'none';
 		adminTableContainer.style.display = 'none';
@@ -69,8 +69,11 @@ class adminInterface {
 		let indexBody = document.getElementById('index-entry-table-body');
 		let indexTable = document.getElementById('admin-entry-table');
 		let detailsTable = document.getElementById('entry-details-tables');
+		let adminEntrySearch = document.getElementById('js-search-admin-entries')
+
 		indexBody.innerHTML = '';
 		ENTRIES = [];
+		adminEntrySearch.style.display = 'none';
 		detailsTable.style.display = 'none';
 		indexTable.style.display = 'block';
 		adminTableContainer.style.display = 'block';
@@ -84,18 +87,18 @@ class adminInterface {
 	}
 
 	static appendCurrentDateTime(){
-		let timeDateEl = document.getElementById('admin-login-date')
-		let timeDate = document.createElement('span')
+		let timeDateEl = document.getElementById('admin-login-date');
+		let timeDate = document.createElement('span');
 		timeDate.innerText = new Date;
-		timeDateEl.appendChild(timeDate)
+		timeDateEl.appendChild(timeDate);
 	}
 
 	static displaySearch(type){
-		let adminTableContainer = document.getElementById('js-admin-panel-container')
-		let adminEntrySearch = document.getElementById('js-search-admin-entries')
+		let adminTableContainer = document.getElementById('js-admin-panel-container');
+		let adminEntrySearch = document.getElementById('js-search-admin-entries');
 		adminTableContainer.style.display = 'none';
 		adminEntrySearch.style.display = 'block';
-		let button = document.getElementById('jr-admin-search')
+		let button = document.getElementById('jr-admin-search');
 		button.innerHTML  = `Search ${type.toUpperCase()}`
 	}
 
