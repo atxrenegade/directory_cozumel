@@ -14,6 +14,12 @@ class EntriesController < ApplicationController
 		render json: entries
 	end
 
+	def index_search
+		binding.pry
+		entries = Entry.collect_search(params[:data])
+		render json: entries
+	end
+		
 	def update
 		entry = Entry.find(params[:id])
 		update_vals = {}
