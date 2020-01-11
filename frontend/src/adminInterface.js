@@ -124,7 +124,6 @@ class adminInterface {
 		console.log('Searching Now')
 	}
 
-
 	static indexEntries(type) {
 		let url = `http://localhost:3000/entries/${type}`
 		try {
@@ -133,6 +132,29 @@ class adminInterface {
 			.then(json => adminInterface.buildEntries(json))
 		}
 		catch(err) {
+			console.log(error.message);
+		}
+	}
+
+	static postSearchRequest(data) {
+		let configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/entries/search', configObj)
+			.then(resp => {
+				return resp.json();
+		})
+			.then(json => console.log(json)
+		)
+	}
+	catch(err) {
+			alert('Update failed see console for further details!');
 			console.log(error.message);
 		}
 	}
