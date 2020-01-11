@@ -15,11 +15,13 @@ class EntriesController < ApplicationController
 	end
 
 	def index_search
-		binding.pry
-		entries = Entry.collect_search(params[:data])
+		query_type = params['search_type']
+		property_param = params['property']
+		search_val = params['search_val']
+		entries = Entry.search_entries(query_type, property_param, search_val)
 		render json: entries
 	end
-		
+
 	def update
 		entry = Entry.find(params[:id])
 		update_vals = {}

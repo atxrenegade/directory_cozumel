@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 	post '/entries/update'
 	get '/entries/pending', to: 'entries#index_pending'
 	get '/entries/resolved', to: 'entries#index_resolved'
-	get '/entries/search', to: 'entries#index_search'
+	post '/entries/search', to: 'entries#index_search'
 
   resources :reviews, only: [:new, :create, :show, :update, :delete]
   resources :maps, only: [:show]

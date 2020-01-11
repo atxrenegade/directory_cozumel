@@ -119,8 +119,9 @@ class adminInterface {
 
 	static searchEntries(type, event){
 		let searchVal = adminInterface.getRadioVal(event);
-		let data = {search_type: type, search_val: searchVal }
-		postSearchRequest(data);
+		let data = { search_type: type, search_val: searchVal }
+		adminInterface.postSearchRequest(data);
+		debugger;
 		console.log('Searching Now')
 	}
 

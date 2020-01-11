@@ -153,8 +153,15 @@ class Entry < ApplicationRecord
 		#save admin_id change to status to rejected
 	end
 
-	def search_records(query_type, query_param)
-		#create search by business, date, admin, contributor, status, contributor_email
+	def self.search_entries(query_type, property_param, search_param)
+		if query_type == 'resolved'
+			wildcard_search = '%#{search_param.downcase}%'
+			filtered = Entry.where.not(status: 'pending').where("lower(#{property_param}) LIKE ?", wildcard_search)
+		else
+			wildcard_search = '%#{search_param.downcase}%'
+			filtered = Entry.where.(status: 'pending').where("lower(#{property_param}) LIKE ?", wildcard_search)
+		end
+		return filtered
 	end
 
 	def update_business
