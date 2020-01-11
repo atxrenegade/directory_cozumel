@@ -31,11 +31,11 @@ class adminInterface {
 		})
 
 		searchResolvedButton.addEventListener('click', function() {
-			adminInterface.displaySearch('resolved')
+			adminInterface.displayAdminSearchForm('resolved')
 		})
 
 		searchPendingButton.addEventListener('click', function() {
-			adminInterface.displaySearch('pending')
+			adminInterface.displayAdminSearchForm('pending')
 		})
 
 		/* Super Admin Menu Button */
@@ -93,18 +93,37 @@ class adminInterface {
 		timeDateEl.appendChild(timeDate);
 	}
 
-	static displaySearch(type){
+	static displayAdminSearchForm(type){
 		let adminTableContainer = document.getElementById('js-admin-panel-container');
 		let adminEntrySearch = document.getElementById('js-search-admin-entries');
 		adminTableContainer.style.display = 'none';
 		adminEntrySearch.style.display = 'block';
 		let button = document.getElementById('jr-admin-search');
 		button.innerHTML  = `Search ${type.toUpperCase()}`
+		button.addEventListener('click', () => {
+			adminInterface.searchEntries(type, event);
+		})
 	}
 
-	static searchEntries(type){
-		console.log('Searching')
+	static getRadioVal(event){
+		let radios = Array.from(event.target.parentNode.elements);
+		let radValue;
+		for (let i = 0, len = radios.length; i < len; i++){
+			console.log(radios[i])
+      if (radios[i].checked) {
+        radValue = radios[i].value;
+			}
+		return radValue;
+  	}
 	}
+
+	static searchEntries(type, event){
+		let searchVal = adminInterface.getRadioVal(event);
+		let data = {search_type: type, search_val: searchVal }
+		postSearchRequest(data);
+		console.log('Searching Now')
+	}
+
 
 	static indexEntries(type) {
 		let url = `http://localhost:3000/entries/${type}`
