@@ -101,28 +101,28 @@ class adminInterface {
 		let button = document.getElementById('jr-admin-search');
 		button.innerHTML  = `Search ${type.toUpperCase()}`
 		button.addEventListener('click', () => {
+			event.preventDefault();
 			adminInterface.searchEntries(type, event);
 		})
 	}
 
 	static getRadioVal(event){
-		let radios = Array.from(event.target.parentNode.elements);
+		let radioTarget = event.target.parentNode.elements
+		let radios = Array.from(radioTarget);
 		let radValue;
 		for (let i = 0, len = radios.length; i < len; i++){
-			console.log(radios[i])
       if (radios[i].checked) {
         radValue = radios[i].value;
+				return radValue;
 			}
-		return radValue;
   	}
 	}
 
-	static searchEntries(type, event){
-		let searchVal = adminInterface.getRadioVal(event);
-		let data = { search_type: type, search_val: searchVal }
-		adminInterface.postSearchRequest(data);
-		debugger;
-		console.log('Searching Now')
+	static searchEntries(type, event) {
+		let propertyToSearch  = adminInterface.getRadioVal(event);
+		let searchVal = event.target.parentNode[6].value;
+		let data = { query_type: type, property: propertyToSearch, search_val: searchVal }
+		let returnedJson = adminInterface.postSearchRequest(data);
 	}
 
 	static indexEntries(type) {
@@ -151,7 +151,7 @@ class adminInterface {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => console.log(json)
+			.then(json => adminInterface.buildEntries(json)
 		)
 	}
 	catch(err) {

@@ -154,12 +154,11 @@ class Entry < ApplicationRecord
 	end
 
 	def self.search_entries(query_type, property_param, search_param)
+		wildcard_search = "%#{search_param.downcase}%"
 		if query_type == 'resolved'
-			wildcard_search = '%#{search_param.downcase}%'
-			filtered = Entry.where.not(status: 'pending').where("lower(#{property_param}) LIKE ?", wildcard_search)
+			filtered = Entry.where.not("status = ? ", 'pending').where("lower(#{property_param}) LIKE ?", wildcard_search)
 		else
-			wildcard_search = '%#{search_param.downcase}%'
-			filtered = Entry.where.(status: 'pending').where("lower(#{property_param}) LIKE ?", wildcard_search)
+			filtered = Entry.where("status = ? ", 'pending').where("lower(#{property_param}) LIKE ?", wildcard_search)
 		end
 		return filtered
 	end
