@@ -2,7 +2,7 @@ class Entry < ApplicationRecord
 	def build_record(formatted_data)
 		record = Entry.new
 		record['entry_type'] = formatted_data[0]
-		record['bus_id'] = formatted_data[1]
+		record['business_id'] = formatted_data[1]
 		record['bus_name'] = formatted_data[2]
 		record['date'] = formatted_data[3]
 		record['contributor'] = formatted_data[4]
@@ -68,7 +68,7 @@ class Entry < ApplicationRecord
 		data_array[6]['contributor'] = data[3][1]
 		data_array[6]['contributor_email'] = data[4][1]
 		data_array[6]['rating'] = data[1][1]
-		data_array[6]['bus_id'] = data_array[1]
+		data_array[6]['business_id'] = data_array[1]
 		build_record(data_array)
 	end
 
@@ -86,7 +86,7 @@ class Entry < ApplicationRecord
 		data_array[6]['url'] = data[1][1]
 		data_array[6]['contributor'] = data_array[3]
 		data_array[6]['contributor_email'] = data_array[4]
-		data_array[6]['bus_id'] = data_array[1]
+		data_array[6]['business_id'] = data_array[1]
 		build_record(data_array)
 	end
 
@@ -100,7 +100,7 @@ class Entry < ApplicationRecord
 		data_array[5] = data[3][1] #contributor_email
 		#data_array[6] should include business_id and content
 		data_array[6] = {}
-		data_array[6]['bus_id'] = data_array[1]
+		data_array[6]['business_id'] = data_array[1]
 		data_array[6]['content'] = data[1][1]
 		build_record(data_array)
 	end
@@ -115,7 +115,7 @@ class Entry < ApplicationRecord
 		data_array[5] = data[3][1] #contributor_email
 		#data_array[6] should include business_id and content
 		data_array[6] = {}
-		data_array[6]['bus_id'] = data_array[1]
+		data_array[6]['business_id'] = data_array[1]
 		data_array[6]['content'] = data[1][1]
 		build_record(data_array)
 	end
@@ -155,11 +155,6 @@ class Entry < ApplicationRecord
 			attrHash[k] = val
 		end
 		return attrHash
-	end
-
-	def reject_entry
-		#update admin_id
-		#save admin_id change to status to rejected
 	end
 
 	def self.search_entries(query_type, property_param, search_param)
