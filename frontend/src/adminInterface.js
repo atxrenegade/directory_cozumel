@@ -7,6 +7,7 @@ class adminInterface {
 		let detailsTable = document.getElementById('entry-details-tables')
 		let backButton = document.getElementById('admin-back-button')
 		let rejectButton = document.getElementById('admin-reject-button')
+		let approveButton = document.getElementById('admin-approve-button')
 		let addNotesButton = document.getElementById('admin-notes-button')
 		let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
 		let notesForm = document.getElementById('admin-notes-form')
@@ -23,11 +24,13 @@ class adminInterface {
 
 		/* Admin panel menu buttons */
 		pendingIndexButton.addEventListener('click', function() {
-			adminInterface.displayIndex('pending')
+			adminInterface.indexEntries('pending')
+			adminInterface.renderIndex();
 		})
 
 		resolvedIndexButton.addEventListener('click', function() {
-			adminInterface.displayIndex('resolved')
+			adminInterface.indexEntries('resolved')
+			adminInterface.renderIndex();
 		})
 
 		searchResolvedButton.addEventListener('click', function() {
@@ -47,12 +50,19 @@ class adminInterface {
 		/* Detailed Entry Panel Buttons */
 		addNotesButton.addEventListener('click', adminInterface.showNotesForm);
 		newNotesSubmitButton.addEventListener('click', adminInterface.addNotes);
+
 		rejectButton.addEventListener('click', function(event) {
 			adminInterface.rejectEntry(event);
 		})
 
+		approveButton.addEventListener('click', function(event) {
+			adminInterface.approveEntry(event);
+		})
+
 		backButton.addEventListener('click', function() {
-			adminInterface.displayIndex('pending')
+			/* check for pending or resolved */
+			adminInterface.indexEntries('pending');
+			adminInterface.renderIndex();
 		})
 	}
 
@@ -64,20 +74,17 @@ class adminInterface {
 		}
 	}
 
-	static displayIndex(type){
+	static displayIndex(){
 		let adminTableContainer = document.getElementById('js-admin-panel-container')
 		let indexBody = document.getElementById('index-entry-table-body');
 		let indexTable = document.getElementById('admin-entry-table');
 		let detailsTable = document.getElementById('entry-details-tables');
 		let adminEntrySearch = document.getElementById('js-search-admin-entries')
-
 		indexBody.innerHTML = '';
-		ENTRIES = [];
 		adminEntrySearch.style.display = 'none';
 		detailsTable.style.display = 'none';
 		indexTable.style.display = 'block';
 		adminTableContainer.style.display = 'block';
-		adminInterface.generateEntryTable(type);
 	}
 
 	static getAdminId(){
@@ -102,7 +109,8 @@ class adminInterface {
 		button.innerHTML  = `Search ${type.toUpperCase()}`
 		button.addEventListener('click', () => {
 			event.preventDefault();
-			adminInterface.searchEntries(type, event);
+			adminInterface.searchEntries(type, event)
+			adminInterface.renderIndex();
 		})
 	}
 
@@ -137,6 +145,11 @@ class adminInterface {
 		}
 	}
 
+	static renderIndex(type) {
+		adminInterface.displayIndex();
+		adminInterface.generateEntryTable();
+	}
+
 	static postSearchRequest(data) {
 		let configObj = {
 			method: 'POST',
@@ -160,11 +173,11 @@ class adminInterface {
 		}
 	}
 
-	static generateEntryTable(type){
+	static generateEntryTable(){
 		document.getElementById('detailed-entry-table-1').innerHTML = '';
 		document.getElementById('detailed-entry-table-2').innerHTML = '';
 		document.getElementById('detailed-entry-table-3').innerHTML = '';
-		adminInterface.indexEntries(type);
+		/* adminInterface.indexEntries(type) */
 		setTimeout(function(){
 			let indexBody = document.getElementById('index-entry-table-body');
 			indexBody.innerHTML = '';
@@ -218,6 +231,7 @@ class adminInterface {
 	}
 
 	static buildEntries(entries){
+		ENTRIES = [];
 		entries.forEach(el => {
 			let id = el['id'];
 			let entryType = el['entry_type'];
@@ -294,13 +308,31 @@ class adminInterface {
 	}
 
 	static rejectEntry(event) {
+		let data = adminInterface.resolveEntry('rejected', event)
+		adminInterface.postEntryUpdate(data);
+	}
+
+	static approveEntry(event) {
+		let data = adminInterface.resolveEntry('approved', event)
+		adminInterface.buildDatabaseObject(data["id"])
+		/* add new object to database */
+	}
+
+	static resolveEntry(status, event){
 		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
 		let adminId = adminInterface.getAdminId();
 		let resolvedDate = new Date();
-		let status = 'rejected'
-		let data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, status: status, }
-		adminInterface.postEntryUpdate(data);
-		adminInterface.displayRejected(adminId, resolvedDate, status);
+		let data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, status: status}
+		adminInterface.displayResolved(adminId, resolvedDate, status);
+		return data;
+	}
+
+	static displayResolved(adminId, resolvedDate, status) {
+		let adminIdEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[0];
+		let resolvedDateEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[2];
+		let statusEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[1];
+		let cellDataArray = [[adminIdEl, adminId], [resolvedDateEl, resolvedDate],[statusEl, status]]
+		cellDataArray.forEach( el => adminInterface.updateCell(el[0], el[1]))
 	}
 
 	static postEntryUpdate(data) {
@@ -324,14 +356,6 @@ class adminInterface {
 			alert('Update failed see console for further details!');
 			console.log(error.message);
 		}
-	}
-
-	static displayRejected(adminId, resolvedDate, status) {
-		let adminIdEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[0];
-		let resolvedDateEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[2];
-		let statusEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[1];
-		let cellDataArray = [[adminIdEl, adminId], [resolvedDateEl, resolvedDate],[statusEl, status]]
-		cellDataArray.forEach( el => adminInterface.updateCell(el[0], el[1]))
 	}
 
 	static entryUpdateSuccess() {
