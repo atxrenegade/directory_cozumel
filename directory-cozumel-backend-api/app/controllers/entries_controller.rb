@@ -1,9 +1,10 @@
 class EntriesController < ApplicationController
 	def new_object
 		entry = Entry.find_by_id(params['id'])
-		object = entry.convert_to_object()
+		entry.convert_to_object()
+		msg = { msg: 'Entry approval successful!'}
 
-		render json: object
+		render json: msg
 	end
 
 	def new

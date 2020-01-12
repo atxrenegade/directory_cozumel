@@ -131,7 +131,6 @@ class Entry < ApplicationRecord
 	def convert_to_object
 		attributes = parse_entry_data();
 		entry_type = self.entry_type
-		binding.pry
 		case entry_type
 		when 'new bus'
 			#new_bus = Business.build_bus_and_listing(entry.data_object)

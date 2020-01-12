@@ -313,9 +313,10 @@ class adminInterface {
 	}
 
 	static approveEntry(event) {
-		let id = adminInterface.resolveEntry('approved', event).id
-		let data = {id: id}
-		adminInterface.postDatabaseObject(data)
+		let data = adminInterface.resolveEntry('approved', event)
+		let id = {id: data.id}
+		adminInterface.postDatabaseObject(id)
+		adminInterface.postEntryUpdate(data)
 	}
 
 	static postDatabaseObject(data) {
