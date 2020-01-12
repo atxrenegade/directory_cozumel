@@ -314,8 +314,31 @@ class adminInterface {
 
 	static approveEntry(event) {
 		let data = adminInterface.resolveEntry('approved', event)
-		adminInterface.buildDatabaseObject(data["id"])
+		adminInterface.postDatabaseObject(data["id"])
 		/* add new object to database */
+	}
+
+	static postDatabaseObject(data) {
+		let configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+		};
+		try {
+		fetch('http://localhost:3000/entries/new_object', configObj)
+			.then(resp => {
+				return resp.json();
+		})
+			.then(json => console.log(json)
+		)
+		}
+		catch(err) {
+			alert('Update failed see console for further details!');
+			console.log(error.message);
+		}
 	}
 
 	static resolveEntry(status, event){

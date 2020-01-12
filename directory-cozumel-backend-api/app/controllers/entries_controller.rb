@@ -1,4 +1,9 @@
 class EntriesController < ApplicationController
+	def new_object
+		object = Entry.find(data)
+		binding.pry
+	end
+		
 	def new
 		entry = Entry.new.handle_record(params)
 		render json: entry

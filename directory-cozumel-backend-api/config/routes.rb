@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 	post '/business', to: 'businesses#show'
 	resources :businesses, only: [:create]
 
+	post '/entries/new_object', to: 'entries#new_object'
 	post '/entries/new'
 	post '/entries/update'
 	get '/entries/pending', to: 'entries#index_pending'
