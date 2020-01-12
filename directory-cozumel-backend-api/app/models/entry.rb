@@ -137,11 +137,11 @@ class Entry < ApplicationRecord
 			#new_bus = Business.build_bus_and_listing(entry.data_object)
 			#return new_bus
 		when 'new review'
-			return new_review = Review.new(attributes)
+			return Review.new(attributes)
 		when 'new image'
-			return new_image = Image.new(attributes)
+			return Image.new(attributes)
 		else
-			object = 'This object is not recognized'
+			return 'This object is not recognized'
 		end
 	end
 
