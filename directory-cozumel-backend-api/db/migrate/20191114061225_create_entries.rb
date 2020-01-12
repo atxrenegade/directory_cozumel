@@ -2,7 +2,7 @@ class CreateEntries < ActiveRecord::Migration[5.2]
   def change
     create_table :entries do |t|
       t.string :entry_type
-			t.integer :bus_id
+			t.integer :business_id
 			t.string :bus_name
       t.string :date
       t.string :contributor
