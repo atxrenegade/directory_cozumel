@@ -128,24 +128,25 @@ class Entry < ApplicationRecord
 		return Business.find_by_id(id).name
 	end
 
-	def resolve_new_business
-		#create new business and persist to database
-		resolve_entry()
+	def convertToObject
+		attributes = parseEntryData();
+		entry_type = this.entry_type
+		case entry_type
+		when 'new bus'
+			#new_bus = Business.build_bus_and_listing(entry.data_object)
+			#return new_bus
+		when 'new review'
+			return new_review = Review.new(attributes)
+		when 'new image'
+			return new_image = Image.new(attributes)
+		else
+			object = 'This object is not recognized'
+		end
 	end
 
-	def resolve_new_review
-		#create new business and persist to database
-		resolve_entry()
-	end
-
-	def resolve_new_image
-		#create new image and persist to database
-		resolve_entry();
-	end
-
-	def resolve_entry
-		#update admin_id
-		#save admin_id change to status to resolved with date
+	def parseEntryData()
+		debugger;
+		return attributes = self.data_object.tr('"', '').tr('>', ' ').tr('=', ':')
 	end
 
 	def reject_entry
@@ -161,26 +162,6 @@ class Entry < ApplicationRecord
 			filtered = Entry.where("status = ? ", 'pending').where("lower(#{property_param}) LIKE ?", wildcard_search)
 		end
 		return filtered
-	end
-
-	def update_business
-
-	end
-
-	def delete_business
-
-	end
-
-	def edit_map
-
-	end
-
-	def delete_map
-
-	end
-
-	def delete_review
-
 	end
 
 	def self.collect(status)

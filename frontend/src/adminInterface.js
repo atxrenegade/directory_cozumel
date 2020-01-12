@@ -313,9 +313,9 @@ class adminInterface {
 	}
 
 	static approveEntry(event) {
-		let data = adminInterface.resolveEntry('approved', event)
-		adminInterface.postDatabaseObject(data["id"])
-		/* add new object to database */
+		let id = adminInterface.resolveEntry('approved', event).id
+		let data = {id: id}
+		adminInterface.postDatabaseObject(data)
 	}
 
 	static postDatabaseObject(data) {
