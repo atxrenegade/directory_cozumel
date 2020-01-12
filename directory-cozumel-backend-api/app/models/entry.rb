@@ -137,7 +137,7 @@ class Entry < ApplicationRecord
 			#new_bus = Business.build_bus_and_listing(entry.data_object)
 			#return new_bus
 		when 'new review'
-			return Review.new(attributes)
+			return Review.create(attributes)
 		when 'new image'
 			return Image.new(attributes)
 		else

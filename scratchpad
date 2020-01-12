@@ -201,3 +201,20 @@ ADMIN - reject entry
 	[["new-image",null],["image-url","http://thisisatest.com"],["image-description","my favorite"],["image-date","12/14/20"],["image-contributor","h butler"],["image-email","h@gmail.com"],["","Submit"],"Hotel Zilla"]
 
 	TypeError: event.target[0]
+
+
+	1. Make sure all entries process approved into database
+	2. make sure approved entries are updated in the entry database
+	3. make sure all entries display correctly after update
+
+	4. correct back button so it only display pending or resolved
+	5. on entry pending table, only show new businesses, images, reviews
+
+	6. fix directory search
+	7. remove , from displaying reviews and comments
+
+	 8. build out revise entry
+	9. fix notes to append and include admin id and time
+
+	10. use dynamic form to build admin cateogries
+	11.  finish super admin search and forms

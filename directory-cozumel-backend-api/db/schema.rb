@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_184548) do
+ActiveRecord::Schema.define(version: 2019_11_18_055052) do
 
   create_table "admins", force: :cascade do |t|
     t.string "username"
@@ -39,8 +39,21 @@ ActiveRecord::Schema.define(version: 2020_01_12_184548) do
     t.datetime "updated_at", null: false
   end
 
-# Could not dump table "entries" because of following StandardError
-#   Unknown type 'business_id' for column 'bus_id'
+  create_table "entries", force: :cascade do |t|
+    t.string "entry_type"
+    t.integer "business_id"
+    t.string "bus_name"
+    t.string "date"
+    t.string "contributor"
+    t.string "contributor_email"
+    t.string "data_object"
+    t.string "status"
+    t.string "resolved_date"
+    t.integer "admin_id"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "images", force: :cascade do |t|
     t.string "description"

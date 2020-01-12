@@ -315,7 +315,7 @@ window.onload = function() {
 		}
 	}
 
-	function renderComponent(generatedHtml, el){
+	function renderComponent(generatedHtml, el) {
 		let newDiv = document.createElement('div');
 		newDiv.innerHTML = generatedHtml;
 		el.appendChild(newDiv);
