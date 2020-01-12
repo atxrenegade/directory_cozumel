@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
 	def new_object
 		entry = Entry.find_by_id(params['id'])
-		object = entry.convertToObject();
+		object = entry.convert_to_object()
 
 		render json: object
 	end

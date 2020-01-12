@@ -128,9 +128,10 @@ class Entry < ApplicationRecord
 		return Business.find_by_id(id).name
 	end
 
-	def convertToObject
+	def convert_to_object
 		attributes = parseEntryData();
-		entry_type = this.entry_type
+		entry_type = self.entry_type
+		binding.pry
 		case entry_type
 		when 'new bus'
 			#new_bus = Business.build_bus_and_listing(entry.data_object)
@@ -144,9 +145,16 @@ class Entry < ApplicationRecord
 		end
 	end
 
-	def parseEntryData()
-		debugger;
-		return attributes = self.data_object.tr('"', '').tr('>', ' ').tr('=', ':')
+	def parse_entry_data
+		attributes = self.data_object.tr('"', '').tr('>', '').tr('=', ': ').tr('{', '').tr('}', '').split(",")
+		attrHash = {}
+		attributes.map do |el|
+			attribute = el.tr(' ','').split(':')
+			k = attribute[0]
+			val = attribute[1]
+			attrHash[k] = val
+		end
+		return attrHash
 	end
 
 	def reject_entry
