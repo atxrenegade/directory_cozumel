@@ -21,16 +21,16 @@ class Entry < ApplicationRecord
 		case record_type
 		when 'new-bus'
 				new_bus_entry(data)
-			when 'new-review'
-				new_review_entry(data)
-			when 'new-image'
-				new_image_entry(data)
-			when 'bus-flag'
-				new_flag_entry(data)
-			when 'bus-edit'
-				new_update_entry(data)
-			else
-				return 'Entry type error'
+		when 'new-review'
+			new_review_entry(data)
+		when 'new-image'
+			new_image_entry(data)
+		when 'bus-flag'
+			new_flag_entry(data)
+		when 'bus-edit'
+			new_update_entry(data)
+		else
+			return 'Entry type error'
 		end
 	end
 
@@ -57,7 +57,7 @@ class Entry < ApplicationRecord
 	def new_review_entry(data)
 		data_array = []
 		data_array[0] = 'new review'
-		data_array[1] = getBusId(data[6])
+		data_array[1] = get_bus_id(data[6])
 		data_array[2] = data[6][1]
 		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S')
 		data_array[4] = data[3][1] #contributor
@@ -75,7 +75,7 @@ class Entry < ApplicationRecord
 	def new_image_entry(data)
 		data_array = []
 		data_array[0] = 'new image'
-		data_array[1] = getBusId(data[7])
+		data_array[1] = get_bus_id(data[7])
 		data_array[2] = data[7][1]
 		data_array[3] = data[3][1] #date of image
 		data_array[4] = data[4][1] #contributor
@@ -93,7 +93,7 @@ class Entry < ApplicationRecord
 	def new_update_entry(data)
 		data_array = []
 		data_array[0] = 'update business'
-		data_array[1] = getBusId(data[5])
+		data_array[1] = get_bus_id(data[5])
 		data_array[2] = data[5][1]
 		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S') #date of update request
 		data_array[4] = data[2][1] #contributor
@@ -108,7 +108,7 @@ class Entry < ApplicationRecord
 	def new_flag_entry(data)
 		data_array = []
 		data_array[0] = 'flag business'
-		data_array[1] = getBusId(data[5])
+		data_array[1] = get_bus_name(data[5])
 		data_array[2] = data[5][1]
 		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S') #date of update request
 		data_array[4] = data[2][1] #contributor
@@ -120,16 +120,16 @@ class Entry < ApplicationRecord
 		build_record(data_array)
 	end
 
-	def getBusId(name)
+	def get_bus_id(name)
 		return Business.find_by_name(name).id
 	end
 
-	def getBusName(id)
+	def get_bus_name(id)
 		return Business.find_by_id(id).name
 	end
 
 	def convert_to_object
-		attributes = parseEntryData();
+		attributes = parse_entry_data();
 		entry_type = self.entry_type
 		binding.pry
 		case entry_type
