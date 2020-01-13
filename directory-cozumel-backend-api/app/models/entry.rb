@@ -135,22 +135,21 @@ class Entry < ApplicationRecord
 		when 'new bus'
 			convert_to_business(attributes)
 		when 'new review'
-			return Review.create(attributes)
+			return Review.create!(attributes)
 		when 'new image'
-			return Image.new(attributes)
+			return Image.create!(attributes)
 		else
 			return 'This object is not recognized'
 		end
 	end
 
 	def parse_entry_data
-		binding.pry
 		attributes = self.data_object.tr('"', '').tr('>', '').tr('=', ': ').tr('{', '').tr('}', '').split(',')
 		attrHash = {}
 		attributes.map do |el|
 			attribute = el.split(':')
 			k = attribute[0].tr(' ', '')
-			val = attribute[1]
+			attribute.length > 2 ? val = attribute[1] + ':' + attribute[2] : val = attribute[1]
 			attrHash[k] = val
 		end
 		return attrHash
