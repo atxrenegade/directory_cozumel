@@ -175,7 +175,7 @@ class Entry < ApplicationRecord
 		if status == 'resolved'
 			entries =  Entry.where.not(status: "pending")
 		else
-			entries = Entry.where(status: status)
+			entries = Entry.where(status: status).where.not(entry_type: 'flag business' ).where.not(entry_type: 'update business')
 		end
 		return entries
 	end
