@@ -61,7 +61,10 @@ class adminInterface {
 
 		backButton.addEventListener('click', function() {
 			/* check for pending or resolved */
-			adminInterface.indexEntries('pending');
+			let cellData = document.getElementById('detailed-entry-table-3').lastChild.children[1].innerHTML
+			let indexType;
+			cellData === 'pending' ?  indexType = 'pending' : indexType = 'resolved'
+			adminInterface.indexEntries(indexType);
 			adminInterface.renderIndex();
 		})
 	}
