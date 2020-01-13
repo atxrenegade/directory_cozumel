@@ -11,7 +11,14 @@ class Business {
 	}
 
 	renderBusListing(){
-		let listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3><p>Rating: ${this.overallRating}<br>Categories: ${this.categories}<br>${this.address}<br>${this.phoneNumber}<br><a href='${this.website}'>${this.website}</a><br></p>`
+		let rating;
+		this.overallRating === 0 ? rating = 'not yet rated' : rating = `Rating: ${this.overallRating}`
+		let listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3>
+			${this.categories}
+			<br>${rating}
+			<br><br>${this.address}
+			<br>${this.phoneNumber}
+			<br><a href='${this.website}'>${this.website}</a><br><br>`
 		return listingHTML;
 	}
 
