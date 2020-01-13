@@ -1,5 +1,6 @@
 class Entry {
 	constructor(id, entryType, busId, busName, dateCreated, contributor, contributorEmail, dataObject, status, resolvedDate, adminId, notes) {
+		debugger;
 		this.id = id;
 		this.entryType = entryType;
 		this.busId = busId;

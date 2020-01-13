@@ -1,220 +1,41 @@
-create new entries object that takes in form dataArray and converts to entry objects persisted in the database
+MONDAY
+  1. why is bus_id showing up undefined in business table? Use find Business by Name to store Business
+	2.  resolved date n/a on approved entries
+	3. remove , from displaying reviews
+	4. remove buttons from resolved entries, show only back and notes buttons
+	5. fix notes to append and include admin id and time
 
-schema
+  6.  new business no map error
 
-t.string "type"
-t.string "date"
-t.string "contributor"
-t.string "contributor_email"
-t.string "data_object_string"
-t.string "notes"
-t.string "resolved_date"
-t.integer "admin_id"
+  7. misc
 
-class Entries < Application:: Record
-end
+TUESDAY
+  8. build dynamic form
+  9.  dynamic form to revise entry - reg admin
+	10. use dynamic form to build admin categories
+	11. dynamic form to build maps inn Super Admin
+	12. dynamic form to build new admin form
+	13. refactor dynamic post function
 
-form data
-new business
-[['id', 'new-bus'],
-['bus-name', name],
-['bus_address', address],
-['bus-phone-number', phone_number],
-['bus-website', website]]
+WEDNESDAY
+	14. finish super admin search and forms
 
-bus1 = [['id', 'new-bus'],
-['bus-name', 'Hotel California'],
-['bus_address', '1234 Main st.'],
-['bus-phone-number', '987-114-4339'],
-['bus-website', 'http://www.hotelcalifornia.mx.com']]
+THURSDAY
+ 	15. admin authorization - admin panel - logout button - add super admin column and authorization
 
-new image
-[['id', 'new-image'],
-['image-url', url],
-['image-description', description],
-['image-date','date'],
-['image-contributor', contributor],
-['image-email', contributor_email]]
+FRIDAY
+ 16. add validations
+ 17. refactor routes
+ 18. refactor app
+ 19. google maps
 
-new review
-[["id", new-review],
-["review-rating", input],
-["review-content", content],
-["review_contributor", contributor],
-["review_email", contributor_email]]
+SATURDAY
+ 20. styling
+ 21. admin entry seed file
 
-t.string "content"
-t.string "contributor"
-t.string "contributor_email"
-t.integer "rating"
-t.integer "business_id"
-t.datetime "created_at", null: false
-t.datetime "updated_at", null: false
-t.index ["business_id"], name: "index_reviews_on_business_id"
+SUNDAY
+ 22. documentation
 
-update business
-[['type', 'bus-edit'],
-['edit-content', content],
-['edit-contributor', contributor],
-['edit-email', contributor_email]]
-
-flag business
-[['type', 'bus-flag'],
-['flag-content', content],
-['flag-contributor', flag contributor],
-['flag-email', contributor_email]]
-
-record = Entry.new
-record['type'] = "bus-new"
-record['bus_id'] = 99
-record['date'] = "2019-12-22 17:11:20"
-record['contributor'] = 'not specified'
-record['contributor_email'] = 'not specified'
-record['data_array'] = 'a bunch of data'
-record['status'] = "pending"
-record['resolved_date'] = 'n/a'
-record['admin_id'] = 1
-record['notes'] = ''
-record.save
-
-
-type = "bus-new"
-bus_id = 99
-date = "2019-12-22 17:11:20"
-contributor = 'not specified'
-contributor_email = 'not specified'
-data_array = 'a bunch of data'
-status = "pending"
-resolved_date = 'n/a'
-admin_id = 1
-notes = ''
-record = Entry.new(type, bus_id, date, contributor, contributor_email, data_array, status, resolved_date, admin_id, notes)
-record.save
-
-<tr> <!-- DYNAMICALLY GENERATE ENTRIES FROM DATABASE -->
-	<td> 1 </td>
-	<td> 12/23/19 </td>
-	<td> LISTING </td>
-	<td> APPROVED </td>
-	<td> 12/24/19 </td>
-	<td> 001 </td>
-	<td> <button id='admin-entry-show-details'> More </button> </td>
-</tr>
-
-
-id	1
-entry_type	new review
-bus_id	1
-date	2019-12-26 17:51:18
-contributor	Harleigh
-contributor_email	Harleigh@gmail.com
-data_array	["My favorite hotel a bit expensive though.", "Harleigh", "Harleigh@gmail.com", "4"]
-status	pending
-resolved_date	n/a
-admin_id	1
-notes
-created_at	2019-12-26T22:51:18.446Z
-updated_at	2019-12-26T22:51:18.446Z
-
-	let cell9 = row.insertCell(8);
-	/* cell9.innerHTML = "<button id='admin-entry-show-details'> More </button>" */
-
-	RACE CONDITION WITH indexPendingEntries()?
-
-ADMIN - reject entry
-		add Event Listener to reject button
-		create reject function:
-			change entry values /status/date resolved/admin_id
-			reject function should create post request to entries entry table
-			return to updated entries index
-
-			3 FUNCTIONS
-
-			rejectEntry() - calls all other rejectFunctions;
-			postReject() - posts updated reject values;
-			displayReject() - updates DOM, returns to updated entries index
-
-			POST Request
-			updating Entry values
-			:admin_id
-			:resolved_date
-			:status
-
-			persist in database
-
-			update DOM with new entry values
-
-		TO DO
-
-		ADMIN LOGIN Panel
-	X	1. get userID
-	X	2. add Login Date
-	X	2. get businessName
-	X	3. reformat dataArray to Data Object
-
-	X	4. FIX post Request for reject, and add notes
-		5. FIX back button missing event listeners
-	X	6. clear notes field on submission and page reload
-	X	6.5 check update id
-
-		7. Add functionality to Resolve
-
-		8. Fix new_update, new_flag, new_image entry update requests
-***************************************************
-		8. Add functionality to Revise
-
-		9. add functionality to admin menu buttons
-		9.5 user forms display only one at a time
-		10. add user authentication and encryption for admin login
-		11. googlemaps pin
-
-		X 12. refactor create js classes and move methods to classes.
-		13. Add Styling
-		14. Demo Video
-		15. Blog Post
-
-
-		"id": 1,
-	"entry_type": "new review",
-	"bus_id": 1,
-	"bus_name": "Hotel Zilla",
-	"date": "2019-12-30 14:04:53",
-	"contributor": "George",
-	"contributor_email": "me@gmail.com",
-	"data_array": "{\"content\"=>\"ertert\", \"contributor\"=>\"George\", \"contributor_email\"=>\"me@gmail.com\", \"rating\"=>\"4\", \"bus_id\"=>1}",
-	"status": "pending",
-	"resolved_date": "n/a",
-	"admin_id": 1,
-	"notes": "",
-	"created_at": "2019-12-30T19:04:53.530Z",
-	"updated_at": "2019-12-30T19:04:53.530Z"
-
-	XHRPOSThttp://localhost:3000/entries/new
-	[HTTP/1.1 500 Internal Server Error 307ms]
-
-
-	Request payload
-
-
-	1
-
-	[["new-image",null],["image-url","http://thisisatest.com"],["image-description","my favorite"],["image-date","12/14/20"],["image-contributor","h butler"],["image-email","h@gmail.com"],["","Submit"],"Hotel Zilla"]
-
-	TypeError: event.target[0]
-
-
-	1. Make sure all entries process approved into database
-	2. make sure approved entries are updated in the entry database
-	3. make sure all entries display correctly after update
-
-	4. correct back button so it only display pending or resolved
-	5. on entry pending table, only show new businesses, images, reviews
-
-	6. fix directory search
-	7. remove , from displaying reviews and comments
-
-	 8. build out revise entry
-	9. fix notes to append and include admin id and time
-
-	10. use dynamic form to build admin cateogries
-	11.  finish super admin search and forms
+MONDAY
+ 23. video
+ 24. blogpost

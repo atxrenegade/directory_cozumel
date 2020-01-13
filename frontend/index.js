@@ -244,7 +244,10 @@ window.onload = function() {
 	function buildListing(data){
 		let objArray = []
 		let busObj = Business.buildBusObj(data);
-		let map = GoogleMap.mapBuilder(data['map'])
+		let map;
+		if (data['map']) {
+			map = GoogleMap.mapBuilder(data['map'])
+		} else { map = [] }
 		let imagesCollection = Image.imagesBuilder(data['images']);
 		let reviewsCollection = Review.reviewsBuilder(data['reviews']);
 		objArray.push(busObj, map, imagesCollection, reviewsCollection)
@@ -253,18 +256,28 @@ window.onload = function() {
 
 	function renderListing(objArray){
 		if (objArray != undefined) {
+			debugger;
 			businessListings.innerHTML = '';
-			listingMenu.style.display = 'block';
-			let el = businessListings
+
+			let el = businessListings /* */
 			let busHTML = objArray[0].renderBusListing();
-			let mapHTML = objArray[1].renderMap();
-			let reviewsHTML = objArray[3].map((rev) => rev.renderReview());
-			let imagesHTML = objArray[2].map((img) => img.renderImage());
+			let mapHTML;
+			let reviewsHTML;
+			let imagesHTML;
 			renderComponent(busHTML, el);
-			renderComponent(mapHTML, el);
-			/* renderComponent(mapHTML, el); */
-			renderComponent(reviewsHTML, el);
-			renderComponent(imagesHTML, el);
+			if (objArray[1].length > 0){
+				mapHTML = objArray[1].renderMap();
+				renderComponent(mapHTML, el);
+			}
+			if (objArray[3].length > 0){
+				reviewsHTML = objArray[3].map((rev) => rev.renderReview());
+				renderComponent(reviewsHTML, el);
+			}
+			if (objArray[2].length > 0) {
+				imagesHTML = objArray[2].map((img) => img.renderImage());
+				renderComponent(imagesHTML, el);
+			}
+			listingMenu.style.display = 'block';
 		}
 	}
 

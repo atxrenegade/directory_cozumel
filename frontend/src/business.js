@@ -15,7 +15,6 @@ class Business {
 		return listingHTML;
 	}
 
-
 	static buildBusObj(data) {
 			let id = data['id'];
 			let name = data['name']
