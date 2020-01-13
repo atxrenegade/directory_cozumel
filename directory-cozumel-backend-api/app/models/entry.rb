@@ -133,8 +133,7 @@ class Entry < ApplicationRecord
 		entry_type = self.entry_type
 		case entry_type
 		when 'new bus'
-			#new_bus = Business.build_bus_and_listing(entry.data_object)
-			#return new_bus
+			convert_to_business(attributes)
 		when 'new review'
 			return Review.create(attributes)
 		when 'new image'
@@ -154,6 +153,12 @@ class Entry < ApplicationRecord
 			attrHash[k] = val
 		end
 		return attrHash
+	end
+
+	def convert_to_business(attributes)
+		business = Business.create!(name: attributes['bus_name'])
+		listing_attributes = {overall_rating: attributes['overall_rating'], address: attributes['address'], phone_number: attributes['phone_number'], website: attributes['website'], business_id: business.id}
+		Business.build_new_associated(business, attributes['categories'], listing_attributes)
 	end
 
 	def self.search_entries(query_type, property_param, search_param)

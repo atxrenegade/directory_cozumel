@@ -1,12 +1,12 @@
 class Business < ApplicationRecord
 	validates :name, uniqueness: true
 
-	has_many :business_categories
-	has_many :categories, through: :business_categories
-	has_one :listing #, dependent: :delete_all
-	has_many :reviews#, dependent: :delete_all
-	has_many :images#, dependent: :delete_all
-	has_one :map#, dependent: :delete_all
+	has_many :business_categories, dependent: :destroy
+	has_many :categories, through: :business_categories, dependent: :destroy
+	has_one :listing, dependent: :destroy
+	has_many :reviews, dependent: :destroy
+	has_many :images, dependent: :destroy
+	has_one :map, dependent: :destroy
 
 	def category_names
     self.categories.pluck(:name)
@@ -37,8 +37,13 @@ class Business < ApplicationRecord
 	end
 
 	def self.build_new_business(name, cat_name)
-		bus = Business.create!(name:name)
+		bus = Business.create!(name: name)
 		bus.add_category_to_business(cat_name)
+	end
+
+	def self.build_new_associated(business, cat_name, listing_attributes)
+		business.add_category_to_business(cat_name)
+		Listing.create!(listing_attributes)
 	end
 
 	def build_business_object
