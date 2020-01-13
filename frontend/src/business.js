@@ -19,7 +19,7 @@ class Business {
 			<br><br>${this.address}
 			<br>${this.phoneNumber}
 			<br><a href='${this.website}'>${this.website}</a><br><br>`
-		return listingHTML;
+			return listingHTML;
 	}
 
 	static buildBusObj(data) {

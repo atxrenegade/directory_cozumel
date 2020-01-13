@@ -256,10 +256,8 @@ window.onload = function() {
 
 	function renderListing(objArray){
 		if (objArray != undefined) {
-			debugger;
-			businessListings.innerHTML = '';
-
-			let el = businessListings /* */
+			let el = businessListings
+			el.innerHTML = '';
 			let busHTML = objArray[0].renderBusListing();
 			let mapHTML;
 			let reviewsHTML;

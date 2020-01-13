@@ -262,6 +262,7 @@ class adminInterface {
 		let cell3 = row1.insertCell(2);
 		let cell4 = row1.insertCell(3);
 		let cell5 = row1.insertCell(4);
+		debugger;
 		cell1.innerHTML = entry.id;
 		cell2.innerHTML = entry.dateCreated;
 		cell3.innerHTML = entry.busId;
@@ -332,12 +333,12 @@ class adminInterface {
 		body: JSON.stringify(data)
 		};
 		try {
-		fetch('http://localhost:3000/entries/new_object', configObj)
-			.then(resp => {
-				return resp.json();
-		})
-			.then(json => console.log(json)
-		)
+			fetch('http://localhost:3000/entries/new_object', configObj)
+				.then(resp => {
+					return resp.json();
+			})
+				.then(json => console.log(json)
+			)
 		}
 		catch(err) {
 			alert('Update failed see console for further details!');
@@ -391,7 +392,7 @@ class adminInterface {
 		detailsTable.appendChild('updateSuccess');
 	}
 
-	static resetAdmin(){
+	static resetAdmin() {
 		let indexTable = document.getElementById('admin-entry-table');
 		let detailsTable = document.getElementById('entry-details-tables');
 		let adminTableContainer = document.getElementById('js-admin-panel-container')
