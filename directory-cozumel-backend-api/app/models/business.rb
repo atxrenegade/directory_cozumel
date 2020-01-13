@@ -61,7 +61,8 @@ class Business < ApplicationRecord
 	end
 
 	def self.filter_by_name(name)
-		wildcard_search = '%#{name.downcase}%'
+		binding.pry
+		wildcard_search = "%#{name.downcase}%"
  		filtered = Business.select('id').where('lower(name) LIKE ?', wildcard_search).map{|el| el.id }
 		return Business.build_filtered_list_for_export(filtered)
 	end
