@@ -319,7 +319,7 @@ class adminInterface {
 	static approveEntry(event) {
 		let data = adminInterface.resolveEntry('approved', event)
 		let id = {id: data.id}
-		adminInterface.postDatabaseObject(id)
+		adminInterface.postDatabaseObject(data)
 		adminInterface.postEntryUpdate(data)
 	}
 
@@ -349,7 +349,7 @@ class adminInterface {
 	static resolveEntry(status, event){
 		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
 		let adminId = adminInterface.getAdminId();
-		let resolvedDate = new Date();
+		let resolvedDate = new Date().toString();
 		let data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, status: status}
 		adminInterface.displayResolved(adminId, resolvedDate, status);
 		return data;

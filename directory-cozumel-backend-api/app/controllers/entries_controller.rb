@@ -37,7 +37,7 @@ class EntriesController < ApplicationController
 
 		update_vals["data_object"] = params[:data_object] if params[:data_object].present?
 
-		update_vals["date_resolved"] = params[:date_resolved] if params[:date_resolved].present?
+		update_vals["resolved_date"] = params["resolved_date"] if params["resolved_date"].present?
 
 		update_vals["notes"] = params[:notes] if params[:notes].present?
 
