@@ -135,7 +135,9 @@ class Entry < ApplicationRecord
 		when 'new bus'
 			convert_to_business(attributes)
 		when 'new review'
-			return Review.create!(attributes)
+			review = Review.create!(attributes)
+			Review.update_rating(attributes["business_id"])
+			return review
 		when 'new image'
 			return Image.create!(attributes)
 		else

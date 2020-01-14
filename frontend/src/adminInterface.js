@@ -262,7 +262,6 @@ class adminInterface {
 		let cell3 = row1.insertCell(2);
 		let cell4 = row1.insertCell(3);
 		let cell5 = row1.insertCell(4);
-		debugger;
 		cell1.innerHTML = entry.id;
 		cell2.innerHTML = entry.dateCreated;
 		cell3.innerHTML = entry.busId;

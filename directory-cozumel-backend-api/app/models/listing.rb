@@ -19,4 +19,9 @@ class Listing < ApplicationRecord
 		listing['website'] = listObj.website
 		return listing
 	end
+
+	def self.updateBusRating(bus_id, overall_rating)
+		bus = Listing.find(bus_id)
+		bus.update!(overall_rating: overall_rating)
+	end
 end
