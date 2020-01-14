@@ -211,8 +211,10 @@ class adminInterface {
 		}	else {
 			let noEntries = document.createElement('p')
 			noEntries.innerHTML = `No ${indexType.toUpperCase()} Entries at this time!`
+			noEntries.setAttribute('id', 'admin-no-entry-message')
 			let adminTable = document.getElementById('admin-entry-table');
-			adminTable.appendChild(noEntries)
+			adminTable.appendChild(noEntries);
+			/* document.addEventListener('click', function(){ noEntries.innerHTML = ""}) */
 		}
 	}
 
