@@ -25,12 +25,12 @@ class adminInterface {
 		/* Admin panel menu buttons */
 		pendingIndexButton.addEventListener('click', function() {
 			adminInterface.indexEntries('pending')
-			adminInterface.renderIndex();
+			adminInterface.renderIndex('pending');
 		})
 
 		resolvedIndexButton.addEventListener('click', function() {
 			adminInterface.indexEntries('resolved')
-			adminInterface.renderIndex();
+			adminInterface.renderIndex('resolved');
 		})
 
 		searchResolvedButton.addEventListener('click', function() {
@@ -65,7 +65,7 @@ class adminInterface {
 			let indexType;
 			cellData === 'pending' ?  indexType = 'pending' : indexType = 'resolved'
 			adminInterface.indexEntries(indexType);
-			adminInterface.renderIndex();
+			adminInterface.renderIndex(indexType);
 		})
 	}
 
@@ -148,9 +148,9 @@ class adminInterface {
 		}
 	}
 
-	static renderIndex(type) {
+	static renderIndex(indexType) {
 		adminInterface.displayIndex();
-		adminInterface.generateEntryTable();
+		adminInterface.generateEntryTable(indexType);
 	}
 
 	static postSearchRequest(data) {
@@ -176,21 +176,17 @@ class adminInterface {
 		}
 	}
 
-	static generateEntryTable(){
+	static generateEntryTable(indexType){
 		document.getElementById('detailed-entry-table-1').innerHTML = '';
 		document.getElementById('detailed-entry-table-2').innerHTML = '';
 		document.getElementById('detailed-entry-table-3').innerHTML = '';
-		/* adminInterface.indexEntries(type) */
-		setTimeout(function(){
+		/* adminInterface.indexEntries(indexType) */
+		if (ENTRIES.length > 0) {
 			let indexBody = document.getElementById('index-entry-table-body');
 			indexBody.innerHTML = '';
 			let i = 0;
-			ENTRIES.forEach(el => {
+			ENTRIES.forEach(function(el, indexType) {
 				let row = indexBody.insertRow(i);
-				/* how can I dynamiccaly create table cells using for loop?
-				for (let k = 0; k < 9; k++) {
-  				let cell${k + 1} = row.insertCell(${k})
-				}*/
 				let cell1 = row.insertCell(0);
 				let cell2 = row.insertCell(1);
 				let cell3 = row.insertCell(2);
@@ -212,7 +208,12 @@ class adminInterface {
 				cell9.appendChild(button)
 				i += 1;
 			})
-		}, 800);
+		}	else {
+			let noEntries = document.createElement('p')
+			noEntries.innerHTML = `No ${indexType.toUpperCase()} Entries at this time!`
+			let adminTable = document.getElementById('admin-entry-table');
+			adminTable.appendChild(noEntries)
+		}
 	}
 
 	static buildAdminButton(id){
