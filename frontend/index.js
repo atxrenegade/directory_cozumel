@@ -268,11 +268,13 @@ window.onload = function() {
 				renderComponent(mapHTML, el);
 			}
 			if (objArray[3].length > 0){
-				reviewsHTML = objArray[3].map((rev) => rev.renderReview());
+				let reviewsHTML = '';
+				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview());
 				renderComponent(reviewsHTML, el);
 			}
 			if (objArray[2].length > 0) {
-				imagesHTML = objArray[2].map((img) => img.renderImage());
+				let imagesHTML = '';
+				objArray[2].forEach((img) => imagesHTML += img.renderImage());
 				renderComponent(imagesHTML, el);
 			}
 			listingMenu.style.display = 'block';
