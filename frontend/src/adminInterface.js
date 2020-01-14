@@ -238,7 +238,7 @@ class adminInterface {
 		entries.forEach(el => {
 			let id = el['id'];
 			let entryType = el['entry_type'];
-			let busId = el['bus_id'];
+			let busId = el['business_id'];
 			let busName = el['bus_name'];
 			let dateCreated = el['date'];
 			let contributor = el['contributor'];
