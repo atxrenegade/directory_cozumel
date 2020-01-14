@@ -300,10 +300,14 @@ class adminInterface {
 		let entryId = parseInt(id, 10);
 		let notes = document.getElementById('js-entry-notes').value
 		let adminId = document.getElementById('detailed-entry-table-3').lastChild.firstChild.textContent
-		let data = { id: entryId, admin_id: adminId, notes: notes}
+		let date = new Date
+		let note = document.getElementById('detailed-entry-table-3').lastChild.lastChild.innerText
+		let newNote = `[${date.toString()}]:[AdminId:${adminId}]:[${notes}]`
+		let allNotes = `${note}***`+ ` ${newNote}`;
+		let data = { id: entryId, admin_id: adminId, notes: allNotes }
 		adminInterface.postEntryUpdate(data);
 		let noteCell = document.getElementById('detailed-entry-table-3').lastChild.lastChild
-		adminInterface.updateCell(noteCell, notes)
+		adminInterface.updateCell(noteCell, allNotes)
 		let notesForm = document.getElementById('admin-notes-form')
 		notesForm.style.display = 'none';
 		document.getElementById('js-entry-notes').value = '';
