@@ -18,7 +18,7 @@ class Review < ApplicationRecord
 
 	def self.collect_ratings(bus_id)
 		reviews = Review.collect_reviews(bus_id)
-		ratings = reviews.map { |e|  e.rating}
+		reviews.map { |e|  e.rating}
 	end
 
 	def self.update_rating(bus_id)
