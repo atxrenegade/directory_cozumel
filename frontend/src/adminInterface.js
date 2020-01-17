@@ -435,10 +435,43 @@ class adminInterface {
 			formElements.forEach(el => elToAppendTo.appendChild(el));
 		})
 		formElements[3].addEventListener('click', function(){
-			console.log('Button Pressed!')
-			/* postDynamAdminForm(type, action, InstanceToAlter)
-			renderSuccess */
+			let attValsHash = adminInterface.createAttValsHash(event);
+			adminInterface.handleDynamAdminForm(formType, formAction, attValsHash)
+			/* followup with renderSuccess or errorMsg */
 		})
+	}
+
+	static createAttValsHash(event){
+		let attHash = {}
+		let atts = Array.from(event.target.parentElement.children)
+		let newAttsArray = atts.slice(1, -1)
+		while (newAttsArray.length > 0) {
+			let attKey = newAttsArray[0].attributes.value.value.toLowerCase();
+			let attVal = newAttsArray[1].value
+			attHash[attKey] = attVal;
+			newAttsArray = newAttsArray.slice(2)
+		}
+		debugger;
+		return attHash;
+	}
+
+	static handleDynamAdminForm(type, action, attributesHash){
+		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
+		/* action = Create, Update, Delete */
+		/* instance = any valid instance of type */
+		if (action === 'Create') {
+			console.log(`Create ${type}`)
+		} else if	(action === 'Update') {
+			console.log(`Update ${type}`)
+		}	else if (action === 'Delete') {
+			console.log(`Delete ${type}`)
+		} else {
+			console.log('Error this record type does not exist')
+		}
+	}
+
+	static dynamFormPost() {
+
 	}
 
 	static resetAdmin() {
