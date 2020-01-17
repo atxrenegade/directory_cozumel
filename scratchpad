@@ -1,15 +1,16 @@
 MONDAY
-  1. why is bus_id showing up undefined in business table? Use find Business by Name to store Business
-	2.  resolved date n/a on approved entries
-	3. remove , from displaying reviews
+  1. why is bus_id showing up undefined in business table? Use find Business by Name to store Business X
+	2.  resolved date n/a on approved entries X
+	3. remove , from displaying reviews X
 	4. remove buttons from resolved entries, show only back and notes buttons
-	5. fix notes to append and include admin id and time
+	5. fix notes to append and include admin id and time X
 
-  6.  new business no map error
+  6.  new business no map error X
 
-  7. misc
+  7. misc X
 
 TUESDAY
+  7. Debug pending and resolved indexes with no entry message
   8. build dynamic form
   9.  dynamic form to revise entry - reg admin
 	10. use dynamic form to build admin categories
@@ -39,3 +40,9 @@ SUNDAY
 MONDAY
  23. video
  24. blogpost
+
+ Super SEARCH
+ Super Create/Edit Form
+
+
+ ENTRY INDEX

@@ -398,6 +398,49 @@ class adminInterface {
 		detailsTable.appendChild('updateSuccess');
 	}
 
+	/* Dynamic Admin Forms Creation */
+	static buildCatsForm(formAction){
+		let elToAppendTo = document.getElementById('js-super-admin-modify-cat-menu')
+		let formType = 'Category';
+		let attributes = ['Name'];
+		adminInterface.buildForm(elToAppendTo, formType, formAction, attributes);
+	}
+
+	static buildForm(elToAppendTo, formType, formAction, attributesArray) {
+		elToAppendTo.innerHTML = ''
+		let formEl = document.createElement('form');
+
+		/* iterate through element array and create labels and input fields */
+		let formElements;
+		attributesArray.forEach(attribute => {
+			let breakEl = document.createElement('br')
+			let attLabel = document.createElement('label')
+			let attInput = document.createElement('input')
+			let formButton = document.createElement('input')
+			let labelText = document.createTextNode(`${attribute}: `)
+			attLabel.setAttribute('value', attribute)
+			attLabel.appendChild(labelText);
+			attInput.setAttribute('id', `${formAction}-${formType}-${attribute}`.toLowerCase());
+			attInput.setAttribute('type', 'text')
+			formButton.setAttribute('id', `${formAction}-${formType}-button`.toLowerCase());
+			formButton.setAttribute('value', 'Save Changes');
+			formButton.setAttribute('type', 'button')
+
+			formElements = [
+				breakEl,
+				attLabel,
+				attInput,
+				formButton
+			]
+			formElements.forEach(el => elToAppendTo.appendChild(el));
+		})
+		formElements[3].addEventListener('click', function(){
+			console.log('Button Pressed!')
+			/* postDynamAdminForm(type, action, InstanceToAlter)
+			renderSuccess */
+		})
+	}
+
 	static resetAdmin() {
 		let indexTable = document.getElementById('admin-entry-table');
 		let detailsTable = document.getElementById('entry-details-tables');

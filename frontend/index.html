@@ -226,8 +226,8 @@
 					<legend>Super Admin Menu</legend>
 						<button id='js-admin-show-super-admin'>TOGGLE SUPER ADMIN MENU </button>
 					<div id='js-admin-super-admin-open'>
-						<fieldset>
-							<legend>ADMIN AUTHORIZATION</legend>
+						<fieldset id='super-admin-modify-admin'>
+							<legend id='js-admin-auth'>ADMIN AUTHORIZATION</legend>
 								<button id='js-admin-create-admin'>CREATE ADMIN </button>
 								<button id='js-admin-edit-admin'>EDIT ADMIN </button>
 								<button id='js-admin-delete-admin'>DELETE ADMIN </button>
@@ -236,7 +236,10 @@
 						</fieldset>
 						<fieldset>
 							<legend>MODIFY CATEGORIES</legend>
-							<button id='js-super-admin-add-cat-button'>ADD CATEGORY</button>
+							<div id='js-super-admin-modify-cat-menu'>
+							</div>
+							<br>
+							<button id='js-super-admin-create-cat-button'>CREATE CATEGORY</button>
 							<button id='js-super-admin-edit-cat-button'>EDIT CATEGORY</button>
 							<button id='js-super-admin-delete-cat-button'>DELETE CATEGORY</button>
 						</fieldset>

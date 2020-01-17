@@ -502,12 +502,17 @@ window.onload = function() {
 		})
 	})
 
-	/* Admin Panel Listeners */
+	/* Initiate Admin Panel Listeners */
 	hiddenAdminButton.addEventListener('click', function() {
 		let el = document.getElementById('js-admin-login-container')
 		toggleForm('click', el);
 	})
 	adminPanelLogin.addEventListener('click', clearDirectoryForAdmin);
+
+	/* AdminPanel Listeners */
+	let createCatButton = document.getElementById('js-super-admin-create-cat-button')
+	createCatButton.addEventListener('click', function() { adminInterface.buildCatsForm('Create')
+	})
 
 	/* SET PAGE LOAD VALUES */
 	resetPage();
