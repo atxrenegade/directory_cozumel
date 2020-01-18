@@ -21,12 +21,14 @@ class adminInterface {
 
 		/* Admin panel menu buttons */
 		pendingIndexButton.addEventListener('click', function() {
-			adminInterface.indexEntries('pending')
+			let authType = adminInterface.checkAdminAuth();
+			adminInterface.indexEntries('pending', authType)
 			adminInterface.renderIndex('pending');
 		})
 
 		resolvedIndexButton.addEventListener('click', function() {
-			adminInterface.indexEntries('resolved')
+			let authType = adminInterface.checkAdminAuth();
+			adminInterface.indexEntries('resolved', authType)
 			adminInterface.renderIndex('resolved');
 		})
 
@@ -90,6 +92,12 @@ class adminInterface {
 		let timeDate = document.createElement('span');
 		timeDate.innerText = new Date;
 		timeDateEl.appendChild(timeDate);
+	}
+
+	static checkAdminAuth() {
+		/* build out after auth and athentication completed */
+		/* returns 'super' or 'jr' */
+		return 'super'
 	}
 
 	static displayAdminSearchForm(type){

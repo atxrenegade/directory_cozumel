@@ -204,12 +204,14 @@
 					<legend>Admin Menu</legend>
 					<fieldset>
 						<legend>ADMIN DISPLAY ENTRIES</legend>
+						<br>
 							<button id='admin-show-resolved-button'>SHOW RESOLVED ENTRIES</button>
 							<button id='admin-show-pending-button'>SHOW PENDING ENTRIES</button>
 							<br><br>
 					</fieldset>
 					<fieldset>
 						<legend>ADMIN SEARCH ENTRIES</legend>
+						<br>
 						<form id='js-search-admin-entries' class='admin-form'>
 							<label id='js-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br>
 							<input type='radio' name='js-admin-search' value='entry-type' checked> Entry TYPE <br>
@@ -222,7 +224,9 @@
 							<input type='radio' name='js-admin-search' value='date'> Date <br><br>
 							<label>INPUT TO SEARCH FOR: </label>
 							<input type='text' name='js-admin-search-by-input'>
+							<br><br>
 							<button id='js-admin-search-entries'>SEARCH ENTRIES </button>
+							<br><br>
 						</form>
 					</fieldset>
 				</fieldset>
@@ -233,6 +237,7 @@
 					<div id='js-admin-super-admin-open'>
 						<fieldset id='super-admin-modify-admin'>
 							<legend id='js-admin-auth'>ADMIN AUTHORIZATION</legend>
+							<br>
 							<button id='js-admin-create-admin'>CREATE ADMIN </button>
 							<button id='js-admin-edit-admin'>EDIT ADMIN </button>
 							<button id='js-admin-delete-admin'>DELETE ADMIN </button>
@@ -245,11 +250,11 @@
 							<div id='js-super-admin-modify-records-menu'>
 								<br>
 								<form id='js-super-admin-modify-records' class='admin-form'>
-									<label id='super-admin-modify-action'>Would would you like to do?: </label><br><br>
+									<label id='super-admin-modify-action'>What would you like to do?: </label><br><br>
 									<input type='radio' name='super-admin-modify-action' value='create-record' checked> CREATE Record <br>
 									<input type='radio' name='super-admin-modify-action' value='update-record' checked> UPDATE Record <br>
 									<input type='radio' name='super-admin-modify-action' value='bus-name' checked> DELETE Record <br><br><br>
-									<label id='super-admin-modify-type'>What TYPE of Record would you like to ALTER or CREATE?: </label><br><br>
+									<label id='super-admin-modify-type'>Which TYPE of Record would you like to CREATE, EDIT or DELETE?: </label><br><br>
 									<input type='radio' name='super-admin-modify-type' value='entry-record' checked> Entry <br>
 									<input type='radio' name='super-admin-modify-type' value='category-record' checked> Category <br>
 									<input type='radio' name='super-admin-modify-type' value='business-record' checked> Business <br>
@@ -261,7 +266,7 @@
 									<button id='js-super-admin-modify-menu'>SUBMIT</button>
 								</form>
 							</div>
-							<br><br>
+							<br>
 						</fieldset>
 					</div>
 				</fieldset>
