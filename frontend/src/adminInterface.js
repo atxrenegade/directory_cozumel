@@ -406,7 +406,7 @@ class adminInterface {
 		adminInterface.buildForm(elToAppendTo, formType, formAction, attributes);
 	}
 
-	static buildForm(elToAppendTo, formType, formAction, attributesArray) {
+	static buildNewForm(elToAppendTo, formType, formAction, attributesArray) {
 		elToAppendTo.innerHTML = ''
 		let formEl = document.createElement('form');
 
@@ -426,12 +426,7 @@ class adminInterface {
 			formButton.setAttribute('value', 'Save Changes');
 			formButton.setAttribute('type', 'button')
 
-			formElements = [
-				breakEl,
-				attLabel,
-				attInput,
-				formButton
-			]
+			formElements = [breakEl, attLabel, attInput, formButton]
 			formElements.forEach(el => elToAppendTo.appendChild(el));
 		})
 		formElements[3].addEventListener('click', function(){
@@ -533,6 +528,14 @@ class adminInterface {
 		catch(err) {
 			console.log(error.message);
 		}
+	}
+
+	static getInstToAlterForm(actionType, dbType, elToAppendTo){
+		let breakEl = document.createElement('br')
+		let instLabel = document.createElement('label')
+		let instInput = document.createElement('input')
+		let instButton = document.createElement('input')
+		/* continue from here */
 	}
 
 	static resetAdmin() {

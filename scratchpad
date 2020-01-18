@@ -57,3 +57,8 @@ MONDAY
  resources :admins, only: [:login, :admin]
 
  NEW BUG - persisting entries for new reviews!!
+
+ Need one form for new - shows blank form with attributes to fill out
+ One form for edit  - first input field for item to edit, (new form), second form attributes filled with current values
+ Delete form shows input field for instance to delete
+ Second form show all attributes of instance and a confirm delete button
