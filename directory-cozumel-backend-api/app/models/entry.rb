@@ -173,11 +173,15 @@ class Entry < ApplicationRecord
 		return filtered
 	end
 
-	def self.collect(status)
-		if status == 'resolved'
-			entries =  Entry.where.not(status: "pending")
+	def self.collect(status, auth_type)
+		if status == 'resolved' && auth_type == 'super'
+			entries =  Entry.where.not(status: 'pending')
+		elsif status == 'pending' && auth_type == 'super'
+			entries =  Entry.where(status: 'pending')
+		elsif status == 'pending' && auth_type == 'jr'
+			entries = Entry.where(status: 'pending').where.not(entry_type: 'flag business' ).where.not(entry_type: 'update business').where.not(entry_type: 'flag business')
 		else
-			entries = Entry.where(status: status).where.not(entry_type: 'flag business' ).where.not(entry_type: 'update business')
+			entries =  Entry.where.not(status: 'pending').where.not(entry_type: 'flag business' ).where.not(entry_type: 'update business').where.not(entry_type: 'flag business')
 		end
 		return entries
 	end
