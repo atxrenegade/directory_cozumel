@@ -21,14 +21,13 @@ class adminInterface {
 
 		/* Admin panel menu buttons */
 		pendingIndexButton.addEventListener('click', function() {
-			let authType = adminInterface.checkAdminAuth();
-			adminInterface.indexEntries('pending', authType)
+			adminInterface.getIndexEntries('pending');
+			debugger;
 			adminInterface.renderIndex('pending');
 		})
 
 		resolvedIndexButton.addEventListener('click', function() {
-			let authType = adminInterface.checkAdminAuth();
-			adminInterface.indexEntries('resolved', authType)
+			adminInterface.indexEntries('resolved')
 			adminInterface.renderIndex('resolved');
 		})
 
@@ -73,9 +72,7 @@ class adminInterface {
 		let indexBody = document.getElementById('index-entry-table-body');
 		let indexTable = document.getElementById('admin-entry-table');
 		let detailsTable = document.getElementById('entry-details-tables');
-
 		indexBody.innerHTML = '';
-		adminEntrySearch.style.display = 'none';
 		detailsTable.style.display = 'none';
 		indexTable.style.display = 'block';
 		adminTableContainer.style.display = 'block';
@@ -111,6 +108,15 @@ class adminInterface {
 			adminInterface.searchEntries(type, event)
 			adminInterface.renderIndex();
 		})
+	}
+
+	static getIndexEntries(searchType) {
+		let authType = adminInterface.checkAdminAuth();
+		let method = 'POST'
+		let data = { search_type: searchType, authType: authType }
+		let url = `http://localhost:3000/entries`
+		let callback = adminInterface.renderResp();
+		adminInterface.dynamFormReq(method, url, data, callback);
 	}
 
 	static getRadioVal(event){
@@ -395,12 +401,6 @@ class adminInterface {
 	}
 
 	/* Dynamic Admin Forms Creation */
-	static buildCatsForm(formAction){
-		let elToAppendTo = document.getElementById('js-super-admin-modify-cat-menu')
-		let formType = 'Categories';
-		let attributes = ['Name'];
-		adminInterface.buildForm(elToAppendTo, formType, formAction, attributes);
-	}
 
 	static buildNewForm(elToAppendTo, formType, formAction, attributesArray) {
 		elToAppendTo.innerHTML = ''
@@ -471,7 +471,7 @@ class adminInterface {
 		}
 	}
 
-	static dynamFormReq(method, url, data) {
+	static dynamFormReq(method, url, data, callback) {
 		let configObj = {
 			method: method,
 			headers: {
@@ -485,7 +485,7 @@ class adminInterface {
 				.then(resp => {
 					return resp.json();
 			})
-				.then(json => adminInterface.dynamFormResp(json)
+				.then(json => callback(json)
 			)
 		}
 		catch(err) {
