@@ -35,14 +35,15 @@
 				 	<legend>Search Listings:</legend>
 					<br>
 					<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-name'>
-					<label for = 'js-radio-by-name'> By Name </label>
+					<label> By Name </label>
 					<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-category'>
-					<label for = 'js-radio-by-category'>By Category</label>
+					<label> By Category</label>
 				  <div id='js-search-by-category'>
 						<form>
 							<fieldset id='js-category-search'>
 								<legend >Search By Category:</legend>
-								<div id='js-search-category-menu'></div>
+								<div id='js-search-category-menu'>
+								</div>
 								<br>
 								<input type='button' id='js-by-category-button' value='Search'/>
 							</fieldset>
@@ -62,7 +63,8 @@
 			<div id='listings-container' class='tile'>
 				Search Results
 				<br>
-				<div id='js-listing-show'> </div>
+				<div id='js-listing-show'>
+				</div>
 				<div id='js-google-maps-container'>
 					<div id='js-map'>
 						<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBX29nIU-xhny3UjlJ1M-zuOf-btW-3780&callback=initMap'
@@ -81,13 +83,13 @@
 					<form>
 						<fieldset id='new-review'>
 							<legend>Add Review</legend>
-							<label for='review-rating'>Rating:</label>
+							<label> Rating:</label>
 							<input type='text' id='review-rating'/><br>
-							<label for='content'>Your Review:</label>
-							<input type='textarea' id='review-content'/><br>
-							<label for='review-contributor'>Your Name:</label>
+							<label> Your Review:</label>
+							<input type='text' id='review-content'/><br>
+							<label> Your Name:</label>
 							<input type='text' id='review-contributor'/><br>
-							<label for='contributor-email'>Your Email</label>
+							<label> Your Email</label>
 							<input type='text' id='review-contributor-email' name='contributor-email'/><br>
 							<input type='submit' value='Submit'>
 						</fieldset>
@@ -97,15 +99,15 @@
 					<form>
 						<fieldset id='new-image'>
 							<legend>Add Image</legend>
-							<label for='image-url'>URL:</label>
+							<label> URL:</label>
 							<input type='text' id='image-url'/><br>
-							<label for='image-description'>Description:</label>
+							<label> Description:</label>
 							<input type='text' id='image-description'/><br>
-							<label for='image-date'>Date:</label>
+							<label> Date:</label>
 							<input type='text' id='image-date'/><br>
-							<label for='image-contributor'>Your Name:</label>
+							<label> Your Name:</label>
 							<input type='text' id='image-contributor'/><br>
-							<label for='image-email'>Your Email</label>
+							<label> Your Email</label>
 							<input type='text' id='image-email'/><br>
 							<input type='submit' value='Submit'>
 						</fieldset>
@@ -115,11 +117,11 @@
 					<form>
 						<fieldset id='bus-edit'>
 							<legend>Suggest Edit</legend>
-							<label for='edit-content'>How can we improve this listing?:</label>
-							<input type='textarea' id='edit-content'/><br>
-							<label for='edit-contributor'>Your Name:</label>
+							<label> How can we improve this listing?:</label>
+							<input type='text' id='edit-content'/><br>
+							<label> Your Name:</label>
 							<input type='text' id='edit-contributor'/><br>
-							<label for='edit-email'>Your Email</label>
+							<label> Your Email</label>
 							<input type='text' id='edit-email'/><br>
 							<input type='submit' value='Submit'>
 						</fieldset>
@@ -129,11 +131,11 @@
 					<form>
 						<fieldset id='bus-flag'>
 							<legend>Flag Business Listing</legend>
-							<label for='flag-content'>Reason for flagging:</label>
+							<label> Reason for flagging:</label>
 							<input type='text' id='flag-content'/><br>
-							<label for='flag-contributor'>Your Name:</label>
+							<label> Your Name:</label>
 							<input type='text' id='flag-contributor'/><br>
-							<label for='flag-email'>Your Email</label>
+							<label> Your Email</label>
 							<input type='text' id='flag-email'/><br>
 							<input type='submit' value='Submit'>
 						</fieldset>
@@ -147,15 +149,15 @@
 					<button id='js-add-button'>Add New Business</button>
 					<div id='js-add-business-form-container'>
 						<form>
-							<fieldset id='new-bus'/>
+							<fieldset id='new-bus'>
 								<legend>Add Business</legend>
-								<label for='name'>Business Name:</label>
+								<label> Business Name:</label>
 								<input type='text' id='bus-name'/><br>
-								<label for='address'>Address:</label>
+								<label> Address:</label>
 								<input type='text' id='bus-address'/><br>
-								<label for='phone-number'>Phone Number:</label>
+								<label> Phone Number:</label>
 								<input type='text' id='bus-phone-number'/><br>
-								<label for='website'>Website:</label>
+								<label> Website:</label>
 								<input type='text' id='bus-website'/><br>
 								<label id='js-new-bus-select'>Categories:</label><br>
 								<input type='submit' value='Submit'>
@@ -201,27 +203,30 @@
 				<fieldset id='js-admin-menu'>
 					<legend>Admin Menu</legend>
 					<fieldset>
-						<legend>ADMIN ENTRIES SEARCH AND DISPLAY</legend>
+						<legend>ADMIN DISPLAY ENTRIES</legend>
 							<button id='admin-show-resolved-button'>SHOW RESOLVED ENTRIES</button>
 							<button id='admin-show-pending-button'>SHOW PENDING ENTRIES</button>
-							<button id='admin-search-resolved-button'>SEARCH RESOLVED ENTRIES</button>
-							<button id='admin-search-pending-button'>SEARCH PENDING ENTRIES</button>
 							<br><br>
-							<form id='js-search-admin-entries' class='admin-form'>
-								<label id='jr-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br>
-									<input type='radio' name='jr-admin-search' value='bus-name' checked> Business NAME <br>
-									<input type='radio' name='jr-admin-search' value='business-id'> Business ID <br>
-									<input type='radio' name='jr-admin-search' value='id'> Entry ID <br>
-									<input type='radio' name='jr-admin-search' value='contributor'> Contributor <br>
-									<input type='radio' name='jr-admin-search' value='contributor-email'> Contributor EMAIL <br>
-									<input type='radio' name='jr-admin-search' value='date'> Date <br><br>
-									<label id='jr-admin-search-by'>INPUT TO SEARCH FOR: </label>
-									<input type='text' name='jr-admin-search-by-input'>
-								<button id='jr-admin-search'>SEARCH ENTRIES </button>
+					</fieldset>
+					<fieldset>
+						<legend>ADMIN SEARCH ENTRIES</legend>
+						<form id='js-search-admin-entries' class='admin-form'>
+							<label id='js-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br>
+							<input type='radio' name='js-admin-search' value='entry-type' checked> Entry TYPE <br>
+							<input type='radio' name='js-admin-search' value='entry-status' checked> Entry STATUS <br>
+							<input type='radio' name='js-admin-search' value='business-name' checked> Business NAME <br>
+							<input type='radio' name='js-admin-search' value='business-id'> Business ID <br>
+							<input type='radio' name='js-admin-search' value='record-id'> Entry ID <br>
+							<input type='radio' name='js-admin-search' value='contributor'> Contributor <br>
+							<input type='radio' name='js-admin-search' value='contributor-email'> Contributor EMAIL <br>
+							<input type='radio' name='js-admin-search' value='date'> Date <br><br>
+							<label>INPUT TO SEARCH FOR: </label>
+							<input type='text' name='js-admin-search-by-input'>
+							<button id='js-admin-search-entries'>SEARCH ENTRIES </button>
 						</form>
 					</fieldset>
-
 				</fieldset>
+
 				<fieldset id='js-super-admin-menu'>
 					<legend>Super Admin Menu</legend>
 					<button id='js-admin-show-super-admin'>TOGGLE SUPER ADMIN MENU </button>
@@ -235,25 +240,6 @@
 							ADMIN FORM HERE NAME, ID, PASSWORD
 						</fieldset>
 
-						<fieldset>
-							<br>
-							<legend>SEARCH ENTRIES</legend>
-							<form id='js-super-admin-search' class='admin-form'>
-								<label id='admin-search-by'>Search ENTRIES by: </label><br><br>
-								<input type='radio' name='super-admin-search-by' value='entry-type' checked> Entry TYPE <br>
-								<input type='radio' name='super-admin-search-by' value='entry-status' checked> Entry Status <br>
-								<input type='radio' name='super-admin-search-by' value='bus-name' checked> Business NAME <br>
-								<input type='radio' name='super-admin-search-by' value='business-id'> Business ID <br>
-								<input type='radio' name='super-admin-search-by' value='record-id'> Database Record ID <br>
-								<input type='radio' name='super-admin-search-by' value='contributor'> Contributor <br>
-								<input type='radio' name='super-admin-search-by' value='contributor-email'> Contributor EMAIL <br>
-								<input type='radio' name='super-admin-search-by' value='date'> Date <br><br>
-								<label id='admin-search-by'>INPUT TO SEARCH FOR: </label>
-								<input type='text' name='admin-search-by-input'><br>
-								<button id='super-admin-search'>SEARCH RECORDS </button>
-								<br>
-							</form>
-						</fieldset>
 						<fieldset>
 							<legend>MODIFY RECORDS</legend>
 							<div id='js-super-admin-modify-records-menu'>
@@ -271,9 +257,10 @@
 									<input type='radio' name='super-admin-modify-type' value='map-record' checked> Map <br>
 									<input type='radio' name='super-admin-modify-type' value='review-record' checked> Review <br>
 									<input type='radio' name='super-admin-modify-type' value='image-record' checked> Image <br>
-								</div>
-							<br>
-							<button id='js-super-admin-modify-menu'>SUBMIT</button>
+									<br>
+									<button id='js-super-admin-modify-menu'>SUBMIT</button>
+								</form>
+							</div>
 							<br><br>
 						</fieldset>
 					</div>
@@ -281,10 +268,10 @@
 			</div>
 			<div id='js-admin-panel-container' class='tile'>
 				<fieldset id='js-admin-panel'>
-					<div id='admin-entry-table'
-						<legend>Admin Panel</legend>
+					<legend>Admin Panel</legend>
+					<div id='admin-entry-table'>
+						<h2> ENTRIES FOR REVIEW </h2>
 						<table id='admin-entry-log'>
-							<h2> ENTRIES FOR REVIEW </h2>
 							<tr>
 								<th>ID </th>
 								<th>DATE CREATED</th>
@@ -303,8 +290,8 @@
 						<br>
 					</div>
 					<div id='entry-details-tables'>
+						<h2> ENTRY DETAILS AND ADMIN FUNCTIONS </h2>
 						<table id='admin-entry-show-details-table-1'>
-							<h2> ENTRY DETAILS AND ADMIN FUNCTIONS </h2>
 							<tr>
 								<th>ID</th>
 								<th>DATE CREATED</th>
@@ -345,10 +332,10 @@
 					<div id='admin-notes-form'>
 						<input type='hidden' name='-method' value='patch'>
 						<label>Notes:</label>
-							<input type='text-field' id='js-entry-notes'>
+							<input type='text' id='js-entry-notes'>
 						<br><br>
 							<input id='admin-submit-notes-field' type='submit' value='Submit'>
-					<div>
+					</div>
 				</fieldset>
 			</div>
     </main>
