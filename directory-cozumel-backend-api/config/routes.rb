@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 	post '/entries/new'
 	post '/entries/update'
 	post '/entries', to: 'entries#index'
-	get '/entries/resolved', to: 'entries#index_resolved'
 	post '/entries/search', to: 'entries#index_search'
 
 	resources :businesses, only: [:create, :update, :delete]
