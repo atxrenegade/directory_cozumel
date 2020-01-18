@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 	post '/entries/new_object', to: 'entries#new_object'
 	post '/entries/new'
 	post '/entries/update'
-	get '/entries/pending', to: 'entries#index_pending'
+	post '/entries', to: 'entries#index'
 	get '/entries/resolved', to: 'entries#index_resolved'
 	post '/entries/search', to: 'entries#index_search'
 

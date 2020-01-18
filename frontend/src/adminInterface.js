@@ -21,13 +21,13 @@ class adminInterface {
 
 		/* Admin panel menu buttons */
 		pendingIndexButton.addEventListener('click', function() {
-			adminInterface.getIndexEntries('pending');
+			adminInterface.getEntriesIndex('pending');
 			debugger;
 			adminInterface.renderIndex('pending');
 		})
 
 		resolvedIndexButton.addEventListener('click', function() {
-			adminInterface.indexEntries('resolved')
+			adminInterface.getEntriesIndex('resolved')
 			adminInterface.renderIndex('resolved');
 		})
 
@@ -110,12 +110,12 @@ class adminInterface {
 		})
 	}
 
-	static getIndexEntries(searchType) {
+	static getEntriesIndex(searchType) {
 		let authType = adminInterface.checkAdminAuth();
 		let method = 'POST'
-		let data = { search_type: searchType, authType: authType }
+		let data = { search_type: searchType, auth_type: authType }
 		let url = `http://localhost:3000/entries`
-		let callback = adminInterface.renderResp();
+		let callback = adminInterface.dynamFormResp;
 		adminInterface.dynamFormReq(method, url, data, callback);
 	}
 
@@ -136,18 +136,6 @@ class adminInterface {
 		let searchVal = event.target.parentNode[6].value;
 		let data = { query_type: type, property: propertyToSearch, search_val: searchVal }
 		let returnedJson = adminInterface.postSearchRequest(data);
-	}
-
-	static indexEntries(type) {
-		let url = `http://localhost:3000/entries/${type}`
-		try {
-			fetch(url)
-			.then(resp => resp.json())
-			.then(json => adminInterface.buildEntries(json))
-		}
-		catch(err) {
-			console.log(error.message);
-		}
 	}
 
 	static renderIndex(indexType) {

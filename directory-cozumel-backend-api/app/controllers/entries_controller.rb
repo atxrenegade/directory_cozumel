@@ -12,13 +12,8 @@ class EntriesController < ApplicationController
 		render json: entry
 	end
 
-	def index_pending
-		entries = Entry.collect('pending')
-		render json: entries
-	end
-
-	def index_resolved
-		entries = Entry.collect('resolved')
+	def index
+		entries = Entry.collect(params['search_type'], params['auth_type'])
 		render json: entries
 	end
 
