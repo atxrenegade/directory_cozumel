@@ -513,6 +513,14 @@ window.onload = function() {
 	let createCatButton = document.getElementById('js-super-admin-create-cat-button')
 	createCatButton.addEventListener('click', function() { adminInterface.buildCatsForm('Create')
 	})
+	
+	let updateCatButton = document.getElementById('js-super-admin-update-cat-button')
+	updateCatButton.addEventListener('click', function() { adminInterface.buildCatsForm('Update')
+	})
+
+	let deleteCatButton = document.getElementById('js-super-admin-delete-cat-button')
+	updateCatButton.addEventListener('click', function() { adminInterface.buildCatsForm('Delete')
+	})
 
 	/* SET PAGE LOAD VALUES */
 	resetPage();

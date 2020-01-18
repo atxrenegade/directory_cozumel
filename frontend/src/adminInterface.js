@@ -454,7 +454,7 @@ class adminInterface {
 		return attHash;
 	}
 
-	static handleDynamAdminForm(dbModel, action, attsHash, instance){
+	static handleDynamAdminForm(dbModel, action, attsHash){
 		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
 		/* action = Create, Update, Delete */
 		/* instance = any valid instance of type */
@@ -464,11 +464,13 @@ class adminInterface {
 			adminInterface.dynamFormReq(method, url, attsHash)
 			/* create my data, and url */
 		} else if	(action === 'Update'){
+			let instance = adminInterface.identifyInstance(dbModel, attsHash)
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
 			let data = { id: instance, attributes: attsHash }
 			let method = 'PUT'
 			adminInterface.dynamFormReq(method, url, data)
 		}	else if (action === 'Delete') {
+			let instance = adminInterface.identifyInstance(dbModel, attsHash)
 			let method = 'DELETE'
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
 			data = { id: id }
@@ -503,6 +505,34 @@ class adminInterface {
 
 	static dynamFormResp(json){
 		console.log(json)
+	}
+
+	static identifyInstance(dbModel, attsHash){
+		let id;
+		if ('name' in attsHash) {
+			let name = attsHash["name"]
+			/* create url, data, and request type for next function*/
+			id = adminInterface.getInsIdByName(dbModel, name)
+		} else if ('id' in attsHash){
+			id = attsHash["id"]
+		} else {
+			id = 'no match for this instance'
+		}
+		return id;
+	}
+
+	static getInsIdByName(dbType, name) {
+		debugger;
+		try {
+			/* use query string using name in url */
+			url = `http://localhost:3000/${dbType}/by_name`
+			fetch(url)
+			.then(resp => resp.json())
+			.then(json => console.log(json))
+		}
+		catch(err) {
+			console.log(error.message);
+		}
 	}
 
 	static resetAdmin() {
