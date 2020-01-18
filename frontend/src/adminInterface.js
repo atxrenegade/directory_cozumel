@@ -401,7 +401,7 @@ class adminInterface {
 	/* Dynamic Admin Forms Creation */
 	static buildCatsForm(formAction){
 		let elToAppendTo = document.getElementById('js-super-admin-modify-cat-menu')
-		let formType = 'Category';
+		let formType = 'Categories';
 		let attributes = ['Name'];
 		adminInterface.buildForm(elToAppendTo, formType, formAction, attributes);
 	}
@@ -437,7 +437,7 @@ class adminInterface {
 		formElements[3].addEventListener('click', function(){
 			let attValsHash = adminInterface.createAttValsHash(event);
 			adminInterface.handleDynamAdminForm(formType, formAction, attValsHash)
-			/* followup with renderSuccess or errorMsg */
+			/* follow up with renderSuccess or errorMsg */
 		})
 	}
 
@@ -451,27 +451,58 @@ class adminInterface {
 			attHash[attKey] = attVal;
 			newAttsArray = newAttsArray.slice(2)
 		}
-		debugger;
 		return attHash;
 	}
 
-	static handleDynamAdminForm(type, action, attributesHash){
+	static handleDynamAdminForm(dbModel, action, attsHash, instance){
 		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
 		/* action = Create, Update, Delete */
 		/* instance = any valid instance of type */
 		if (action === 'Create') {
-			console.log(`Create ${type}`)
-		} else if	(action === 'Update') {
-			console.log(`Update ${type}`)
+			method = 'POST'
+			let url = `http://localhost:3000/${dbModel}`
+			adminInterface.dynamFormRequest(method, url, attsHash)
+			/* create my data, and url */
+		} else if	(action === 'Update'){
+			let url = `http://localhost:3000/${dbModel}/${instance}`
+			data = { id: instance, attributes: attsHash }
+			method = 'PUT'
+			adminInterface.dynamFormRequest(method, url, data)
 		}	else if (action === 'Delete') {
-			console.log(`Delete ${type}`)
+			method = 'DELETE'
+			let url = `http://localhost:3000/${dbModel}/${instance}`
+			data = { id: id }
+			adminInterface.dynamFormRequest(method, url, data)
 		} else {
 			console.log('Error this record type does not exist')
 		}
 	}
 
-	static dynamFormPost() {
+	static dynamFormReq(method, data, url) {
+		let configObj = {
+			method: method,
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+		};
+		try {
+			fetch(url, configObj)
+				.then(resp => {
+					return resp.json();
+			})
+				.then(json => adminInterface.dynamFormResponse(json)
+			)
+		}
+		catch(err) {
+			alert('Update failed see console for further details!');
+			console.log(error.message);
+		}
+	}
 
+	static dynamFormResp(json){
+		console.log(json)
 	}
 
 	static resetAdmin() {
