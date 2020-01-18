@@ -6,8 +6,7 @@ class CategoriesController < ApplicationController
 	end
 
 	def create
-		binding.pry
-		category = Category.create!(name: params['name'].downcase!)
+		category = Category.create!(name: params['name'].downcase)
 		render json: category
 	end
 end
