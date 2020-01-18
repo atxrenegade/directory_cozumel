@@ -46,3 +46,14 @@ MONDAY
 
 
  ENTRY INDEX
+
+ resources :reviews, only: [:new, :create, :show, :update, :delete]
+ resources :maps, only: [:show]
+ resources :listings, only: [:new, :create, :show, :update, :delete]
+ resources :images, only: [:new, :create, :show, :update, :delete]
+ resources :categories, only: [:index]
+ resources :listings, only: [:new, :create, :show, :update, :delete, :index]
+ resources :admin_entries, only: [:new, :create, :update, :index]
+ resources :admins, only: [:login, :admin]
+
+ NEW BUG - persisting entries for new reviews!!

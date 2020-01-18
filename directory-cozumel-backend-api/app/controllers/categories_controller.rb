@@ -4,4 +4,10 @@ class CategoriesController < ApplicationController
 		categories = Category.all
 		render json: categories, only: [:id, :name]
 	end
+
+	def create
+		binding.pry
+		category = Category.create!(name: params['name'].downcase!)
+		render json: category
+	end
 end

@@ -437,7 +437,7 @@ class adminInterface {
 		formElements[3].addEventListener('click', function(){
 			let attValsHash = adminInterface.createAttValsHash(event);
 			adminInterface.handleDynamAdminForm(formType, formAction, attValsHash)
-			/* follow up with renderSuccess or errorMsg */
+			/* follow up with renderSuccess or errorMsg and clear input field*/
 		})
 	}
 
@@ -459,26 +459,26 @@ class adminInterface {
 		/* action = Create, Update, Delete */
 		/* instance = any valid instance of type */
 		if (action === 'Create') {
-			method = 'POST'
-			let url = `http://localhost:3000/${dbModel}`
-			adminInterface.dynamFormRequest(method, url, attsHash)
+			let method = 'POST'
+			let url = `http://localhost:3000/${dbModel.toLowerCase()}`
+			adminInterface.dynamFormReq(method, url, attsHash)
 			/* create my data, and url */
 		} else if	(action === 'Update'){
-			let url = `http://localhost:3000/${dbModel}/${instance}`
-			data = { id: instance, attributes: attsHash }
-			method = 'PUT'
-			adminInterface.dynamFormRequest(method, url, data)
+			let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
+			let data = { id: instance, attributes: attsHash }
+			let method = 'PUT'
+			adminInterface.dynamFormReq(method, url, data)
 		}	else if (action === 'Delete') {
-			method = 'DELETE'
-			let url = `http://localhost:3000/${dbModel}/${instance}`
+			let method = 'DELETE'
+			let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
 			data = { id: id }
-			adminInterface.dynamFormRequest(method, url, data)
+			adminInterface.dynamFormReq(method, url, data)
 		} else {
 			console.log('Error this record type does not exist')
 		}
 	}
 
-	static dynamFormReq(method, data, url) {
+	static dynamFormReq(method, url, data) {
 		let configObj = {
 			method: method,
 			headers: {
@@ -492,7 +492,7 @@ class adminInterface {
 				.then(resp => {
 					return resp.json();
 			})
-				.then(json => adminInterface.dynamFormResponse(json)
+				.then(json => adminInterface.dynamFormResp(json)
 			)
 		}
 		catch(err) {
