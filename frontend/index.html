@@ -224,49 +224,57 @@
 				</fieldset>
 				<fieldset id='js-super-admin-menu'>
 					<legend>Super Admin Menu</legend>
-						<button id='js-admin-show-super-admin'>TOGGLE SUPER ADMIN MENU </button>
+					<button id='js-admin-show-super-admin'>TOGGLE SUPER ADMIN MENU </button>
 					<div id='js-admin-super-admin-open'>
 						<fieldset id='super-admin-modify-admin'>
 							<legend id='js-admin-auth'>ADMIN AUTHORIZATION</legend>
-								<button id='js-admin-create-admin'>CREATE ADMIN </button>
-								<button id='js-admin-edit-admin'>EDIT ADMIN </button>
-								<button id='js-admin-delete-admin'>DELETE ADMIN </button>
-								<br><br>
-								ADMIN FORM HERE NAME, ID, PASSWORD
+							<button id='js-admin-create-admin'>CREATE ADMIN </button>
+							<button id='js-admin-edit-admin'>EDIT ADMIN </button>
+							<button id='js-admin-delete-admin'>DELETE ADMIN </button>
+							<br><br>
+							ADMIN FORM HERE NAME, ID, PASSWORD
 						</fieldset>
-						<fieldset>
-							<legend>MODIFY CATEGORIES</legend>
-							<div id='js-super-admin-modify-cat-menu'>
-							</div>
-							<br>
-							<button id='js-super-admin-create-cat-button'>CREATE CATEGORY</button>
-							<button id='js-super-admin-update-cat-button'>EDIT CATEGORY</button>
-							<button id='js-super-admin-delete-cat-button'>DELETE CATEGORY</button>
-						</fieldset>
+
 						<fieldset>
 							<br>
-							<legend>SEARCH/UPDATE RECORDS</legend>
+							<legend>SEARCH ENTRIES</legend>
 							<form id='js-super-admin-search' class='admin-form'>
-								<label id='admin-search-type'>RECORDS TO SEARCH: </label><br>
-									<input type='radio' name='super-admin-search-location' value='admin'> admin entries <br>
-									<input type='radio' name='super-admin-search-location' value='db' checked> database <br>
-								<br>
-								<label id='admin-search-for'>SEARCH FOR RECORD TYPE: </label><br>
-										<input type='radio' name='super-admin-search-type' value='business' checked> Business <br>
-										<input type='radio' name='super-admin-search-type' value='map'> Map <br>
-										<input type='radio' name='super-admin-search-type' value='review'> Review <br>
-										<input type='radio' name='super-admin-search-type' value='image'> Image <br><br>
-								<label id='admin-search-by'>SEARCH RECORDS BY: </label><br>
-									<input type='radio' name='super-admin-search-by' value='bus-name' checked> Business NAME <br>
-									<input type='radio' name='super-admin-search-by' value='business-id'> Business ID <br>
-									<input type='radio' name='super-admin-search-by' value='record-id'> Database Record ID <br>
-									<input type='radio' name='super-admin-search-by' value='contributor'> Contributor <br>
-									<input type='radio' name='super-admin-search-by' value='contributor-email'> Contributor EMAIL <br>
-									<input type='radio' name='super-admin-search-by' value='date'> Date <br><br>
-									<label id='admin-search-by'>INPUT TO SEARCH FOR: </label>
-									<input type='text' name='admin-search-by-input'>
+								<label id='admin-search-by'>Search ENTRIES by: </label><br><br>
+								<input type='radio' name='super-admin-search-by' value='entry-type' checked> Entry TYPE <br>
+								<input type='radio' name='super-admin-search-by' value='entry-status' checked> Entry Status <br>
+								<input type='radio' name='super-admin-search-by' value='bus-name' checked> Business NAME <br>
+								<input type='radio' name='super-admin-search-by' value='business-id'> Business ID <br>
+								<input type='radio' name='super-admin-search-by' value='record-id'> Database Record ID <br>
+								<input type='radio' name='super-admin-search-by' value='contributor'> Contributor <br>
+								<input type='radio' name='super-admin-search-by' value='contributor-email'> Contributor EMAIL <br>
+								<input type='radio' name='super-admin-search-by' value='date'> Date <br><br>
+								<label id='admin-search-by'>INPUT TO SEARCH FOR: </label>
+								<input type='text' name='admin-search-by-input'><br>
 								<button id='super-admin-search'>SEARCH RECORDS </button>
-						</form>
+								<br>
+							</form>
+						</fieldset>
+						<fieldset>
+							<legend>MODIFY RECORDS</legend>
+							<div id='js-super-admin-modify-records-menu'>
+								<br>
+								<form id='js-super-admin-modify-records' class='admin-form'>
+									<label id='super-admin-modify-action'>Would would you like to do?: </label><br><br>
+									<input type='radio' name='super-admin-modify-action' value='create-record' checked> CREATE Record <br>
+									<input type='radio' name='super-admin-modify-action' value='update-record' checked> UPDATE Record <br>
+									<input type='radio' name='super-admin-modify-action' value='bus-name' checked> DELETE Record <br><br><br>
+									<label id='super-admin-modify-type'>What TYPE of Record would you like to ALTER or CREATE?: </label><br><br>
+									<input type='radio' name='super-admin-modify-type' value='entry-record' checked> Entry <br>
+									<input type='radio' name='super-admin-modify-type' value='category-record' checked> Category <br>
+									<input type='radio' name='super-admin-modify-type' value='business-record' checked> Business <br>
+									<input type='radio' name='super-admin-modify-type' value='listing-record' checked> Listing <br>
+									<input type='radio' name='super-admin-modify-type' value='map-record' checked> Map <br>
+									<input type='radio' name='super-admin-modify-type' value='review-record' checked> Review <br>
+									<input type='radio' name='super-admin-modify-type' value='image-record' checked> Image <br>
+								</div>
+							<br>
+							<button id='js-super-admin-modify-menu'>SUBMIT</button>
+							<br><br>
 						</fieldset>
 					</div>
 				</fieldset>

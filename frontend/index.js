@@ -510,17 +510,8 @@ window.onload = function() {
 	adminPanelLogin.addEventListener('click', clearDirectoryForAdmin);
 
 	/* AdminPanel Listeners */
-	let createCatButton = document.getElementById('js-super-admin-create-cat-button')
-	createCatButton.addEventListener('click', function() { adminInterface.buildCatsForm('Create')
-	})
-	
-	let updateCatButton = document.getElementById('js-super-admin-update-cat-button')
-	updateCatButton.addEventListener('click', function() { adminInterface.buildCatsForm('Update')
-	})
-
-	let deleteCatButton = document.getElementById('js-super-admin-delete-cat-button')
-	updateCatButton.addEventListener('click', function() { adminInterface.buildCatsForm('Delete')
-	})
+	let modifyRecButton = document.getElementById('js-super-admin-modify-menu')
+	modifyRecButton.addEventListener('click', console.log(event.target))
 
 	/* SET PAGE LOAD VALUES */
 	resetPage();
