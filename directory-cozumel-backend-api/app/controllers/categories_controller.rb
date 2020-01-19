@@ -1,5 +1,11 @@
 class CategoriesController < ApplicationController
 	#validates :name, uniqueness: true
+	def attributes
+		attributes = Category.column_names
+		attributes.pop(2)
+		render json: attributes
+	end
+
 	def index
 		categories = Category.all
 		render json: categories, only: [:id, :name]
