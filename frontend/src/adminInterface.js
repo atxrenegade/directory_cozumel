@@ -277,7 +277,10 @@ class adminInterface {
 		cell10.innerHTML = entry.status;
 		cell11.innerHTML = entry.resolvedDate;
 		cell12.innerHTML = entry.notes;
-		if (entry.status !== 'pending'){
+		if (entry.status == 'pending') {
+			document.getElementById('admin-approve-button').style.display = 'inline-block';
+			document.getElementById('admin-reject-button').style.display = 'inline-block';
+		} else {
 			document.getElementById('admin-approve-button').style.display = 'none';
 			document.getElementById('admin-reject-button').style.display = 'none';
 		}
@@ -313,6 +316,8 @@ class adminInterface {
 	static rejectEntry(event) {
 		let data = adminInterface.resolveEntry('rejected', event)
 		adminInterface.postEntryUpdate(data);
+		document.getElementById('admin-approve-button').style.display = 'none';
+		document.getElementById('admin-reject-button').style.display = 'none';
 	}
 
 	static approveEntry(event) {
@@ -320,6 +325,8 @@ class adminInterface {
 		let id = {id: data.id}
 		adminInterface.postDatabaseObject(data)
 		adminInterface.postEntryUpdate(data)
+		document.getElementById('admin-approve-button').style.display = 'none';
+		document.getElementById('admin-reject-button').style.display = 'none';
 	}
 
 	static postDatabaseObject(data) {
