@@ -5,29 +5,29 @@ class adminInterface {
 		let indexTable = document.getElementById('admin-entry-table')
 		/* admin details table elements */
 		let detailsTable = document.getElementById('entry-details-tables')
-		let backButton = document.getElementById('admin-back-button')
+		let smResolvedIndexButton = document.getElementById('admin-resolved-index-button')
+		let smPendingIndexButton = document.getElementById('admin-pending-index-button')
+
 		let rejectButton = document.getElementById('admin-reject-button')
 		let approveButton = document.getElementById('admin-approve-button')
 		let addNotesButton = document.getElementById('admin-notes-button')
 		let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
 		let notesForm = document.getElementById('admin-notes-form')
 		let superAdminMenuButton = document.getElementById('js-admin-show-super-admin')
-		let pendingIndexButton = document.getElementById('admin-show-pending-button')
-		let resolvedIndexButton = document.getElementById('admin-show-resolved-button')
+		let bigPendingIndexButton = document.getElementById('admin-show-pending-button')
+		let bigResolvedIndexButton = document.getElementById('admin-show-resolved-button')
 
 
 		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime();
 
 		/* Admin panel menu buttons */
-		pendingIndexButton.addEventListener('click', function() {
-			let entries = adminInterface.getEntriesIndex('pending');
-			setTimeout(`adminInterface.renderIndex('pending')`, 1800);
+		bigPendingIndexButton.addEventListener('click', function() {
+			adminInterface.indexButtonAction('resolved');
 		})
 
-		resolvedIndexButton.addEventListener('click', function() {
-			let entries = adminInterface.getEntriesIndex('resolved');
-			setTimeout(`adminInterface.renderIndex('resolved')`, 1800);
+		bigResolvedIndexButton.addEventListener('click', function() {
+			adminInterface.indexButtonAction('resolved');
 		})
 
 		/* Super Admin Menu Button */
@@ -48,14 +48,18 @@ class adminInterface {
 			adminInterface.approveEntry(event);
 		})
 
-		backButton.addEventListener('click', function() {
-			/* check for pending or resolved */
-			let cellData = document.getElementById('detailed-entry-table-3').lastChild.children[1].innerHTML
-			let indexType;
-			cellData === 'pending' ?  indexType = 'pending' : indexType = 'resolved'
-			adminInterface.indexEntries(indexType);
-			adminInterface.renderIndex(indexType);
+		smPendingIndexButton.addEventListener('click', function() {
+			adminInterface.indexButtonAction('pending');
 		})
+
+		smResolvedIndexButton.addEventListener('click', function() {
+			adminInterface.indexButtonAction('resolved');
+		})
+	}
+
+	static indexButtonAction(status){
+		let entries = adminInterface.getEntriesIndex(`${status}`);
+		setTimeout(`adminInterface.renderIndex('${status}')`, 1800);
 	}
 
 	static toggleElement(el) {
