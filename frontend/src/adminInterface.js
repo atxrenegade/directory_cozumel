@@ -67,8 +67,8 @@ class adminInterface {
 
 		superAdminSubmitButton.addEventListener('click', function() {
 			event.preventDefault();
-			let a = adminInterface.getRadioVal(event)
-			console.log(a)
+			let RadVals = adminInterface.getRadioVal(event);
+
 		})
 	}
 
@@ -391,12 +391,31 @@ class adminInterface {
 	}
 
 	/* Dynamic Admin Forms Creation */
+	static directSupAdminFormAction(action, dbType){
+		if (action == 'create'){
+			buildNewModelInstance(action, dbType)
+		} else if (action == 'update'){
+			console.log('update')
+		} else if (actions == 'delete'){
+			console.log('delete')
+		} else {
+			console.log(`${action.toUpperCase()} is not a valid action!`)
+		}
+	}
+
+	static buildNewModelInstance(action, dbType){
+		/* get attributes */
+		/* buildForm */
+		/* build atts hash */
+		/* post obj */
+		/* return results */
+		/* handle results */
+		/* display results */
+	}
 
 	static buildNewForm(elToAppendTo, formType, formAction, attributesArray) {
 		elToAppendTo.innerHTML = ''
 		let formEl = document.createElement('form');
-
-		/* iterate through element array and create labels and input fields */
 		let formElements;
 		attributesArray.forEach(attribute => {
 			let breakEl = document.createElement('br')
