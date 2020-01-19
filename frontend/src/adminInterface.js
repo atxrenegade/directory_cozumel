@@ -205,7 +205,9 @@ class adminInterface {
 			adminTable.appendChild(noEntries);
 			document.addEventListener('click', function(){
 				let noEntries = document.getElementById('admin-no-entry-message')
-				document.getElementById('admin-entry-table').removeChild(noEntries)
+				if (noEntries !== null){
+					document.getElementById('admin-entry-table').removeChild(noEntries)
+				}
 			})
 		}
 	}
