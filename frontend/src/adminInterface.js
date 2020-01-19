@@ -203,7 +203,10 @@ class adminInterface {
 			noEntries.setAttribute('id', 'admin-no-entry-message')
 			let adminTable = document.getElementById('admin-entry-table');
 			adminTable.appendChild(noEntries);
-			/* document.addEventListener('click', function(){ noEntries.innerHTML = ""}) */
+			document.addEventListener('click', function(){
+				let noEntries = document.getElementById('admin-no-entry-message')
+				document.getElementById('admin-entry-table').removeChild(noEntries)
+			})
 		}
 	}
 
