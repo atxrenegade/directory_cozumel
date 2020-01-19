@@ -18,14 +18,12 @@ class adminInterface {
 		let bigResolvedIndexButton = document.getElementById('admin-show-resolved-button')
 		let adminSearchButton = document.getElementById('js-admin-search-entries')
 
-
-
 		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime();
 
 		/* Admin panel menu buttons */
 		bigPendingIndexButton.addEventListener('click', function() {
-			adminInterface.indexButtonAction('resolved');
+			adminInterface.indexButtonAction('pending');
 		})
 
 		bigResolvedIndexButton.addEventListener('click', function() {
@@ -35,8 +33,9 @@ class adminInterface {
 		adminSearchButton.addEventListener('click', function(){
 			event.preventDefault();
 			let adminTableContainer = document.getElementById('js-admin-panel-container');
-			adminTableContainer.style.display = 'none';
-			adminInterface.searchEntries(event);
+			adminTableContainer.style.display = 'block';
+			let entries = adminInterface.searchEntries(event);
+			setTimeout(`adminInterface.renderIndex('SEARCH')`, 1800);
 		})
 
 		/* Super Admin Menu Button */
@@ -137,7 +136,7 @@ class adminInterface {
 		let url = 'http://localhost:3000/entries/search'
 		let data = { property: propertyToSearch, search_val: searchVal }
 		let callbackFunction = adminInterface.buildEntries;
-		adminInterface.dynamFormReq(method, url, data, callBackFunction);
+		adminInterface.dynamFormReq(method, url, data, callbackFunction);
 	}
 
 	static renderIndex(indexType) {
@@ -179,7 +178,7 @@ class adminInterface {
 			})
 		}	else {
 			let noEntries = document.createElement('p')
-			noEntries.innerHTML = `No ${indexType.toUpperCase()} Entries at this time!`
+			noEntries.innerHTML = `No ${indexType.toUpperCase()} results at this time!`
 			noEntries.setAttribute('id', 'admin-no-entry-message')
 			let adminTable = document.getElementById('admin-entry-table');
 			adminTable.appendChild(noEntries);

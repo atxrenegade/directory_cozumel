@@ -163,14 +163,9 @@ class Entry < ApplicationRecord
 		Business.build_new_associated(business, attributes['categories'], listing_attributes)
 	end
 
-	def self.search_entries(query_type, property_param, search_param)
+	def self.search_entries(property_param, search_param)
 		wildcard_search = "%#{search_param.downcase}%"
-		if query_type == 'resolved'
-			filtered = Entry.where.not("status = ? ", 'pending').where("lower(#{property_param}) LIKE ?", wildcard_search)
-		else
-			filtered = Entry.where("status = ? ", 'pending').where("lower(#{property_param}) LIKE ?", wildcard_search)
-		end
-		return filtered
+		return Entry.where("lower(#{property_param}) LIKE ?", wildcard_search)
 	end
 
 	def self.collect(status, auth_type)
