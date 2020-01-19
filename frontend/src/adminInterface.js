@@ -66,7 +66,7 @@ class adminInterface {
 	}
 
 	static indexButtonAction(status){
-		let entries = adminInterface.getEntriesIndex(`${status}`);
+		let entries = adminInterface.buildIndexPostReq(`${status}`);
 		setTimeout(`adminInterface.renderIndex('${status}')`, 1800);
 	}
 
@@ -108,7 +108,7 @@ class adminInterface {
 		return 'super'
 	}
 
-	static getEntriesIndex(searchType) {
+	static buildIndexPostReq(searchType) {
 		let authType = adminInterface.checkAdminAuth();
 		let method = 'POST'
 		let data = { search_type: searchType, auth_type: authType }
@@ -479,6 +479,24 @@ class adminInterface {
 	static dynamFormResp(json){
 		console.log(json);
 		return(json);
+	}
+
+	static getAttributes(model){
+		let model = model;
+		let url = `http://localhost.3000/${model}/attributes`
+		let callback = dynamFormResp;
+		adminInterface.dynamGetReq(url, callback)
+	}
+
+	static dynamGetReq(url, callback){
+		try {
+			fetch(url)
+			.then(resp => resp.json())
+			.then(json => callback(json))
+		}
+		catch(err) {
+			console.log(error.message);
+		}
 	}
 
 	static identifyInstance(dbModel, attsHash){
