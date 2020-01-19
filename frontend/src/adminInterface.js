@@ -131,39 +131,18 @@ class adminInterface {
 	}
 
 	static searchEntries(event) {
-		debugger;
-		let propertyToSearch  = adminInterface.getRadioVal(event);
-		let searchVal = event.target.parentNode[6].value;
+		let propertyToSearch = adminInterface.getRadioVal(event);
+		let searchVal = event.target.parentNode[8].value;
+		let method = 'POST'
+		let url = 'http://localhost:3000/entries/search'
 		let data = { property: propertyToSearch, search_val: searchVal }
-		let returnedJson = adminInterface.postSearchRequest(data);
+		let callbackFunction = adminInterface.buildEntries;
+		adminInterface.dynamFormReq(method, url, data, callBackFunction);
 	}
 
 	static renderIndex(indexType) {
 		adminInterface.displayIndex();
 		adminInterface.generateEntryTable(indexType);
-	}
-
-	static postSearchRequest(data) {
-		let configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
-	};
-	try {
-		fetch('http://localhost:3000/entries/search', configObj)
-			.then(resp => {
-				return resp.json();
-		})
-			.then(json => adminInterface.buildEntries(json)
-		)
-	}
-	catch(err) {
-			alert('Update failed see console for further details!');
-			console.log(error.message);
-		}
 	}
 
 	static generateEntryTable(indexType){
