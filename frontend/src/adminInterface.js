@@ -67,8 +67,8 @@ class adminInterface {
 
 		superAdminSubmitButton.addEventListener('click', function() {
 			event.preventDefault();
-			let model = 'entries';
-			adminInterface.getAttributes(model);
+			let a = adminInterface.getRadioVal(event)
+			console.log(a)
 		})
 	}
 
@@ -127,13 +127,14 @@ class adminInterface {
 	static getRadioVal(event){
 		let radioTarget = event.target.parentNode.elements
 		let radios = Array.from(radioTarget);
-		let radValue;
+		let radValues = [];
 		for (let i = 0, len = radios.length; i < len; i++){
       if (radios[i].checked) {
-        radValue = radios[i].value;
-				return radValue;
+        let checked = radios[i].value;
+				radValues.push(checked);
 			}
   	}
+		return radValues
 	}
 
 	static searchEntries(event) {
