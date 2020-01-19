@@ -16,6 +16,8 @@ class adminInterface {
 		let superAdminMenuButton = document.getElementById('js-admin-show-super-admin')
 		let bigPendingIndexButton = document.getElementById('admin-show-pending-button')
 		let bigResolvedIndexButton = document.getElementById('admin-show-resolved-button')
+		let adminSearchButton = document.getElementById('js-admin-search-entries')
+
 
 
 		adminTableContainer.style.display = 'none';
@@ -28,6 +30,13 @@ class adminInterface {
 
 		bigResolvedIndexButton.addEventListener('click', function() {
 			adminInterface.indexButtonAction('resolved');
+		})
+
+		adminSearchButton.addEventListener('click', function(){
+			event.preventDefault();
+			let adminTableContainer = document.getElementById('js-admin-panel-container');
+			adminTableContainer.style.display = 'none';
+			adminInterface.searchEntries(event);
 		})
 
 		/* Super Admin Menu Button */
@@ -100,19 +109,6 @@ class adminInterface {
 		return 'super'
 	}
 
-	static displayAdminSearchForm(type){
-		let adminTableContainer = document.getElementById('js-admin-panel-container');
-		adminTableContainer.style.display = 'none';
-		adminEntrySearch.style.display = 'block';
-		let button = document.getElementById('jr-admin-search');
-		button.innerHTML  = `Search ${type.toUpperCase()}`
-		button.addEventListener('click', () => {
-			event.preventDefault();
-			adminInterface.searchEntries(type, event)
-			adminInterface.renderIndex();
-		})
-	}
-
 	static getEntriesIndex(searchType) {
 		let authType = adminInterface.checkAdminAuth();
 		let method = 'POST'
@@ -134,10 +130,11 @@ class adminInterface {
   	}
 	}
 
-	static searchEntries(type, event) {
+	static searchEntries(event) {
+		debugger;
 		let propertyToSearch  = adminInterface.getRadioVal(event);
 		let searchVal = event.target.parentNode[6].value;
-		let data = { query_type: type, property: propertyToSearch, search_val: searchVal }
+		let data = { property: propertyToSearch, search_val: searchVal }
 		let returnedJson = adminInterface.postSearchRequest(data);
 	}
 
