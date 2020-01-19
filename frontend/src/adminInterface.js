@@ -277,6 +277,10 @@ class adminInterface {
 		cell10.innerHTML = entry.status;
 		cell11.innerHTML = entry.resolvedDate;
 		cell12.innerHTML = entry.notes;
+		if (entry.status !== 'pending'){
+			document.getElementById('admin-approve-button').style.display = 'none';
+			document.getElementById('admin-reject-button').style.display = 'none';
+		}
 	}
 
 	static showNotesForm(){
