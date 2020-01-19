@@ -67,8 +67,8 @@ class adminInterface {
 
 		superAdminSubmitButton.addEventListener('click', function() {
 			event.preventDefault();
-			let RadVals = adminInterface.getRadioVal(event);
-
+			let radVals = adminInterface.getRadioVal(event);
+			adminInterface.directSupAdminFormAction(radVals[0], radVals[1])
 		})
 	}
 
@@ -393,7 +393,7 @@ class adminInterface {
 	/* Dynamic Admin Forms Creation */
 	static directSupAdminFormAction(action, dbType){
 		if (action == 'create'){
-			buildNewModelInstance(action, dbType)
+			adminInterface.buildNewModelInst(dbType)
 		} else if (action == 'update'){
 			console.log('update')
 		} else if (actions == 'delete'){
@@ -403,7 +403,8 @@ class adminInterface {
 		}
 	}
 
-	static buildNewModelInstance(action, dbType){
+	static buildNewModelInst(dbType){
+		let attributes = adminInterface.getAttributes(dbType)
 		/* get attributes */
 		/* buildForm */
 		/* build atts hash */
@@ -508,9 +509,8 @@ class adminInterface {
 		return(json);
 	}
 
-	static getAttributes(model){
+	static getAttributes(model, callback=adminInterface.dynamFormResp){
 		let url = `http://localhost:3000/${model}/attributes`
-		let callback = adminInterface.dynamFormResp;
 		adminInterface.dynamGetReq(url, callback)
 	}
 
