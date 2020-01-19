@@ -21,14 +21,13 @@ class adminInterface {
 
 		/* Admin panel menu buttons */
 		pendingIndexButton.addEventListener('click', function() {
-			adminInterface.getEntriesIndex('pending');
-			debugger;
-			adminInterface.renderIndex('pending');
+			let entries = adminInterface.getEntriesIndex('pending');
+			setTimeout(`adminInterface.renderIndex('pending')`, 1800);
 		})
 
 		resolvedIndexButton.addEventListener('click', function() {
-			adminInterface.getEntriesIndex('resolved')
-			adminInterface.renderIndex('resolved');
+			let entries = adminInterface.getEntriesIndex('resolved');
+			setTimeout(`adminInterface.renderIndex('resolved')`, 1800);
 		})
 
 		/* Super Admin Menu Button */
@@ -115,7 +114,7 @@ class adminInterface {
 		let method = 'POST'
 		let data = { search_type: searchType, auth_type: authType }
 		let url = `http://localhost:3000/entries`
-		let callback = adminInterface.dynamFormResp;
+		let callback = adminInterface.buildEntries;
 		adminInterface.dynamFormReq(method, url, data, callback);
 	}
 
@@ -483,7 +482,8 @@ class adminInterface {
 	}
 
 	static dynamFormResp(json){
-		console.log(json)
+		console.log(json);
+		return(json);
 	}
 
 	static identifyInstance(dbModel, attsHash){
