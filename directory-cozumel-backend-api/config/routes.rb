@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 	post '/index_by_name', to: 'businesses#index_by_name'
 	post '/business', to: 'businesses#show'
 
+	get  '/entries/attributes', to: 'entries#attributes' 
 	post '/entries/new_object', to: 'entries#new_object'
 	post '/entries/new'
 	post '/entries/update'
-	post '/entries', to: 'entries#index'
 	post '/entries/search', to: 'entries#index_search'
+	post '/entries', to: 'entries#index'
 
 	resources :businesses, only: [:create, :update, :delete]
 	resources :listings, only: [:create, :update, :delete]

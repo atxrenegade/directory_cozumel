@@ -1,4 +1,10 @@
 class EntriesController < ApplicationController
+	def attributes
+		attributes = Entry.column_names
+		attributes.pop(2)
+		render json: attributes
+	end
+
 	def new_object
 		entry = Entry.find_by_id(params['id'])
 		entry.convert_to_object()

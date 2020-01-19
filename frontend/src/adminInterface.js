@@ -17,6 +17,7 @@ class adminInterface {
 		let bigPendingIndexButton = document.getElementById('admin-show-pending-button')
 		let bigResolvedIndexButton = document.getElementById('admin-show-resolved-button')
 		let adminSearchButton = document.getElementById('js-admin-search-entries')
+		let superAdminSubmitButton = document.getElementById('js-super-admin-modify-menu')
 
 		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime();
@@ -62,6 +63,12 @@ class adminInterface {
 
 		smResolvedIndexButton.addEventListener('click', function() {
 			adminInterface.indexButtonAction('resolved');
+		})
+
+		superAdminSubmitButton.addEventListener('click', function() {
+			event.preventDefault();
+			let model = 'entries';
+			adminInterface.getAttributes(model);
 		})
 	}
 
@@ -482,9 +489,8 @@ class adminInterface {
 	}
 
 	static getAttributes(model){
-		let model = model;
-		let url = `http://localhost.3000/${model}/attributes`
-		let callback = dynamFormResp;
+		let url = `http://localhost:3000/${model}/attributes`
+		let callback = adminInterface.dynamFormResp;
 		adminInterface.dynamGetReq(url, callback)
 	}
 
