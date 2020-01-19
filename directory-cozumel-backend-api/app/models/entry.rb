@@ -164,8 +164,13 @@ class Entry < ApplicationRecord
 	end
 
 	def self.search_entries(property_param, search_param)
-		wildcard_search = "%#{search_param.downcase}%"
-		return Entry.where("lower(#{property_param}) LIKE ?", wildcard_search)
+		if property_param == 'id' ||  property_param == 'business_id' ||  property_param =='admin_id' ||  property_param == 'date'
+			results = Entry.where("#{property_param} = ?", search_param)
+		else
+			wildcard_search = "%#{search_param.downcase}%"
+			results = Entry.where("lower(#{property_param}) LIKE ?", wildcard_search)
+		end
+		return results
 	end
 
 	def self.collect(status, auth_type)
