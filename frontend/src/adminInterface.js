@@ -409,8 +409,8 @@ class adminInterface {
 		attributes.slice(0, -2); */
 		/* hardcoded for now! */
 		let attributes =  ["id", "description", "date", "url", "contributor", "business_id", "created_at", "updated_at", "contributor_email" ].slice(0, -2)
-		attributes.map(el => { return el.replace(/_/g, ' ') })
-		adminInterface.buildNewForm(dbType, 'create', attributes, event)
+		let attArray = attributes.map(el => { return el.replace(/_/g, ' ') })
+		adminInterface.buildNewForm(dbType, 'create', attArray, event)
 
 		/* buildForm */
 		/* build atts hash */
@@ -425,8 +425,11 @@ class adminInterface {
 		elToAppendTo.innerHTML = ''
 		let formEl = document.createElement('form');
 		let formElements;
+		let formTitle = document.createElement('p');
+		formTitle.innerHTML = `${action.toUpperCase()} ${dbType.toUpperCase()}`
+		elToAppendTo.appendChild(formTitle)
+		let breakEl = document.createElement('br')
 		attributes.forEach(attribute => {
-			let breakEl = document.createElement('br')
 			let attLabel = document.createElement('label')
 			let attInput = document.createElement('input')
 
@@ -435,14 +438,20 @@ class adminInterface {
 			attLabel.appendChild(labelText);
 			attInput.setAttribute('id', `${action}-${dbType}-${attribute}`.toLowerCase());
 			attInput.setAttribute('type', 'text')
-			formElements = [breakEl, attLabel, attInput]
+			formElements = [attLabel, attInput, breakEl]
 			formElements.forEach(el => elToAppendTo.appendChild(el));
 		})
+
 			let formButton = document.createElement('input')
 			formButton.setAttribute('id', `${action}-${dbType}-button`.toLowerCase());
 			formButton.setAttribute('value', 'Save Changes');
 			formButton.setAttribute('type', 'button')
-			elToAppendTo.appendChild(formButton)
+			let backButton = document.createElement('input')
+			backButton.setAttribute('id', 'super-admin-back-to-db-menu');
+			backButton.setAttribute('value', 'Back To MENU');
+			backButton.setAttribute('type', 'button')
+			let buttonArray = [breakEl, formButton, backButton]
+			buttonArray.forEach(el => elToAppendTo.appendChild(el));
 			formButton.addEventListener('click', function(){
 			let attributesObj = adminInterface.createAttValsHash(event);
 			adminInterface.handleDynamAdminForm(dbType, action, attributesObj)
