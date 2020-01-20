@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
 	def attributes
 		attributes = Listing.column_names
-		render json: attributes
+		render json: attributes, except: [:id, :created_at, :updated_at] 
 	end
 
 	def index
