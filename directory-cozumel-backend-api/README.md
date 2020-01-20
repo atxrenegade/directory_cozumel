@@ -1,11 +1,29 @@
 # Directory Cozumel Application
 
+	SCREENSHOT HERE
+
+  Short blurb about what your product does.
+	One to two paragraph statement about your product and what it does.
+
 
 ## Getting Started
-- Download from github repo and install on local server - For new users sign up with username, password and email.
+Download from github repo and install on local server - For new users sign up with username, password and email.
 
+OS X & Linux:
+
+npm install my-crazy-module --save
+
+Windows:
+
+edit autoexec.bat
 
 ## How to Use this Application
+
+##Usage example
+
+A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+
+For more examples and usage, please refer to the Wiki.
 
 ## User
 
@@ -36,39 +54,41 @@ them here.
 
 ## Admin
 
-###### **Admin Types **
+###### **Discrete Admin Button**
 
-###### **Login **
+###### **Admin Types**
 
-###### **Admin Info Panel **
+###### **Login**
 
-###### ** Entry Index **
+###### **Admin Info Panel**
 
-###### ** Entry Search **
+###### **Entry Index**
 
-###### ** Entry Details **
+###### **Entry Search**
 
-###### ** Approve Entry **
+###### **Entry Details**
 
-###### ** Decline Entry **
+###### **Approve Entry**
 
-###### ** Add Notes **
+###### **Decline Entry**
 
-###### ** Nav Buttons **
+###### **Add Notes**
 
-###### ** Logout **
+###### **Nav Buttons**
+
+###### **Logout**
 
 ## Super Admin
 
-###### ** Admin Create and Role Delegation **
+###### **Admin Create and Role Delegation**
 
-###### ** Database Record Creation **
+###### **Database Record Creation**
 
-###### ** Database Record Update **
+###### **Database Record Update**
 
-###### ** Database Record Deletion **
+###### **Record Deletion**
 
-###### ** Managing Google Maps **
+###### **Managing Google Maps**
 
 
 ## Prerequisites
@@ -84,30 +104,60 @@ To install this program locally:
 - Navigate to root page on local server
 
 ## Built With
+	* html5
+	* css3
+	* javascript ES6
+	* jquery 3.4.1
+	* rails ~> 5.2.3
+	* ruby '2.3.3'
+	* sqlite3
 
-	bcrypt ~> 3.1.7
-	byebug
-	bootsnap
-	listen
-  pry
-  puma 3.12.2
-  rack 2.0.8
-  rack-cors
-  rails ~> 5.2.3
-	ruby '2.3.3'
-  sqlite3
-	spring '3.0.5'
+	* bcrypt ~> 3.1.7
+	* byebug
+	* bootsnap
+	* listen
+	* pry
+	* puma 3.12.2
+	* rack 2.0.8
+	* rack-cors
+	* spring '3.0.5'
 
-	jquery 3.4.1
-	google maps api
+	* google maps api
+
+## Release History
+	0.1.0
+
+	The first proper release
+
+	0.0.1
+
+	Work in progress
+
+
 
 ## Authors
   Harleigh Abel - ATXRenegade
+	Your Name – @YourTwitter – YourEmail@example.com
+	https://github.com/yourname/github-link
 
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details
+Distributed under the XYZ license. See LICENSE for more information.
 
 ## Acknowledgments:
+
+## Contributing
+  Fork it (https://github.com/yourname/yourproject/fork)
+  Create your feature branch (git checkout -b feature/fooBar)
+  Commit your changes (git commit -am 'Add some fooBar')
+  Push to the branch (git push origin feature/fooBar)
+  Create a new Pull Request
+
+
+
+
+
+
 
 
 
@@ -115,23 +165,3 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
