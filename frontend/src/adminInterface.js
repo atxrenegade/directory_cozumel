@@ -470,7 +470,6 @@ class adminInterface {
 			let attVal = newAttArray[i][1]; /* Captialize Names */
 			attObj[attKey] = attVal;
 		}
-		debugger;
 		return attObj;
 	}
 
