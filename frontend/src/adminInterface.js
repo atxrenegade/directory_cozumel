@@ -406,14 +406,11 @@ class adminInterface {
 	static buildNewModelInst(dbType, event){
 		/* FIX THIS BUG HERE
 		let attributes = adminInterface.getAttributes(dbType)
-		attributes.slice(0, -2); */
+		attributes.slice(0, -2); remove id, created at and updated at*/
 		/* hardcoded for now! */
-		let attributes =  ["id", "description", "date", "url", "contributor", "business_id", "created_at", "updated_at", "contributor_email" ].slice(0, -2)
+		let attributes =  ["description", "date", "url", "contributor", "contributor_email", "business_id" ]
 		let attArray = attributes.map(el => { return el.replace(/_/g, ' ') })
 		adminInterface.buildNewForm(dbType, 'create', attArray, event)
-
-		/* buildForm */
-		/* build atts hash */
 		/* post obj */
 		/* return results */
 		/* handle results */
@@ -435,6 +432,7 @@ class adminInterface {
 			attLabel.setAttribute('value', attribute)
 			attLabel.appendChild(labelText);
 			attInput.setAttribute('id', `${action}-${dbType}-${attribute}`.toLowerCase());
+			attInput.setAttribute('name', `${attribute}`.toLowerCase());
 			attInput.setAttribute('type', 'text')
 			let breakEl = document.createElement('br')
 			formElements = [attLabel, attInput, breakEl]
@@ -451,42 +449,47 @@ class adminInterface {
 			backButton.setAttribute('type', 'button')
 			let buttonArray = [breakEl, formButton, backButton]
 			buttonArray.forEach(el => elToAppendTo.appendChild(el));
-			formButton.addEventListener('click', function(){
-			let attributesObj = adminInterface.createAttValsHash(event);
+			formButton.addEventListener('click', function(event){
+			let attributesObj = adminInterface.buildObjFromFormInput(event);
 			adminInterface.handleDynamAdminForm(dbType, action, attributesObj)
 			/* follow up with renderSuccess or errorMsg and clear input field*/
 		})
 	}
 
-	static createAttValsHash(event){
-		let attHash = {}
-		let atts = Array.from(event.target.parentElement.children)
-		let newAttsArray = atts.slice(1, -1)
-		while (newAttsArray.length > 0) {
-			let attKey = newAttsArray[0].attributes.value.value.toLowerCase();
-			let attVal = newAttsArray[1].value
-			attHash[attKey] = attVal;
-			newAttsArray = newAttsArray.slice(2)
+	static buildObjFromFormInput(event){
+		let collection = Array.from(event.target.parentElement.children)
+		let valObj = {}
+		valObj = collection.map(function(el) { return [el.name, el.value] })
+		valObj = valObj.filter(function(val) { return val[0] !== undefined })
+		let newAttArray = valObj.slice(0, -2)
+		let attObj = {};
+		let i;
+		let len = newAttArray.length;
+ 		for (i = 0 ; i < len; i++){
+			let attKey = newAttArray[i][0].toLowerCase();
+			let attVal = newAttArray[i][1]; /* Captialize Names */
+			attObj[attKey] = attVal;
 		}
-		return attHash;
+		debugger;
+		return attObj;
 	}
 
 	static handleDynamAdminForm(dbModel, action, attsHash){
 		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
 		/* action = Create, Update, Delete */
 		/* instance = any valid instance of type */
-		if (action === 'Create') {
+		if (action === 'create') {
 			let method = 'POST'
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}`
 			adminInterface.dynamFormReq(method, url, attsHash)
 			/* create my data, and url */
-		} else if	(action === 'Update'){
+		} else if	(action === 'update'){
 			let instance = adminInterface.identifyInstance(dbModel, attsHash)
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
 			let data = { id: instance, attributes: attsHash }
 			let method = 'PUT'
 			adminInterface.dynamFormReq(method, url, data)
-		}	else if (action === 'Delete') {
+		}	else if (action === 'delete') {
 			let instance = adminInterface.identifyInstance(dbModel, attsHash)
 			let method = 'DELETE'
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
