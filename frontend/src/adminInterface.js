@@ -428,20 +428,19 @@ class adminInterface {
 		let formTitle = document.createElement('p');
 		formTitle.innerHTML = `${action.toUpperCase()} ${dbType.toUpperCase()}`
 		elToAppendTo.appendChild(formTitle)
-		let breakEl = document.createElement('br')
 		attributes.forEach(attribute => {
 			let attLabel = document.createElement('label')
 			let attInput = document.createElement('input')
-
 			let labelText = document.createTextNode(`${attribute}: `)
 			attLabel.setAttribute('value', attribute)
 			attLabel.appendChild(labelText);
 			attInput.setAttribute('id', `${action}-${dbType}-${attribute}`.toLowerCase());
 			attInput.setAttribute('type', 'text')
+			let breakEl = document.createElement('br')
 			formElements = [attLabel, attInput, breakEl]
 			formElements.forEach(el => elToAppendTo.appendChild(el));
 		})
-
+			let breakEl = document.createElement('br')
 			let formButton = document.createElement('input')
 			formButton.setAttribute('id', `${action}-${dbType}-button`.toLowerCase());
 			formButton.setAttribute('value', 'Save Changes');
