@@ -1,7 +1,6 @@
 class EntriesController < ApplicationController
 	def attributes
 		attributes = Entry.column_names
-		attributes.pop(2)
 		render json: attributes
 	end
 

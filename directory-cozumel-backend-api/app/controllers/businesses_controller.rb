@@ -1,10 +1,9 @@
 class BusinessesController < ApplicationController
 	def attributes
 		attributes = Business.column_names
-		attributes.pop(2)
 		render json: attributes
 	end
-	
+
 	def show
 		business = Business.find_by_name(params[:name])
 		if business.present?

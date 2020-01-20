@@ -68,7 +68,7 @@ class adminInterface {
 		superAdminSubmitButton.addEventListener('click', function() {
 			event.preventDefault();
 			let radVals = adminInterface.getRadioVal(event);
-			adminInterface.directSupAdminFormAction(radVals[0], radVals[1])
+			adminInterface.directSupAdminFormAction(radVals[0], radVals[1], event)
 		})
 	}
 
@@ -391,21 +391,27 @@ class adminInterface {
 	}
 
 	/* Dynamic Admin Forms Creation */
-	static directSupAdminFormAction(action, dbType){
+	static directSupAdminFormAction(action, dbType, event){
 		if (action == 'create'){
-			adminInterface.buildNewModelInst(dbType)
+			adminInterface.buildNewModelInst(dbType, event)
 		} else if (action == 'update'){
 			console.log('update')
-		} else if (actions == 'delete'){
+		} else if (action == 'delete'){
 			console.log('delete')
 		} else {
 			console.log(`${action.toUpperCase()} is not a valid action!`)
 		}
 	}
 
-	static buildNewModelInst(dbType){
+	static buildNewModelInst(dbType, event){
+		/* FIX THIS BUG HERE
 		let attributes = adminInterface.getAttributes(dbType)
-		/* get attributes */
+		attributes.slice(0, -2); */
+		/* hardcoded for now! */
+		let attributes =  ["id", "description", "date", "url", "contributor", "business_id", "created_at", "updated_at", "contributor_email" ].slice(0, -2)
+		attributes.map(el => { return el.replace(/_/g, ' ') })
+		adminInterface.buildNewForm(dbType, 'create', attributes, event)
+
 		/* buildForm */
 		/* build atts hash */
 		/* post obj */
@@ -414,30 +420,32 @@ class adminInterface {
 		/* display results */
 	}
 
-	static buildNewForm(elToAppendTo, formType, formAction, attributesArray) {
+	static buildNewForm(dbType, action, attributes, event, instance) {
+		let elToAppendTo = event.target.parentElement
 		elToAppendTo.innerHTML = ''
 		let formEl = document.createElement('form');
 		let formElements;
-		attributesArray.forEach(attribute => {
+		attributes.forEach(attribute => {
 			let breakEl = document.createElement('br')
 			let attLabel = document.createElement('label')
 			let attInput = document.createElement('input')
-			let formButton = document.createElement('input')
+
 			let labelText = document.createTextNode(`${attribute}: `)
 			attLabel.setAttribute('value', attribute)
 			attLabel.appendChild(labelText);
-			attInput.setAttribute('id', `${formAction}-${formType}-${attribute}`.toLowerCase());
+			attInput.setAttribute('id', `${action}-${dbType}-${attribute}`.toLowerCase());
 			attInput.setAttribute('type', 'text')
-			formButton.setAttribute('id', `${formAction}-${formType}-button`.toLowerCase());
-			formButton.setAttribute('value', 'Save Changes');
-			formButton.setAttribute('type', 'button')
-
-			formElements = [breakEl, attLabel, attInput, formButton]
+			formElements = [breakEl, attLabel, attInput]
 			formElements.forEach(el => elToAppendTo.appendChild(el));
 		})
-		formElements[3].addEventListener('click', function(){
-			let attValsHash = adminInterface.createAttValsHash(event);
-			adminInterface.handleDynamAdminForm(formType, formAction, attValsHash)
+			let formButton = document.createElement('input')
+			formButton.setAttribute('id', `${action}-${dbType}-button`.toLowerCase());
+			formButton.setAttribute('value', 'Save Changes');
+			formButton.setAttribute('type', 'button')
+			elToAppendTo.appendChild(formButton)
+			formButton.addEventListener('click', function(){
+			let attributesObj = adminInterface.createAttValsHash(event);
+			adminInterface.handleDynamAdminForm(dbType, action, attributesObj)
 			/* follow up with renderSuccess or errorMsg and clear input field*/
 		})
 	}
@@ -506,10 +514,11 @@ class adminInterface {
 
 	static dynamFormResp(json){
 		console.log(json);
+		debugger;
 		return(json);
 	}
 
-	static getAttributes(model, callback=adminInterface.dynamFormResp){
+	static getAttributes(model, callback = adminInterface.dynamFormResp){
 		let url = `http://localhost:3000/${model}/attributes`
 		adminInterface.dynamGetReq(url, callback)
 	}
