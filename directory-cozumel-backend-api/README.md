@@ -19,7 +19,7 @@ edit autoexec.bat
 
 ## How to Use this Application
 
-##Usage example
+## Usage example
 
 A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
 
@@ -27,8 +27,7 @@ For more examples and usage, please refer to the Wiki.
 
 ## User
 
-
-######  **Search Functions**
+###### **Search Functions**
 
 ###### **New Businesses**
 
@@ -44,7 +43,6 @@ them here.
 ###### **Flags**
 
 ###### **Updates**
-
 
 
  NOTE ABOUT IMAGES: In order to keep this app free to use we do not store images
@@ -90,7 +88,6 @@ them here.
 
 ###### **Managing Google Maps**
 
-
 ## Prerequisites
 
 Safari/Firefox/Google Chrome Browsers
@@ -125,14 +122,12 @@ To install this program locally:
 	* google maps api
 
 ## Release History
-	0.1.0
 
+	0.1.0
 	The first proper release
 
 	0.0.1
-
 	Work in progress
-
 
 
 ## Authors
@@ -152,16 +147,3 @@ Distributed under the XYZ license. See LICENSE for more information.
   Commit your changes (git commit -am 'Add some fooBar')
   Push to the branch (git push origin feature/fooBar)
   Create a new Pull Request
-
-
-
-
-
-
-
-
-
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
