@@ -451,7 +451,7 @@ class adminInterface {
 			buttonArray.forEach(el => elToAppendTo.appendChild(el));
 			formButton.addEventListener('click', function(event){
 			let attributesObj = adminInterface.buildObjFromFormInput(event);
-			adminInterface.handleDynamAdminForm(dbType, action, attributesObj)
+			adminInterface.handleDynamAdminForm(dbType, action, attributesObj, event)
 			/* follow up with renderSuccess or errorMsg and clear input field*/
 		})
 	}
@@ -473,14 +473,16 @@ class adminInterface {
 		return attObj;
 	}
 
-	static handleDynamAdminForm(dbModel, action, attsHash){
+	static handleDynamAdminForm(dbModel, action, attsHash, event){
 		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
 		/* action = Create, Update, Delete */
 		/* instance = any valid instance of type */
 		if (action === 'create') {
 			let method = 'POST'
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}`
-			adminInterface.dynamFormReq(method, url, attsHash)
+			let callback = adminInterface.dynamFormResp;
+			let dataObj = adminInterface.dynamFormReq(method, url, attsHash, callback)
+			adminInterface.displayResults(event, dataObj)
 			/* create my data, and url */
 		} else if	(action === 'update'){
 			let instance = adminInterface.identifyInstance(dbModel, attsHash)
@@ -522,10 +524,12 @@ class adminInterface {
 		}
 	}
 
-	static dynamFormResp(json){
-		console.log(json);
-		debugger;
-		return(json);
+	static dynamFormResp(data){
+		if (data == undefined) {
+			console.log('Error Processing Request');
+		} else {
+			return results
+		}
 	}
 
 	static getAttributes(model, callback = adminInterface.dynamFormResp){
@@ -577,6 +581,10 @@ class adminInterface {
 		let instLabel = document.createElement('label')
 		let instInput = document.createElement('input')
 		let instButton = document.createElement('input')
+	}
+
+	static displayResults(event, results){
+		debugger;
 	}
 
 	static resetAdmin() {
