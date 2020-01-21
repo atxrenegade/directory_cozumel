@@ -10,4 +10,9 @@ class SessionsController < ApplicationController
 		end
 		render json: msg
 	end
+
+	def destroy
+		session[:admin_id] = nil
+		redirect_to '/'
+	end
 end
