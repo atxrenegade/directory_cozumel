@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
 	get  '/entries/attributes', to: 'entries#attributes'
 	post '/entries/new_object', to: 'entries#new_object'
-	post '/entries/new'
+	post '/entries/create'
 	post '/entries/update'
 	post '/entries/search', to: 'entries#index_search'
 	post '/entries', to: 'entries#index'
