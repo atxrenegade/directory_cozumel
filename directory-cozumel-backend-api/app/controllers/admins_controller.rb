@@ -10,6 +10,7 @@ class AdminsController < ApplicationController
 		if @admin.save
 			session[:admin_id] = @admin.id
 			redirect_to '/'
+			msg = 'New Admin Created Successfully'
 		else
 			msg = 'Authorized Admins Only!'
 		end
