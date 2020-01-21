@@ -30,4 +30,6 @@ Rails.application.routes.draw do
 
 	get '/admins/attributes', to: 'admins#attributes'
 	resources :admins, only: [:create, :update, :delete]
+
+	post '/login', to: 'sessions#create'
 end
