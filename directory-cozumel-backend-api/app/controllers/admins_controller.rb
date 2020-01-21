@@ -8,14 +8,14 @@ class AdminsController < ApplicationController
 		@admin = Admin.new(admin_params)
 
 		if @admin.save
-			session[admin_id] = @admin.id
+			session[:admin_id] = @admin.id
 			redirect_to '/'
 		else
 			msg = 'Authorized Admins Only!'
 		end
 		render json: msg
 	end
-	
+
 	private
 	def admin_params
 		params.require(:admin).permit(:username, :password, :role)
