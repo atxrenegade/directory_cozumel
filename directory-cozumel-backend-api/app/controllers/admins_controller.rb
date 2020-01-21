@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+	# before_action :require_super
 	def attributes
 		attributes = Admin.column_names
 		render json: attributes, except: [:id, :created_at, :updated_at]
