@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+	include ActionController::Helpers
 	helper_method :current_admin, :require_admin, :admin?, :require_super, :super?
 
 	def current_admin
