@@ -8,7 +8,7 @@ Users can also add their own reviews, and images or flag or suggest edits for ex
 
 All user supplied data is sent to an admin entry database for review and verification before being add to the directory.
 
-The application includes a build in admin page....that.....
+The application includes a built-in admin page which displays entries for all user initiated records.  From the Admin panels an administrator can approve and decline these entries, search and view entry records, initiate google maps creation for specified listings, add, create and delete administrators, and database records.
 
 ## How to Use this Application
 ### For Users
@@ -61,10 +61,10 @@ The Admin panel info will display the admin id, login time, and role of the curr
 Once again this panel includes a radio menu to select what entry property the admin would like to search for and an input box to enter the value the admin would like to search for. For example to search the entries database for all entries related to a business named 'Hotel California' the admin would use the radio button to select the Business Name value and enter the business name 'Hotel California' in the input box below. Any similar or matching results will be returned in the table below.
 
 ###### **Entry Details**
- In the admin entries table the final column will...........
+ In the admin entries table the final column will display a button labelled 'Review Details Button'. An administrator can click this button the reveal the values displayed in the index table plus additional details including business name, contributor, contributor email, and resolved date.  Below the entry details, the admin user will find button to return to 'Pending Index', 'Resolved Index', to 'Approve' or 'Reject' the record or to 'Add Notes' to the entry.
 
 ###### **Approve Entry**
-From the detailed entry view when a admin have reviewed the entry details and XXXX that the data is valid and correct, the admin can persist this user generated object to the database by clicking on the 'Approve' button.  This will initiate a post request to the database to create and store the new directory item.  Additionally the entry record and detailed view will be updated to include the new 'approved' status value, the resolved date and time, and the number of the admin that handled the entry. At this point an admin can still add notes to the detailed entry, review the entry details, and return to the entry index but the option to 'approve' or 'decline' entries once they have been resolved is no longer available.
+From the detailed entry view when an admin has reviewed the entry details and verified that the data is valid and correct, the admin can persist this user generated object to the database by clicking on the 'Approve' button.  This will initiate a post request to the database to create and store the new directory item.  Additionally the entry record and detailed view will be updated to include the new 'approved' status value, the resolved date and time, and the number of the admin that handled the entry. At this point an admin can still add notes to the detailed entry, review the entry details, and return to the entry index but the option to 'approve' or 'decline' entries once they have been resolved is no longer available.
 
 ###### **Decline Entry**
 The second option for resolving admin entries is decline them, if for some reason a record is deemed unsuitable to be persisted to the database, whether the record is inaccurate, a duplicate, or irrelevant to the directory, the admin will use the 'decline' button to resolve this entry.  Again the entry record and detailed view will be updated to include the now 'declined' status value, the resolved date and time, and the number of the admin that handled the entry and option to decline or approve this resolved entry will be unavailable but the functionality to add notes remains.
@@ -97,18 +97,21 @@ To update an existing admin the admin user must been logged in with super admin 
 To delete and admin click on the delete admin button in the super admin menu, again this action can only be performed by a super admin user.  When the text field appears enter the admin username or id to delete and confirm delete once the alert window appears.  Note that deleting an admin user will not edit or remove references to the admin in the entry records only prevent the admin from logging in to handle further entry, and or database records.
 
 ###### **Database Record Creation**
-To create
+To create a new Record select the 'Create' radio button value, select the desired record type you would like to create and select the appropriate radio button, then click on the 'Submit' button.  A from specific to the type pf record you would like to create will appear, enter the appropriate values and click on the 'Submit' button below it.
 
 ###### **Database Record Update**
-Using the Super Admin database panel an admin user can
+Using the 'Super Admin' menu panel an admin user can update any record by selecting the 'Update' radio value and selecting the record type. Once the super admin clicks on submit a text field will appear to enter the id or name associated with the record to update. Once the admin submits this query the record matching this query will be returned in a form displaying existing values for the record. Update the desired fields and click the submit button to persist changes to the database record.
 
 ###### **Record Deletion**
+An Admin can delete a record from the database by selecting the 'Delete' radio value and the radio button for the desired record type.  Records with associated instances may require extra confirmation and will remove any associated records with it. Category records are a special case and can not be deleted until businesses associated with that category have been reassigned.
 
 ###### **Managing Google Maps**
+As this stage in the application development google maps must be added manually to business listings through the Super Admin Panel.  Maps can be added to their appropriate business listings by selecting the radio button with a 'Create'
+value and the 'Maps' radio value and clicking the submit button. This action will reveal a form for new map creation where the values of latitude, longitude and business id must be provided to initiate the creation and persistence of a new google map to the database.  Like all other objects in the database these values can be altered and updated with the same super admin menu.
 
 ## Getting Started
 
-Download from github repo and install on local server - For new users sign up with username, password and email.
+Download from GitHub repo and install on local server - For new users sign up with username, password and email.
 
 ## Prerequisites
 
