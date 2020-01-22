@@ -436,7 +436,8 @@ window.onload = function() {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'Accept': 'application/json'
+				'Accept': 'application/json',
+				'origin': 'http:localhost:3000'
 		},
 		body: JSON.stringify(data)
 	};
