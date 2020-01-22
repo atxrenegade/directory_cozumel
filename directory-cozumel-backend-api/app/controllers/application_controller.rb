@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API
 	# before_action :require_super
+	include Knock::Authenticable
+	
 	def attributes
 		attributes = Admin.column_names
 		render json: attributes, except: [:id, :created_at, :updated_at]
