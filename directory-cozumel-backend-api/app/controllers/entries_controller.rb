@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
 	# before_action :require_admin, except: [:create]
-	
+
 	def attributes
 		attributes = Entry.column_names
 		render json: attributes, except: [:id, :created_at, :updated_at]

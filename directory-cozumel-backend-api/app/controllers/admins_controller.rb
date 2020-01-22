@@ -6,7 +6,7 @@ class AdminsController < ApplicationController
 		attributes = Admin.column_names
 		render json: attributes, except: [:id, :created_at, :updated_at]
 	end
-	
+
 	def current_admin
 		@current_admin || Admin.find(session[:admin_id]) if session[:admin_id]
 	end
