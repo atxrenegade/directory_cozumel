@@ -1,7 +1,8 @@
 class EntriesController < ApplicationController
+	# before_action :require_admin, except: [:create]
 	def attributes
 		attributes = Entry.column_names
-		render json: attributes, except: [:id, :created_at, :updated_at] 
+		render json: attributes, except: [:id, :created_at, :updated_at]
 	end
 
 	def new_object
@@ -12,7 +13,7 @@ class EntriesController < ApplicationController
 		render json: msg
 	end
 
-	def new
+	def create
 		entry = Entry.new.handle_record(params)
 		render json: entry
 	end
