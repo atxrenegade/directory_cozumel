@@ -431,14 +431,34 @@ window.onload = function() {
 		/* check for token value? */
 	}
 
-	function postLogIn(username, password){
-		console.log(username, password)
+	function postLogIn(data){
+		let configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/admin_token', configObj)
+			.then(resp => {
+				return resp.json();
+		})
+			.then(json => console.log(json)
+		)
+	}
+	catch(err) {
+			alert('Post request failed see console for further details!');
+			console.log(error.message);
+		}
 	}
 
 	function logInAdmin(){
 		let usernameVal = document.getElementById('js-admin-username').value.trim();
 		let passwordVal = document.getElementById('js-admin-password').value.trim();
-		postLogIn(usernameVal, passwordVal)
+		data = {"auth": {"username": usernameVal, "password": passwordVal}}
+		postLogIn(data);
 		if (loggedIn() === true){
 			clearDirectoryForAdminView();
 			adminInterface.launchAdminInterface();
