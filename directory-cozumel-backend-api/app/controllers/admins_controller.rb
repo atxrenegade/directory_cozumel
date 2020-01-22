@@ -26,4 +26,9 @@ class AdminsController < ApplicationController
 	def require_super
 		redirect_to '/' unless current_user.super?
 	end
+
+	private
+	def admin_params
+		params.require(:admin).permit(:username, :password, :role)
+	end
 end

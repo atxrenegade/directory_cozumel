@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
 	# before_action :require_super
 	include Knock::Authenticable
-	
+
 	def attributes
 		attributes = Admin.column_names
 		render json: attributes, except: [:id, :created_at, :updated_at]
@@ -17,10 +17,5 @@ class ApplicationController < ActionController::API
 			msg = 'Authorized Admins Only!'
 		end
 		render json: msg
-	end
-
-	private
-	def admin_params
-		params.require(:admin).permit(:username, :password, :role)
 	end
 end
