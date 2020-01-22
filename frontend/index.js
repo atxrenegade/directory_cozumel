@@ -411,7 +411,7 @@ window.onload = function() {
 	}
 
 	/* ADMIN LOGIN FUNCTIONS */
-	function clearDirectoryForAdmin(){
+	function clearDirectoryForAdminView(){
 		sponsListContainer.style.display = 'none';
 		adsContainer.style.display = 'none';
 		searchBarContainer.style.display = 'none';
@@ -424,21 +424,28 @@ window.onload = function() {
 		adminPanelLogout.style.display = 'block';
 		adminPanelForm.style.display = 'none';
 		adminUserInfo.style.display = 'block';
-
-		if (loggedIn() === true){
-				adminInterface.launchAdminInterface();
-		} else {
-			alert('You are not authorized to access admininstrative tasks!')
-		}
-	}
-
-	function logInAdmin(username, password) {
-		/* login admin user upon secure authentication and authorization)*/
-		loggedIn();
 	}
 
 	function loggedIn() {
 		return true;
+		/* check for token value? */
+	}
+
+	function postLogIn(username, password){
+		console.log(username, password)
+	}
+
+	function logInAdmin(){
+		debugger;
+		let usernameVal = document.getElementById('js-admin-username').value.trim();
+		let passwordVal = document.getElementById('js-admin-password').value.trim();
+		postLogIn(usernameVal, passwordVal)
+		if (loggedIn() === true){
+			clearDirectoryForAdminView();
+			adminInterface.launchAdminInterface();
+		} else {
+			alert('You are not authorized to access admininstrative tasks!')
+		}
 	}
 
 	/* PAGE RESET FUNCTION */
@@ -507,7 +514,7 @@ window.onload = function() {
 		let el = document.getElementById('js-admin-login-container')
 		toggleForm('click', el);
 	})
-	adminPanelLogin.addEventListener('click', clearDirectoryForAdmin);
+	adminPanelLogin.addEventListener('click', logInAdmin);
 
 	/* AdminPanel Listeners */
 	let modifyRecButton = document.getElementById('js-super-admin-modify-menu')
