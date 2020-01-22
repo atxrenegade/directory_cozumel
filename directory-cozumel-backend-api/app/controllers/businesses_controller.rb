@@ -1,9 +1,7 @@
 class BusinessesController < ApplicationController
-	# before_action :require_admin , only: [:create]
-	# before_action :require_super , only: [:update, :delete]
 	def attributes
 		attributes = Business.column_names
-		render json: attributes, except: [:id, :created_at, :updated_at]
+		render json: attributes, except: [:id, :created_at, :updated_at] 
 	end
 
 	def show

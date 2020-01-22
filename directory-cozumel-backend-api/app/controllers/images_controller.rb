@@ -1,6 +1,4 @@
 class ImagesController < ApplicationController
-		# before_action :require_admin, only: [:create, :attributes]
-			# before_action :require_super, only: [:update, :delete]
 	def attributes
 		attributes = Image.column_names
 		render json: attributes, except: [:id, :created_at, :updated_at]

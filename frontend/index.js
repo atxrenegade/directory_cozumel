@@ -436,7 +436,6 @@ window.onload = function() {
 	}
 
 	function logInAdmin(){
-		debugger;
 		let usernameVal = document.getElementById('js-admin-username').value.trim();
 		let passwordVal = document.getElementById('js-admin-password').value.trim();
 		postLogIn(usernameVal, passwordVal)
