@@ -404,38 +404,35 @@ class adminInterface {
 	}
 
 	static buildNewModelInst(dbType, event){
-		/* FIX THIS BUG HERE
-		let attributes = adminInterface.getAttributes(dbType)
-		attributes.slice(0, -2); remove id, created at and updated at*/
-		/* hardcoded for now! */
-		let attributes =  ["description", "date", "url", "contributor", "contributor_email", "business_id" ]
-		let attArray = attributes.map(el => { return el.replace(/_/g, ' ') })
-		adminInterface.buildNewForm(dbType, 'create', attArray, event)
+		ATTRIBUTES = [];
+		adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
+		setTimeout(adminInterface.buildNewForm(dbType, 'create', event), 15000)
 		/* post obj */
 		/* return results */
 		/* handle results */
 		/* display results */
 	}
 
-	static buildNewForm(dbType, action, attributes, event, instance) {
+	static buildNewForm(dbType, action, event, instance) {
+		debugger;
 		let elToAppendTo = event.target.parentElement
-		elToAppendTo.innerHTML = ''
 		let formEl = document.createElement('form');
 		let formElements;
 		let formTitle = document.createElement('p');
 		formTitle.innerHTML = `${action.toUpperCase()} ${dbType.toUpperCase()}`
 		elToAppendTo.appendChild(formTitle)
-		attributes.forEach(attribute => {
+
+		ATTRIBUTES.forEach(attribute => {
 			let attLabel = document.createElement('label')
 			let attInput = document.createElement('input')
 			let labelText = document.createTextNode(`${attribute}: `)
 			attLabel.setAttribute('value', attribute)
 			attLabel.appendChild(labelText);
 			attInput.setAttribute('id', `${action}-${dbType}-${attribute}`.toLowerCase());
-			attInput.setAttribute('name', `${attribute}`.toLowerCase());
+			attInput.setAttribute('name', `${attribute.replace(/\s/g, '-')}`.toLowerCase());
 			attInput.setAttribute('type', 'text')
 			let breakEl = document.createElement('br')
-			formElements = [attLabel, attInput, breakEl]
+			let formElements = [attLabel, attInput, breakEl]
 			formElements.forEach(el => elToAppendTo.appendChild(el));
 		})
 			let breakEl = document.createElement('br')
@@ -528,7 +525,7 @@ class adminInterface {
 		if (data == undefined) {
 			console.log('Error Processing Request');
 		} else {
-			return results
+			console.log(results)
 		}
 	}
 
@@ -546,6 +543,10 @@ class adminInterface {
 		catch(err) {
 			console.log(error.message);
 		}
+	}
+
+	static buildAttsArray(data){
+		ATTRIBUTES = data.map(el => { return el.replace(/_/g, ' ') })
 	}
 
 	static identifyInstance(dbModel, attsHash){

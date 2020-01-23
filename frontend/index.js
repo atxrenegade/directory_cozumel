@@ -1,8 +1,8 @@
 window.onload = function() {
 	mykey = config.MY_KEY;
-	ALL = [];
 	CATS = [];
 	ENTRIES = [];
+	ATTRIBUTES = [];
 	LAT = 20.42;
 	LNG = -86.92;
 
