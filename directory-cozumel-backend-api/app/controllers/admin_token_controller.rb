@@ -3,7 +3,8 @@ require('./app/controllers/application_controller.rb')
 class AdminTokenController < Knock::AuthTokenController
 
 	def create
-		@admin = Admin.find_by_username(params[:session][:password])
+		binding.pry
+		@admin = Admin.find_by('username': params[:session][:username])
 		if @admin && @admin.authenticate(params[:session][:password])
 			session[:admin_id] = @admin.id
 			#obj = createToken
@@ -12,4 +13,10 @@ class AdminTokenController < Knock::AuthTokenController
 		end
 		render json: obj
 	end
+
+
+    private def admin_token_params
+
+				params.require(:admin_token).permit(:username, :password)
+    end
 end
