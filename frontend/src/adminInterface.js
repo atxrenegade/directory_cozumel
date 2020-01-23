@@ -439,7 +439,7 @@ class adminInterface {
 			let breakEl = document.createElement('br')
 			let formButton = document.createElement('input')
 			formButton.setAttribute('id', `${action}-${dbType}-button`.toLowerCase());
-			formButton.setAttribute('value', 'Save Changes');
+			formButton.setAttribute('value', 'Submit');
 			formButton.setAttribute('type', 'button')
 			let backButton = document.createElement('input')
 			backButton.setAttribute('id', 'super-admin-back-to-db-menu');
