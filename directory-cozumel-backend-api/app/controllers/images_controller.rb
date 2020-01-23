@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
 
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']
-		attributes = Images.attribute_names - columnsToExclude
+		attributes = Image.attribute_names - columnsToExclude
 		render json: attributes
 	end
 

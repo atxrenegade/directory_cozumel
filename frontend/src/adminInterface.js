@@ -406,7 +406,7 @@ class adminInterface {
 	static buildNewModelInst(dbType, event){
 		ATTRIBUTES = [];
 		adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
-		setTimeout(adminInterface.buildNewForm(dbType, 'create', event), 15000)
+		setTimeout(function(){adminInterface.buildNewForm(dbType, 'create', event)}, 50)
 		/* post obj */
 		/* return results */
 		/* handle results */
@@ -414,7 +414,7 @@ class adminInterface {
 	}
 
 	static buildNewForm(dbType, action, event, instance) {
-		debugger;
+
 		let elToAppendTo = event.target.parentElement
 		let formEl = document.createElement('form');
 		let formElements;
