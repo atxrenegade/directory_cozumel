@@ -406,7 +406,7 @@ class adminInterface {
 	static buildNewModelInst(dbType, event){
 		ATTRIBUTES = [];
 		adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
-		setTimeout(function(){adminInterface.buildNewForm(dbType, 'create', event)}, 50)
+		setTimeout(function(){adminInterface.buildNewForm(dbType, 'create', event)}, 500)
 		/* post obj */
 		/* return results */
 		/* handle results */
@@ -420,7 +420,8 @@ class adminInterface {
 		let formElements;
 		let formTitle = document.createElement('p');
 		formTitle.innerHTML = `${action.toUpperCase()} ${dbType.toUpperCase()}`
-		elToAppendTo.appendChild(formTitle)
+		elToAppendTo.appendChild(formEl);
+		formEl.appendChild(formTitle);
 
 		ATTRIBUTES.forEach(attribute => {
 			let attLabel = document.createElement('label')
@@ -433,7 +434,7 @@ class adminInterface {
 			attInput.setAttribute('type', 'text')
 			let breakEl = document.createElement('br')
 			let formElements = [attLabel, attInput, breakEl]
-			formElements.forEach(el => elToAppendTo.appendChild(el));
+			formElements.forEach(el => formEl.appendChild(el));
 		})
 			let breakEl = document.createElement('br')
 			let formButton = document.createElement('input')
@@ -445,7 +446,7 @@ class adminInterface {
 			backButton.setAttribute('value', 'Back To MENU');
 			backButton.setAttribute('type', 'button')
 			let buttonArray = [breakEl, formButton, backButton]
-			buttonArray.forEach(el => elToAppendTo.appendChild(el));
+			buttonArray.forEach(el => formEl.appendChild(el));
 			formButton.addEventListener('click', function(event){
 			let attributesObj = adminInterface.buildObjFromFormInput(event);
 			adminInterface.handleDynamAdminForm(dbType, action, attributesObj, event)
@@ -454,6 +455,7 @@ class adminInterface {
 	}
 
 	static buildObjFromFormInput(event){
+		debugger;
 		let collection = Array.from(event.target.parentElement.children)
 		let valObj = {}
 		valObj = collection.map(function(el) { return [el.name, el.value] })
@@ -464,7 +466,7 @@ class adminInterface {
 		let len = newAttArray.length;
  		for (i = 0 ; i < len; i++){
 			let attKey = newAttArray[i][0].toLowerCase();
-			let attVal = newAttArray[i][1]; /* Captialize Names */
+			let attVal = newAttArray[i][1]; /* Capitialize Names */
 			attObj[attKey] = attVal;
 		}
 		return attObj;
