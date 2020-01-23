@@ -4,8 +4,9 @@ class AdminsController < ApplicationController
 	helper_method :current_admin, :require_admin, :admin?, :require_super, :super?
 
 	def attributes
-		attributes = Admin.column_names
-		render json: attributes, except: [:id, :created_at, :updated_at]
+		columnsToExclude = ['id', 'created_at', 'updated_at']
+		attributes = Admin.attribute_names - columnsToExclude
+		render json: attributes
 	end
 
 	##def current_admin

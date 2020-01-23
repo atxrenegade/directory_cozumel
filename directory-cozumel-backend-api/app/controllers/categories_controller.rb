@@ -4,8 +4,9 @@ class CategoriesController < ApplicationController
 	# before_action :require_super , only: [:create, :update, :delete]
 
 	def attributes
-		attributes = Category.column_names
-		render json: attributes, except: [:id, :created_at, :updated_at]
+		columnsToExclude = ['id', 'created_at', 'updated_at']
+		attributes = Category.attribute_names - columnsToExclude
+		render json: attributes
 	end
 
 	def index
