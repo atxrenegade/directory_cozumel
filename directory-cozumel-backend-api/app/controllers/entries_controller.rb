@@ -25,7 +25,7 @@ class EntriesController < ApplicationController
 	end
 
 	def index_search
-		property_param = params['property'].gsub('-', '_')
+		property_param = params['property'][0].gsub('-', '_')
 		entries = Entry.search_entries(property_param, params['search_val'])
 		render json: entries
 	end
