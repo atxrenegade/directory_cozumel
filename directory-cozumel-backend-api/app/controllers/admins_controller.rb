@@ -7,9 +7,9 @@ class AdminsController < ApplicationController
 		render json: attributes, except: [:id, :created_at, :updated_at]
 	end
 
-	def current_admin
-		@current_admin || Admin.find(session[:admin_id]) if session[:admin_id]
-	end
+	##def current_admin
+	##	@current_admin || ##Admin.find(session[:admin_id]) if ##session[:admin_id]
+	##end
 
 	def admin?
 		self.role == 'admin' || self.role == 'super'
