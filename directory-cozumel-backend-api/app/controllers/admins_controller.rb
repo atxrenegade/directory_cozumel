@@ -1,3 +1,4 @@
+require('.app/controllers/application_controller.rb')
 class AdminsController < ApplicationController
 	include ActionController::Helpers
 	helper_method :current_admin, :require_admin, :admin?, :require_super, :super?

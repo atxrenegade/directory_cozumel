@@ -1,3 +1,5 @@
+require('./app/controllers/application_controller.rb')
+
 class AdminTokenController < Knock::AuthTokenController
 
 	def create
