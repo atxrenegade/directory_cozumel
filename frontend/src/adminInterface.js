@@ -69,6 +69,7 @@ class adminInterface {
 			event.preventDefault();
 			let radVals = adminInterface.getRadioVal(event);
 			adminInterface.directSupAdminFormAction(radVals[0], radVals[1], event)
+			document.getElementById('super-admin-create-update-delete').innerHTML = '';
 		})
 	}
 
@@ -414,8 +415,7 @@ class adminInterface {
 	}
 
 	static buildNewForm(dbType, action, event, instance) {
-
-		let elToAppendTo = event.target.parentElement
+		let elToAppendTo = event.target.parentElement.parentElement.parentElement.lastElementChild
 		let formEl = document.createElement('form');
 		let formElements;
 		let formTitle = document.createElement('p');
@@ -447,15 +447,15 @@ class adminInterface {
 			backButton.setAttribute('type', 'button')
 			let buttonArray = [breakEl, formButton, backButton]
 			buttonArray.forEach(el => formEl.appendChild(el));
-			formButton.addEventListener('click', function(event){
-			let attributesObj = adminInterface.buildObjFromFormInput(event);
-			adminInterface.handleDynamAdminForm(dbType, action, attributesObj, event)
+				formButton.addEventListener('click', function(event){
+				let attributesObj = adminInterface.buildObjFromFormInput(event);
+				adminInterface.handleDynamAdminForm(dbType, action, attributesObj, event)
+				elToAppendTo.removeChild(formEl);
 			/* follow up with renderSuccess or errorMsg and clear input field*/
 		})
 	}
 
 	static buildObjFromFormInput(event){
-		debugger;
 		let collection = Array.from(event.target.parentElement.children)
 		let valObj = {}
 		valObj = collection.map(function(el) { return [el.name, el.value] })
@@ -466,7 +466,7 @@ class adminInterface {
 		let len = newAttArray.length;
  		for (i = 0 ; i < len; i++){
 			let attKey = newAttArray[i][0].toLowerCase();
-			let attVal = newAttArray[i][1]; /* Capitialize Names */
+			let attVal = newAttArray[i][1];
 			attObj[attKey] = attVal;
 		}
 		return attObj;
@@ -480,8 +480,14 @@ class adminInterface {
 			let method = 'POST'
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}`
 			let callback = adminInterface.dynamFormResp;
-			let dataObj = adminInterface.dynamFormReq(method, url, attsHash, callback)
-			adminInterface.displayResults(event, dataObj)
+			adminInterface.dynamFormReq(method, url, attsHash, callback)
+			/* 	adminInterface.displayResults(event, dataObj) */
+			/* reset form */
+			/* hide form */
+			/* return failed or success message */
+			/* return instance that was persisted and appehend it to the DOM*/
+			/* clear success message and details on click */
+
 			/* create my data, and url */
 		} else if	(action === 'update'){
 			let instance = adminInterface.identifyInstance(dbModel, attsHash)
@@ -527,7 +533,7 @@ class adminInterface {
 		if (data == undefined) {
 			console.log('Error Processing Request');
 		} else {
-			console.log(results)
+			console.log(data)
 		}
 	}
 
