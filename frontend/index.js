@@ -3,6 +3,7 @@ window.onload = function() {
 	CATS = [];
 	ENTRIES = [];
 	ATTRIBUTES = [];
+	RESULT = [];
 	LAT = 20.42;
 	LNG = -86.92;
 

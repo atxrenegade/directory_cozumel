@@ -68,7 +68,7 @@ class adminInterface {
 		superAdminSubmitButton.addEventListener('click', function() {
 			event.preventDefault();
 			let radVals = adminInterface.getRadioVal(event);
-			adminInterface.directSupAdminFormAction(radVals[0], radVals[1], event)
+			adminInterface.buildNewModelInst(radVals[0], radVals[1], event)
 			document.getElementById('super-admin-create-update-delete').innerHTML = '';
 		})
 	}
@@ -392,29 +392,17 @@ class adminInterface {
 	}
 
 	/* Dynamic Admin Forms Creation */
-	static directSupAdminFormAction(action, dbType, event){
-		if (action == 'create'){
-			adminInterface.buildNewModelInst(dbType, event)
-		} else if (action == 'update'){
-			console.log('update')
-		} else if (action == 'delete'){
-			console.log('delete')
-		} else {
-			console.log(`${action.toUpperCase()} is not a valid action!`)
-		}
-	}
-
-	static buildNewModelInst(dbType, event){
+	static buildNewModelInst(dbAction, dbType, event){
 		ATTRIBUTES = [];
 		adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
-		setTimeout(function(){adminInterface.buildNewForm(dbType, 'create', event)}, 500)
+		setTimeout(function(){adminInterface.buildNewForm('create', dbType, event)}, 500)
 		/* post obj */
 		/* return results */
 		/* handle results */
 		/* display results */
 	}
 
-	static buildNewForm(dbType, action, event, instance) {
+	static buildNewForm(action, dbType, event) {
 		let elToAppendTo = event.target.parentElement.parentElement.parentElement.lastElementChild
 		let formEl = document.createElement('form');
 		let formElements;
@@ -449,7 +437,7 @@ class adminInterface {
 			buttonArray.forEach(el => formEl.appendChild(el));
 				formButton.addEventListener('click', function(event){
 				let attributesObj = adminInterface.buildObjFromFormInput(event);
-				adminInterface.handleDynamAdminForm(dbType, action, attributesObj, event)
+				adminInterface.processDynamAdminForm(action, dbType, attributesObj, event)
 				elToAppendTo.removeChild(formEl);
 			/* follow up with renderSuccess or errorMsg and clear input field*/
 		})
@@ -472,7 +460,7 @@ class adminInterface {
 		return attObj;
 	}
 
-	static handleDynamAdminForm(dbModel, action, attsHash, event){
+	static processDynamAdminForm(action, dbModel, attsHash, event){
 		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
 		/* action = Create, Update, Delete */
 		/* instance = any valid instance of type */
@@ -481,6 +469,7 @@ class adminInterface {
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}`
 			let callback = adminInterface.dynamFormResp;
 			adminInterface.dynamFormReq(method, url, attsHash, callback)
+			adminInterface.displayResults(event)
 			/* 	adminInterface.displayResults(event, dataObj) */
 			/* reset form */
 			/* hide form */
@@ -531,8 +520,9 @@ class adminInterface {
 
 	static dynamFormResp(data){
 		if (data == undefined) {
-			console.log('Error Processing Request');
+			RESULT = 'Error Processing Request';
 		} else {
+			RESULT = JSON.stringify(data);
 			console.log(data)
 		}
 	}
@@ -540,6 +530,16 @@ class adminInterface {
 	static getAttributes(model, callback = adminInterface.dynamFormResp){
 		let url = `http://localhost:3000/${model}/attributes`
 		adminInterface.dynamGetReq(url, callback)
+	}
+
+	static getInstance(model, id){
+		let url = `http://localhost:3000/${model}/${id}`
+		let callback = adminInterface.returnResult()
+		adminInterface.dynamGetReq(url, callback)
+	}
+
+	static returnResult(data) {
+		RESULT = data;
 	}
 
 	static dynamGetReq(url, callback){
@@ -557,12 +557,12 @@ class adminInterface {
 		ATTRIBUTES = data.map(el => { return el.replace(/_/g, ' ') })
 	}
 
-	static identifyInstance(dbModel, attsHash){
+	static getInstanceId(dbModel, attsHash){
 		let id;
 		if ('name' in attsHash) {
 			let name = attsHash["name"]
 			/* create url, data, and request type for next function*/
-			id = adminInterface.getInsIdByName(dbModel, name)
+			id = adminInterface.searchIdByName(dbModel, name)
 		} else if ('id' in attsHash){
 			id = attsHash["id"]
 		} else {
@@ -571,8 +571,7 @@ class adminInterface {
 		return id;
 	}
 
-	static getInsIdByName(dbType, name) {
-		debugger;
+	static searchIdByName(dbType, name) {
 		try {
 			/* use query string using name in url */
 			url = `http://localhost:3000/${dbType}/by_name`
