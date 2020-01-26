@@ -34,19 +34,17 @@ X 18. create flag form
 
 X 19. append forms to DOM
 
-20. create JS admin_entries object
-
-21. send them through post fetch request to db
+x21. send them through post fetch request to db
 
 X 22. create js admin interface
 
-23. create methods to approve admin new business entries and turn objects into persisted instances in the database
+x23. create methods to approve admin new business entries and turn objects into persisted instances in the database
 
-24. create methods to approve admin updated business entries update persisted instances in the database
+x24. create methods to approve admin updated business entries update persisted instances in the database
 
-25. create methods to approve admin updated business entries update persisted instances in the database
+x25. create methods to approve admin updated business entries update persisted instances in the database
 
-26. add entry submitted message to user
+x26. add entry submitted message to user
 
 27. add admin password and authentication
 
@@ -72,13 +70,12 @@ X 29. add containers for sponsored listings and ads
 
 Watch out for admin controller loading before application controller alphabetically
 
-watch out for rounding of map lat and lng values
-add image date column to images db
-Overall rating is an average of all review ratings defaults is n/a
-remove display css form form box?
-Check naming conventions
+X watch out for rounding of map lat and lng values
+X add image date column to images db
+X Overall rating is an average of all review ratings defaults is n/a
+XCheck naming conventions
 
 TO DEBUG LATER:
 
-REPEAT DB QUERIES, ONE FOR EACH DYNAMIC ELEMENT - reduce to on query for all buttons
-RENDERING RELATED OBJECTS in BUSINESS CONTROLLER SHOW ACTION - db is returning an array or reviews and images and controller is only rendering one.
+X REPEAT DB QUERIES, ONE FOR EACH DYNAMIC ELEMENT - reduce to on query for all buttons
+X RENDERING RELATED OBJECTS in BUSINESS CONTROLLER SHOW ACTION - db is returning an array or reviews and images and controller is only rendering one.
