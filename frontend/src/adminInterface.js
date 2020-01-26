@@ -70,9 +70,15 @@ class adminInterface {
 			let radVals = adminInterface.getRadioVal(event);
 			adminInterface.buildNewModelInst(radVals[0], radVals[1], event)
 			document.getElementById('super-admin-create-update-delete').innerHTML = '';
+			document.getElementById('js-super-admin-modify-records-menu').style.display = 'none';
+
 		})
 	}
+	/*
+		document.getElementById('js-super-admin-modify-records-menu').style.display = none;
 
+		document.getElementById('js-super-admin-modify-records').style.display = block;
+*/
 	static indexButtonAction(status){
 		let entries = adminInterface.buildIndexPostReq(`${status}`);
 		setTimeout(`adminInterface.renderIndex('${status}')`, 1800);
@@ -435,12 +441,17 @@ class adminInterface {
 			backButton.setAttribute('type', 'button')
 			let buttonArray = [breakEl, formButton, backButton]
 			buttonArray.forEach(el => formEl.appendChild(el));
-				formButton.addEventListener('click', function(event){
+			formButton.addEventListener('click', function(event){
 				let attributesObj = adminInterface.buildObjFromFormInput(event);
 				adminInterface.processDynamAdminForm(action, dbType, attributesObj, event)
 				elToAppendTo.removeChild(formEl);
-			/* follow up with renderSuccess or errorMsg and clear input field*/
-		})
+				document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
+			})
+			backButton.addEventListener('click', function(){
+					elToAppendTo.removeChild(formEl);
+					document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
+
+			})
 	}
 
 	static buildObjFromFormInput(event){
