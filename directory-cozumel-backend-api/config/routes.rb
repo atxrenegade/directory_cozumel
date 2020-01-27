@@ -12,25 +12,25 @@ Rails.application.routes.draw do
 	post '/entries', to: 'entries#index'
 
 	get '/businesses/attributes', to: 'businesses#attributes'
-	resources :businesses, only: [:show, :create, :update, :delete]
+	resources :businesses, only: [:edit, :create, :update, :delete]
 
 	get '/listings/attributes', to: 'listings#attributes'
-	resources :listings, only: [:show, :create, :update, :delete]
+	resources :listings, only: [:edit, :create, :update, :delete]
 
 	get '/maps/attributes', to: 'maps#attributes'
-	resources :maps, only: [:show, :create, :update, :delete]
+	resources :maps, only: [:edit, :create, :update, :delete]
 
 	get '/reviews/attributes', to: 'reviews#attributes'
-	resources :reviews, only: [:show, :create, :update, :delete]
+	resources :reviews, only: [:edit, :create, :update, :delete]
 
 	get '/images/attributes', to: 'images#attributes'
-	resources :images, only: [:show, :create, :update, :delete]
+	resources :images, only: [:edit, :create, :update, :delete]
 
 	get '/categories/attributes', to: 'categories#attributes'
-	resources :categories, only: [:show, :index, :create, :update, :delete]
+	resources :categories, only: [:edit, :index, :create, :update, :delete]
 
 	get '/admins/attributes', to: 'admins#attributes'
-	resources :admins, only: [:show, :create, :update, :delete]
+	resources :admins, only: [:edit, :create, :update, :delete]
 
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
