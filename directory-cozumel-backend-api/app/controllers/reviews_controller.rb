@@ -7,4 +7,11 @@ class ReviewsController < ApplicationController
 		attributes = Review.attribute_names - columnsToExclude
 		render json: attributes
 	end
+
+	def create
+		binding.pry
+		instance = Review.create!(content: params['content'],  contributor: params['contributor'], contributor_email: params['contributor-email'], rating: params['rating'], business_id: params['business-id'])
+		Review.update_rating(params["business-id"])
+		render json: instance
+	end
 end
