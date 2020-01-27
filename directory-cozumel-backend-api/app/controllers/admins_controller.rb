@@ -9,6 +9,11 @@ class AdminsController < ApplicationController
 		render json: attributes
 	end
 
+	def create
+		instance = Image.create!(username: params['username'], password_digest: params['password_digest'], role: params['role'], status: params['status'])
+		render json: instance
+	end
+
 	##def current_admin
 	##	@current_admin || ##Admin.find(session[:admin_id]) if ##session[:admin_id]
 	##end
