@@ -75,17 +75,20 @@ class adminInterface {
 	}
 
 	static buildCRUDforms(radVals, event){
-		let formType = radVals[0];
+		let formAction = radVals[0];
 		let dbType = radVals[1];
 		ATTRIBUTES = [];
-		
-		switch (formType) {
+
+		switch (formAction) {
 			case 'create':
 				adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
-				setTimeout(function(){adminInterface.buildNewForm(formType, dbType, event)}, 500)
+				setTimeout(function(){adminInterface.buildNewForm(formAction, dbType, event)}, 500)
 				break;
 			case 'update':
 			debugger;
+			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
+			adminInterface.displayGetInstanceForm(elToAppendTo, formAction, dbType);
+
 				break;
 			case 'delete':
 				break;
@@ -414,7 +417,6 @@ class adminInterface {
 
 	/* Dynamic Admin Forms Creation */
 
-
 	static buildNewForm(action, dbType, event) {
 		let elToAppendTo = event.target.parentElement.parentElement.parentElement.lastElementChild
 		let formEl = document.createElement('form');
@@ -491,8 +493,7 @@ class adminInterface {
 			/* clear success message and details on click */
 		} else if	(action === 'update'){
 			debugger;
-			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
-			adminInterface.displayGetInstanceForm(elToAppendTo, actionType, dbType);
+
 			/* return instance to update from database */
 			/* create new instance from attributes and exisitng values */
 
@@ -615,11 +616,15 @@ class adminInterface {
 		}
 	}
 
-	static displayGetInstanceForm(actionType, dbType, elToAppendTo){
+	static displayGetInstanceForm(elToAppendTo, actionTYpe, dbType){
+		debugger;
+		/* add attributes to elements */
 		let breakEl = document.createElement('br')
 		let instLabel = document.createElement('label')
 		let instInput = document.createElement('input')
 		let instButton = document.createElement('input')
+		let elArray = [breakEl, instLabel, instInput, instButton]
+		elArray.forEach(el => elToAppendTo.appendChild(el))
 	}
 
 	static displayResults(elToAppendTo){
