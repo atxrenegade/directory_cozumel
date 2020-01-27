@@ -7,4 +7,14 @@ class MapsController < ApplicationController
 		attributes = Map.attribute_names - columnsToExclude
 		render json: attributes
 	end
+
+	def create
+		map = Map.find(params['business-id'])
+		if map.present?
+			resp = 'Map creation denied. This business is already associated with a map, please update the existing one!'
+		else
+			resp = Map.create!(lat: params['lat'], lng: params['lng'], business_id: params['business-id'])
+		end
+		render json: {resp: resp}
+	end
 end
