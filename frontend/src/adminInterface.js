@@ -446,6 +446,7 @@ class adminInterface {
 				adminInterface.processDynamAdminForm(action, dbType, attributesObj, event)
 				elToAppendTo.removeChild(formEl);
 				document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
+
 			})
 			backButton.addEventListener('click', function(){
 					elToAppendTo.removeChild(formEl);
@@ -480,15 +481,9 @@ class adminInterface {
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}`
 			let callback = adminInterface.dynamFormResp;
 			adminInterface.dynamFormReq(method, url, attsHash, callback)
-			adminInterface.displayResults(event)
-			/* 	adminInterface.displayResults(event, dataObj) */
-			/* reset form */
-			/* hide form */
-			/* return failed or success message */
-			/* return instance that was persisted and appehend it to the DOM*/
+			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
+		 	adminInterface.displayResults(elToAppendTo);
 			/* clear success message and details on click */
-
-			/* create my data, and url */
 		} else if	(action === 'update'){
 			let instance = adminInterface.identifyInstance(dbModel, attsHash)
 			let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
@@ -533,7 +528,7 @@ class adminInterface {
 		if (data == undefined) {
 			RESULT = 'Error Processing Request';
 		} else {
-			RESULT = JSON.stringify(data);
+			RESULT = data;
 			console.log(data)
 		}
 	}
@@ -572,7 +567,6 @@ class adminInterface {
 		let id;
 		if ('name' in attsHash) {
 			let name = attsHash["name"]
-			/* create url, data, and request type for next function*/
 			id = adminInterface.searchIdByName(dbModel, name)
 		} else if ('id' in attsHash){
 			id = attsHash["id"]
@@ -602,8 +596,27 @@ class adminInterface {
 		let instButton = document.createElement('input')
 	}
 
-	static displayResults(event, results){
+	static displayResults(elToAppendTo){
+		let resultsEl = document.createElement('div')
+		if (RESULT !== null) {
+			let msg = `Successfully Added to Database: <br>`;
+			let obj = adminInterface.createDisplayObj();
+			msg += obj
+			resultsEl.innerHTML = msg
+		} else {
+			resultsEl = `Admin Operation Error. Object not persisted to database.`
+		}
 		debugger;
+		elToAppendTo.appendChild(resultsEl);
+	}
+
+	static createDisplayObj(){
+		let objHTML = ``
+		for (const [key, value] of Object.entries(RESULT)) {
+			objHTML +=`${key}: ${value}`
+			objHTML += `<br>`
+			}
+		return objHTML;
 	}
 
 	static resetAdmin() {
