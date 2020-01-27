@@ -17,7 +17,7 @@ class adminInterface {
 		let bigPendingIndexButton = document.getElementById('admin-show-pending-button')
 		let bigResolvedIndexButton = document.getElementById('admin-show-resolved-button')
 		let adminSearchButton = document.getElementById('js-admin-search-entries')
-		let superAdminSubmitButton = document.getElementById('js-super-admin-modify-menu')
+		let superAdminCRUDMenu = document.getElementById('js-super-admin-modify-menu')
 
 		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime();
@@ -65,20 +65,35 @@ class adminInterface {
 			adminInterface.indexButtonAction('resolved');
 		})
 
-		superAdminSubmitButton.addEventListener('click', function() {
+		superAdminCRUDMenu.addEventListener('click', function() {
 			event.preventDefault();
 			let radVals = adminInterface.getRadioVal(event);
-			adminInterface.buildNewModelInst(radVals[0], radVals[1], event)
 			document.getElementById('super-admin-create-update-delete').innerHTML = '';
 			document.getElementById('js-super-admin-modify-records-menu').style.display = 'none';
-
+			adminInterface.buildCRUDforms(radVals, event)
 		})
 	}
-	/*
-		document.getElementById('js-super-admin-modify-records-menu').style.display = none;
 
-		document.getElementById('js-super-admin-modify-records').style.display = block;
-*/
+	static buildCRUDforms(radVals, event){
+		let formType = radVals[0];
+		let dbType = radVals[1];
+		ATTRIBUTES = [];
+		
+		switch (formType) {
+			case 'create':
+				adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
+				setTimeout(function(){adminInterface.buildNewForm(formType, dbType, event)}, 500)
+				break;
+			case 'update':
+			debugger;
+				break;
+			case 'delete':
+				break;
+			default:
+				error: 'Action not understood!'
+		}
+	}
+
 	static indexButtonAction(status){
 		let entries = adminInterface.buildIndexPostReq(`${status}`);
 		setTimeout(`adminInterface.renderIndex('${status}')`, 1800);
@@ -398,15 +413,7 @@ class adminInterface {
 	}
 
 	/* Dynamic Admin Forms Creation */
-	static buildNewModelInst(dbAction, dbType, event){
-		ATTRIBUTES = [];
-		adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
-		setTimeout(function(){adminInterface.buildNewForm('create', dbType, event)}, 500)
-		/* post obj */
-		/* return results */
-		/* handle results */
-		/* display results */
-	}
+
 
 	static buildNewForm(action, dbType, event) {
 		let elToAppendTo = event.target.parentElement.parentElement.parentElement.lastElementChild
@@ -443,7 +450,7 @@ class adminInterface {
 			buttonArray.forEach(el => formEl.appendChild(el));
 			formButton.addEventListener('click', function(event){
 				let attributesObj = adminInterface.buildObjFromFormInput(event);
-				adminInterface.processDynamAdminForm(action, dbType, attributesObj, event)
+				adminInterface.processCRUDForm(action, dbType, attributesObj, event)
 				elToAppendTo.removeChild(formEl);
 				document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
 
@@ -472,33 +479,51 @@ class adminInterface {
 		return attObj;
 	}
 
-	static processDynamAdminForm(action, dbModel, attsHash, event){
+	static processCRUDForm(action, dbModel, attsHash, event){
 		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
 		/* action = Create, Update, Delete */
 		/* instance = any valid instance of type */
 		if (action === 'create') {
-			let method = 'POST'
-			let url = `http://localhost:3000/${dbModel.toLowerCase()}`
-			let callback = adminInterface.dynamFormResp;
-			adminInterface.dynamFormReq(method, url, attsHash, callback)
+			adminInterface.buildCreatePostReq(action, dbModel, attsHash, event)
+
 			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
 		 	adminInterface.displayResults(elToAppendTo);
 			/* clear success message and details on click */
 		} else if	(action === 'update'){
-			let instance = adminInterface.identifyInstance(dbModel, attsHash)
-			let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
-			let data = { id: instance, attributes: attsHash }
-			let method = 'PUT'
-			adminInterface.dynamFormReq(method, url, data)
+			debugger;
+			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
+			adminInterface.displayGetInstanceForm(elToAppendTo, actionType, dbType);
+			/* return instance to update from database */
+			/* create new instance from attributes and exisitng values */
+
 		}	else if (action === 'delete') {
 			let instance = adminInterface.identifyInstance(dbModel, attsHash)
-			let method = 'DELETE'
-			let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
-			data = { id: id }
-			adminInterface.dynamFormReq(method, url, data)
+
 		} else {
 			console.log('Error this record type does not exist')
 		}
+		/* display results*/
+	}
+
+	static buildCreatePostReq(action, dbModel, attsHash, event){
+		let method = 'POST'
+		let url = `http://localhost:3000/${dbModel.toLowerCase()}`
+		let callback = adminInterface.dynamFormResp;
+		adminInterface.dynamFormReq(method, url, attsHash, callback)
+	}
+
+	static buildUpdatePostReq(action, dbModel, attsHash, event){
+		let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
+		let data = { id: instance, attributes: attsHash }
+		let method = 'PUT'
+		adminInterface.dynamFormReq(method, url, data)
+	}
+
+	static buildDeletePostReq(action, dbModel, attsHash, event){
+		let method = 'DELETE'
+		let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
+		data = { id: id }
+		adminInterface.dynamFormReq(method, url, data)
 	}
 
 	static dynamFormReq(method, url, data, callback) {
@@ -563,6 +588,7 @@ class adminInterface {
 		ATTRIBUTES = data.map(el => { return el.replace(/_/g, ' ') })
 	}
 
+/***
 	static getInstanceId(dbModel, attsHash){
 		let id;
 		if ('name' in attsHash) {
@@ -575,7 +601,7 @@ class adminInterface {
 		}
 		return id;
 	}
-
+****/
 	static searchIdByName(dbType, name) {
 		try {
 			/* use query string using name in url */
@@ -589,7 +615,7 @@ class adminInterface {
 		}
 	}
 
-	static getInstToAlterForm(actionType, dbType, elToAppendTo){
+	static displayGetInstanceForm(actionType, dbType, elToAppendTo){
 		let breakEl = document.createElement('br')
 		let instLabel = document.createElement('label')
 		let instInput = document.createElement('input')
