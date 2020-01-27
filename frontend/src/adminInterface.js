@@ -68,8 +68,6 @@ class adminInterface {
 		superAdminCRUDMenu.addEventListener('click', function() {
 			event.preventDefault();
 			let radVals = adminInterface.getRadioVal(event);
-			document.getElementById('super-admin-create-update-delete').innerHTML = '';
-			document.getElementById('js-super-admin-modify-records-menu').style.display = 'none';
 			adminInterface.buildCRUDforms(radVals, event)
 		})
 	}
@@ -81,11 +79,12 @@ class adminInterface {
 
 		switch (formAction) {
 			case 'create':
+				document.getElementById('super-admin-create-update-delete').innerHTML = '';
+				document.getElementById('js-super-admin-modify-records-menu').style.display = 'none';
 				adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
 				setTimeout(function(){adminInterface.buildNewForm(formAction, dbType, event)}, 500)
 				break;
 			case 'update':
-			debugger;
 			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
 			adminInterface.displayGetInstanceForm(elToAppendTo, formAction, dbType);
 
@@ -481,24 +480,22 @@ class adminInterface {
 		return attObj;
 	}
 
-	static processCRUDForm(action, dbModel, attsHash, event){
+	static processCRUDForm(action, dbModel, attsObj, event){
 		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
 		/* action = Create, Update, Delete */
 		/* instance = any valid instance of type */
 		if (action === 'create') {
-			adminInterface.buildCreatePostReq(action, dbModel, attsHash, event)
+			adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
 
 			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
 		 	adminInterface.displayResults(elToAppendTo);
 			/* clear success message and details on click */
 		} else if	(action === 'update'){
-			debugger;
-
 			/* return instance to update from database */
 			/* create new instance from attributes and exisitng values */
 
 		}	else if (action === 'delete') {
-			let instance = adminInterface.identifyInstance(dbModel, attsHash)
+			let instance = adminInterface.identifyInstance(dbModel, attsObj)
 
 		} else {
 			console.log('Error this record type does not exist')
@@ -506,21 +503,21 @@ class adminInterface {
 		/* display results*/
 	}
 
-	static buildCreatePostReq(action, dbModel, attsHash, event){
+	static buildCreatePostReq(action, dbModel, attsObj, event){
 		let method = 'POST'
 		let url = `http://localhost:3000/${dbModel.toLowerCase()}`
 		let callback = adminInterface.dynamFormResp;
-		adminInterface.dynamFormReq(method, url, attsHash, callback)
+		adminInterface.dynamFormReq(method, url, attsObj, callback)
 	}
 
-	static buildUpdatePostReq(action, dbModel, attsHash, event){
+	static buildUpdatePostReq(action, dbModel, attsObj, event){
 		let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
-		let data = { id: instance, attributes: attsHash }
+		let data = { id: instance, attributes: attsObj }
 		let method = 'PUT'
 		adminInterface.dynamFormReq(method, url, data)
 	}
 
-	static buildDeletePostReq(action, dbModel, attsHash, event){
+	static buildDeletePostReq(action, dbModel, attsObj, event){
 		let method = 'DELETE'
 		let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
 		data = { id: id }
@@ -559,13 +556,17 @@ class adminInterface {
 		}
 	}
 
-	static getAttributes(model, callback = adminInterface.dynamFormResp){
-		let url = `http://localhost:3000/${model}/attributes`
+	static getAttributes(dbType, callback = adminInterface.dynamFormResp){
+		let url = `http://localhost:3000/${dbType}/attributes`
 		adminInterface.dynamGetReq(url, callback)
 	}
 
-	static getInstance(model, id){
-		let url = `http://localhost:3000/${model}/${id}`
+	static getInstance(event, dbType){
+		debugger;
+		/*let id = event.target.previousSibling.lastElementChild.value*/
+		let id = 2;
+		debugger;
+		let url = `http://localhost:3000/${dbType}/${id}`
 		let callback = adminInterface.returnResult()
 		adminInterface.dynamGetReq(url, callback)
 	}
@@ -590,13 +591,13 @@ class adminInterface {
 	}
 
 /***
-	static getInstanceId(dbModel, attsHash){
+	static getInstanceId(dbModel, attsObj){
 		let id;
-		if ('name' in attsHash) {
-			let name = attsHash["name"]
+		if ('name' in attsObj) {
+			let name = attsObj["name"]
 			id = adminInterface.searchIdByName(dbModel, name)
-		} else if ('id' in attsHash){
-			id = attsHash["id"]
+		} else if ('id' in attsObj){
+			id = attsObj["id"]
 		} else {
 			id = 'no match for this instance'
 		}
@@ -616,15 +617,37 @@ class adminInterface {
 		}
 	}
 
-	static displayGetInstanceForm(elToAppendTo, actionTYpe, dbType){
-		debugger;
-		/* add attributes to elements */
+	static displayGetInstanceForm(elToAppendTo, actionType, dbType){
 		let breakEl = document.createElement('br')
-		let instLabel = document.createElement('label')
-		let instInput = document.createElement('input')
-		let instButton = document.createElement('input')
-		let elArray = [breakEl, instLabel, instInput, instButton]
+		let instAtts = {id: 'js-super-admin-CRUD-instance', name: 'js-super-admin-CRUD-instance-name', value:`ID of ${dbType.toUpperCase()} record to UPDATE or DELETE`}
+		let buttonAtts = { id: 'js-super-admin-CRUD-button', name: 'js-super-admin-CRUD-name', value: 'Search Records'}
+		let instInput = adminInterface.buildFormField(instAtts, dbType)
+		let instButton = adminInterface.buildButton(buttonAtts, dbType)
+		let elArray = [breakEl, instInput, instButton]
 		elArray.forEach(el => elToAppendTo.appendChild(el))
+	}
+
+	static buildFormField(atts, dbType){
+		/* atts should include id, name, value */
+		let labelEl = document.createElement('label')
+		let inputEl = document.createElement('input')
+		labelEl.innerText = `${atts['value']}: `;
+		inputEl.setAttribute('id', atts['id']);
+		inputEl.setAttribute('name', atts['name']);
+		labelEl.appendChild(inputEl)
+		return labelEl
+	}
+
+	static buildButton(atts, dbType) {
+		/* atts should include id, name, value, and a callback function */
+		let buttonEl = document.createElement('input')
+		buttonEl.setAttribute('type', 'button')
+		buttonEl.setAttribute('id', atts['id'])
+		buttonEl.setAttribute('name', atts['name'])
+		buttonEl.setAttribute('value', atts['value'])
+		buttonEl.addEventListener('click', adminInterface.getInstance.bind(null, event, dbType));
+
+		return buttonEl;
 	}
 
 	static displayResults(elToAppendTo){
@@ -643,7 +666,7 @@ class adminInterface {
 
 	static createDisplayObj(){
 		let objHTML = ``
-		for (const [key, value] of Object.entries(RESULT)) {
+		for (let [key, value] of Object.entries(RESULT)) {
 			objHTML +=`${key}: ${value}`
 			objHTML += `<br>`
 			}
