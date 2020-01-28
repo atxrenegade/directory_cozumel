@@ -75,6 +75,7 @@ class adminInterface {
 	static buildCRUDforms(radVals, event){
 		let formAction = radVals[0];
 		let dbType = radVals[1];
+		let elToAppendTo = event.target.parentElement.parentNode.parentNode;
 		ATTRIBUTES = [];
 
 		switch (formAction) {
@@ -85,9 +86,7 @@ class adminInterface {
 				setTimeout(function(){adminInterface.buildNewForm(formAction, dbType, event)}, 500)
 				break;
 			case 'update':
-			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
-			adminInterface.displayGetInstanceForm(elToAppendTo, formAction, dbType);
-
+				adminInterface.displayGetInstanceForm(elToAppendTo, formAction, dbType);
 				break;
 			case 'delete':
 				break;
@@ -562,10 +561,8 @@ class adminInterface {
 	}
 
 	static getInstance(event, dbType){
+		let id = event.target.previousElementSibling.lastElementChild.value
 		debugger;
-		/*let id = event.target.previousSibling.lastElementChild.value*/
-		/* get id value */
-		let id = 2;
 		let url = `http://localhost:3000/maps/${id}/edit`
 		let callback = adminInterface.returnResult
 		adminInterface.dynamGetReq(url, callback)
@@ -641,12 +638,14 @@ class adminInterface {
 	static buildButton(atts, dbType) {
 		/* atts should include id, name, value, and a callback function */
 		let buttonEl = document.createElement('input')
-		buttonEl.setAttribute('type', 'button')
+		buttonEl.setAttribute('type', 'submit')
 		buttonEl.setAttribute('id', atts['id'])
 		buttonEl.setAttribute('name', atts['name'])
 		buttonEl.setAttribute('value', atts['value'])
-		buttonEl.addEventListener('click', adminInterface.getInstance.bind(null, event, dbType));
-
+		buttonEl.addEventListener('click', function(event){
+			event.preventDefault();
+			adminInterface.getInstance(event, dbType)
+		});
 		return buttonEl;
 	}
 
