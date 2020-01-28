@@ -10,6 +10,10 @@ h2, h3, h4, legend {
 	color: black;
 }
 
+h2 {
+	font-family: 'Great Vibes', cursive;
+}
+
 fieldset {
 	margin:  20px 15px;
 }
@@ -21,7 +25,7 @@ input {
 .tile {
 	background: white;
 	margin: 25px;
-	padding: 30px;
+	padding: 20px;
 	opacity: 0.8;
 	border: 2px solid white;
   border-radius: 15px;
@@ -125,7 +129,7 @@ input {
 /* Admin Tables Styling */
 
 table {
-		width: 100%;
+		width: 80%;
 }
 
 th {
