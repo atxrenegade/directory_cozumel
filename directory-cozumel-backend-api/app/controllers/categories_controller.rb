@@ -18,4 +18,9 @@ class CategoriesController < ApplicationController
 		category = Category.create!(name: params['name'].downcase)
 		render json: category
 	end
+
+	def edit
+	  category = Category.find(params[:id])
+		render json: category
+	end
 end

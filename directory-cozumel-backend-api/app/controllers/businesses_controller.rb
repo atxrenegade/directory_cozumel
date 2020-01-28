@@ -40,4 +40,9 @@ class BusinessesController < ApplicationController
 			render json: {message: 'No Business by that name on record'}
 		end
 	end
+
+	def edit
+	  business = Business.find(params[:id])
+		render json: business
+	end
 end

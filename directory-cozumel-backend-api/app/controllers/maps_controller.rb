@@ -17,4 +17,9 @@ class MapsController < ApplicationController
 		end
 		render json: {resp: resp}
 	end
+
+	def edit
+	  map = Map.find(params[:id])
+		render json: map
+	end
 end

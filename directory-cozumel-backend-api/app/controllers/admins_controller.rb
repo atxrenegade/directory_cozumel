@@ -14,6 +14,12 @@ class AdminsController < ApplicationController
 		render json: instance
 	end
 
+	def edit
+	  admin = Admin.find(params[:id])
+		render json: admin
+	end
+
+
 	##def current_admin
 	##	@current_admin || ##Admin.find(session[:admin_id]) if ##session[:admin_id]
 	##end

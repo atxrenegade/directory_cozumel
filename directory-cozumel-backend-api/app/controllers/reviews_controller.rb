@@ -14,4 +14,9 @@ class ReviewsController < ApplicationController
 		Review.update_rating(params["business-id"])
 		render json: instance
 	end
+
+	def edit
+	  review = Review.find(params[:id])
+		render json: review
+	end
 end

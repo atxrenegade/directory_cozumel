@@ -12,4 +12,9 @@ class ListingsController < ApplicationController
 		@listings = Listing.all
 		render json: @listings
 	end
+
+	def edit
+	  listing = Listing.find(params[:id])
+		render json: listing
+	end
 end

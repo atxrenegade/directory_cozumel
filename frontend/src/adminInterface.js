@@ -564,10 +564,10 @@ class adminInterface {
 	static getInstance(event, dbType){
 		debugger;
 		/*let id = event.target.previousSibling.lastElementChild.value*/
+		/* get id value */
 		let id = 2;
-		debugger;
-		let url = `http://localhost:3000/${dbType}/${id}`
-		let callback = adminInterface.returnResult()
+		let url = `http://localhost:3000/maps/${id}/edit`
+		let callback = adminInterface.returnResult
 		adminInterface.dynamGetReq(url, callback)
 	}
 
