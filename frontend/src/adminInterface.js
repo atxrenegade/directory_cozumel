@@ -561,10 +561,9 @@ class adminInterface {
 	}
 
 	static getInstance(event, dbType){
-		let id = event.target.previousElementSibling.lastElementChild.value
-		let parsedId = parsedInt(id, 10)
-
-		if (Number.isInteger(parsedNumber)) {
+		let id = event.target.previousElementSibling.lastElementChild.previousElementSibling.value
+		let parsedId = parseInt(id, 10);
+		if (Number.isInteger(parsedId)) {
 		let url = `http://localhost:3000/maps/${id}/edit`
 		let callback = adminInterface.returnResult
 		adminInterface.dynamGetReq(url, callback)
