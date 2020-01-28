@@ -562,10 +562,15 @@ class adminInterface {
 
 	static getInstance(event, dbType){
 		let id = event.target.previousElementSibling.lastElementChild.value
-		debugger;
+		let parsedId = parsedInt(id, 10)
+
+		if (Number.isInteger(parsedNumber)) {
 		let url = `http://localhost:3000/maps/${id}/edit`
 		let callback = adminInterface.returnResult
 		adminInterface.dynamGetReq(url, callback)
+		} else {
+			alert('Invalid Admin Input! Please enter a valid integer!')
+		}
 	}
 
 	static returnResult(data) {
@@ -617,21 +622,23 @@ class adminInterface {
 	static displayGetInstanceForm(elToAppendTo, actionType, dbType){
 		let breakEl = document.createElement('br')
 		let instAtts = {id: 'js-super-admin-CRUD-instance', name: 'js-super-admin-CRUD-instance-name', value:`ID of ${dbType.toUpperCase()} record to UPDATE or DELETE`}
-		let buttonAtts = { id: 'js-super-admin-CRUD-button', name: 'js-super-admin-CRUD-name', value: 'Search Records'}
+		let buttonAtts = { id: 'js-super-admin-CRUD-button', name: 'js-super-admin-CRUD-name', value: 'SEARCH RECORDS'}
 		let instInput = adminInterface.buildFormField(instAtts, dbType)
 		let instButton = adminInterface.buildButton(buttonAtts, dbType)
-		let elArray = [breakEl, instInput, instButton]
+		let elArray = [breakEl, breakEl, instInput, breakEl, instButton, breakEl]
 		elArray.forEach(el => elToAppendTo.appendChild(el))
 	}
 
 	static buildFormField(atts, dbType){
 		/* atts should include id, name, value */
+		let breakEl = document.createElement('br')
 		let labelEl = document.createElement('label')
 		let inputEl = document.createElement('input')
 		labelEl.innerText = `${atts['value']}: `;
 		inputEl.setAttribute('id', atts['id']);
 		inputEl.setAttribute('name', atts['name']);
-		labelEl.appendChild(inputEl)
+		let elArray = [inputEl, breakEl]
+		elArray.forEach(el => labelEl.appendChild(el))
 		return labelEl
 	}
 
