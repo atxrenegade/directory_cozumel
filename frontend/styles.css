@@ -103,6 +103,26 @@ legend {
 
 }
 
+.logo-image {
+	max-width: 28%;
+	max-height: 28%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	border: none;
+	box-shadow: none;
+	display: block;
+
+/*
+  display: table-cell;
+  height: 500px;
+  text-align: center;
+  width: 500px;
+  vertical-align: middle;
+*/
+}
+
 button {
 	font-variant-caps: all-small-caps;
 }
@@ -241,7 +261,7 @@ img {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border: solid 10px #00ccff;
 	margin: 0 auto;
+	border: solid 10px #00ccff;
 	box-shadow:5px 5px 5px #999;
 }
