@@ -1,6 +1,7 @@
 class adminInterface {
 	static launchAdminInterface(){
 		/* admin index table elements */
+		let adminLoginContainer = document.getElementById('js-admin-login-container')
 		let adminTableContainer = document.getElementById('js-admin-panel-container')
 		let indexTable = document.getElementById('admin-entry-table')
 		/* admin details table elements */
@@ -21,6 +22,7 @@ class adminInterface {
 
 		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime();
+		adminLoginContainer.classList.add('admin');
 
 		/* Admin panel menu buttons */
 		bigPendingIndexButton.addEventListener('click', function() {
