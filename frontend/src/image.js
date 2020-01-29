@@ -7,7 +7,7 @@ class Image {
 	}
 
 	renderImage(){
-		return `<img src='${this.url}'></img><br><p>${this.contributor}<br>${this.date}<br>${this.description}<br><br></<p>`
+		return `<figure><img src='${this.url}' alt='missing'></img><br><figcaption>${this.contributor}<br>${this.date}<br>${this.description}<br><br></figcaption></figure>`
 	}
 
 	static imagesBuilder(imagesData){
