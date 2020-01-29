@@ -26,7 +26,7 @@ h2 {
 h3 {
 	font-family: 'DM Serif Display', cursive;
 	font-size: 2.75em;
-	color: #00ccff;
+	color: #00abff;
 	padding: 1%;
 	margin: .5%;
 }
@@ -34,6 +34,7 @@ h3 {
 h4, legend {
 	font-family: 'DM Serif Display', cursive;
 	font-size: 1.25em;
+	color: #00abff; /* #00ccff; */
 }
 
  p, label, div, button, input {
@@ -45,10 +46,10 @@ input {
 }
 
 fieldset {
-	margin:  10px;
+	margin:  15px;
+	padding: 10px 10px 20px 10px;
 	border-radius: .5em;
 	border-width: 5px;
-	border-color: #00ccff;
 	border-style: double;
 	border-spacing: 3%;
 
@@ -59,15 +60,17 @@ input, button, select {
 	 background-color: #E0FFFF; /* Remove background fill */
 	 text-transform: uppercase; /* Make text all uppercase */
 	 border-radius: 10%; /* Remove corner curve */
-	 border: 3px solid #00ccff; /* 2px white border */
+	 border: 5px solid #00ccff1c; /* 2px white border */
 	 color: grey; /* White text */
 	 height: 30px; /* Increase input height */
 	 opacity: 1.0;
 	 font-size: .8em;
+	 border-radius: 6%;
 }
 
-button {
+button, input[type="submit"] {
 	font-size: .8em;
+	margin-top: 5px;
 }
 
 select {
@@ -78,7 +81,7 @@ select {
 }
 
 input[type="radio"] {
-	height: 12px;
+	height: 10px;
 	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 	background-color: #00ccff;
 	color: #00ccff;
@@ -86,9 +89,11 @@ input[type="radio"] {
 }
 
 input[type="button"], button {
-	width: 70%;
+	width: 60%;
 	margin: .5%;
 	font-size: .8em;
+	display: inline-block;
+	text-align: center;
 }
 
 
@@ -97,16 +102,19 @@ input[type="text"] {
 	border-radius: 0;
 	border-style: none;
 	background: #00ccff;
-	opacity: 0.4git add .;
+	opacity: 0.1;
 	margin: 1%;
-	align-self: right;
-	padding: 2%;
+	padding: 1%;
 	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
 	height: 20px;
-
 }
 
-.tile, .inner-tile, .innermost-tile, .innermost-tile .admin {
+input[type="checkbox"] {
+	margin: 0px 5px 0px 5px;
+	height: 15px;
+}
+
+.tile, .inner-tile, .innermost-tile {
 	background: white;
 	margin: 40px 25px 25px 25px;
 	padding: 15px;
@@ -164,9 +172,6 @@ button {
 	font-variant-caps: all-small-caps;
 }
 
-.admin {
-	font-variant-caps: all-small-caps;
-}
 
 #js-search-by-name	{
 	display: block;
@@ -175,7 +180,6 @@ button {
 #js-search-by-category {
 	display: none;
 }
-
 
 #js-listings-container {
 	display: block;
@@ -277,8 +281,8 @@ table {
 
 th {
 	text-align: center;
-	background-color: grey;
-	color: black;
+	background-color: #80808052;
+	color: #00000096;
 }
 
 td {
@@ -286,11 +290,11 @@ td {
 }
 
 th, td {
-  padding: 15px;
+  padding: 1%;
 }
 
 table, th, td {
-  border: 2px solid black;
+  border: 3px solid #0000001c;
   border-collapse: collapse;
 }
 
@@ -306,7 +310,20 @@ img {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 0 auto;
-	border: solid 10px #00ccff;
-	box-shadow: inset 0px 0px 30px 30px rgba(0,0,0,0.9);
+	margin: 0 0;
+	border: solid 10px #00abff;
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.2);
+}
+
+table {
+	min-width: 100%;
+}
+
+
+ .admin.innermost-tile {
+	font-variant-caps: all-small-caps;
+	max-width: 95%;
+	font-size: large;
+	display: inline-flex;
+	margin: none;
 }
