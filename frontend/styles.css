@@ -333,6 +333,7 @@ figcaption {
 figure {
 	padding: 7px;
 	padding-top: 15px;
+
 	border-color: black;
 	border-radius: 4%;
 	border-width: 2px;
@@ -344,6 +345,6 @@ figure {
 	justify-content: center;
 	align-items: center;
 	background-color: #FAEBD7;
-	margin: 15px 20px;
+	margin: 25px 20px;
 
 }
