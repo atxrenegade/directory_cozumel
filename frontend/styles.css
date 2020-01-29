@@ -78,11 +78,11 @@ select {
 }
 
 input[type="radio"] {
-	height: 20px;
+	height: 12px;
 	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 	background-color: #00ccff;
 	color: #00ccff;
-	margin: 4%;
+	margin: 1%;
 }
 
 input[type="button"], button {
@@ -106,7 +106,7 @@ input[type="text"] {
 
 }
 
-.tile, .inner-tile, .innermost-tile {
+.tile, .inner-tile, .innermost-tile, .innermost-tile .admin {
 	background: white;
 	margin: 40px 25px 25px 25px;
 	padding: 15px;
@@ -131,7 +131,7 @@ legend {
 }
 
 .innermost-tile {
-	opacity: 1.0;;
+	opacity: 1.0;
 }
 
 .tile-tile {
@@ -175,6 +175,7 @@ button {
 #js-search-by-category {
 	display: none;
 }
+
 
 #js-listings-container {
 	display: block;
@@ -228,16 +229,18 @@ button {
 
 #js-admin-hidden-button-container {
 	padding: 2px;
+	margin: 30px;
 }
 
 #js-admin-hidden-button {
 	float: right;
-	margin-right: 5%;
+	margin-right: 18%;
 	margin-bottom: 5%;
 	display: block;
 	border-style: none;
 	background: none;
-	opacity: 0.7;
+	opacity: 0.8;
+	width: 10%;
 }
 
 #js-admin-logout-button {
@@ -260,7 +263,12 @@ button {
 	display: none;
 }
 
-
+.bubble {
+	background-color: #E0FFFF;
+	border-radius: 5%;
+	margin: 2% 0%;
+	padding:  2% 2% 2% 5%;
+}
 /* Admin Tables Styling */
 
 table {
