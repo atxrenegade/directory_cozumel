@@ -46,7 +46,6 @@ input {
 
 fieldset {
 	margin:  10px;
-	padding: 2% 4%;
 	border-radius: .5em;
 	border-width: 5px;
 	border-color: #00ccff;
@@ -57,13 +56,54 @@ fieldset {
 
 input, button, select {
 	 margin-left: 15px;
-	 background-color: #B0E0E6; /* Remove background fill */
+	 background-color: #E0FFFF; /* Remove background fill */
 	 text-transform: uppercase; /* Make text all uppercase */
-	 border-radius: 15%; /* Remove corner curve */
-	 border: 2px solid #00ccff; /* 2px white border */
+	 border-radius: 10%; /* Remove corner curve */
+	 border: 3px solid #00ccff; /* 2px white border */
 	 color: grey; /* White text */
-	 height: 20%; /* Increase input height */
+	 height: 30px; /* Increase input height */
 	 opacity: 1.0;
+	 font-size: .8em;
+}
+
+button {
+	font-size: .8em;
+}
+
+select {
+	width: 60%;
+	border-radius: 0;
+	margin: 1%;
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
+}
+
+input[type="radio"] {
+	height: 20px;
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+	background-color: #00ccff;
+	color: #00ccff;
+	margin: 4%;
+}
+
+input[type="button"], button {
+	width: 70%;
+	margin: .5%;
+	font-size: .8em;
+}
+
+
+input[type="text"] {
+	width: 60%;
+	border-radius: 0;
+	border-style: none;
+	background: #00ccff;
+	opacity: 0.4;
+	margin: 1%;
+	align-self: right;
+	padding: 2%;
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
+	height: 20px;
+
 }
 
 .tile, .inner-tile, .innermost-tile {
@@ -76,12 +116,14 @@ input, button, select {
 	max-width: 60%;
 	margin: 1% auto;
 }
+
 legend {
 	padding: 1%;
 }
 
 .tile {
 	opacity: 0.8;
+
 }
 
 .inner-tile {
@@ -116,13 +158,6 @@ legend {
 	box-shadow: none;
 	display: block;
 
-/*
-  display: table-cell;
-  height: 500px;
-  text-align: center;
-  width: 500px;
-  vertical-align: middle;
-*/
 }
 
 button {
@@ -265,5 +300,5 @@ img {
 	align-items: center;
 	margin: 0 auto;
 	border: solid 10px #00ccff;
-	box-shadow:5px 5px 5px #999;
+	box-shadow: inset 0px 0px 30px 30px rgba(0,0,0,0.9);
 }
