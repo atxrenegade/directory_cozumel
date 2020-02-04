@@ -6,115 +6,13 @@
 		position: sticky;
 	}
 
-	label, div, button {
-		color: grey;
-	}
-
-	h2 {
-		font-family: 'Satisfy', cursive;
-		font-size: 5em;
-		font-weight: bold;
-		color:  white;
-		letter-spacing: 0.01em;
-		display: flex;
-	  width: 45%;
-	  height: auto;
-	  margin: 25px auto;
-		opacity: 0.9;
-	}
-
-	h3 {
-		font-family: 'DM Serif Display', cursive;
-		font-size: 2.75em;
-		color: #00abff;
-		padding: 1%;
-		margin: .5%;
-	}
-
-	h4, legend {
-		font-family: 'DM Serif Display', cursive;
-		font-size: 1.25em;
-		color: #00abff; /* #00ccff; */
-	}
-
-	p, label, div, button, input {
-		font-family: 'Open Sans', sans-serif;
-	}
-
-	input {
-		font-family: 'Open Sans', sans-serif;
-	}
-
-	fieldset {
-		margin: 12px;
-		border-radius: .5em;
-		border-width: 5px;
-		border-style: double;
-	}
-
-	input, button, select {
-		 text-transform: uppercase; /* Make text all uppercase */
-		 border: 5px solid #00ccff1c; /* 2px white border */
-		 color: grey; /* White text */
-		 height: 30px; /* Increase input height */
-		 opacity: 1.0;
-		 font-size: .8em;
-		 border-radius: 10%;
-		 background-color: #00ccff1c;
-		 margin: 3px;
-	}
-
-	button, input[type="submit"] {
-		font-size: .8em;
-		margin: 5px;
-	}
-
-	select {
-		width: 60%;
-		border-radius: 0;
-		margin: 1%;
-		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
-	}
-
-	input[type="radio"] {
-		height: 10px;
-		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
-		background-color: #00ccff;
-		color: #00ccff;
-		margin: 1%;
-	}
-
-	input[type="button"], button {
-		padding: 0% 2%;
-		font-size: .8em;
-		display: inline-block;
-		text-align: center;
-	}
-
-
-	input[type="text"] {
-		width: 60%;
-		border-radius: 0;
-		border-style: none;
-		margin: 1%;
-		padding: 1%;
-		padding-left: 10px;
-		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
-		height: 20px;
-	}
-
-	input[type="checkbox"] {
-		margin: 0px 5px 0px 5px;
-		height: 15px;
-	}
-
+	/* CONTAINER STYLES */
 	.tile, .inner-tile, .innermost-tile {
 		background: white;
 		margin: 40px 25px 25px 25px;
 		padding: 15px;
-		opacity: 0.8;
 		border: 2px solid white;
-	  border-radius: 15px;
+		border-radius: 15px;
 		max-width: 60%;
 		margin: 1% auto;
 	}
@@ -137,170 +35,13 @@
 		padding: 18px;
 		opacity: 0.0;
 		border: 2px solid white;
-	  border-radius: 15px;
+		border-radius: 15px;
 		max-width: 60%;
 		margin: 20px auto;
 		color: white;
 	}
 
-	.logo-image {
-		max-width: 28%;
-		max-height: 28%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin: 0 auto;
-		border: none;
-		box-shadow: none;
-		display: block;
-	}
-
-	button {
-		font-variant-caps: all-small-caps;
-	}
-
-	#js-search-by-name	{
-		display: block;
-	}
-
-	#js-search-by-category {
-		display: none;
-	}
-
-	#js-listings-container {
-		display: block;
-	}
-
-	#js-business-index-container {
-		display: none;
-	}
-
-	#js-map {
-			display: none;
-	    height: 400px;
-			width: 100%;
-	}
-
-	#js-business-listing-details {
-		display: none;
-	}
-
-	#js-form-container {
-	}
-
-	#js-add-business-form-container {
-		display: none;
-	}
-
-	#js-flag-business-form-container {
-		display: none;
-	}
-
-	#js-suggest-edit-form-container {
-		display: none;
-	}
-
-	#js-add-review-form-container {
-		display: none;
-	}
-
-	#js-add-image-form-container {
-		display: none;
-	}
-
-	#js-admin-login-container {
-		display: none;
-	}
-
-	#js-admin-panel-container {
-		display: none;
-		margin: auto;
-	}
-
-	#js-admin-hidden-button-container {
-		padding: 2px;
-		margin: 30px;
-	}
-
-	#js-admin-hidden-button {
-		float: right;
-		margin-right: 18%;
-		margin-bottom: 5%;
-		display: block;
-		border-style: none;
-		background: none;
-		opacity: 0.8;
-		width: 10%;
-	}
-
-	#js-admin-logout-button {
-		display: none;
-	}
-
-	#js-admin-user-info {
-		display: none;
-	}
-
-	#js-admin-menu-container {
-		display: none;
-	}
-
-	#js-notes-form {
-		display: none;
-	}
-
-	#entry-details-table {
-		display: none;
-	}
-
-	.bubble {
-		background-color: #E0FFFF;
-		border-radius: 5%;
-		margin: 2% 0%;
-		padding:  2% 2% 2% 5%;
-	}
-	/* Admin Tables Styling */
-
-	th {
-		text-align: center;
-		background-color: #80808052;
-		color: #00000096;
-	}
-
-	td {
-		color: grey;
-	}
-
-	table, th, td {
-	  border: 3px solid #0000001c;
-		text-align: center;
-		vertical-align: middle;
-	}
-
-	map {
-		padding: 10px;
-		margin: 10px;
-	}
-
-	img {
-		border: solid 5px #00abff;
-		border-radius: 3%;
-	  max-width: 95%;
-	  max-height: 95%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin-top: 10px;
-	}
-
-	table {
-		min-width: 100%;
-		max-width: 100%;
-	}
-
-
- 	.admin.innermost-tile {
+	.admin.innermost-tile {
 		font-variant-caps: all-small-caps;
 		max-width: 100%;
 		display: inline-flex;
@@ -308,10 +49,56 @@
 		font-size: large;
 	}
 
+	/* FONT STYLES */
+	h2 {
+		font-family: 'Satisfy', cursive;
+		font-size: 5em;
+		font-weight: bold;
+		color:  white;
+		letter-spacing: 0.01em;
+		display: flex;
+		width: 45%;
+		height: auto;
+		margin: 25px auto;
+		opacity: 0.9;
+	}
+
+	h3 {
+		font-family: 'DM Serif Display', cursive;
+		font-size: 2.75em;
+		color: #00abff;
+		padding: 1%;
+		margin: .5%;
+	}
+
+	h4, legend {
+		font-family: 'DM Serif Display', cursive;
+		font-size: 1.25em;
+		color: #00abff; /* alternate color #00ccff; */
+	}
+
+	p, label, div, button, input {
+		font-family: 'Open Sans', sans-serif;
+		color: grey;
+	}
+
+	/* IMAGE STYLES */
+	img {
+		border: solid 5px #00abff;
+		border-radius: 3%;
+		max-width: 95%;
+		max-height: 95%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 10px;
+	}
+
 	figcaption {
 		padding-top: 20px;
 		border: 2px;
-	  font-size: 15px;
+		font-size: 15px;
 		font-variant-caps: all-small-caps;
 		text-align: center;
 	}
@@ -333,7 +120,131 @@
 		margin: 25px 20px;
 	}
 
-	input, select, textarea{
-		color: grey; /* Fallback for older browsers */
-	 	color: rgba(128,128,128, 1.0);
+	/* INPUT ELEMENT STYLES */
+	input, button, select {
+		 text-transform: uppercase; /* Make text all uppercase */
+		 border: 5px solid #00ccff1c; /* 2px white border */
+		 height: 30px; /* Increase input height */
+		 opacity: 1.0;
+		 font-size: .8em;
+		 border-radius: 10%;
+		 color: grey; /* Fallback for older browsers */
+		 color: rgba(128,128,128, 1.0);
+		 margin: 3px;
+	}
+
+	select {
+		width: 60%;
+		border-radius: 0;
+		margin: 1%;
+		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
+	}
+
+	input[type="radio"] {
+		height: 10px;
+		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+		background-color: #00ccff;
+		color: #00ccff;
+	}
+
+	input[type="button"], button {
+		padding: 0% 2%;
+		display: inline-block;
+		text-align: center;
+	}
+
+	input[type="text"] {
+		width: 60%;
+		border-radius: 0;
+		border-style: none;
+		margin: 1%;
+		padding: 1%;
+		padding-left: 10px;
+		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
+		height: 20px;
+	}
+
+	input[type="checkbox"] {
+		margin: 0px 5px 0px 5px;
+		height: 15px;
+	}
+
+	/* MISC ELEMENT STYLES */
+	fieldset {
+		margin: 12px;
+		border-radius: .5em;
+		border-width: 5px;
+		border-style: double;
+	}
+
+	map {
+		padding: 10px;
+		margin: 10px;
+	}
+
+	/* SPECIFIC ID AND CLASS STYLES */
+	.logo-image {
+		max-width: 28%;
+		max-height: 28%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0 auto;
+		border: none;
+		box-shadow: none;
+	}
+
+	#js-map {
+    height: 400px;
+		width: 100%;
+	}
+
+	#js-admin-panel-container {
+		margin: auto;
+	}
+
+	#js-admin-hidden-button-container {
+		padding: 2px;
+		margin: 30px;
+	}
+
+	#js-admin-hidden-button {
+		float: right;
+		margin-right: 18%;
+		margin-bottom: 5%;
+		border-style: none;
+		background: none;
+		opacity: 0.8;
+		width: 10%;
+	}
+
+	#js-search-by-name, #js-listings-container, #js-admin-hidden-button, .logo-image {
+		display: block;
+	}
+
+	#js-search-by-category, #js-business-index-container, #js-business-listing-details, #js-add-business-form-container, #js-flag-business-form-container, #js-suggest-edit-form-container, 	#js-add-review-form-container, #js-add-image-form-container, #js-admin-login-container, 	#js-admin-panel-container, #js-admin-logout-button, #js-admin-user-info, #js-admin-menu-container, #js-notes-form, #entry-details-table, #js-map {
+		display: none;
+	}
+
+
+	/* ADMIN TABLE ELEMENT STYLES */
+	th {
+		text-align: center;
+		background-color: #80808052;
+		color: #00000096;
+	}
+
+	td {
+		color: grey;
+	}
+
+	table {
+		min-width: 100%;
+		max-width: 100%;
+	}
+
+	table, th, td {
+		border: 3px solid #0000001c;
+		text-align: center;
+		vertical-align: middle;
 	}
