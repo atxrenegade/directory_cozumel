@@ -6,14 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first
 
-categories_list = [
-	'hotel',
-	'hardware store',
-	'gas station',
-	'candy store',
-	'car rentals'
-]
-
 businesses_list_1 = [
 	[ 'Hotel Zilla', 'hotel' ],
 	[ 'Kernel Hotel', 'hotel' ],
@@ -516,10 +508,6 @@ maps_list = [
 	{ lat: 20.509130, lng:  -86.950238, business_id: 29 },
 	{ lat: 20.509130, lng:  -86.950238, business_id: 30 }
 ]
-
-categories_list.each do |name|
-	Category.create( name: name )
-end
 
 businesses_list_1.each do |name, category_name|
 	Business.build_new_business(name, category_name)
