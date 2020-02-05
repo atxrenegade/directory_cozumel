@@ -10,7 +10,6 @@ window.onload = function() {
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
 	let searchByCategory = document.getElementById('js-search-by-category');
-	let nameRadioSelect = document.getElementById('js-radio-by-name');
 	let categoryRadioSelect = document.getElementById('js-radio-by-category');
 	let searchCategoryMenu = document.getElementById('js-search-category-menu');
 	let searchNameField = document.getElementById('js-search-name-text-field');
@@ -37,8 +36,6 @@ window.onload = function() {
 	let adminPanel = document.getElementById('js-admin-panel-container');
 	let adminMenu = document.getElementById('js-admin-menu-container');
 	let adminPanelLogin = document.getElementById('js-admin-login-button');
-	let adminUsernameField = document.getElementById('js-admin-username')
-	let adminPasswordField = document.getElementById('js-admin-password')
 	let adminPanelLogout = document.getElementById('js-admin-logout-button')
 	let adminPanelForm = document.getElementById('js-admin-login')
 	let adminUserInfo = document.getElementById('js-admin-user-info')
@@ -50,11 +47,6 @@ window.onload = function() {
 	let listingsContainer = document.getElementById('listings-container')
 	let newBusContainer = document.getElementById('js-new-business-container')
 	let mapContainer = document.getElementById('js-map')
-	let businessDetails = document.getElementById('js-business-listing-details')
-
-	/* Form Submit Elements */
-	let newBusForm = document.getElementById('js-new-bus-form');
-	let newReviewForm = document.getElementById('js-new-review-form');
 
 	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
