@@ -1,6 +1,6 @@
 class Entry < ApplicationRecord
 	require 'json'
-	
+
 	def build_record(formatted_data)
 		record = Entry.new
 		record['entry_type'] = formatted_data[0]
@@ -148,7 +148,6 @@ class Entry < ApplicationRecord
 	end
 
 	def parse_entry_data
-		binding.pry
 		attributes = self.data_object.tr('"', '').tr('>', '').tr('=', ': ').tr('{', '').tr('}', '').split(',')
 		attrHash = {}
 		attributes.map do |el|

@@ -20,6 +20,7 @@ class EntriesController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		entry = Entry.new.handle_record(params)
 		render json: entry
 	end

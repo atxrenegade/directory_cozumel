@@ -514,7 +514,6 @@ window.onload = function() {
 
 	/* Form Event Listeners */
 	document.addEventListener( 'submit', function(){
-		debugger;
 		submitForm(event);
 	});
 	/* remove form success message */
