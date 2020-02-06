@@ -3,7 +3,7 @@ class Entry < ApplicationRecord
 		record = Entry.new
 		record['entry_type'] = formatted_data[0]
 		record['business_id'] = formatted_data[1]
-		record['bus_name'] = formatted_data[2]
+		record['business_name'] = formatted_data[2]
 		record['date'] = formatted_data[3]
 		record['contributor'] = formatted_data[4]
 		record['contributor_email'] = formatted_data[5]
@@ -45,7 +45,7 @@ class Entry < ApplicationRecord
 		#data_array[6] should include name, categories, overall rating, address, phone number, website
 		#add categories to from for user to select values to be included in data_array
 		data_array[6] = {}
-		data_array[6]['bus_name'] = data[1][1]
+		data_array[6]['business_name'] = data[1][1]
 		data_array[6]['categories'] = data[5][1]
 		data_array[6]['overall_rating'] = 'not yet rated'
 		data_array[6]['address'] = data[2][1]
@@ -108,7 +108,7 @@ class Entry < ApplicationRecord
 	def new_flag_entry(data)
 		data_array = []
 		data_array[0] = 'flag business'
-		data_array[1] = get_bus_name(data[5][1])
+		data_array[1] = get_business_name(data[5][1])
 		data_array[2] = data[5][1]
 		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S') #date of update request
 		data_array[4] = data[2][1] #contributor
@@ -124,7 +124,7 @@ class Entry < ApplicationRecord
 		return Business.find_by_name(name).id
 	end
 
-	def get_bus_name(id)
+	def get_business_name(id)
 		return Business.find_by_id(id).name
 	end
 
@@ -158,7 +158,7 @@ class Entry < ApplicationRecord
 	end
 
 	def convert_to_business(attributes)
-		business = Business.create!(name: attributes['bus_name'])
+		business = Business.create!(name: attributes['business_name'])
 		listing_attributes = {overall_rating: attributes['overall_rating'], address: attributes['address'], phone_number: attributes['phone_number'], website: attributes['website'], business_id: business.id}
 		Business.build_new_associated(business, attributes['categories'], listing_attributes)
 	end

@@ -10,20 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_022422) do
+ActiveRecord::Schema.define(version: 2019_11_18_055052) do
 
   create_table "admins", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "role"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role"
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.string "status"
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "business_categories", force: :cascade do |t|
@@ -48,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_022422) do
   create_table "entries", force: :cascade do |t|
     t.string "entry_type"
     t.integer "business_id"
-    t.string "bus_name"
+    t.string "business_name"
     t.string "date"
     t.string "contributor"
     t.string "contributor_email"
@@ -66,10 +61,10 @@ ActiveRecord::Schema.define(version: 2020_01_27_022422) do
     t.string "date"
     t.string "url"
     t.string "contributor"
+    t.string "contributor_email"
     t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "contributor_email"
     t.index ["business_id"], name: "index_images_on_business_id"
   end
 
