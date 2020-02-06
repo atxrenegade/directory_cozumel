@@ -248,7 +248,7 @@ class adminInterface {
 			let id = el['id'];
 			let entryType = el['entry_type'];
 			let busId = el['business_id'];
-			let busName = el['bus_name'];
+			let busName = el['business_name'];
 			let dateCreated = el['date'];
 			let contributor = el['contributor'];
 			let contributorEmail = el['contributor_email'];
