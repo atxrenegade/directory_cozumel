@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 	post '/business', to: 'businesses#show'
 
 	get  '/entries/attributes', to: 'entries#attributes'
-	post '/entries/new_object', to: 'entries#new_object'
-	post '/entries/create'
+	post '/entries/build_object', to: 'entries#build_object_from_entry'
+	post '/entries', to: 'entries#create'
 	post '/entries/update'
 	post '/entries/search', to: 'entries#index_search'
 	post '/entries', to: 'entries#index'

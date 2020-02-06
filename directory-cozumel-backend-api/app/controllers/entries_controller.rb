@@ -8,7 +8,7 @@ class EntriesController < ApplicationController
 		render json: attributes
 	end
 
-	def new_object
+	def build_object_from_entry
 		entry = Entry.find_by_id(params['id'])
 		entry.convert_to_object()
 		if entry.persisted?

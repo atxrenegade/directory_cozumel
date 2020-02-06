@@ -356,7 +356,7 @@ class adminInterface {
 		body: JSON.stringify(data)
 		};
 		try {
-			fetch('http://localhost:3000/entries/new_object', configObj)
+			fetch('http://localhost:3000/entries/build_object', configObj)
 				.then(resp => {
 					return resp.json();
 			})
