@@ -7,42 +7,42 @@
 #   Character.create(name: 'Luke', movie: movies.first
 
 businesses_list_1 = [
-	[ 'Hotel Zilla', 'hotel' ],
-	[ 'Kernel Hotel', 'hotel' ],
-	[ 'Verge Hotel', 'hotel' ],
-	[ 'Liquid Hotel', 'hotel' ],
-	[ 'Citywide Hotel', 'hotel' ],
-	[ 'Sandman Hotel', 'hotel' ]
+	[ 'Hotel Zilla', 'Accommodations - Hostels' ],
+	[ 'Kernel Hotel', 'Accommodations - Eco Hotels' ],
+	[ 'Verge Hotel', 'Accommodations - Hotels'],
+	[ 'Liquid Hotel', 'Accommodations - Resorts' ],
+	[ 'Citywide Hotel', 'Accommodations - Time Shares & Condominiums' ],
+	[ 'Sandman Hotel', 'Accommodations - Hotels']
 ]
 
 businesses_list_2 = [
-	[ 'Hardware Mate', 'hardware store' ],
-	[ 'All Hardware', 'hardware store' ],
-	[ 'FourStar Hardware', 'hardware store' ],
-	[ 'Secret Hardware', 'hardware store' ],
-	[ 'Insight Hardware', 'hardware store' ],
-	[ 'Luxx Hardware', 'hardware store' ],
+	[ 'Hardware Mate', 'Retail - Hardware Stores' ],
+	[ 'All Hardware', 'Retail - Hardware Stores' ],
+	[ 'FourStar Hardware', 'Retail - Hardware Stores' ],
+	[ 'Secret Hardware', 'Retail - Hardware Stores' ],
+	[ 'Insight Hardware', 'Retail - Hardware Stores' ],
+	[ 'Luxx Hardware', 'Retail - Hardware Stores' ],
 
-	[ 'Gas Station Time', 'gas station' ],
-	[ 'Midas Gas Station', 'gas station' ],
-	[ 'Gas Stop', 'gas station' ],
-	[ 'EagleEye Gas Station', 'gas station' ],
-	[ 'Compare Gas Station', 'gas station' ],
-	[ 'Discount Gas Station', 'gas station' ],
+	[ 'Gas Station Time', 'Gas Stations' ],
+	[ 'Midas Gas Station', 'Gas Stations' ],
+	[ 'Gas Stop', 'Gas Stations' ],
+	[ 'EagleEye Gas Station', 'Gas Stations' ],
+	[ 'Compare Gas Station', 'Gas Stations' ],
+	[ 'Discount Gas Station', 'Gas Stations' ],
 
-	[ 'Candy Store Bounce', 'candy store' ],
-	[ 'Pre Candy Store', 'candy store' ],
-	[ 'Corpus Candy Store', 'candy store' ],
-	[ 'Net Candy Store', 'candy store' ],
-	[ 'ZeroPoint Candy Store', 'candy store' ],
-	[ 'Sweetharts Candy Store', 'candy store' ],
+	[ 'Candy Store Bounce', 'Retail - Candy' ],
+	[ 'Pre Candy Store', 'Retail - Candy' ],
+	[ 'Corpus Candy Store', 'Retail - Candy' ],
+	[ 'Net Candy Store', 'Retail - Candy' ],
+	[ 'ZeroPoint Candy Store', 'Retail - Candy' ],
+	[ 'Sweetharts Candy Store', 'Retail - Candy' ],
 
-	[ 'Car Rentals Savers', 'car rentals' ],
-	[ 'OneWorld Car Rentals','car rentals' ],
-	[ 'Simulation Car Rentals', 'car rentals' ],
-	[ 'Augmented Car Rentals', 'car rentals' ],
-	[ 'Turbine Car Rentals', 'car rentals' ],
-	[ 'Budget Car Rentals', 'car rentals' ]
+	[ 'Car Rentals Savers', 'Transportation - Car Rentals' ],
+	[ 'OneWorld Car Rentals',	'Transportation - Car Rentals' ],
+	[ 'Simulation Car Rentals', 'Transportation - Car Rentals' ],
+	[ 'Augmented Car Rentals', 	'Transportation - Car Rentals' ],
+	[ 'Turbine Car Rentals', 'Transportation - Car Rentals' ],
+	[ 'Budget Car Rentals', 'Transportation - Car Rentals' ]
 ]
 
 listings_list = [
