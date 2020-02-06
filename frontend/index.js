@@ -10,7 +10,7 @@ window.onload = function() {
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
 	let searchByCategory = document.getElementById('js-search-by-category');
-	
+	let nameRadioSelect = document.getElementById('js-radio-by-name');
 	let categoryRadioSelect = document.getElementById('js-radio-by-category');
 	let searchCategoryMenu = document.getElementById('js-search-category-menu');
 	let searchNameField = document.getElementById('js-search-name-text-field');
@@ -200,7 +200,7 @@ window.onload = function() {
 		body: JSON.stringify(data)
 	};
 	try {
-		fetch('http://localhost:3000/entries/new', configObj)
+		fetch('http://localhost:3000/entries', configObj)
 			.then(resp => {
 				return resp.json();
 		})
