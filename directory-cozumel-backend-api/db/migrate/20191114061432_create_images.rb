@@ -5,6 +5,7 @@ class CreateImages < ActiveRecord::Migration[5.2]
       t.string :date
       t.string :url
       t.string :contributor
+			t.string :contributor_email
 
 			t.references :business
 
