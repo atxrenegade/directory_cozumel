@@ -57,7 +57,7 @@ class Entry < ApplicationRecord
 	def new_review_entry(data)
 		data_array = []
 		data_array[0] = 'new review'
-		data_array[1] = get_bus_id(data[6][1])
+		data_array[1] = get_business_id(data[6][1])
 		data_array[2] = data[6][1]
 		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S')
 		data_array[4] = data[3][1] #contributor
@@ -75,7 +75,7 @@ class Entry < ApplicationRecord
 	def new_image_entry(data)
 		data_array = []
 		data_array[0] = 'new image'
-		data_array[1] = get_bus_id(data[7][1])
+		data_array[1] = get_business_id(data[7][1])
 		data_array[2] = data[7][1]
 		data_array[3] = data[3][1] #date of image
 		data_array[4] = data[4][1] #contributor
@@ -93,7 +93,7 @@ class Entry < ApplicationRecord
 	def new_update_entry(data)
 		data_array = []
 		data_array[0] = 'update business'
-		data_array[1] = get_bus_id(data[5][1])
+		data_array[1] = get_business_id(data[5][1])
 		data_array[2] = data[5][1]
 		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S') #date of update request
 		data_array[4] = data[2][1] #contributor
@@ -120,7 +120,7 @@ class Entry < ApplicationRecord
 		build_record(data_array)
 	end
 
-	def get_bus_id(name)
+	def get_business_id(name)
 		return Business.find_by_name(name).id
 	end
 

@@ -6,9 +6,9 @@ class Listing < ApplicationRecord
 		self.business.name
 	end
 
-	def self.format_listing(bus_id)
+	def self.format_listing(business_id)
 		listing = {}
-		listObj = Listing.find_by(business_id: bus_id)
+		listObj = Listing.find_by(business_id: business_id)
 		if listing
 			listing['overall_rating'] = listObj.overall_rating
 		else
@@ -20,8 +20,8 @@ class Listing < ApplicationRecord
 		return listing
 	end
 
-	def self.updateBusRating(bus_id, overall_rating)
-		bus = Listing.find(bus_id)
+	def self.updateBusRating(business_id, overall_rating)
+		bus = Listing.find(business_id)
 		bus.update!(overall_rating: overall_rating)
 	end
 end

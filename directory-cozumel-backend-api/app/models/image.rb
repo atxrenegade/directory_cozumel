@@ -6,7 +6,7 @@ class Image < ApplicationRecord
 		self.business.name
 	end
 
-	def self.collect_images(bus_id)
-		return Image.where(business_id: bus_id)
+	def self.collect_images(business_id)
+		return Image.where(business_id: business_id)
 	end
 end
