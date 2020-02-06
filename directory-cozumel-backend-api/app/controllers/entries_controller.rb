@@ -1,6 +1,7 @@
 class EntriesController < ApplicationController
 	# before_action :require_admin, except: [:create]
 
+
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']
 		attributes = Entry.attribute_names - columnsToExclude
@@ -10,9 +11,12 @@ class EntriesController < ApplicationController
 	def new_object
 		entry = Entry.find_by_id(params['id'])
 		entry.convert_to_object()
-		msg = { msg: 'Entry approval successful!'}
-
-		render json: msg
+		if entry.persisted?
+			response = { msg: 'Entry approval successful!'}
+		else
+			response = { msg: 'Entry failed to save to database!'}
+		end
+		render json: response
 	end
 
 	def create
