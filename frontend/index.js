@@ -4,7 +4,7 @@ window.onload = function() {
 	ENTRIES = [];
 	ATTRIBUTES = [];
 	RESULT = [];
-	RESPONSE_MSG = ""
+	RESPONSE_MSG = "";
 	LAT = 20.42;
 	LNG = -86.92;
 
@@ -367,7 +367,6 @@ window.onload = function() {
 	}
 
 	function formSubmitted(event) {
-		debugger;
 		let submittedEl = document.createElement('p');
 		submittedEl.className = 'succMsg'
 		if (RESPONSE_MSG === true){

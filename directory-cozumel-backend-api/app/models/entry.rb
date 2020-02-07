@@ -110,7 +110,7 @@ class Entry < ApplicationRecord
 	def new_flag_entry(data)
 		data_array = []
 		data_array[0] = 'flag business'
-		data_array[1] = get_business_name(data[5][1])
+		data_array[1] = get_business_id(data[5][1])
 		data_array[2] = data[5][1]
 		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S') #date of update request
 		data_array[4] = data[2][1] #contributor
