@@ -19,6 +19,7 @@ class adminInterface {
 		let bigResolvedIndexButton = document.getElementById('admin-show-resolved-button')
 		let adminSearchButton = document.getElementById('js-admin-search-entries')
 		let superAdminCRUDMenu = document.getElementById('js-super-admin-modify-menu')
+		let adminLogoutButton = document.getElementById('js-admin-logout-button')
 
 		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime();
@@ -72,6 +73,9 @@ class adminInterface {
 			let radVals = adminInterface.getRadioVal(event);
 			adminInterface.buildCRUDforms(radVals, event)
 		})
+
+		adminLogoutButton.addEventListener('click', function(){ location.reload(true)
+		});
 	}
 
 	static buildCRUDforms(radVals, event){
