@@ -369,19 +369,21 @@ window.onload = function() {
 	function formSubmitted(event) {
 		let submittedEl = document.createElement('p');
 		submittedEl.className = 'succMsg'
-		if (RESPONSE_MSG === true){
-			submittedEl.innerHTML = 'Successfully submitted for Review!';
-		} else {
-			submittedEl.innerHTML = 'Submission Unsuccessful!';
-		}
-		event.target.style.display = 'none';
-		event.target.reset();
-		if (event.originalTarget[0].id === 'new-bus'){
-			document.getElementById('js-add-business').appendChild(submittedEl);
-		} else {
-			listingMenu.appendChild(submittedEl)
-			clearCheckBox();
-		}
+		setTimeout(function(){
+			if (RESPONSE_MSG === true){
+				submittedEl.innerHTML = 'Successfully submitted for review!';
+			} else {
+				submittedEl.innerHTML = 'Submission Unsuccessful!';
+			}
+			event.target.style.display = 'none';
+			event.target.reset();
+			if (event.originalTarget[0].id === 'new-bus'){
+				document.getElementById('js-add-business').appendChild(submittedEl);
+			} else {
+				listingMenu.appendChild(submittedEl)
+				clearCheckBox();
+			}
+		}, 250)
 	}
 
 	function clearCheckBox(){
