@@ -162,6 +162,8 @@
 		padding-left: 10px;
 		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
 		height: 20px;
+		font-variant: normal;
+		text-transform: none;
 	}
 
 	input[type="checkbox"] {
