@@ -219,6 +219,7 @@ class adminInterface {
 				let noEntries = document.getElementById('admin-no-entry-message')
 				if (noEntries !== null){
 					document.getElementById('admin-entry-table').removeChild(noEntries)
+					document.getElementById('js-admin-panel-container').style.display = 'none';
 				}
 			})
 		}
@@ -667,7 +668,6 @@ class adminInterface {
 		} else {
 			resultsEl = `Admin Operation Error. Object not persisted to database.`
 		}
-		debugger;
 		elToAppendTo.appendChild(resultsEl);
 	}
 
