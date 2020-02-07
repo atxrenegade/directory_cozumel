@@ -98,7 +98,6 @@ class adminInterface {
 	}
 
 	static indexButtonAction(status){
-		debugger;
 		let entries = adminInterface.buildIndexPostReq(`${status}`);
 		setTimeout(`adminInterface.renderIndex('${status}')`, 1800);
 	}
