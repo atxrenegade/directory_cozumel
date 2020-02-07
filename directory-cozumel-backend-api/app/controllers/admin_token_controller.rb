@@ -1,9 +1,7 @@
 require('./app/controllers/application_controller.rb')
 
 class AdminTokenController < Knock::AuthTokenController
-
 	def create
-		binding.pry
 		@admin = Admin.find_by('username': params[:session][:username])
 		if @admin && @admin.authenticate(params[:session][:password])
 			session[:admin_id] = @admin.id
