@@ -4,6 +4,7 @@ window.onload = function() {
 	ENTRIES = [];
 	ATTRIBUTES = [];
 	RESULT = [];
+	RESPONSE_MSG = ""
 	LAT = 20.42;
 	LNG = -86.92;
 
@@ -190,7 +191,7 @@ window.onload = function() {
 	}
 
 	function postForm(data) {
-		console.log(data)
+
 		let configObj = {
 			method: 'POST',
 			headers: {
@@ -204,7 +205,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => console.log(json)
+			.then(json => RESPONSE_MSG = json
 		)
 	}
 	catch(err) {
@@ -366,13 +367,18 @@ window.onload = function() {
 	}
 
 	function formSubmitted(event) {
+		debugger;
 		let submittedEl = document.createElement('p');
 		submittedEl.className = 'succMsg'
-		submittedEl.innerHTML = 'Successfully submitted for Review!';
+		if (RESPONSE_MSG === true){
+			submittedEl.innerHTML = 'Successfully submitted for Review!';
+		} else {
+			submittedEl.innerHTML = 'Submission Unsuccessful!';
+		}
 		event.target.style.display = 'none';
 		event.target.reset();
 		if (event.originalTarget[0].id === 'new-bus'){
-			newBusContainer.appendChild(submittedEl)
+			document.getElementById('js-add-business').appendChild(submittedEl);
 		} else {
 			listingMenu.appendChild(submittedEl)
 			clearCheckBox();
