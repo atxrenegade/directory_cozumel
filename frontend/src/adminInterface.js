@@ -74,7 +74,9 @@ class adminInterface {
 			adminInterface.buildCRUDforms(radVals, event)
 		})
 
-		adminLogoutButton.addEventListener('click', function(){ location.reload(true)
+		adminLogoutButton.addEventListener('click', function(){
+			/* clear session has and user values*/
+			 location.reload(true)
 		});
 	}
 
