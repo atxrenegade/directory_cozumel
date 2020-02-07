@@ -98,6 +98,7 @@ class adminInterface {
 	}
 
 	static indexButtonAction(status){
+		debugger;
 		let entries = adminInterface.buildIndexPostReq(`${status}`);
 		setTimeout(`adminInterface.renderIndex('${status}')`, 1800);
 	}
@@ -144,7 +145,7 @@ class adminInterface {
 		let authType = adminInterface.checkAdminAuth();
 		let method = 'POST'
 		let data = { search_type: searchType, auth_type: authType }
-		let url = `http://localhost:3000/entries`
+		let url = `http://localhost:3000/entries/index`
 		let callback = adminInterface.buildEntries;
 		adminInterface.dynamFormReq(method, url, data, callback);
 	}

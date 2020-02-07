@@ -1,7 +1,6 @@
 class EntriesController < ApplicationController
 	# before_action :require_admin, except: [:create]
 
-
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']
 		attributes = Entry.attribute_names - columnsToExclude
@@ -20,7 +19,6 @@ class EntriesController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		entry = Entry.new.handle_record(params)
 		render json: entry
 	end
@@ -30,7 +28,7 @@ class EntriesController < ApplicationController
 		render json: entries
 	end
 
-	def index_search
+	def search
 		property_param = params['property'][0].gsub('-', '_')
 		entries = Entry.search_entries(property_param, params['search_val'])
 		render json: entries

@@ -6,10 +6,10 @@ Rails.application.routes.draw do
 
 	get  '/entries/attributes', to: 'entries#attributes'
 	post '/entries/build_object', to: 'entries#build_object_from_entry'
-	post '/entries', to: 'entries#create'
 	post '/entries/update'
-	post '/entries/search', to: 'entries#index_search'
-	post '/entries', to: 'entries#index'
+	post '/entries/index', to: 'entries#index'
+	post '/entries/search', to: 'entries#search'
+	post '/entries', to: 'entries#create'
 
 	get '/businesses/attributes', to: 'businesses#attributes'
 	resources :businesses, only: [:edit, :create, :update, :delete]
