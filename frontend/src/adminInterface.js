@@ -134,9 +134,15 @@ class adminInterface {
 	}
 
 	static appendCurrentDateTime(){
+
 		let timeDateEl = document.getElementById('admin-login-date');
 		let timeDate = document.createElement('span');
-		timeDate.innerText = new Date;
+		debugger;
+		let date = new Date();
+		let localDate = date.toDateString()
+		let time = date.toLocaleTimeString();
+		timeDate.innerText = localDate + " " + time;
+
 		timeDateEl.appendChild(timeDate);
 	}
 
