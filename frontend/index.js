@@ -95,12 +95,17 @@ window.onload = function() {
 	}
 
 	function toggleNewBusinessForm() {
-		let el = document.getElementById('js-add-business-form-container')
-		toggleForm('click', el)
-		if (CATS.length === 0) {
-					collectCategories();
-			};
-			renderNewBusCatSelect();
+		let elFormContainer = document.getElementById('js-add-business-form-container')
+		let elForm = document.getElementById('js-new-business-form')
+		if (elForm.style.display === 'none'){
+			elForm.style.display = 'block';
+			if (CATS.length === 0) {
+						collectCategories();
+				};
+				renderNewBusCatSelect();
+		} else {
+			elForm.style.display = 'none';
+		}
 	}
 
 
