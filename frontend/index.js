@@ -101,9 +101,12 @@ window.onload = function() {
 		} else {
 			elFormContainer.style.display = 'block';
 			if (CATS.length === 0) {
-						collectCategories();
-				};
+				collectCategories();
+			};
+			let categorySelectEl = document.getElementById('cat-select')
+			if (categorySelectEl === null){
 				renderNewBusCatSelect();
+			}
 		}
 	}
 
@@ -380,7 +383,7 @@ window.onload = function() {
 			} else {
 				submittedEl.innerHTML = 'Submission Unsuccessful!';
 			}
-			event.target.style.display = 'none';
+
 			event.target.reset();
 			if (event.originalTarget[0].id === 'new-bus'){
 				document.getElementById('js-add-business').appendChild(submittedEl);
