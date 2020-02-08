@@ -229,10 +229,10 @@ window.onload = function() {
 	}
 
 	function returnResults(data){
-		data = Array.from(data)
-		if (data[0] == undefined) {
-			appendErrorMsg('NOT FOUND');
+		if (data['message'] !== undefined) {
+			appendErrorMsg(data['message']);
 		} else {
+			data = Array.from(data)
 			renderIndex(data)
 		}
 	}
@@ -286,6 +286,7 @@ window.onload = function() {
 		let errorMessage = document.createElement('h4');
 		errorMessage.innerHTML = `${msg}`
 		businessListings.appendChild(errorMessage);
+		businessListings.style.display = 'block';
 	}
 
 	/* Instance builder functions */
