@@ -25,6 +25,6 @@ class Review < ApplicationRecord
 		ratings = self.collect_ratings(business_id)
 		total = ratings.count
 		overall_rating = ratings.sum()/total
-		Listing.updateBusRating(business_id, overall_rating)
+		Listing.update_listing_rating(business_id, overall_rating)
 	end
 end

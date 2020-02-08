@@ -20,7 +20,7 @@ class Listing < ApplicationRecord
 		return listing
 	end
 
-	def self.updateBusRating(business_id, overall_rating)
+	def self.update_listing_rating(business_id, overall_rating)
 		bus = Listing.find(business_id)
 		bus.update!(overall_rating: overall_rating)
 	end

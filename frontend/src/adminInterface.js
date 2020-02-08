@@ -386,6 +386,7 @@ class adminInterface {
 	}
 
 	static resolveEntry(status, event){
+		debugger;
 		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
 		let adminId = adminInterface.getAdminId();
 		let resolvedDate = adminInterface.getFormattedDateTime();
