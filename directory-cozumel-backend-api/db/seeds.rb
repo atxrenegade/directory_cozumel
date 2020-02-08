@@ -1,10 +1,9 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first
+
+#The CATEGORIES LIST portion of the seed file should always be loaded for testing AND production!
+#comment out EVERYTHING below Categoires when not in TESTING mode
+
 categories_list = [
 	'Accommodations - Boutique Hotels',
 	'Accommodations - Dive Hotels',
@@ -193,6 +192,7 @@ categories_list.each do |name|
 	Category.create( name: name )
 end
 
+# ***********COMMENT OUT EVERYTHING BELOW THIS LINE WHEN NOT IN TESTING********
 
 businesses_list_1 = [
 	[ 'Hotel Zilla', 'Accommodations - Hostels' ],
