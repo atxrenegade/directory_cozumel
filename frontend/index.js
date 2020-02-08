@@ -29,7 +29,9 @@ window.onload = function() {
 
 	/* add business form elements */
 	let newBusinessButton = document.getElementById('js-add-business-button');
-	let newBusCatSelect = document.getElementById('js-new-bus-select');
+	let elFormContainer = document.getElementById('js-add-business-form-container')
+	let newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
+	let newBusinessForm = document.getElementById('js-new-business-form');
 
 	/* admin hidden button element */
 	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
@@ -95,8 +97,6 @@ window.onload = function() {
 	}
 
 	function toggleNewBusinessForm() {
-		let elFormContainer = document.getElementById('js-add-business-form-container')
-		let newBusinessForm = document.getElementById('js-new-business-form')
 		if (elFormContainer.style.display === 'block'){
 			elFormContainer.style.display = 'none';
 		} else {
@@ -352,7 +352,7 @@ window.onload = function() {
 		})
 		html += cats + '</select>';
 		catMenu.innerHTML = html;
-		newBusCatSelect.appendChild(catMenu)
+		newBusCatSelectEl.appendChild(catMenu)
 	};
 
 	/* Retrieve Bus Name From DOM for Associated Form */
