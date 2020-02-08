@@ -380,11 +380,10 @@ window.onload = function() {
 		setTimeout(function(){
 			if (RESPONSE_MSG === true){
 				submittedEl.innerHTML = 'Thank you for your submission!'
-				submittedEl.innerHTML += '<br>' + 'It will be added to the directory upon review!';
+				submittedEl.innerHTML += '<br>' + 'New data will be added to the directory upon review!';
 			} else {
 				submittedEl.innerHTML = 'Submission Unsuccessful!';
 			}
-
 			event.target.reset();
 			if (event.originalTarget[0].id === 'new-bus'){
 				document.getElementById('js-add-business').appendChild(submittedEl);
@@ -392,6 +391,7 @@ window.onload = function() {
 				listingMenu.appendChild(submittedEl)
 				clearCheckBox();
 			}
+			debugger;
 		}, 250)
 	}
 
