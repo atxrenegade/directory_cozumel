@@ -89,6 +89,7 @@ window.onload = function() {
 
 	/* TOGGLE FORM FUNCTIONS */
 	function toggleForm(event, el) {
+		el.firstElementChild.style.display = 'block';
 		if (event === 'submit' || el.style.display == 'block') {
 			el.style.display = 'none'
 		} else {
