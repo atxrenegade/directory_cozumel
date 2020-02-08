@@ -379,7 +379,8 @@ window.onload = function() {
 		submittedEl.className = 'succMsg'
 		setTimeout(function(){
 			if (RESPONSE_MSG === true){
-				submittedEl.innerHTML = 'Successfully submitted for review!';
+				submittedEl.innerHTML = 'Thank you for your submission!'
+				submittedEl.innerHTML += '<br>' + 'It will be added to the directory upon review!';
 			} else {
 				submittedEl.innerHTML = 'Submission Unsuccessful!';
 			}
