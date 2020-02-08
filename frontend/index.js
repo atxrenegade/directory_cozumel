@@ -96,9 +96,11 @@ window.onload = function() {
 
 	function toggleNewBusinessForm() {
 		let elFormContainer = document.getElementById('js-add-business-form-container')
+		let newBusinessForm = document.getElementById('js-new-business-form')
 		if (elFormContainer.style.display === 'block'){
 			elFormContainer.style.display = 'none';
 		} else {
+			newBusinessForm.style.display = 'block';
 			elFormContainer.style.display = 'block';
 			if (CATS.length === 0) {
 				collectCategories();
@@ -391,7 +393,7 @@ window.onload = function() {
 				listingMenu.appendChild(submittedEl)
 				clearCheckBox();
 			}
-			debugger;
+			event.target.style.display = 'none';
 		}, 250)
 	}
 
