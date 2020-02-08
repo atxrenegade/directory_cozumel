@@ -41,7 +41,7 @@ class Entry < ApplicationRecord
 		data_array[0] = 'new bus'
 		data_array[1] = 0
 		data_array[2] = data[1][1]
-		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p")
 		data_array[4] = 'unspecified'
 		data_array[5] = 'unspecified'
 		#data_array[6] should include name, categories, overall rating, address, phone number, website
@@ -61,7 +61,7 @@ class Entry < ApplicationRecord
 		data_array[0] = 'new review'
 		data_array[1] = get_business_id(data[6][1])
 		data_array[2] = data[6][1]
-		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p")
 		data_array[4] = data[3][1] #contributor
 		data_array[5] = data[4][1] #contributor_email
 		#data_array[6] content, contributor, contributor_email, rating, business_id
@@ -97,7 +97,7 @@ class Entry < ApplicationRecord
 		data_array[0] = 'update business'
 		data_array[1] = get_business_id(data[5][1])
 		data_array[2] = data[5][1]
-		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S') #date of update request
+		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p") #date of update request
 		data_array[4] = data[2][1] #contributor
 		data_array[5] = data[3][1] #contributor_email
 		#data_array[6] should include business_id and content
@@ -112,7 +112,7 @@ class Entry < ApplicationRecord
 		data_array[0] = 'flag business'
 		data_array[1] = get_business_id(data[5][1])
 		data_array[2] = data[5][1]
-		data_array[3] = Time.now.strftime('%Y-%m-%d %H:%M:%S') #date of update request
+		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p") #date of update request
 		data_array[4] = data[2][1] #contributor
 		data_array[5] = data[3][1] #contributor_email
 		#data_array[6] should include business_id and content

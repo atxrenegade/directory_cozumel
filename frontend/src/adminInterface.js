@@ -388,7 +388,7 @@ class adminInterface {
 	static resolveEntry(status, event){
 		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
 		let adminId = adminInterface.getAdminId();
-		let resolvedDate = new Date().toString();
+		let resolvedDate = adminInterface.getFormattedDateTime();
 		let data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, status: status}
 		adminInterface.displayResolved(adminId, resolvedDate, status);
 		return data;
