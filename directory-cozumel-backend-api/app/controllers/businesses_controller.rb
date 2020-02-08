@@ -28,7 +28,7 @@ class BusinessesController < ApplicationController
 		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
-			render json: {message: 'No businesses match that category'}
+			render json: {message: 'There are no businesses listed in that category yet!'}
 		end
 	end
 
@@ -37,7 +37,7 @@ class BusinessesController < ApplicationController
 		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
-			render json: {message: 'No Business by that name on record'}
+			render json: {message: 'No business in our directory match that name!'}
 		end
 	end
 
