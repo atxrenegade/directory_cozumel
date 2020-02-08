@@ -283,7 +283,7 @@ window.onload = function() {
 
 	function appendErrorMsg(msg){
 		businessListings.innerHTML = '';
-		let errorMessage = document.createElement('h4');
+		let errorMessage = document.createElement('p');
 		errorMessage.innerHTML = `${msg}`
 		businessListings.appendChild(errorMessage);
 		businessListings.style.display = 'block';
