@@ -22,7 +22,8 @@ class adminInterface {
 		let adminLogoutButton = document.getElementById('js-admin-logout-button')
 
 		adminTableContainer.style.display = 'none';
-		adminInterface.appendCurrentDateTime();
+		let adminLoginDate = document.getElementById('admin-login-date');
+		adminInterface.appendCurrentDateTime(adminLoginDate);
 		adminLoginContainer.classList.add('admin');
 
 		/* Admin panel menu buttons */
@@ -133,17 +134,19 @@ class adminInterface {
 		return adminId;
 	}
 
-	static appendCurrentDateTime(){
-
-		let timeDateEl = document.getElementById('admin-login-date');
-		let timeDate = document.createElement('span');
-		debugger;
+	static getFormattedDateTime() {
 		let date = new Date();
 		let localDate = date.toDateString()
 		let time = date.toLocaleTimeString();
-		timeDate.innerText = localDate + " " + time;
+		let formattedDateTime = localDate + " " + time;
+		return formattedDateTime;
+	}
 
-		timeDateEl.appendChild(timeDate);
+	static appendCurrentDateTime(elToAppendTo){
+		let timeDateEl = document.createElement('span');
+		let timeDate = adminInterface.getFormattedDateTime();
+		timeDateEl.innerText = timeDate;
+		elToAppendTo.appendChild(timeDateEl);
 	}
 
 	static checkAdminAuth() {
