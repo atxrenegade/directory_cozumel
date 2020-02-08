@@ -28,7 +28,7 @@ window.onload = function() {
 	let listingMenu = document.getElementById('js-listing-menu');
 
 	/* add business form elements */
-	let newBusinessButton = document.getElementById('js-add-button');
+	let newBusinessButton = document.getElementById('js-add-business-button');
 	let newBusCatSelect = document.getElementById('js-new-bus-select');
 
 	/* admin hidden button element */
@@ -96,15 +96,14 @@ window.onload = function() {
 
 	function toggleNewBusinessForm() {
 		let elFormContainer = document.getElementById('js-add-business-form-container')
-		let elForm = document.getElementById('js-new-business-form')
-		if (elForm.style.display === 'none'){
-			elForm.style.display = 'block';
+		if (elFormContainer.style.display === 'block'){
+			elFormContainer.style.display = 'none';
+		} else {
+			elFormContainer.style.display = 'block';
 			if (CATS.length === 0) {
 						collectCategories();
 				};
 				renderNewBusCatSelect();
-		} else {
-			elForm.style.display = 'none';
 		}
 	}
 
