@@ -349,20 +349,7 @@ class adminInterface {
 	static rejectEntry(event) {
 		let data = adminInterface.getEntryData('rejected', event)
 		adminInterface.postEntryUpdate(data);
-		if (RESPONSE_MSG === 'Entry Successfully Updated'){
-			adminInterface.displayResolved(data['adminId'], data['resolvedDate'], data['status']);
-			document.getElementById('admin-approve-button').style.display = 'none';
-			document.getElementById('admin-reject-button').style.display = 'none';
-		} else {
-			console.log(RESPONSE_MSG)
-		}
-	}
-
-	static approveEntry(event) {
-		let data = adminInterface.getEntryData('approved', event)
-		adminInterface.postDatabaseObject(data)
-		if (RESPONSE_MSG === 'Object Saved'){
-			adminInterface.postEntryUpdate(data)
+		setTimeout(function() {
 			if (RESPONSE_MSG === 'Entry Successfully Updated'){
 				adminInterface.displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 				document.getElementById('admin-approve-button').style.display = 'none';
@@ -370,9 +357,27 @@ class adminInterface {
 			} else {
 				console.log(RESPONSE_MSG)
 			}
-		} else {
-			console.log(RESPONSE_MSG)
-		}
+		}, 1500)
+	}
+
+	static approveEntry(event) {
+		let data = adminInterface.getEntryData('approved', event)
+		adminInterface.postDatabaseObject(data)
+		setTimeout(function(){
+			if (RESPONSE_MSG === 'Object Saved'){
+				adminInterface.postEntryUpdate(data)
+				setTimeout(function(){
+					if (RESPONSE_MSG === 'Entry Successfully Updated') {
+					adminInterface.displayResolved(data['admin_id'], data['resolved_date'], data['status']);
+					document.getElementById('admin-approve-button').style.display = 'none';
+					document.getElementById('admin-reject-button').style.display = 'none';
+				} else {
+					console.log(RESPONSE_MSG)
+				}
+			}, 1500)} else {
+				console.log(RESPONSE_MSG)
+			}
+		}, 1500)
 	}
 
 	static postDatabaseObject(data) {
@@ -401,11 +406,11 @@ class adminInterface {
 	static getEntryData(status, event){
 		let adminId = adminInterface.getAdminId();
 		let resolvedDate = adminInterface.getFormattedDateTime();
+		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent;
 		let data;
 		if (status === 'approved') {
 			let objectEl = document.getElementById('detailed-entry-table-2')
-			let dataObject = objectEl.lastElementChild.lastElementChild.textContent
-			let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
+			let dataObject = objectEl.lastElementChild.lastElementChild.textContent;
 			data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, data_object: dataObject, status: status}
 		} else {
 			data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId,  status: status}
