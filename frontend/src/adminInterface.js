@@ -72,7 +72,8 @@ class adminInterface {
 		superAdminCRUDMenu.addEventListener('click', function() {
 			event.preventDefault();
 			let radVals = adminInterface.getRadioVal(event);
-			adminInterface.buildCRUDforms(radVals, event)
+			let elToAppendTo = document.getElementById('super-admin-create-update-delete')
+			adminInterface.buildCRUDforms(radVals, event, elToAppendTo)
 		})
 
 		adminLogoutButton.addEventListener('click', function(){
@@ -81,18 +82,17 @@ class adminInterface {
 		});
 	}
 
-	static buildCRUDforms(radVals, event){
+	static buildCRUDforms(radVals, event, elToAppendTo){
 		let formAction = radVals[0];
 		let dbType = radVals[1];
-		let elToAppendTo = event.target.parentElement.parentNode.parentNode;
 		ATTRIBUTES = [];
 
 		switch (formAction) {
 			case 'create':
-				document.getElementById('super-admin-create-update-delete').innerHTML = '';
-				document.getElementById('js-super-admin-modify-records-menu').style.display = 'none';
+				/* document.getElementById('super-admin-create-update-delete').reset(); */
 				adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
-				setTimeout(function(){adminInterface.buildNewForm(formAction, dbType, event)}, 500)
+				setTimeout(adminInterface.buildNewForm.bind(null, formAction, dbType, elToAppendTo)
+				, 500)
 				break;
 			case 'update':
 				adminInterface.displayGetInstanceForm(elToAppendTo, formAction, dbType);
@@ -459,8 +459,7 @@ class adminInterface {
 
 	/* Dynamic Admin Forms Creation */
 
-	static buildNewForm(action, dbType, event) {
-		let elToAppendTo = event.target.parentElement.parentElement.parentElement.lastElementChild
+	static buildNewForm(action, dbType, elToAppendTo) {
 		let formEl = document.createElement('form');
 		let formElements;
 		let formTitle = document.createElement('p');
