@@ -361,7 +361,7 @@ window.onload = function() {
 	function getBusNameForAssoForm(event){
 		let busName = '';
 		if (event.target[0].id === 'new-bus'){
-			busName = document.getElementById('bus-name').value;
+			busName = document.getElementById('business-name').value;
 		} else {
 			busName = document.getElementById('listing-bus-name').innerText;
 		}
