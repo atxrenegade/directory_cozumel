@@ -347,17 +347,20 @@ class adminInterface {
 	}
 
 	static rejectEntry(event) {
-		let data = adminInterface.resolveEntry('rejected', event)
+		/* what is going on here? Where is my data that Im posting to database? */
 		adminInterface.postEntryUpdate(data);
+		let data = adminInterface.displayResolved('rejected', event)
 		document.getElementById('admin-approve-button').style.display = 'none';
 		document.getElementById('admin-reject-button').style.display = 'none';
 	}
 
 	static approveEntry(event) {
-		let data = adminInterface.resolveEntry('approved', event)
+		/* what is going on here? Where is my data that Im posting to database? */
+		/* what am I using ID for? */
 		let id = {id: data.id}
 		adminInterface.postDatabaseObject(data)
 		adminInterface.postEntryUpdate(data)
+		let data = adminInterface.displayResolved('approved', event)
 		document.getElementById('admin-approve-button').style.display = 'none';
 		document.getElementById('admin-reject-button').style.display = 'none';
 	}
@@ -385,8 +388,7 @@ class adminInterface {
 		}
 	}
 
-	static resolveEntry(status, event){
-		debugger;
+	static displayResolved(status, event){
 		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
 		let adminId = adminInterface.getAdminId();
 		let resolvedDate = adminInterface.getFormattedDateTime();
