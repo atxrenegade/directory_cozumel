@@ -8,13 +8,12 @@ class EntriesController < ApplicationController
 	end
 
 	def build_object_from_entry
-		binding.pry
 		entry = Entry.find_by_id(params['id'])
 		entry.convert_to_object()
 		if entry.persisted?
-			response = { msg: 'Entry approval successful!'}
+			response = { msg: 'Object Saved'}
 		else
-			response = { msg: 'Entry failed to save to database!'}
+			response = { msg: 'Object Failed to Save to Database!'}
 		end
 		render json: response
 	end
@@ -49,7 +48,10 @@ class EntriesController < ApplicationController
 		update_vals["notes"] = params[:notes] if params[:notes].present?
 
 		if entry.update!(update_vals)
-			render json: { message: "Update Successful!"}
+			response = { msg: "Entry Successfully Updated"}
+		else
+			response = { msg: "Entry Failed to Update"}
 		end
+		render json: response
 	end
 end

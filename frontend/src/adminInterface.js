@@ -347,22 +347,32 @@ class adminInterface {
 	}
 
 	static rejectEntry(event) {
-		/* what is going on here? Where is my data that Im posting to database? */
+		let data = adminInterface.getEntryData('rejected', event)
 		adminInterface.postEntryUpdate(data);
-		let data = adminInterface.displayResolved('rejected', event)
-		document.getElementById('admin-approve-button').style.display = 'none';
-		document.getElementById('admin-reject-button').style.display = 'none';
+		if (RESPONSE_MSG === 'Entry Successfully Updated'){
+			adminInterface.displayResolved(data['adminId'], data['resolvedDate'], data['status']);
+			document.getElementById('admin-approve-button').style.display = 'none';
+			document.getElementById('admin-reject-button').style.display = 'none';
+		} else {
+			console.log(RESPONSE_MSG)
+		}
 	}
 
 	static approveEntry(event) {
-		/* what is going on here? Where is my data that Im posting to database? */
-		/* what am I using ID for? */
-		let id = {id: data.id}
+		let data = adminInterface.getEntryData('approved', event)
 		adminInterface.postDatabaseObject(data)
-		adminInterface.postEntryUpdate(data)
-		let data = adminInterface.displayResolved('approved', event)
-		document.getElementById('admin-approve-button').style.display = 'none';
-		document.getElementById('admin-reject-button').style.display = 'none';
+		if (RESPONSE_MSG === 'Object Saved'){
+			adminInterface.postEntryUpdate(data)
+			if (RESPONSE_MSG === 'Entry Successfully Updated'){
+				adminInterface.displayResolved(data['admin_id'], data['resolved_date'], data['status']);
+				document.getElementById('admin-approve-button').style.display = 'none';
+				document.getElementById('admin-reject-button').style.display = 'none';
+			} else {
+				console.log(RESPONSE_MSG)
+			}
+		} else {
+			console.log(RESPONSE_MSG)
+		}
 	}
 
 	static postDatabaseObject(data) {
@@ -379,21 +389,27 @@ class adminInterface {
 				.then(resp => {
 					return resp.json();
 			})
-				.then(json => console.log(json)
+			.then(json => RESPONSE_MSG = json['msg']
 			)
 		}
 		catch(err) {
 			alert('Update failed see console for further details!');
-			console.log(error.message);
+			RESPONSE_MSG = error.message;
 		}
 	}
 
-	static displayResolved(status, event){
-		let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
+	static getEntryData(status, event){
 		let adminId = adminInterface.getAdminId();
 		let resolvedDate = adminInterface.getFormattedDateTime();
-		let data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, status: status}
-		adminInterface.displayResolved(adminId, resolvedDate, status);
+		let data;
+		if (status === 'approved') {
+			let objectEl = document.getElementById('detailed-entry-table-2')
+			let dataObject = objectEl.lastElementChild.lastElementChild.textContent
+			let entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent
+			data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, data_object: dataObject, status: status}
+		} else {
+			data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId,  status: status}
+		}
 		return data;
 	}
 
@@ -419,12 +435,14 @@ class adminInterface {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => console.log(json)
+			.then(function(json) {
+				RESPONSE_MSG = json['msg']
+			}
 		)
 	}
 	catch(err) {
 			alert('Update failed see console for further details!');
-			console.log(error.message);
+			RESPONSE_MSG = json['msg'];
 		}
 	}
 
