@@ -329,7 +329,7 @@ class adminInterface {
 		let entryId = parseInt(id, 10);
 		let notes = document.getElementById('js-entry-notes').value
 		let adminId = document.getElementById('detailed-entry-table-3').lastChild.firstChild.textContent
-		let date = new Date
+		let date = adminInterface.getFormattedDateTime();
 		let note = document.getElementById('detailed-entry-table-3').lastChild.lastChild.innerText
 		let newNote = `[${date.toString()}]:[AdminId:${adminId}]:[${notes}]`
 		let allNotes = `${note}***`+ ` ${newNote}`;
