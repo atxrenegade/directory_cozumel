@@ -97,7 +97,7 @@ class adminInterface {
 			case 'create':
 				adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
 				setTimeout(adminInterface.buildNewForm.bind(null, formAction, dbType, elToAppendTo)
-				, 500)
+				, 800)
 				break;
 			case 'update':
 				adminInterface.displayGetInstanceForm(elToAppendTo, formAction, dbType);
@@ -473,7 +473,6 @@ class adminInterface {
 		elToAppendTo.appendChild(formEl);
 		formEl.appendChild(formFieldSet);
 		formFieldSet.appendChild(formLegend);
-
 		ATTRIBUTES.forEach(attribute => {
 			let attLabel = document.createElement('label')
 			let attInput = document.createElement('input')
@@ -528,7 +527,7 @@ class adminInterface {
 		if (action === 'create') {
 			adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
 			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
-			setTimeout(adminInterface.displayResults.bind(null, elToAppendTo), 1000)
+			setTimeout(adminInterface.displayResults.bind(null, elToAppendTo), 1500)
 			/* clear success message and details on click */
 		} else if	(action === 'update'){
 			/* return instance to update from database */
