@@ -499,6 +499,7 @@ class adminInterface {
 				let attributesObj = adminInterface.buildObjFromFormInput(event);
 				adminInterface.processCRUDForm(action, dbType, attributesObj, event)
 				elToAppendTo.removeChild(formEl);
+				document.getElementById('js-super-admin-modify-menu').innerText = 'DISPLAY FORM'
 				document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
 			})
 	}
