@@ -549,10 +549,6 @@ window.onload = function() {
 	})
 	adminPanelLogin.addEventListener('click', logInAdmin);
 
-	/* AdminPanel Listeners */
-	let modifyRecButton = document.getElementById('js-super-admin-modify-menu')
-	modifyRecButton.addEventListener('click', console.log(event.target))
-
 	/* SET PAGE LOAD VALUES */
 	resetPage();
 	adminInterface.resetAdmin();
