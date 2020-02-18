@@ -461,11 +461,13 @@ class adminInterface {
 
 	static buildNewForm(action, dbType, elToAppendTo) {
 		let formEl = document.createElement('form');
+		let formFieldSet = document.createElement('fieldset');
+		let formLegend = document.createElement('legend');
 		let formElements;
-		let formTitle = document.createElement('p');
-		formTitle.innerHTML = `${action.toUpperCase()} ${dbType.toUpperCase()}`
+		formLegend.innerHTML = `${action.toUpperCase()} ${dbType.toUpperCase()}`
 		elToAppendTo.appendChild(formEl);
-		formEl.appendChild(formTitle);
+		formEl.appendChild(formFieldSet);
+		formFieldSet.appendChild(formLegend);
 
 		ATTRIBUTES.forEach(attribute => {
 			let attLabel = document.createElement('label')
@@ -478,30 +480,21 @@ class adminInterface {
 			attInput.setAttribute('type', 'text')
 			let breakEl = document.createElement('br')
 			let formElements = [attLabel, attInput, breakEl]
-			formElements.forEach(el => formEl.appendChild(el));
+			formElements.forEach(el => formFieldSet.appendChild(el));
 		})
 			let breakEl = document.createElement('br')
 			let formButton = document.createElement('input')
 			formButton.setAttribute('id', `${action}-${dbType}-button`.toLowerCase());
 			formButton.setAttribute('value', 'Submit');
 			formButton.setAttribute('type', 'button')
-			let backButton = document.createElement('input')
-			backButton.setAttribute('id', 'super-admin-back-to-db-menu');
-			backButton.setAttribute('value', 'Back To MENU');
-			backButton.setAttribute('type', 'button')
-			let buttonArray = [breakEl, formButton, backButton]
-			buttonArray.forEach(el => formEl.appendChild(el));
+			
+			let buttonArray = [breakEl, formButton]
+			buttonArray.forEach(el => formFieldSet.appendChild(el));
 			formButton.addEventListener('click', function(event){
 				let attributesObj = adminInterface.buildObjFromFormInput(event);
 				adminInterface.processCRUDForm(action, dbType, attributesObj, event)
 				elToAppendTo.removeChild(formEl);
 				document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
-
-			})
-			backButton.addEventListener('click', function(){
-					elToAppendTo.removeChild(formEl);
-					document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
-
 			})
 	}
 
