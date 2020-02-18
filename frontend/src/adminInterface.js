@@ -95,7 +95,6 @@ class adminInterface {
 
 		switch (formAction) {
 			case 'create':
-				/* document.getElementById('super-admin-create-update-delete').reset(); */
 				adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
 				setTimeout(adminInterface.buildNewForm.bind(null, formAction, dbType, elToAppendTo)
 				, 500)
@@ -509,7 +508,7 @@ class adminInterface {
 		let valObj = {}
 		valObj = collection.map(function(el) { return [el.name, el.value] })
 		valObj = valObj.filter(function(val) { return val[0] !== undefined })
-		let newAttArray = valObj.slice(0, -2)
+		let newAttArray = valObj.slice(0, -1)
 		let attObj = {};
 		let i;
 		let len = newAttArray.length;
@@ -524,11 +523,11 @@ class adminInterface {
 	static processCRUDForm(action, dbModel, attsObj, event){
 		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
 		/* action = Create, Update, Delete */
-		/* instance = any valid instance of type */
+		/* instance = any valid instance of type */;
 		if (action === 'create') {
 			adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
-
 			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
+			debugger;
 		 	adminInterface.displayResults(elToAppendTo);
 			/* clear success message and details on click */
 		} else if	(action === 'update'){
