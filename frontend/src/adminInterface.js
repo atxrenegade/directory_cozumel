@@ -71,9 +71,17 @@ class adminInterface {
 
 		superAdminCRUDMenu.addEventListener('click', function() {
 			event.preventDefault();
-			let radVals = adminInterface.getRadioVal(event);
-			let elToAppendTo = document.getElementById('super-admin-create-update-delete')
-			adminInterface.buildCRUDforms(radVals, event, elToAppendTo)
+			if (superAdminCRUDMenu.innerText === 'DISPLAY FORM') {
+			/* clear previously displayed CRUD forms */
+			/* check for button value */
+				let radVals = adminInterface.getRadioVal(event);
+				let elToAppendTo = document.getElementById('super-admin-create-update-delete')
+				adminInterface.buildCRUDforms(radVals, event, elToAppendTo)
+				superAdminCRUDMenu.innerText = 'HIDE FORM';
+			} else {
+				superAdminCRUDMenu.innerText = 'DISPLAY FORM';
+				document.getElementById('super-admin-create-update-delete').innerHTML = '';
+			}
 		})
 
 		adminLogoutButton.addEventListener('click', function(){
@@ -487,7 +495,7 @@ class adminInterface {
 			formButton.setAttribute('id', `${action}-${dbType}-button`.toLowerCase());
 			formButton.setAttribute('value', 'Submit');
 			formButton.setAttribute('type', 'button')
-			
+
 			let buttonArray = [breakEl, formButton]
 			buttonArray.forEach(el => formFieldSet.appendChild(el));
 			formButton.addEventListener('click', function(event){
