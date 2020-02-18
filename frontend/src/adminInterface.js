@@ -528,8 +528,7 @@ class adminInterface {
 		if (action === 'create') {
 			adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
 			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
-			debugger;
-		 	adminInterface.displayResults(elToAppendTo);
+			setTimeout(adminInterface.displayResults.bind(null, elToAppendTo), 1000)
 			/* clear success message and details on click */
 		} else if	(action === 'update'){
 			/* return instance to update from database */
@@ -697,8 +696,10 @@ class adminInterface {
 		return buttonEl;
 	}
 
-	static displayResults(elToAppendTo){
+	static displayResults(elToAppendTo) {
 		let resultsEl = document.createElement('div')
+		resultsEl.id = 'js-admin-CRUD-results';
+		/* check RESULTS, style and append success or error message */
 		if (RESULT !== null) {
 			let msg = `Successfully Added to Database: <br>`;
 			let obj = adminInterface.createDisplayObj();
