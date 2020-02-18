@@ -708,6 +708,9 @@ class adminInterface {
 			resultsEl = `Admin Operation Error. Object not persisted to database.`
 		}
 		elToAppendTo.appendChild(resultsEl);
+		document.addEventListener('click', function(){
+			document.getElementById('js-admin-CRUD-results').remove();
+		})
 	}
 
 	static createDisplayObj(){
