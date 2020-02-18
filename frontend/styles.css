@@ -228,6 +228,13 @@
 		display: none;
 	}
 
+	#js-admin-CRUD-results {
+		margin: 10px 5px 5px 5px;
+		padding: 10px;
+		background-color: #00ccff1c;
+		border-radius: 3%;
+	}
+
 
 	/* ADMIN TABLE ELEMENT STYLES */
 	th {
