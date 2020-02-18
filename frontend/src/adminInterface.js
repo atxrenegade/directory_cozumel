@@ -72,8 +72,6 @@ class adminInterface {
 		superAdminCRUDMenu.addEventListener('click', function() {
 			event.preventDefault();
 			if (superAdminCRUDMenu.innerText === 'DISPLAY FORM') {
-			/* clear previously displayed CRUD forms */
-			/* check for button value */
 				let radVals = adminInterface.getRadioVal(event);
 				let elToAppendTo = document.getElementById('super-admin-create-update-delete')
 				adminInterface.buildCRUDforms(radVals, event, elToAppendTo)
