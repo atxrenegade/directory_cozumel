@@ -100,9 +100,22 @@ class adminInterface {
 				, 800)
 				break;
 			case 'update':
-				adminInterface.displayGetInstanceForm(elToAppendTo, formAction, dbType);
+				adminInterface.showUpdateDeleteForm(elToAppendTo, formAction, formType, dbType);
 				break;
 			case 'delete':
+				if (dbType === 'categories' || dbType === 'entries') {
+					let instAtts = {id: 'js-super-admin-CRUD-instance', value:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `}
+					adminInterface.showUpdateDeleteForm(elToAppendTo, instAtts, 'id', dbType);
+			} else {
+				instAtts = {id: 'js-super-admin-CRUD-instance', value:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`}
+				adminInterface.showUpdateDeleteForm(elToAppendTo, instAtts, 'name', dbType);
+				/*
+				findRecordToDelete()
+				displayRecordToDelete()
+				showUpdateDeleteForm()
+				executeDeleteByID() - event listener on showUpdateDeleteForm */
+			}
+				debugger;
 				break;
 			default:
 				error: 'Action not understood!'
@@ -658,14 +671,38 @@ class adminInterface {
 		}
 	}
 
-	static displayGetInstanceForm(elToAppendTo, actionType, dbType){
+	static showUpdateDeleteForm(elToAppendTo, instAtts, formType, dbType){
 		let breakEl = document.createElement('br')
-		let instAtts = {id: 'js-super-admin-CRUD-instance', name: 'js-super-admin-CRUD-instance-name', value:`ID of ${dbType.toUpperCase()} record to UPDATE or DELETE`}
+		let buttonAtts = { id: 'js-super-admin-CRUD-button', name: 'js-super-admin-CRUD-name', value: 'SEARCH RECORDS'}
+		let instInput = adminInterface.buildFormField(instAtts, dbType)
+		let instButton = adminInterface.buildButton(buttonAtts, dbType)
+		let elArray = [breakEl, breakEl, breakEl, instInput, breakEl, instButton, breakEl]
+		elArray.forEach(el => elToAppendTo.appendChild(el))
+	}
+
+	static locateRecordToDelete(){
+	}
+
+	static displayRecordToDelete(){
+
+	}
+
+	static executeDeleteById(){
+		/* build delete record type by id post request, don't allow for delete of
+		categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
+		business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
+		deleting review must also update overall review */
+	}
+
+	static unknownFunctionPieces(){ /*
+		instAtts = {id: 'js-super-admin-CRUD-instance', name: 'js-super-admin-CRUD-instance-name', value:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`}
+	}
+	debugger;
 		let buttonAtts = { id: 'js-super-admin-CRUD-button', name: 'js-super-admin-CRUD-name', value: 'SEARCH RECORDS'}
 		let instInput = adminInterface.buildFormField(instAtts, dbType)
 		let instButton = adminInterface.buildButton(buttonAtts, dbType)
 		let elArray = [breakEl, breakEl, instInput, breakEl, instButton, breakEl]
-		elArray.forEach(el => elToAppendTo.appendChild(el))
+		elArray.forEach(el => elToAppendTo.appendChild(el)) */
 	}
 
 	static buildFormField(atts, dbType){
@@ -690,6 +727,7 @@ class adminInterface {
 		buttonEl.setAttribute('value', atts['value'])
 		buttonEl.addEventListener('click', function(event){
 			event.preventDefault();
+			debugger;
 			adminInterface.getInstance(event, dbType)
 		});
 		return buttonEl;
