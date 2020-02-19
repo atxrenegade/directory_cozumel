@@ -205,38 +205,6 @@
 			</div>
 			<!-- ADMIN MENU HERE -->
 			<div id='js-admin-menu-container' class='admin innermost-tile'>
-				<fieldset id='js-admin-menu'>
-					<legend>Admin Menu</legend>
-					<p>NOTE: All search results will appear in the ADMIN ENTRY RESULTS PANEL</p>
-					<fieldset>
-						<legend>ADMIN ENTRY DISPLAY MENU</legend>
-						<br>
-							<button id='admin-show-resolved-button'>SHOW RESOLVED ENTRIES</button>
-							<button id='admin-show-pending-button'>SHOW PENDING ENTRIES</button>
-							<br><br>
-					</fieldset>
-					<fieldset>
-						<legend>ADMIN ENTRY SEARCH MENU</legend>
-						<br>
-						<form id='js-search-admin-entries' class='admin-form'>
-							<label id='js-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br><br>
-							<input type='radio' name='js-admin-search' value='entry-type' checked> Entry TYPE <br>
-							<input type='radio' name='js-admin-search' value='status' checked> Entry STATUS <br>
-							<input type='radio' name='js-admin-search' value='business-name' checked> Business NAME <br>
-							<input type='radio' name='js-admin-search' value='business-id'> Business ID <br>
-							<input type='radio' name='js-admin-search' value='id'> Entry ID <br>
-							<input type='radio' name='js-admin-search' value='contributor'> Contributor <br>
-							<input type='radio' name='js-admin-search' value='contributor-email'> Contributor EMAIL <br>
-							<input type='radio' name='js-admin-search' value='date'> Date <br><br>
-							<label>INPUT TO SEARCH FOR: </label>
-							<input type='text' name='js-admin-search-by-input'>
-							<br><br>
-							<button id='js-admin-search-entries'>SEARCH ENTRIES </button>
-							<br><br>
-						</form>
-					</fieldset>
-				</fieldset>
-
 				<fieldset id='js-super-admin-menu'>
 					<legend>SUPER ADMIN MENU</legend>
 					<button id='js-admin-show-super-admin'>TOGGLE SUPER ADMIN MENU </button>
@@ -275,6 +243,37 @@
 							<br>
 						</fieldset>
 					</div>
+				</fieldset>
+				<fieldset id='js-admin-menu'>
+					<legend>Admin Menu</legend>
+					<p>NOTE: All search results will appear in the ADMIN ENTRY RESULTS PANEL</p>
+					<fieldset>
+						<legend>ADMIN ENTRY SEARCH MENU</legend>
+						<br>
+						<form id='js-search-admin-entries' class='admin-form'>
+							<label id='js-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br><br>
+							<input type='radio' name='js-admin-search' value='entry-type' checked> Entry TYPE <br>
+							<input type='radio' name='js-admin-search' value='status' checked> Entry STATUS <br>
+							<input type='radio' name='js-admin-search' value='business-name' checked> Business NAME <br>
+							<input type='radio' name='js-admin-search' value='business-id'> Business ID <br>
+							<input type='radio' name='js-admin-search' value='id'> Entry ID <br>
+							<input type='radio' name='js-admin-search' value='contributor'> Contributor <br>
+							<input type='radio' name='js-admin-search' value='contributor-email'> Contributor EMAIL <br>
+							<input type='radio' name='js-admin-search' value='date'> Date <br><br>
+							<label>INPUT TO SEARCH FOR: </label>
+							<input type='text' name='js-admin-search-by-input'>
+							<br><br>
+							<button id='js-admin-search-entries'>SEARCH ENTRIES </button>
+							<br><br>
+						</form>
+					</fieldset>
+					<fieldset>
+						<legend>ADMIN ENTRY DISPLAY MENU</legend>
+						<br>
+							<button id='admin-show-resolved-button'>SHOW RESOLVED ENTRIES</button>
+							<button id='admin-show-pending-button'>SHOW PENDING ENTRIES</button>
+							<br><br>
+					</fieldset>
 				</fieldset>
 			</div>
 			<div id='js-admin-panel-container' class='admin innermost-tile'>
