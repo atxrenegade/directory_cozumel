@@ -100,22 +100,22 @@ class adminInterface {
 				, 800)
 				break;
 			case 'update':
-				adminInterface.showUpdateDeleteForm(elToAppendTo, formAction, formType, dbType);
+				adminInterface.buildFindInstanceForm(formData);
 				break;
 			case 'delete':
+				let formData;
 				if (dbType === 'categories' || dbType === 'entries') {
-					let instAtts = {id: 'js-super-admin-CRUD-instance', value:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `}
-					adminInterface.showUpdateDeleteForm(elToAppendTo, instAtts, 'id', dbType);
-			} else {
-				instAtts = {id: 'js-super-admin-CRUD-instance', value:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`}
-				adminInterface.showUpdateDeleteForm(elToAppendTo, instAtts, 'name', dbType);
-				/*
-				findRecordToDelete()
-				displayRecordToDelete()
-				showUpdateDeleteForm()
-				executeDeleteByID() - event listener on showUpdateDeleteForm */
-			}
-				debugger;
+					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `, el: elToAppendTo, action: formAction, searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
+
+				} else {
+					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction, searchType: 'name', dbType: dbType, callback: adminInterface.findRecordToDelete}
+					/*
+					findRecordToDelete()
+					displayRecordToDelete()
+					buildFindInstanceForm()
+					executeDeleteByID() - event listener on buildFindInstanceForm */
+				}
+				adminInterface.buildFindInstanceForm(formData);
 				break;
 			default:
 				error: 'Action not understood!'
@@ -671,16 +671,17 @@ class adminInterface {
 		}
 	}
 
-	static showUpdateDeleteForm(elToAppendTo, instAtts, formType, dbType){
+	static buildFindInstanceForm(formData) {
 		let breakEl = document.createElement('br')
-		let buttonAtts = { id: 'js-super-admin-CRUD-button', name: 'js-super-admin-CRUD-name', value: 'SEARCH RECORDS'}
-		let instInput = adminInterface.buildFormField(instAtts, dbType)
-		let instButton = adminInterface.buildButton(buttonAtts, dbType)
-		let elArray = [breakEl, breakEl, breakEl, instInput, breakEl, instButton, breakEl]
-		elArray.forEach(el => elToAppendTo.appendChild(el))
+		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SEARCH RECORDS', searchType: formData['formSearchType'], dbType: formData['dbType'], callback: adminInterface.findRecordToDelete }
+		let instAtts = {id: formData['id'], value: formData['labelValue']}
+		let instInputField = adminInterface.buildFormField(instAtts)
+		let instButton = adminInterface.buildButton(buttonAtts)
+		let formElArray = [breakEl, breakEl, instInputField, breakEl, instButton, breakEl]
+		formElArray.forEach(el => formData['el'].appendChild(el))
 	}
 
-	static locateRecordToDelete(){
+	static findRecordToDelete(){
 	}
 
 	static displayRecordToDelete(){
@@ -697,7 +698,7 @@ class adminInterface {
 	static unknownFunctionPieces(){ /*
 		instAtts = {id: 'js-super-admin-CRUD-instance', name: 'js-super-admin-CRUD-instance-name', value:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`}
 	}
-	debugger;
+
 		let buttonAtts = { id: 'js-super-admin-CRUD-button', name: 'js-super-admin-CRUD-name', value: 'SEARCH RECORDS'}
 		let instInput = adminInterface.buildFormField(instAtts, dbType)
 		let instButton = adminInterface.buildButton(buttonAtts, dbType)
@@ -705,30 +706,29 @@ class adminInterface {
 		elArray.forEach(el => elToAppendTo.appendChild(el)) */
 	}
 
-	static buildFormField(atts, dbType){
+	static buildFormField(atts){
+		debugger;
 		/* atts should include id, name, value */
 		let breakEl = document.createElement('br')
 		let labelEl = document.createElement('label')
 		let inputEl = document.createElement('input')
 		labelEl.innerText = `${atts['value']}: `;
-		inputEl.setAttribute('id', atts['id']);
-		inputEl.setAttribute('name', atts['name']);
+		inputEl.id = atts['id'];
 		let elArray = [inputEl, breakEl]
 		elArray.forEach(el => labelEl.appendChild(el))
 		return labelEl
 	}
 
-	static buildButton(atts, dbType) {
-		/* atts should include id, name, value, and a callback function */
+	static buildButton(atts) {
+		/* atts should include id, value, dbType and a callback function */
 		let buttonEl = document.createElement('input')
-		buttonEl.setAttribute('type', 'submit')
-		buttonEl.setAttribute('id', atts['id'])
-		buttonEl.setAttribute('name', atts['name'])
-		buttonEl.setAttribute('value', atts['value'])
+		buttonEl.type = 'submit'
+		buttonEl.id = atts['id']
+		buttonEl.value = atts['value']
 		buttonEl.addEventListener('click', function(event){
 			event.preventDefault();
 			debugger;
-			adminInterface.getInstance(event, dbType)
+			atts['callback'](event, atts['dbType']);
 		});
 		return buttonEl;
 	}
