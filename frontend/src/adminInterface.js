@@ -631,7 +631,6 @@ class adminInterface {
 	}
 
 	static buildFindInstanceForm(formData) {
-		debugger;
 		let breakEl = document.createElement('br')
 		let instAtts = {id: formData['id'], value: formData['labelValue']}
 		let instInputField = adminInterface.buildFormField(instAtts)
@@ -656,53 +655,56 @@ class adminInterface {
 	}
 
 	static confirmRecordToDelete(dbType, id, elToAppendTo){
-		let labelValue = 'Please Re-Enter Record Id to Confirm Delete: '
-		let inputAtts = {id: 'js-super-admin-crud-record-delete', value: labelValue}
-		adminInterface.buildFormField(inputAtts);
-		let confirmDeleteButton = document.createElement('button')
-		let cancelDeleteButton = document.createElement('button')
-		let msg = 'Admin Action Cancelled'
-		confirmDeleteButton.id = 'js-super-admin-CRUD-approve-delete';
-		cancelDeleteButton.id = 'js-super-admin-CRUD-cancel-delete';
-		confirmDeleteButton.innerText = 'Confirm Delete';
-		cancelDeleteButton.innerText = 'Cancel Delete';
+		if (RESULT !== null) {
+			document.removeEventListener('click', adminInterface.removeResultsOnClick)
+			let labelValue = 'Please Re-Enter Record Id to Confirm Delete '
+			let inputAtts = {id: 'js-super-admin-crud-record-delete', value: labelValue}
+			let confirmField = adminInterface.buildFormField(inputAtts);
+			let confirmDeleteButton = document.createElement('button')
+			let cancelDeleteButton = document.createElement('button')
+			confirmDeleteButton.id = 'js-super-admin-CRUD-approve-delete';
+			cancelDeleteButton.id = 'js-super-admin-CRUD-cancel-delete';
+			confirmDeleteButton.innerText = 'Confirm Delete';
+			cancelDeleteButton.innerText = 'Cancel Delete';
+			let confirmEls = [confirmField, confirmDeleteButton, cancelDeleteButton]
+			confirmEls.forEach(el => elToAppendTo.appendChild(el))
 
-		confirmDeleteButton.addEventListener('click', function(){
-			/*
-			alert('Are you sure you would like to delete this item?')
-			let confirmID = document.getElementById('js-super-admin-crud-record-delete').innerText
-			if (confirmID === id){
-				admin.Interface.buildDeletePostReq()
-				adminInterface.displayResults(msg, elToAppendTo);
-				adminInterface.resetCRUDForm();
+			confirmDeleteButton.addEventListener('click', function(){
 
-			} else {
-				let msg = "ID numbers do not match. Confirmation Failed. Try Again."
-				adminInterface.displayResults(msg, elToAppendTo);
-				adminInterface.resetCRUDForm();
-			}*/
+				/*
+				alert('Are you sure you would like to delete this item?')
+				let confirmID = document.getElementById('js-super-admin-crud-record-delete').innerText
+				if (confirmID === id){
+					admin.Interface.buildDeletePostReq()
+					adminInterface.displayResults(msg, elToAppendTo);
+					adminInterface.resetCRUDForm();
 
-		})
+				} else {
+					let msg = "ID numbers do not match. Confirmation Failed. Try Again."
+					adminInterface.displayResults(msg, elToAppendTo);
+					adminInterface.resetCRUDForm();
+				}*/
 
-		cancelDeleteButton.addEventListener('click', adminInterface.resetCRUDForm.bind(null, elToAppendTo, msg))
-		elToAppendTo.appendChild(confirmDeleteButton);
-		elToAppendTo.appendChild(cancelDeleteButton);
+			})
+			cancelDeleteButton.addEventListener('click', adminInterface.resetCRUDForm)
 
 
-		/* add field and label and alert to confirm delete */
-		/* build delete record type by id post request, don't allow for delete of
-		categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
-		business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
-		deleting review must also update overall review */
+
+			/* add field and label and alert to confirm delete */
+			/* build delete record type by id post request, don't allow for delete of
+			categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
+			business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
+			deleting review must also update overall review */
+		} else {
+			setTimeout(adminInterface.resetCRUDForm, 3000)
+		}
 	}
 
 	static resetCRUDForm(elToAppendTo, msg){
-		debugger;
-		adminInterface.displayResults(msg, elToAppendTo)
-		let inputEl = document.getElementById('js-super-admin-CRUD-instance')
-		inputEl.remove();
-		let crudInput = document.getElementById('js-super-admin-modify-menu')
-		crudInput.innerText = 'DISPLAY FORM'
+		let crudForm = document.getElementById('super-admin-create-update-delete')
+		crudForm.innerHTML = '<br>';
+		let crudButton = document.getElementById('js-super-admin-modify-menu')
+		crudButton.innerText = 'DISPLAY FORM';
 	}
 
 	static buildFormField(atts){
@@ -742,9 +744,7 @@ class adminInterface {
 		}
 		resultsEl.innerHTML = msg
 		elToAppendTo.appendChild(resultsEl);
-		document.addEventListener('click', function(){
-			document.getElementById('js-admin-CRUD-results').remove();
-		})
+		document.addEventListener('click', adminInterface.removeResultsOnClick)
 	}
 
 	static createDisplayObj(){
@@ -754,6 +754,12 @@ class adminInterface {
 			objHTML += `<br>`
 			}
 		return objHTML;
+	}
+
+	static removeResultsOnClick(){
+		let displayedResults = document.getElementById('js-admin-CRUD-results')
+		if (displayedResults != undefined)
+			displayedResults.remove();
 	}
 
 	static resetAdmin() {
