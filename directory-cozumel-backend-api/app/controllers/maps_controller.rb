@@ -1,6 +1,10 @@
 class MapsController < ApplicationController
 	# before_action :require_admin, only: [:attributes]
 	# before_action :require_super, only: [:create, :update, :delete]
+	def show
+		map = Map.find_by_id(params['id'])
+		render json: map
+	end
 
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']

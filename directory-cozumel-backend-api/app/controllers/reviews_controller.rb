@@ -1,6 +1,10 @@
 class ReviewsController < ApplicationController
 	# before_action :require_admin, only: [:attributes, :create]
 	# before_action :require_super, only: [:update, :delete]
+	def show
+		review = Review.find_by_id(params['id'])
+		render json: review
+	end
 
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']

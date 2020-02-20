@@ -3,6 +3,11 @@ class AdminsController < ApplicationController
 	include ActionController::Helpers
 	helper_method :current_admin, :require_admin, :admin?, :require_super, :super?
 
+	def show
+		admin = Admin.find_by_id(params['id'])
+		render json: admin
+	end
+
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']
 		attributes = Admin.attribute_names - columnsToExclude

@@ -1,6 +1,10 @@
 class BusinessesController < ApplicationController
 	# before_action :require_admin , only: [:create]
 	# before_action :require_super , only: [:update, :delete]
+	def show
+		business = Business.find_by_id(params['id'])
+		render json: business
+	end
 
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']

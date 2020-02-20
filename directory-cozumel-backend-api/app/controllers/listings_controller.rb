@@ -1,6 +1,10 @@
 class ListingsController < ApplicationController
 	# before_action :require_admin, only: [:attributes, :create]
 	# before_action :require_super, only: [:update, :delete]
+	def show
+		listing = Listing.find_by_id(params['id'])
+		render json: listing
+	end
 
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']
