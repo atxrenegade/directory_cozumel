@@ -123,7 +123,7 @@ class adminInterface {
 	}
 
 	static indexButtonAction(status){
-		let entries = adminInterface.buildIndexPostReq(`${status}`);
+		let entries = adminInterface.buildEntriesIndexPostReq(`${status}`);
 		setTimeout(`adminInterface.renderIndex('${status}')`, 1800);
 	}
 
@@ -173,7 +173,7 @@ class adminInterface {
 		return 'super'
 	}
 
-	static buildIndexPostReq(searchType) {
+	static buildEntriesIndexPostReq(searchType) {
 		let authType = adminInterface.checkAdminAuth();
 		let method = 'POST'
 		let data = { search_type: searchType, auth_type: authType }
@@ -540,7 +540,8 @@ class adminInterface {
 		if (action === 'create') {
 			adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
 			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
-			setTimeout(adminInterface.displayResults.bind(null, elToAppendTo), 1500)
+			let msg = `Successfully Added to Database: <br>`;
+			setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1500)
 			/* clear success message and details on click */
 		} else if	(action === 'update'){
 			/* return instance to update from database */
@@ -594,8 +595,8 @@ class adminInterface {
 			)
 		}
 		catch(err) {
-			alert('Update failed see console for further details!');
-			console.log(error.message);
+			alert('Error. See console for further details!');
+			console.log(err.message);
 		}
 	}
 
@@ -613,17 +614,7 @@ class adminInterface {
 		adminInterface.dynamGetReq(url, callback)
 	}
 
-	static getInstance(event, dbType){
-		let id = event.target.previousElementSibling.lastElementChild.previousElementSibling.value
-		let parsedId = parseInt(id, 10);
-		if (Number.isInteger(parsedId)) {
-		let url = `http://localhost:3000/maps/${id}/edit`
-		let callback = adminInterface.returnResult
-		adminInterface.dynamGetReq(url, callback)
-		} else {
-			alert('Invalid Admin Input! Please enter a valid integer!')
-		}
-	}
+
 
 	static returnResult(data) {
 		RESULT = data;
@@ -676,16 +667,27 @@ class adminInterface {
 		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SEARCH RECORDS', searchType: formData['formSearchType'], dbType: formData['dbType'], callback: adminInterface.findRecordToDelete }
 		let instAtts = {id: formData['id'], value: formData['labelValue']}
 		let instInputField = adminInterface.buildFormField(instAtts)
-		let instButton = adminInterface.buildButton(buttonAtts)
+		let instButton = adminInterface.buildCRUDSearchButton(buttonAtts)
 		let formElArray = [breakEl, breakEl, instInputField, breakEl, instButton, breakEl]
 		formElArray.forEach(el => formData['el'].appendChild(el))
 	}
 
-	static findRecordToDelete(){
+	static findRecordToDelete(type, id){
+		debugger;
+		/* use existing get request functions */
+		RESULT = null;
+		let url = `http://localhost:3000/${type}/${id}`
+		let callback = adminInterface.returnResult
+		adminInterface.dynamGetReq(url, callback)
+		let elToAppendTo = document.getElementById('super-admin-create-update-delete')
+		let msg;
+		RESULT === null ? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
+		adminInterface.displayResults(elToAppendTo, msg)
 	}
 
 	static displayRecordToDelete(){
-
+		/* Can I use the exisitng CREATE display record for this? */
+		/* Use exisiting display results function */
 	}
 
 	static executeDeleteById(){
@@ -695,20 +697,8 @@ class adminInterface {
 		deleting review must also update overall review */
 	}
 
-	static unknownFunctionPieces(){ /*
-		instAtts = {id: 'js-super-admin-CRUD-instance', name: 'js-super-admin-CRUD-instance-name', value:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`}
-	}
-
-		let buttonAtts = { id: 'js-super-admin-CRUD-button', name: 'js-super-admin-CRUD-name', value: 'SEARCH RECORDS'}
-		let instInput = adminInterface.buildFormField(instAtts, dbType)
-		let instButton = adminInterface.buildButton(buttonAtts, dbType)
-		let elArray = [breakEl, breakEl, instInput, breakEl, instButton, breakEl]
-		elArray.forEach(el => elToAppendTo.appendChild(el)) */
-	}
-
 	static buildFormField(atts){
-		debugger;
-		/* atts should include id, name, value */
+		/* atts should include id, value */
 		let breakEl = document.createElement('br')
 		let labelEl = document.createElement('label')
 		let inputEl = document.createElement('input')
@@ -719,7 +709,7 @@ class adminInterface {
 		return labelEl
 	}
 
-	static buildButton(atts) {
+	static buildCRUDSearchButton(atts) {
 		/* atts should include id, value, dbType and a callback function */
 		let buttonEl = document.createElement('input')
 		buttonEl.type = 'submit'
@@ -728,23 +718,22 @@ class adminInterface {
 		buttonEl.addEventListener('click', function(event){
 			event.preventDefault();
 			debugger;
-			atts['callback'](event, atts['dbType']);
+			let inputValue = 1;
+			/*event.target.previousElementSibling.firstElementChild.innerText */
+			atts['callback'](atts['dbType'], inputValue);
 		});
 		return buttonEl;
 	}
 
-	static displayResults(elToAppendTo) {
+	static displayResults(elToAppendTo, msg) {
 		let resultsEl = document.createElement('div')
 		resultsEl.id = 'js-admin-CRUD-results';
 		/* check RESULTS, style and append success or error message */
 		if (RESULT !== null) {
-			let msg = `Successfully Added to Database: <br>`;
 			let obj = adminInterface.createDisplayObj();
 			msg += obj
-			resultsEl.innerHTML = msg
-		} else {
-			resultsEl = `Admin Operation Error. Object not persisted to database.`
 		}
+		resultsEl.innerHTML = msg
 		elToAppendTo.appendChild(resultsEl);
 		document.addEventListener('click', function(){
 			document.getElementById('js-admin-CRUD-results').remove();
