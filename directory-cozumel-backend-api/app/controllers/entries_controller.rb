@@ -1,5 +1,9 @@
 class EntriesController < ApplicationController
 	# before_action :require_admin, except: [:create]
+	def show
+		entry = Entry.find_by_id(params['id'])
+		render json: entry
+	end
 
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']
