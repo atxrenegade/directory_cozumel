@@ -509,7 +509,7 @@ class adminInterface {
 			buttonArray.forEach(el => formFieldSet.appendChild(el));
 			formButton.addEventListener('click', function(event){
 				let attributesObj = adminInterface.buildObjFromFormInput(event);
-				adminInterface.processCRUDForm(action, dbType, attributesObj, event)
+				adminInterface.processSuperCreateForm(action, dbType, attributesObj, event)
 				elToAppendTo.removeChild(formEl);
 				document.getElementById('js-super-admin-modify-menu').innerText = 'DISPLAY FORM'
 				document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
@@ -533,27 +533,11 @@ class adminInterface {
 		return attObj;
 	}
 
-	static processCRUDForm(action, dbModel, attsObj, event){
-		/* type = Business, Entry, Map, Review, Category, Images, Listing, Admin */
-		/* action = Create, Update, Delete */
-		/* instance = any valid instance of type */;
-		if (action === 'create') {
-			adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
-			let elToAppendTo = event.target.parentElement.parentNode.parentNode;
-			let msg = `Successfully Added to Database: <br>`;
-			setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1500)
-			/* clear success message and details on click */
-		} else if	(action === 'update'){
-			/* return instance to update from database */
-			/* create new instance from attributes and exisitng values */
-
-		}	else if (action === 'delete') {
-			let instance = adminInterface.identifyInstance(dbModel, attsObj)
-
-		} else {
-			console.log('Error this record type does not exist')
-		}
-		/* display results*/
+	static processSuperCreateForm(action, dbModel, attsObj, event){
+		adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
+		let elToAppendTo = event.target.parentElement.parentNode.parentNode;
+		let msg = `Successfully Added to Database: <br>`;
+		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1500)
 	}
 
 	static buildCreatePostReq(action, dbModel, attsObj, event){
@@ -729,7 +713,6 @@ class adminInterface {
 		let resultsEl = document.createElement('div')
 		resultsEl.id = 'js-admin-CRUD-results';
 		/* check RESULTS, style and append success or error message */
-		debugger;
 		if (RESULT !== null) {
 			let obj = adminInterface.createDisplayObj();
 			msg += obj
