@@ -660,11 +660,12 @@ class adminInterface {
 		let inputAtts = {id: 'js-super-admin-crud-record-delete', value: labelValue}
 		adminInterface.buildFormField(inputAtts);
 		let confirmDeleteButton = document.createElement('button')
-		let backToCRUDMenuButton = document.createElement('button')
+		let cancelDeleteButton = document.createElement('button')
+		let msg = 'Admin Action Cancelled'
 		confirmDeleteButton.id = 'js-super-admin-CRUD-approve-delete';
-		backToCRUDMenuButton.id = 'js-super-admin-CRUD-decline-delete';
+		cancelDeleteButton.id = 'js-super-admin-CRUD-cancel-delete';
 		confirmDeleteButton.innerText = 'Confirm Delete';
-		backToCRUDMenuButton.innerText = 'Return To MENU';
+		cancelDeleteButton.innerText = 'Cancel Delete';
 
 		confirmDeleteButton.addEventListener('click', function(){
 			/*
@@ -683,11 +684,9 @@ class adminInterface {
 
 		})
 
-		backToCRUDMenuButton.addEventListener('click', function(){
-			adminInterface.resetCRUDForm();
-		})
+		cancelDeleteButton.addEventListener('click', adminInterface.resetCRUDForm.bind(null, elToAppendTo, msg))
 		elToAppendTo.appendChild(confirmDeleteButton);
-		elToAppendTo.appendChild(backToCRUDMenuButton);
+		elToAppendTo.appendChild(cancelDeleteButton);
 
 
 		/* add field and label and alert to confirm delete */
@@ -697,8 +696,13 @@ class adminInterface {
 		deleting review must also update overall review */
 	}
 
-	static resetCRUDForm(){
-		/* do something here */
+	static resetCRUDForm(elToAppendTo, msg){
+		debugger;
+		adminInterface.displayResults(msg, elToAppendTo)
+		let inputEl = document.getElementById('js-super-admin-CRUD-instance')
+		inputEl.remove();
+		let crudInput = document.getElementById('js-super-admin-modify-menu')
+		crudInput.innerText = 'DISPLAY FORM'
 	}
 
 	static buildFormField(atts){
@@ -723,6 +727,7 @@ class adminInterface {
 			event.preventDefault();
 			let inputValue = document.getElementById(atts['inputId']).value
 			atts['callback'](atts['dbType'], inputValue);
+			buttonEl.remove();
 		});
 		return buttonEl;
 	}
