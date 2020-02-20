@@ -655,6 +655,7 @@ class adminInterface {
 	}
 
 	static confirmRecordToDelete(dbType, id, elToAppendTo){
+		debugger;
 		if (RESULT !== null) {
 			document.removeEventListener('click', adminInterface.removeResultsOnClick)
 			let labelValue = 'Please Re-Enter Record Id to Confirm Delete '
@@ -668,37 +669,49 @@ class adminInterface {
 			cancelDeleteButton.innerText = 'Cancel Delete';
 			let confirmEls = [confirmField, confirmDeleteButton, cancelDeleteButton]
 			confirmEls.forEach(el => elToAppendTo.appendChild(el))
+			cancelDeleteButton.addEventListener('click', adminInterface.resetCRUDForm)
+			confirmDeleteButton.addEventListener('click', confirmDeleteAction.bind(null, dbType, elToAppendTo))
 
-			confirmDeleteButton.addEventListener('click', function(){
-
-				/*
-				alert('Are you sure you would like to delete this item?')
-				let confirmID = document.getElementById('js-super-admin-crud-record-delete').innerText
-				if (confirmID === id){
-					admin.Interface.buildDeletePostReq()
-					adminInterface.displayResults(msg, elToAppendTo);
-					adminInterface.resetCRUDForm();
+			function confirmDeleteAction(dbType, elToAppendTo){
+				debugger;
+				let id = document.getElementById('js-super-admin-CRUD-instance').value
+				let confirmID = document.getElementById('js-super-admin-crud-record-delete').value
+				if (dbType === 'entries') {
+					alert('Entries Are Permanent Records and Can NOT be deleted!')
+				} else if (confirmID === id) {
+					confirm('Are you sure you want to delete this record?');
+					/*admin.Interface.buildDeletePostReq()*/
+					let msg = RESULT
 
 				} else {
-					let msg = "ID numbers do not match. Confirmation Failed. Try Again."
-					adminInterface.displayResults(msg, elToAppendTo);
-					adminInterface.resetCRUDForm();
-				}*/
+					alert("ID numbers do not match. Confirmation Failed. Try Again.")
+				}
+				setTimeout(adminInterface.resetCRUDForm, 3000);
+			}
 
-			})
-			cancelDeleteButton.addEventListener('click', adminInterface.resetCRUDForm)
+		}
+	}
+			/*
+			alert('Are you sure you would like to delete this item?')
+			let confirmID = document.getElementById('js-super-admin-crud-record-delete').innerText
+			if (confirmID === id){
+				admin.Interface.buildDeletePostReq()
+				adminInterface.displayResults(msg, elToAppendTo);
+				adminInterface.resetCRUDForm();
 
-
+			} else {
+				let msg = "ID numbers do not match. Confirmation Failed. Try Again."
+				adminInterface.displayResults(msg, elToAppendTo);
+				adminInterface.resetCRUDForm();
+			}*/
 
 			/* add field and label and alert to confirm delete */
 			/* build delete record type by id post request, don't allow for delete of
 			categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
 			business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
 			deleting review must also update overall review */
-		} else {
-			setTimeout(adminInterface.resetCRUDForm, 3000)
-		}
-	}
+
+
 
 	static resetCRUDForm(elToAppendTo, msg){
 		let crudForm = document.getElementById('super-admin-create-update-delete')
