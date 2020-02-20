@@ -106,7 +106,6 @@ class adminInterface {
 				let formData;
 				if (dbType === 'categories' || dbType === 'entries') {
 					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `, el: elToAppendTo, action: formAction, searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
-
 				} else {
 					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction, searchType: 'name', dbType: dbType, callback: adminInterface.findRecordToDelete}
 					/*
@@ -598,8 +597,6 @@ class adminInterface {
 		adminInterface.dynamGetReq(url, callback)
 	}
 
-
-
 	static returnResult(data) {
 		RESULT = data;
 	}
@@ -619,20 +616,7 @@ class adminInterface {
 		ATTRIBUTES = data.map(el => { return el.replace(/_/g, ' ') })
 	}
 
-/***
-	static getInstanceId(dbModel, attsObj){
-		let id;
-		if ('name' in attsObj) {
-			let name = attsObj["name"]
-			id = adminInterface.searchIdByName(dbModel, name)
-		} else if ('id' in attsObj){
-			id = attsObj["id"]
-		} else {
-			id = 'no match for this instance'
-		}
-		return id;
-	}
-****/
+
 	static searchIdByName(dbType, name) {
 		try {
 			/* use query string using name in url */
@@ -647,38 +631,74 @@ class adminInterface {
 	}
 
 	static buildFindInstanceForm(formData) {
+		debugger;
 		let breakEl = document.createElement('br')
-		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SEARCH RECORDS', searchType: formData['formSearchType'], dbType: formData['dbType'], callback: adminInterface.findRecordToDelete }
 		let instAtts = {id: formData['id'], value: formData['labelValue']}
 		let instInputField = adminInterface.buildFormField(instAtts)
+		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SEARCH RECORDS', searchType: formData['formSearchType'], dbType: formData['dbType'], callback: adminInterface.findRecordToDelete, inputId: formData['id'] }
 		let instButton = adminInterface.buildCRUDSearchButton(buttonAtts)
 		let formElArray = [breakEl, breakEl, instInputField, breakEl, instButton, breakEl]
 		formElArray.forEach(el => formData['el'].appendChild(el))
 	}
 
-	static findRecordToDelete(type, id){
+	static findRecordToDelete(dbType, id){
 		RESULT = null;
-		let url = `http://localhost:3000/${type}/${id}`
+		let url = `http://localhost:3000/${dbType}/${id}`
 		let callback = adminInterface.returnResult
 		adminInterface.dynamGetReq(url, callback)
 		let elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
 		setTimeout(function(){
 			RESULT === null ? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
-		adminInterface.displayResults(elToAppendTo, msg)
+			adminInterface.displayResults(elToAppendTo, msg)
+			adminInterface.confirmRecordToDelete(dbType, id, elToAppendTo)
 		}, 1500)
 	}
 
-	static displayRecordToDelete(){
-		/* Can I use the exisitng CREATE display record for this? */
-		/* Use exisiting display results function */
-	}
+	static confirmRecordToDelete(dbType, id, elToAppendTo){
+		let labelValue = 'Please Re-Enter Record Id to Confirm Delete: '
+		let inputAtts = {id: 'js-super-admin-crud-record-delete', value: labelValue}
+		adminInterface.buildFormField(inputAtts);
+		let confirmDeleteButton = document.createElement('button')
+		let backToCRUDMenuButton = document.createElement('button')
+		confirmDeleteButton.id = 'js-super-admin-CRUD-approve-delete';
+		backToCRUDMenuButton.id = 'js-super-admin-CRUD-decline-delete';
+		confirmDeleteButton.innerText = 'Confirm Delete';
+		backToCRUDMenuButton.innerText = 'Return To MENU';
 
-	static executeDeleteById(){
+		confirmDeleteButton.addEventListener('click', function(){
+			/*
+			alert('Are you sure you would like to delete this item?')
+			let confirmID = document.getElementById('js-super-admin-crud-record-delete').innerText
+			if (confirmID === id){
+				admin.Interface.buildDeletePostReq()
+				adminInterface.displayResults(msg, elToAppendTo);
+				adminInterface.resetCRUDForm();
+
+			} else {
+				let msg = "ID numbers do not match. Confirmation Failed. Try Again."
+				adminInterface.displayResults(msg, elToAppendTo);
+				adminInterface.resetCRUDForm();
+			}*/
+
+		})
+
+		backToCRUDMenuButton.addEventListener('click', function(){
+			adminInterface.resetCRUDForm();
+		})
+		elToAppendTo.appendChild(confirmDeleteButton);
+		elToAppendTo.appendChild(backToCRUDMenuButton);
+
+
+		/* add field and label and alert to confirm delete */
 		/* build delete record type by id post request, don't allow for delete of
 		categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
 		business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
 		deleting review must also update overall review */
+	}
+
+	static resetCRUDForm(){
+		/* do something here */
 	}
 
 	static buildFormField(atts){
@@ -701,9 +721,7 @@ class adminInterface {
 		buttonEl.value = atts['value']
 		buttonEl.addEventListener('click', function(event){
 			event.preventDefault();
-			debugger;
-			let inputValue = 1;
-			/*event.target.previousElementSibling.firstElementChild.innerText */
+			let inputValue = document.getElementById(atts['inputId']).value
 			atts['callback'](atts['dbType'], inputValue);
 		});
 		return buttonEl;
