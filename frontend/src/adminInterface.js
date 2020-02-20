@@ -673,16 +673,16 @@ class adminInterface {
 	}
 
 	static findRecordToDelete(type, id){
-		debugger;
-		/* use existing get request functions */
 		RESULT = null;
 		let url = `http://localhost:3000/${type}/${id}`
 		let callback = adminInterface.returnResult
 		adminInterface.dynamGetReq(url, callback)
 		let elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
-		RESULT === null ? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
+		setTimeout(function(){
+			RESULT === null ? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
 		adminInterface.displayResults(elToAppendTo, msg)
+		}, 1500)
 	}
 
 	static displayRecordToDelete(){
@@ -729,6 +729,7 @@ class adminInterface {
 		let resultsEl = document.createElement('div')
 		resultsEl.id = 'js-admin-CRUD-results';
 		/* check RESULTS, style and append success or error message */
+		debugger;
 		if (RESULT !== null) {
 			let obj = adminInterface.createDisplayObj();
 			msg += obj
@@ -741,7 +742,7 @@ class adminInterface {
 	}
 
 	static createDisplayObj(){
-		let objHTML = ``
+		let objHTML = `<br>`
 		for (let [key, value] of Object.entries(RESULT)) {
 			objHTML +=`${key}: ${value}`
 			objHTML += `<br>`
