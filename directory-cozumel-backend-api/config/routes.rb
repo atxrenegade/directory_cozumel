@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 	post '/entries/update'
 	post '/entries/index', to: 'entries#index'
 	post '/entries/search', to: 'entries#search'
+	get '/entries/:id', to: 'entries#show'
 	post '/entries', to: 'entries#create'
+
 
 	get '/businesses/attributes', to: 'businesses#attributes'
 	resources :businesses, only: [:edit, :create, :update, :delete]
