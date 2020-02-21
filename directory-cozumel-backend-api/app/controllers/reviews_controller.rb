@@ -22,4 +22,17 @@ class ReviewsController < ApplicationController
 	  review = Review.find(params[:id])
 		render json: review
 	end
+
+	def destroy
+		#make sure to update overall rating after removing review
+		review = Review.find(params[:id])
+		review.destroy
+		response = {}
+		if review.destroyed?
+			response['msg'] = 'Review Deleted!'
+		else
+			response[:msg] = 'Review Failed to Delete!'
+		end
+		render json: response
+	end
 end

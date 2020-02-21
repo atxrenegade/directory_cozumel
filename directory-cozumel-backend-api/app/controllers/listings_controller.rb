@@ -21,4 +21,17 @@ class ListingsController < ApplicationController
 	  listing = Listing.find(params[:id])
 		render json: listing
 	end
+
+	def destroy
+		# make sure listing and business delete in conjunction with each other
+		listing = Listing.find(params[:id])
+		listing.destroy
+		response = {}
+		if listing.destroyed?
+			response['msg'] = 'Listing Deleted!'
+		else
+			response[:msg] = 'Listing Failed to Delete!'
+		end
+		render json: response
+	end
 end

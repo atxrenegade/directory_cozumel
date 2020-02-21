@@ -15,7 +15,7 @@ class AdminsController < ApplicationController
 	end
 
 	def create
-		instance = Image.create!(username: params['username'], password_digest: params['password_digest'], role: params['role'], status: params['status'])
+		instance = Admin.create!(username: params['username'], password_digest: params['password_digest'], role: params['role'], status: params['status'])
 		render json: instance
 	end
 
@@ -43,6 +43,18 @@ class AdminsController < ApplicationController
 
 	def require_super
 		redirect_to '/' unless current_user.super?
+	end
+
+	def destroy
+		admin = Admin.find(params[:id])
+		admin.destroy
+		response = {}
+		if admin.destroyed?
+			response['msg'] = 'Admin Deleted!'
+		else
+			response[:msg] = 'Admin Failed to Delete!'
+		end
+		render json: response
 	end
 
 	private

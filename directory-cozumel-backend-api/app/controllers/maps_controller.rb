@@ -26,4 +26,16 @@ class MapsController < ApplicationController
 	  map = Map.find(params[:id])
 		render json: map
 	end
+
+	def destroy
+		map = Map.find(params[:id])
+		map.destroy
+		response = {}
+		if map.destroyed?
+			response['msg'] = 'Map Deleted!'
+		else
+			response[:msg] = 'Map Failed to Delete!'
+		end
+		render json: response
+	end
 end

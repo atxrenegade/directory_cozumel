@@ -21,4 +21,16 @@ class ImagesController < ApplicationController
 	  image = Image.find(params[:id])
 		render json: image
 	end
+
+	def destroy
+		image = Image.find(params[:id])
+		image.destroy
+		response = {}
+		if image.destroyed?
+			response['msg'] = 'Image Deleted!'
+		else
+			response[:msg] = 'Image Failed to Delete!'
+		end
+		render json: response
+	end
 end

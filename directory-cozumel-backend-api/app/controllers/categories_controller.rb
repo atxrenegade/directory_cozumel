@@ -28,11 +28,17 @@ class CategoriesController < ApplicationController
 		render json: category
 	end
 
-	def delete
-		binding.pry
+	def destroy
 		category = Category.find(params[:id])
-		category.destroy()
-		category = nil ? msg = 'Category Deleted!' : 'Failed to Delete Category'
-		render json: msg
+		#check for businesses with this category id
+		#block if present
+		category.destroy
+		response = {}
+		if category.destroyed?
+			response['msg'] = 'Category Deleted!'
+		else
+			response[:msg] = 'Category Failed to Delete!'
+		end
+		render json: response
 	end
 end
