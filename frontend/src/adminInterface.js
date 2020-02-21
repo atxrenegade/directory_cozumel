@@ -556,8 +556,9 @@ class adminInterface {
 	static buildDeletePostReq(dbModel, recordID){
 		let method = 'DELETE'
 		let url = `http://localhost:3000/${dbModel.toLowerCase()}/${recordID}`
-		data = { id: recordID }
-		adminInterface.dynamFormReq(method, url, data)
+		let data = { id: recordID }
+		let callback = adminInterface.returnResult;
+		adminInterface.dynamFormReq(method, url, data, callback)
 	}
 
 	static dynamFormReq(method, url, data, callback) {
@@ -678,7 +679,6 @@ class adminInterface {
 					alert('Entries Are Permanent Records and Can NOT be deleted!')
 				} else if (confirmID === id) {
 					confirm('Are you sure you want to delete this record?');
-					debugger;
 					adminInterface.buildDeletePostReq(dbType, id)
 					let msg = RESULT
 					adminInterface.displayResults(elToAppendTo, msg)
