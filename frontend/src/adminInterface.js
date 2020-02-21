@@ -553,10 +553,10 @@ class adminInterface {
 		adminInterface.dynamFormReq(method, url, data)
 	}
 
-	static buildDeletePostReq(action, dbModel, attsObj, event){
+	static buildDeletePostReq(dbModel, recordID){
 		let method = 'DELETE'
-		let url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
-		data = { id: id }
+		let url = `http://localhost:3000/${dbModel.toLowerCase()}/${recordID}`
+		data = { id: recordID }
 		adminInterface.dynamFormReq(method, url, data)
 	}
 
@@ -678,8 +678,10 @@ class adminInterface {
 					alert('Entries Are Permanent Records and Can NOT be deleted!')
 				} else if (confirmID === id) {
 					confirm('Are you sure you want to delete this record?');
-					/*admin.Interface.buildDeletePostReq()*/
+					debugger;
+					adminInterface.buildDeletePostReq(dbType, id)
 					let msg = RESULT
+					adminInterface.displayResults(elToAppendTo, msg)
 				} else {
 					alert("ID numbers do not match. Confirmation Failed. Try Again.")
 				}
@@ -688,27 +690,11 @@ class adminInterface {
 
 		}
 	}
-			/*
-			alert('Are you sure you would like to delete this item?')
-			let confirmID = document.getElementById('js-super-admin-crud-record-delete').innerText
-			if (confirmID === id){
-				admin.Interface.buildDeletePostReq()
-				adminInterface.displayResults(msg, elToAppendTo);
-				adminInterface.resetCRUDForm();
 
-			} else {
-				let msg = "ID numbers do not match. Confirmation Failed. Try Again."
-				adminInterface.displayResults(msg, elToAppendTo);
-				adminInterface.resetCRUDForm();
-			}*/
-
-			/* add field and label and alert to confirm delete */
-			/* build delete record type by id post request, don't allow for delete of
-			categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
-			business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
-			deleting review must also update overall review */
-
-
+	/* DELETE NOTES build delete record type by id post request, don't allow for delete of
+	categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
+	business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
+	deleting review must also update overall review */
 
 	static resetCRUDForm(elToAppendTo, msg){
 		let crudForm = document.getElementById('super-admin-create-update-delete')
