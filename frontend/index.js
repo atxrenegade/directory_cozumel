@@ -1,5 +1,4 @@
 window.onload = function() {
-	mykey = config.MY_KEY;
 	CATS = [];
 	ENTRIES = [];
 	ATTRIBUTES = [];
