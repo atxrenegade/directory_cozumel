@@ -27,4 +27,12 @@ class CategoriesController < ApplicationController
 	  category = Category.find(params[:id])
 		render json: category
 	end
+
+	def delete
+		binding.pry
+		category = Category.find(params[:id])
+		category.destroy()
+		category = nil ? msg = 'Category Deleted!' : 'Failed to Delete Category'
+		render json: msg
+	end
 end
