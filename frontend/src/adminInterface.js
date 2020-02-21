@@ -655,7 +655,6 @@ class adminInterface {
 	}
 
 	static confirmRecordToDelete(dbType, id, elToAppendTo){
-		debugger;
 		if (RESULT !== null) {
 			document.removeEventListener('click', adminInterface.removeResultsOnClick)
 			let labelValue = 'Please Re-Enter Record Id to Confirm Delete '
@@ -673,7 +672,6 @@ class adminInterface {
 			confirmDeleteButton.addEventListener('click', confirmDeleteAction.bind(null, dbType, elToAppendTo))
 
 			function confirmDeleteAction(dbType, elToAppendTo){
-				debugger;
 				let id = document.getElementById('js-super-admin-CRUD-instance').value
 				let confirmID = document.getElementById('js-super-admin-crud-record-delete').value
 				if (dbType === 'entries') {
@@ -682,7 +680,6 @@ class adminInterface {
 					confirm('Are you sure you want to delete this record?');
 					/*admin.Interface.buildDeletePostReq()*/
 					let msg = RESULT
-
 				} else {
 					alert("ID numbers do not match. Confirmation Failed. Try Again.")
 				}
@@ -750,14 +747,16 @@ class adminInterface {
 	static displayResults(elToAppendTo, msg) {
 		let resultsEl = document.createElement('div')
 		resultsEl.id = 'js-admin-CRUD-results';
-		/* check RESULTS, style and append success or error message */
-		if (RESULT !== null) {
+
+		elToAppendTo.appendChild(resultsEl);
+		if (RESULT !== null || msg !== 'No Matches Found!') {
 			let obj = adminInterface.createDisplayObj();
 			msg += obj
+			document.addEventListener('click', adminInterface.removeResultsOnClick)
+		} else {
+			document.addEventListener('click', adminInterface.resetCRUDForm)
 		}
 		resultsEl.innerHTML = msg
-		elToAppendTo.appendChild(resultsEl);
-		document.addEventListener('click', adminInterface.removeResultsOnClick)
 	}
 
 	static createDisplayObj(){
