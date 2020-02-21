@@ -1,9 +1,12 @@
 # Directory Cozumel Application
 
+#### User Interface Screenshot 1
 ![Directory Cozumel User Interface](frontend/assets/images/Screenshots/directory_cozumel_user_interface.png)
 
+#### Admin Interface Screenshot 1
 ![Directory Cozumel User Interface](frontend/assets/images/Screenshots/directory_cozumel_admin_interface1.png)
 
+#### User Interface Screenshot 2
 ![Directory Cozumel User Interface](frontend/assets/images/Screenshots/directory_cozumel_admin_interface2.png)
 
 
@@ -96,7 +99,7 @@ Super admin can create, update or delete other admins and their roles through th
 For an administrator with Super Admin privileges a new admin can be created and authorized by use on the 'Create Admin' button which will display the form to input new admin username, password and roles.  Once the admin inputs the relevant data clicking the submit button will initiate the creation of a new admin and persist this request to the database.  The option to chose between regular and super admin must be declared at this time but can be updated by a super admin at any point afterward.
 
 ###### **To Update Admin**
-To update an existing admin the admin user must been logged in with super admin privileges. Updates can be performed by clicking on the 'Update Admin' button in the 'Super Admin Menu' and inputing the admin username or id in the text field that appears and pressing the submit button. From there a auto generated form will appear displaying the admin properties and values for the requested admin instance, edit the values and desired and click on the save button to persist these records to the database.
+To update an existing admin the admin user must been logged in with super admin privileges. Updates can be performed by clicking on the 'Update Admin' button in the 'Super Admin Menu' and inputing the admin username or id in the text field that appears and pressing the submit button. From there an auto generated form will appear displaying the admin properties and values for the requested admin instance, edit the values and desired and click on the save button to persist these records to the database.
 
 ###### **To Delete Admin**
 To delete and admin click on the delete admin button in the super admin menu, again this action can only be performed by a super admin user.  When the text field appears enter the admin username or id to delete and confirm delete once the alert window appears.  Note that deleting an admin user will not edit or remove references to the admin in the entry records only prevent the admin from logging in to handle further entry, and or database records.
@@ -116,27 +119,37 @@ value and the 'Maps' radio value and clicking the submit button. This action wil
 
 ## Getting Started
 
-Download from GitHub repo and install on local server - For new users sign up with username, password and email.
+Download from GitHub repo and install on local server, run migrations, and seed database for application testing. For production use, clone repo, deploy to server, comment out all but the category seeds, run migration, seed database. Search Listings
 
 ## Prerequisites
 
-OS X & Linux:
+Web Browser - Firefox, Safari, Google Chrome
 
-npm install my-crazy-module --save
-
-Windows:
-
-edit autoexec.bat
-
-Safari/Firefox/Google Chrome Browsers
+This application was made with and optimized for Firefox (Developer Edition)
 
 ## Installing
 
 To install this program locally:
 
-    Download Repo
-    Run bundle install from command line
-    Navigate to root page on local server
+	Clone repo and download locally to your computer
+	From command line open backend api folder:
+		cd directory_cozumel/directory-cozumel-backend-api/
+	Run bundle install
+	Run rake db:migrate
+	Run rake db:seed
+	Start server
+		rails s
+	Open app in Browser - open /directory_cozumel/frontend/index.html in browser
+	App is ready to use
+
+To Use Admin Functions:
+
+	Press discrete admin button in the bottom right hand of the user panel
+	For initial admin log in use default username: admin1 and default password: admin1
+	Immediately update admin password to a new secret password
+
+#### Location of Discrete Admin Button
+![Directory Cozumel Discrete Admin Button](frontend/assets/images/Screenshots/directory_cozumel_discrete_admin_button.png)
 
 ## Built With:
 <ul>
