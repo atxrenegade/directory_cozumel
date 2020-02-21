@@ -14,25 +14,25 @@ Rails.application.routes.draw do
 
 
 	get '/businesses/attributes', to: 'businesses#attributes'
-	resources :businesses, only: [:edit, :create, :update, :delete, :show]
+	resources :businesses, only: [:edit, :create, :update, :destroy, :show]
 
 	get '/listings/attributes', to: 'listings#attributes'
-	resources :listings, only: [:edit, :create, :update, :delete, :show]
+	resources :listings, only: [:edit, :create, :update, :destroy, :show]
 
 	get '/maps/attributes', to: 'maps#attributes'
-	resources :maps, only: [:edit, :create, :update, :delete, :show]
+	resources :maps, only: [:edit, :create, :update, :destroy, :show]
 
 	get '/reviews/attributes', to: 'reviews#attributes'
-	resources :reviews, only: [:edit, :create, :update, :delete, :show]
+	resources :reviews, only: [:edit, :create, :update, :destroy, :show]
 
 	get '/images/attributes', to: 'images#attributes'
-	resources :images, only: [:edit, :create, :update, :delete, :show]
+	resources :images, only: [:edit, :create, :update, :destroy, :show]
 
 	get '/categories/attributes', to: 'categories#attributes'
-	resources :categories, only: [:edit, :index, :create, :update, :delete, :show]
+	resources :categories, only: [:edit, :index, :create, :update, :destroy, :show]
 
 	get '/admins/attributes', to: 'admins#attributes'
-	resources :admins, only: [:edit, :create, :update, :delete, :show]
+	resources :admins, only: [:edit, :create, :update, :destroy, :show]
 
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'
