@@ -76,9 +76,11 @@ class adminInterface {
 				let elToAppendTo = document.getElementById('super-admin-create-update-delete')
 				adminInterface.buildCRUDforms(radVals, event, elToAppendTo)
 				superAdminCRUDMenu.innerText = 'HIDE FORM';
-			} else {
+			} else if (superAdminCRUDMenu.innerText === 'HIDE FORM'){
 				superAdminCRUDMenu.innerText = 'DISPLAY FORM';
 				document.getElementById('super-admin-create-update-delete').innerHTML = '';
+			} else {
+				console.log('Button error!')
 			}
 		})
 
@@ -657,7 +659,7 @@ class adminInterface {
 
 	static confirmRecordToDelete(dbType, id, elToAppendTo){
 		if (RESULT !== null) {
-			document.removeEventListener('click', adminInterface.removeResultsOnClick)
+			document.removeEventListener('click', adminInterface.removeResultsOnClick);
 			let labelValue = 'Please Re-Enter Record Id to Confirm Delete '
 			let inputAtts = {id: 'js-super-admin-crud-record-delete', value: labelValue}
 			let confirmField = adminInterface.buildFormField(inputAtts);
