@@ -94,6 +94,7 @@ class adminInterface {
 		let formAction = radVals[0];
 		let dbType = radVals[1];
 		ATTRIBUTES = [];
+		let formData;
 
 		switch (formAction) {
 			case 'create':
@@ -105,11 +106,12 @@ class adminInterface {
 				adminInterface.buildFindInstanceForm(formData);
 				break;
 			case 'delete':
-				let formData;
+
 				if (dbType === 'categories' || dbType === 'entries') {
 					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `, el: elToAppendTo, action: formAction, searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
 				} else {
-					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction, searchType: 'name', dbType: dbType, callback: adminInterface.findRecordToDelete}
+					let callback = adminInterface.searchIdByName
+					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction, searchType: 'name', dbType: 'Businesses', callback: callback}
 					/*
 					findRecordToDelete()
 					displayRecordToDelete()
@@ -620,30 +622,29 @@ class adminInterface {
 	}
 
 
-	static searchIdByName(dbType, name) {
-		try {
-			/* use query string using name in url */
-			url = `http://localhost:3000/${dbType}/by_name`
-			fetch(url)
-			.then(resp => resp.json())
-			.then(json => console.log(json))
-		}
-		catch(err) {
-			console.log(error.message);
-		}
+	static searchIdByName(dbType, id) {
+		let name = document.getElementById(`${id}`.value)
+		let method = 'POST'
+		let url = `http://localhost:3000/${dbType}/search_by_name`
+		let callback = adminInterface.dynamFormResp
+		let data = {name: name}
+		adminInterface.dynamFormReq(method, url, data, callback)
 	}
 
 	static buildFindInstanceForm(formData) {
+		debugger;
+
 		let breakEl = document.createElement('br')
 		let instAtts = {id: formData['id'], value: formData['labelValue']}
 		let instInputField = adminInterface.buildFormField(instAtts)
-		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SEARCH RECORDS', searchType: formData['formSearchType'], dbType: formData['dbType'], callback: adminInterface.findRecordToDelete, inputId: formData['id'] }
+		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SEARCH RECORDS', searchType: formData['formSearchType'], dbType: formData['dbType'], callback: formData['callback'] }
 		let instButton = adminInterface.buildCRUDSearchButton(buttonAtts)
 		let formElArray = [breakEl, breakEl, instInputField, breakEl, instButton, breakEl]
 		formElArray.forEach(el => formData['el'].appendChild(el))
 	}
 
 	static findRecordToDelete(dbType, id){
+		let recordId = document.getElementById(`${id}`).value
 		RESULT = null;
 		let url = `http://localhost:3000/${dbType}/${id}`
 		let callback = adminInterface.returnResult
@@ -725,8 +726,7 @@ class adminInterface {
 		buttonEl.value = atts['value']
 		buttonEl.addEventListener('click', function(event){
 			event.preventDefault();
-			let inputValue = document.getElementById(atts['inputId']).value
-			atts['callback'](atts['dbType'], inputValue);
+			atts['callback'](atts['dbType'], atts['id']);
 			buttonEl.remove();
 		});
 		return buttonEl;
