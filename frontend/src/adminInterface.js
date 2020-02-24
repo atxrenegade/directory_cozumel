@@ -624,14 +624,13 @@ class adminInterface {
 
 
 	static searchIdByName(dbType, id, searchType) {
-		debugger;
 		let name = document.getElementById(`${id}`).value
 		let method = 'POST'
 		let url = `http://localhost:3000/${searchType.toLowerCase()}/index_by_name`
 		let callback = adminInterface.dynamFormResp
 		let data = {name: name}
 		adminInterface.dynamFormReq(method, url, data, callback)
-		adminInterface.getAssociatedRecords(dbType)
+		setTimeout(adminInterface.getAssociatedRecords.bind(null, dbType), 1500)
 	}
 
 	static getAssociatedRecords(dbType){
@@ -641,13 +640,14 @@ class adminInterface {
 		let data = {business_id: businessId}
 		let url = `http://localhost:3000/${dbType}/index_associated`
 		let callback = adminInterface.returnResult;
-
 		adminInterface.dynamFormReq(method, url, data, callback)
-		adminInterface.displayResults()
+		let elToAppendTo = document.getElementById('super-admin-create-update-delete')
+		let msg;
+		RESULT === null ? msg = 'No Records Match Your Query' : msg = 'Matching Associated Records'
+		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1500)
 	}
 
 	static buildFindInstanceForm(formData) {
-		debugger;
 		let breakEl = document.createElement('br')
 		let instAtts = {id: formData['id'], value: formData['labelValue']}
 		let instInputField = adminInterface.buildFormField(instAtts)
@@ -749,7 +749,6 @@ class adminInterface {
 	static displayResults(elToAppendTo, msg) {
 		let resultsEl = document.createElement('div')
 		resultsEl.id = 'js-admin-CRUD-results';
-
 		elToAppendTo.appendChild(resultsEl);
 		if (RESULT !== null || msg !== 'No Matches Found!') {
 			let obj = adminInterface.createDisplayObj();
