@@ -109,16 +109,17 @@ class adminInterface {
 
 				if (dbType === 'categories' || dbType === 'entries') {
 					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `, el: elToAppendTo, action: formAction, searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
+					adminInterface.buildFindInstanceForm(formData);
 				} else {
 					let callback = adminInterface.searchIdByName
-					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction, searchType: 'name', dbType: 'Businesses', callback: callback}
-					/*
-					findRecordToDelete()
-					displayRecordToDelete()
-					buildFindInstanceForm()
-					executeDeleteByID() - event listener on buildFindInstanceForm */
+					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction,  searchType: 'businesses', dbType: dbType, callback: callback}
+					adminInterface.buildFindInstanceForm(formData);
+
+					/* create new post request to search and return all ids */
+					/* adminInterface.collectRecords(db_type, business_id) */					/* search all databb records matching this business_id */
+					/* Display to DOM */
+					/* adminInterface.buildFindInstanceForm(formData); */
 				}
-				adminInterface.buildFindInstanceForm(formData);
 				break;
 			default:
 				error: 'Action not understood!'
@@ -622,22 +623,35 @@ class adminInterface {
 	}
 
 
-	static searchIdByName(dbType, id) {
-		let name = document.getElementById(`${id}`.value)
+	static searchIdByName(dbType, id, searchType) {
+		debugger;
+		let name = document.getElementById(`${id}`).value
 		let method = 'POST'
-		let url = `http://localhost:3000/${dbType}/search_by_name`
+		let url = `http://localhost:3000/${searchType.toLowerCase()}/index_by_name`
 		let callback = adminInterface.dynamFormResp
 		let data = {name: name}
 		adminInterface.dynamFormReq(method, url, data, callback)
+		adminInterface.getAssociatedRecords(dbType)
+	}
+
+	static getAssociatedRecords(dbType){
+		debugger;
+		let businessId = RESULT[0].id
+		let method = 'POST'
+		let data = {business_id: businessId}
+		let url = `http://localhost:3000/${dbType}/index_associated`
+		let callback = adminInterface.returnResult;
+
+		adminInterface.dynamFormReq(method, url, data, callback)
+		adminInterface.displayResults()
 	}
 
 	static buildFindInstanceForm(formData) {
 		debugger;
-
 		let breakEl = document.createElement('br')
 		let instAtts = {id: formData['id'], value: formData['labelValue']}
 		let instInputField = adminInterface.buildFormField(instAtts)
-		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SEARCH RECORDS', searchType: formData['formSearchType'], dbType: formData['dbType'], callback: formData['callback'] }
+		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SEARCH RECORDS', searchType: formData['searchType'], dbType: formData['dbType'], callback: formData['callback'], formId: formData['id'] }
 		let instButton = adminInterface.buildCRUDSearchButton(buttonAtts)
 		let formElArray = [breakEl, breakEl, instInputField, breakEl, instButton, breakEl]
 		formElArray.forEach(el => formData['el'].appendChild(el))
@@ -726,7 +740,7 @@ class adminInterface {
 		buttonEl.value = atts['value']
 		buttonEl.addEventListener('click', function(event){
 			event.preventDefault();
-			atts['callback'](atts['dbType'], atts['id']);
+			atts['callback'](atts['dbType'], atts['formId'], atts['searchType']);
 			buttonEl.remove();
 		});
 		return buttonEl;
