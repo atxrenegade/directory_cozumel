@@ -33,4 +33,9 @@ class ImagesController < ApplicationController
 		end
 		render json: response
 	end
+
+	def index_associated
+		images = Image.all.find_by(business_id: params['business_id'])
+		render json: images
+	end
 end

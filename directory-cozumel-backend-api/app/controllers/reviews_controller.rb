@@ -35,4 +35,9 @@ class ReviewsController < ApplicationController
 		end
 		render json: response
 	end
+
+	def index_associated
+		reviews = Review.all.find_by(business_id: params['business_id'])
+		render json: reviews
+	end
 end

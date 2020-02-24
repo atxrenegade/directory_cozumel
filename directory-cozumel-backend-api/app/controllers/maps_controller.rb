@@ -38,4 +38,9 @@ class MapsController < ApplicationController
 		end
 		render json: response
 	end
+
+	def index_associated
+		maps = Map.all.find_by(business_id: params['business_id'])
+		render json: maps
+	end
 end
