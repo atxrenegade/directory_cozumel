@@ -110,7 +110,8 @@ class adminInterface {
 				, 800)
 				break;
 			case 'update':
-				adminInterface.buildFindInstanceForm(formData);
+				setTimeout(adminInterface.resetCRUDForm, 300);
+				alert('Work In Progress!')
 				break;
 			case 'delete':
 
@@ -719,7 +720,7 @@ class adminInterface {
 	business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
 	deleting review must also update overall review */
 
-	static resetCRUDForm(elToAppendTo, msg){
+	static resetCRUDForm(){
 		let crudForm = document.getElementById('super-admin-create-update-delete')
 		crudForm.innerHTML = '<br>';
 		let crudButton = document.getElementById('js-super-admin-modify-menu')
