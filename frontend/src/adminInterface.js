@@ -43,11 +43,18 @@ class adminInterface {
 			setTimeout(`adminInterface.renderIndex('SEARCH')`, 1800);
 		})
 
-		/* Super Admin Menu Button */
+		/* Super Admin Menu Toggle Button */
 		superAdminMenuButton.addEventListener('click', function() {
 			let el = document.getElementById('js-admin-super-admin-open');
 			adminInterface.toggleElement(el);
 		})
+		/* Super Admin Menu Admin Auth Panel Buttons */
+		let createAdminButton = document.getElementById('js-admin-create-admin')
+		let editAdminButton = document.getElementById('js-admin-edit-admin')
+		let deleteAdminButton = document.getElementById('js-admin-delete-admin')
+		createAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
+		editAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
+		deleteAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
 
 		/* Detailed Entry Panel Buttons */
 		addNotesButton.addEventListener('click', adminInterface.showNotesForm);
@@ -634,7 +641,6 @@ class adminInterface {
 	}
 
 	static getAssociatedRecords(dbType){
-		debugger;
 		let businessId = RESULT[0].id
 		let method = 'POST'
 		let data = {business_id: businessId}
