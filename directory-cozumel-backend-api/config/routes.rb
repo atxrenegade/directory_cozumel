@@ -14,19 +14,27 @@ Rails.application.routes.draw do
 
 
 	get '/businesses/attributes', to: 'businesses#attributes'
+	post '/businesses/index_by_name', to: 'businesses#index_by_name'
 	resources :businesses, only: [:edit, :create, :update, :destroy, :show]
 
 	get '/listings/attributes', to: 'listings#attributes'
 	resources :listings, only: [:edit, :create, :update, :destroy, :show]
+	post '/listings/index_associated', to: 'listings#index_associated'
 
 	get '/maps/attributes', to: 'maps#attributes'
 	resources :maps, only: [:edit, :create, :update, :destroy, :show]
+	post '/maps/index_associated', to: 'maps#index_associated'
+
 
 	get '/reviews/attributes', to: 'reviews#attributes'
 	resources :reviews, only: [:edit, :create, :update, :destroy, :show]
+	post '/reviews/index_associated', to: 'reviews#index_associated'
+
 
 	get '/images/attributes', to: 'images#attributes'
 	resources :images, only: [:edit, :create, :update, :destroy, :show]
+	post '/images/index_associated', to: 'images#index_associated'
+
 
 	get '/categories/attributes', to: 'categories#attributes'
 	resources :categories, only: [:edit, :index, :create, :update, :destroy, :show]
