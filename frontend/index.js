@@ -10,35 +10,35 @@ window.onload = function() {
 	LNG = -86.92;
 
 	/* searchbar elements */
-	let searchByName = document.getElementById('js-search-by-name');
-	let searchByCategory = document.getElementById('js-search-by-category');
-	let nameRadioSelect = document.getElementById('js-radio-by-name');
-	let categoryRadioSelect = document.getElementById('js-radio-by-category');
-	let searchCategoryMenu = document.getElementById('js-search-category-menu');
-	let searchNameField = document.getElementById('js-search-name-text-field');
+	const searchByName = document.getElementById('js-search-by-name');
+	const searchByCategory = document.getElementById('js-search-by-category');
+	const nameRadioSelect = document.getElementById('js-radio-by-name');
+	const categoryRadioSelect = document.getElementById('js-radio-by-category');
+	const searchCategoryMenu = document.getElementById('js-search-category-menu');
+	const searchNameField = document.getElementById('js-search-name-text-field');
 
 	/* checkbox elements */
-	let reviewCheckBox = document.getElementById('js-add-review-checkbox');
-	let imageCheckBox = document.getElementById('js-add-image-checkbox');
-	let flagCheckBox = document.getElementById('js-flag-business-checkbox');
-	let editCheckBox = document.getElementById('js-edit-business-checkbox');
+	const reviewCheckBox = document.getElementById('js-add-review-checkbox');
+	const imageCheckBox = document.getElementById('js-add-image-checkbox');
+	const flagCheckBox = document.getElementById('js-flag-business-checkbox');
+	const editCheckBox = document.getElementById('js-edit-business-checkbox');
 
 	/* business listing elements */
-	let businessListings = document.getElementById('js-listing-show');
-	let listingMenu = document.getElementById('js-listing-menu');
+	const businessListings = document.getElementById('js-listing-show');
+	const listingMenu = document.getElementById('js-listing-menu');
 
 	/* add business form elements */
-	let newBusinessButton = document.getElementById('js-add-business-button');
-	let newBusinessForm = document.getElementById('js-new-business-form');
+	const newBusinessButton = document.getElementById('js-add-business-button');
+	const newBusinessForm = document.getElementById('js-new-business-form');
 
 	/* admin hidden button element */
-	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
+	const hiddenAdminButton = document.getElementById('js-admin-hidden-button');
 
 	/* admin login panel elements */
-	let adminPanelLogin = document.getElementById('js-admin-login-button');
+	const adminPanelLogin = document.getElementById('js-admin-login-button');
 
 	/* container elements */
-	let listingsContainer = document.getElementById('listings-container')
+	const listingsContainer = document.getElementById('listings-container')
 
 	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
@@ -71,8 +71,8 @@ window.onload = function() {
 	function retrieveSearchCategoryResults() {
 		listingMenu.style.display = 'none';
 		listingsContainer.style.display = 'block';
-		let category = document.getElementById('js-category-select').value
-		let results = postSearchByCategory(category);
+		const category = document.getElementById('js-category-select').value
+		const results = postSearchByCategory(category);
 	}
 
 	/* TOGGLE FORM FUNCTIONS */
@@ -87,7 +87,7 @@ window.onload = function() {
 	}
 
 	function toggleNewBusinessForm() {
-		let elFormContainer = document.getElementById('js-add-business-form-container')
+		const elFormContainer = document.getElementById('js-add-business-form-container')
 		if (elFormContainer.style.display === 'block'){
 			elFormContainer.style.display = 'none';
 		} else {
@@ -96,7 +96,7 @@ window.onload = function() {
 			if (globalCats .length === 0) {
 				collectCategories();
 			};
-			let categorySelectEl = document.getElementById('cat-select')
+			const categorySelectEl = document.getElementById('cat-select')
 			if (categorySelectEl === null) { renderNewBusCatSelect() };
 		}
 	}
@@ -116,8 +116,8 @@ window.onload = function() {
 	}
 
 	function postSearchByName(name) {
-		let data = {'name': name}
-		let configObj = {
+		const data = {'name': name}
+		const configObj = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -140,8 +140,8 @@ window.onload = function() {
 	}
 
 	function postSearchByCategory(category){
-		let data = {'category_name': category}
-		let configObj = {
+		const data = {'category_name': category}
+		const configObj = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -164,8 +164,8 @@ window.onload = function() {
 	}
 
 	function postBusObjToRetrieve(name){
-		let data = {'name': name}
-		let configObj = {
+		const data = {'name': name}
+		const configObj = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -189,7 +189,7 @@ window.onload = function() {
 
 	function postForm(data) {
 
-		let configObj = {
+		const configObj = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -214,8 +214,8 @@ window.onload = function() {
 	/* RESULTS FUNCTIONS */
 	/* Search Results functions */
 	function storeCategories(data){
-		let categoryObjects = Array.from(data);
-		globalCats = categoryObjects.map((el) => {
+		const categoryObjects = Array.from(data);
+		const globalCats = categoryObjects.map((el) => {
 			return el['name']
 		})
 	}
@@ -235,13 +235,13 @@ window.onload = function() {
 
 	function buildListing(data){
 		let objArray = []
-		let busObj = Business.buildBusObj(data);
+		const busObj = Business.buildBusObj(data);
 		let map;
 		if (data['map']) {
 			map = GoogleMap.mapBuilder(data['map'])
 		} else { map = [] }
-		let imagesCollection = Image.imagesBuilder(data['images']);
-		let reviewsCollection = Review.reviewsBuilder(data['reviews']);
+		const imagesCollection = Image.imagesBuilder(data['images']);
+		const reviewsCollection = Review.reviewsBuilder(data['reviews']);
 		objArray.push(busObj, map, imagesCollection, reviewsCollection)
 		return objArray;
 	}
@@ -250,10 +250,10 @@ window.onload = function() {
 		if (objArray != undefined) {
 			let el = businessListings;
 			el.innerHTML = '';
-			let busHTML = objArray[0].renderBusListing();
-			let mapHTML;
-			let reviewsHTML;
-			let imagesHTML;
+			const busHTML = objArray[0].renderBusListing();
+			const mapHTML;
+			const reviewsHTML;
+			const imagesHTML;
 			renderComponent(busHTML, el);
 			if (objArray[1].length > 0){
 				mapHTML = objArray[1].renderMap();
@@ -275,7 +275,7 @@ window.onload = function() {
 
 	function appendErrorMsg(msg){
 		businessListings.innerHTML = '';
-		let errorMsg = document.createElement('p');
+		const errorMsg = document.createElement('p');
 		errorMsg.innerHTML = `${msg}`
 		businessListings.appendChild(errorMsg);
 		businessListings.style.display = 'block';
@@ -283,8 +283,8 @@ window.onload = function() {
 
 	/* Instance builder functions */
 	function checkDuplicate(busName) {
-		let allNames = globalALLBusinesses.map(el => el.name)
-		let duplicate = allNames.includes(busName)
+		const allNames = globalALLBusinesses.map(el => el.name)
+		const duplicate = allNames.includes(busName)
 		return duplicate;
 	}
 
@@ -293,7 +293,7 @@ window.onload = function() {
 		if (searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
-			let cats = globalCats.map((el) => {
+			const cats = globalCats.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
 			html += cats + '</select>';
@@ -311,10 +311,10 @@ window.onload = function() {
 	}
 
 	function renderButton(obj, functionToExec, elToAppendTo){
-		let buttonHTML =`<input id='button_${obj.id}' type='button' class='js-bus-select' value='${obj.name}'>`;
+		const buttonHTML =`<input id='button_${obj.id}' type='button' class='js-bus-select' value='${obj.name}'>`;
 		renderComponent(buttonHTML, elToAppendTo);
-		let el = `button_${obj.id}`
-		let button = document.getElementById(el)
+		const el = `button_${obj.id}`
+		const button = document.getElementById(el)
 		button.addEventListener('click', buttonFunction);
 		function buttonFunction(evt){
 			functionToExec(evt.target.value)
@@ -330,13 +330,13 @@ window.onload = function() {
 	/* FORM FUNCTIONs */
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect(){
-		let newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
+		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
 		if (globalCats .length == 0){
 			collectCategories();
 		}
 		let catMenu = document.createElement('div');
 		let html = '<select id="cat-select" multiple>';
-		let cats = globalCats.map((el) => {
+		const cats = globalCats.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
 		})
 		html += cats + '</select>';
@@ -359,7 +359,7 @@ window.onload = function() {
 	function submitForm(event) {
 		if (event.type === 'submit' &&  event.target.className !== 'admin-form') {
 			event.preventDefault();
-			let busName = getBusNameForAssoForm(event);
+			const busName = getBusNameForAssoForm(event);
 			createPostData(event, busName);
 			formSubmitted(event);
 		}
@@ -407,15 +407,15 @@ window.onload = function() {
 
 	/* ADMIN LOGIN FUNCTIONS */
 	function clearDirectoryForAdminView(){
-		let sponsListContainer = document.getElementById('sponsored-listing-container');
-		let adsContainer = document.getElementById('ads-container');
-		let searchBarContainer = document.getElementById('js-searchbar-container');
-		let newBusContainer = document.getElementById('js-new-business-container');
-		let adminPanel = document.getElementById('js-admin-panel-container');
-		let adminMenu = document.getElementById('js-admin-menu-container');
-		let adminPanelLogout = document.getElementById('js-admin-logout-button');
-		let adminPanelForm = document.getElementById('js-admin-login');
-		let adminUserInfo = document.getElementById('js-admin-user-info');
+		const sponsListContainer = document.getElementById('sponsored-listing-container');
+		const adsContainer = document.getElementById('ads-container');
+		const searchBarContainer = document.getElementById('js-searchbar-container');
+		const newBusContainer = document.getElementById('js-new-business-container');
+		const adminPanel = document.getElementById('js-admin-panel-container');
+		const adminMenu = document.getElementById('js-admin-menu-container');
+		const adminPanelLogout = document.getElementById('js-admin-logout-button');
+		const adminPanelForm = document.getElementById('js-admin-login');
+		const adminUserInfo = document.getElementById('js-admin-user-info');
 		sponsListContainer.style.display = 'none';
 		adsContainer.style.display = 'none';
 		searchBarContainer.style.display = 'none';
@@ -436,7 +436,7 @@ window.onload = function() {
 	}
 
 	function postLogIn(data){
-		let configObj = {
+		const configObj = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -460,8 +460,8 @@ window.onload = function() {
 	}
 
 	function logInAdmin(){
-		let usernameVal = document.getElementById('js-admin-username').value.trim();
-		let passwordVal = document.getElementById('js-admin-password').value.trim();
+		const usernameVal = document.getElementById('js-admin-username').value.trim();
+		const passwordVal = document.getElementById('js-admin-password').value.trim();
 		data = {"auth": {"username": usernameVal, "password": passwordVal}}
 		postLogIn(data);
 		if (loggedIn() === true){
@@ -474,7 +474,7 @@ window.onload = function() {
 
 	/* PAGE RESET FUNCTION */
 	function resetPage() {
-		let mapContainer = document.getElementById('js-map');
+		const mapContainer = document.getElementById('js-map');
 		clearCheckBox();
 		nameRadioSelect.checked = true;
 		categoryRadioSelect.checked = false;
@@ -482,7 +482,7 @@ window.onload = function() {
 		listingMenu.style.display = 'none';
 		mapContainer.style.display = 'none';
 		businessListings.style.display = 'none';
-		let elements = document.querySelectorAll('input[type="text"]');
+		const elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
 		/* repopulate categories for drop down menu */
 		collectCategories();
@@ -500,22 +500,22 @@ window.onload = function() {
 
 	/* Checkbox Listeners */
 	reviewCheckBox.addEventListener('change', function() {
-		let el = document.getElementById('js-add-review-form-container')
+		const el = document.getElementById('js-add-review-form-container')
 		toggleForm('checkbox', el);
 	})
 
 	imageCheckBox.addEventListener('change', function() {
-		let el = document.getElementById('js-add-image-form-container')
+		const el = document.getElementById('js-add-image-form-container')
 	 	toggleForm('checkbox', el);
 	})
 
 	flagCheckBox.addEventListener('change', function() {
-		let el = document.getElementById('js-flag-business-form-container')
+		const el = document.getElementById('js-flag-business-form-container')
 	 	toggleForm('checkbox', el);
 	})
 
 	editCheckBox.addEventListener('change', function() {
-		let el = document.getElementById('js-suggest-edit-form-container')
+		const el = document.getElementById('js-suggest-edit-form-container')
 	 	toggleForm('checkbox', el);
 	})
 
@@ -535,7 +535,7 @@ window.onload = function() {
 
 	/* Initiate Admin Panel Listeners */
 	hiddenAdminButton.addEventListener('click', function() {
-		let el = document.getElementById('js-admin-login-container')
+		const el = document.getElementById('js-admin-login-container')
 		toggleForm('click', el);
 	})
 	adminPanelLogin.addEventListener('click', logInAdmin);
