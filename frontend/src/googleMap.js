@@ -28,9 +28,9 @@ class GoogleMap {
 	}
 
 	static mapBuilder(mapData) {
-		let lat = mapData['lat'];
-		let lng = mapData['lng'];
-		let newMap = new GoogleMap(lat, lng);
+		const lat = mapData['lat'];
+		const lng = mapData['lng'];
+		const newMap = new GoogleMap(lat, lng);
 		return newMap;
 	}
 }
