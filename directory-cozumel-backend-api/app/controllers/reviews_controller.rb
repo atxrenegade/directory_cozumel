@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
 
 	def create
 		instance = Review.create!(content: params['content'],  contributor: params['contributor'], contributor_email: params['contributor-email'], rating: params['rating'], business_id: params['business-id'])
-		Review.update_rating(params["business-id"])
+		Review.update_rating(params['business-id'])
 		render json: instance
 	end
 
@@ -31,13 +31,13 @@ class ReviewsController < ApplicationController
 		if review.destroyed?
 			response['msg'] = 'Review Deleted!'
 		else
-			response[:msg] = 'Review Failed to Delete!'
+			response['msg'] = 'Review Failed to Delete!'
 		end
 		render json: response
 	end
 
 	def index_associated
-		reviews = Review.all.find_by(business_id: params['business_id'])
+		reviews = Review.where(business_id: params['business_id']).all
 		render json: reviews
 	end
 end

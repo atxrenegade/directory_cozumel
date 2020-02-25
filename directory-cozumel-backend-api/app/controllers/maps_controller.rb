@@ -34,13 +34,13 @@ class MapsController < ApplicationController
 		if map.destroyed?
 			response['msg'] = 'Map Deleted!'
 		else
-			response[:msg] = 'Map Failed to Delete!'
+			response['msg'] = 'Map Failed to Delete!'
 		end
 		render json: response
 	end
 
 	def index_associated
-		maps = Map.all.find_by(business_id: params['business_id'])
+		maps = Map.where(business_id: params['business_id']).all
 		render json: maps
 	end
 end
