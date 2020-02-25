@@ -685,6 +685,7 @@ class adminInterface {
 		let msg;
 		setTimeout(function(){
 			RESULT.length < 1? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
+
 			adminInterface.displayResults(elToAppendTo, msg)
 			adminInterface.confirmRecordToDelete(dbType, id, elToAppendTo)
 		}, 1000)
@@ -766,7 +767,6 @@ class adminInterface {
 
 	static displayResults(elToAppendTo, msg) {
 		let resultsEl = document.getElementById( 'js-admin-CRUD-results')
-		/* debugger; */
 		if (resultsEl === undefined || RESULT.length > 0 ) {
 			resultsEl = document.createElement('div')
 			resultsEl.id = 'js-admin-CRUD-results';
@@ -782,12 +782,22 @@ class adminInterface {
 	}
 
 	static createDisplayObj(){
-		let objHTML = `<br>`
-		for (let [key, value] of Object.entries(RESULT)) {
-			objHTML +=`${key}: ${value}`
-			objHTML += `<br>`
+		let results = RESULT.flat()
+		let resultsObj = results.map((el) => {
+			let objArray = ['<br>'];
+			for (let [key, value] of Object.entries(el)) {
+				let objHTML = `<br>`
+				objHTML +=`${key}: ${value}`
+				objArray.push(objHTML);
 			}
-		return objHTML;
+			console.log(objArray)
+			if (objArray.length > 1) {
+				objArray = objArray.join(' ');
+			}
+			return objArray += '<br>'
+		})
+		console.log(resultsObj)
+		return resultsObj;
 	}
 
 	static removeResultsOnClick(){
