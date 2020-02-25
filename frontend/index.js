@@ -6,7 +6,7 @@ window.onload = function() {
 	RESPONSE_MSG = "";
 	LAT = 20.42;
 	LNG = -86.92;
-	resultsCounter = 0;
+	
 
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
