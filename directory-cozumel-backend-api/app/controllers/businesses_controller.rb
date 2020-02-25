@@ -2,7 +2,7 @@ class BusinessesController < ApplicationController
 	# before_action :require_admin , only: [:create]
 	# before_action :require_super , only: [:update, :delete]
 	def show
-		business = Business.find_by_id(params['id'])
+		business = Business.find_by_id(params[:id])
 		render json: business
 	end
 
@@ -23,7 +23,7 @@ class BusinessesController < ApplicationController
 				:reviews => {:except => [:id, :contributor_email, :business_id, :updated_at]},
 			})
 		else
-			render json: {message: 'No Record of that Business!' }
+			render json: {msg: 'No Record of that Business!' }
 		end
 	end
 
@@ -32,7 +32,7 @@ class BusinessesController < ApplicationController
 		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
-			render json: {message: 'There are no businesses listed in that category yet!'}
+			render json: {msg: 'There are no businesses listed in that category yet!'}
 		end
 	end
 
@@ -41,7 +41,7 @@ class BusinessesController < ApplicationController
 		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
-			render json: {message: 'No business in our directory match that name!'}
+			render json: {msg: 'No business in our directory match that name!'}
 		end
 	end
 
@@ -56,9 +56,9 @@ class BusinessesController < ApplicationController
 		business.destroy
 		response = {}
 		if business.destroyed?
-			response['msg'] = 'Business Deleted!'
+			response[:msg] = 'Business Deleted!'
 		else
-			response['msg'] = 'Business Failed to Delete!'
+			response[:msg] = 'Business Failed to Delete!'
 		end
 		render json: response
 	end
