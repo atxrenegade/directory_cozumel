@@ -796,8 +796,8 @@ class adminInterface {
 			}
 			return objArray += '<br>'
 		})
-		console.log(resultsObj)
-		return resultsObj;
+		resultsObj = resultsObj.join('<br>');
+		return resultsObj
 	}
 
 	static removeResultsOnClick(){
