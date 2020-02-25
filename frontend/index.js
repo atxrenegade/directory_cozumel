@@ -6,7 +6,7 @@ window.onload = function() {
 	RESPONSE_MSG = "";
 	LAT = 20.42;
 	LNG = -86.92;
-	
+
 
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
@@ -124,7 +124,7 @@ window.onload = function() {
 			.then(json => storeCategories(json))
 		}
 		catch(err) {
-			console.log(error.message);
+			console.log(error.msg);
 		}
 	}
 
@@ -148,7 +148,7 @@ window.onload = function() {
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
-			console.log(error.message);
+			console.log(error.msg);
 		}
 	}
 
@@ -172,7 +172,7 @@ window.onload = function() {
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
-			console.log(error.message);
+			console.log(error.msg);
 		}
 	}
 
@@ -196,7 +196,7 @@ window.onload = function() {
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
-			console.log(error.message);
+			console.log(error.msg);
 		}
 	}
 
@@ -220,7 +220,7 @@ window.onload = function() {
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
-			console.log(error.message);
+			console.log(error.msg);
 		}
 	}
 
@@ -234,8 +234,8 @@ window.onload = function() {
 	}
 
 	function returnResults(data){
-		if (data['message'] !== undefined) {
-			appendErrorMsg(data['message']);
+		if (data['msg'] !== undefined) {
+			appendErrorMsg(data['msg']);
 		} else {
 			data = Array.from(data)
 			renderIndex(data)
@@ -288,9 +288,9 @@ window.onload = function() {
 
 	function appendErrorMsg(msg){
 		businessListings.innerHTML = '';
-		let errorMessage = document.createElement('p');
-		errorMessage.innerHTML = `${msg}`
-		businessListings.appendChild(errorMessage);
+		let errorMsg = document.createElement('p');
+		errorMsg.innerHTML = `${msg}`
+		businessListings.appendChild(errorMsg);
 		businessListings.style.display = 'block';
 	}
 
