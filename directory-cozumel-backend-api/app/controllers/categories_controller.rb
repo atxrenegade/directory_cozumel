@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
 		if category.destroyed?
 			response['msg'] = 'Category Deleted!'
 		else
-			response[:msg] = 'Category Failed to Delete!'
+			response['msg'] = 'Category Failed to Delete!'
 		end
 		render json: response
 	end
