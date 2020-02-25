@@ -7,7 +7,7 @@ class Business {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.website = website;
-		ALL.push(this);
+		globalAllBusinesses.push(this);
 	}
 
 	renderBusListing(){

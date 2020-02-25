@@ -12,6 +12,6 @@ class Entry {
 		this.resolvedDate = resolvedDate;
 		this.adminId = adminId;
 		this.notes = notes;
-		ENTRIES.push(this)
+		globalEntries.push(this)
 	}
 }

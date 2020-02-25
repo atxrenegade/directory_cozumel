@@ -237,11 +237,11 @@ class adminInterface {
 		document.getElementById('detailed-entry-table-2').innerHTML = '';
 		document.getElementById('detailed-entry-table-3').innerHTML = '';
 		/* adminInterface.indexEntries(indexType) */
-		if (ENTRIES.length > 0) {
+		if (globalEntries.length > 0) {
 			const indexBody = document.getElementById('index-entry-table-body');
 			indexBody.innerHTML = '';
 			let i = 0;
-			ENTRIES.forEach(function(el, indexType) {
+			globalEntries.forEach(function(el, indexType) {
 				let row = indexBody.insertRow(i);
 				let cell1 = row.insertCell(0);
 				let cell2 = row.insertCell(1);
@@ -319,7 +319,7 @@ class adminInterface {
 
 	static generateDetailedEntryTable(event){
 		const id = event.target.parentNode.parentElement.firstChild.textContent
-		const entry = ENTRIES.find(entry => entry.id === parseInt(id, 10));
+		const entry = globalEntries.find(entry => entry.id === parseInt(id, 10));
 		const entryTable1 = document.getElementById('detailed-entry-table-1')
 		let row1 = entryTable1.insertRow(0);
 		let cell1 = row1.insertCell(0);
@@ -395,7 +395,7 @@ class adminInterface {
 				document.getElementById('admin-approve-button').style.display = 'none';
 				document.getElementById('admin-reject-button').style.display = 'none';
 			} else {
-				console.log(RESPONSE_MSG)
+				console.log(globalResponse)
 			}
 		}, 1500)
 	}
@@ -412,10 +412,10 @@ class adminInterface {
 					document.getElementById('admin-approve-button').style.display = 'none';
 					document.getElementById('admin-reject-button').style.display = 'none';
 				} else {
-					console.log(RESPONSE_MSG)
+					console.log(globalResponse)
 				}
 			}, 1500)} else {
-				console.log(RESPONSE_MSG)
+				console.log(globalResponse)
 			}
 		}, 1500)
 	}
@@ -507,7 +507,7 @@ class adminInterface {
 		elToAppendTo.appendChild(formEl);
 		formEl.appendChild(formFieldSet);
 		formFieldSet.appendChild(formLegend);
-		ATTRIBUTES.forEach(attribute => {
+		globalAttributes.forEach(attribute => {
 			const attLabel = document.createElement('label')
 			const attInput = document.createElement('input')
 			const labelText = document.createTextNode(`${attribute}: `)
@@ -636,9 +636,8 @@ class adminInterface {
 	}
 
 	static buildAttsArray(data){
-		globalAttributes = data.map(el => { return el.replace(/_/g, ' ') })
+		globalAttributes = data.map(el => {return el.replace(/_/g, ' ') })
 	}
-
 
 	static searchIdByName(dbType, id, searchType) {
 		const name = document.getElementById(`${id}`).value
@@ -828,6 +827,5 @@ class adminInterface {
 		detailsTable.style.display = 'none';
 		adminNotesForm.style.display = 'none';
 	  entryNotes.value = '';
-
 	}
 }

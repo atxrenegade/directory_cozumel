@@ -3,10 +3,11 @@ window.onload = function() {
 	globalEntries = [];
 	globalAttributes = [];
 	globalResult = [];
+	globalAllBusinesses = [];
 	globalResponse = undefined;
+
 	LAT = 20.42;
 	LNG = -86.92;
-
 
 	/* searchbar elements */
 	let searchByName = document.getElementById('js-search-by-name');
@@ -405,11 +406,6 @@ window.onload = function() {
 		editCheckBox.checked = false;
 	}
 
-	function clearGlobalVariables(){
-		globalCats = [];
-		globalEntries = [];
-	}
-
 	/* Form Post functions */
 	function createPostData(event, busName) {
 		let data = Array.from(event.target.elements)
@@ -483,7 +479,6 @@ window.onload = function() {
 	/* PAGE RESET FUNCTION */
 	function resetPage() {
 		clearCheckBox();
-		clearGlobalVariables();
 		nameRadioSelect.checked = true;
 		categoryRadioSelect.checked = false;
 		listingsContainer.style.display = 'none';
