@@ -645,7 +645,7 @@ class adminInterface {
 	}
 
 	static getAssociatedRecords(dbType){
-		let businessId = RESULT[0].id
+		let businessId = RESULT[0][0]['id']
 		let method = 'POST'
 		let data = {business_id: businessId}
 		let url = `http://localhost:3000/${dbType}/index_associated`
