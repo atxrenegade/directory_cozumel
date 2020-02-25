@@ -1,5 +1,5 @@
 class adminInterface {
-	static launchAdminInterface(){
+	static launchAdminInterface() {
 		/* admin index table elements */
 		let adminLoginContainer = document.getElementById('js-admin-login-container')
 		let adminTableContainer = document.getElementById('js-admin-panel-container')
@@ -81,7 +81,7 @@ class adminInterface {
 			if (superAdminCRUDMenu.innerText === 'DISPLAY FORM') {
 				let radVals = adminInterface.getRadioVal(event);
 				let elToAppendTo = document.getElementById('super-admin-create-update-delete')
-				adminInterface.buildCRUDforms(radVals, event, elToAppendTo)
+				adminInterface.buildCRUDforms(event, radVals, elToAppendTo)
 				superAdminCRUDMenu.innerText = 'HIDE FORM';
 			} else if (superAdminCRUDMenu.innerText === 'HIDE FORM'){
 				superAdminCRUDMenu.innerText = 'DISPLAY FORM';
@@ -97,7 +97,7 @@ class adminInterface {
 		});
 	}
 
-	static buildCRUDforms(radVals, event, elToAppendTo){
+	static buildCRUDforms(event, radVals, elToAppendTo){
 		let formAction = radVals[0];
 		let dbType = radVals[1];
 		ATTRIBUTES = [];
@@ -114,24 +114,27 @@ class adminInterface {
 				alert('Work In Progress!')
 				break;
 			case 'delete':
-
-				if (dbType === 'categories' || dbType === 'entries') {
-					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `, el: elToAppendTo, action: formAction, searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
-					adminInterface.buildFindInstanceForm(formData);
-				} else {
-					let callback = adminInterface.searchIdByName
-					formData = {id: 'js-super-admin-CRUD-instance', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction,  searchType: 'businesses', dbType: dbType, callback: callback}
-					adminInterface.buildFindInstanceForm(formData);
-
-					/* create new post request to search and return all ids */
-					/* adminInterface.collectRecords(db_type, business_id) */					/* search all databb records matching this business_id */
-					/* Display to DOM */
-					/* adminInterface.buildFindInstanceForm(formData); */
-				}
+				adminInterface.buildCRUDDelete(event, formAction, dbType, elToAppendTo)
 				break;
 			default:
 				error: 'Action not understood!'
 		}
+	}
+
+	static buildCRUDDelete(event, formAction, dbType, elToAppendTo){
+		/* create new post request to search and return all ids */
+		/* adminInterface.collectRecords(db_type, business_id) */					/* search all databb records matching this business_id */
+		/* Display to DOM */
+		/* adminInterface.buildFindInstanceForm(formData); */
+		/* check for event.target.children > 0 */
+		let formData;
+		if (dbType === 'categories' || dbType === 'entries') {
+			formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `, el: elToAppendTo, action: formAction, searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
+		} else {
+			let callback = adminInterface.searchIdByName
+			formData = {id: 'js-super-admin-CRUD-instance-name', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction,  searchType: 'businesses', dbType: dbType, callback: callback}
+		}
+		adminInterface.buildFindInstanceForm(formData);
 	}
 
 	static indexButtonAction(status){
@@ -652,13 +655,20 @@ class adminInterface {
 		let msg;
 		RESULT === null ? msg = 'No Records Match Your Query' : msg = 'Matching Associated Records'
 		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1500)
+		setTimeout(adminInterface.appendIdFormForAssoc.bind(null,dbType), 2000)
+	}
+
+	static appendIdFormForAssoc(dbType){
+		let elToAppendTo = document.getElementById('super-admin-create-update-delete').lastElementChild
+		let formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to DELETE `, el: elToAppendTo, action: 'delete', searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
+		adminInterface.buildFindInstanceForm(formData)
 	}
 
 	static buildFindInstanceForm(formData) {
 		let breakEl = document.createElement('br')
 		let instAtts = {id: formData['id'], value: formData['labelValue']}
 		let instInputField = adminInterface.buildFormField(instAtts)
-		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SEARCH RECORDS', searchType: formData['searchType'], dbType: formData['dbType'], callback: formData['callback'], formId: formData['id'] }
+		let buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SELECT RECORD', searchType: formData['searchType'], dbType: formData['dbType'], callback: formData['callback'], formId: formData['id'] }
 		let instButton = adminInterface.buildCRUDSearchButton(buttonAtts)
 		let formElArray = [breakEl, breakEl, instInputField, breakEl, instButton, breakEl]
 		formElArray.forEach(el => formData['el'].appendChild(el))
@@ -667,7 +677,7 @@ class adminInterface {
 	static findRecordToDelete(dbType, id){
 		let recordId = document.getElementById(`${id}`).value
 		RESULT = null;
-		let url = `http://localhost:3000/${dbType}/${id}`
+		let url = `http://localhost:3000/${dbType}/${recordId}`
 		let callback = adminInterface.returnResult
 		adminInterface.dynamGetReq(url, callback)
 		let elToAppendTo = document.getElementById('super-admin-create-update-delete')
@@ -680,7 +690,7 @@ class adminInterface {
 	}
 
 	static confirmRecordToDelete(dbType, id, elToAppendTo){
-		if (RESULT !== null) {
+		if (id === 'js-super-admin-CRUD-instance-id')  {
 			document.removeEventListener('click', adminInterface.removeResultsOnClick);
 			let labelValue = 'Please Re-Enter Record Id to Confirm Delete '
 			let inputAtts = {id: 'js-super-admin-crud-record-delete', value: labelValue}
@@ -697,7 +707,7 @@ class adminInterface {
 			confirmDeleteButton.addEventListener('click', confirmDeleteAction.bind(null, dbType, elToAppendTo))
 
 			function confirmDeleteAction(dbType, elToAppendTo){
-				let id = document.getElementById('js-super-admin-CRUD-instance').value
+				let id = document.getElementById('js-super-admin-CRUD-instance-id').value
 				let confirmID = document.getElementById('js-super-admin-crud-record-delete').value
 				if (dbType === 'entries') {
 					alert('Entries Are Permanent Records and Can NOT be deleted!')
@@ -754,8 +764,9 @@ class adminInterface {
 	}
 
 	static displayResults(elToAppendTo, msg) {
+		resultsCounter += 1;
 		let resultsEl = document.createElement('div')
-		resultsEl.id = 'js-admin-CRUD-results';
+		resultsEl.id = `js-admin-CRUD-results-${resultsCounter}`;
 		elToAppendTo.appendChild(resultsEl);
 		if (RESULT !== null || msg !== 'No Matches Found!') {
 			let obj = adminInterface.createDisplayObj();
@@ -777,9 +788,11 @@ class adminInterface {
 	}
 
 	static removeResultsOnClick(){
+		/*
 		let displayedResults = document.getElementById('js-admin-CRUD-results')
 		if (displayedResults != undefined)
 			displayedResults.remove();
+		*/
 	}
 
 	static resetAdmin() {
