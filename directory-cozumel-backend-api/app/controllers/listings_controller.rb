@@ -30,7 +30,7 @@ class ListingsController < ApplicationController
 		if listing.destroyed?
 			response['msg'] = 'Listing Deleted!'
 		else
-			response[:msg] = 'Listing Failed to Delete!'
+			response['msg'] = 'Listing Failed to Delete!'
 		end
 		render json: response
 	end
