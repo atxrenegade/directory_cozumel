@@ -1,9 +1,9 @@
 window.onload = function() {
-	CATS = [];
-	ENTRIES = [];
-	ATTRIBUTES = [];
-	RESULT = [];
-	RESPONSE_MSG = "";
+	globalCats = [];
+	globalEntries = [];
+	globalAttributes = [];
+	globalResult = [];
+	globalResponse = undefined;
 	LAT = 20.42;
 	LNG = -86.92;
 
@@ -215,7 +215,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => RESPONSE_MSG = json
+			.then(json => globalResponse = json
 		)
 	}
 	catch(err) {
@@ -228,7 +228,7 @@ window.onload = function() {
 	/* Search Results functions */
 	function storeCategories(data){
 		let categoryObjects = Array.from(data);
-		CATS = categoryObjects.map((el) => {
+		globalCats= categoryObjects.map((el) => {
 			return el['name']
 		})
 	}
@@ -306,7 +306,7 @@ window.onload = function() {
 		if (searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
-			let cats = CATS.map((el) => {
+			let cats = globalCats.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
 			html += cats + '</select>';
@@ -348,7 +348,7 @@ window.onload = function() {
 		}
 		let catMenu = document.createElement('div');
 		let html = '<select id="cat-select" multiple>';
-		let cats = CATS.map((el) => {
+		let cats = globalCats.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
 		})
 		html += cats + '</select>';
@@ -381,7 +381,7 @@ window.onload = function() {
 		let submittedEl = document.createElement('p');
 		submittedEl.className = 'succMsg'
 		setTimeout(function(){
-			if (RESPONSE_MSG === true){
+			if (globalResponse === true){
 				submittedEl.innerHTML = 'Thank you for your submission!'
 				submittedEl.innerHTML += '<br>' + 'New data will be added to the directory upon review!';
 			} else {
@@ -406,9 +406,8 @@ window.onload = function() {
 	}
 
 	function clearGlobalVariables(){
-		ALL = [];
-		CATS = [];
-		ENTRIES = [];
+		globalCats = [];
+		globalEntries = [];
 	}
 
 	/* Form Post functions */
