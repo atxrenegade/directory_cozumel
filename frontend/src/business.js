@@ -13,7 +13,7 @@ class Business {
 	renderBusListing(){
 		let rating;
 		this.overallRating === 0 ? rating = 'not yet rated' : rating = `Overall Rating: ${this.overallRating}`
-		let listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3>
+		const listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3>
 		Categories:	${this.categories} <br>
 		${rating}<br>
 		<br>${this.address}
@@ -23,14 +23,14 @@ class Business {
 	}
 
 	static buildBusObj(data) {
-			let id = data['id'];
-			let name = data['name']
-			let categories = Object.values((data['categories'][0]))
-			let overallRating = data['listing']['overall_rating'];
-			let address = data['listing']['address'];
-			let phoneNumber = data['listing']['phone_number'];
-			let website = data['listing']['website'];
-			let business = new Business(id, name, categories, overallRating, address, phoneNumber, website);
+			const id = data['id'];
+			const name = data['name']
+			const categories = Object.values((data['categories'][0]))
+			const overallRating = data['listing']['overall_rating'];
+			const address = data['listing']['address'];
+			const phoneNumber = data['listing']['phone_number'];
+			const website = data['listing']['website'];
+			const business = new Business(id, name, categories, overallRating, address, phoneNumber, website);
 			return business
 		}
 }
