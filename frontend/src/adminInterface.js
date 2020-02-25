@@ -267,7 +267,7 @@ class adminInterface {
 		}	else {
 			const noEntries = document.createElement('p')
 			noEntries.innerHTML = `No ${indexType.toUpperCase()} results at this time!`
-			noEntries.setAttribute('id', 'admin-no-entry-message')
+			noEntries.id = 'admin-no-entry-message'
 			const adminTable = document.getElementById('admin-entry-table');
 			adminTable.appendChild(noEntries);
 			document.addEventListener('click', function(){
@@ -282,10 +282,10 @@ class adminInterface {
 
 	static buildAdminButton(id){
 		const newButton = document.createElement('input');
-		newButton.setAttribute('id', `admin_entry_${id}`);
-		newButton.setAttribute('type', 'button');
-		newButton.setAttribute('class', 'admin-details-button');
-		newButton.setAttribute('value', 'Review');
+		newButton.id = `admin_entry_${id}`;
+		newButton.type = 'button';
+		newButton.class = 'admin-details-button';
+		newButton.value = 'Review';
 		newButton.setAttribute('onclick', 'adminInterface.displayDetails()');
 		return newButton;
 	}
@@ -438,8 +438,8 @@ class adminInterface {
 			)
 		}
 		catch(err) {
-			alert('Update failed see console for further details!');
-			globalResponse = err.message;
+			alert('Error. See console for further details!');
+			console.log(err.message);
 		}
 	}
 
@@ -486,8 +486,8 @@ class adminInterface {
 		)
 	}
 	catch(err) {
-			alert('Update failed see console for further details!');
-			globalResponse = json['msg'];
+		alert('Error. See console for further details!');
+		console.log(err.message);
 		}
 	}
 
@@ -631,7 +631,8 @@ class adminInterface {
 			.then(json => callback(json))
 		}
 		catch(err) {
-			console.log(error.message);
+			alert('Error. See console for further details!');
+			console.log(err.message);
 		}
 	}
 
