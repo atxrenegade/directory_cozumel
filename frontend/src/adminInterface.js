@@ -766,6 +766,7 @@ class adminInterface {
 	}
 
 	static displayResults(elToAppendTo, msg) {
+		/* debug this so it stops redisplaying the same return values */
 		let resultsEl = document.getElementById( 'js-admin-CRUD-results')
 		if (resultsEl === undefined || RESULT.length > 0 ) {
 			resultsEl = document.createElement('div')
@@ -796,7 +797,7 @@ class adminInterface {
 			}
 			return objArray += '<br>'
 		})
-		resultsObj = resultsObj.join('<br>');
+		resultsObj = resultsObj.join(' ');
 		return resultsObj
 	}
 
