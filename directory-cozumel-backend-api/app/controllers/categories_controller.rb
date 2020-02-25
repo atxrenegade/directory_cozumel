@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 	# before_action :require_admin , only: [:attributes]
 	# before_action :require_super , only: [:create, :update, :delete]
 	def show
-		category = Category.find_by_id(params['id'])
+		category = Category.find_by_id(params[:id])
 		render json: category
 	end
 
@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
 	end
 
 	def create
-		category = Category.create!(name: params['name'].downcase)
+		category = Category.create!(name: params[:name].downcase)
 		render json: category
 	end
 
@@ -31,7 +31,7 @@ class CategoriesController < ApplicationController
 	def destroy
 		category = Category.find(params[:id])
 		#check for businesses with this category id
-		#block if present
+		#block delete if associated records present
 		category.destroy
 		response = {}
 		if category.destroyed?
