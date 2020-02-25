@@ -49,10 +49,10 @@ class Business < ApplicationRecord
 	def build_business_object
 		bus_obj = {}
 		business_id = self.id
-		bus_obj['id'] = business_id
-		bus_obj['name'] = self.name.to_s
-		bus_obj['categories'] = self.category_names.flatten
-		bus_obj['listing'] = Listing.format_listing(business_id)
+		bus_obj[:id] = business_id
+		bus_obj[:name] = self.name.to_s
+		bus_obj[:categories] = self.category_names.flatten
+		bus_obj[:listing] = Listing.format_listing(business_id)
 		return bus_obj
 	end
 
