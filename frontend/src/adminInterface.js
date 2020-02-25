@@ -1,31 +1,40 @@
 class adminInterface {
 	static launchAdminInterface() {
+
 		/* admin index table elements */
 		let adminLoginContainer = document.getElementById('js-admin-login-container')
 		let adminTableContainer = document.getElementById('js-admin-panel-container')
 		let indexTable = document.getElementById('admin-entry-table')
 		/* admin details table elements */
-		let detailsTable = document.getElementById('entry-details-tables')
 		let smResolvedIndexButton = document.getElementById('admin-resolved-index-button')
 		let smPendingIndexButton = document.getElementById('admin-pending-index-button')
-
 		let rejectButton = document.getElementById('admin-reject-button')
 		let approveButton = document.getElementById('admin-approve-button')
 		let addNotesButton = document.getElementById('admin-notes-button')
 		let newNotesSubmitButton = document.getElementById('admin-submit-notes-field')
-		let notesForm = document.getElementById('admin-notes-form')
 		let superAdminMenuButton = document.getElementById('js-admin-show-super-admin')
+		/* super admin auth panel elements */
+		let createAdminButton = document.getElementById('js-admin-create-admin')
+		let editAdminButton = document.getElementById('js-admin-edit-admin')
+		let deleteAdminButton = document.getElementById('js-admin-delete-admin')
+		/* admin entry details panel elements */
 		let bigPendingIndexButton = document.getElementById('admin-show-pending-button')
 		let bigResolvedIndexButton = document.getElementById('admin-show-resolved-button')
 		let adminSearchButton = document.getElementById('js-admin-search-entries')
-		let superAdminCRUDMenu = document.getElementById('js-super-admin-modify-menu')
-		let adminLogoutButton = document.getElementById('js-admin-logout-button')
 
-		adminTableContainer.style.display = 'none';
+		/* super admin CRUD panel elements */
+		let superAdminCRUDMenu = document.getElementById('js-super-admin-modify-menu')
+
+		/* admin login/logout elements */
+		let adminLogoutButton = document.getElementById('js-admin-logout-button')
 		let adminLoginDate = document.getElementById('admin-login-date');
+
+		/* setup Admin Interface */
+		adminTableContainer.style.display = 'none';
 		adminInterface.appendCurrentDateTime(adminLoginDate);
 		adminLoginContainer.classList.add('admin');
 
+		/* Event Listeners */
 		/* Admin panel menu buttons */
 		bigPendingIndexButton.addEventListener('click', function() {
 			adminInterface.indexButtonAction('pending');
@@ -48,16 +57,16 @@ class adminInterface {
 			let el = document.getElementById('js-admin-super-admin-open');
 			adminInterface.toggleElement(el);
 		})
-		/* Super Admin Menu Admin Auth Panel Buttons */
-		let createAdminButton = document.getElementById('js-admin-create-admin')
-		let editAdminButton = document.getElementById('js-admin-edit-admin')
-		let deleteAdminButton = document.getElementById('js-admin-delete-admin')
+
 		createAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
+
 		editAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
+
 		deleteAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
 
 		/* Detailed Entry Panel Buttons */
 		addNotesButton.addEventListener('click', adminInterface.showNotesForm);
+
 		newNotesSubmitButton.addEventListener('click', adminInterface.addNotes);
 
 		rejectButton.addEventListener('click', function(event) {
@@ -97,6 +106,7 @@ class adminInterface {
 		});
 	}
 
+ /* ADMIN INTERFACE METHODS */
 	static buildCRUDforms(event, radVals, elToAppendTo){
 		let formAction = radVals[0];
 		let dbType = radVals[1];
