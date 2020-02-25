@@ -29,7 +29,7 @@ class ImagesController < ApplicationController
 		if image.destroyed?
 			response['msg'] = 'Image Deleted!'
 		else
-			response[:msg] = 'Image Failed to Delete!'
+			response['msg'] = 'Image Failed to Delete!'
 		end
 		render json: response
 	end
