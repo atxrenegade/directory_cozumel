@@ -16,7 +16,6 @@ window.onload = function() {
 	let categoryRadioSelect = document.getElementById('js-radio-by-category');
 	let searchCategoryMenu = document.getElementById('js-search-category-menu');
 	let searchNameField = document.getElementById('js-search-name-text-field');
-	let categoriesNames = [];
 
 	/* checkbox elements */
 	let reviewCheckBox = document.getElementById('js-add-review-checkbox');
@@ -30,28 +29,16 @@ window.onload = function() {
 
 	/* add business form elements */
 	let newBusinessButton = document.getElementById('js-add-business-button');
-	let elFormContainer = document.getElementById('js-add-business-form-container')
-	let newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
 	let newBusinessForm = document.getElementById('js-new-business-form');
 
 	/* admin hidden button element */
 	let hiddenAdminButton = document.getElementById('js-admin-hidden-button');
 
 	/* admin login panel elements */
-	let adminPanel = document.getElementById('js-admin-panel-container');
-	let adminMenu = document.getElementById('js-admin-menu-container');
 	let adminPanelLogin = document.getElementById('js-admin-login-button');
-	let adminPanelLogout = document.getElementById('js-admin-logout-button')
-	let adminPanelForm = document.getElementById('js-admin-login')
-	let adminUserInfo = document.getElementById('js-admin-user-info')
 
 	/* container elements */
-	let sponsListContainer = document.getElementById('sponsored-listing-container')
-	let adsContainer = document.getElementById('ads-container')
-	let searchBarContainer = document.getElementById('js-searchbar-container')
 	let listingsContainer = document.getElementById('listings-container')
-	let newBusContainer = document.getElementById('js-new-business-container')
-	let mapContainer = document.getElementById('js-map')
 
 	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
@@ -90,6 +77,7 @@ window.onload = function() {
 
 	/* TOGGLE FORM FUNCTIONS */
 	function toggleForm(event, el) {
+		/**** REFACTOR TOGGLE FORM ***/
 		el.firstElementChild.style.display = 'block';
 		if (event === 'submit' || el.style.display == 'block') {
 			el.style.display = 'none'
@@ -99,6 +87,7 @@ window.onload = function() {
 	}
 
 	function toggleNewBusinessForm() {
+		let elFormContainer = document.getElementById('js-add-business-form-container')
 		if (elFormContainer.style.display === 'block'){
 			elFormContainer.style.display = 'none';
 		} else {
@@ -108,12 +97,9 @@ window.onload = function() {
 				collectCategories();
 			};
 			let categorySelectEl = document.getElementById('cat-select')
-			if (categorySelectEl === null){
-				renderNewBusCatSelect();
-			}
+			if (categorySelectEl === null) { renderNewBusCatSelect() };
 		}
 	}
-
 
 	/* API REQUEST FUNCTIONS */
 	/* Search Bar API request functions */
@@ -125,7 +111,7 @@ window.onload = function() {
 			.then(json => storeCategories(json))
 		}
 		catch(err) {
-			console.log(error.msg);
+			console.log(err.msg);
 		}
 	}
 
@@ -149,7 +135,7 @@ window.onload = function() {
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
-			console.log(error.msg);
+			console.log(err.msg);
 		}
 	}
 
@@ -173,7 +159,7 @@ window.onload = function() {
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
-			console.log(error.msg);
+			console.log(err.msg);
 		}
 	}
 
@@ -197,7 +183,7 @@ window.onload = function() {
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
-			console.log(error.msg);
+			console.log(err.msg);
 		}
 	}
 
@@ -221,7 +207,7 @@ window.onload = function() {
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
-			console.log(error.msg);
+			console.log(err.msg);
 		}
 	}
 
@@ -262,7 +248,7 @@ window.onload = function() {
 
 	function renderListing(objArray){
 		if (objArray != undefined) {
-			let el = businessListings
+			let el = businessListings;
 			el.innerHTML = '';
 			let busHTML = objArray[0].renderBusListing();
 			let mapHTML;
@@ -297,7 +283,7 @@ window.onload = function() {
 
 	/* Instance builder functions */
 	function checkDuplicate(busName) {
-		let allNames = ALL.map(el => el.name)
+		let allNames = globalALLBusinesses.map(el => el.name)
 		let duplicate = allNames.includes(busName)
 		return duplicate;
 	}
@@ -344,6 +330,7 @@ window.onload = function() {
 	/* FORM FUNCTIONs */
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect(){
+		let newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
 		if (globalCats .length == 0){
 			collectCategories();
 		}
@@ -420,6 +407,15 @@ window.onload = function() {
 
 	/* ADMIN LOGIN FUNCTIONS */
 	function clearDirectoryForAdminView(){
+		let sponsListContainer = document.getElementById('sponsored-listing-container');
+		let adsContainer = document.getElementById('ads-container');
+		let searchBarContainer = document.getElementById('js-searchbar-container');
+		let newBusContainer = document.getElementById('js-new-business-container');
+		let adminPanel = document.getElementById('js-admin-panel-container');
+		let adminMenu = document.getElementById('js-admin-menu-container');
+		let adminPanelLogout = document.getElementById('js-admin-logout-button');
+		let adminPanelForm = document.getElementById('js-admin-login');
+		let adminUserInfo = document.getElementById('js-admin-user-info');
 		sponsListContainer.style.display = 'none';
 		adsContainer.style.display = 'none';
 		searchBarContainer.style.display = 'none';
@@ -459,7 +455,7 @@ window.onload = function() {
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
-			console.log(error.message);
+			console.log(err.message);
 		}
 	}
 
@@ -478,6 +474,7 @@ window.onload = function() {
 
 	/* PAGE RESET FUNCTION */
 	function resetPage() {
+		let mapContainer = document.getElementById('js-map');
 		clearCheckBox();
 		nameRadioSelect.checked = true;
 		categoryRadioSelect.checked = false;
