@@ -251,9 +251,9 @@ window.onload = function() {
 			let el = businessListings;
 			el.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing();
-			const mapHTML;
-			const reviewsHTML;
-			const imagesHTML;
+			let mapHTML;
+			let reviewsHTML;
+			let imagesHTML;
 			renderComponent(busHTML, el);
 			if (objArray[1].length > 0){
 				mapHTML = objArray[1].renderMap();
