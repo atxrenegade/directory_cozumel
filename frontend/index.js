@@ -59,7 +59,7 @@ window.onload = function() {
 		searchByName.style.display = 'none';
 		searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
-		if (CATS.length === 0) {
+		if (globalCats.length === 0) {
 				collectCategories();
 		};
 		renderCategoriesMenu();
@@ -103,7 +103,7 @@ window.onload = function() {
 		} else {
 			newBusinessForm.style.display = 'block';
 			elFormContainer.style.display = 'block';
-			if (CATS.length === 0) {
+			if (globalCats .length === 0) {
 				collectCategories();
 			};
 			let categorySelectEl = document.getElementById('cat-select')
@@ -228,7 +228,7 @@ window.onload = function() {
 	/* Search Results functions */
 	function storeCategories(data){
 		let categoryObjects = Array.from(data);
-		globalCats= categoryObjects.map((el) => {
+		globalCats = categoryObjects.map((el) => {
 			return el['name']
 		})
 	}
@@ -343,7 +343,7 @@ window.onload = function() {
 	/* FORM FUNCTIONs */
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect(){
-		if (CATS.length == 0){
+		if (globalCats .length == 0){
 			collectCategories();
 		}
 		let catMenu = document.createElement('div');
