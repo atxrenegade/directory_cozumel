@@ -654,8 +654,8 @@ class adminInterface {
 		let elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
 		RESULT === null ? msg = 'No Records Match Your Query' : msg = 'Matching Associated Records'
-		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1500)
-		setTimeout(adminInterface.appendIdFormForAssoc.bind(null,dbType), 2000)
+		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 500)
+		setTimeout(adminInterface.appendIdFormForAssoc.bind(null,dbType), 1000)
 	}
 
 	static appendIdFormForAssoc(dbType){
@@ -686,7 +686,7 @@ class adminInterface {
 			RESULT === null ? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
 			adminInterface.displayResults(elToAppendTo, msg)
 			adminInterface.confirmRecordToDelete(dbType, id, elToAppendTo)
-		}, 1500)
+		}, 1000)
 	}
 
 	static confirmRecordToDelete(dbType, id, elToAppendTo){
@@ -764,18 +764,20 @@ class adminInterface {
 	}
 
 	static displayResults(elToAppendTo, msg) {
-		resultsCounter += 1;
-		let resultsEl = document.createElement('div')
-		resultsEl.id = `js-admin-CRUD-results-${resultsCounter}`;
-		elToAppendTo.appendChild(resultsEl);
-		if (RESULT !== null || msg !== 'No Matches Found!') {
+		let resultsEl = document.getElementById( 'js-admin-CRUD-results')
+		/* debugger; */
+		if (resultsEl === undefined || RESULT !== null ) {
+			resultsEl = document.createElement('div')
+			resultsEl.id = 'js-admin-CRUD-results';
 			let obj = adminInterface.createDisplayObj();
+			elToAppendTo.appendChild(resultsEl);
 			msg += obj
 			document.addEventListener('click', adminInterface.removeResultsOnClick)
+			resultsEl.innerHTML = msg
 		} else {
-			document.addEventListener('click', adminInterface.resetCRUDForm)
+			/* document.addEventListener('click', adminInterface.resetCRUDForm) */
 		}
-		resultsEl.innerHTML = msg
+
 	}
 
 	static createDisplayObj(){
