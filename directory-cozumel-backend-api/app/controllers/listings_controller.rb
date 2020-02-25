@@ -36,7 +36,7 @@ class ListingsController < ApplicationController
 	end
 
 	def index_associated
-		listings = Listing.all.find_by(business_id: params['business_id'])
+		listings = Listing.where(business_id: params['business_id']).all
 		render json: listings
 	end
 end
