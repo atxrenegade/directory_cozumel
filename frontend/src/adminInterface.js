@@ -4,7 +4,7 @@ class adminInterface {
 		/* admin index table elements */
 		const adminLoginContainer = document.getElementById('js-admin-login-container')
 		const adminTableContainer = document.getElementById('js-admin-panel-container')
-		const indexTable = document.getElementById('admin-entry-table')
+
 		/* admin details table elements */
 		const smResolvedIndexButton = document.getElementById('admin-resolved-index-button')
 		const smPendingIndexButton = document.getElementById('admin-pending-index-button')
