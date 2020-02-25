@@ -133,7 +133,8 @@ class adminInterface {
 
 	static buildCRUDDelete(event, formAction, dbType, elToAppendTo){
 		/* create new post request to search and return all ids */
-		/* adminInterface.collectRecords(db_type, business_id) */					/* search all databb records matching this business_id */
+		/* adminInterface.collectRecords(db_type, business_id) */
+		/* search all databb records matching this business_id */
 		/* Display to DOM */
 		/* adminInterface.buildFindInstanceForm(formData); */
 		/* check for event.target.children > 0 */
@@ -153,12 +154,7 @@ class adminInterface {
 	}
 
 	static toggleElement(el) {
-		/* ***REFACTOR ***/
-		if (el.style.display === 'none') {
-			el.style.display = 'block'
-		} else {
-			el.style.display = 'none'
-		}
+		el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none'
 	}
 
 	static displayIndex(){
@@ -502,7 +498,6 @@ class adminInterface {
 	}
 
 	/* Dynamic Admin Forms Creation */
-
 	static buildNewForm(action, dbType, elToAppendTo) {
 		const formEl = document.createElement('form');
 		const formFieldSet = document.createElement('fieldset');
@@ -525,21 +520,21 @@ class adminInterface {
 			const formElements = [attLabel, attInput, breakEl]
 			formElements.forEach(el => formFieldSet.appendChild(el));
 		})
-			const breakEl = document.createElement('br')
-			const formButton = document.createElement('input')
-			formButton.setAttribute('id', `${action}-${dbType}-button`.toLowerCase());
-			formButton.setAttribute('value', 'Submit');
-			formButton.setAttribute('type', 'button')
+		const breakEl = document.createElement('br')
+		const formButton = document.createElement('input')
+		formButton.setAttribute('id', `${action}-${dbType}-button`.toLowerCase());
+		formButton.setAttribute('value', 'Submit');
+		formButton.setAttribute('type', 'button')
 
-			const buttonArray = [breakEl, formButton]
-			buttonArray.forEach(el => formFieldSet.appendChild(el));
-			formButton.addEventListener('click', function(event){
-				const attributesObj = adminInterface.buildObjFromFormInput(event);
-				adminInterface.processSuperCreateForm(action, dbType, attributesObj, event)
-				elToAppendTo.removeChild(formEl);
-				document.getElementById('js-super-admin-modify-menu').innerText = 'DISPLAY FORM'
-				document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
-			})
+		const buttonArray = [breakEl, formButton]
+		buttonArray.forEach(el => formFieldSet.appendChild(el));
+		formButton.addEventListener('click', function(event){
+			const attributesObj = adminInterface.buildObjFromFormInput(event);
+			adminInterface.processSuperCreateForm(action, dbType, attributesObj, event)
+			elToAppendTo.removeChild(formEl);
+			document.getElementById('js-super-admin-modify-menu').innerText = 'DISPLAY FORM'
+			document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
+		})
 	}
 
 	static buildObjFromFormInput(event){
