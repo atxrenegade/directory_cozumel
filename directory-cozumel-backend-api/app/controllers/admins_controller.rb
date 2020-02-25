@@ -52,7 +52,7 @@ class AdminsController < ApplicationController
 		if admin.destroyed?
 			response['msg'] = 'Admin Deleted!'
 		else
-			response[:msg] = 'Admin Failed to Delete!'
+			response['msg'] = 'Admin Failed to Delete!'
 		end
 		render json: response
 	end
