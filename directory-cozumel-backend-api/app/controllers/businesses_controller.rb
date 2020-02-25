@@ -58,7 +58,7 @@ class BusinessesController < ApplicationController
 		if business.destroyed?
 			response['msg'] = 'Business Deleted!'
 		else
-			response[:msg] = 'Business Failed to Delete!'
+			response['msg'] = 'Business Failed to Delete!'
 		end
 		render json: response
 	end
