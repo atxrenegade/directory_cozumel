@@ -602,9 +602,9 @@ class adminInterface {
 
 	static dynamFormResp(data){
 		if (data == undefined) {
-			RESULT = 'Error Processing Request';
+			RESULT[0] = 'Error Processing Request';
 		} else {
-			RESULT = data;
+			RESULT[0] = data;
 			console.log(data)
 		}
 	}
@@ -615,7 +615,7 @@ class adminInterface {
 	}
 
 	static returnResult(data) {
-		RESULT = data;
+		RESULT[0] = data;
 	}
 
 	static dynamGetReq(url, callback){
@@ -653,7 +653,8 @@ class adminInterface {
 		adminInterface.dynamFormReq(method, url, data, callback)
 		let elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
-		RESULT === null ? msg = 'No Records Match Your Query' : msg = 'Matching Associated Records'
+		RESULT.length < 1 ? msg = 'No Records Match Your Query' : msg = 'Matching Associated Records'
+
 		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 500)
 		setTimeout(adminInterface.appendIdFormForAssoc.bind(null,dbType), 1000)
 	}
@@ -676,14 +677,14 @@ class adminInterface {
 
 	static findRecordToDelete(dbType, id){
 		let recordId = document.getElementById(`${id}`).value
-		RESULT = null;
+		RESULT = [];
 		let url = `http://localhost:3000/${dbType}/${recordId}`
 		let callback = adminInterface.returnResult
 		adminInterface.dynamGetReq(url, callback)
 		let elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
 		setTimeout(function(){
-			RESULT === null ? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
+			RESULT.length < 1? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
 			adminInterface.displayResults(elToAppendTo, msg)
 			adminInterface.confirmRecordToDelete(dbType, id, elToAppendTo)
 		}, 1000)
@@ -714,7 +715,7 @@ class adminInterface {
 				} else if (confirmID === id) {
 					confirm('Are you sure you want to delete this record?');
 					adminInterface.buildDeletePostReq(dbType, id)
-					let msg = RESULT
+					let msg = RESULT[0]
 					adminInterface.displayResults(elToAppendTo, msg)
 				} else {
 					alert("ID numbers do not match. Confirmation Failed. Try Again.")
@@ -766,7 +767,7 @@ class adminInterface {
 	static displayResults(elToAppendTo, msg) {
 		let resultsEl = document.getElementById( 'js-admin-CRUD-results')
 		/* debugger; */
-		if (resultsEl === undefined || RESULT !== null ) {
+		if (resultsEl === undefined || RESULT.length > 0 ) {
 			resultsEl = document.createElement('div')
 			resultsEl.id = 'js-admin-CRUD-results';
 			let obj = adminInterface.createDisplayObj();
