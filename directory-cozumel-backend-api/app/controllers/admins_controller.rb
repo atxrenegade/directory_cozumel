@@ -15,11 +15,13 @@ class AdminsController < ApplicationController
 	end
 
 	def create
+		require_super
 		instance = Admin.create!(username: params['username'], password_digest: params['password_digest'], role: params['role'], status: params['status'])
 		render json: instance
 	end
 
-	def update 
+	def update
+		require_super
 		admin = Admin.find(params[:id])
 		update_vals = {}
 		update_vals[:username] = params[:username] if params[:username].present?
