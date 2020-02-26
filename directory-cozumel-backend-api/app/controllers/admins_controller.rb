@@ -24,28 +24,28 @@ class AdminsController < ApplicationController
 		render json: admin
 	end
 
-
-	##def current_admin
-	##	@current_admin || ##Admin.find(session[:admin_id]) if ##session[:admin_id]
-	##end
+	def current_admin
+		@current_admin || Admin.find(session[:admin_id]) if session[:admin_id]
+	end
 
 	def admin?
-		self.role == 'admin' || self.role == 'super'
+		self.role == 'admin' && self.status == 'active'|| self.role == 'super' && self.status == 'active'
 	end
 
 	def super?
-		self.role == 'super'
+		self.role == 'super' && self.status == 'active'
 	end
 
 	def require_admin
-		redirect_to '/' unless current_user.admin?
+		redirect_to '/' unless current_admin.admin?
 	end
 
 	def require_super
-		redirect_to '/' unless current_user.super?
+		redirect_to '/' unless current_admin.super?
 	end
 
 	def destroy
+		require_super()
 		admin = Admin.find(params[:id])
 		admin.destroy
 		response = {}
@@ -59,6 +59,6 @@ class AdminsController < ApplicationController
 
 	private
 	def admin_params
-		params.require(:admin).permit(:username, :password, :role)
+		params.require(:admin).permit(:username, :password, :role, :status)
 	end
 end
