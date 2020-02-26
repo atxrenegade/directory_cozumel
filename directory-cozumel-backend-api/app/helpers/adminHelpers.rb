@@ -1,6 +1,6 @@
 module adminHelpers
 	def current_admin
-		@current_admin || @current_admin = Admin.find(session[:id]) if session[:id]
+		@current_admin ||= Admin.find(session[:id]) if session[:id]
 	end
 
 	def admin?
@@ -12,10 +12,10 @@ module adminHelpers
 	end
 
 	def require_admin
-		redirect_to '/' unless current_admin.admin?
+		redirect_to '/' unless @current_admin.admin?
 	end
 
 	def require_super
-		redirect_to '/' unless current_admin.super?
+		redirect_to '/' unless @current_admin.super?
 	end
 end
