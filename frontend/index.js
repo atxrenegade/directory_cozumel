@@ -169,18 +169,17 @@ window.onload = function() {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
-	};
-	try {
-		fetch('http://localhost:3000/business', configObj)
-			.then(resp => {
-				return resp.json();
+			},
+			body: JSON.stringify(data)
+		};
+		try {
+			fetch('http://localhost:3000/business', configObj)
+				.then(resp => {
+					return resp.json();
 		})
-			.then(json => displayBusObj(json)
-		)
-	}
-	catch(err) {
+			.then(json => displayBusObj(json))
+		}
+		catch(err) {
 			alert('Post request failed see console for further details!');
 			console.log(err.msg);
 		}
@@ -194,15 +193,15 @@ window.onload = function() {
 				'Accept': 'application/json'
 		},
 		body: JSON.stringify(data)
-	};
-	try {
+		};
+		try {
 		fetch('http://localhost:3000/entries', configObj)
 		.then(resp => {
 			return resp.json();
 		})
 		.then(json => globalResponse = json)
-	}
-	catch(err) {
+		}
+		catch(err) {
 			alert('Post request failed see console for further details!');
 			console.log(err.msg);
 		}
