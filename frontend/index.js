@@ -121,18 +121,17 @@ window.onload = function() {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
-	};
-	try {
-		fetch('http://localhost:3000/index_by_name', configObj)
+			},
+			body: JSON.stringify(data)
+		};
+		try {
+			fetch('http://localhost:3000/index_by_name', configObj)
 			.then(resp => {
 				return resp.json();
-		})
-			.then(json => returnResults(json)
-		)
-	}
-	catch(err) {
+			})
+			.then(json => returnResults(json))
+		}
+		catch(err) {
 			alert('Post request failed see console for further details!');
 			console.log(err.msg);
 		}
@@ -145,18 +144,17 @@ window.onload = function() {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
-	};
-	try {
-		fetch('http://localhost:3000/index_by_category', configObj)
-			.then(resp => {
-				return resp.json();
-		})
-			.then(json => returnResults(json)
-		)
-	}
-	catch(err) {
+			},
+			body: JSON.stringify(data)
+		};
+		try {
+			fetch('http://localhost:3000/index_by_category', configObj)
+				.then(resp => {
+					return resp.json();
+			})
+			.then(json => returnResults(json))
+		}
+		catch(err) {
 			alert('Post request failed see console for further details!');
 			console.log(err.msg);
 		}
@@ -191,15 +189,15 @@ window.onload = function() {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
+			},
+			body: JSON.stringify(data)
 		};
 		try {
-		fetch('http://localhost:3000/entries', configObj)
-		.then(resp => {
-			return resp.json();
-		})
-		.then(json => globalResponse = json)
+			fetch('http://localhost:3000/entries', configObj)
+			.then(resp => {
+				return resp.json();
+			})
+			.then(json => globalResponse = json)
 		}
 		catch(err) {
 			alert('Post request failed see console for further details!');
