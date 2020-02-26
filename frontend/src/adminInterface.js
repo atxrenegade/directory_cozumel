@@ -390,12 +390,12 @@ class adminInterface {
 		const data = adminInterface.getEntryData('rejected', event)
 		adminInterface.postEntryUpdate(data);
 		setTimeout(function() {
-			if (globalResponse === 'Entry Successfully Updated'){
+			if (globalResult[0]['msg'] === 'Entry Successfully Updated'){
 				adminInterface.displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 				document.getElementById('admin-approve-button').style.display = 'none';
 				document.getElementById('admin-reject-button').style.display = 'none';
 			} else {
-				console.log(globalResponse)
+				console.log(globalResult[0]['msg'])
 			}
 		}, 1500)
 	}
@@ -404,18 +404,18 @@ class adminInterface {
 		const data = adminInterface.getEntryData('approved', event)
 		adminInterface.postDatabaseObject(data)
 		setTimeout(function(){
-			if (globalResponse === 'Object Saved'){
+			if (globalResult[0]['msg'] === 'Object Saved'){
 				adminInterface.postEntryUpdate(data)
 				setTimeout(function(){
-					if (globalResponse === 'Entry Successfully Updated') {
+					if (globalResult[0]['msg'] === 'Entry Successfully Updated') {
 					adminInterface.displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 					document.getElementById('admin-approve-button').style.display = 'none';
 					document.getElementById('admin-reject-button').style.display = 'none';
 				} else {
-					console.log(globalResponse)
+					console.log(globalResult[0]['msg'])
 				}
 			}, 1500)} else {
-				console.log(globalResponse)
+				console.log(globalResult[0]['msg'])
 			}
 		}, 1500)
 	}
@@ -431,11 +431,10 @@ class adminInterface {
 		};
 		try {
 			fetch('http://localhost:3000/entries/build_object', configObj)
-				.then(resp => {
-					return resp.json();
+			.then(resp => {
+				return resp.json();
 			})
-			.then(json => globalResponse = json['msg']
-			)
+			.then(json => adminInterface.dynamFormResp(json))
 		}
 		catch(err) {
 			alert('Error. See console for further details!');
@@ -477,13 +476,10 @@ class adminInterface {
 	};
 	try {
 		fetch('http://localhost:3000/entries/update', configObj)
-			.then(resp => {
-				return resp.json();
+		.then(resp => {
+			return resp.json();
 		})
-			.then(function(json) {
-				globalResponse = json['msg']
-			}
-		)
+		.then(json => adminInterface.dynamFormResp(json))
 	}
 	catch(err) {
 		alert('Error. See console for further details!');
@@ -579,7 +575,7 @@ class adminInterface {
 		const method = 'DELETE'
 		const url = `http://localhost:3000/${dbModel.toLowerCase()}/${recordID}`
 		const data = { id: recordID }
-		const callback = adminInterface.returnResult;
+		const callback = adminInterface.dynamFormResp;
 		adminInterface.dynamFormReq(method, url, data, callback)
 	}
 
@@ -594,11 +590,10 @@ class adminInterface {
 		};
 		try {
 			fetch(url, configObj)
-				.then(resp => {
-					return resp.json();
+			.then(resp => {
+				return resp.json();
 			})
-				.then(json => callback(json)
-			)
+			.then(json => callback(json))
 		}
 		catch(err) {
 			alert('Error. See console for further details!');
@@ -607,12 +602,13 @@ class adminInterface {
 	}
 
 	static dynamFormResp(data){
-		if (data == undefined) {
+		if (data === null) {
 			globalResult[0] = 'Error Processing Request';
 		} else {
 			globalResult[0] = data;
-			console.log(data)
+			console.log(globalResult[0])
 		}
+		return globalResult;
 	}
 
 	static getAttributes(dbType, callback = adminInterface.dynamFormResp){
@@ -655,7 +651,7 @@ class adminInterface {
 		const method = 'POST'
 		const data = {business_id: businessId}
 		const url = `http://localhost:3000/${dbType}/index_associated`
-		const callback = adminInterface.returnResult;
+		const callback = adminInterface.dynamFormResp;
 		adminInterface.dynamFormReq(method, url, data, callback)
 		const elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
@@ -682,10 +678,10 @@ class adminInterface {
 	}
 
 	static findRecordToDelete(dbType, id){
-		const recordId = document.getElementById(`${id}`).value
+		const recordId = document.getElementById(`${id}`).value;
 		globalResult = [];
 		const url = `http://localhost:3000/${dbType}/${recordId}`
-		const callback = adminInterface.returnResult
+		const callback = adminInterface.dynamFormResp;
 		adminInterface.dynamGetReq(url, callback)
 		const elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
@@ -721,14 +717,13 @@ class adminInterface {
 				} else if (confirmID === id) {
 					confirm('Are you sure you want to delete this record?');
 					adminInterface.buildDeletePostReq(dbType, id)
-					const msg = globalResult[0]
+					const msg = globalResult[0]['msg']
 					adminInterface.displayResults(elToAppendTo, msg)
 				} else {
 					alert("ID numbers do not match. Confirmation Failed. Try Again.")
 				}
 				setTimeout(adminInterface.resetCRUDForm, 3000);
 			}
-
 		}
 	}
 
@@ -784,7 +779,6 @@ class adminInterface {
 		} else {
 			/* document.addEventListener('click', adminInterface.resetCRUDForm) */
 		}
-
 	}
 
 	static createDisplayObj(){

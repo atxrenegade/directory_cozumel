@@ -2,10 +2,9 @@ window.onload = function() {
 	globalCats = [];
 	globalEntries = [];
 	globalAttributes = [];
-	globalResult = [];
 	globalAllBusinesses = [];
-	globalResponse = undefined;
-
+	globalResponse = undefined; /* user only */
+	globalResult = []; /* admin only */
 	LAT = 20.42;
 	LNG = -86.92;
 
@@ -188,7 +187,6 @@ window.onload = function() {
 	}
 
 	function postForm(data) {
-
 		const configObj = {
 			method: 'POST',
 			headers: {
@@ -199,11 +197,10 @@ window.onload = function() {
 	};
 	try {
 		fetch('http://localhost:3000/entries', configObj)
-			.then(resp => {
-				return resp.json();
+		.then(resp => {
+			return resp.json();
 		})
-			.then(json => globalResponse = json
-		)
+		.then(json => globalResponse = json)
 	}
 	catch(err) {
 			alert('Post request failed see console for further details!');
@@ -215,7 +212,7 @@ window.onload = function() {
 	/* Search Results functions */
 	function storeCategories(data){
 		const categoryObjects = Array.from(data);
-		const globalCats = categoryObjects.map((el) => {
+		globalCats = categoryObjects.map((el) => {
 			return el['name']
 		})
 	}
