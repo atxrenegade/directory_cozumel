@@ -1,7 +1,6 @@
 require('.app/controllers/application_controller.rb')
 class AdminsController < ApplicationController
-	include ActionController::Helpers
-	helper_method :current_admin, :require_admin, :admin?, :require_super, :super?
+	helper adminHelpers
 
 	def attributes
 		columnsToExclude = ['id', 'created_at', 'updated_at']
@@ -15,13 +14,13 @@ class AdminsController < ApplicationController
 	end
 
 	def create
-		require_super
+		current_admin.require_super
 		instance = Admin.create!(username: params['username'], password_digest: params['password_digest'], role: params['role'], status: params['status'])
 		render json: instance
 	end
 
 	def update
-		require_super
+		current_admin.require_super
 		admin = Admin.find(params[:id])
 		update_vals = {}
 		update_vals[:username] = params[:username] if params[:username].present?
@@ -34,7 +33,7 @@ class AdminsController < ApplicationController
 	end
 
 	def destroy
-		require_super()
+		current_admin.require_super
 		admin = Admin.find(params[:id])
 		admin.destroy
 		response = {}
@@ -44,27 +43,6 @@ class AdminsController < ApplicationController
 			response['msg'] = 'Admin Failed to Delete!'
 		end
 		render json: response
-	end
-
-	helpers
-	def current_admin
-		@current_admin || Admin.find(session[:admin_id]) if session[:admin_id]
-	end
-
-	def admin?
-		self.role == 'admin' && self.status == 'active'|| self.role == 'super' && self.status == 'active'
-	end
-
-	def super?
-		self.role == 'super' && self.status == 'active'
-	end
-
-	def require_admin
-		redirect_to '/' unless current_admin.admin?
-	end
-
-	def require_super
-		redirect_to '/' unless current_admin.super?
 	end
 
 	private
