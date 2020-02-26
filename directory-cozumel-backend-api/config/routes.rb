@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  post '/admin_token', to: 'admin_token#create'
+
 	post '/index_by_category', to: 'businesses#index_by_category'
 	post '/index_by_name', to: 'businesses#index_by_name'
 
