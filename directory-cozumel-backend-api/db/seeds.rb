@@ -697,6 +697,10 @@ maps_list = [
 	{ lat: 20.509130, lng:  -86.950238, business_id: 30 }
 ]
 
+default_admin_user = {
+	username: 'admin1', password: 'admin1', role: 'super', status: 'active'
+}
+
 businesses_list_1.each do |name, category_name|
 	Business.build_new_business(name, category_name)
 end
@@ -709,6 +713,7 @@ Listing.create(listings_list)
 Review.create(reviews_list)
 Map.create(maps_list)
 Image.create(images_list)
+Admin.create(default_admin_user)
 
 entry_seeds = [
 	{ 'entry_type': 'new bus',
