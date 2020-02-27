@@ -461,13 +461,14 @@ window.onload = function() {
 	}
 
 	function authAdminLogIn(session){
-		if (session['id'] == true){
+		if (session["id"] == true){
 			/* check role and store 'admin' or 'super' admin status */
 			/* update functions to reflect role and id values in admin login panel */
 			clearDirectoryForAdminView();
 			adminInterface.launchAdminInterface();
 		} else {
 			alert('You are not authorized to access admininstrative tasks!')
+			resetPage();
 		}
 	}
 
@@ -483,6 +484,7 @@ window.onload = function() {
 		businessListings.style.display = 'none';
 		const elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
+		document.getElementById('js-admin-password').value = ''
 		/* repopulate categories for drop down menu */
 		collectCategories();
 	}
