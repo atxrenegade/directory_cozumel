@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
 	# before_action :require_super
-	include Knock::Authenticable
 
 	def attributes
 		attributes = Admin.column_names
