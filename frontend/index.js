@@ -444,7 +444,7 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 		})
-			.then(json => console.log(json)
+			.then(json => authAdminLogIn(json)
 		)
 	}
 	catch(err) {
@@ -458,7 +458,12 @@ window.onload = function() {
 		const passwordVal = document.getElementById('js-admin-password').value.trim();
 		data = {"session": {"username": usernameVal, "password": passwordVal}}
 		postLogIn(data);
-		if (loggedIn() === true){
+	}
+
+	function authAdminLogIn(session){
+		if (session['id'] == true){
+			/* check role and store 'admin' or 'super' admin status */
+			/* update functions to reflect role and id values in admin login panel */
 			clearDirectoryForAdminView();
 			adminInterface.launchAdminInterface();
 		} else {
