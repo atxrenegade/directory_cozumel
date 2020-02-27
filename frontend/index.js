@@ -440,7 +440,7 @@ window.onload = function() {
 		body: JSON.stringify(data)
 	};
 	try {
-		fetch('http://localhost:3000/admin_token', configObj)
+		fetch('http://localhost:3000/login', configObj)
 			.then(resp => {
 				return resp.json();
 		})
@@ -448,7 +448,7 @@ window.onload = function() {
 		)
 	}
 	catch(err) {
-			alert('Post request failed see console for further details!');
+			alert('Login failed see console for further details!');
 			console.log(err.message);
 		}
 	}
@@ -456,7 +456,7 @@ window.onload = function() {
 	function logInAdmin(){
 		const usernameVal = document.getElementById('js-admin-username').value.trim();
 		const passwordVal = document.getElementById('js-admin-password').value.trim();
-		data = {"auth": {"username": usernameVal, "password": passwordVal}}
+		data = {"session": {"username": usernameVal, "password": passwordVal}}
 		postLogIn(data);
 		if (loggedIn() === true){
 			clearDirectoryForAdminView();
