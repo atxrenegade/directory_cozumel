@@ -1,12 +1,17 @@
 class SessionsController < ApplicationController
 	def create
-		admin = Admin.find_by_username(params[:session][:username])
-		if admin && admin.authenticate(params[:session][:password])
-			session[:id] = admin.id
-			render json: { id: admin.id, role: admin.role }
+		if params[:session][:username].present?
+			admin = Admin.find_by_username(params[:session][:username])
+			if admin && admin.authenticate(params[:session][:password])
+				session[:id] = admin.id
+				response = { id: admin.id, username: admin.username, role: admin.role }
+			else
+				response = { msg: 'Admin Login Failed' }
+			end
 		else
-			render json: response[:msg] = 'Admin Login Failed';
+				response = { msg: 'Admin Login Failed' }
 		end
+		render json: response
 	end
 
 	def destroy
