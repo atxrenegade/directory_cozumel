@@ -1,9 +1,10 @@
 require('.app/controllers/application_controller.rb')
 class AdminsController < ApplicationController
+	# before_action :require_super
 	helper adminHelpers
 
 	def attributes
-		columnsToExclude = ['id', 'created_at', 'updated_at']
+		columnsToExclude = ['created_at', 'updated_at']
 		attributes = Admin.attribute_names - columnsToExclude
 		render json: attributes
 	end
@@ -15,8 +16,8 @@ class AdminsController < ApplicationController
 
 	def create
 		current_admin.require_super
-		instance = Admin.create!(username: params['username'], password_digest: params['password_digest'], role: params['role'], status: params['status'])
-		render json: instance
+		admin = Admin.create!(username: params['username'], password_digest: params['password_digest'], role: params['role'], status: params['status'])
+		render json: admin
 	end
 
 	def update
