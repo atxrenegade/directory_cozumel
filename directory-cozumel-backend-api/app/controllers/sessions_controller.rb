@@ -3,11 +3,10 @@ class SessionsController < ApplicationController
 		admin = Admin.find_by_username(params[:session][:username])
 		if admin && admin.authenticate(params[:session][:password])
 			session[:id] = admin.id
-			response[:msg] = 'Admin Login Successful'
+			render json: { id: admin.id, role: admin.role }
 		else
-			response[:msg] = 'Admin Login Failed'
+			render json: response[:msg] = 'Admin Login Failed';
 		end
-		render json: response
 	end
 
 	def destroy
