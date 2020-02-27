@@ -160,8 +160,6 @@ To Use Admin Functions:
 	<li> rails ~> 5.2.3
 	<li> ruby '2.3.3'
 	<li> sqlite3
-	<li> knock
-	<li> jws
 	<li> bcrypt ~> 3.1.7
 	<li> byebug
 	<li> bootsnap
