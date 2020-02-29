@@ -616,10 +616,6 @@ class adminInterface {
 		adminInterface.dynamGetReq(url, callback)
 	}
 
-	static returnResult(data) {
-		globalResult[0] = data;
-	}
-
 	static dynamGetReq(url, callback){
 		try {
 			fetch(url)
