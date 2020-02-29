@@ -49,7 +49,7 @@ class adminInterface {
 			const adminTableContainer = document.getElementById('js-admin-panel-container');
 			adminTableContainer.style.display = 'block';
 			const entries = adminInterface.searchEntries(event);
-			setTimeout(`adminInterface.renderIndex('SEARCH')`, 1800);
+			setTimeout(adminInterface.renderIndex('SEARCH'), 1800);
 		})
 
 		/* Super Admin Menu Toggle Button */
@@ -149,8 +149,8 @@ class adminInterface {
 	}
 
 	static indexButtonAction(status){
-		const entries = adminInterface.buildEntriesIndexPostReq(`${status}`);
-		setTimeout(`adminInterface.renderIndex('${status}')`, 1800);
+		const entries = adminInterface.buildEntriesIndexPostReq(status);
+		setTimeout(adminInterface.renderIndex(status), 1800);
 	}
 
 	static toggleElement(el) {
