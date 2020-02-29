@@ -46,9 +46,7 @@ window.onload = function() {
 		searchByName.style.display = 'none';
 		searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
-		if (globalCats.length === 0) {
-				collectCategories();
-		};
+		if (globalCats.length === 0) collectCategories();
 		renderCategoriesMenu();
 	}
 
@@ -78,11 +76,7 @@ window.onload = function() {
 	function toggleForm(event, el) {
 		/**** REFACTOR TOGGLE FORM ***/
 		el.firstElementChild.style.display = 'block';
-		if (event === 'submit' || el.style.display == 'block') {
-			el.style.display = 'none'
-		} else {
-			el.style.display = 'block'
-		}
+		event === 'submit' || el.style.display == 'block' ? el.style.display = 'none' : el.style.display = 'block'
 	}
 
 	function toggleNewBusinessForm() {
@@ -90,13 +84,11 @@ window.onload = function() {
 		if (elFormContainer.style.display === 'block'){
 			elFormContainer.style.display = 'none';
 		} else {
+			const categorySelectEl = document.getElementById('cat-select')
 			newBusinessForm.style.display = 'block';
 			elFormContainer.style.display = 'block';
-			if (globalCats .length === 0) {
-				collectCategories();
-			};
-			const categorySelectEl = document.getElementById('cat-select')
-			if (categorySelectEl === null) { renderNewBusCatSelect() };
+			if (globalCats .length === 0) collectCategories();
+			if (categorySelectEl === null) renderNewBusCatSelect();
 		}
 	}
 
@@ -218,8 +210,8 @@ window.onload = function() {
 		if (data['msg'] !== undefined) {
 			appendErrorMsg(data['msg']);
 		} else {
-			data = Array.from(data)
-			renderIndex(data)
+			data = Array.from(data);
+			renderIndex(data);
 		}
 	}
 
@@ -325,9 +317,7 @@ window.onload = function() {
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect(){
 		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
-		if (globalCats .length == 0){
-			collectCategories();
-		}
+		if (globalCats .length == 0) collectCategories();
 		let catMenu = document.createElement('div');
 		let html = '<select id="cat-select" multiple>';
 		const cats = globalCats.map((el) => {
@@ -423,12 +413,7 @@ window.onload = function() {
 		adminPanelForm.style.display = 'none';
 		adminUserInfo.style.display = 'block';
 	}
-
-	function loggedIn() {
-		return true;
-		/* check for token value? */
-	}
-
+	
 	function postLogIn(data){
 		const configObj = {
 			method: 'POST',
