@@ -153,13 +153,9 @@ static dynamFormReq(method, url, data, callback) {
 		console.log(err.message);
 	}
 }
-static dynamFormResp(data){
-	(data === null) {
-		globalResult[0] = 'Error Processing Request';
-	} else {
-		globalResult[0] = data;
 
-	}
+function dynamFormResp(data){
+	data === null ? globalResult[0] = 'Error Processing Request' : globalResult[0] = data;
 	console.log(globalResult[0])
 	return globalResult[0];
 }
