@@ -77,6 +77,7 @@ static getAssociatedRecords(dbType){
 }
 
 static postDatabaseObject(data) {
+
 	const configObj = {
 		method: 'POST',
 		headers: {
@@ -104,20 +105,24 @@ static postEntryUpdate(data) {
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json'
-	},
-	body: JSON.stringify(data)
-};
-try {
-	fetch('http://localhost:3000/entries/update', configObj)
-	.then(resp => {
-		return resp.json();
-	})
-	.then(json => adminInterface.dynamFormResp(json))
-}
-catch(err) {
-	alert('Error. See console for further details!');
-	console.log(err.message);
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/entries/update', configObj)
+		.then(resp => {
+			return resp.json();
+		})
+		.then(json => adminInterface.dynamFormResp(json))
 	}
+	catch(err) {
+		alert('Error. See console for further details!');
+		console.log(err.message);
+	}
+}
+
+static postEntryUpdate(data){
+	adminInterface.dynamFormReq(method: 'POST', url: 'http://localhost:3000/entries/update', data: data, callback: adminInterface.dynamFormResp)
 }
 
 static dynamGetReq(url, callback){
@@ -132,21 +137,21 @@ static dynamGetReq(url, callback){
 	}
 }
 
-static dynamFormReq(method, url, data, callback) {
+static dynamFormReq(params) {
 	const configObj = {
-		method: method,
+		method: params['method'],
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json'
 	},
-	body: JSON.stringify(data)
+	body: JSON.stringify(params['data'])
 	};
 	try {
-		fetch(url, configObj)
+		fetch(params['url'], configObj)
 		.then(resp => {
 			return resp.json();
 		})
-		.then(json => callback(json))
+		.then(json => params['callback'](json))
 	}
 	catch(err) {
 		alert('Error. See console for further details!');
