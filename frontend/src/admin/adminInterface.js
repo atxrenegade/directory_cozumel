@@ -113,7 +113,7 @@ class adminInterface {
 
 		switch (formAction) {
 			case 'create':
-				adminInterface.getAttributes(dbType, adminInterface.buildAttsArray)
+				adminInterface.getAttributes(dbType)
 				setTimeout(adminInterface.buildNewForm.bind(null, formAction, dbType, elToAppendTo)
 				, 800)
 				break;
@@ -392,6 +392,21 @@ class adminInterface {
 		cellDataArray.forEach( el => adminInterface.updateCell(el[0], el[1]))
 	}
 
+	static getEntryData(status, event){
+		const adminId = adminInterface.getAdminId();
+		const resolvedDate = adminInterface.getFormattedDateTime();
+		const entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent;
+		let data;
+		if (status === 'approved') {
+			const objectEl = document.getElementById('detailed-entry-table-2')
+			const dataObject = objectEl.lastElementChild.lastElementChild.textContent;
+			data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, data_object: dataObject, status: status}
+		} else {
+			data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId,  status: status}
+		}
+		return data;
+	}
+
 	static entryUpdateSuccess() {
 		const updateSuccess = document.createElement('h4');
 		updateSuccess.innerText = 'Entry Successfully Updated'
@@ -610,153 +625,56 @@ class adminInterface {
 
 /**** API REQUESTS ****/
 	static buildEntriesIndexPostReq(searchType) {
-		const authType = adminInterface.checkAdminAuth();
-		const method = 'POST'
-		const data = { search_type: searchType, auth_type: authType }
-		const url = `http://localhost:3000/entries/index`
-		const callback = adminInterface.buildEntries;
-		adminInterface.dynamFormReq(method, url, data, callback);
+		const data = { search_type: searchType, auth_type: adminInterface.checkAdminAuth() }
+		let params = { method: 'POST' , url: 'http://localhost:3000/entries/index', data: data, callback: adminInterface.buildEntries }
+		adminInterface.dynamFormReq(params)
 	}
 
 	static postDatabaseObject(data) {
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
-		};
-		try {
-			fetch('http://localhost:3000/entries/build_object', configObj)
-			.then(resp => {
-				return resp.json();
-			})
-			.then(json => adminInterface.dynamFormResp(json))
-		}
-		catch(err) {
-			alert('Error. See console for further details!');
-			console.log(err.message);
-		}
-	}
-
-	static getEntryData(status, event){
-		const adminId = adminInterface.getAdminId();
-		const resolvedDate = adminInterface.getFormattedDateTime();
-		const entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent;
-		let data;
-		if (status === 'approved') {
-			const objectEl = document.getElementById('detailed-entry-table-2')
-			const dataObject = objectEl.lastElementChild.lastElementChild.textContent;
-			data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId, data_object: dataObject, status: status}
-		} else {
-			data = {id: entryId, resolved_date: resolvedDate, admin_id: adminId,  status: status}
-		}
-		return data;
+		const params = { method: 'POST' , url: 'http://localhost:3000/entries/build_object', data: data, callback: adminInterface.dynamFormResp }
+		adminInterface.dynamFormReq(params);
 	}
 
 	static searchEntries(event) {
 		const propertyToSearch = adminInterface.getRadioVal(event);
 		const searchVal = event.target.parentNode[8].value;
-		const method = 'POST'
-		const url = 'http://localhost:3000/entries/search'
-		const data = { property: propertyToSearch, search_val: searchVal }
-		const callbackFunction = adminInterface.buildEntries;
-		adminInterface.dynamFormReq(method, url, data, callbackFunction);
+		const params = {method: 'POST', url: 'http://localhost:3000/entries/search', data: { property: propertyToSearch, search_val: searchVal }, callback: adminInterface.buildEntries}
+		adminInterface.dynamFormReq(params);
 	}
 
 	static buildCreatePostReq(action, dbModel, attsObj, event){
-		const method = 'POST'
-		const url = `http://localhost:3000/${dbModel.toLowerCase()}`
-		const callback = adminInterface.dynamFormResp;
-		adminInterface.dynamFormReq(method, url, attsObj, callback)
+		const params = { method: 'POST', url: `http://localhost:3000/${dbModel.toLowerCase()}`, data: attsObject, callback: adminInterface.dynamFormResp }
+		adminInterface.dynamFormReq(params)
 	}
 
 	static buildUpdatePostReq(action, dbModel, attsObj, event){
-		const url = `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`
-		const data = { id: instance, attributes: attsObj }
-		const method = 'PUT'
-		adminInterface.dynamFormReq(method, url, data)
+		const params = { method: 'PUT', url: `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`, data: { id: instance, attributes: attsObj }, callback: adminInterface.dynamFormResp }
+		adminInterface.dynamFormReq(params)
 	}
 
-	static buildDeletePostReq(dbModel, recordID){
-		const method = 'DELETE'
-		const url = `http://localhost:3000/${dbModel.toLowerCase()}/${recordID}`
-		const data = { id: recordID }
-		const callback = adminInterface.dynamFormResp;
-		adminInterface.dynamFormReq(method, url, data, callback)
+	static buildDeletePostReq(dbModel, recordID) {
+		const params = { method: 'DELETE', url: `http://localhost:3000/${dbModel.toLowerCase()}/${recordID}`, data: { id: recordID }, callback: adminInterface.dynamFormResp }
+		adminInterface.dynamFormReq(params)
 	}
 
-	static dynamFormReq(method, url, data, callback) {
-		const configObj = {
-			method: method,
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
-		};
-		try {
-			fetch(url, configObj)
-			.then(resp => {
-				return resp.json();
-			})
-			.then(json => callback(json))
-		}
-		catch(err) {
-			alert('Error. See console for further details!');
-			console.log(err.message);
-		}
-	}
-
-	static dynamFormResp(data){
-		if (data === null) {
-			globalResult[0] = 'Error Processing Request';
-		} else {
-			globalResult[0] = data;
-			console.log(globalResult[0])
-		}
-		return globalResult;
-	}
-
-	static getAttributes(dbType, callback = adminInterface.dynamFormResp){
-		const url = `http://localhost:3000/${dbType}/attributes`
-		adminInterface.dynamGetReq(url, callback)
-	}
-
-	static dynamGetReq(url, callback){
-		try {
-			fetch(url)
-			.then(resp => resp.json())
-			.then(json => callback(json))
-		}
-		catch(err) {
-			alert('Error. See console for further details!');
-			console.log(err.message);
-		}
+	static getAttributes(dbType){
+		const params = { url: `http://localhost:3000/${dbType}/attributes`, callback: adminInterface.buildAttsArray}
+		adminInterface.dynamGetReq(params)
 	}
 
 	static searchIdByName(dbType, id, searchType) {
 		const name = document.getElementById(`${id}`).value
-		const method = 'POST'
-		const url = `http://localhost:3000/${searchType.toLowerCase()}/index_by_name`
-		const callback = adminInterface.dynamFormResp
-		const data = {name: name}
-		adminInterface.dynamFormReq(method, url, data, callback)
+		const params = { method: 'POST', url: `http://localhost:3000/${searchType.toLowerCase()}/index_by_name`, data: { name: name }, callback: adminInterface.dynamFormResp }
+		adminInterface.dynamFormReq(params)
 		setTimeout(adminInterface.getAssociatedRecords.bind(null, dbType), 1500)
 	}
 
 	static getAssociatedRecords(dbType){
-		const businessId = globalResult[0][0]['id']
-		const method = 'POST'
-		const data = {business_id: businessId}
-		const url = `http://localhost:3000/${dbType}/index_associated`
-		const callback = adminInterface.dynamFormResp;
-		adminInterface.dynamFormReq(method, url, data, callback)
+		const params = { method: 'POST', url:`http://localhost:3000/${dbType}/index_associated`, data: { business_id: globalResult[0][0]['id']}, callback: adminInterface.dynamFormResp }
+		adminInterface.dynamFormReq(params);
 		const elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
 		globalResult.length < 1 ? msg = 'No Records Match Your Query' : msg = 'Matching Associated Records'
-
 		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 500)
 		setTimeout(adminInterface.appendIdFormForAssoc.bind(null,dbType), 1000)
 	}
@@ -764,9 +682,8 @@ class adminInterface {
 	static findRecordToDelete(dbType, id){
 		const recordId = document.getElementById(`${id}`).value;
 		globalResult = [];
-		const url = `http://localhost:3000/${dbType}/${recordId}`
-		const callback = adminInterface.dynamFormResp;
-		adminInterface.dynamGetReq(url, callback)
+		const params = { url: `http://localhost:3000/${dbType}/${recordId}`, callback: adminInterface.dynamFormResp }
+		adminInterface.dynamGetReq(params)
 		const elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
 		setTimeout(function(){
@@ -777,25 +694,48 @@ class adminInterface {
 	}
 
 	static postEntryUpdate(data) {
+		const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data: { name: name }, callback: adminInterface.dynamFormResp }
+		adminInterface.dynamFormReq(params)
+	}
+
+	static dynamFormReq(params) {
 		const configObj = {
-			method: 'POST',
+			method: params['method'],
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json'
 		},
-		body: JSON.stringify(data)
-	};
-	try {
-		fetch('http://localhost:3000/entries/update', configObj)
-		.then(resp => {
-			return resp.json();
-		})
-		.then(json => adminInterface.dynamFormResp(json))
-	}
-	catch(err) {
-		alert('Error. See console for further details!');
-		console.log(err.message);
+		body: JSON.stringify(params['data'])
+		};
+		try {
+			fetch(params['url'], configObj)
+			.then(resp => {
+				return resp.json();
+			})
+			.then(json => params['callback'](json))
 		}
+		catch(err) {
+			alert('Error. See console for further details!');
+			console.log(err.message);
+		}
+	}
+
+	static dynamGetReq(params){
+		try {
+			fetch(params['url'])
+			.then(resp => resp.json())
+			.then(json => params['callback'](json))
+		}
+		catch(err) {
+			alert('Error. See console for further details!');
+			console.log(err.message);
+		}
+	}
+
+	static dynamFormResp(data){
+		(data === null) ? globalResult[0] = 'Error Processing Request' : globalResult[0] = data;
+		console.log(globalResult[0])
+		return globalResult;
 	}
 }
 
