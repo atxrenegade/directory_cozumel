@@ -94,119 +94,81 @@ window.onload = function() {
 
 	/* API REQUEST FUNCTIONS */
 	/* Search Bar API request functions */
-	function collectCategories() {
+	function dynamPostReq(params) {
+		const configObj = {
+			method: params['method'],
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(params['data'])
+		};
 		try {
-			url = 'http://localhost:3000/categories'
-			fetch(url)
-			.then(resp => resp.json())
-			.then(json => storeCategories(json))
+			fetch(params['url'], configObj)
+			.then(resp => {
+				return resp.json();
+			})
+			.then(json => params['callback'](json))
 		}
 		catch(err) {
-			console.log(err.msg);
+			alert('Error. See console for further details!');
+			console.log(err.message);
 		}
+	}
+
+	function dynamGetReq(params){
+		try {
+			fetch(params['url'])
+			.then(resp => resp.json())
+			.then(json => params['callback'](json))
+		}
+		catch(err) {
+			alert('Error. See console for further details!');
+			console.log(err.message);
+		}
+	}
+
+	function collectCategories() {
+		const params = {url: 'http://localhost:3000/categories', callback: storeCategories};
+		dynamGetReq(params);
 	}
 
 	function postSearchByName(name) {
-		const data = {'name': name}
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			},
-			body: JSON.stringify(data)
-		};
-		try {
-			fetch('http://localhost:3000/index_by_name', configObj)
-			.then(resp => {
-				return resp.json();
-			})
-			.then(json => returnResults(json))
-		}
-		catch(err) {
-			alert('Post request failed see console for further details!');
-			console.log(err.msg);
-		}
+		const params = {method: 'POST', url: 'http://localhost:3000/index_by_name', data: {'name': name}, callback: returnResults}
+		dynamPostReq(params);
 	}
 
-	function postSearchByCategory(category){
-		const data = {'category_name': category}
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			},
-			body: JSON.stringify(data)
-		};
-		try {
-			fetch('http://localhost:3000/index_by_category', configObj)
-				.then(resp => {
-					return resp.json();
-			})
-			.then(json => returnResults(json))
-		}
-		catch(err) {
-			alert('Post request failed see console for further details!');
-			console.log(err.msg);
-		}
+	function postSearchByCategory(category) {
+		const params = {method: 'POST', url: 'http://localhost:3000/index_by_category', data: {'category_name': category}, callback: returnResults}
+		dynamPostReq(params);
 	}
 
-	function postBusObjToRetrieve(name){
-		const data = {'name': name}
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			},
-			body: JSON.stringify(data)
-		};
-		try {
-			fetch('http://localhost:3000/business', configObj)
-				.then(resp => {
-					return resp.json();
-		})
-			.then(json => displayBusObj(json))
-		}
-		catch(err) {
-			alert('Post request failed see console for further details!');
-			console.log(err.msg);
-		}
+	function postBusObjToRetrieve(name) {
+		const params = {method: 'POST', url: 'http://localhost:3000/business', data: {'name': name}, callback: displayBusObj}
+		dynamPostReq(params);
 	}
 
 	function postForm(data) {
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			},
-			body: JSON.stringify(data)
-		};
-		try {
-			fetch('http://localhost:3000/entries', configObj)
-			.then(resp => {
-				return resp.json();
-			})
-			.then(json => globalResponse = json)
-		}
-		catch(err) {
-			alert('Post request failed see console for further details!');
-			console.log(err.msg);
-		}
+		const callback = function(){ globalResponse = json }
+		const params = {method: 'POST', url: 'http://localhost:3000/entries', data: data, callback: callback}
+		dynamPostReq(params);
+	}
+
+	function postLogIn(data) {
+		const params = {method: 'POST', url: 'http://localhost:3000/login', data: data, callback: authAdminLogIn}
+		dynamPostReq(params);
 	}
 
 	/* RESULTS FUNCTIONS */
 	/* Search Results functions */
-	function storeCategories(data){
+	function storeCategories(data) {
 		const categoryObjects = Array.from(data);
 		globalCats = categoryObjects.map((el) => {
 			return el['name']
 		})
 	}
 
-	function returnResults(data){
+	function returnResults(data) {
 		if (data['msg'] !== undefined) {
 			appendErrorMsg(data['msg']);
 		} else {
@@ -215,51 +177,47 @@ window.onload = function() {
 		}
 	}
 
-	function displayBusObj(data){
+	function displayBusObj(data) {
 		renderListing(buildListing(data));
 	}
 
-	function buildListing(data){
-		let objArray = []
+	function buildListing(data) {
 		const busObj = Business.buildBusObj(data);
 		let map;
-		if (data['map']) {
-			map = GoogleMap.mapBuilder(data['map'])
-		} else { map = [] }
+		data['map'] ?  map = GoogleMap.mapBuilder(data['map']) : map = []
 		const imagesCollection = Image.imagesBuilder(data['images']);
 		const reviewsCollection = Review.reviewsBuilder(data['reviews']);
-		objArray.push(busObj, map, imagesCollection, reviewsCollection)
+		const objArray= [busObj, map, imagesCollection, reviewsCollection]
 		return objArray;
 	}
 
-	function renderListing(objArray){
+	function renderListing(objArray) {
 		if (objArray != undefined) {
-			let el = businessListings;
-			el.innerHTML = '';
+			businessListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing();
 			let mapHTML;
 			let reviewsHTML;
 			let imagesHTML;
-			renderComponent(busHTML, el);
+			renderComponent(busHTML, businessListings);
 			if (objArray[1].length > 0){
 				mapHTML = objArray[1].renderMap();
-				renderComponent(mapHTML, el);
+				renderComponent(mapHTML, businessListings);
 			}
 			if (objArray[3].length > 0){
 				let reviewsHTML = '';
 				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview());
-				renderComponent(reviewsHTML, el);
+				renderComponent(reviewsHTML, businessListings);
 			}
 			if (objArray[2].length > 0) {
 				let imagesHTML = '';
 				objArray[2].forEach((img) => imagesHTML += img.renderImage());
-				renderComponent(imagesHTML, el);
+				renderComponent(imagesHTML, businessListings);
 			}
 			listingMenu.style.display = 'block';
 		}
 	}
 
-	function appendErrorMsg(msg){
+	function appendErrorMsg(msg) {
 		businessListings.innerHTML = '';
 		const errorMsg = document.createElement('p');
 		errorMsg.innerHTML = `${msg}`
@@ -288,7 +246,7 @@ window.onload = function() {
 		}
 	}
 
-	function renderIndex(resultsList){
+	function renderIndex(resultsList) {
 		businessListings.innerHTML = '';
 		businessListings.style.display = 'block';
 		resultsList.forEach(function(busObj) {
@@ -315,7 +273,7 @@ window.onload = function() {
 
 	/* FORM FUNCTIONs */
 	/* Render Categories Select For Bus Form */
-	function renderNewBusCatSelect(){
+	function renderNewBusCatSelect() {
 		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
 		if (globalCats .length == 0) collectCategories();
 		let catMenu = document.createElement('div');
@@ -332,7 +290,7 @@ window.onload = function() {
 	/* works for new bus form and all other forms */
 	function getBusNameForAssoForm(event){
 		let busName = '';
-		if (event.target[0].id === 'new-bus'){
+		if (event.target[0].id === 'new-bus') {
 			busName = document.getElementById('business-name').value;
 		} else {
 			busName = document.getElementById('listing-bus-name').innerText;
@@ -370,7 +328,7 @@ window.onload = function() {
 		}, 250)
 	}
 
-	function clearCheckBox(){
+	function clearCheckBox() {
 		reviewCheckBox.checked = false;
 		imageCheckBox.checked = false;
 		flagCheckBox.checked = false;
@@ -381,7 +339,7 @@ window.onload = function() {
 	function createPostData(event, busName) {
 		let data = Array.from(event.target.elements)
 		let dataArray = []
-		data = data.forEach(el => {
+		data.forEach(el => {
 			dataArray.push([el['id'], el['value']])
 		})
 		dataArray.pop
@@ -390,7 +348,7 @@ window.onload = function() {
 	}
 
 	/* ADMIN LOGIN FUNCTIONS */
-	function clearDirectoryForAdminView(){
+	function clearDirectoryForAdminView() {
 		const sponsListContainer = document.getElementById('sponsored-listing-container');
 		const adsContainer = document.getElementById('ads-container');
 		const searchBarContainer = document.getElementById('js-searchbar-container');
@@ -413,39 +371,15 @@ window.onload = function() {
 		adminPanelForm.style.display = 'none';
 		adminUserInfo.style.display = 'block';
 	}
-	
-	function postLogIn(data){
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json',
-				'origin': 'http:localhost:3000'
-		},
-		body: JSON.stringify(data)
-	};
-	try {
-		fetch('http://localhost:3000/login', configObj)
-			.then(resp => {
-				return resp.json();
-		})
-			.then(json => authAdminLogIn(json)
-		)
-	}
-	catch(err) {
-			alert('Login failed see console for further details!');
-			console.log(err.message);
-		}
-	}
 
-	function logInAdmin(){
+	function logInAdmin() {
 		const usernameVal = document.getElementById('js-admin-username').value.trim();
 		const passwordVal = document.getElementById('js-admin-password').value.trim();
 		data = {"session": {"username": usernameVal, "password": passwordVal}}
 		postLogIn(data);
 	}
 
-	function authAdminLogIn(session){
+	function authAdminLogIn(session) {
 		if (session["id"] == true){
 			/* check role and store 'admin' or 'super' admin status */
 			/* update functions to reflect role and id values in admin login panel */
