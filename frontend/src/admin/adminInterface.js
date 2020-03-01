@@ -1,6 +1,5 @@
 class adminInterface {
 	static launchAdminInterface() {
-
 		/* admin index table elements */
 		const adminLoginContainer = document.getElementById('js-admin-login-container')
 		const adminTableContainer = document.getElementById('js-admin-panel-container')
@@ -108,8 +107,7 @@ class adminInterface {
 
  /* ADMIN INTERFACE METHODS */
 	static buildCRUDforms(event, radVals, elToAppendTo){
-		const formAction = radVals[0];
-		const dbType = radVals[1];
+		const [formAction, dbType] = radVals;
 		globalAttributes = [];
 		let formData;
 
@@ -195,36 +193,14 @@ class adminInterface {
 		return 'super'
 	}
 
-	static buildEntriesIndexPostReq(searchType) {
-		const authType = adminInterface.checkAdminAuth();
-		const method = 'POST'
-		const data = { search_type: searchType, auth_type: authType }
-		const url = `http://localhost:3000/entries/index`
-		const callback = adminInterface.buildEntries;
-		adminInterface.dynamFormReq(method, url, data, callback);
-	}
-
 	static getRadioVal(event){
 		const radioTarget = event.target.parentNode.elements
 		const radios = Array.from(radioTarget);
 		let radValues = [];
-		for (let i = 0, len = radios.length; i < len; i++){
-      if (radios[i].checked) {
-        let checked = radios[i].value;
-				radValues.push(checked);
-			}
-  	}
+		radios.forEach(el => {
+      if (el.checked) radValues.push(el.value);
+  	})
 		return radValues
-	}
-
-	static searchEntries(event) {
-		const propertyToSearch = adminInterface.getRadioVal(event);
-		const searchVal = event.target.parentNode[8].value;
-		const method = 'POST'
-		const url = 'http://localhost:3000/entries/search'
-		const data = { property: propertyToSearch, search_val: searchVal }
-		const callbackFunction = adminInterface.buildEntries;
-		adminInterface.dynamFormReq(method, url, data, callbackFunction);
 	}
 
 	static renderIndex(indexType) {
@@ -301,19 +277,7 @@ class adminInterface {
 	static buildEntries(entries){
 		globalEntries = [];
 		entries.forEach(el => {
-			const id = el['id'];
-			const entryType = el['entry_type'];
-			const busId = el['business_id'];
-			const busName = el['business_name'];
-			const dateCreated = el['date'];
-			const contributor = el['contributor'];
-			const contributorEmail = el['contributor_email'];
-			const dataObject = el['data_object'];
-			const status = el['status'];
-			const resolvedDate = el['resolved_date'];
-			const adminId = el['admin_id'];
-			const notes = el['notes'];
-			const newEntry = new Entry(id, entryType, busId, busName, dateCreated, contributor, contributorEmail, dataObject, status, resolvedDate, adminId, notes)
+			new Entry(el['id'], el['entry_type'], el['business_id'], el['business_name'], el['date_created'], el['contributor'], el['contributor_email'], el['data_object'], el['status'], el['resolved_date'], el['admin_id'], el['notes'])
 		})
 	}
 
@@ -420,6 +384,240 @@ class adminInterface {
 		}, 1500)
 	}
 
+	static displayResolved(adminId, resolvedDate, status) {
+		const adminIdEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[0];
+		const resolvedDateEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[2];
+		const statusEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[1];
+		const cellDataArray = [[adminIdEl, adminId], [resolvedDateEl, resolvedDate],[statusEl, status]]
+		cellDataArray.forEach( el => adminInterface.updateCell(el[0], el[1]))
+	}
+
+	static entryUpdateSuccess() {
+		const updateSuccess = document.createElement('h4');
+		updateSuccess.innerText = 'Entry Successfully Updated'
+		detailsTable.appendChild('updateSuccess');
+	}
+
+	/* Dynamic Admin Forms Creation */
+	static buildNewForm(action, dbType, elToAppendTo) {
+		const formEl = document.createElement('form');
+		const formFieldSet = document.createElement('fieldset');
+		const formLegend = document.createElement('legend');
+		let formElements;
+		formLegend.innerHTML = `${action.toUpperCase()} ${dbType.toUpperCase()}`
+		elToAppendTo.appendChild(formEl);
+		formEl.appendChild(formFieldSet);
+		formFieldSet.appendChild(formLegend);
+		globalAttributes.forEach(attribute => {
+			const attLabel = document.createElement('label');
+			const attInput = document.createElement('input');
+			const labelText = document.createTextNode(`${attribute}: `)
+			attLabel.value = attribute;
+			attLabel.appendChild(labelText);
+			attInput.id = `${action}-${dbType}-${attribute}`.toLowerCase();
+			attInput.name = `${attribute.replace(/\s/g, '-')}`.toLowerCase();
+			attInput.type = 'text';
+			const breakEl = document.createElement('br');
+			const formElements = [attLabel, attInput, breakEl];
+			formElements.forEach(el => formFieldSet.appendChild(el));
+		})
+		const breakEl = document.createElement('br');
+		const formButton = document.createElement('input');
+		formButton.id = `${action}-${dbType}-button`.toLowerCase();
+		formButton.value = 'Submit';
+		formButton.type = 'button'
+
+		const buttonArray = [breakEl, formButton]
+		buttonArray.forEach(el => formFieldSet.appendChild(el));
+		formButton.addEventListener('click', function(event){
+			const attributesObj = adminInterface.buildObjFromFormInput(event);
+			adminInterface.processSuperCreateForm(action, dbType, attributesObj, event)
+			elToAppendTo.removeChild(formEl);
+			document.getElementById('js-super-admin-modify-menu').innerText = 'DISPLAY FORM'
+			document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
+		})
+	}
+
+	static buildObjFromFormInput(event){
+		const collection = Array.from(event.target.parentElement.children)
+		const valObj = {}
+		valObj = collection.map(function(el) { return [el.name, el.value] })
+		valObj = valObj.filter(function(val) { return val[0] !== undefined })
+		const newAttArray = valObj.slice(0, -1)
+		const attObj = {};
+		let i;
+		const len = newAttArray.length;
+ 		for (i = 0 ; i < len; i++){
+			let attKey = newAttArray[i][0].toLowerCase();
+			let attVal = newAttArray[i][1];
+			attObj[attKey] = attVal;
+		}
+		return attObj;
+	}
+
+	static processSuperCreateForm(action, dbModel, attsObj, event){
+		adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
+		const elToAppendTo = event.target.parentElement.parentNode.parentNode;
+		const msg = `Successfully Added to Database: <br>`;
+		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1500)
+	}
+
+	static buildAttsArray(data){
+		globalAttributes = data.map(el => {return el.replace(/_/g, ' ') })
+	}
+
+	static appendIdFormForAssoc(dbType){
+		const elToAppendTo = document.getElementById('super-admin-create-update-delete').lastElementChild
+		const formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to DELETE `, el: elToAppendTo, action: 'delete', searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
+		adminInterface.buildFindInstanceForm(formData)
+	}
+
+	static buildFindInstanceForm(formData) {
+		const breakEl = document.createElement('br')
+		const instAtts = {id: formData['id'], value: formData['labelValue']}
+		const instInputField = adminInterface.buildFormField(instAtts)
+		const buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SELECT RECORD', searchType: formData['searchType'], dbType: formData['dbType'], callback: formData['callback'], formId: formData['id'] }
+		const instButton = adminInterface.buildCRUDSearchButton(buttonAtts)
+		const formElArray = [breakEl, breakEl, instInputField, breakEl, instButton, breakEl]
+		formElArray.forEach(el => formData['el'].appendChild(el))
+	}
+
+	static confirmRecordToDelete(dbType, id, elToAppendTo){
+		if (id === 'js-super-admin-CRUD-instance-id')  {
+			document.removeEventListener('click', adminInterface.removeResultsOnClick);
+			const labelValue = 'Please Re-Enter Record Id to Confirm Delete '
+			const inputAtts = {id: 'js-super-admin-crud-record-delete', value: labelValue}
+			const confirmField = adminInterface.buildFormField(inputAtts);
+			const confirmDeleteButton = document.createElement('button')
+			const cancelDeleteButton = document.createElement('button')
+			confirmDeleteButton.id = 'js-super-admin-CRUD-approve-delete';
+			cancelDeleteButton.id = 'js-super-admin-CRUD-cancel-delete';
+			confirmDeleteButton.innerText = 'Confirm Delete';
+			cancelDeleteButton.innerText = 'Cancel Delete';
+			const confirmEls = [confirmField, confirmDeleteButton, cancelDeleteButton]
+			confirmEls.forEach(el => elToAppendTo.appendChild(el))
+			cancelDeleteButton.addEventListener('click', adminInterface.resetCRUDForm)
+			confirmDeleteButton.addEventListener('click', confirmDeleteAction.bind(null, dbType, elToAppendTo))
+
+			function confirmDeleteAction(dbType, elToAppendTo){
+				const id = document.getElementById('js-super-admin-CRUD-instance-id').value
+				const confirmID = document.getElementById('js-super-admin-crud-record-delete').value
+				if (dbType === 'entries') {
+					alert('Entries Are Permanent Records and Can NOT be deleted!')
+				} else if (confirmID === id) {
+					confirm('Are you sure you want to delete this record?');
+					adminInterface.buildDeletePostReq(dbType, id)
+					const msg = globalResult[0]['msg']
+					adminInterface.displayResults(elToAppendTo, msg)
+				} else {
+					alert("ID numbers do not match. Confirmation Failed. Try Again.")
+				}
+				setTimeout(adminInterface.resetCRUDForm, 3000);
+			}
+		}
+	}
+
+	static resetCRUDForm(){
+		const crudForm = document.getElementById('super-admin-create-update-delete')
+		crudForm.innerHTML = '<br>';
+		const crudButton = document.getElementById('js-super-admin-modify-menu')
+		crudButton.innerText = 'DISPLAY FORM';
+	}
+
+	static buildFormField(atts){
+		/* atts should include id, value */
+		const breakEl = document.createElement('br')
+		const labelEl = document.createElement('label')
+		const inputEl = document.createElement('input')
+		labelEl.innerText = `${atts['value']}: `;
+		inputEl.id = atts['id'];
+		const elArray = [inputEl, breakEl]
+		elArray.forEach(el => labelEl.appendChild(el))
+		return labelEl
+	}
+
+	static buildCRUDSearchButton(atts) {
+		/* atts should include id, value, dbType and a callback function */
+		const buttonEl = document.createElement('input')
+		buttonEl.type = 'submit'
+		buttonEl.id = atts['id']
+		buttonEl.value = atts['value']
+		buttonEl.addEventListener('click', function(event){
+			event.preventDefault();
+			atts['callback'](atts['dbType'], atts['formId'], atts['searchType']);
+			buttonEl.remove();
+		});
+		return buttonEl;
+	}
+
+	static displayResults(elToAppendTo, msg) {
+		/* debug this so it stops redisplaying the same return values */
+		let resultsEl = document.getElementById( 'js-admin-CRUD-results')
+		if (resultsEl === undefined || globalResult.length > 0 ) {
+			resultsEl = document.createElement('div')
+			resultsEl.id = 'js-admin-CRUD-results';
+			const obj = adminInterface.createDisplayObj();
+			elToAppendTo.appendChild(resultsEl);
+			msg += obj
+			document.addEventListener('click', adminInterface.removeResultsOnClick)
+			resultsEl.innerHTML = msg
+		} else {
+			/* document.addEventListener('click', adminInterface.resetCRUDForm) */
+		}
+	}
+
+	static createDisplayObj(){
+		const results = globalResult.flat()
+		let resultsObj = results.map((el) => {
+			let objArray = ['<br>'];
+			for (let [key, value] of Object.entries(el)) {
+				let objHTML = `<br>`
+				objHTML +=`${key}: ${value}`
+				objArray.push(objHTML);
+			}
+			console.log(objArray)
+			if (objArray.length > 1) objArray = objArray.join(' ');
+			return objArray += '<br>'
+		})
+		resultsObj = resultsObj.join(' ');
+		return resultsObj
+	}
+
+	static removeResultsOnClick(){
+		/*
+		let displayedResults = document.getElementById('js-admin-CRUD-results')
+		if (displayedResults != undefined)
+			displayedResults.remove();
+		*/
+	}
+
+	static resetAdmin() {
+		const superAdminPanel = 	document.getElementById('js-admin-super-admin-open')
+		const indexTable = document.getElementById('admin-entry-table');
+		const detailsTable = document.getElementById('entry-details-tables');
+		const adminTableContainer = document.getElementById('js-admin-panel-container')
+		const adminNotesForm = document.getElementById('admin-notes-form')
+		const entryNotes = document.getElementById('js-entry-notes')
+
+		superAdminPanel.style.display = 'none';
+		adminTableContainer.style.display = 'none';
+		indexTable.style.display = 'none';
+		detailsTable.style.display = 'none';
+		adminNotesForm.style.display = 'none';
+	  entryNotes.value = '';
+	}
+
+
+/**** API REQUESTS ****/
+	static buildEntriesIndexPostReq(searchType) {
+		const authType = adminInterface.checkAdminAuth();
+		const method = 'POST'
+		const data = { search_type: searchType, auth_type: authType }
+		const url = `http://localhost:3000/entries/index`
+		const callback = adminInterface.buildEntries;
+		adminInterface.dynamFormReq(method, url, data, callback);
+	}
+
 	static postDatabaseObject(data) {
 		const configObj = {
 			method: 'POST',
@@ -457,104 +655,14 @@ class adminInterface {
 		return data;
 	}
 
-	static displayResolved(adminId, resolvedDate, status) {
-		const adminIdEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[0];
-		const resolvedDateEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[2];
-		const statusEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[1];
-		const cellDataArray = [[adminIdEl, adminId], [resolvedDateEl, resolvedDate],[statusEl, status]]
-		cellDataArray.forEach( el => adminInterface.updateCell(el[0], el[1]))
-	}
-
-	static postEntryUpdate(data) {
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-		},
-		body: JSON.stringify(data)
-	};
-	try {
-		fetch('http://localhost:3000/entries/update', configObj)
-		.then(resp => {
-			return resp.json();
-		})
-		.then(json => adminInterface.dynamFormResp(json))
-	}
-	catch(err) {
-		alert('Error. See console for further details!');
-		console.log(err.message);
-		}
-	}
-
-	static entryUpdateSuccess() {
-		const updateSuccess = document.createElement('h4');
-		updateSuccess.innerText = 'Entry Successfully Updated'
-		detailsTable.appendChild('updateSuccess');
-	}
-
-	/* Dynamic Admin Forms Creation */
-	static buildNewForm(action, dbType, elToAppendTo) {
-		const formEl = document.createElement('form');
-		const formFieldSet = document.createElement('fieldset');
-		const formLegend = document.createElement('legend');
-		let formElements;
-		formLegend.innerHTML = `${action.toUpperCase()} ${dbType.toUpperCase()}`
-		elToAppendTo.appendChild(formEl);
-		formEl.appendChild(formFieldSet);
-		formFieldSet.appendChild(formLegend);
-		globalAttributes.forEach(attribute => {
-			const attLabel = document.createElement('label')
-			const attInput = document.createElement('input')
-			const labelText = document.createTextNode(`${attribute}: `)
-			attLabel.setAttribute('value', attribute)
-			attLabel.appendChild(labelText);
-			attInput.setAttribute('id', `${action}-${dbType}-${attribute}`.toLowerCase());
-			attInput.setAttribute('name', `${attribute.replace(/\s/g, '-')}`.toLowerCase());
-			attInput.setAttribute('type', 'text')
-			const breakEl = document.createElement('br')
-			const formElements = [attLabel, attInput, breakEl]
-			formElements.forEach(el => formFieldSet.appendChild(el));
-		})
-		const breakEl = document.createElement('br')
-		const formButton = document.createElement('input')
-		formButton.setAttribute('id', `${action}-${dbType}-button`.toLowerCase());
-		formButton.setAttribute('value', 'Submit');
-		formButton.setAttribute('type', 'button')
-
-		const buttonArray = [breakEl, formButton]
-		buttonArray.forEach(el => formFieldSet.appendChild(el));
-		formButton.addEventListener('click', function(event){
-			const attributesObj = adminInterface.buildObjFromFormInput(event);
-			adminInterface.processSuperCreateForm(action, dbType, attributesObj, event)
-			elToAppendTo.removeChild(formEl);
-			document.getElementById('js-super-admin-modify-menu').innerText = 'DISPLAY FORM'
-			document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
-		})
-	}
-
-	static buildObjFromFormInput(event){
-		const collection = Array.from(event.target.parentElement.children)
-		const valObj = {}
-		valObj = collection.map(function(el) { return [el.name, el.value] })
-		valObj = valObj.filter(function(val) { return val[0] !== undefined })
-		const newAttArray = valObj.slice(0, -1)
-		const attObj = {};
-		let i;
-		const len = newAttArray.length;
- 		for (i = 0 ; i < len; i++){
-			let attKey = newAttArray[i][0].toLowerCase();
-			let attVal = newAttArray[i][1];
-			attObj[attKey] = attVal;
-		}
-		return attObj;
-	}
-
-	static processSuperCreateForm(action, dbModel, attsObj, event){
-		adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
-		const elToAppendTo = event.target.parentElement.parentNode.parentNode;
-		const msg = `Successfully Added to Database: <br>`;
-		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1500)
+	static searchEntries(event) {
+		const propertyToSearch = adminInterface.getRadioVal(event);
+		const searchVal = event.target.parentNode[8].value;
+		const method = 'POST'
+		const url = 'http://localhost:3000/entries/search'
+		const data = { property: propertyToSearch, search_val: searchVal }
+		const callbackFunction = adminInterface.buildEntries;
+		adminInterface.dynamFormReq(method, url, data, callbackFunction);
 	}
 
 	static buildCreatePostReq(action, dbModel, attsObj, event){
@@ -628,10 +736,6 @@ class adminInterface {
 		}
 	}
 
-	static buildAttsArray(data){
-		globalAttributes = data.map(el => {return el.replace(/_/g, ' ') })
-	}
-
 	static searchIdByName(dbType, id, searchType) {
 		const name = document.getElementById(`${id}`).value
 		const method = 'POST'
@@ -657,22 +761,6 @@ class adminInterface {
 		setTimeout(adminInterface.appendIdFormForAssoc.bind(null,dbType), 1000)
 	}
 
-	static appendIdFormForAssoc(dbType){
-		const elToAppendTo = document.getElementById('super-admin-create-update-delete').lastElementChild
-		const formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to DELETE `, el: elToAppendTo, action: 'delete', searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
-		adminInterface.buildFindInstanceForm(formData)
-	}
-
-	static buildFindInstanceForm(formData) {
-		const breakEl = document.createElement('br')
-		const instAtts = {id: formData['id'], value: formData['labelValue']}
-		const instInputField = adminInterface.buildFormField(instAtts)
-		const buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SELECT RECORD', searchType: formData['searchType'], dbType: formData['dbType'], callback: formData['callback'], formId: formData['id'] }
-		const instButton = adminInterface.buildCRUDSearchButton(buttonAtts)
-		const formElArray = [breakEl, breakEl, instInputField, breakEl, instButton, breakEl]
-		formElArray.forEach(el => formData['el'].appendChild(el))
-	}
-
 	static findRecordToDelete(dbType, id){
 		const recordId = document.getElementById(`${id}`).value;
 		globalResult = [];
@@ -688,135 +776,30 @@ class adminInterface {
 		}, 1000)
 	}
 
-	static confirmRecordToDelete(dbType, id, elToAppendTo){
-		if (id === 'js-super-admin-CRUD-instance-id')  {
-			document.removeEventListener('click', adminInterface.removeResultsOnClick);
-			const labelValue = 'Please Re-Enter Record Id to Confirm Delete '
-			const inputAtts = {id: 'js-super-admin-crud-record-delete', value: labelValue}
-			const confirmField = adminInterface.buildFormField(inputAtts);
-			const confirmDeleteButton = document.createElement('button')
-			const cancelDeleteButton = document.createElement('button')
-			confirmDeleteButton.id = 'js-super-admin-CRUD-approve-delete';
-			cancelDeleteButton.id = 'js-super-admin-CRUD-cancel-delete';
-			confirmDeleteButton.innerText = 'Confirm Delete';
-			cancelDeleteButton.innerText = 'Cancel Delete';
-			const confirmEls = [confirmField, confirmDeleteButton, cancelDeleteButton]
-			confirmEls.forEach(el => elToAppendTo.appendChild(el))
-			cancelDeleteButton.addEventListener('click', adminInterface.resetCRUDForm)
-			confirmDeleteButton.addEventListener('click', confirmDeleteAction.bind(null, dbType, elToAppendTo))
-
-			function confirmDeleteAction(dbType, elToAppendTo){
-				const id = document.getElementById('js-super-admin-CRUD-instance-id').value
-				const confirmID = document.getElementById('js-super-admin-crud-record-delete').value
-				if (dbType === 'entries') {
-					alert('Entries Are Permanent Records and Can NOT be deleted!')
-				} else if (confirmID === id) {
-					confirm('Are you sure you want to delete this record?');
-					adminInterface.buildDeletePostReq(dbType, id)
-					const msg = globalResult[0]['msg']
-					adminInterface.displayResults(elToAppendTo, msg)
-				} else {
-					alert("ID numbers do not match. Confirmation Failed. Try Again.")
-				}
-				setTimeout(adminInterface.resetCRUDForm, 3000);
-			}
-		}
-	}
-
-	/* DELETE NOTES build delete record type by id post request, don't allow for delete of
-	categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
-	business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
-	deleting review must also update overall review */
-
-	static resetCRUDForm(){
-		const crudForm = document.getElementById('super-admin-create-update-delete')
-		crudForm.innerHTML = '<br>';
-		const crudButton = document.getElementById('js-super-admin-modify-menu')
-		crudButton.innerText = 'DISPLAY FORM';
-	}
-
-	static buildFormField(atts){
-		/* atts should include id, value */
-		const breakEl = document.createElement('br')
-		const labelEl = document.createElement('label')
-		const inputEl = document.createElement('input')
-		labelEl.innerText = `${atts['value']}: `;
-		inputEl.id = atts['id'];
-		const elArray = [inputEl, breakEl]
-		elArray.forEach(el => labelEl.appendChild(el))
-		return labelEl
-	}
-
-	static buildCRUDSearchButton(atts) {
-		/* atts should include id, value, dbType and a callback function */
-		const buttonEl = document.createElement('input')
-		buttonEl.type = 'submit'
-		buttonEl.id = atts['id']
-		buttonEl.value = atts['value']
-		buttonEl.addEventListener('click', function(event){
-			event.preventDefault();
-			atts['callback'](atts['dbType'], atts['formId'], atts['searchType']);
-			buttonEl.remove();
-		});
-		return buttonEl;
-	}
-
-	static displayResults(elToAppendTo, msg) {
-		/* debug this so it stops redisplaying the same return values */
-		let resultsEl = document.getElementById( 'js-admin-CRUD-results')
-		if (resultsEl === undefined || globalResult.length > 0 ) {
-			resultsEl = document.createElement('div')
-			resultsEl.id = 'js-admin-CRUD-results';
-			const obj = adminInterface.createDisplayObj();
-			elToAppendTo.appendChild(resultsEl);
-			msg += obj
-			document.addEventListener('click', adminInterface.removeResultsOnClick)
-			resultsEl.innerHTML = msg
-		} else {
-			/* document.addEventListener('click', adminInterface.resetCRUDForm) */
-		}
-	}
-
-	static createDisplayObj(){
-		const results = globalResult.flat()
-		let resultsObj = results.map((el) => {
-			let objArray = ['<br>'];
-			for (let [key, value] of Object.entries(el)) {
-				let objHTML = `<br>`
-				objHTML +=`${key}: ${value}`
-				objArray.push(objHTML);
-			}
-			console.log(objArray)
-			if (objArray.length > 1) {
-				objArray = objArray.join(' ');
-			}
-			return objArray += '<br>'
+	static postEntryUpdate(data) {
+		const configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
+	try {
+		fetch('http://localhost:3000/entries/update', configObj)
+		.then(resp => {
+			return resp.json();
 		})
-		resultsObj = resultsObj.join(' ');
-		return resultsObj
+		.then(json => adminInterface.dynamFormResp(json))
 	}
-
-	static removeResultsOnClick(){
-		/*
-		let displayedResults = document.getElementById('js-admin-CRUD-results')
-		if (displayedResults != undefined)
-			displayedResults.remove();
-		*/
-	}
-
-	static resetAdmin() {
-		const superAdminPanel = 	document.getElementById('js-admin-super-admin-open')
-		const indexTable = document.getElementById('admin-entry-table');
-		const detailsTable = document.getElementById('entry-details-tables');
-		const adminTableContainer = document.getElementById('js-admin-panel-container')
-		const adminNotesForm = document.getElementById('admin-notes-form')
-		const entryNotes = document.getElementById('js-entry-notes')
-
-		superAdminPanel.style.display = 'none';
-		adminTableContainer.style.display = 'none';
-		indexTable.style.display = 'none';
-		detailsTable.style.display = 'none';
-		adminNotesForm.style.display = 'none';
-	  entryNotes.value = '';
+	catch(err) {
+		alert('Error. See console for further details!');
+		console.log(err.message);
+		}
 	}
 }
+
+/* DELETE NOTES build delete record type by id post request, don't allow for delete of
+categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
+business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
+deleting review must also update overall review */
