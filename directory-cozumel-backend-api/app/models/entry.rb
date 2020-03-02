@@ -3,17 +3,17 @@ class Entry < ApplicationRecord
 
 	def build_record(formatted_data)
 		record = Entry.new
-		record[:entry_type] = formatted_data[0]
-		record[:business_id] = formatted_data[1]
-		record[:business_name] = formatted_data[2]
-		record[:date] = formatted_data[3]
-		record[:contributor] = formatted_data[4]
-		record[:contributor_email] = formatted_data[5]
-		record[:data_object] = formatted_data[6]
-		record[:status] = 'pending'
-		record[:resolved_date] = 'n/a'
-		record[:admin_id] = 1
-		record[:notes] = ''
+		record['entry_type'] = formatted_data[0]
+		record['business_id'] = formatted_data[1]
+		record['business_name'] = formatted_data[2]
+		record['date'] = formatted_data[3]
+		record['contributor'] = formatted_data[4]
+		record['contributor_email'] = formatted_data[5]
+		record['data_object'] = formatted_data[6]
+		record['status'] = 'pending'
+		record['resolved_date'] = 'n/a'
+		record['admin_id'] = 1
+		record['notes'] = ''
 		record.save!
 	end
 
@@ -47,12 +47,12 @@ class Entry < ApplicationRecord
 		#data_array[6] should include name, categories, overall rating, address, phone number, website
 		#add categories to from for user to select values to be included in data_array
 		data_array[6] = {}
-		data_array[6][:business_name] = data[1][1]
-		data_array[6][:categories] = data[5][1]
-		data_array[6][:overall_rating] = 'not yet rated'
-		data_array[6][:address] = data[2][1]
-		data_array[6][:phone_number] = data[3][1]
-		data_array[6][:website] = data[4][1]
+		data_array[6]['business_name'] = data[1][1]
+		data_array[6]['categories'] = data[5][1]
+		data_array[6]['overall_rating'] = 'not yet rated'
+		data_array[6]['address'] = data[2][1]
+		data_array[6]['phone_number'] = data[3][1]
+		data_array[6]['website'] = data[4][1]
 		build_record(data_array)
 	end
 
@@ -66,11 +66,11 @@ class Entry < ApplicationRecord
 		data_array[5] = data[4][1] #contributor_email
 		#data_array[6] content, contributor, contributor_email, rating, business_id
 		data_array[6] = {}
-		data_array[6][:content] = data[2][1]
-		data_array[6][:contributor] = data[3][1]
-		data_array[6][:contributor_email] = data[4][1]
-		data_array[6][:rating] = data[1][1]
-		data_array[6][:business_id] = data_array[1]
+		data_array[6]['content'] = data[2][1]
+		data_array[6]['contributor'] = data[3][1]
+		data_array[6]['contributor_email'] = data[4][1]
+		data_array[6]['rating'] = data[1][1]
+		data_array[6]['business_id'] = data_array[1]
 		build_record(data_array)
 	end
 
@@ -83,12 +83,12 @@ class Entry < ApplicationRecord
 		data_array[4] = data[4][1] #contributor
 		data_array[5] = data[5][1] #contributor_email
 		data_array[6] = {}
-		data_array[6][:description] = data[2][1]
-		data_array[6][:date] = data_array[2]
-		data_array[6][:url] = data[1][1]
-		data_array[6][:contributor] = data_array[3]
-		data_array[6][:contributor_email] = data_array[4]
-		data_array[6][:business_id] = data_array[1]
+		data_array[6]['description'] = data[2][1]
+		data_array[6]['date'] = data_array[2]
+		data_array[6]['url'] = data[1][1]
+		data_array[6]['contributor'] = data_array[3]
+		data_array[6]['contributor_email'] = data_array[4]
+		data_array[6]['business_id'] = data_array[1]
 		build_record(data_array)
 	end
 
@@ -102,8 +102,8 @@ class Entry < ApplicationRecord
 		data_array[5] = data[3][1] #contributor_email
 		#data_array[6] should include business_id and content
 		data_array[6] = {}
-		data_array[6][:business_id] = data_array[1]
-		data_array[6][:content] = data[1][1]
+		data_array[6]['business_id'] = data_array[1]
+		data_array[6]['content'] = data[1][1]
 		build_record(data_array)
 	end
 
@@ -117,8 +117,8 @@ class Entry < ApplicationRecord
 		data_array[5] = data[3][1] #contributor_email
 		#data_array[6] should include business_id and content
 		data_array[6] = {}
-		data_array[6][:business_id] = data_array[1]
-		data_array[6][:content] = data[1][1]
+		data_array[6]['business_id'] = data_array[1]
+		data_array[6]['content'] = data[1][1]
 		build_record(data_array)
 	end
 
@@ -137,8 +137,9 @@ class Entry < ApplicationRecord
 		when 'new bus'
 			convert_to_business(attributes)
 		when 'new review'
+			binding.pry
 			review = Review.create!(attributes)
-			Review.update_rating(attributes[:business_id])
+			Review.update_rating(attributes['business_id'])
 			return review
 		when 'new image'
 			return Image.create!(attributes)
@@ -148,6 +149,7 @@ class Entry < ApplicationRecord
 	end
 
 	def parse_entry_data
+		binding.pry
 		data_attributes = self.data_object.tr('"', '').tr('>', '').tr('=', ': ').tr('{', '').tr('}', '').split(',')
 		attrHash = {}
 		data_attributes.map do |el|
@@ -160,9 +162,14 @@ class Entry < ApplicationRecord
 	end
 
 	def convert_to_business(attributes)
-		business = Business.create!(name: attributes[:business_name])
-		listing_attributes = {overall_rating: attributes[:overall_rating], address: attributes[:address], phone_number: attributes[:phone_number], website: attributes[:website], business_id: business.id}
-		Business.build_new_associated(business, attributes[:categories], listing_attributes)
+		binding.pry
+		if Business.find_by_name(attributes['business_name']).nil?
+			business = Business.create!(name: attributes['business_name'])
+			listing_attributes = {overall_rating: attributes['overall_rating'], address: attributes['address'], phone_number: attributes['phone_number'], website: attributes['website'], business_id: business.id}
+			Business.build_new_associated(business, attributes['categories'], listing_attributes)
+		else
+			return 'This business already exists in the database'
+		end
 	end
 
 	def self.search_entries(property_param, search_param)

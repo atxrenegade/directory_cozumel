@@ -24,10 +24,10 @@ class AdminsController < ApplicationController
 		current_admin.require_super
 		admin = Admin.find(params[:id])
 		update_vals = {}
-		update_vals[:username] = params[:username] if params[:username].present?
-		update_vals[:password]  = params[:password] if params[:password].present?
-		update_vals[:role] = params[:role] if params[:role].present?
-		update_vals[:status] = params[:status] if params[:status].present?
+		update_vals['username'] = params['username'] if params['username'].present?
+		update_vals['password']  = params[:password] if params['password'].present?
+		update_vals['role'] = params['role'] if params['role'].present?
+		update_vals['status'] = params['status'] if params['status'].present?
 
 		admin.update!(update_vals) ? response = { msg: 'Admin Successfully Updated'} : response = { msg: 'Admin Failed to Update'}
 		render json: response
@@ -35,7 +35,7 @@ class AdminsController < ApplicationController
 
 	def destroy
 		current_admin.require_super
-		admin = Admin.find(params[:id])
+		admin = Admin.find(params['id'])
 		admin.destroy
 		response = {}
 		if admin.destroyed?

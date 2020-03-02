@@ -22,6 +22,7 @@ class Review < ApplicationRecord
 	end
 
 	def self.update_rating(business_id)
+		binding.pry
 		ratings = self.collect_ratings(business_id)
 		total = ratings.count
 		overall_rating = ratings.sum()/total

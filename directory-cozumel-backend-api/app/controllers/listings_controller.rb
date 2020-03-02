@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
 	# before_action :require_admin, only: [:attributes, :create]
 	# before_action :require_super, only: [:update, :delete]
 	def show
-		listing = Listing.find_by_id(params[:id])
+		listing = Listing.find_by_id(params['id'])
 		render json: listing
 	end
 
@@ -18,19 +18,19 @@ class ListingsController < ApplicationController
 	end
 
 	def edit
-	  listing = Listing.find(params[:id])
+	  listing = Listing.find(params['id'])
 		render json: listing
 	end
 
 	def destroy
 		# make sure listing and business delete in conjunction with each other
-		listing = Listing.find(params[:id])
+		listing = Listing.find(params['id'])
 		listing.destroy
 		response = {}
 		if listing.destroyed?
-			response[:msg] = 'Listing Deleted!'
+			response['msg'] = 'Listing Deleted!'
 		else
-			response[:msg] = 'Listing Failed to Delete!'
+			response['msg'] = 'Listing Failed to Delete!'
 		end
 		render json: response
 	end

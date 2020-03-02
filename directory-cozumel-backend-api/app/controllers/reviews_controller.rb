@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
 	# before_action :require_admin, only: [:attributes, :create]
 	# before_action :require_super, only: [:update, :delete]
 	def show
-		review = Review.find_by_id(params[:id])
+		review = Review.find_by_id(params['id'])
 		render json: review
 	end
 
@@ -13,19 +13,19 @@ class ReviewsController < ApplicationController
 	end
 
 	def create
-		instance = Review.create!(content: params[:content],  contributor: params[:contributor], contributor_email: params['contributor-email'], rating: params[:rating], business_id: params['business-id'])
+		instance = Review.create!(content: params['content'],  contributor: params['contributor'], contributor_email: params['contributor-email'], rating: params['rating'], business_id: params['business-id'])
 		Review.update_rating(params['business-id'])
 		render json: instance
 	end
 
 	def edit
-	  review = Review.find(params[:id])
+	  review = Review.find(params['id'])
 		render json: review
 	end
 
 	def destroy
 		#make sure to update overall rating after removing review
-		review = Review.find(params[:id])
+		review = Review.find(params['id'])
 		review.destroy
 		response = {}
 		if review.destroyed?

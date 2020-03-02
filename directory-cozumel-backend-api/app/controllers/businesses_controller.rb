@@ -46,19 +46,19 @@ class BusinessesController < ApplicationController
 	end
 
 	def edit
-	  business = Business.find(params[:id])
+	  business = Business.find(params['id'])
 		render json: business
 	end
 
 	def destroy
 		#make sure businesses deletes all reviews, images, listing, and, map
-		business = Business.find(params[:id])
+		business = Business.find(params['id'])
 		business.destroy
 		response = {}
 		if business.destroyed?
-			response[:msg] = 'Business Deleted!'
+			response['msg'] = 'Business Deleted!'
 		else
-			response[:msg] = 'Business Failed to Delete!'
+			response['msg'] = 'Business Failed to Delete!'
 		end
 		render json: response
 	end
