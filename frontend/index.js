@@ -149,7 +149,7 @@ window.onload = function() {
 	}
 
 	function postForm(data) {
-		const callback = function(){ globalResponse = json }
+		const callback = function(json){ globalResponse = json }
 		const params = {method: 'POST', url: 'http://localhost:3000/entries', data: data, callback: callback}
 		dynamPostReq(params);
 	}
@@ -407,7 +407,6 @@ window.onload = function() {
 		/* repopulate categories for drop down menu */
 		collectCategories();
 	}
-
 
 	/* EVENT LISTENERS */
 	/* Search Bar Listeners */
