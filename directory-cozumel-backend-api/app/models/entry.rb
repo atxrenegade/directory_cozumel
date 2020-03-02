@@ -148,12 +148,12 @@ class Entry < ApplicationRecord
 	end
 
 	def parse_entry_data
-		attributes = self.data_object.tr('"', '').tr('>', '').tr('=', ': ').tr('{', '').tr('}', '').split(',')
+		data_attributes = self.data_object.tr('"', '').tr('>', '').tr('=', ': ').tr('{', '').tr('}', '').split(',')
 		attrHash = {}
-		attributes.map do |el|
-			attribute = el.split(':')
-			k = attribute[0].tr(' ', '')
-			attribute.length > 2 ? val = attribute[1] + ':' + attribute[2] : val = attribute[1]
+		data_attributes.map do |el|
+			data_attribute = el.split(':')
+			k = data_attribute[1]
+			val = data_attribute[2]
 			attrHash[k] = val
 		end
 		return attrHash
