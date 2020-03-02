@@ -1,60 +1,41 @@
-function appStorage(){
-
-	this.setCats = function(data) {
-		sessionStorage.setItem('cats', data);
+class appStorage {
+	constructor(){
+		this.cats = [];
+		this.entries = [];
+		this.attributes = [];
+		this.allBusinesses = [];
+		this.response;
+		this.result = [];
+		this.admin;
 	}
 
-	this.getCats = function(data) {
-		return sessionStorage['cats'];
+	set cats(data) {
+		let catsArray = []
+		data.forEach(el => catsArray.push(el))
+		this.cats = catsArray;
 	}
 
-	this.setEntries = function(data) {
-		sessionStorage.setItem('entries', data);
+	set entries(data) {
+		data.forEach(el => this.entries.push(el))
 	}
 
-	this.getEntries = function(data) {
-		return sessionStorage['entries'];
+	set attributes(data) {
+		data.forEach(el => attributes.push(el))
 	}
 
-	this.setAttributes = function(data) {
-		sessionStorage.setItem('attributes', data);
+	set allBusinesses(data) {
+		data.forEach(el => allBusinesses.push(el))
 	}
 
-	this.getAttributes = function(data) {
-		return sessionStorage['attributes'];
+	set response(data) {
+		this.response = data
 	}
 
-	this.setAllBusinesses = function(data) {
-		sessionStorage.setItem('AllBusinesses', data);
+	set result(data) {
+		data.forEach(el => result.push(el))
 	}
 
-	this.getAllBusinesses = function(data) {
-		return sessionStorage['AllBusinesses'];
-	}
-
-	this.setResponse = function(data) {
-		sessionStorage.setItem('response', data);
-	}
-
-	this.getResponse = function(data) {
-		return sessionStorage['response'];
-	}
-
-	this.setResult = function(data) {
-		sessionStorage.setItem('result', data);
-	}
-
-	this.getResult = function(data) {
-		return sessionStorage['result'];
-	}
-
-	this.setAdmin = function(data) {
-		sessionStorage.setItem('admin', data);
-	}
-
-	this.getAdmin = function(data) {
-		return sessionStorage['admin'];
+	set admin(data) {
+		this.admin = data;
 	}
 }
-
-module.exports = appStorage;
