@@ -12,14 +12,9 @@ class EntriesController < ApplicationController
 	end
 
 	def build_object_from_entry
-		binding.pry
 		entry = Entry.find_by_id(params[:id])
 		entry.convert_to_object()
-		if entry.persisted?
-			response = { msg: 'Object Saved'}
-		else
-			response = { msg: 'Object Failed to Save to Database!'}
-		end
+		entry.persisted? ? response = { msg: 'Object Saved'} : response = { msg: 'Object Failed to Save to Database!'}
 		render json: response
 	end
 
