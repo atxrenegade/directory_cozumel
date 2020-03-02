@@ -137,7 +137,6 @@ class Entry < ApplicationRecord
 		when 'new bus'
 			convert_to_business(attributes)
 		when 'new review'
-			binding.pry
 			review = Review.create!(attributes)
 			Review.update_rating(attributes['business_id'])
 			return review
@@ -149,7 +148,6 @@ class Entry < ApplicationRecord
 	end
 
 	def parse_entry_data
-		binding.pry
 		data_attributes = self.data_object.tr('"', '').tr('>', '').tr('=', ': ').tr('{', '').tr('}', '').split(',')
 		attrHash = {}
 		data_attributes.map do |el|
