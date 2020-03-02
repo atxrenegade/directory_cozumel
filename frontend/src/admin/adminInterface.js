@@ -188,6 +188,7 @@ class adminInterface {
 	}
 
 	static checkAdminAuth() {
+		debugger;
 		/* build out after auth and athentication completed */
 		/* returns 'super' or 'jr' */
 		return 'super'
@@ -277,7 +278,7 @@ class adminInterface {
 	static buildEntries(entries){
 		globalEntries = [];
 		entries.forEach(el => {
-			new Entry(el['id'], el['entry_type'], el['business_id'], el['business_name'], el['date_created'], el['contributor'], el['contributor_email'], el['data_object'], el['status'], el['resolved_date'], el['admin_id'], el['notes'])
+			new Entry(el['id'], el['entry_type'], el['business_id'], el['business_name'], el['date'], el['contributor'], el['contributor_email'], el['data_object'], el['status'], el['resolved_date'], el['admin_id'], el['notes'])
 		})
 	}
 
@@ -694,7 +695,7 @@ class adminInterface {
 	}
 
 	static postEntryUpdate(data) {
-		const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data: { name: name }, callback: adminInterface.dynamFormResp }
+		const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data: data , callback: adminInterface.dynamFormResp }
 		adminInterface.dynamFormReq(params)
 	}
 
