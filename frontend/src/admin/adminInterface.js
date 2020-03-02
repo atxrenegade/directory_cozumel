@@ -53,8 +53,13 @@ class adminInterface {
 
 		/* Super Admin Menu Toggle Button */
 		superAdminMenuButton.addEventListener('click', function() {
-			const el = document.getElementById('js-admin-super-admin-open');
-			adminInterface.toggleElement(el);
+			const role = adminInterface.checkAdminAuth();
+			if (role === 'super') {
+				const el = document.getElementById('js-admin-super-admin-open');
+				adminInterface.toggleElement(el);
+			} else {
+				alert('You are not authorized for Super Admin Functions!')
+			}
 		})
 
 		createAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
@@ -167,9 +172,7 @@ class adminInterface {
 	}
 
 	static getAdminId(){
-		/* refactor when login functionality is added */
-		const adminId = document.getElementById('admin-number').nextSibling.textContent.split('\n')[0].split(' ')[1]
-		return adminId;
+		return adminId = sessionStorage['adminId'];
 	}
 
 	static getFormattedDateTime() {
@@ -188,10 +191,9 @@ class adminInterface {
 	}
 
 	static checkAdminAuth() {
-		debugger;
-		/* build out after auth and athentication completed */
-		/* returns 'super' or 'jr' */
-		return 'super'
+		let role;
+		sessionStorage['adminRole'] === 'super' ? role = 'super' : role = 'admin';
+		return role;
 	}
 
 	static getRadioVal(event){

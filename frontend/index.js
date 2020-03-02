@@ -5,6 +5,9 @@ window.onload = function() {
 	globalAllBusinesses = [];
 	globalResponse = undefined; /* user only */
 	globalResult = []; /* admin only */
+
+	/* let storage = new appStorage; */
+
 	LAT = 20.42;
 	LNG = -86.92;
 
@@ -46,7 +49,7 @@ window.onload = function() {
 		searchByName.style.display = 'none';
 		searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
-		if (globalCats.length === 0) collectCategories();
+		if (globalCats < 1) collectCategories();
 		renderCategoriesMenu();
 	}
 
@@ -87,7 +90,7 @@ window.onload = function() {
 			const categorySelectEl = document.getElementById('cat-select')
 			newBusinessForm.style.display = 'block';
 			elFormContainer.style.display = 'block';
-			if (globalCats .length === 0) collectCategories();
+			if (globalCats < 1) collectCategories();
 			if (categorySelectEl === null) renderNewBusCatSelect();
 		}
 	}
@@ -149,21 +152,17 @@ window.onload = function() {
 	}
 
 	function postForm(data) {
-		const callback = function(json){ globalResponse = json }
+		const callback = function(json){ return globalResponse = json }
 		const params = {method: 'POST', url: 'http://localhost:3000/entries', data: data, callback: callback}
 		dynamPostReq(params);
 	}
 
-	function postLogIn(data) {
-		const params = {method: 'POST', url: 'http://localhost:3000/login', data: data, callback: authAdminLogIn}
-		dynamPostReq(params);
-	}
 
 	/* RESULTS FUNCTIONS */
 	/* Search Results functions */
 	function storeCategories(data) {
 		const categoryObjects = Array.from(data);
-		globalCats = categoryObjects.map((el) => {
+		return globalCats = categoryObjects.map((el) => {
 			return el['name']
 		})
 	}
@@ -275,7 +274,7 @@ window.onload = function() {
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect() {
 		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
-		if (globalCats .length == 0) collectCategories();
+		if (globalCats.length < 1) collectCategories();
 		let catMenu = document.createElement('div');
 		let html = '<select id="cat-select" multiple>';
 		const cats = globalCats.map((el) => {
@@ -376,13 +375,16 @@ window.onload = function() {
 		const usernameVal = document.getElementById('js-admin-username').value.trim();
 		const passwordVal = document.getElementById('js-admin-password').value.trim();
 		data = {"session": {"username": usernameVal, "password": passwordVal}}
-		postLogIn(data);
+		const params = {method: 'POST', url: 'http://localhost:3000/login', data: data, callback: authAdminLogIn}
+		dynamPostReq(params);
 	}
 
 	function authAdminLogIn(session) {
-		if (session["id"] == true){
-			/* check role and store 'admin' or 'super' admin status */
-			/* update functions to reflect role and id values in admin login panel */
+		if (session['id'] == true){
+			sessionStorage.setItem('adminId', session['id']);
+			sessionStorage.setItem('adminName', session['username']);
+			sessionStorage.setItem('adminRole', session['role']);
+			adminInterface.checkAdminAuth();
 			clearDirectoryForAdminView();
 			adminInterface.launchAdminInterface();
 		} else {
