@@ -48,13 +48,13 @@ function appStorage(){
 		return sessionStorage['result'];
 	}
 
-	function setAdmin(data)
+	this.setAdmin = function(data) {
 		sessionStorage.setItem('admin', data);
-	end
+	}
 
-	function getAdmin
-		return sessionStorage['admin']
-	end
+	this.getAdmin = function(data) {
+		return sessionStorage['admin'];
+	}
 }
 
 module.exports = appStorage;
