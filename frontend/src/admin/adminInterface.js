@@ -26,11 +26,11 @@ class adminInterface {
 
 		/* admin login/logout elements */
 		const adminLogoutButton = document.getElementById('js-admin-logout-button')
-		const adminLoginDate = document.getElementById('admin-login-date');
 
 		/* setup Admin Interface */
 		adminTableContainer.style.display = 'none';
-		adminInterface.appendCurrentDateTime(adminLoginDate);
+		adminInterface.appendAdminUserDetails();
+
 		adminLoginContainer.classList.add('admin');
 
 		/* Event Listeners */
@@ -172,7 +172,9 @@ class adminInterface {
 	}
 
 	static getAdminId(){
+		let adminId;
 		return adminId = sessionStorage['adminId'];
+
 	}
 
 	static getFormattedDateTime() {
@@ -188,6 +190,17 @@ class adminInterface {
 		const timeDate = adminInterface.getFormattedDateTime();
 		timeDateEl.innerText = timeDate;
 		elToAppendTo.appendChild(timeDateEl);
+	}
+
+	static appendAdminUserDetails(){
+		const adminLoginDate = document.getElementById('admin-login-date');
+		const adminIdValue = document.getElementById('admin-number');
+		const adminUsernameValue = document.getElementById('admin-name');
+		const adminRoleValue = document.getElementById('admin-role');
+		adminInterface.appendCurrentDateTime(adminLoginDate);
+		adminIdValue.innerText = `Admin ID: ${sessionStorage['adminId']}`;
+		adminUsernameValue.innerText = `Admin Username: ${sessionStorage['adminName']}`;
+		adminRoleValue.innerText = `Admin Role: ${sessionStorage['adminRole']}`;
 	}
 
 	static checkAdminAuth() {
