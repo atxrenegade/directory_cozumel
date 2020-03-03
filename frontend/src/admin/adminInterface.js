@@ -48,7 +48,7 @@ class adminInterface {
 			const adminTableContainer = document.getElementById('js-admin-panel-container');
 			adminTableContainer.style.display = 'block';
 			const entries = adminInterface.searchEntries(event);
-			setTimeout(adminInterface.renderIndex('SEARCH'), 1800);
+			setTimeout(adminInterface.renderIndex.bind(null, 'SEARCH'), 800);
 		})
 
 		/* Super Admin Menu Toggle Button */
@@ -153,7 +153,7 @@ class adminInterface {
 
 	static indexButtonAction(status){
 		const entries = adminInterface.buildEntriesIndexPostReq(status);
-		setTimeout(adminInterface.renderIndex(status), 1800);
+		setTimeout(adminInterface.renderIndex.bind(null, status), 1000);
 	}
 
 	static toggleElement(el) {
@@ -221,7 +221,8 @@ class adminInterface {
 
 	static renderIndex(indexType) {
 		adminInterface.displayIndex();
-		adminInterface.generateEntryTable(indexType);
+		adminInterface.generateEntryTable(indexType)
+		/* setTimeout(adminInterface.generateEntryTable.bind(null, indexType), 500) */
 	}
 
 	static generateEntryTable(indexType){
@@ -377,7 +378,7 @@ class adminInterface {
 			} else {
 				console.log(globalResult[0]['msg'])
 			}
-		}, 1500)
+		}, 1000)
 	}
 
 	static approveEntry(event) {
@@ -490,7 +491,7 @@ class adminInterface {
 		adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
 		const elToAppendTo = event.target.parentElement.parentNode.parentNode;
 		const msg = `Successfully Added to Database: <br>`;
-		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1500)
+		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1000)
 	}
 
 	static buildAttsArray(data){
@@ -543,7 +544,7 @@ class adminInterface {
 				} else {
 					alert("ID numbers do not match. Confirmation Failed. Try Again.")
 				}
-				setTimeout(adminInterface.resetCRUDForm, 3000);
+				setTimeout(adminInterface.resetCRUDForm, 4000);
 			}
 		}
 	}
@@ -643,34 +644,34 @@ class adminInterface {
 	static buildEntriesIndexPostReq(searchType) {
 		const data = { search_type: searchType, auth_type: adminInterface.checkAdminAuth() }
 		let params = { method: 'POST' , url: 'http://localhost:3000/entries/index', data: data, callback: adminInterface.buildEntries }
-		adminInterface.dynamFormReq(params)
+		adminInterface.dynamPostReq(params)
 	}
 
 	static postDatabaseObject(data) {
 		const params = { method: 'POST' , url: 'http://localhost:3000/entries/build_object', data: data, callback: adminInterface.dynamFormResp }
-		adminInterface.dynamFormReq(params);
+		adminInterface.dynamPostReq(params);
 	}
 
 	static searchEntries(event) {
 		const propertyToSearch = adminInterface.getRadioVal(event);
 		const searchVal = event.target.parentNode[8].value;
 		const params = {method: 'POST', url: 'http://localhost:3000/entries/search', data: { property: propertyToSearch, search_val: searchVal }, callback: adminInterface.buildEntries}
-		adminInterface.dynamFormReq(params);
+		adminInterface.dynamPostReq(params);
 	}
 
 	static buildCreatePostReq(action, dbModel, attsObj, event){
 		const params = { method: 'POST', url: `http://localhost:3000/${dbModel.toLowerCase()}`, data: attsObject, callback: adminInterface.dynamFormResp }
-		adminInterface.dynamFormReq(params)
+		adminInterface.dynamPostReq(params)
 	}
 
 	static buildUpdatePostReq(action, dbModel, attsObj, event){
 		const params = { method: 'PUT', url: `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`, data: { id: instance, attributes: attsObj }, callback: adminInterface.dynamFormResp }
-		adminInterface.dynamFormReq(params)
+		adminInterface.dynamPostReq(params)
 	}
 
 	static buildDeletePostReq(dbModel, recordID) {
 		const params = { method: 'DELETE', url: `http://localhost:3000/${dbModel.toLowerCase()}/${recordID}`, data: { id: recordID }, callback: adminInterface.dynamFormResp }
-		adminInterface.dynamFormReq(params)
+		adminInterface.dynamPostReq(params)
 	}
 
 	static getAttributes(dbType){
@@ -681,18 +682,18 @@ class adminInterface {
 	static searchIdByName(dbType, id, searchType) {
 		const name = document.getElementById(`${id}`).value
 		const params = { method: 'POST', url: `http://localhost:3000/${searchType.toLowerCase()}/index_by_name`, data: { name: name }, callback: adminInterface.dynamFormResp }
-		adminInterface.dynamFormReq(params)
-		setTimeout(adminInterface.getAssociatedRecords.bind(null, dbType), 1500)
+		adminInterface.dynamPostReq(params)
+		setTimeout(adminInterface.getAssociatedRecords.bind(null, dbType), 1000)
 	}
 
 	static getAssociatedRecords(dbType){
 		const params = { method: 'POST', url:`http://localhost:3000/${dbType}/index_associated`, data: { business_id: globalResult[0][0]['id']}, callback: adminInterface.dynamFormResp }
-		adminInterface.dynamFormReq(params);
+		adminInterface.dynamPostReq(params);
 		const elToAppendTo = document.getElementById('super-admin-create-update-delete')
 		let msg;
 		globalResult.length < 1 ? msg = 'No Records Match Your Query' : msg = 'Matching Associated Records'
 		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 500)
-		setTimeout(adminInterface.appendIdFormForAssoc.bind(null,dbType), 1000)
+		setTimeout(adminInterface.appendIdFormForAssoc.bind(null, dbType), 1000)
 	}
 
 	static findRecordToDelete(dbType, id){
@@ -711,10 +712,10 @@ class adminInterface {
 
 	static postEntryUpdate(data) {
 		const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data: data , callback: adminInterface.dynamFormResp }
-		adminInterface.dynamFormReq(params)
+		adminInterface.dynamPostReq(params)
 	}
 
-	static dynamFormReq(params) {
+	static dynamPostReq(params) {
 		const configObj = {
 			method: params['method'],
 			headers: {
