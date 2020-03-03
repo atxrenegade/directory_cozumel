@@ -151,9 +151,9 @@ class Entry < ApplicationRecord
 		data_attributes = self.data_object.tr('"', '').tr('>', '').tr('=', ': ').tr('{', '').tr('}', '').split(',')
 		attrHash = {}
 		data_attributes.map do |el|
-			data_attribute = el.split(':')
-			k = data_attribute[1]
-			val = data_attribute[2]
+			data_attribute = el.strip.split(':')
+			k = data_attribute[0]
+			val = data_attribute[1]
 			attrHash[k] = val
 		end
 		return attrHash
