@@ -1,4 +1,7 @@
 window.onload = function() {
+
+	//appStorage.cats
+	// appStorage.updateCats(data)
 	globalCats = [];
 	globalEntries = [];
 	globalAttributes = [];
@@ -6,7 +9,7 @@ window.onload = function() {
 	globalResponse = undefined; /* user only */
 	globalResult = []; /* admin only */
 
-	/* let storage = new appStorage; */
+	let storage = new AppStorage;
 
 	LAT = 20.42;
 	LNG = -86.92;
@@ -111,7 +114,9 @@ window.onload = function() {
 			.then(resp => {
 				return resp.json();
 			})
-			.then(json => params['callback'](json))
+			.then(json => {
+				params['callback'](json)
+			}) // @@callback: formSubmit(Json)
 		}
 		catch(err) {
 			alert('Error. See console for further details!');
@@ -151,8 +156,8 @@ window.onload = function() {
 		dynamPostReq(params);
 	}
 
-	function postForm(data) {
-		const callback = function(json){ return globalResponse = json }
+	function postForm(data) { // @@ - callback = postForm(data, callback)
+		const callback = function(json){ return globalResponse = json } // @@ - remove?
 		const params = {method: 'POST', url: 'http://localhost:3000/entries', data: data, callback: callback}
 		dynamPostReq(params);
 	}
@@ -343,7 +348,8 @@ window.onload = function() {
 		})
 		dataArray.pop
 		dataArray.push(['name', busName]);
-		postForm(dataArray);
+		postForm(dataArray); // @@callback: postForm(dataArray, formSubmitted
+		)
 	}
 
 	/* ADMIN LOGIN FUNCTIONS */
