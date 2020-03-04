@@ -1,4 +1,4 @@
-class appStorage {
+class AppStorage {
 	constructor(){
 		this.cats = [];
 		this.entries = [];
@@ -6,36 +6,39 @@ class appStorage {
 		this.allBusinesses = [];
 		this.response;
 		this.result = [];
-		this.admin;
 	}
 
-	set cats(data) {
+	updateCats(data) {
 		let catsArray = []
 		data.forEach(el => catsArray.push(el))
 		this.cats = catsArray;
 	}
 
-	set entries(data) {
-		data.forEach(el => this.entries.push(el))
+	updateEntries(data) {
+		let entriesArray = []
+		data.forEach(el => entriesArray.push(el))
+		this.entries = entriesArray;
 	}
 
-	set attributes(data) {
-		data.forEach(el => attributes.push(el))
+	updateAttributes(data) {
+		let attributesArray = []
+		data.forEach(el => attributesArray.push(el))
+		this.attributes = attributesArray;
 	}
 
-	set allBusinesses(data) {
-		data.forEach(el => allBusinesses.push(el))
+	updateAllBusinesses(data) {
+		let allBusinessesArray = []
+		data.forEach(el => allBusinessesArray.push(el))
+		this.allBusinesses = allBusinessesArray;
 	}
 
-	set response(data) {
-		this.response = data
+	updateResponse(data) {
+		this.response = data;
 	}
 
-	set result(data) {
-		data.forEach(el => result.push(el))
-	}
-
-	set admin(data) {
-		this.admin = data;
+	updateResult(data) {
+		let resultArray = []
+		data.forEach(el => resultArray.push(el))
+		this.result = resultArray;
 	}
 }
