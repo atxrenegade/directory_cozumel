@@ -1,17 +1,18 @@
 //API requests
-	function buildEntriesIndexPostReq(searchType, authType) {
+// Do I turn all of my callbacks in static functions to call outside of the class instance, I do not want to initate a new instance every time I reference an api calback function
+	function buildEntriesIndexPostReq(searchType, authType, callback) {
 		const data = { search_type: searchType, auth_type: authType }
-		let params = { method: 'POST' , url: 'http://localhost:3000/entries/index', data: data, callback: buildEntries }
+		let params = { method: 'POST' , url: 'http://localhost:3000/entries/index', data: data, callback: callback }
 		dynamPostReq(params)
 	}
 
-	function postDatabaseObject(data) {
-		const params = { method: 'POST' , url: 'http://localhost:3000/entries/build_object', data: data, callback: dynamFormResp }
+	function postDatabaseObject(data, callback) {
+		const params = { method: 'POST' , url: 'http://localhost:3000/entries/build_object', data: data, callback: callback }
 		dynamPostReq(params);
 	}
 
-	function searchEntries(event, propertyToSearch, searchVal) {
-		const params = {method: 'POST', url: 'http://localhost:3000/entries/search', data: { property: propertyToSearch, search_val: searchVal }, callback: buildEntries}
+	function searchEntries(event, propertyToSearch, searchVal, callback) {
+		const params = {method: 'POST', url: 'http://localhost:3000/entries/search', data: { property: propertyToSearch, search_val: searchVal }, callback: callback}
 		dynamPostReq(params);
 	}
 
@@ -30,8 +31,8 @@
 		dynamPostReq(params);
 	}
 
-	function getAttributes(dbType){
-		const params = { url: `http://localhost:3000/${dbType}/attributes`, callback: buildAttsArray};
+	function getAttributes(dbType, callback){
+		const params = { url: `http://localhost:3000/${dbType}/attributes`, callback: callback};
 		dynamGetReq(params);
 	}
 
@@ -52,7 +53,7 @@
 	}
 
 	function postEntryUpdate(data) {
-		const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data: data , callback: adminInterface.dynamFormResp }
+		const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data: data , callback: dynamFormResp }
 		dynamPostReq(params)
 	}
 
