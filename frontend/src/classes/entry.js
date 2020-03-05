@@ -18,7 +18,7 @@ class Entry {
 	}
 
 	static allEntries(){
-		// should this be a regular or tatic function?
+		// should this be a regular or static function?
 		return allEntries
 	}
 }
