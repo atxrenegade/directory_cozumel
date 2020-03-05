@@ -92,7 +92,8 @@
 	}
 
 	function dynamFormResp(data){
-		(data === null) ? globalResult[0]['msg'] = 'Error Processing Request' : globalResult[0] = data;
-		console.log(globalResult[0]['msg'])
-		return globalResult;
+		(data === null) ? storage.setResult({'msg':'Error Processing Request'}) :
+		storage.setResult(data)
+		console.log(storage.result)
+		return storage.result;
 	}
