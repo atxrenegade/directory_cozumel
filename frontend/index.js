@@ -6,7 +6,7 @@ window.onload = function() {
 	globalResult = []; // admin only
 	// will these values for this instance of appStorage still be accessible from the adminInterface class? */
 	let storage = new AppStorage;
-	const user = userVariables();
+	let user = userVariables();
 
 	LAT = 20.42;
 	LNG = -86.92;
@@ -208,7 +208,7 @@ window.onload = function() {
 		if (user.searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
-			const cats = globalCats.map((el) => {
+			const cats = storage.cats.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
 			html += cats + '</select>';
@@ -357,9 +357,9 @@ window.onload = function() {
 			sessionStorage.setItem('adminId', session['id']);
 			sessionStorage.setItem('adminName', session['username']);
 			sessionStorage.setItem('adminRole', session['role']);
-			adminInterface.checkAdminAuth();
+			AdminInterface.checkAdminAuth();
 			clearDirectoryForAdminView();
-			adminInterface.launchAdminInterface();
+			new AdminInterface();
 		} else {
 			alert('You are not authorized to access admininstrative tasks!')
 			resetPage();
@@ -436,5 +436,4 @@ window.onload = function() {
 
 	/* SET PAGE LOAD VALUES */
 	resetPage();
-	adminInterface.resetAdmin();
 }
