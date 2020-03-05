@@ -1,6 +1,8 @@
 function userVariables() {
 	/* searchbar elements */
+
 	const searchByName = document.getElementById('js-search-by-name');
+
 	const searchByCategory = document.getElementById('js-search-by-category');
 	const nameRadioSelect = document.getElementById('js-radio-by-name');
 	const categoryRadioSelect = document.getElementById('js-radio-by-category');
@@ -29,4 +31,6 @@ function userVariables() {
 
 	/* container elements */
 	const listingsContainer = document.getElementById('listings-container')
+
+	return { searchByName: searchByName, searchByCategory: searchByCategory, nameRadioSelect: nameRadioSelect, categoryRadioSelect: categoryRadioSelect, searchCategoryMenu: searchCategoryMenu, searchNameField: searchNameField, reviewCheckBox: reviewCheckBox, imageCheckBox: imageCheckBox, flagCheckBox: flagCheckBox, editCheckBox: editCheckBox, businessListings: businessListings, listingMenu: listingMenu, newBusinessButton: newBusinessButton, newBusinessForm: newBusinessForm, hiddenAdminButton: hiddenAdminButton, adminPanelLogin: adminPanelLogin, listingsContainer: listingsContainer };
 }
