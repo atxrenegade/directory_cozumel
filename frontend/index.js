@@ -1,12 +1,10 @@
 window.onload = function() {
 
-	globalCats = [];
 	globalEntries = [];
 	globalAttributes = [];
 	globalAllBusinesses = [];
-	globalResponse = undefined; /* user only */
 	globalResult = []; /* admin only */
-
+	/* will these values for this instance of appStorage still be accessible from the adminInterface class? */
 	let storage = new AppStorage;
 	const user = userVariables();
 
@@ -125,7 +123,7 @@ window.onload = function() {
 	}
 
 	function postForm(data) { // @@ - callback = postForm(data, callback)
-		const callback = function(json){ return globalResponse = json } // @@ - remove?
+		const callback = function(json){ return storage.setResponse(json) } // @@ - remove?
 		const params = {method: 'POST', url: 'http://localhost:3000/entries', data: data, callback: callback}
 		dynamPostReq(params);
 	}
@@ -284,7 +282,7 @@ window.onload = function() {
 		let submittedEl = document.createElement('p');
 		submittedEl.className = 'succMsg'
 		setTimeout(function(){
-			if (globalResponse === true){
+			if (storage.response !== undefined){
 				submittedEl.innerHTML = 'Thank you for your submission!'
 				submittedEl.innerHTML += '<br>' + 'New data will be added to the directory upon review!';
 			} else {
