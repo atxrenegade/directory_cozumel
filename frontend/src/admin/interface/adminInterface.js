@@ -18,13 +18,14 @@ class AdminInterface {
 			admin.tableContainer.style.display = 'block';
 			const propertyToSearch = getRadioVal(event);
 			const searchVal = event.target.parentNode[8].value;
-			const entries = searchEntries(event, propertyToSearch, searchVal);
+			const callback = buildEntries;
+			const entries = searchEntries(event, propertyToSearch, searchVal, callback);
 			setTimeout(renderIndex.bind(null, 'SEARCH'), 800);
 		})
 
 		/* Super Admin Menu Toggle Button */
 		admin.superAdminMenuButton.addEventListener('click', function() {
-			const role = checkAdminAuth();
+			const role = AdminInterface.checkAdminAuth();
 			if (role === 'super') {
 				const el = document.getElementById('js-admin-super-admin-open');
 				toggleElement(el);
@@ -62,7 +63,7 @@ class AdminInterface {
 
 		admin.superAdminCRUDMenu.addEventListener('click', function() {
 			event.preventDefault();
-			if (superAdminCRUDMenu.innerText === 'DISPLAY FORM') {
+			if (admin.superAdminCRUDMenu.innerText === 'DISPLAY FORM') {
 				const radVals = getRadioVal(event);
 				const elToAppendTo = document.getElementById('super-admin-create-update-delete')
 				buildCRUDforms(event, radVals, elToAppendTo)
@@ -125,7 +126,8 @@ class AdminInterface {
 
 			switch (formAction) {
 				case 'create':
-					getAttributes(dbType)
+					const callback = buildAttsArray;
+					getAttributes(dbType, callback)
 					setTimeout(buildNewForm.bind(null, formAction, dbType, elToAppendTo)
 					, 800)
 					break;
@@ -151,16 +153,17 @@ class AdminInterface {
 			}
 			buildFindInstanceForm(formData);
 			setTimeout(getAssociatedRecords.bind(null, dbType), 1000)
-			const elToAppendTo = document.getElementById('super-admin-create-update-delete')
+			const newElToAppendTo = document.getElementById('super-admin-create-update-delete')
 			let msg;
 			globalResult.length < 1 ? msg = 'No Records Match Your Query' : msg = 'Matching Associated Records'
-			setTimeout(displayResults.bind(null, elToAppendTo, msg), 500)
+			setTimeout(displayResults.bind(null, newElToAppendTo, msg), 500)
 			setTimeout(appendIdFormForAssoc.bind(null, dbType), 1000)
 		}
 
 		function indexButtonAction(status){
-			const autType = checkAdminAuth();
-			const entries = buildEntriesIndexPostReq(status, authType);
+			const authType = AdminInterface.checkAdminAuth();
+			const callback = buildEntries;
+			const entries = buildEntriesIndexPostReq(status, authType, callback);
 			setTimeout(renderIndex.bind(null, status), 1000);
 		}
 
@@ -169,7 +172,6 @@ class AdminInterface {
 		}
 
 		function displayIndex(){
-			tableContainer = document.getElementById('js-admin-panel-container')
 			const indexBody = document.getElementById('index-entry-table-body');
 			const indexTable = document.getElementById('admin-entry-table');
 			const detailsTable = document.getElementById('entry-details-tables');
@@ -359,7 +361,8 @@ class AdminInterface {
 
 		function approveEntry(event) {
 			const data = getEntryData('approved', event)
-			postDatabaseObject(data)
+			const callback = dynamFormResp;
+			postDatabaseObject(data, callback)
 			setTimeout(function(){
 				if (globalResult[0]['msg'] === 'Object Saved'){
 					postEntryUpdate(data)
@@ -479,12 +482,12 @@ class AdminInterface {
 			const recordId = document.getElementById(`${id}`).value;
 			globalResult = [];
 			const formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to DELETE `, el: elToAppendTo, action: 'delete', searchType: 'id', dbType: dbType, callback: findRecordToDelete}
-			const elToAppendTo = document.getElementById('super-admin-create-update-delete')
+			const newElToAppendTo = document.getElementById('super-admin-create-update-delete')
 			let msg;
 			setTimeout(function(){
 				globalResult.length < 1? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
-				displayResults(elToAppendTo, msg)
-				confirmRecordToDelete(dbType, id, elToAppendTo)
+				displayResults(newElToAppendTo, msg)
+				confirmRecordToDelete(dbType, id, newElToAppendTo)
 			}, 1000)
 			buildFindInstanceForm(formData)
 		}
