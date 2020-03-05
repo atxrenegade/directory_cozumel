@@ -31,4 +31,9 @@ function adminVariables() {
 	const detailsTable = document.getElementById('entry-details-tables');
 	const notesForm = document.getElementById('admin-notes-form')
 	const entryNotes = document.getElementById('js-entry-notes')
+
+	return { loginContainer: loginContainer, tableContainer: tableContainer, smResolvedIndexButton: smResolvedIndexButton, smPendingIndexButton: smPendingIndexButton, rejectButton: rejectButton, approveButton: approveButton, addNotesButton: addNotesButton, newNotesSubmitButton: newNotesSubmitButton, superAdminMenuButton: superAdminMenuButton, createAdminButton: createAdminButton, editAdminButton: editAdminButton, deleteAdminButton: deleteAdminButton, bigPendingIndexButton: bigPendingIndexButton, bigResolvedIndexButton: bigResolvedIndexButton, searchButton: searchButton, superAdminCRUDMenu: superAdminCRUDMenu, logoutButton: logoutButton, superAdminPanel: superAdminPanel, indexTable: indexTable, detailsTable: detailsTable, notesForm: notesForm, entryNotes: entryNotes}
 }
+
+
+// [...adminIds]
