@@ -1,8 +1,6 @@
 function userVariables() {
 	/* searchbar elements */
-
 	const searchByName = document.getElementById('js-search-by-name');
-
 	const searchByCategory = document.getElementById('js-search-by-category');
 	const nameRadioSelect = document.getElementById('js-radio-by-name');
 	const categoryRadioSelect = document.getElementById('js-radio-by-category');
