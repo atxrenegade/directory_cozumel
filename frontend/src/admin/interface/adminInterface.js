@@ -1,5 +1,8 @@
 class AdminInterface {
 	constructor() {
+		//my storage instance does not load intil after this file
+		//cant initiate storage class within this class
+		//can I use one global variable for cats?
 	  const admin = adminVariables();
 		resetAdmin();
 
@@ -207,6 +210,7 @@ class AdminInterface {
 			document.getElementById('detailed-entry-table-2').innerHTML = '';
 			document.getElementById('detailed-entry-table-3').innerHTML = '';
 			/* indexEntries(indexType) */
+			debugger;
 			if (storage.entries.length > 0) {
 				const indexBody = document.getElementById('index-entry-table-body');
 				indexBody.innerHTML = '';
