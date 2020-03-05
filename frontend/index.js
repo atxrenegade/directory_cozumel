@@ -20,7 +20,7 @@ window.onload = function() {
 		user.searchByName.style.display = 'none';
 		user.searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
-		if (globalCats < 1) collectCategories();
+		if (storage.cats.length < 1) collectCategories();
 		renderCategoriesMenu();
 	}
 
@@ -61,7 +61,7 @@ window.onload = function() {
 			const categorySelectEl = document.getElementById('cat-select')
 			user.newBusinessForm.style.display = 'block';
 			elFormContainer.style.display = 'block';
-			if (globalCats < 1) collectCategories();
+			if (storage.cats.length < 1) collectCategories();
 			if (categorySelectEl === null) renderNewBusCatSelect();
 		}
 	}
@@ -135,9 +135,10 @@ window.onload = function() {
 	/* Search Results functions */
 	function storeCategories(data) {
 		const categoryObjects = Array.from(data);
-		return globalCats = categoryObjects.map((el) => {
+		let catsCollection = categoryObjects.map((el) => {
 			return el['name']
 		})
+		storage.updateCats(catsCollection)
 	}
 
 	function returnResults(data) {
