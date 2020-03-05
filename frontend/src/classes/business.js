@@ -35,8 +35,4 @@ class Business {
 			const business = new Business(id, name, categories, overallRating, address, phoneNumber, website);
 			return business
 		}
-
-		static allBusinesses(){
-			return allBusinesses;
-		}
 }
