@@ -12,6 +12,13 @@ class Entry {
 		this.resolvedDate = resolvedDate;
 		this.adminId = adminId;
 		this.notes = notes;
-		globalEntries.push(this)
+		//am I duplicating functionality by using a storage class and a class variable for the same collection of instances
+		// where do I define my class array variable for allEntries
+		allEntries.push(this)
+	}
+
+	static allEntries(){
+		// should this be a regular or tatic function?
+		return allEntries
 	}
 }
