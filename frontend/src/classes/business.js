@@ -7,7 +7,9 @@ class Business {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.website = website;
-		globalAllBusinesses.push(this);
+		//how can I recreate this as class variable?
+		//am I duplicating functionality by using a storage class and a class variable for the same collection of instances
+		allBusinesses.push(this);
 	}
 
 	renderBusListing(){
@@ -32,5 +34,9 @@ class Business {
 			const website = data['listing']['website'];
 			const business = new Business(id, name, categories, overallRating, address, phoneNumber, website);
 			return business
+		}
+
+		static allBusinesses(){
+			return allBusinesses;
 		}
 }
