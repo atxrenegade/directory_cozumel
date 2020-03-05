@@ -6,7 +6,7 @@ window.onload = function() {
 	globalResult = []; // admin only
 	// will these values for this instance of appStorage still be accessible from the adminInterface class? */
 	let storage = new AppStorage;
-	let user = userVariables();
+	const user = userVariables();
 
 	LAT = 20.42;
 	LNG = -86.92;
@@ -246,10 +246,10 @@ window.onload = function() {
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect() {
 		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
-		if (globalCats.length < 1) collectCategories();
+		if (storage.cats.length < 1) collectCategories();
 		let catMenu = document.createElement('div');
 		let html = '<select id="cat-select" multiple>';
-		const cats = globalCats.map((el) => {
+		const cats = storage.cats.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
 		})
 		html += cats + '</select>';
