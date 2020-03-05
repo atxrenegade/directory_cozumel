@@ -1,8 +1,7 @@
 class AdminInterface {
-	static launchAdminInterface() {
-		/* admin index table elements */
+	launchAdminInterface() {
 
-	  const admin = adminElementByIds()
+	  const admin = adminVariables();
 
 		/* adminElementByIds() {
 		  // const loginContainer = 'something'
@@ -14,73 +13,72 @@ class AdminInterface {
 
 				// [...adminIds]
 		/* setup Admin Interface */
-		adminTableContainer.style.display = 'none';
-		adminInterface.appendAdminUserDetails();
+		admin.tableContainer.style.display = 'none';
+		appendAdminUserDetails();
 
-		adminLoginContainer.classList.add('admin');
+		admin.LoginContainer.classList.add('admin');
 
 		/* Event Listeners */
 		/* Admin panel menu buttons */
-		bigPendingIndexButton.addEventListener('click', function() {
-			adminInterface.indexButtonAction('pending');
+		admin.bigPendingIndexButton.addEventListener('click', function() {
+			indexButtonAction('pending');
 		})
 
-		bigResolvedIndexButton.addEventListener('click', function() {
-			adminInterface.indexButtonAction('resolved');
+		admin.bigResolvedIndexButton.addEventListener('click', function() {
+			indexButtonAction('resolved');
 		})
 
-		adminSearchButton.addEventListener('click', function(){
+		admin.searchButton.addEventListener('click', function(){
 			event.preventDefault();
-			const adminTableContainer = document.getElementById('js-admin-panel-container');
-			adminTableContainer.style.display = 'block';
-			const entries = adminInterface.searchEntries(event);
-			setTimeout(adminInterface.renderIndex.bind(null, 'SEARCH'), 800);
+			admin.tableContainer.style.display = 'block';
+			const entries = searchEntries(event);
+			setTimeout(renderIndex.bind(null, 'SEARCH'), 800);
 		})
 
 		/* Super Admin Menu Toggle Button */
-		superAdminMenuButton.addEventListener('click', function() {
-			const role = adminInterface.checkAdminAuth();
+		admin.superAdminMenuButton.addEventListener('click', function() {
+			const role = checkAdminAuth();
 			if (role === 'super') {
 				const el = document.getElementById('js-admin-super-admin-open');
-				adminInterface.toggleElement(el);
+				toggleElement(el);
 			} else {
 				alert('You are not authorized for Super Admin Functions!')
 			}
 		})
 
-		createAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
+		admin.createAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
 
-		editAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
+		admin.editAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
 
-		deleteAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
+		admin.deleteAdminButton.addEventListener('click', function(){ alert('Coming Soon!')})
 
 		/* Detailed Entry Panel Buttons */
-		addNotesButton.addEventListener('click', adminInterface.showNotesForm);
+		admin.addNotesButton.addEventListener('click', showNotesForm);
 
-		newNotesSubmitButton.addEventListener('click', adminInterface.addNotes);
+		admin.newNotesSubmitButton.addEventListener('click', addNotes);
 
-		rejectButton.addEventListener('click', function(event) {
-			adminInterface.rejectEntry(event);
+		admin.rejectButton.addEventListener('click', function(event) {
+			rejectEntry(event);
 		})
 
-		approveButton.addEventListener('click', function(event) {
-			adminInterface.approveEntry(event);
+		admin.approveButton.addEventListener('click', function(event) {
+			approveEntry(event);
 		})
 
-		smPendingIndexButton.addEventListener('click', function() {
-			adminInterface.indexButtonAction('pending');
+		admin.smPendingIndexButton.addEventListener('click', function() {
+			indexButtonAction('pending');
 		})
 
-		smResolvedIndexButton.addEventListener('click', function() {
-			adminInterface.indexButtonAction('resolved');
+		admin.smResolvedIndexButton.addEventListener('click', function() {
+			indexButtonAction('resolved');
 		})
 
-		superAdminCRUDMenu.addEventListener('click', function() {
+		admin.superAdminCRUDMenu.addEventListener('click', function() {
 			event.preventDefault();
 			if (superAdminCRUDMenu.innerText === 'DISPLAY FORM') {
-				const radVals = adminInterface.getRadioVal(event);
+				const radVals = getRadioVal(event);
 				const elToAppendTo = document.getElementById('super-admin-create-update-delete')
-				adminInterface.buildCRUDforms(event, radVals, elToAppendTo)
+				buildCRUDforms(event, radVals, elToAppendTo)
 				superAdminCRUDMenu.innerText = 'HIDE FORM';
 			} else if (superAdminCRUDMenu.innerText === 'HIDE FORM'){
 				superAdminCRUDMenu.innerText = 'DISPLAY FORM';
@@ -90,72 +88,72 @@ class AdminInterface {
 			}
 		})
 
-		adminLogoutButton.addEventListener('click', function(){
+		admin.adminLogoutButton.addEventListener('click', function(){
 			 location.reload(true)
 		});
 	}
 
  /* ADMIN INTERFACE METHODS */
-	static buildCRUDforms(event, radVals, elToAppendTo){
+	buildCRUDforms(event, radVals, elToAppendTo){
 		const [formAction, dbType] = radVals;
 		globalAttributes = [];
 		let formData;
 
 		switch (formAction) {
 			case 'create':
-				adminInterface.getAttributes(dbType)
-				setTimeout(adminInterface.buildNewForm.bind(null, formAction, dbType, elToAppendTo)
+				getAttributes(dbType)
+				setTimeout(buildNewForm.bind(null, formAction, dbType, elToAppendTo)
 				, 800)
 				break;
 			case 'update':
-				setTimeout(adminInterface.resetCRUDForm, 300);
+				setTimeout(resetCRUDForm, 300);
 				alert('Work In Progress!')
 				break;
 			case 'delete':
-				adminInterface.buildCRUDDelete(event, formAction, dbType, elToAppendTo)
+				buildCRUDDelete(event, formAction, dbType, elToAppendTo)
 				break;
 			default:
 				error: 'Action not understood!'
 		}
 	}
 
-	static buildCRUDDelete(event, formAction, dbType, elToAppendTo){
+	buildCRUDDelete(event, formAction, dbType, elToAppendTo){
 		let formData;
 		if (dbType === 'categories' || dbType === 'entries') {
-			formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `, el: elToAppendTo, action: formAction, searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
+			formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `, el: elToAppendTo, action: formAction, searchType: 'id', dbType: dbType, callback: findRecordToDelete}
 		} else {
-			const callback = adminInterface.searchIdByName;
+			const callback = searchIdByName;
 			formData = {id: 'js-super-admin-CRUD-instance-name', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction,  searchType: 'businesses', dbType: dbType, callback: callback}
 		}
-		adminInterface.buildFindInstanceForm(formData);
+		buildFindInstanceForm(formData);
 	}
 
-	static indexButtonAction(status){
-		const entries = adminInterface.buildEntriesIndexPostReq(status);
-		setTimeout(adminInterface.renderIndex.bind(null, status), 1000);
+	indexButtonAction(status){
+		const entries = buildEntriesIndexPostReq(status);
+		setTimeout(renderIndex.bind(null, status), 1000);
 	}
 
-	static toggleElement(el) {
+	toggleElement(el) {
 		el.style.display === 'none' ? el.style.display = 'block' : el.style.display = 'none'
 	}
 
-	static displayIndex(){
-		const adminTableContainer = document.getElementById('js-admin-panel-container')
+	displayIndex(){
+		tableContainer = document.getElementById('js-admin-panel-container')
 		const indexBody = document.getElementById('index-entry-table-body');
 		const indexTable = document.getElementById('admin-entry-table');
 		const detailsTable = document.getElementById('entry-details-tables');
 		indexBody.innerHTML = '';
 		detailsTable.style.display = 'none';
 		indexTable.style.display = 'block';
-		adminTableContainer.style.display = 'block';
+		admin.tableContainer.style.display = 'block';
 	}
 
-	static getAdminId(){
+	getAdminId(){
 		let adminId;
 		return adminId = sessionStorage['adminId'];
 	}
 
-	static getFormattedDateTime() {
+	getFormattedDateTime() {
 		const date = new Date();
 		const localDate = date.toDateString()
 		const time = date.toLocaleTimeString();
@@ -163,31 +161,31 @@ class AdminInterface {
 		return formattedDateTime;
 	}
 
-	static appendCurrentDateTime(elToAppendTo){
+	appendCurrentDateTime(elToAppendTo){
 		let timeDateEl = document.createElement('span');
-		const timeDate = adminInterface.getFormattedDateTime();
+		const timeDate = getFormattedDateTime();
 		timeDateEl.innerText = timeDate;
 		elToAppendTo.appendChild(timeDateEl);
 	}
 
-	static appendAdminUserDetails(){
+	appendAdminUserDetails(){
 		const adminLoginDate = document.getElementById('admin-login-date');
 		const adminIdValue = document.getElementById('admin-number');
 		const adminUsernameValue = document.getElementById('admin-name');
 		const adminRoleValue = document.getElementById('admin-role');
-		adminInterface.appendCurrentDateTime(adminLoginDate);
+		appendCurrentDateTime(adminLoginDate);
 		adminIdValue.innerText = `Admin ID: ${sessionStorage['adminId']}`;
 		adminUsernameValue.innerText = `Admin Username: ${sessionStorage['adminName']}`;
 		adminRoleValue.innerText = `Admin Role: ${sessionStorage['adminRole']}`;
 	}
 
-	static checkAdminAuth() {
+	checkAdminAuth() {
 		let role;
 		sessionStorage['adminRole'] === 'super' ? role = 'super' : role = 'admin';
 		return role;
 	}
 
-	static getRadioVal(event){
+	getRadioVal(event){
 		const radioTarget = event.target.parentNode.elements
 		const radios = Array.from(radioTarget);
 		let radValues = [];
@@ -197,17 +195,17 @@ class AdminInterface {
 		return radValues
 	}
 
-	static renderIndex(indexType) {
-		adminInterface.displayIndex();
-		adminInterface.generateEntryTable(indexType)
-		/* setTimeout(adminInterface.generateEntryTable.bind(null, indexType), 500) */
+	renderIndex(indexType) {
+		displayIndex();
+		generateEntryTable(indexType)
+		/* setTimeout(generateEntryTable.bind(null, indexType), 500) */
 	}
 
-	static generateEntryTable(indexType){
+	generateEntryTable(indexType){
 		document.getElementById('detailed-entry-table-1').innerHTML = '';
 		document.getElementById('detailed-entry-table-2').innerHTML = '';
 		document.getElementById('detailed-entry-table-3').innerHTML = '';
-		/* adminInterface.indexEntries(indexType) */
+		/* indexEntries(indexType) */
 		if (globalEntries.length > 0) {
 			const indexBody = document.getElementById('index-entry-table-body');
 			indexBody.innerHTML = '';
@@ -231,7 +229,7 @@ class AdminInterface {
 				cell6.innerHTML = el.adminId;
 				cell7.innerHTML = el.status;
 				cell8.innerHTML = el.notes;
-				const button = adminInterface.buildAdminButton(el.id);
+				const button = buildAdminButton(el.id);
 				cell9.appendChild(button)
 				i += 1;
 			})
@@ -251,32 +249,32 @@ class AdminInterface {
 		}
 	}
 
-	static buildAdminButton(id){
+	buildAdminButton(id){
 		const newButton = document.createElement('input');
 		newButton.id = `admin_entry_${id}`;
 		newButton.type = 'button';
 		newButton.class = 'admin-details-button';
 		newButton.value = 'Review';
-		newButton.setAttribute('onclick', 'adminInterface.displayDetails()');
+		newButton.setAttribute('onclick', 'displayDetails()');
 		return newButton;
 	}
 
-	static displayDetails() {
+	displayDetails() {
 		const indexTable = document.getElementById('admin-entry-table');
 		const detailsTable = document.getElementById('entry-details-tables');
 		indexTable.style.display = 'none';
 		detailsTable.style.display = 'block';
-		adminInterface.generateDetailedEntryTable(event);
+		generateDetailedEntryTable(event);
 	}
 
-	static buildEntries(entries){
+	buildEntries(entries){
 		globalEntries = [];
 		entries.forEach(el => {
 			new Entry(el['id'], el['entry_type'], el['business_id'], el['business_name'], el['date'], el['contributor'], el['contributor_email'], el['data_object'], el['status'], el['resolved_date'], el['admin_id'], el['notes'])
 		})
 	}
 
-	static generateDetailedEntryTable(event){
+	generateDetailedEntryTable(event){
 		const id = event.target.parentNode.parentElement.firstChild.textContent
 		const entry = globalEntries.find(entry => entry.id === parseInt(id, 10));
 		const entryTable1 = document.getElementById('detailed-entry-table-1')
@@ -318,39 +316,39 @@ class AdminInterface {
 		}
 	}
 
-	static showNotesForm(){
+	showNotesForm(){
 		const notesForm = document.getElementById('admin-notes-form')
 		notesForm.style.display = 'block';
 	}
 
-	static addNotes() {
+	addNotes() {
 		const id = document.getElementById('detailed-entry-table-1').lastChild.children[0].innerText
 		const entryId = parseInt(id, 10);
 		const notes = document.getElementById('js-entry-notes').value
 		const adminId = document.getElementById('detailed-entry-table-3').lastChild.firstChild.textContent
-		const date = adminInterface.getFormattedDateTime();
+		const date = getFormattedDateTime();
 		const note = document.getElementById('detailed-entry-table-3').lastChild.lastChild.innerText
 		const newNote = `[${date.toString()}]:[AdminId:${adminId}]:[${notes}]`
 		const allNotes = `${note}***`+ ` ${newNote}`;
 		const data = { id: entryId, admin_id: adminId, notes: allNotes }
-		adminInterface.postEntryUpdate(data);
+		postEntryUpdate(data);
 		const noteCell = document.getElementById('detailed-entry-table-3').lastChild.lastChild
-		adminInterface.updateCell(noteCell, allNotes)
+		updateCell(noteCell, allNotes)
 		const notesForm = document.getElementById('admin-notes-form')
 		notesForm.style.display = 'none';
 		document.getElementById('js-entry-notes').value = '';
 	}
 
-	static updateCell(cell, tableData) {
+	updateCell(cell, tableData) {
 		cell.innerText = tableData;
 	}
 
-	static rejectEntry(event) {
-		const data = adminInterface.getEntryData('rejected', event)
-		adminInterface.postEntryUpdate(data);
+	rejectEntry(event) {
+		const data = getEntryData('rejected', event)
+		postEntryUpdate(data);
 		setTimeout(function() {
 			if (globalResult[0]['msg'] === 'Entry Successfully Updated'){
-				adminInterface.displayResolved(data['admin_id'], data['resolved_date'], data['status']);
+				displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 				document.getElementById('admin-approve-button').style.display = 'none';
 				document.getElementById('admin-reject-button').style.display = 'none';
 			} else {
@@ -359,15 +357,15 @@ class AdminInterface {
 		}, 1000)
 	}
 
-	static approveEntry(event) {
-		const data = adminInterface.getEntryData('approved', event)
-		adminInterface.postDatabaseObject(data)
+	approveEntry(event) {
+		const data = getEntryData('approved', event)
+		postDatabaseObject(data)
 		setTimeout(function(){
 			if (globalResult[0]['msg'] === 'Object Saved'){
-				adminInterface.postEntryUpdate(data)
+				postEntryUpdate(data)
 				setTimeout(function(){
 					if (globalResult[0]['msg'] === 'Entry Successfully Updated') {
-					adminInterface.displayResolved(data['admin_id'], data['resolved_date'], data['status']);
+					displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 					document.getElementById('admin-approve-button').style.display = 'none';
 					document.getElementById('admin-reject-button').style.display = 'none';
 				} else {
@@ -379,17 +377,17 @@ class AdminInterface {
 		}, 1500)
 	}
 
-	static displayResolved(adminId, resolvedDate, status) {
+	displayResolved(adminId, resolvedDate, status) {
 		const adminIdEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[0];
 		const resolvedDateEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[2];
 		const statusEl = document.getElementById('detailed-entry-table-3').firstElementChild.childNodes[1];
 		const cellDataArray = [[adminIdEl, adminId], [resolvedDateEl, resolvedDate],[statusEl, status]]
-		cellDataArray.forEach( el => adminInterface.updateCell(el[0], el[1]))
+		cellDataArray.forEach( el => updateCell(el[0], el[1]))
 	}
 
-	static getEntryData(status, event){
-		const adminId = adminInterface.getAdminId();
-		const resolvedDate = adminInterface.getFormattedDateTime();
+	getEntryData(status, event){
+		const adminId = getAdminId();
+		const resolvedDate = getFormattedDateTime();
 		const entryId = document.getElementById('detailed-entry-table-1').lastChild.firstChild.textContent;
 		let data;
 		if (status === 'approved') {
@@ -402,14 +400,14 @@ class AdminInterface {
 		return data;
 	}
 
-	static entryUpdateSuccess() {
+	entryUpdateSuccess() {
 		const updateSuccess = document.createElement('h4');
 		updateSuccess.innerText = 'Entry Successfully Updated'
 		detailsTable.appendChild('updateSuccess');
 	}
 
 	/* Dynamic Admin Forms Creation */
-	static buildNewForm(action, dbType, elToAppendTo) {
+	buildNewForm(action, dbType, elToAppendTo) {
 		const formEl = document.createElement('form');
 		const formFieldSet = document.createElement('fieldset');
 		const formLegend = document.createElement('legend');
@@ -440,15 +438,15 @@ class AdminInterface {
 		const buttonArray = [breakEl, formButton]
 		buttonArray.forEach(el => formFieldSet.appendChild(el));
 		formButton.addEventListener('click', function(event){
-			const attributesObj = adminInterface.buildObjFromFormInput(event);
-			adminInterface.processSuperCreateForm(action, dbType, attributesObj, event)
+			const attributesObj = buildObjFromFormInput(event);
+			processSuperCreateForm(action, dbType, attributesObj, event)
 			elToAppendTo.removeChild(formEl);
 			document.getElementById('js-super-admin-modify-menu').innerText = 'DISPLAY FORM'
 			document.getElementById('js-super-admin-modify-records-menu').style.display = 'block';
 		})
 	}
 
-	static buildObjFromFormInput(event){
+	buildObjFromFormInput(event){
 		const collection = Array.from(event.target.parentElement.children)
 		const valObj = {}
 		valObj = collection.map(function(el) { return [el.name, el.value] })
@@ -465,39 +463,39 @@ class AdminInterface {
 		return attObj;
 	}
 
-	static processSuperCreateForm(action, dbModel, attsObj, event){
-		adminInterface.buildCreatePostReq(action, dbModel, attsObj, event)
+	processSuperCreateForm(action, dbModel, attsObj, event){
+		buildCreatePostReq(action, dbModel, attsObj, event)
 		const elToAppendTo = event.target.parentElement.parentNode.parentNode;
 		const msg = `Successfully Added to Database: <br>`;
-		setTimeout(adminInterface.displayResults.bind(null, elToAppendTo, msg), 1000)
+		setTimeout(displayResults.bind(null, elToAppendTo, msg), 1000)
 	}
 
-	static buildAttsArray(data){
+	buildAttsArray(data){
 		globalAttributes = data.map(el => {return el.replace(/_/g, ' ') })
 	}
 
-	static appendIdFormForAssoc(dbType){
+	appendIdFormForAssoc(dbType){
 		const elToAppendTo = document.getElementById('super-admin-create-update-delete').lastElementChild
-		const formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to DELETE `, el: elToAppendTo, action: 'delete', searchType: 'id', dbType: dbType, callback: adminInterface.findRecordToDelete}
-		adminInterface.buildFindInstanceForm(formData)
+		const formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to DELETE `, el: elToAppendTo, action: 'delete', searchType: 'id', dbType: dbType, callback: findRecordToDelete}
+		buildFindInstanceForm(formData)
 	}
 
-	static buildFindInstanceForm(formData) {
+	buildFindInstanceForm(formData) {
 		const breakEl = document.createElement('br')
 		const instAtts = {id: formData['id'], value: formData['labelValue']}
-		const instInputField = adminInterface.buildFormField(instAtts)
+		const instInputField = buildFormField(instAtts)
 		const buttonAtts = { id: 'js-super-admin-CRUD-button', value: 'SELECT RECORD', searchType: formData['searchType'], dbType: formData['dbType'], callback: formData['callback'], formId: formData['id'] }
-		const instButton = adminInterface.buildCRUDSearchButton(buttonAtts)
+		const instButton = buildCRUDSearchButton(buttonAtts)
 		const formElArray = [breakEl, breakEl, instInputField, breakEl, instButton, breakEl]
 		formElArray.forEach(el => formData['el'].appendChild(el))
 	}
 
-	static confirmRecordToDelete(dbType, id, elToAppendTo){
+	confirmRecordToDelete(dbType, id, elToAppendTo){
 		if (id === 'js-super-admin-CRUD-instance-id')  {
-			document.removeEventListener('click', adminInterface.removeResultsOnClick);
+			document.removeEventListener('click', removeResultsOnClick);
 			const labelValue = 'Please Re-Enter Record Id to Confirm Delete '
 			const inputAtts = {id: 'js-super-admin-crud-record-delete', value: labelValue}
-			const confirmField = adminInterface.buildFormField(inputAtts);
+			const confirmField = buildFormField(inputAtts);
 			const confirmDeleteButton = document.createElement('button')
 			const cancelDeleteButton = document.createElement('button')
 			confirmDeleteButton.id = 'js-super-admin-CRUD-approve-delete';
@@ -506,7 +504,7 @@ class AdminInterface {
 			cancelDeleteButton.innerText = 'Cancel Delete';
 			const confirmEls = [confirmField, confirmDeleteButton, cancelDeleteButton]
 			confirmEls.forEach(el => elToAppendTo.appendChild(el))
-			cancelDeleteButton.addEventListener('click', adminInterface.resetCRUDForm)
+			cancelDeleteButton.addEventListener('click', resetCRUDForm)
 			confirmDeleteButton.addEventListener('click', confirmDeleteAction.bind(null, dbType, elToAppendTo))
 
 			function confirmDeleteAction(dbType, elToAppendTo){
@@ -516,26 +514,26 @@ class AdminInterface {
 					alert('Entries Are Permanent Records and Can NOT be deleted!')
 				} else if (confirmID === id) {
 					confirm('Are you sure you want to delete this record?');
-					adminInterface.buildDeletePostReq(dbType, id)
+					buildDeletePostReq(dbType, id)
 					const msg = globalResult[0]['msg']
 					debugger;
-					adminInterface.displayResults(elToAppendTo, msg)
+					displayResults(elToAppendTo, msg)
 				} else {
 					alert("ID numbers do not match. Confirmation Failed. Try Again.")
 				}
-				setTimeout(adminInterface.resetCRUDForm, 4000);
+				setTimeout(resetCRUDForm, 4000);
 			}
 		}
 	}
 
-	static resetCRUDForm(){
+	resetCRUDForm(){
 		const crudForm = document.getElementById('super-admin-create-update-delete')
 		crudForm.innerHTML = '<br>';
 		const crudButton = document.getElementById('js-super-admin-modify-menu')
 		crudButton.innerText = 'DISPLAY FORM';
 	}
 
-	static buildFormField(atts){
+	buildFormField(atts){
 		/* atts should include id, value */
 		const breakEl = document.createElement('br')
 		const labelEl = document.createElement('label')
@@ -547,7 +545,7 @@ class AdminInterface {
 		return labelEl
 	}
 
-	static buildCRUDSearchButton(atts) {
+	buildCRUDSearchButton(atts) {
 		/* atts should include id, value, dbType and a callback function */
 		const buttonEl = document.createElement('input')
 		buttonEl.type = 'submit'
@@ -561,12 +559,12 @@ class AdminInterface {
 		return buttonEl;
 	}
 
-	static displayResults(elToAppendTo, msg) {
+	displayResults(elToAppendTo, msg) {
 		let resultsEl = document.getElementById( 'js-admin-CRUD-results')
 		if (resultsEl === null && globalResult.length > 0 ) {
 			resultsEl = document.createElement('div')
 			resultsEl.id = 'js-admin-CRUD-results';
-			const obj = adminInterface.createDisplayObj();
+			const obj = createDisplayObj();
 			elToAppendTo.appendChild(resultsEl);
 			msg += obj
 			resultsEl.innerHTML = msg
@@ -576,11 +574,11 @@ class AdminInterface {
 			elToAppendTo.appendChild(msgEl);
 		}
 		/*
-		document.addEventListener('click', adminInterface.removeResultsOnClick)
-		document.addEventListener('click', adminInterface.resetCRUDForm) */
+		document.addEventListener('click', removeResultsOnClick)
+		document.addEventListener('click', resetCRUDForm) */
 	}
 
-	static createDisplayObj(){
+	createDisplayObj(){
 		const results = globalResult.flat()
 		let resultsObj = results.map((el) => {
 			let objArray = ['<br>'];
@@ -597,7 +595,7 @@ class AdminInterface {
 		return resultsObj
 	}
 
-	static removeResultsOnClick(){
+	removeResultsOnClick(){
 		/*
 		let displayedResults = document.getElementById('js-admin-CRUD-results')
 		if (displayedResults != undefined)
@@ -605,28 +603,16 @@ class AdminInterface {
 		*/
 	}
 
-	static resetAdmin() {
-		const superAdminPanel = 	document.getElementById('js-admin-super-admin-open')
-		const indexTable = document.getElementById('admin-entry-table');
-		const detailsTable = document.getElementById('entry-details-tables');
-		const adminTableContainer = document.getElementById('js-admin-panel-container')
-		const adminNotesForm = document.getElementById('admin-notes-form')
-		const entryNotes = document.getElementById('js-entry-notes')
-
-		superAdminPanel.style.display = 'none';
-		adminTableContainer.style.display = 'none';
-		indexTable.style.display = 'none';
-		detailsTable.style.display = 'none';
-		adminNotesForm.style.display = 'none';
-	  entryNotes.value = '';
+	resetAdmin() {
+		admin.superAdminPanel.style.display = 'none';
+		admin.tableContainer.style.display = 'none';
+		admin.indexTable.style.display = 'none';
+		admin.detailsTable.style.display = 'none';
+		admin.notesForm.style.display = 'none';
+	  admin.entryNotes.value = '';
 	}
-
-
-/**** API REQUESTS ****/
-
 }
 
-/* DELETE NOTES build delete record type by id post request, don't allow for delete of
-categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also executeDeleteByID
+/* DELETE NOTES build delete record type by id post request, don't allow for delete of categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also execute DeleteByID
 business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
 deleting review must also update overall review */
