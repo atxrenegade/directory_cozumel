@@ -1,10 +1,10 @@
 window.onload = function() {
-
+	/*
 	globalEntries = [];
 	globalAttributes = [];
 	globalAllBusinesses = [];
-	globalResult = []; /* admin only */
-	/* will these values for this instance of appStorage still be accessible from the adminInterface class? */
+	globalResult = []; // admin only
+	// will these values for this instance of appStorage still be accessible from the adminInterface class? */
 	let storage = new AppStorage;
 	const user = userVariables();
 
