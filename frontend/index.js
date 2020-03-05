@@ -1,7 +1,5 @@
 window.onload = function() {
 
-	//appStorage.cats
-	// appStorage.updateCats(data)
 	globalCats = [];
 	globalEntries = [];
 	globalAttributes = [];
@@ -10,70 +8,40 @@ window.onload = function() {
 	globalResult = []; /* admin only */
 
 	let storage = new AppStorage;
+	const user = userVariables();
 
 	LAT = 20.42;
 	LNG = -86.92;
 
-	/* searchbar elements */
-	const searchByName = document.getElementById('js-search-by-name');
-	const searchByCategory = document.getElementById('js-search-by-category');
-	const nameRadioSelect = document.getElementById('js-radio-by-name');
-	const categoryRadioSelect = document.getElementById('js-radio-by-category');
-	const searchCategoryMenu = document.getElementById('js-search-category-menu');
-	const searchNameField = document.getElementById('js-search-name-text-field');
-
-	/* checkbox elements */
-	const reviewCheckBox = document.getElementById('js-add-review-checkbox');
-	const imageCheckBox = document.getElementById('js-add-image-checkbox');
-	const flagCheckBox = document.getElementById('js-flag-business-checkbox');
-	const editCheckBox = document.getElementById('js-edit-business-checkbox');
-
-	/* business listing elements */
-	const businessListings = document.getElementById('js-listing-show');
-	const listingMenu = document.getElementById('js-listing-menu');
-
-	/* add business form elements */
-	const newBusinessButton = document.getElementById('js-add-business-button');
-	const newBusinessForm = document.getElementById('js-new-business-form');
-
-	/* admin hidden button element */
-	const hiddenAdminButton = document.getElementById('js-admin-hidden-button');
-
-	/* admin login panel elements */
-	const adminPanelLogin = document.getElementById('js-admin-login-button');
-
-	/* container elements */
-	const listingsContainer = document.getElementById('listings-container')
-
 	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
-		listingsContainer.style.display = 'none';
-		searchByName.style.display = 'none';
-		searchByCategory.style.display = 'block';
+		user.listingsContainer.style.display = 'none';
+		user.searchByName.style.display = 'none';
+		user.searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
 		if (globalCats < 1) collectCategories();
 		renderCategoriesMenu();
 	}
 
 	function toggleNameMenu() {
-		searchNameField.value = '';
-		listingsContainer.style.display = 'none';
-		searchByName.style.display = 'block';
-		searchByCategory.style.display = 'none';
+		user.searchNameField.value = '';
+		user.listingsContainer.style.display = 'none';
+		user.searchByName.style.display = 'block';
+		user.searchByCategory.style.display = 'none';
 	}
 
 	/* search by name functions */
 	function retrieveSearchNameResults(){
-		listingMenu.style.display = 'none';
-		listingsContainer.style.display = 'block';
-		postSearchByName(searchNameField.value);
-		searchNameField.value = '';
+		user.listingMenu.style.display = 'none';
+		user.listingsContainer.style.display = 'block';
+		postSearchByName(user.searchNameField.value);
+		user.searchNameField.value = '';
 	}
 
 	function retrieveSearchCategoryResults() {
-		listingMenu.style.display = 'none';
-		listingsContainer.style.display = 'block';
+		user.listingMenu.style.display = 'none';
+		user.listingsContainer.style.display = 'block';
 		const category = document.getElementById('js-category-select').value
 		const results = postSearchByCategory(category);
 	}
@@ -91,7 +59,7 @@ window.onload = function() {
 			elFormContainer.style.display = 'none';
 		} else {
 			const categorySelectEl = document.getElementById('cat-select')
-			newBusinessForm.style.display = 'block';
+			user.newBusinessForm.style.display = 'block';
 			elFormContainer.style.display = 'block';
 			if (globalCats < 1) collectCategories();
 			if (categorySelectEl === null) renderNewBusCatSelect();
@@ -197,36 +165,36 @@ window.onload = function() {
 
 	function renderListing(objArray) {
 		if (objArray != undefined) {
-			businessListings.innerHTML = '';
+			user.businessListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing();
 			let mapHTML;
 			let reviewsHTML;
 			let imagesHTML;
-			renderComponent(busHTML, businessListings);
+			renderComponent(busHTML, user.businessListings);
 			if (objArray[1].length > 0){
 				mapHTML = objArray[1].renderMap();
-				renderComponent(mapHTML, businessListings);
+				renderComponent(mapHTML, user.businessListings);
 			}
 			if (objArray[3].length > 0){
 				let reviewsHTML = '';
 				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview());
-				renderComponent(reviewsHTML, businessListings);
+				renderComponent(reviewsHTML, user.businessListings);
 			}
 			if (objArray[2].length > 0) {
 				let imagesHTML = '';
 				objArray[2].forEach((img) => imagesHTML += img.renderImage());
-				renderComponent(imagesHTML, businessListings);
+				renderComponent(imagesHTML, user.businessListings);
 			}
-			listingMenu.style.display = 'block';
+			user.listingMenu.style.display = 'block';
 		}
 	}
 
 	function appendErrorMsg(msg) {
-		businessListings.innerHTML = '';
+		user.businessListings.innerHTML = '';
 		const errorMsg = document.createElement('p');
 		errorMsg.innerHTML = `${msg}`
-		businessListings.appendChild(errorMsg);
-		businessListings.style.display = 'block';
+		user.businessListings.appendChild(errorMsg);
+		user.businessListings.style.display = 'block';
 	}
 
 	/* Instance builder functions */
@@ -238,7 +206,7 @@ window.onload = function() {
 
 	/* Render functions */
 	function renderCategoriesMenu() {
-		if (searchCategoryMenu.children.length === 0 ){
+		if (user.searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
 			const cats = globalCats.map((el) => {
@@ -246,15 +214,15 @@ window.onload = function() {
 			})
 			html += cats + '</select>';
 			catMenu.innerHTML = html;
-			searchCategoryMenu.appendChild(catMenu);
+			user.searchCategoryMenu.appendChild(catMenu);
 		}
 	}
 
 	function renderIndex(resultsList) {
-		businessListings.innerHTML = '';
-		businessListings.style.display = 'block';
+		user.businessListings.innerHTML = '';
+		user.businessListings.style.display = 'block';
 		resultsList.forEach(function(busObj) {
-			renderButton(busObj, postBusObjToRetrieve, businessListings);
+			renderButton(busObj, postBusObjToRetrieve, user.businessListings);
 		});
 	}
 
@@ -325,7 +293,7 @@ window.onload = function() {
 			if (event.originalTarget[0].id === 'new-bus'){
 				document.getElementById('js-add-business').appendChild(submittedEl);
 			} else {
-				listingMenu.appendChild(submittedEl)
+				user.listingMenu.appendChild(submittedEl)
 				clearCheckBox();
 			}
 			event.target.style.display = 'none';
@@ -333,10 +301,10 @@ window.onload = function() {
 	}
 
 	function clearCheckBox() {
-		reviewCheckBox.checked = false;
-		imageCheckBox.checked = false;
-		flagCheckBox.checked = false;
-		editCheckBox.checked = false;
+		user.reviewCheckBox.checked = false;
+		user.imageCheckBox.checked = false;
+		user.flagCheckBox.checked = false;
+		user.editCheckBox.checked = false;
 	}
 
 	/* Form Post functions */
@@ -348,8 +316,8 @@ window.onload = function() {
 		})
 		dataArray.pop
 		dataArray.push(['name', busName]);
-		postForm(dataArray); // @@callback: postForm(dataArray, formSubmitted
-		)
+		postForm(dataArray);
+		// @@callback: postForm(dataArray, formSubmitted
 	}
 
 	/* ADMIN LOGIN FUNCTIONS */
@@ -366,12 +334,12 @@ window.onload = function() {
 		sponsListContainer.style.display = 'none';
 		adsContainer.style.display = 'none';
 		searchBarContainer.style.display = 'none';
-		listingsContainer.style.display = 'none';
+		user.listingsContainer.style.display = 'none';
 		newBusContainer.style.display = 'none';
-		hiddenAdminButton.style.display = 'none';
+		user.hiddenAdminButton.style.display = 'none';
 		adminPanel.style.display = 'block';
 		adminMenu.style.display = 'block';
-		adminPanelLogin.style.display = 'none';
+		user.adminPanelLogin.style.display = 'none';
 		adminPanelLogout.style.display = 'block';
 		adminPanelForm.style.display = 'none';
 		adminUserInfo.style.display = 'block';
@@ -403,12 +371,12 @@ window.onload = function() {
 	function resetPage() {
 		const mapContainer = document.getElementById('js-map');
 		clearCheckBox();
-		nameRadioSelect.checked = true;
-		categoryRadioSelect.checked = false;
-		listingsContainer.style.display = 'none';
-		listingMenu.style.display = 'none';
+		user.nameRadioSelect.checked = true;
+		user.categoryRadioSelect.checked = false;
+		user.listingsContainer.style.display = 'none';
+		user.listingMenu.style.display = 'none';
 		mapContainer.style.display = 'none';
-		businessListings.style.display = 'none';
+		user.businessListings.style.display = 'none';
 		const elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
 		document.getElementById('js-admin-password').value = ''
@@ -418,36 +386,36 @@ window.onload = function() {
 
 	/* EVENT LISTENERS */
 	/* Search Bar Listeners */
-	nameRadioSelect.addEventListener('click', toggleNameMenu);
-	categoryRadioSelect.addEventListener('click', toggleCategoryMenu);
+	user.nameRadioSelect.addEventListener('click', toggleNameMenu);
+	user.categoryRadioSelect.addEventListener('click', toggleCategoryMenu);
 
 	document.getElementById('js-by-category-button').addEventListener('click', retrieveSearchCategoryResults);
 
-	document.getElementById('js-by-name-button').addEventListener('click', retrieveSearchNameResults)
+	document.getElementById('js-by-name-button').addEventListener('click', retrieveSearchNameResults);
 
 	/* Checkbox Listeners */
-	reviewCheckBox.addEventListener('change', function() {
+	user.reviewCheckBox.addEventListener('change', function() {
 		const el = document.getElementById('js-add-review-form-container')
 		toggleForm('checkbox', el);
 	})
 
-	imageCheckBox.addEventListener('change', function() {
+	user.imageCheckBox.addEventListener('change', function() {
 		const el = document.getElementById('js-add-image-form-container')
 	 	toggleForm('checkbox', el);
 	})
 
-	flagCheckBox.addEventListener('change', function() {
+	user.flagCheckBox.addEventListener('change', function() {
 		const el = document.getElementById('js-flag-business-form-container')
 	 	toggleForm('checkbox', el);
 	})
 
-	editCheckBox.addEventListener('change', function() {
+	user.editCheckBox.addEventListener('change', function() {
 		const el = document.getElementById('js-suggest-edit-form-container')
 	 	toggleForm('checkbox', el);
 	})
 
 	/* New Business Form Listener */
-	newBusinessButton.addEventListener('click', toggleNewBusinessForm);
+	user.newBusinessButton.addEventListener('click', toggleNewBusinessForm);
 
 	/* Form Event Listeners */
 	document.addEventListener( 'submit', function(){
@@ -461,11 +429,11 @@ window.onload = function() {
 	})
 
 	/* Initiate Admin Panel Listeners */
-	hiddenAdminButton.addEventListener('click', function() {
+	user.hiddenAdminButton.addEventListener('click', function() {
 		const el = document.getElementById('js-admin-login-container')
 		toggleForm('click', el);
 	})
-	adminPanelLogin.addEventListener('click', logInAdmin);
+	user.adminPanelLogin.addEventListener('click', logInAdmin);
 
 	/* SET PAGE LOAD VALUES */
 	resetPage();
