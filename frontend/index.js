@@ -1,11 +1,5 @@
 window.onload = function() {
-	/*
-	globalEntries = [];
-	globalAttributes = [];
-	globalAllBusinesses = [];
-	globalResult = []; // admin only
-	// will these values for this instance of appStorage still be accessible from the adminInterface class? */
-	let storage = new AppStorage;
+	let storage = new AppStorage; // how do I access storage from other classes
 	const user = userVariables();
 
 	LAT = 20.42;
@@ -198,7 +192,7 @@ window.onload = function() {
 
 	/* Instance builder functions */
 	function checkDuplicate(busName) {
-		const allNames = globalALLBusinesses.map(el => el.name)
+		const allNames = Business.AllBusinesses().map(el => el.name)
 		const duplicate = allNames.includes(busName)
 		return duplicate;
 	}
