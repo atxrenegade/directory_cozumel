@@ -16,7 +16,7 @@
 	}
 
 	function buildCreatePostReq(action, dbModel, attsObj, event){
-		const params = { method: 'POST', url: `http://localhost:3000/${dbModel.toLowerCase()}`, data: attsObject, callback: dynamFormResp }
+		const params = { method: 'POST', url: `http://localhost:3000/${dbModel.toLowerCase()}`, data: attsObj, callback: dynamFormResp }
 		dynamPostReq(params)
 	}
 
@@ -41,8 +41,9 @@
 		dynamPostReq(params)
 	}
 
-	function getAssociatedRecords(dbType){
-		const params = { method: 'POST', url:`http://localhost:3000/${dbType}/index_associated`, data: { business_id: globalResult[0][0]['id']}, callback: dynamFormResp }
+	function getAssociatedRecords(dbType, business_id){
+		debugger;
+		const params = { method: 'POST', url:`http://localhost:3000/${dbType}/index_associated`, data: { business_id: business_id, callback: dynamFormResp }}
 		dynamPostReq(params);
 	}
 
@@ -91,8 +92,6 @@
 	}
 
 	function dynamFormResp(data){
-		(data === null) ? storage.setResult({'msg':'Error Processing Request'}) :
-		storage.setResult(data)
-		console.log(storage.result)
-		return storage.result;
+		storage.updateResult(data)
+		console.log(storage.result[0])
 	}
