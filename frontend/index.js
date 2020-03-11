@@ -1,5 +1,5 @@
 window.onload = function() {
-	let storage = new AppStorage; // how do I access storage from other classes
+	let storage = new AppStorage;
 	const user = userVariables();
 
 	LAT = 20.42;
