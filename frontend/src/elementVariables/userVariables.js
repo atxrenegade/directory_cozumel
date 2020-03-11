@@ -30,5 +30,5 @@ function userVariables() {
 	/* container elements */
 	const listingsContainer = document.getElementById('listings-container')
 
-	return { searchByName: searchByName, searchByCategory: searchByCategory, nameRadioSelect: nameRadioSelect, categoryRadioSelect: categoryRadioSelect, searchCategoryMenu: searchCategoryMenu, searchNameField: searchNameField, reviewCheckBox: reviewCheckBox, imageCheckBox: imageCheckBox, flagCheckBox: flagCheckBox, editCheckBox: editCheckBox, businessListings: businessListings, listingMenu: listingMenu, newBusinessButton: newBusinessButton, newBusinessForm: newBusinessForm, hiddenAdminButton: hiddenAdminButton, adminPanelLogin: adminPanelLogin, listingsContainer: listingsContainer };
+	return { searchByName, searchByCategory, nameRadioSelect, categoryRadioSelect, searchCategoryMenu, searchNameField, reviewCheckBox, imageCheckBox, flagCheckBox, editCheckBox, businessListings, listingMenu,  newBusinessButton, newBusinessForm, hiddenAdminButton, adminPanelLogin, listingsContainer }
 }
