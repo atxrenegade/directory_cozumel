@@ -24,7 +24,7 @@ class AppStorage {
 
 	updateResult(data) {
 		let resultArray = []
-		data.forEach(el => resultArray.push(el))
+		(data.length > 0) ? data.forEach(el => resultArray.push(el)) : resultArray.push(data)
 		this.result = resultArray;
 	}
 }
