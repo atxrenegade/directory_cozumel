@@ -1,5 +1,4 @@
 //API requests
-// Do I turn all of my callbacks in static functions to call outside of the class instance, I do not want to initate a new instance every time I reference an api calback function
 	function buildEntriesIndexPostReq(searchType, authType, callback) {
 		const data = { search_type: searchType, auth_type: authType }
 		let params = { method: 'POST' , url: 'http://localhost:3000/entries/index', data: data, callback: callback }
