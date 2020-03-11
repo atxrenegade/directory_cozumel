@@ -1,5 +1,3 @@
-let allEntries = [];
-
 class Entry {
 	constructor(id, entryType, busId, busName, dateCreated, contributor, contributorEmail, dataObject, status, resolvedDate, adminId, notes) {
 		this.id = id;
@@ -14,19 +12,17 @@ class Entry {
 		this.resolvedDate = resolvedDate;
 		this.adminId = adminId;
 		this.notes = notes;
-
-		// where do I define my class array variable for allEntries
-		Entry.allEntries(this)
+		Entry.all(this)
 	}
 
-	static allEntries(entry){
-		// let allEntries = []
-    // where do I initiate this array value that it is not reset everytime the method is called, if I use two methods a setter and a getter how does the second access the variable value since they dont share the same scope.
-		if (entry !== undefined) allEntries.push(entry)
-		return allEntries;
+	static all(entry){
+		if (entry !== undefined) all.push(entry)
+		return all;
 	}
 
-	static allEntriesReset() {
-		allEntries = [];
+	static reset() {
+		all = [];
 	}
 }
+
+Entry.all = []
