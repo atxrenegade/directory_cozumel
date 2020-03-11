@@ -117,7 +117,7 @@ window.onload = function() {
 	}
 
 	function postForm(data) { // @@ - callback = postForm(data, callback)
-		const callback = function(json){ return storage.setResponse(json) } // @@ - remove?
+		const callback = function(json){ return storage.updateResponse(json) } // @@ - remove?
 		const params = {method: 'POST', url: 'http://localhost:3000/entries', data: data, callback: callback}
 		dynamPostReq(params);
 	}
