@@ -1,5 +1,3 @@
-let allBusinesses = [];
-
 class Business {
 	constructor(id, name, categories, overallRating, address, phoneNumber, website) {
 		this.id = id;
@@ -10,7 +8,7 @@ class Business {
 		this.phoneNumber = phoneNumber;
 		this.website = website;
 		//how can I recreate this as class variable storing all instances?
-		Business.allBusinesses(this);
+		Business.all(this);
 	}
 
 	renderBusListing(){
@@ -37,14 +35,14 @@ class Business {
 			return business
 		}
 
-		static allBusinesses(business){
-			 // where do I initiate this array value that it is not reset everytime the method is called, if I use two methods a setter and a getter how does the second access the variable value since they dont share the same scope.
-			// let allBusinesses = [];
-			if (business !== undefined) allBusinesses.push(business)
-			return allBusinesses;
+		static all(business){
+			if (business !== undefined) all.push(business)
+			return all;
 		}
 
-		static allBusinessesReset() {
-			allBusinesses = [];
+		static Reset() {
+			all = [];
 		}
 }
+
+let Business.all = [];
