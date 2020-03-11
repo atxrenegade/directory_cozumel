@@ -40,7 +40,6 @@ window.onload = function() {
 
 	/* TOGGLE FORM FUNCTIONS */
 	function toggleForm(event, el) {
-		/**** REFACTOR TOGGLE FORM ***/
 		el.firstElementChild.style.display = 'block';
 		event === 'submit' || el.style.display == 'block' ? el.style.display = 'none' : el.style.display = 'block'
 	}
@@ -76,7 +75,7 @@ window.onload = function() {
 			})
 			.then(json => {
 				params['callback'](json)
-			}) // @@callback: formSubmit(Json)
+			})
 		}
 		catch(err) {
 			alert('Error. See console for further details!');
@@ -116,9 +115,9 @@ window.onload = function() {
 		dynamPostReq(params);
 	}
 
-	function postForm(data) { // @@ - callback = postForm(data, callback)
-		const callback = function(json){ return storage.updateResponse(json) } // @@ - remove?
-		const params = {method: 'POST', url: 'http://localhost:3000/entries', data: data, callback: callback}
+	function postForm(data) {
+		const callback = function(json){ return storage.updateResponse(json) }
+		const params = {method: 'POST', url: 'http://localhost:3000/entries', data, callback}
 		dynamPostReq(params);
 	}
 
@@ -157,13 +156,12 @@ window.onload = function() {
 	}
 
 	function renderListing(objArray) {
+		// refactor this function
 		if (objArray != undefined) {
 			user.businessListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing();
-			let mapHTML;
-			let reviewsHTML;
-			let imagesHTML;
 			renderComponent(busHTML, user.businessListings);
+
 			if (objArray[1].length > 0){
 				mapHTML = objArray[1].renderMap();
 				renderComponent(mapHTML, user.businessListings);
@@ -192,9 +190,8 @@ window.onload = function() {
 
 	/* Instance builder functions */
 	function checkDuplicate(busName) {
-		const allNames = Business.AllBusinesses().map(el => el.name)
-		const duplicate = allNames.includes(busName)
-		return duplicate;
+		const names = Business.all().map(el => el.name)
+		return names.includes(busName)
 	}
 
 	/* Render functions */
@@ -252,7 +249,6 @@ window.onload = function() {
 	};
 
 	/* Retrieve Bus Name From DOM for Associated Form */
-	/* works for new bus form and all other forms */
 	function getBusNameForAssoForm(event){
 		let busName = '';
 		if (event.target[0].id === 'new-bus') {
@@ -310,7 +306,6 @@ window.onload = function() {
 		dataArray.pop
 		dataArray.push(['name', busName]);
 		postForm(dataArray);
-		// @@callback: postForm(dataArray, formSubmitted
 	}
 
 	/* ADMIN LOGIN FUNCTIONS */
@@ -341,8 +336,8 @@ window.onload = function() {
 	function logInAdmin() {
 		const usernameVal = document.getElementById('js-admin-username').value.trim();
 		const passwordVal = document.getElementById('js-admin-password').value.trim();
-		data = {"session": {"username": usernameVal, "password": passwordVal}}
-		const params = {method: 'POST', url: 'http://localhost:3000/login', data: data, callback: authAdminLogIn}
+		let data = {"session": {"username": usernameVal, "password": passwordVal}}
+		const params = {method: 'POST', url: 'http://localhost:3000/login', data, callback: authAdminLogIn}
 		dynamPostReq(params);
 	}
 
@@ -380,6 +375,7 @@ window.onload = function() {
 	/* EVENT LISTENERS */
 	/* Search Bar Listeners */
 	user.nameRadioSelect.addEventListener('click', toggleNameMenu);
+
 	user.categoryRadioSelect.addEventListener('click', toggleCategoryMenu);
 
 	document.getElementById('js-by-category-button').addEventListener('click', retrieveSearchCategoryResults);
