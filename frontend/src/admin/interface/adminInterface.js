@@ -2,9 +2,6 @@ let storage = new AppStorage;
 
 class AdminInterface {
 	constructor() {
-		//my storage instance does not load until after this file
-		//cant initiate storage class within this class
-		//can I use one global variable for categories only?
 	  const admin = adminVariables();
 		resetAdmin();
 
@@ -72,9 +69,9 @@ class AdminInterface {
 				const radVals = getRadioVal(event);
 				const elToAppendTo = document.getElementById('super-admin-create-update-delete')
 				buildCRUDforms(event, radVals, elToAppendTo)
-				superAdminCRUDMenu.innerText = 'HIDE FORM';
-			} else if (superAdminCRUDMenu.innerText === 'HIDE FORM'){
-				superAdminCRUDMenu.innerText = 'DISPLAY FORM';
+				admin.superAdminCRUDMenu.innerText = 'HIDE FORM';
+			} else if (admin.superAdminCRUDMenu.innerText === 'HIDE FORM'){
+				admin.superAdminCRUDMenu.innerText = 'DISPLAY FORM';
 				document.getElementById('super-admin-create-update-delete').innerHTML = '';
 			} else {
 				console.log('Button error!')
@@ -126,7 +123,6 @@ class AdminInterface {
  /* ADMIN INTERFACE METHODS */
 		function buildCRUDforms(event, radVals, elToAppendTo){
 			const [formAction, dbType] = radVals;
-			globalAttributes = [];
 			let formData;
 
 			switch (formAction) {
@@ -157,12 +153,16 @@ class AdminInterface {
 				formData = {id: 'js-super-admin-CRUD-instance-name', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction,  searchType: 'businesses', dbType: dbType, callback: callback}
 			}
 			buildFindInstanceForm(formData);
-			setTimeout(getAssociatedRecords.bind(null, dbType), 1000)
-			const newElToAppendTo = document.getElementById('super-admin-create-update-delete')
-			let msg;
-			globalResult.length < 1 ? msg = 'No Records Match Your Query' : msg = 'Matching Associated Records'
-			setTimeout(displayResults.bind(null, newElToAppendTo, msg), 500)
-			setTimeout(appendIdFormForAssoc.bind(null, dbType), 1000)
+
+			if (storage.result.length > 0) {
+				let businessId = storage.result[0]['id'];
+				setTimeout(getAssociatedRecords.bind(null, dbType, businessId), 1000)
+				const newElToAppendTo = document.getElementById('super-admin-create-update-delete')
+				let msg;
+				storage.result['msg'] === undefined ? msg = 'No Records Match Your Query' : msg = storage.result['msg']
+				setTimeout(displayResults.bind(null, newElToAppendTo, msg), 500)
+				setTimeout(appendIdFormForAssoc.bind(null, dbType), 1000)
+			}
 		}
 
 		function indexButtonAction(status){
@@ -211,7 +211,6 @@ class AdminInterface {
 			document.getElementById('detailed-entry-table-1').innerHTML = '';
 			document.getElementById('detailed-entry-table-2').innerHTML = '';
 			document.getElementById('detailed-entry-table-3').innerHTML = '';
-			/* indexEntries(indexType) */
 			debugger;
 			if (Entry.allEntries().length > 0) {
 				const indexBody = document.getElementById('index-entry-table-body');
@@ -262,7 +261,7 @@ class AdminInterface {
 			newButton.type = 'button';
 			newButton.class = 'admin-details-button';
 			newButton.value = 'Review';
-			newButton.setAttribute('onclick', 'displayDetails()');
+			newButton.addEventListener('click', displayDetails);
 			return newButton;
 		}
 
@@ -276,10 +275,9 @@ class AdminInterface {
 
 		function buildEntries(entries){
 			Entry.allEntriesReset(); //clear previous entries
-			let newEntries = entries.forEach(el => {
+			entries.forEach((el) => {
 				new Entry(el['id'], el['entry_type'], el['business_id'], el['business_name'], el['date'], el['contributor'], el['contributor_email'], el['data_object'], el['status'], el['resolved_date'], el['admin_id'], el['notes'])
 			})
-			entries.forEach((el) => Entry.allEntries(el))
 		}
 
 		function generateDetailedEntryTable(event){
@@ -355,12 +353,12 @@ class AdminInterface {
 			const data = getEntryData('rejected', event)
 			postEntryUpdate(data);
 			setTimeout(function() {
-				if (globalResult[0]['msg'] === 'Entry Successfully Updated'){
+				if (storage.result['msg'] === 'Entry Successfully Updated'){
 					displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 					document.getElementById('admin-approve-button').style.display = 'none';
 					document.getElementById('admin-reject-button').style.display = 'none';
 				} else {
-					console.log(globalResult[0]['msg'])
+					console.log(storage.result['msg'])
 				}
 			}, 1000)
 		}
@@ -370,18 +368,18 @@ class AdminInterface {
 			const callback = dynamFormResp;
 			postDatabaseObject(data, callback)
 			setTimeout(function(){
-				if (globalResult[0]['msg'] === 'Object Saved'){
+				if (storage.result['msg'] === 'Object Saved'){
 					postEntryUpdate(data)
 					setTimeout(function(){
-						if (globalResult[0]['msg'] === 'Entry Successfully Updated') {
+						if (storage.result['msg'] === 'Entry Successfully Updated') {
 						displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 						document.getElementById('admin-approve-button').style.display = 'none';
 						document.getElementById('admin-reject-button').style.display = 'none';
 					} else {
-						console.log(globalResult[0]['msg'])
+						console.log(storage.result['msg'])
 					}
 				}, 1500)} else {
-					console.log(globalResult[0]['msg'])
+					console.log(storage.result['msg'])
 				}
 			}, 1500)
 		}
@@ -486,12 +484,11 @@ class AdminInterface {
 		function appendIdFormForAssoc(dbType){
 			const elToAppendTo = document.getElementById('super-admin-create-update-delete').lastElementChild
 			const recordId = document.getElementById(`${id}`).value;
-			globalResult = [];
 			const formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to DELETE `, el: elToAppendTo, action: 'delete', searchType: 'id', dbType: dbType, callback: findRecordToDelete}
 			const newElToAppendTo = document.getElementById('super-admin-create-update-delete')
 			let msg;
 			setTimeout(function(){
-				globalResult.length < 1? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
+				storage.result.length = 0? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
 				displayResults(newElToAppendTo, msg)
 				confirmRecordToDelete(dbType, id, newElToAppendTo)
 			}, 1000)
@@ -533,8 +530,7 @@ class AdminInterface {
 					} else if (confirmID === id) {
 						confirm('Are you sure you want to delete this record?');
 						buildDeletePostReq(dbType, id)
-						const msg = globalResult[0]['msg']
-						debugger;
+						const msg = storage.result[0]['msg']
 						displayResults(elToAppendTo, msg)
 					} else {
 						alert("ID numbers do not match. Confirmation Failed. Try Again.")
@@ -579,7 +575,7 @@ class AdminInterface {
 
 		function displayResults(elToAppendTo, msg) {
 			let resultsEl = document.getElementById( 'js-admin-CRUD-results')
-			if (resultsEl === null && globalResult.length > 0 ) {
+			if (resultsEl === null && storage.result.length > 0 ) {
 				resultsEl = document.createElement('div')
 				resultsEl.id = 'js-admin-CRUD-results';
 				const obj = createDisplayObj();
@@ -597,7 +593,7 @@ class AdminInterface {
 		}
 
 		function createDisplayObj(){
-			const results = globalResult.flat()
+			const results = storage.result.flat()
 			let resultsObj = results.map((el) => {
 				let objArray = ['<br>'];
 				for (let [key, value] of Object.entries(el)) {
