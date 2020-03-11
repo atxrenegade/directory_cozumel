@@ -1,8 +1,10 @@
+let storage = new AppStorage;
+
 class AdminInterface {
 	constructor() {
-		//my storage instance does not load intil after this file
+		//my storage instance does not load until after this file
 		//cant initiate storage class within this class
-		//can I use one global variable for cats?
+		//can I use one global variable for categories only?
 	  const admin = adminVariables();
 		resetAdmin();
 
@@ -211,11 +213,11 @@ class AdminInterface {
 			document.getElementById('detailed-entry-table-3').innerHTML = '';
 			/* indexEntries(indexType) */
 			debugger;
-			if (storage.entries.length > 0) {
+			if (Entry.allEntries().length > 0) {
 				const indexBody = document.getElementById('index-entry-table-body');
 				indexBody.innerHTML = '';
 				let i = 0;
-				storage.entries.forEach(function(el, indexType) {
+				Entry.allEntries().forEach(function(el, indexType) {
 					let row = indexBody.insertRow(i);
 					let cell1 = row.insertCell(0);
 					let cell2 = row.insertCell(1);
@@ -273,16 +275,16 @@ class AdminInterface {
 		}
 
 		function buildEntries(entries){
-			storage.setEntries(null); //clear previous entries
+			Entry.allEntriesReset(); //clear previous entries
 			let newEntries = entries.forEach(el => {
 				new Entry(el['id'], el['entry_type'], el['business_id'], el['business_name'], el['date'], el['contributor'], el['contributor_email'], el['data_object'], el['status'], el['resolved_date'], el['admin_id'], el['notes'])
 			})
-			storage.setEntries(entries)
+			entries.forEach((el) => Entry.allEntries(el))
 		}
 
 		function generateDetailedEntryTable(event){
 			const id = event.target.parentNode.parentElement.firstChild.textContent
-			const entry = storage.entries.find(entry => entry.id === parseInt(id, 10));
+			const entry = Entry.allEntries().find(entry => entry.id === parseInt(id, 10));
 			const entryTable1 = document.getElementById('detailed-entry-table-1')
 			let row1 = entryTable1.insertRow(0);
 			let cell1 = row1.insertCell(0);
