@@ -6,7 +6,7 @@
 #### Admin Interface Screenshot 1
 ![Directory Cozumel User Interface](frontend/assets/images/Screenshots/directory_cozumel_admin_interface1.png)
 
-#### User Interface Screenshot 2
+#### Admin Interface Screenshot 2
 ![Directory Cozumel User Interface](frontend/assets/images/Screenshots/directory_cozumel_admin_interface2.png)
 
 
