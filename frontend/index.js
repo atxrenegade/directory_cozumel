@@ -1,8 +1,9 @@
 import * as adminVar from './src/elementVariables/adminVar.js';
+import * user from	'.src/elementVariables/userVar.js';
 
 window.onload = function() {
 	let storage = new AppStorage;
-	const user = userVariables();
+	//const user = userVariables(); ?
 
 	LAT = 20.42;
 	LNG = -86.92;

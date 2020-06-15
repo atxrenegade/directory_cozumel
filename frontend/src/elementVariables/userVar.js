@@ -1,4 +1,4 @@
-function userVariables() {
+// User Variables
 	/* searchbar elements */
 	const searchByName = document.getElementById('js-search-by-name');
 	const searchByCategory = document.getElementById('js-search-by-category');
@@ -30,5 +30,5 @@ function userVariables() {
 	/* container elements */
 	const listingsContainer = document.getElementById('listings-container')
 
-	return { searchByName, searchByCategory, nameRadioSelect, categoryRadioSelect, searchCategoryMenu, searchNameField, reviewCheckBox, imageCheckBox, flagCheckBox, editCheckBox, businessListings, listingMenu,  newBusinessButton, newBusinessForm, hiddenAdminButton, adminPanelLogin, listingsContainer }
+	export { searchByName, searchByCategory, nameRadioSelect, categoryRadioSelect, searchCategoryMenu, searchNameField, reviewCheckBox, imageCheckBox, flagCheckBox, editCheckBox, businessListings, listingMenu,  newBusinessButton, newBusinessForm, hiddenAdminButton, adminPanelLogin, listingsContainer }
 }
