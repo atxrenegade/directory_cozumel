@@ -1,3 +1,5 @@
+import * as adminVar from './src/elementVariables/adminVar.js';
+
 window.onload = function() {
 	let storage = new AppStorage;
 	const user = userVariables();
@@ -116,7 +118,7 @@ window.onload = function() {
 	}
 
 	function postForm(data) {
-		const callback = function(json){ return storage.updateResponse(json) }
+		const callback = storage.updateResponse
 		const params = {method: 'POST', url: 'http://localhost:3000/entries', data, callback}
 		dynamPostReq(params);
 	}
@@ -186,12 +188,6 @@ window.onload = function() {
 		errorMsg.innerHTML = `${msg}`
 		user.businessListings.appendChild(errorMsg);
 		user.businessListings.style.display = 'block';
-	}
-
-	/* Instance builder functions */
-	function checkDuplicate(busName) {
-		const names = Business.all().map(el => el.name)
-		return names.includes(busName)
 	}
 
 	/* Render functions */

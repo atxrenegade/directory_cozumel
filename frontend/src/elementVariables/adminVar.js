@@ -1,4 +1,4 @@
-function adminVariables() {
+	// Admin Variables
 	const loginContainer = document.getElementById('js-admin-login-container')
 	const tableContainer = document.getElementById('js-admin-panel-container')
 
@@ -32,5 +32,4 @@ function adminVariables() {
 	const notesForm = document.getElementById('admin-notes-form')
 	const entryNotes = document.getElementById('js-entry-notes')
 
-	return { loginContainer, tableContainer, smResolvedIndexButton, smPendingIndexButton, rejectButton, approveButton, addNotesButton, newNotesSubmitButton, superAdminMenuButton, createAdminButton,  editAdminButton, deleteAdminButton, bigPendingIndexButton, bigResolvedIndexButton, searchButton, superAdminCRUDMenu, logoutButton, superAdminPanel, indexTable, detailsTable, notesForm, entryNotes}
-}
+	export { loginContainer, tableContainer, smResolvedIndexButton, smPendingIndexButton, rejectButton, approveButton, addNotesButton, newNotesSubmitButton, superAdminMenuButton, createAdminButton,  editAdminButton, deleteAdminButton, bigPendingIndexButton, bigResolvedIndexButton, searchButton, superAdminCRUDMenu, logoutButton, superAdminPanel, indexTable, detailsTable, notesForm, entryNotes }
