@@ -6,8 +6,8 @@ window.onload = function() {
 	let storage = new AppStorage;
 	//const user = userVariables(); ?
 
-	LAT = 20.42;
-	LNG = -86.92;
+	const LAT = 20.42;
+	const LNG = -86.92;
 
 	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
@@ -152,7 +152,8 @@ window.onload = function() {
 	function buildListing(data) {
 		const busObj = Business.buildBusObj(data);
 		let map;
-		data['map'] ?  map = GoogleMap.mapBuilder(data['map']) : map = []
+		//data['map'] ?  map = GoogleMap.mapBuilder(data['map']) : map = []
+		map = []
 		const imagesCollection = Image.imagesBuilder(data['images']);
 		const reviewsCollection = Review.reviewsBuilder(data['reviews']);
 		const objArray= [busObj, map, imagesCollection, reviewsCollection]
