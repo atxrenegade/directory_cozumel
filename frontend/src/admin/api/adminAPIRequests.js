@@ -1,6 +1,18 @@
-//API requests
+// ADMIN API requests
+	function buildEntries(entries) {
+		let entryObjs = entries.forEach((el) => {
+			new Entry(el['id'], el['entry_type'], el['business_id'], el['business_name'], el['date'], el['contributor'], el['contributor_email'], el['data_object'], el['status'], el['resolved_date'], el['admin_id'], el['notes'])
+		})
+		Entry.all(entryObjs);
+	}
+
+	function buildAttsArray(data){
+		let attributes = data.map(el => {return el.replace(/_/g, ' ') })
+		storage.updateAttributes(attributes)
+	}
+
 	function buildEntriesIndexPostReq(searchType, authType) {
-		const data = { search_type, auth_type }
+		const data = { searchType, authType }
 		let params = { method: 'POST' , url: 'http://localhost:3000/entries/index', data, callback: buildEntries }
 		dynamPostReq(params)
 	}
@@ -16,7 +28,7 @@
 	}
 
 	function buildCreatePostReq(action, dbModel, attsObj, event){
-		const params = { method: 'POST', url: `http://localhost:3000/${dbModel.toLowerCase()}`, data: attsObj, callback: storage.updateResult(data) }
+		const params = { method: 'POST', url: `http://localhost:3000/${dbModel.toLowerCase()}`, data: attsObj, callback: storage.updateResult }
 		dynamPostReq(params)
 	}
 
@@ -31,7 +43,7 @@
 	}
 
 	function getAttributes(dbType) {
-		const params = { url: `http://localhost:3000/${dbType}/attributes`, callback: };
+		const params = { url: `http://localhost:3000/${dbType}/attributes`, callback: buildAttsArray };
 		dynamGetReq(params);
 	}
 
@@ -42,7 +54,7 @@
 	}
 
 	function getAssociatedRecords(dbType, business_id){
-		const params = { method: 'POST', url:`http://localhost:3000/${dbType}/index_associated`, data: { business_id, callback: storage.updateResult }}
+		const params = { method: 'POST', url:`http://localhost:3000/${dbType}/index_associated`, data: { business_id, callback: storage.updateResult } }
 		dynamPostReq(params);
 	}
 
@@ -52,7 +64,7 @@
 	}
 
 	function postEntryUpdate(data) {
-		const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data: data , callback: storage.updateResult }
+		const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data , callback: storage.updateResult }
 		dynamPostReq(params)
 	}
 
@@ -88,4 +100,7 @@
 			alert('Error. See console for further details!');
 			console.log(err.message);
 		}
+	}
+
+	export { buildEntries, buildAttsArray,  buildEntriesIndexPostReq, postDatabaseObject, searchEntries, buildCreatePostReq, buildDeletePostReq, getAttributes, getAssociatedRecords, searchIdByName, buildUpdatePostReq, findRecordToDelete, postEntryUpdate, dynamPostReq, dynamGetReq
 	}

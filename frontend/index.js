@@ -1,5 +1,6 @@
 import * as adminVar from './src/elementVariables/adminVar.js';
-import * as user from	'.src/elementVariables/userVar.js';
+import * as user from	'./src/elementVariables/userVar.js';
+import * as adminFetch from	'./src/admin/api/adminAPIRequests.js';
 
 window.onload = function() {
 	let storage = new AppStorage;
