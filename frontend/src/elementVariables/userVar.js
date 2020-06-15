@@ -31,4 +31,3 @@
 	const listingsContainer = document.getElementById('listings-container')
 
 	export { searchByName, searchByCategory, nameRadioSelect, categoryRadioSelect, searchCategoryMenu, searchNameField, reviewCheckBox, imageCheckBox, flagCheckBox, editCheckBox, businessListings, listingMenu,  newBusinessButton, newBusinessForm, hiddenAdminButton, adminPanelLogin, listingsContainer }
-}
