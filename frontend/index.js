@@ -1,6 +1,6 @@
 import * as adminVar from './src/elementVariables/adminVar.js';
 import * as userVar from	'./src/elementVariables/userVar.js';
-import * as adminFetch from	'./src/admin/api/adminAPIRequests.js';
+import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
 import * as adminInterface from	'./src/admin/interface/adminInterface.js';
 
 window.onload = function(){
@@ -8,6 +8,7 @@ window.onload = function(){
 
 	const user = userVar.userVar();
 	const admin = adminVar.adminVar();
+	const adminFetch = adminAPI.adminAPIRequests();
 
 	const LAT = 20.42;
 	const LNG = -86.92;
@@ -350,7 +351,7 @@ window.onload = function(){
 			sessionStorage.setItem('adminRole', session['role']);
 			adminInterface.checkAdminAuth();
 			clearDirectoryForAdminView();
-			adminInterface.launchAdminInterface();
+			adminInterface.launchAdminInterface(user, admin, adminFetch);
 		} else {
 			alert('You are not authorized to access administrative tasks!')
 			resetPage();
