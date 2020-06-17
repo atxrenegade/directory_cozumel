@@ -1,33 +1,37 @@
-// User Variables
-	/* searchbar elements */
-	const searchByName = document.getElementById('js-search-by-name');
-	const searchByCategory = document.getElementById('js-search-by-category');
-	const nameRadioSelect = document.getElementById('js-radio-by-name');
-	const categoryRadioSelect = document.getElementById('js-radio-by-category');
-	const searchCategoryMenu = document.getElementById('js-search-category-menu');
-	const searchNameField = document.getElementById('js-search-name-text-field');
+	// User Variables
+	function userVariables(){
+		return {
+			/* searchbar elements */
+			searchByName: document.getElementById('js-search-by-name');
+			searchByCategory: document.getElementById('js-search-by-category');
+			nameRadioSelect: document.getElementById('js-radio-by-name');
+			categoryRadioSelect: document.getElementById('js-radio-by-category');
+			searchCategoryMenu: document.getElementById('js-search-category-menu');
+			searchNameField: document.getElementById('js-search-name-text-field');
 
-	/* checkbox elements */
-	const reviewCheckBox = document.getElementById('js-add-review-checkbox');
-	const imageCheckBox = document.getElementById('js-add-image-checkbox');
-	const flagCheckBox = document.getElementById('js-flag-business-checkbox');
-	const editCheckBox = document.getElementById('js-edit-business-checkbox');
+			/* checkbox elements */
+			reviewCheckBox: document.getElementById('js-add-review-checkbox');
+			imageCheckBox: document.getElementById('js-add-image-checkbox');
+			flagCheckBox: document.getElementById('js-flag-business-checkbox');
+			editCheckBox: document.getElementById('js-edit-business-checkbox');
 
-	/* business listing elements */
-	const businessListings = document.getElementById('js-listing-show');
-	const listingMenu = document.getElementById('js-listing-menu');
+			/* business listing elements */
+			businessListings: document.getElementById('js-listing-show');
+			listingMenu: document.getElementById('js-listing-menu');
 
-	/* add business form elements */
-	const newBusinessButton = document.getElementById('js-add-business-button');
-	const newBusinessForm = document.getElementById('js-new-business-form');
+			/* add business form elements */
+			newBusinessButton: document.getElementById('js-add-business-button');
+			newBusinessForm: document.getElementById('js-new-business-form');
 
-	/* admin hidden button element */
-	const hiddenAdminButton = document.getElementById('js-admin-hidden-button');
+			/* admin hidden button element */
+			hiddenAdminButton: document.getElementById('js-admin-hidden-button');
 
-	/* admin login panel elements */
-	const adminPanelLogin = document.getElementById('js-admin-login-button');
+			/* admin login panel elements */
+			adminPanelLogin: document.getElementById('js-admin-login-button');
 
-	/* container elements */
-	const listingsContainer = document.getElementById('listings-container')
+			/* container elements */
+			listingsContainer: document.getElementById('listings-container')
+		}
+	}
 
-	export { searchByName, searchByCategory, nameRadioSelect, categoryRadioSelect, searchCategoryMenu, searchNameField, reviewCheckBox, imageCheckBox, flagCheckBox, editCheckBox, businessListings, listingMenu,  newBusinessButton, newBusinessForm, hiddenAdminButton, adminPanelLogin, listingsContainer }
+	export { userVariables };
