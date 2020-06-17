@@ -1,8 +1,6 @@
-let storage = new AppStorage;
+//let storage = new AppStorage;
 
-class AdminInterface {
-	constructor() {
-	  const admin = adminVariables();
+ 	function launchAdminInterface(user, admin, adminFetch){
 		resetAdmin();
 
 		/* Event Listeners */
@@ -26,7 +24,7 @@ class AdminInterface {
 
 		/* Super Admin Menu Toggle Button */
 		admin.superAdminMenuButton.addEventListener('click', function() {
-			const role = AdminInterface.checkAdminAuth();
+			const role = checkAdminAuth();
 			if (role === 'super') {
 				const el = document.getElementById('js-admin-super-admin-open');
 				toggleElement(el);
@@ -81,6 +79,7 @@ class AdminInterface {
 			 location.reload(true)
 		});
 
+
 		function getFormattedDateTime() {
 			const date = new Date();
 			const localDate = date.toDateString()
@@ -108,6 +107,7 @@ class AdminInterface {
 		}
 
 		function resetAdmin() {
+			debugger;
 			admin.superAdminPanel.style.display = 'none';
 			admin.tableContainer.style.display = 'none';
 			admin.indexTable.style.display = 'none';
@@ -126,8 +126,7 @@ class AdminInterface {
 
 			switch (formAction) {
 				case 'create':
-					const callback = buildAttsArray;
-					getAttributes(dbType, callback)
+					getAttributes(dbType)
 					setTimeout(buildNewForm.bind(null, formAction, dbType, elToAppendTo)
 					, 800)
 					break;
@@ -149,7 +148,7 @@ class AdminInterface {
 				formData = {id: 'js-super-admin-CRUD-instance-id', labelValue:`ID of ${dbType.toUpperCase()} record to ${formAction.toUpperCase()} `, el: elToAppendTo, action: formAction, searchType: 'id', dbType: dbType, callback: findRecordToDelete}
 			} else {
 				const callback = searchIdByName;
-				formData = {id: 'js-super-admin-CRUD-instance-name', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record to UPDATE or DELETE`, el: elToAppendTo, action: formAction,  searchType: 'businesses', dbType, callback}
+				formData = {id: 'js-super-admin-CRUD-instance-name', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record ‹‹to UPDATE or DELETE`, el: elToAppendTo, action: formAction,  searchType: 'businesses', dbType, callback}
 			}
 			buildFindInstanceForm(formData);
 
@@ -165,7 +164,7 @@ class AdminInterface {
 		}
 
 		function indexButtonAction(status) {
-			const authType = AdminInterface.checkAdminAuth();
+			const authType = adminInterface.checkAdminAuth();
 			const entries = buildEntriesIndexPostReq(status, authType);
 			setTimeout(renderIndex.bind(null, status), 1000);
 		}
@@ -208,11 +207,11 @@ class AdminInterface {
 			document.getElementById('detailed-entry-table-1').innerHTML = '';
 			document.getElementById('detailed-entry-table-2').innerHTML = '';
 			document.getElementById('detailed-entry-table-3').innerHTML = '';
-			if (Entry.all().length > 0) {
+			if (Entry.all.length > 0) {
 				const indexBody = document.getElementById('index-entry-table-body');
 				indexBody.innerHTML = '';
 				let i = 0;
-				Entry.all().forEach(function(el, indexType) {
+				Entry.all.forEach(function(el, indexType) {
 					let row = indexBody.insertRow(i);
 					let cell1 = row.insertCell(0);
 					let cell2 = row.insertCell(1);
@@ -269,16 +268,9 @@ class AdminInterface {
 			generateDetailedEntryTable(event);
 		}
 
-		function buildEntries(entries) {
-			Entry.reset();
-			entries.forEach((el) => {
-				new Entry(el['id'], el['entry_type'], el['business_id'], el['business_name'], el['date'], el['contributor'], el['contributor_email'], el['data_object'], el['status'], el['resolved_date'], el['admin_id'], el['notes'])
-			})
-		}
-
 		function generateDetailedEntryTable(event) {
 			const id = event.target.parentNode.parentElement.firstChild.textContent
-			const entry = Entry.all().find(entry => entry.id === parseInt(id, 10));
+			const entry = Entry.all.find(entry => entry.id === parseInt(id, 10));
 			const entryTable1 = document.getElementById('detailed-entry-table-1')
 			let row1 = entryTable1.insertRow(0);
 			let cell1 = row1.insertCell(0);
@@ -472,11 +464,6 @@ class AdminInterface {
 			setTimeout(displayResults.bind(null, elToAppendTo, msg), 1000)
 		}
 
-		function buildAttsArray(data){
-			let attributes = data.map(el => {return el.replace(/_/g, ' ') })
-			storage.updateAttributes(attributes)
-		}
-
 		function appendIdFormForAssoc(dbType){
 			const elToAppendTo = document.getElementById('super-admin-create-update-delete').lastElementChild
 			const recordId = document.getElementById(`${id}`).value;
@@ -614,12 +601,13 @@ class AdminInterface {
 		}
 	}
 
-	static checkAdminAuth() {
+	function checkAdminAuth() {
 		let role;
 		sessionStorage['adminRole'] === 'super' ? role = 'super' : role = 'admin';
 		return role;
 	}
-}
+
+	export { launchAdminInterface, checkAdminAuth }
 
 /* DELETE NOTES build delete record type by id post request, don't allow for delete of categories with associated businesses, make sure if a business is deleted ALL reviews, maps, images, and listing are also execute DeleteByID
 business controller action, listing controller action and category controller action will be different than deleting an image, review, map,
