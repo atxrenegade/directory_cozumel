@@ -1,4 +1,4 @@
-class GoogleMap {
+export default class GoogleMap {
 	constructor(lat, lng) {
 		this.lat = lat;
 		this.lng = lng;
