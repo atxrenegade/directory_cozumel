@@ -1,4 +1,4 @@
-class Business {
+export default class Business {
 	constructor(id, name, categories, overallRating, address, phoneNumber, website) {
 		this.id = id;
 		this.name = name;
@@ -7,11 +7,9 @@ class Business {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.website = website;
-		//how can I recreate this as class variable storing all instances?
-		Business.all(this);
 	}
 
-	renderBusListing(){
+	renderBusListing (){
 		let rating;
 		this.overallRating === 0 ? rating = 'not yet rated' : rating = `Overall Rating: ${this.overallRating}`
 		const listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3>
@@ -34,15 +32,4 @@ class Business {
 			const business = new Business(id, name, categories, overallRating, address, phoneNumber, website);
 			return business
 		}
-
-		static all(business){
-			if (business !== undefined) all.push(business)
-			return all;
-		}
-
-		static Reset() {
-			all = [];
-		}
 }
-
-let Business.all = [];
