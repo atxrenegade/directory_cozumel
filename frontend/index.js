@@ -13,7 +13,7 @@ window.onload = function(){
 
 	const user = userVar.userVar();
 	const admin = adminVar.adminVar();
-	const adminFetch = adminAPI.adminAPIRequests();
+	const adminFetch = adminAPI.adminAPIRequests(Entry);
 
 	const LAT = 20.42;
 	const LNG = -86.92;
@@ -356,7 +356,7 @@ window.onload = function(){
 			sessionStorage.setItem('adminRole', session['role']);
 			adminInterface.checkAdminAuth();
 			clearDirectoryForAdminView();
-			adminInterface.launchAdminInterface(user, admin, adminFetch);
+			adminInterface.launchAdminInterface(user, admin, adminFetch, Entry);
 		} else {
 			alert('You are not authorized to access administrative tasks!')
 			resetPage();
