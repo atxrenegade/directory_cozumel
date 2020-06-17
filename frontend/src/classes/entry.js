@@ -1,4 +1,4 @@
-class Entry {
+export default class Entry {
 	constructor(id, entryType, busId, busName, dateCreated, contributor, contributorEmail, dataObject, status, resolvedDate, adminId, notes) {
 		this.id = id;
 		this.entryType = entryType;
@@ -12,17 +12,15 @@ class Entry {
 		this.resolvedDate = resolvedDate;
 		this.adminId = adminId;
 		this.notes = notes;
-		Entry.all(this)
 	}
 
-	static all(entry){
-		if (entry !== undefined) all.push(entry)
-		return all;
-	}
-
-	static reset() {
-		all = [];
+	static all(entryData){
+		this.all = [];
+		if (entryData !== undefined) this.all.push(entryData)
+		return this.all;
 	}
 }
 
-Entry.all = []
+Entry.all = [];
+
+/* load value not affecting inaccessibility to Entry.all variable from external files */
