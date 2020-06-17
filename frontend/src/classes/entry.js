@@ -14,13 +14,13 @@ export default class Entry {
 		this.notes = notes;
 	}
 
-	static all(entryData){
-		this.all = [];
-		if (entryData !== undefined) this.all.push(entryData)
-		return this.all;
+	static all(entryData){ //debug
+		var all = [];
+		if (entryData !== undefined) all.push(entryData)
+		Entry.all = all.flat();
 	}
 }
 
-Entry.all = [];
+Entry.all = []; //debug;
 
 /* load value not affecting inaccessibility to Entry.all variable from external files */
