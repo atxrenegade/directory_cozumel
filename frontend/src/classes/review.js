@@ -1,4 +1,4 @@
-class Review {
+export default class Review {
 	constructor(rating, content, contributor, date){
 		this.rating = rating;
 		this.content = content;
