@@ -86,12 +86,8 @@ window.onload = function(){
 		};
 		try {
 			fetch(params['url'], configObj)
-			.then(resp => {
-				return resp.json();
-			})
-			.then(json => {
-				params['callback'](json)
-			})
+			.then(resp => resp.json())
+			.then(json => params.callback(json));
 		}
 		catch(err) {
 			alert('Error. See console for further details!');
@@ -141,7 +137,6 @@ window.onload = function(){
 	/* RESULTS FUNCTIONS */
 	/* Search Results functions */
 	function storeCategories(data) {
-
 		const categoryObjects = Array.from(data);
 		let catsCollection = categoryObjects.map((el) => {
 			return el['name']
@@ -254,7 +249,9 @@ window.onload = function(){
 		if (storage.getStorageItem('cats') == false) collectCategories();
 		let catMenu = document.createElement('div');
 		let html = '<select id="cat-select" multiple>';
-		const cats = storage.cats.map((el) => {
+		debugger;
+		let catsData = JSON.parse(storage.getStorageItem('cats'));
+		const cats = catsData.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
 		})
 		html += cats + '</select>';
