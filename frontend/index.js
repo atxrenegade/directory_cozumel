@@ -15,7 +15,7 @@ window.onload = function(){
 
 	const user = userVar.userVar();
 	const admin = adminVar.adminVar();
-	const adminFetch = adminAPI.adminAPIRequests(Entry);
+	const adminFetch = adminAPI.adminAPIRequests(storage, Entry);
 
 	const LAT = 20.42;
 	const LNG = -86.92;
