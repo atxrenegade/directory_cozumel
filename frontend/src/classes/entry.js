@@ -13,14 +13,4 @@ export default class Entry {
 		this.adminId = adminId;
 		this.notes = notes;
 	}
-
-	static all(entryData){ //debug
-		var all = [];
-		if (entryData !== undefined) all.push(entryData)
-		Entry.all = all.flat();
-	}
 }
-
-Entry.all = []; //debug;
-
-/* load value not affecting inaccessibility to Entry.all variable from external files */
