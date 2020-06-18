@@ -11,7 +11,6 @@ import Entry from './src/classes/entry.js';
 
 
 window.onload = function(){
-	//var storage = new AppStorage;
 	storage.initializeStorage();
 
 	const user = userVar.userVar();
@@ -28,7 +27,7 @@ window.onload = function(){
 		user.searchByName.style.display = 'none';
 		user.searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
-		if (storage.cats.length < 1) collectCategories();
+		if (storage.getStorageItem('cats') == false) collectCategories();
 		renderCategoriesMenu();
 	}
 
@@ -68,7 +67,7 @@ window.onload = function(){
 			const categorySelectEl = document.getElementById('cat-select')
 			user.newBusinessForm.style.display = 'block';
 			elFormContainer.style.display = 'block';
-			if (storage.cats.length < 1) collectCategories();
+			if (storage.getStorageItem('cats') == false) collectCategories();
 			if (categorySelectEl === null) renderNewBusCatSelect();
 		}
 	}
@@ -132,8 +131,9 @@ window.onload = function(){
 	}
 
 	function postForm(data) {
-		const callback = storage.updateResponse
-		const params = {method: 'POST', url: 'http://localhost:3000/entries', data, callback}
+		const callback = storage.updateOrCreateStorage.bind(null, 'response', data)
+		debugger;
+		const params = { method: 'POST', url: 'http://localhost:3000/entries', data, callback }
 		dynamPostReq(params);
 	}
 
@@ -141,11 +141,13 @@ window.onload = function(){
 	/* RESULTS FUNCTIONS */
 	/* Search Results functions */
 	function storeCategories(data) {
+
 		const categoryObjects = Array.from(data);
 		let catsCollection = categoryObjects.map((el) => {
 			return el['name']
 		})
-		storage.updateCats(catsCollection)
+		let catsData = JSON.stringify(catsCollection);
+		storage.updateOrCreateStorage('cats', catsData);
 	}
 
 	function returnResults(data) {
@@ -210,7 +212,8 @@ window.onload = function(){
 		if (user.searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
-			const cats = storage.cats.map((el) => {
+			let catsData = JSON.parse(storage.getStorageItem('cats'));
+			const cats = catsData.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
 			html += cats + '</select>';
@@ -248,7 +251,7 @@ window.onload = function(){
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect() {
 		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
-		if (storage.cats.length < 1) collectCategories();
+		if (storage.getStorageItem('cats') == false) collectCategories();
 		let catMenu = document.createElement('div');
 		let html = '<select id="cat-select" multiple>';
 		const cats = storage.cats.map((el) => {
@@ -283,7 +286,7 @@ window.onload = function(){
 		let submittedEl = document.createElement('p');
 		submittedEl.className = 'succMsg'
 		setTimeout(function(){
-			if (storage.response !== undefined){
+			if (storage.getStorageItem('response') !== false){
 				submittedEl.innerHTML = 'Thank you for your submission!'
 				submittedEl.innerHTML += '<br>' + 'New data will be added to the directory upon review!';
 			} else {
