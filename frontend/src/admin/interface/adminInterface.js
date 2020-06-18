@@ -1,6 +1,4 @@
-//let storage = new AppStorage;
-
- 	function launchAdminInterface(user, admin, adminFetch, Entry){
+	function launchAdminInterface(user, admin, adminFetch, localStorage, Entry){
 		resetAdmin();
 
 		/* Event Listeners */
@@ -150,14 +148,14 @@
 				formData = {id: 'js-super-admin-CRUD-instance-name', labelValue:`ASSOCIATED BUSINESS NAME of ${dbType.toUpperCase()} record ‹‹to UPDATE or DELETE`, el: elToAppendTo, action: formAction,  searchType: 'businesses', dbType, callback}
 			}
 			buildFindInstanceForm(formData);
-
-			if (storage.result.length > 0) {
-				let businessId = storage.result[0]['id'];
+			if (storage.getStorageItem('result') !== false) {
+				debugger;
+				let businessId = storage.getStorageItem('result')['id'];
 				setTimeout(adminFetch.getAssociatedRecords.bind(null, dbType, businessId), 1000)
 				const newElToAppendTo = document.getElementById('super-admin-create-update-delete')
 				let msg;
-				storage.result['msg'] === undefined ? msg = 'No Records Match Your Query' : msg = storage.result['msg']
-				setTimeout(displayResults.bind(null, newElToAppendTo, msg), 500)
+				storage.getStorageItem('result') === false ? storage.updateOrCreateStorage('result', 'No Records Match Your Query') : storage.getStorageItem('result')
+				setTimeout(displayResults.bind(null, newElToAppendTo, storage.getStorageItem('result')), 500)
 				setTimeout(appendIdFormForAssoc.bind(null, dbType), 1000)
 			}
 		}
@@ -340,12 +338,12 @@
 			const data = getEntryData('rejected', event)
 			adminFetch.postEntryUpdate(data);
 			setTimeout(function() {
-				if (storage.result['msg'] === 'Entry Successfully Updated'){
+				if (storage.getStorageItem('result') === 'Entry Successfully Updated') {
 					displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 					document.getElementById('admin-approve-button').style.display = 'none';
 					document.getElementById('admin-reject-button').style.display = 'none';
 				} else {
-					console.log(storage.result['msg'])
+					console.log(storage.getStorageItem(result))
 				}
 			}, 1000)
 		}
@@ -354,18 +352,18 @@
 			const data = getEntryData('approved', event)
 			adminFetch.postDatabaseObject(data)
 			setTimeout(function(){
-				if (storage.result['msg'] === 'Object Saved'){
+				if (storage.getStorageItem('result') === 'Object Saved'){
 					adminFetch.postEntryUpdate(data)
 					setTimeout(function(){
-						if (storage.result['msg'] === 'Entry Successfully Updated') {
+						if (storage.getStorageItem('result') === 'Entry Successfully Updated') {
 						displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 						document.getElementById('admin-approve-button').style.display = 'none';
 						document.getElementById('admin-reject-button').style.display = 'none';
 					} else {
-						console.log(storage.result['msg'])
+						console.log(storage.getStorageItem('result'))
 					}
 				}, 1500)} else {
-					console.log(storage.result['msg'])
+					console.log(storage.getStorageItem('result'))
 				}
 			}, 1500)
 		}
@@ -470,7 +468,11 @@
 			const newElToAppendTo = document.getElementById('super-admin-create-update-delete')
 			let msg;
 			setTimeout(function(){
-				storage.result.length = 0? msg = 'No Matches Found!' : msg = 'Matching Instances Found!'
+				if (storage.getStorageItem('result') == false) {
+					updateOrCreateStorage('result', 'No Matches Found!');
+				} else {
+					updateOrCreateStorage('result', 'Matching Instances Found!');
+				}
 				displayResults(newElToAppendTo, msg)
 				confirmRecordToDelete(dbType, id, newElToAppendTo)
 			}, 1000)
@@ -512,7 +514,7 @@
 					} else if (confirmID === id) {
 						confirm('Are you sure you want to delete this record?');
 						adminFetch.buildDeletePostReq(dbType, id)
-						const msg = storage.result[0]['msg']
+						const msg = storage.getStorageItem('result');
 						displayResults(elToAppendTo, msg)
 					} else {
 						alert("ID numbers do not match. Confirmation Failed. Try Again.")
@@ -557,7 +559,7 @@
 
 		function displayResults(elToAppendTo, msg) {
 			let resultsEl = document.getElementById( 'js-admin-CRUD-results')
-			if (resultsEl === null && storage.result.length > 0 ) {
+			if (resultsEl === null && storage.getStorageItem('result') !== false ) {
 				resultsEl = document.createElement('div')
 				resultsEl.id = 'js-admin-CRUD-results';
 				const obj = createDisplayObj();
@@ -575,7 +577,7 @@
 		}
 
 		function createDisplayObj() {
-			const results = storage.result.flat()
+			const results = storage.getStorageItem('result');
 			let resultsObj = results.map((el) => {
 				let objArray = ['<br>'];
 				for (let [key, value] of Object.entries(el)) {
