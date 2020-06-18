@@ -9,8 +9,8 @@ function updateOrCreateStorage(type, data){
 	localStorage.setItem(type, JSON.stringify(data));
 }
 
-function getStorage(type){
+function getStorageItem(type){
 	return JSON.parse(localStorage.getItem(type));
 }
 
-export { initializeStorage, updateOrCreateStorage, getStorage };
+export { initializeStorage, updateOrCreateStorage, getStorageItem };
