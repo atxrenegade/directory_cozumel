@@ -1,17 +1,15 @@
 	// ADMIN API requests
-	function adminAPIRequests(Entry, storage) {
+	function adminAPIRequests(storage, Entry) {
 		const responseCallback = storage.updateOrCreateStorage;
 
 		return {
 			buildEntries: function buildEntries(entries) {
-				var entryObjs = [];
+				let entryObjs = [];
 				entries.forEach((el) => {
 					let entry  = new Entry(el['id'], el['entry_type'], el['business_id'], el['business_name'], el['date'], el['contributor'], el['contributor_email'], el['data_object'], el['status'], el['resolved_date'], el['admin_id'], el['notes'])
 					entryObjs.push(entry);
 				})
-
-				Entry['all'].push(entryObjs); // debug
-				return Entry.all.flat(); //debug
+				storage.updateOrCreateStorage('entries', entryObjs)
 			},
 
 			buildAttsArray: function buildAttsArray(data){
