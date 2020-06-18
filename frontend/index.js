@@ -1,13 +1,14 @@
 import * as adminVar from './src/elementVariables/adminVar.js';
 import * as userVar from	'./src/elementVariables/userVar.js';
-import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
-import * as adminInterface from	'./src/admin/interface/adminInterface.js';
-import * as storage from './src/sessionStorage/localStorage.js';
 import Business from	'./src/classes/business.js';
 import Image from './src/classes/image.js';
 import Review from './src/classes/review.js';
 import GoogleMap from './src/classes/GoogleMap.js';
 import Entry from './src/classes/entry.js';
+import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
+import * as adminInterface from	'./src/admin/interface/adminInterface.js';
+import * as storage from './src/sessionStorage/localStorage.js';
+
 
 
 window.onload = function(){
@@ -131,9 +132,8 @@ window.onload = function(){
 	}
 
 	function postForm(data) {
-		const callback = storage.updateOrCreateStorage.bind(null, 'response', data)
-		debugger;
-		const params = { method: 'POST', url: 'http://localhost:3000/entries', data, callback }
+		const callback = storage.updateOrCreateStorage('response', data)
+		const params = { method: 'POST', url: 'http://localhost:3000/entries', data, callback}
 		dynamPostReq(params);
 	}
 
@@ -362,7 +362,7 @@ window.onload = function(){
 			sessionStorage.setItem('adminRole', session['role']);
 			adminInterface.checkAdminAuth();
 			clearDirectoryForAdminView();
-			adminInterface.launchAdminInterface(user, admin, adminFetch, Entry);
+			adminInterface.launchAdminInterface(user, admin, adminFetch, storage, Entry);
 		} else {
 			alert('You are not authorized to access administrative tasks!')
 			resetPage();
