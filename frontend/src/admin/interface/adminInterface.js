@@ -1,4 +1,4 @@
-	function launchAdminInterface(user, admin, adminFetch, localStorage, Entry){
+	function launchAdminInterface(user, admin, adminFetch, storage){
 		resetAdmin();
 
 		/* Event Listeners */
@@ -150,7 +150,7 @@
 			buildFindInstanceForm(formData);
 			if (storage.getStorageItem('result') !== false) {
 				debugger;
-				let businessId = storage.getStorageItem('result')['id'];
+				let businessId = storage.getStorageItem('result');
 				setTimeout(adminFetch.getAssociatedRecords.bind(null, dbType, businessId), 1000)
 				const newElToAppendTo = document.getElementById('super-admin-create-update-delete')
 				let msg;
@@ -204,11 +204,12 @@
 			document.getElementById('detailed-entry-table-1').innerHTML = '';
 			document.getElementById('detailed-entry-table-2').innerHTML = '';
 			document.getElementById('detailed-entry-table-3').innerHTML = '';
-			if (Entry.all.length > 0) {
+			if (storage.getStorageItem('entries') !== false ) {
 				const indexBody = document.getElementById('index-entry-table-body');
 				indexBody.innerHTML = '';
 				let i = 0;
-				Entry.all.forEach(function(el, indexType) {
+				let entries = storage.getStorageItem('entries');
+				entries.forEach(function(el, indexType) {
 					let row = indexBody.insertRow(i);
 					let cell1 = row.insertCell(0);
 					let cell2 = row.insertCell(1);
@@ -266,9 +267,10 @@
 		}
 
 		function generateDetailedEntryTable(event) {
-			const id = event.target.parentNode.parentElement.firstChild.textContent
-			const entry = Entry.all.find(entry => entry.id === parseInt(id, 10));
-			const entryTable1 = document.getElementById('detailed-entry-table-1')
+			const id = event.target.parentNode.parentElement.firstChild.textContent;
+			const entries = storage.getStorageItem('entries');
+			const entry = entries.find(obj => obj.id === parseInt(id, 10));
+			const entryTable1 = document.getElementById('detailed-entry-table-1');
 			let row1 = entryTable1.insertRow(0);
 			let cell1 = row1.insertCell(0);
 			let cell2 = row1.insertCell(1);
