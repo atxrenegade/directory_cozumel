@@ -2,14 +2,17 @@ import * as adminVar from './src/elementVariables/adminVar.js';
 import * as userVar from	'./src/elementVariables/userVar.js';
 import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
 import * as adminInterface from	'./src/admin/interface/adminInterface.js';
+import * as storage from './src/sessionStorage/localStorage.js';
 import Business from	'./src/classes/business.js';
 import Image from './src/classes/image.js';
 import Review from './src/classes/review.js';
 import GoogleMap from './src/classes/GoogleMap.js';
 import Entry from './src/classes/entry.js';
 
+
 window.onload = function(){
-	var storage = new AppStorage;
+	//var storage = new AppStorage;
+	storage.initializeStorage();
 
 	const user = userVar.userVar();
 	const admin = adminVar.adminVar();
