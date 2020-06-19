@@ -18,7 +18,7 @@
 			},
 
 			buildEntriesIndexPostReq: function buildEntriesIndexPostReq(searchType, authType) {
-				const data = { searchType, authType }
+				const data = { search_type: searchType, auth_type: authType }
 				let params = { method: 'POST' , url: 'http://localhost:3000/entries/index', data, callback: this.buildEntries }
 				this.dynamPostReq(params)
 			},
