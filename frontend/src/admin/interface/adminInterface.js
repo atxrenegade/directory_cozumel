@@ -149,7 +149,6 @@
 			}
 			buildFindInstanceForm(formData);
 			if (storage.getStorageItem('result') !== false) {
-				debugger;
 				let businessId = storage.getStorageItem('result');
 				setTimeout(adminFetch.getAssociatedRecords.bind(null, dbType, businessId), 1000)
 				const newElToAppendTo = document.getElementById('super-admin-create-update-delete')
@@ -337,36 +336,40 @@
 		}
 
 		function rejectEntry(event) {
-			const data = getEntryData('rejected', event)
+			const status = 'rejected';
+			const data = getEntryData(status, event);
 			adminFetch.postEntryUpdate(data);
-			setTimeout(function() {
-				if (storage.getStorageItem('result') === 'Entry Successfully Updated') {
-					displayResolved(data['admin_id'], data['resolved_date'], data['status']);
-					document.getElementById('admin-approve-button').style.display = 'none';
-					document.getElementById('admin-reject-button').style.display = 'none';
+			if (storage.getStorageItem('response').msg == "Entry Successfully Updated"){
+				updateEntryView(event, data);
+			}
+		}
+
+		function approveEntry(event) {
+			const status = 'approved';
+			const data = getEntryData(status, event);
+			adminFetch.postDatabaseObject(data);
+			setTimeout(function(){
+				if (storage.getStorageItem('result').msg === 'Object Saved'){
+					adminFetch.postEntryUpdate(data);
+					if (storage.getStorageItem('response').msg == "Entry Successfully Updated"){
+						updateEntryView(event, data);
+					}
 				} else {
-					console.log(storage.getStorageItem(result))
+					alert('Approval Failed see console for Details');
+					console.log(storage.getStorageItem('result').msg);
 				}
 			}, 1000)
 		}
 
-		function approveEntry(event) {
-			const data = getEntryData('approved', event)
-			adminFetch.postDatabaseObject(data)
-			setTimeout(function(){
-				if (storage.getStorageItem('result') === 'Object Saved'){
-					adminFetch.postEntryUpdate(data)
-					setTimeout(function(){
-						if (storage.getStorageItem('result') === 'Entry Successfully Updated') {
-						displayResolved(data['admin_id'], data['resolved_date'], data['status']);
-						document.getElementById('admin-approve-button').style.display = 'none';
-						document.getElementById('admin-reject-button').style.display = 'none';
-					} else {
-						console.log(storage.getStorageItem('result'))
-					}
-				}, 1500)} else {
-					console.log(storage.getStorageItem('result'))
+		function updateEntryView(event, data){
+			setTimeout(function() {
+				if (storage.getStorageItem('result').msg === 'Entry Successfully Updated') {
+					displayResolved(data['admin_id'], data['resolved_date'], data['status']);
+					document.getElementById('admin-approve-button').style.display = 'none';
+					document.getElementById('admin-reject-button').style.display = 'none';
 				}
+				debugger;
+			console.log(storage.getStorageItem('result').msg)
 			}, 1500)
 		}
 
