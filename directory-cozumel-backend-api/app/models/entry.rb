@@ -143,7 +143,7 @@ class Entry < ApplicationRecord
 		when 'new image'
 			return Image.create!(attributes)
 		else
-			return 'This object is not recognized'
+			return false
 		end
 	end
 
@@ -160,13 +160,12 @@ class Entry < ApplicationRecord
 	end
 
 	def convert_to_business(attributes)
-		binding.pry
 		if Business.find_by_name(attributes['business_name']).nil?
 			business = Business.create!(name: attributes['business_name'])
 			listing_attributes = {overall_rating: attributes['overall_rating'], address: attributes['address'], phone_number: attributes['phone_number'], website: attributes['website'], business_id: business.id}
 			Business.build_new_associated(business, attributes['categories'], listing_attributes)
 		else
-			return 'This business already exists in the database'
+			return { msg: 'This business already exists in the database!' }
 		end
 	end
 
