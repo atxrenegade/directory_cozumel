@@ -372,7 +372,6 @@
 					document.getElementById('admin-approve-button').style.display = 'none';
 					document.getElementById('admin-reject-button').style.display = 'none';
 				}
-				debugger;
 			console.log(storage.getStorageItem('result').msg)
 			}, 1500)
 		}
@@ -416,7 +415,8 @@
 			elToAppendTo.appendChild(formEl);
 			formEl.appendChild(formFieldSet);
 			formFieldSet.appendChild(formLegend);
-			storage.attributes.forEach(attribute => {
+			const attributes = storage.getStorageItem('attributes');
+			attributes.forEach(attribute => {
 				const attLabel = document.createElement('label');
 				const attInput = document.createElement('input');
 				const labelText = document.createTextNode(`${attribute}: `)
@@ -591,9 +591,14 @@
 
 		function createDisplayObj() {
 			const results = storage.getStorageItem('result');
-			debugger;
-			let resultsObj = results.map((el) => {
-				let objArray = ['<br>'];
+			if (Array.isArray(results)) {
+				var resultsArray = results;
+			} else {
+				var resultsArray = [];
+				resultsArray.push(results)
+			}
+			let resultsObj = resultsArray.map((el) => {
+				let objArray = [];
 				for (let [key, value] of Object.entries(el)) {
 					let objHTML = `<br>`
 					objHTML +=`${key}: ${value}`

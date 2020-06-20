@@ -1,6 +1,5 @@
 	// ADMIN API requests
 	function adminAPIRequests(storage, Entry) {
-		const responseCallback = storage.updateOrCreateStorage;
 
 		return {
 			buildEntries: function buildEntries(entries) {
@@ -13,8 +12,8 @@
 			},
 
 			buildAttsArray: function buildAttsArray(data){
-				let attributes = data.map(el => {return el.replace(/_/g, ' ') })
-				storage.updateOrCreateStorage(attributes);
+				let attributes = data.map(el => { return el.replace(/_/g, ' ')} )
+				storage.updateOrCreateStorage('attributes', attributes);
 			},
 
 			buildEntriesIndexPostReq: function buildEntriesIndexPostReq(searchType, authType) {
@@ -24,7 +23,7 @@
 			},
 
 			postDatabaseObject: function postDatabaseObject(data) {
-				const params = { method: 'POST' , url: 'http://localhost:3000/entries/build_object', data, callback: responseCallback('response', data) }
+				const params = { method: 'POST' , url: 'http://localhost:3000/entries/build_object', data, callback: null }
 				this.dynamPostReq(params);
 			},
 
@@ -34,7 +33,7 @@
 			},
 
 			buildCreatePostReq: function buildCreatePostReq(action, dbModel, attsObj, event){
-				const params = { method: 'POST', url: `http://localhost:3000/${dbModel.toLowerCase()}`, data: attsObj, callback: responseCallback('response', data) }
+				const params = { method: 'POST', url: `http://localhost:3000/${dbModel.toLowerCase()}`, data: attsObj , callback: null }
 				this.dynamPostReq(params)
 			},
 
@@ -44,7 +43,7 @@
 			},
 
 			buildDeletePostReq: function buildDeletePostReq(dbModel, recordID) {
-				const params = { method: 'DELETE', url: `http://localhost:3000/${dbModel.toLowerCase()}/${recordID}`, data: { id: recordID }, callback: responseCallback('response', data) };
+				const params = { method: 'DELETE', url: `http://localhost:3000/${dbModel.toLowerCase()}/${recordID}`, data: { id: recordID }, callback: null };
 				this.dynamPostReq(params);
 			},
 
@@ -55,22 +54,22 @@
 
 			searchIdByName: function searchIdByName(dbType, id, searchType) {
 				const name = document.getElementById(`${id}`).value
-				const params = { method: 'POST', url: `http://localhost:3000/${searchType.toLowerCase()}/index_by_name`, data: { name }, callback: responseCallback('response', data) }
+				const params = { method: 'POST', url: `http://localhost:3000/${searchType.toLowerCase()}/index_by_name`, data: { name }, callback: null }
 				this.dynamPostReq(params)
 			},
 
 			getAssociatedRecords: function getAssociatedRecords(dbType, business_id){
-				const params = { method: 'POST', url:`http://localhost:3000/${dbType}/index_associated`, data: { business_id, callback: responseCallback('response', data) } }
+				const params = { method: 'POST', url:`http://localhost:3000/${dbType}/index_associated`, data: { business_id }, callback: null }
 				this.dynamPostReq(params);
 			},
 
 			findRecordToDelete: function findRecordToDelete(recordId, dbType){
-				const params = { url: `http://localhost:3000/${dbType}/${recordId}`, callback: responseCallback('response', data) }
+				const params = { url: `http://localhost:3000/${dbType}/${recordId}`, callback: null }
 				this.dynamGetReq(params)
 			},
 
 			postEntryUpdate: function postEntryUpdate(data) {
-				const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data , callback: responseCallback('response', data) }
+				const params = { method: 'POST', url: 'http://localhost:3000/entries/update', data , callback: null }
 				this.dynamPostReq(params)
 			},
 
