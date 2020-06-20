@@ -14,10 +14,10 @@
 		admin.searchButton.addEventListener('click', function(){
 			event.preventDefault();
 			const searchVal = event.target.parentNode[8].value;
-			if (searchVal == true){
+			if (searchVal !== ''){
 				admin.tableContainer.style.display = 'block';
-				const propertyToSearch = getRadioVal(event);
-				const entries = adminFetch.searchEntries(event, propertyToSearch, searchVal);
+				const propertyToSearch = getRadioVal(event)[0];
+				const entries = adminFetch.searchEntries(event,  propertyToSearch, searchVal);
 				setTimeout(renderIndex.bind(null, 'SEARCH'), 800);
 			} else {
 				alert('Enter search value!');
@@ -359,7 +359,7 @@
 						updateEntryView(event, data);
 					}
 				} else {
-					alert('Approval Failed see console for Details');
+					alert('Approval failed see console for details');
 					console.log(storage.getStorageItem('result').msg);
 				}
 			}, 1000)
@@ -519,7 +519,7 @@
 					const id = document.getElementById('js-super-admin-CRUD-instance-id').value
 					const confirmID = document.getElementById('js-super-admin-crud-record-delete').value
 					if (dbType === 'entries') {
-						alert('Entries Are Permanent Records and Can NOT be deleted!')
+						alert('Entries are permanent records and cannot be deleted!')
 					} else if (confirmID === id) {
 						confirm('Are you sure you want to delete this record?');
 						adminFetch.buildDeletePostReq(dbType, id)
@@ -591,6 +591,7 @@
 
 		function createDisplayObj() {
 			const results = storage.getStorageItem('result');
+			debugger;
 			let resultsObj = results.map((el) => {
 				let objArray = ['<br>'];
 				for (let [key, value] of Object.entries(el)) {
