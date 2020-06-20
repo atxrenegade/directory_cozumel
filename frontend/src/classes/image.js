@@ -1,4 +1,4 @@
-class Image {
+export default class Image {
 	constructor(contributor, date, description, url) {
 		this.contributor = contributor;
 		this.date = date;

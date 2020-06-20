@@ -1,4 +1,4 @@
-class Entry {
+export default class Entry {
 	constructor(id, entryType, busId, busName, dateCreated, contributor, contributorEmail, dataObject, status, resolvedDate, adminId, notes) {
 		this.id = id;
 		this.entryType = entryType;
@@ -12,17 +12,5 @@ class Entry {
 		this.resolvedDate = resolvedDate;
 		this.adminId = adminId;
 		this.notes = notes;
-		Entry.all(this)
-	}
-
-	static all(entry){
-		if (entry !== undefined) all.push(entry)
-		return all;
-	}
-
-	static reset() {
-		all = [];
 	}
 }
-
-Entry.all = []

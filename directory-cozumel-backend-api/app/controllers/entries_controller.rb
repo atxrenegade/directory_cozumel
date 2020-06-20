@@ -13,8 +13,14 @@ class EntriesController < ApplicationController
 
 	def build_object_from_entry
 		entry = Entry.find_by_id(params['id'])
-		entry.convert_to_object()
-		entry.persisted? ? response = { msg: 'Object Saved'} : response = { msg: 'Object Failed to Save to Database!'}
+		build_object_result = entry.convert_to_object()
+		if build_object_result == false
+				response  = { msg: 'Object FAILED to save to database.'}
+		elsif build_object_result[:msg] != nil
+			response  = build_object_result
+		else
+			response = { msg: 'Object Saved'}
+		end
 		render json: response
 	end
 
@@ -29,7 +35,7 @@ class EntriesController < ApplicationController
 	end
 
 	def search
-		property_param = params[:property][0].gsub('-', '_')
+		property_param = params[:property].gsub('-', '_')
 		entries = Entry.search_entries(property_param, params['search_val'])
 		render json: entries
 	end

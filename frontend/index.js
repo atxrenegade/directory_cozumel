@@ -1,9 +1,25 @@
-window.onload = function() {
-	let storage = new AppStorage;
-	const user = userVariables();
+import * as adminVar from './src/elementVariables/adminVar.js';
+import * as userVar from	'./src/elementVariables/userVar.js';
+import Business from	'./src/classes/business.js';
+import Image from './src/classes/image.js';
+import Review from './src/classes/review.js';
+import GoogleMap from './src/classes/GoogleMap.js';
+import Entry from './src/classes/entry.js';
+import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
+import * as adminInterface from	'./src/admin/interface/adminInterface.js';
+import * as storage from './src/sessionStorage/localStorage.js';
 
-	LAT = 20.42;
-	LNG = -86.92;
+
+
+window.onload = function(){
+	storage.initializeStorage();
+
+	const user = userVar.userVar();
+	const admin = adminVar.adminVar();
+	const adminFetch = adminAPI.adminAPIRequests(storage, Entry);
+
+	const LAT = 20.42;
+	const LNG = -86.92;
 
 	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
@@ -12,7 +28,7 @@ window.onload = function() {
 		user.searchByName.style.display = 'none';
 		user.searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
-		if (storage.cats.length < 1) collectCategories();
+		if (storage.getStorageItem('cats') == false) collectCategories();
 		renderCategoriesMenu();
 	}
 
@@ -52,7 +68,7 @@ window.onload = function() {
 			const categorySelectEl = document.getElementById('cat-select')
 			user.newBusinessForm.style.display = 'block';
 			elFormContainer.style.display = 'block';
-			if (storage.cats.length < 1) collectCategories();
+			if (storage.getStorageItem('cats') == false) collectCategories();
 			if (categorySelectEl === null) renderNewBusCatSelect();
 		}
 	}
@@ -70,12 +86,8 @@ window.onload = function() {
 		};
 		try {
 			fetch(params['url'], configObj)
-			.then(resp => {
-				return resp.json();
-			})
-			.then(json => {
-				params['callback'](json)
-			})
+			.then(resp => resp.json())
+			.then(json => params.callback(json));
 		}
 		catch(err) {
 			alert('Error. See console for further details!');
@@ -116,8 +128,8 @@ window.onload = function() {
 	}
 
 	function postForm(data) {
-		const callback = function(json){ return storage.updateResponse(json) }
-		const params = {method: 'POST', url: 'http://localhost:3000/entries', data, callback}
+		const callback = storage.updateOrCreateStorage('response', data)
+		const params = { method: 'POST', url: 'http://localhost:3000/entries', data, callback}
 		dynamPostReq(params);
 	}
 
@@ -129,7 +141,8 @@ window.onload = function() {
 		let catsCollection = categoryObjects.map((el) => {
 			return el['name']
 		})
-		storage.updateCats(catsCollection)
+		let catsData = JSON.stringify(catsCollection);
+		storage.updateOrCreateStorage('cats', catsData);
 	}
 
 	function returnResults(data) {
@@ -148,7 +161,8 @@ window.onload = function() {
 	function buildListing(data) {
 		const busObj = Business.buildBusObj(data);
 		let map;
-		data['map'] ?  map = GoogleMap.mapBuilder(data['map']) : map = []
+		//data['map'] ?  map = GoogleMap.mapBuilder(data['map']) : map = []
+		map = []
 		const imagesCollection = Image.imagesBuilder(data['images']);
 		const reviewsCollection = Review.reviewsBuilder(data['reviews']);
 		const objArray= [busObj, map, imagesCollection, reviewsCollection]
@@ -188,18 +202,13 @@ window.onload = function() {
 		user.businessListings.style.display = 'block';
 	}
 
-	/* Instance builder functions */
-	function checkDuplicate(busName) {
-		const names = Business.all().map(el => el.name)
-		return names.includes(busName)
-	}
-
 	/* Render functions */
 	function renderCategoriesMenu() {
 		if (user.searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
-			const cats = storage.cats.map((el) => {
+			let catsData = JSON.parse(storage.getStorageItem('cats'));
+			const cats = catsData.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
 			html += cats + '</select>';
@@ -237,10 +246,12 @@ window.onload = function() {
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect() {
 		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
-		if (storage.cats.length < 1) collectCategories();
+		if (storage.getStorageItem('cats') == false) collectCategories();
 		let catMenu = document.createElement('div');
 		let html = '<select id="cat-select" multiple>';
-		const cats = storage.cats.map((el) => {
+		debugger;
+		let catsData = JSON.parse(storage.getStorageItem('cats'));
+		const cats = catsData.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
 		})
 		html += cats + '</select>';
@@ -272,7 +283,7 @@ window.onload = function() {
 		let submittedEl = document.createElement('p');
 		submittedEl.className = 'succMsg'
 		setTimeout(function(){
-			if (storage.response !== undefined){
+			if (storage.getStorageItem('response') !== false){
 				submittedEl.innerHTML = 'Thank you for your submission!'
 				submittedEl.innerHTML += '<br>' + 'New data will be added to the directory upon review!';
 			} else {
@@ -346,11 +357,11 @@ window.onload = function() {
 			sessionStorage.setItem('adminId', session['id']);
 			sessionStorage.setItem('adminName', session['username']);
 			sessionStorage.setItem('adminRole', session['role']);
-			AdminInterface.checkAdminAuth();
+			adminInterface.checkAdminAuth();
 			clearDirectoryForAdminView();
-			new AdminInterface();
+			adminInterface.launchAdminInterface(user, admin, adminFetch, storage, Entry);
 		} else {
-			alert('You are not authorized to access admininstrative tasks!')
+			alert('You are not authorized to access administrative tasks!')
 			resetPage();
 		}
 	}
