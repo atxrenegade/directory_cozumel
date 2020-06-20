@@ -13,11 +13,15 @@
 
 		admin.searchButton.addEventListener('click', function(){
 			event.preventDefault();
-			admin.tableContainer.style.display = 'block';
-			const propertyToSearch = getRadioVal(event);
 			const searchVal = event.target.parentNode[8].value;
-			const entries = adminFetch.searchEntries(event, propertyToSearch, searchVal);
-			setTimeout(renderIndex.bind(null, 'SEARCH'), 800);
+			if (searchVal == true){
+				admin.tableContainer.style.display = 'block';
+				const propertyToSearch = getRadioVal(event);
+				const entries = adminFetch.searchEntries(event, propertyToSearch, searchVal);
+				setTimeout(renderIndex.bind(null, 'SEARCH'), 800);
+			} else {
+				alert('Enter search value!');
+			}
 		})
 
 		/* Super Admin Menu Toggle Button */
@@ -555,9 +559,13 @@
 			buttonEl.id = atts['id']
 			buttonEl.value = atts['value']
 			buttonEl.addEventListener('click', function(event){
-				event.preventDefault();
-				atts['callback'](atts['dbType'], atts['formId'], atts['searchType']);
-				buttonEl.remove();
+				if (document.getElementById("js-super-admin-CRUD-instance-id").value !== "") {
+					event.preventDefault();
+					atts['callback'](atts['dbType'], atts['formId'], atts['searchType']);
+					buttonEl.remove();
+				} else {
+					alert('Enter search value!')
+				}
 			});
 			return buttonEl;
 		}
