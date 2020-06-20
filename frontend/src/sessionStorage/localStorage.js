@@ -1,7 +1,9 @@
 // localStorage Functions
 
+// response => user, result => admin
+
 function initializeStorage(){
-	var typeArray = ['cats', 'attributes', 'entries', 'response', 'reply'];
+	var typeArray = ['cats', 'attributes', 'entries', 'response', 'result'];
 	typeArray.forEach( el => updateOrCreateStorage(el, ''));
 }
 
