@@ -29,7 +29,7 @@
 			},
 
 			searchEntries: function searchEntries(event, propertyToSearch, searchVal) {
-				const params = {method: 'POST', url: 'http://localhost:3000/entries/search', data: { property: propertyToSearch, searchVal }, callback: this.buildEntries }
+				const params = {method: 'POST', url: 'http://localhost:3000/entries/search', data: { property: propertyToSearch, search_val: searchVal }, callback: this.buildEntries }
 				this.dynamPostReq(params);
 			},
 
@@ -88,7 +88,14 @@
 					.then(resp => {
 						return resp.json();
 					})
-					.then(json => params['callback'](json))
+
+					.then(json => {
+						if (params['callback']) { params['callback'](json)
+					} else {
+						storage.updateOrCreateStorage('result', json);
+					}
+						return console.log(json)
+					})
 				}
 				catch(err) {
 					alert('Error. See console for further details!');
