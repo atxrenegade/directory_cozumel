@@ -9,15 +9,28 @@ export default class Business {
 		this.website = website;
 	}
 
-	renderBusListing (){
-		let rating;
-		this.overallRating === 0 ? rating = 'not yet rated' : rating = `Overall Rating: ${this.overallRating}`
-		const listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3>
-		Categories:	${this.categories} <br>
-		${rating}<br>
-		<br>${this.address}
-		<br>${this.phoneNumber}
-		<br><a href='${this.website}'>${this.website}</a><br><br>`
+	renderBusListing(LANGUAGE) {
+		if (LANGUAGE == 'en'){
+			let rating;
+			this.overallRating === 0 ? rating = 'Not Yet Rated' : rating = `Overall Rating: ${this.overallRating}`
+			const listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3>
+			Categories:	${this.categories} <br>
+			${rating}<br>
+			<br>${this.address}
+			<br>${this.phoneNumber}
+			<br><a href='${this.website}'>${this.website}</a><br><br>`
+			return listingHTML
+		} else {
+			let rating;
+			this.overallRating === 0 ? rating = 'Aún Ao Calificado' : rating = `Calificación general: ${this.overallRating}`
+			const listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3>
+			Categorias:	${this.categories} <br>
+			${rating}<br>
+			<br>${this.address}
+			<br>${this.phoneNumber}
+			<br><a href='${this.website}'>${this.website}</a><br><br>`
+			return listingHTML
+		}
 		return listingHTML;
 	}
 
