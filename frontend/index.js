@@ -87,6 +87,7 @@ window.onload = function(){
 	/* API REQUEST FUNCTIONS */
 	/* Search Bar API request functions */
 	function dynamPostReq(params) {
+		debugger;
 		const configObj = {
 			method: params['method'],
 			headers: {
@@ -98,7 +99,14 @@ window.onload = function(){
 		try {
 			fetch(params['url'], configObj)
 			.then(resp => resp.json())
-			.then(json => params.callback(json));
+			.then(json => {
+				if (params['callback']) {
+					params['callback'](json);
+			} else {
+				storage.updateOrCreateStorage('response', json);
+			}
+				return console.log(json)
+			})
 		}
 		catch(err) {
 			alert('Error. See console for further details!');
@@ -134,13 +142,13 @@ window.onload = function(){
 	}
 
 	function postBusObjToRetrieve(name) {
-		const params = {method: 'POST', url: 'http://localhost:3000/business', data: {'name': name}, callback: displayBusObj}
+		const params = { method: 'POST', url: 'http://localhost:3000/business', data: {'name': name}, callback: displayBusObj }
 		dynamPostReq(params);
 	}
 
 	function postForm(data) {
 		const callback = storage.updateOrCreateStorage('response', data)
-		const params = { method: 'POST', url: 'http://localhost:3000/entries', data, callback}
+		const params = { method: 'POST', url: 'http://localhost:3000/entries', data, callback: null}
 		dynamPostReq(params);
 	}
 
