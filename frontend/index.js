@@ -21,6 +21,17 @@ window.onload = function(){
 	const LAT = 20.42;
 	const LNG = -86.92;
 
+	var LANGUAGE = '';
+
+	/* LANGUAGE SUPPORT  */
+	(function setLanguage(event){
+		if (document.title == "Directory Cozumel") {
+			LANGUAGE = 'eng';
+		} else {
+			LANGUAGE = 'esp';
+		}
+	}());
+
 	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
@@ -147,7 +158,11 @@ window.onload = function(){
 
 	function returnResults(data) {
 		if (data['msg'] !== undefined) {
-			appendErrorMsg(data['msg']);
+			if (LANGUAGE == 'esp' && data['msg-esp'] !== undefined ){
+				appendErrorMsg(data['msg-esp']);
+			} else {
+				appendErrorMsg(data['msg']);
+			}
 		} else {
 			data = Array.from(data);
 			renderIndex(data);
@@ -173,7 +188,7 @@ window.onload = function(){
 		// refactor this function
 		if (objArray != undefined) {
 			user.businessListings.innerHTML = '';
-			const busHTML = objArray[0].renderBusListing();
+			const busHTML = objArray[0].renderBusListing(LANGUAGE);
 			renderComponent(busHTML, user.businessListings);
 
 			if (objArray[1].length > 0){
@@ -249,7 +264,6 @@ window.onload = function(){
 		if (storage.getStorageItem('cats') == false) collectCategories();
 		let catMenu = document.createElement('div');
 		let html = '<select id="cat-select" multiple>';
-		debugger;
 		let catsData = JSON.parse(storage.getStorageItem('cats'));
 		const cats = catsData.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
@@ -283,11 +297,20 @@ window.onload = function(){
 		let submittedEl = document.createElement('p');
 		submittedEl.className = 'succMsg'
 		setTimeout(function(){
-			if (storage.getStorageItem('response') !== false){
-				submittedEl.innerHTML = 'Thank you for your submission!'
-				submittedEl.innerHTML += '<br>' + 'New data will be added to the directory upon review!';
+			if (LANGUAGE == 'eng'){
+				if (storage.getStorageItem('response') !== false){
+					submittedEl.innerHTML = 'Thank you for your submission!'
+					submittedEl.innerHTML += '<br>' + 'It will be added to the directory as soon as it is confirmed!';
+				} else {
+					submittedEl.innerHTML = 'Submission Unsuccessful!';
+				}
 			} else {
-				submittedEl.innerHTML = 'Submission Unsuccessful!';
+				if (storage.getStorageItem('response') !== false){
+				submittedEl.innerHTML = '¡Gracias por tu envío!'
+				submittedEl.innerHTML += '<br>' + '¡Se agregará al directorio tan pronto como se revise!';
+				} else {
+					submittedEl.innerHTML = '¡Envío fallido!';
+				}
 			}
 			event.target.reset();
 			if (event.originalTarget[0].id === 'new-bus'){
@@ -378,7 +401,9 @@ window.onload = function(){
 		user.businessListings.style.display = 'none';
 		const elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
-		document.getElementById('js-admin-password').value = ''
+		if (document.getElementById('js-admin-password') !== null){
+			document.getElementById('js-admin-password').value = ''
+		}
 		/* repopulate categories for drop down menu */
 		collectCategories();
 	}
@@ -429,11 +454,13 @@ window.onload = function(){
 	})
 
 	/* Initiate Admin Panel Listeners */
-	user.hiddenAdminButton.addEventListener('click', function() {
-		const el = document.getElementById('js-admin-login-container')
-		toggleForm('click', el);
-	})
-	user.adminPanelLogin.addEventListener('click', logInAdmin);
+	if (user.hiddenAdminButton !== null) {
+		user.hiddenAdminButton.addEventListener('click', function() {
+			const el = document.getElementById('js-admin-login-container')
+			toggleForm('click', el);
+		})
+		user.adminPanelLogin.addEventListener('click', logInAdmin);
+	}
 
 	/* SET PAGE LOAD VALUES */
 	resetPage();
