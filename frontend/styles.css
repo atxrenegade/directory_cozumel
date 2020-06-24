@@ -196,6 +196,29 @@
 		box-shadow: none;
 	}
 
+	.lang-support {
+		opacity: 0.9;
+  	width: 28px;
+		margin-left: 2px;
+		display: inline;
+		border-style: solid;
+		border-color: white;
+		border-width: 2px;
+		border-radius: 12px;
+		float: right;
+	}
+
+	#lang-support-col {
+		max-width: 60%;
+		margin: 0 auto;
+	}
+
+	#lang-support-block {
+		display: block;
+		margin-bottom: 50px;
+
+	}
+
 	#js-map {
     height: 400px;
 		width: 100%;
@@ -234,6 +257,8 @@
 		background-color: #00ccff1c;
 		border-radius: 3%;
 	}
+
+
 
 
 	/* ADMIN TABLE ELEMENT STYLES */
