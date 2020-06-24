@@ -62,3 +62,25 @@ MONDAY
  One form for edit  - first input field for item to edit, (new form), second form attributes filled with current values
  Delete form shows input field for instance to delete
  Second form show all attributes of instance and a confirm delete button
+
+
+LANGUAGE SUPPORT - add database column to category model of spanish name equivalent
+
+add spanish/english buttons to switch back and forth
+create logo in spanish logo
+fix search functions in spanish
+CoronaVirus Update in english/spanish
+Save and Error messages in spanish
+
+
+Coronovirus functionality
+debug admin buttons
+JWT
+Photostorage
+styling
+mobile responsive
+landing page
+styling
+deploy - who should I deply this app with? - research deployment scaling operation costs
+
+email address confirmation for new reviews
