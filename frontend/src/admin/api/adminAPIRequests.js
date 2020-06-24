@@ -38,7 +38,7 @@
 			},
 
 			buildUpdatePostReq: function buildUpdatePostReq(action, dbModel, attsObj, event){
-				const params = { method: 'PUT', url: `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`, data: { id: instance, attributes: attsObj }, repsonseCallback };
+				const params = { method: 'PUT', url: `http://localhost:3000/${dbModel.toLowerCase()}/${instance}`, data: { id: instance, attributes: attsObj }, responseCallback };
 				this.dynamPostReq(params);
 			},
 
