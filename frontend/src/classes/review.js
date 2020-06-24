@@ -6,8 +6,12 @@ export default class Review {
 		this.date = date;
 	}
 
-	renderReview(){
-		return `<p>${this.content}<br>Rating: ${this.rating}<br>${this.contributor}<br>${this.date}</p>`
+	renderReview(LANGUAGE){
+		if (LANGUAGE == 'eng'){
+			return `<p>${this.content}<br>Rating: ${this.rating}<br>${this.contributor}<br>${this.date}</p>`
+		} else {
+			return `<p>${this.content}<br>Clasificación:  ${this.rating}<br>${this.contributor}<br>${this.date}</p>`
+		}
 	}
 
 	static reviewsBuilder(reviewsData){
