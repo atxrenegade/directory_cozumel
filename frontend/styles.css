@@ -202,12 +202,13 @@
 		color: grey;
 		font-size: small;
 		margin-left: 20%;
+		padding: 0px;
 	}
 
 	.copyright-es {
 		text-decoration: none;
 		text-align: right;
-		color: grey;
+		color: grey; 
 		font-size: small;
 		margin-right: 20%;
 	}
