@@ -32,7 +32,7 @@ class BusinessesController < ApplicationController
 		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
-			render json: {msg: 'There are no businesses listed in that category yet!'}
+			render json: {msg: 'There are no businesses listed in that category yet!', 'msg-esp': '¡No hay negocios listados en esa categoría todavía!'}
 		end
 	end
 
@@ -41,7 +41,7 @@ class BusinessesController < ApplicationController
 		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
-			render json: {msg: 'No business in our directory match that name!'}
+			render json: {msg: 'No business in our directory match that name!', 'msg-esp': '¡Ningún negocio en nuestro directorio coincide con ese nombre!'}
 		end
 	end
 
