@@ -196,6 +196,22 @@
 		box-shadow: none;
 	}
 
+	.copyright {
+		text-decoration: none;
+		text-align: left;
+		color: grey;
+		font-size: small;
+		margin-left: 20%;
+	}
+
+	.copyright-es {
+		text-decoration: none;
+		text-align: right;
+		color: grey;
+		font-size: small;
+		margin-right: 20%;
+	}
+
 	.lang-support {
 		opacity: 0.9;
   	width: 28px;
