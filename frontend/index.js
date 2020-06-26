@@ -205,7 +205,7 @@ window.onload = function(){
 			}
 			if (objArray[3].length > 0){
 				let reviewsHTML = '';
-				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview());
+				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview(LANGUAGE));
 				renderComponent(reviewsHTML, user.businessListings);
 			}
 			if (objArray[2].length > 0) {
