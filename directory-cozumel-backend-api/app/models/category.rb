@@ -6,12 +6,12 @@ class Category < ApplicationRecord
 		self.businesses.pluck(:name)
 	end
 
-	def find_by_name_or_nombre(cat_name)
-		if Category.find_by(name: cat_name).exists?
+	def self.find_by_name_or_nombre(cat_name)
+		if Category.exists?(name: cat_name)
 			cat = Category.find_by(name: cat_name)
 		else
 			cat = Category.find_by(nombre: cat_name)
 		end
-		return cat	
+		return cat
 	end
 end
