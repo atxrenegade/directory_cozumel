@@ -28,7 +28,7 @@ class BusinessesController < ApplicationController
 	end
 
 	def index_by_category
-		businesses = BusinessCategory.filter_by_category(params[:category_name])
+		businesses = BusinessCategory.filter_by_category(params[:lang], params[:category_name])
 		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
