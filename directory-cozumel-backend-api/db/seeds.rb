@@ -185,7 +185,7 @@ categories_list = [
 	['Travel & Tourism - Travel Agents', 'Categoria 177'],
 	['Utility Companies', 'Categoria 178'],
 	['Veterinary & Animal Surgeons', 'Categoria 179'],
-	['Wholesale' 'Categoria 180']
+	['Wholesale', 'Categoria 180']
 ]
 
 categories_list.each do |cat|
