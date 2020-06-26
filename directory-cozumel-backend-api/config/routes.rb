@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 	post '/listings/index_associated', to: 'listings#index_associated'
 	resources :listings, only: [:edit, :create, :update, :destroy, :show]
 
+	get '/operations/attributes', to: 'operations#attributes'
+	post '/operations/index_associated', to: 'operations#index_associated'
+	resources :operations, only: [:edit, :create, :update, :destroy, :show]
+
 	get '/maps/attributes', to: 'maps#attributes'
 	post '/maps/index_associated', to: 'maps#index_associated'
 	resources :maps, only: [:edit, :create, :update, :destroy, :show]
