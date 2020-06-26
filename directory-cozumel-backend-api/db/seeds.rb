@@ -15,7 +15,7 @@ categories_list = [
 	['Accommodations - Resorts', 'Categoria 8'],
 	['Accommodations - Time Shares & Condominiums', 'Categoria 9'],
 	['Animal Hospitals', 'Categoria 10'],
-	['Artists', 'Categoria 10'],
+	['Artists', 'Categoria 11'],
 	['Automotive - Auto Dealers – New', 'Categoria 12'],
 	['Automotive - Auto Dealers – Used', 'Categoria 13'],
 	['Automotive - Auto Parts & Accessories', 'Categoria 14'],
