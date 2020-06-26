@@ -457,6 +457,184 @@ listings_list = [
 	}
 ]
 
+operation_list = [
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 1
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 3
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 5
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 7
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 9
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 11
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 13
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 15
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 17
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 19
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 21
+	},
+
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 23
+	},
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 25
+	},
+
+
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 27
+	},
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 29
+	},
+	{
+		'current_status': true,
+		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
+		'weekend_hours': ['closed', 'closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': 25,
+		'reservation_required': true,
+		'notes': 'Open for take out on weekends',
+		'business_id': 30
+	}
+]
+
 images_list = [
 	{
 		description: 'Hotel', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
@@ -706,6 +884,7 @@ businesses_list_2.each do |name, category_name|
 end
 
 Listing.create(listings_list)
+Operation.create(operation_list)
 Review.create(reviews_list)
 Map.create(maps_list)
 Image.create(images_list)
