@@ -18,6 +18,7 @@ class BusinessesController < ApplicationController
 			render json: business.to_json(:include => {
 				:listing => {:except => [:id, :created_at, :updated_at, :business_id]},
 				:categories => {:only => [:name, :nombre]},
+				:operation => {:except => [:id, :created_at, :business_id]},
 				:map => {:only => [:lat, :lng]},
 				:images => {:except => [:id, :contributor_email, :business_id, :created_at, :updated_at]},
 				:reviews => {:except => [:id, :contributor_email, :business_id, :updated_at]},
