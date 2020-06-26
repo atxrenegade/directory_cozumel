@@ -5,5 +5,4 @@ class Operation < ApplicationRecord
 	def business_name
 		self.business.name
 	end
-	
 end
