@@ -15,11 +15,11 @@ class CategoriesController < ApplicationController
 
 	def index
 		categories = Category.all
-		render json: categories, only: [:id, :name]
+		render json: categories, only: [:id, :name, :nombre]
 	end
 
 	def create
-		category = Category.create!(name: params['name'].downcase)
+		category = Category.create!(name: params['name'].downcase, nombre: params['nombre'].downcase)
 		render json: category
 	end
 

@@ -40,7 +40,7 @@ window.onload = function(){
 		user.searchByCategory.style.display = 'block';
 		/* prevent redundant calls to api */
 		if (storage.getStorageItem('cats') == false) collectCategories();
-		renderCategoriesMenu();
+		renderCategoriesMenu(LANGUAGE);
 	}
 
 	function toggleNameMenu() {
@@ -62,7 +62,7 @@ window.onload = function(){
 		user.listingMenu.style.display = 'none';
 		user.listingsContainer.style.display = 'block';
 		const category = document.getElementById('js-category-select').value
-		const results = postSearchByCategory(category);
+		const results = postSearchByCategory(LANGUAGE, category);
 	}
 
 	/* TOGGLE FORM FUNCTIONS */
@@ -87,7 +87,6 @@ window.onload = function(){
 	/* API REQUEST FUNCTIONS */
 	/* Search Bar API request functions */
 	function dynamPostReq(params) {
-		debugger;
 		const configObj = {
 			method: params['method'],
 			headers: {
@@ -136,8 +135,8 @@ window.onload = function(){
 		dynamPostReq(params);
 	}
 
-	function postSearchByCategory(category) {
-		const params = {method: 'POST', url: 'http://localhost:3000/index_by_category', data: {'category_name': category}, callback: returnResults}
+	function postSearchByCategory(LANGUAGE, category) {
+		const params = {method: 'POST', url: 'http://localhost:3000/index_by_category', data: {lang: LANGUAGE, 'category_name': category}, callback: returnResults}
 		dynamPostReq(params);
 	}
 
@@ -157,9 +156,16 @@ window.onload = function(){
 	/* Search Results functions */
 	function storeCategories(data) {
 		const categoryObjects = Array.from(data);
-		let catsCollection = categoryObjects.map((el) => {
-			return el['name']
-		})
+		var catsCollection;
+		if (LANGUAGE == 'eng') {
+			catsCollection = categoryObjects.map((el) => {
+				return el['name'];
+			})
+		} else {
+			catsCollection = categoryObjects.map((el) => {
+				return el['nombre'];
+			})
+		}
 		let catsData = JSON.stringify(catsCollection);
 		storage.updateOrCreateStorage('cats', catsData);
 	}
@@ -205,7 +211,7 @@ window.onload = function(){
 			}
 			if (objArray[3].length > 0){
 				let reviewsHTML = '';
-				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview());
+				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview(LANGUAGE));
 				renderComponent(reviewsHTML, user.businessListings);
 			}
 			if (objArray[2].length > 0) {
@@ -226,7 +232,7 @@ window.onload = function(){
 	}
 
 	/* Render functions */
-	function renderCategoriesMenu() {
+	function renderCategoriesMenu(LANGUAGE) {
 		if (user.searchCategoryMenu.children.length === 0 ){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';

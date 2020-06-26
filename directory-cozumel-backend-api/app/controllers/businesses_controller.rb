@@ -17,7 +17,7 @@ class BusinessesController < ApplicationController
 		if business.present?
 			render json: business.to_json(:include => {
 				:listing => {:except => [:id, :created_at, :updated_at, :business_id]},
-				:categories => {:only => [:name]},
+				:categories => {:only => [:name, :nombre]},
 				:map => {:only => [:lat, :lng]},
 				:images => {:except => [:id, :contributor_email, :business_id, :created_at, :updated_at]},
 				:reviews => {:except => [:id, :contributor_email, :business_id, :updated_at]},
@@ -28,7 +28,7 @@ class BusinessesController < ApplicationController
 	end
 
 	def index_by_category
-		businesses = BusinessCategory.filter_by_category(params[:category_name])
+		businesses = BusinessCategory.filter_by_category(params[:lang], params[:category_name])
 		if businesses.present?
 			render json: businesses, except: [:created_at, :updated_at]
 		else
