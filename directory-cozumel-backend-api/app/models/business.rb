@@ -29,11 +29,13 @@ class Business < ApplicationRecord
 	end
 
 	def add_category_to_business(cat_name)
-		self.categories << (Category.find_by(name: cat_name))
+		cat = Category.find_by_name_or_nombre(cat_name)
+		self.categories << cat
 	end
 
 	def remove_category_from_business(cat_name)
-		self.categories.delete(Category.find_by(name: cat_name))
+		cat = Category.find_by_name_or_nombre(cat_name)
+		self.categories.delete(cat)
 	end
 
 	def self.build_new_business(name, cat_name)
