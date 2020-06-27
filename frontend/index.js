@@ -5,6 +5,7 @@ import Image from './src/classes/image.js';
 import Review from './src/classes/review.js';
 import GoogleMap from './src/classes/GoogleMap.js';
 import Entry from './src/classes/entry.js';
+import Operation from './src/classes/operation.js';
 import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
 import * as adminInterface from	'./src/admin/interface/adminInterface.js';
 import * as storage from './src/sessionStorage/localStorage.js';
@@ -194,7 +195,8 @@ window.onload = function(){
 		map = []
 		const imagesCollection = Image.imagesBuilder(data['images']);
 		const reviewsCollection = Review.reviewsBuilder(data['reviews']);
-		const objArray= [busObj, map, imagesCollection, reviewsCollection]
+		const operationObj = Operation.operationBuilder(data['operation'])
+		const objArray= [busObj, map, imagesCollection, reviewsCollection, operationObj]
 		return objArray;
 	}
 
@@ -204,6 +206,10 @@ window.onload = function(){
 			user.businessListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing(LANGUAGE);
 			renderComponent(busHTML, user.businessListings);
+			if (objArray[4] != null) {
+				const operationsHTML = objArray[4].renderOperations(LANGUAGE);
+				renderComponent(operationsHTML, user.businessListings);
+			}
 
 			if (objArray[1].length > 0){
 				mapHTML = objArray[1].renderMap();
