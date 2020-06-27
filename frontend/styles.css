@@ -77,6 +77,10 @@
 		color: #00abff; /* alternate color #00ccff; */
 	}
 
+	h5 {
+		font-size: 1.1em;
+	}
+
 	p, label, div, button, input {
 		font-family: 'Open Sans', sans-serif;
 		color: grey;
@@ -208,7 +212,7 @@
 	.copyright-es {
 		text-decoration: none;
 		text-align: right;
-		color: grey; 
+		color: grey;
 		font-size: small;
 		margin-right: 20%;
 	}
