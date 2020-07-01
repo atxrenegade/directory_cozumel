@@ -13,12 +13,12 @@ export default class Business {
 		if (LANGUAGE == 'eng'){
 			let rating;
 			this.overallRating === 0 ? rating = 'Not Yet Rated' : rating = `<b>Overall Rating:</b> ${this.overallRating}`
-			const listingHTML = `<h3 id='listing-bus-name'> ${this.name}</h3>
+			const listingHTML = `<div class='listing-div'><h3 id='listing-bus-name'> ${this.name}</h3>
 			<b>${this.categories[0]}</b><br>
 			${rating}<br>
 			<br>${this.address}
 			<br>${this.phoneNumber}
-			<br><a href='${this.website}'>${this.website}</a><br><br>`
+			<br><a href='${this.website}'>${this.website}</a><br><br></div>`
 			return listingHTML
 		} else {
 			let rating;
