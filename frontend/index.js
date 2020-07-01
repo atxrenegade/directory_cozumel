@@ -33,6 +33,18 @@ window.onload = function(){
 		}
 	}());
 
+	/* Initiate Admin Panel Listeners */
+	if (user.hiddenAdminButton !== null) {
+		user.hiddenAdminButton.addEventListener('click', function() {
+			const el = document.getElementById('js-admin-login-container')
+			toggleForm('click', el);
+		})
+		user.adminPanelLogin.addEventListener('click', logInAdmin);
+	}
+
+	/* SET PAGE LOAD VALUES */
+	resetPage();
+
 	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
 	function toggleCategoryMenu() {
@@ -83,6 +95,12 @@ window.onload = function(){
 			if (storage.getStorageItem('cats') == false) collectCategories();
 			if (categorySelectEl === null) renderNewBusCatSelect();
 		}
+	}
+
+	function toggleOperationForm() {
+		debugger;
+		const operationForm = document.getElementById('js-operation-form');
+		operationForm.style.display == 'none' ? operationForm.style.display = 'block' : operationForm.style.display = 'none';
 	}
 
 	/* API REQUEST FUNCTIONS */
@@ -462,6 +480,9 @@ window.onload = function(){
 	/* New Business Form Listener */
 	user.newBusinessButton.addEventListener('click', toggleNewBusinessForm);
 
+	/* Operations Form Event Listener */
+	user.operationFormCheckBox.addEventListener('click', toggleOperationForm)
+
 	/* Form Event Listeners */
 	document.addEventListener( 'submit', function(){
 		submitForm(event);
@@ -472,16 +493,4 @@ window.onload = function(){
 		  e.parentNode.removeChild(e);
 		})
 	})
-
-	/* Initiate Admin Panel Listeners */
-	if (user.hiddenAdminButton !== null) {
-		user.hiddenAdminButton.addEventListener('click', function() {
-			const el = document.getElementById('js-admin-login-container')
-			toggleForm('click', el);
-		})
-		user.adminPanelLogin.addEventListener('click', logInAdmin);
-	}
-
-	/* SET PAGE LOAD VALUES */
-	resetPage();
 }
