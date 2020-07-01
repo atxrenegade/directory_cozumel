@@ -3,8 +3,10 @@
   <head>
     <meta charset='utf-8'>
     <title>Directory Cozumel</title>
+
     <link rel='stylesheet' href='styles.css'>
 		<link href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Open+Sans|Satisfy&display=swap" rel="stylesheet">
+
   </head>
   <body>
     <header>
@@ -158,9 +160,45 @@
 								<label> Phone Number:</label>
 								<input type='text' id='bus-phone-number'/><br>
 								<label> Website:</label>
-								<input type='text' id='bus-website'/><br>
-								<label id='js-new-bus-select-label'>Categories:</label><br>
-								<input type='submit' value='Submit'>
+								<input type='text' id='bus-website'/><br><br>
+								<label id='js-new-bus-select-label'>Select a Business Category:</label><br>
+								<label> Is this a Sustainable Business?&#10067;</label><span class="glyphicon glyphicon-question-sign" id="sustainable-bus-question"><br></span>Yes<input type='checkbox' id='sustainable-biz-yes'/>&#09;No<input type='checkbox' id='sustainable-biz-no'/><br><br>
+								<label>Add Hours of Operation and CoVid Info?&#10067;</label>
+								<input type="checkbox" id="js-add-operation" autocomplete="off">
+								<br>
+								<div id='js-operation-form' style='display:none'>
+									<form>
+										<h6>Operation Details and CoVid Updates</h6>
+										<label> Are you currently open for business?</label>
+										Yes<input type='checkbox' id='current-status-yes'/>&#09;No<input type='checkbox' id='current-status-no'><br><br>
+										<label>What date do you plan to reopen?</label>
+										<input type='text' id='opening-date' style='display:none';><br><br>
+										<label> What % occupancy rate you are currently operating at? </label>
+										<input type='text' id='occupancy-rate'><br><br>
+										<label>Do customers need a reservation?</label><br>
+										Yes<input type='checkbox' id='reservation-required-yes' value=/>&#09;No<input type='checkbox' id='reservation-required-no'><br><br>
+										<label>Is there anything you would like to share with your customers? (ie. pick up & delivery service? specials? etc. 256 characters max.) </label><br>
+										<input type='text' id='operations-notes'><br>
+
+									<h6> CURRENT Hours of Operation</h6>
+
+									<input type='text' id='hours-0-1'/><label>&#09;Monday<label><br>
+
+									<input type='text' id='hours-1-1'><label>&#09;Tuesday<label><br>
+
+									<input type='text' id='hours-2-1'><label>&#09;Wednesday<label><br>
+
+									<input type='text' id='hours-3-1'><label>&#09;Thursday<label><br>
+
+									<input type='text' id='hours-4-1'/><label>&#09;Friday<label><br>
+
+									<input type='text' id='hours-5-1'/><label>&#09;Saturday<label><br>
+
+									<input type='text' id='hours-6-1'/><label>&#09;Sunday<label><br>
+									<br><br>
+									</form>
+								</div>
+								<input id='new-bus-submit' type='submit' value='Submit'><br><br>
 							</fieldset>
 						</form>
 					</div>
@@ -168,7 +206,7 @@
 				<br>
 			</div>
 
-		<p><a href='http://www.harleighabel.com' class='copyright'>©2020 atxrenegade </a>
+		<p><a href='http://www.harleighabel.com' class='copyright' id='user-page-copyright'>©2020 atxrenegade </a>
 		<button id='js-admin-hidden-button'>Admin</button></p>
 
 		</div>
