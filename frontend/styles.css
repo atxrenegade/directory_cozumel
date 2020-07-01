@@ -15,18 +15,7 @@
 		border-radius: 15px;
 		max-width: 60%;
 		margin: 1% auto;
-	}
-
-	.tile {
-		opacity: 0.8;
-	}
-
-	.inner-tile {
 		opacity: 0.9;
-	}
-
-	.innermost-tile {
-		opacity: 1.0;
 	}
 
 	.tile-tile {
@@ -67,22 +56,52 @@
 		font-family: 'DM Serif Display', cursive;
 		font-size: 2.75em;
 		color: #00abff;
-		padding: 1%;
+		padding: 4%;
 		margin: .5%;
 	}
 
 	h4, legend {
+		padding: 2%;
 		font-family: 'DM Serif Display', cursive;
 		font-size: 1.25em;
 		color: #00abff; /* alternate color #00ccff; */
 	}
 
 	h5 {
-		font-size: 1.1em;
+		font-size: 1.25em;
+		text-align: center;
+		color: white;
+		border-style: solid;
+		border-color:#00abff;
+		background-color:#00abff;
+		border-width: 90%;
+		border-radius: 10px;
+		padding: 10px 5px;
 	}
 
+	h6 {
+		font-size: 1em;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+	legend {
+    letter-spacing: 1px;
+  }
+
 	p, label, div, button, input {
-		font-family: 'Open Sans', sans-serif;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+		font-size: 16px;
+		font-weight: 400;
+		letter-spacing: 1px;
+		line-height: 21px;
+		margin-bottom: 5px;
+		margin-top: 5px;
+		overflow-wrap: break-word;
+		text-align: left;
 		color: grey;
 	}
 
@@ -114,14 +133,14 @@
 		border-radius: 4%;
 		border-width: 4px;
 		box-shadow: 10px 10px 10px rgba(0,0,0,0.2);
-		max-width: 98%;
+		max-width: 95%;
 		max-height: 98%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		background-color: #faefd782;
-		margin: 25px 20px;
+		margin: 25px 5px;
 	}
 
 	/* INPUT ELEMENT STYLES */
@@ -188,6 +207,12 @@
 		margin: 10px;
 	}
 
+	.glyphicon glyphicon-question-sign {
+		content:"\e085";
+	}
+
+
+
 	/* SPECIFIC ID AND CLASS STYLES */
 	.logo-image {
 		max-width: 28%;
@@ -221,12 +246,31 @@
 		opacity: 0.9;
   	width: 28px;
 		margin-left: 2px;
+		margin-bottom: 2px;
 		display: inline;
 		border-style: solid;
 		border-color: white;
 		border-width: 2px;
 		border-radius: 12px;
 		float: right;
+	}
+
+	.listing-div {
+		text-align: center;
+		color: grey;
+		background-color: #faefd782;
+		border: beige solid 1px;
+		border-radius: 10px;
+		box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+		max-width: 98%;
+	}
+
+	.listing-content-1 {
+		margin-left: 33%;
+	}
+
+	.listing-content-2 {
+		margin-left: 8%;
 	}
 
 	#lang-support-col {
@@ -261,7 +305,8 @@
 		border-style: none;
 		background: none;
 		opacity: 0.8;
-		width: 10%;
+		width: 12%;
+
 	}
 
 	#js-search-by-name, #js-listings-container, #js-admin-hidden-button, .logo-image {
@@ -277,6 +322,17 @@
 		padding: 10px;
 		background-color: #00ccff1c;
 		border-radius: 3%;
+	}
+
+	#js-listing-menu {
+		color: white;
+		border-style: solid;
+		border-color:#00abff;
+		background-color:#00abff;
+		border-width: 90%;
+		border-radius: 10px;
+		padding: 10px 5px;
+		margin: 10px 5px;
 	}
 
 
