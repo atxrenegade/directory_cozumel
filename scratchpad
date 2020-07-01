@@ -99,3 +99,15 @@ ADD STAR RATING
 .checked {
   color: orange;
 }
+
+
+
+font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+font-size: 14px;
+font-weight: 200;
+letter-spacing: 1px;
+line-height: 21px;
+margin-bottom: 0px;
+margin-top: 0px;
+overflow-wrap: break-word;
+text-align: left;
