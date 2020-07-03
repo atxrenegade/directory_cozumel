@@ -279,7 +279,7 @@ window.onload = function(){
 	}
 
 	function renderButton(obj, functionToExec, elToAppendTo){
-		const buttonHTML =`<input id='button_${obj.id}' type='button' class='js-bus-select' value='${obj.name}'>`;
+		const buttonHTML =`<div class='button-div'><input id='button_${obj.id}' type='button' class='js-bus-select' value='${obj.name}'></div>`;
 		renderComponent(buttonHTML, elToAppendTo);
 		const el = `button_${obj.id}`
 		const button = document.getElementById(el)
