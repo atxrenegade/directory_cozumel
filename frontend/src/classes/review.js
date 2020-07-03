@@ -8,7 +8,7 @@ export default class Review {
 
 	renderReview(LANGUAGE){
 		if (LANGUAGE == 'eng'){
-			return `<p>${this.content}<br>Rating: ${this.rating}<br>${this.contributor}<br>${this.date}</p>`
+			return `<p class='review'>${this.content}<br>Rating: ${this.rating}<br>${this.contributor}<br>${this.date}</p>`
 		} else {
 			return `<p>${this.content}<br>Clasificación:  ${this.rating}<br>${this.contributor}<br>${this.date}</p>`
 		}
