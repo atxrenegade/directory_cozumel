@@ -1,22 +1,36 @@
-
-	html {
+	body, html {
+		height: 100%;
+		margin: 0px;
+	}
+	#bkgd {
 		background-image: url('https://img1.coastalliving.timeinc.net/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2018/05/main/palancar-beach-cozumel912441986.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 		position: sticky;
 	}
 
+	.column {
+		max-width: 600px;
+		margin: auto;
+	}
+
+	.logo-image {
+		min-width: 75%;
+	}
+
+
 	/* CONTAINER STYLES */
 	.tile, .inner-tile, .innermost-tile {
 		background: white;
 		margin: 40px 25px 25px 25px;
-		padding: 15px;
+		padding: 10px;
 		border: 2px solid white;
 		border-radius: 15px;
-		max-width: 60%;
+		max-width: 80%;
 		margin: 1% auto;
 		opacity: 0.9;
 	}
+
 
 	.tile-tile {
 		background: transparent;
@@ -77,6 +91,7 @@
 		border-width: 90%;
 		border-radius: 10px;
 		padding: 10px 5px;
+		margin-bottom: 25px;
 	}
 
 	h6 {
@@ -103,6 +118,25 @@
 		overflow-wrap: break-word;
 		text-align: left;
 		color: grey;
+	}
+
+	label {
+		display: block;
+	}
+
+	.label {
+		display: inline-block;
+	}
+
+	.inline-field {
+		text-align: right;
+		width: 80%;
+		margin-left: 6%;
+	}
+
+	#new-bus {
+		padding: 25px;
+		border-style: none;
 	}
 
 	/* IMAGE STYLES */
@@ -266,11 +300,29 @@
 	}
 
 	.listing-content-1 {
-		margin-left: 33%;
+		margin: 0% auto;
+		width: 140px;
+		padding-bottom: 0%;
 	}
 
 	.listing-content-2 {
-		margin-left: 8%;
+		margin: 0% auto 2% auto;
+		width: 340px;
+	}
+
+	.review {
+		border-radius: 4%;
+		border-width: 4px;
+		max-width: 95%;
+		max-height: 98%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 25px 5px;
+		background-color: #F5F5F5;
+		margin: 0% auto 3% auto;
+		padding: 5%;
 	}
 
 	#lang-support-col {
@@ -306,7 +358,6 @@
 		background: none;
 		opacity: 0.8;
 		width: 12%;
-
 	}
 
 	#js-search-by-name, #js-listings-container, #js-admin-hidden-button, .logo-image {
@@ -336,8 +387,6 @@
 	}
 
 
-
-
 	/* ADMIN TABLE ELEMENT STYLES */
 	th {
 		text-align: center;
@@ -358,4 +407,122 @@
 		border: 3px solid #0000001c;
 		text-align: center;
 		vertical-align: middle;
+	}
+
+	/**** Media Queries ****/
+	@media only screen and (max-width: 600px) {
+		h5 {
+			padding: 5px;
+		}
+
+		legend {
+			text-align: center;
+			border-style: none;
+			margin: auto;
+			margin-top: 4%;
+		}
+
+		fieldset {
+	    margin: auto;
+	    border-radius: .5em;
+	    border-width: 2px;
+	    border-style: double;
+			max-width: 90%;
+			padding: 0px;
+			text-align: center;
+	  	align-items: center;
+	  	justify-content: center;
+		}
+
+		input[type="text"], select {
+			width: 95%;
+		}
+
+		.logo-image {
+			min-width: 70%;
+		}
+
+		.column {
+			width: 100%;
+			margin: auto;
+			min-width: 220px;
+			text-align: center;
+			padding: 5px;
+		}
+
+		.tile, .inner-tile, .innermost-tile {
+			min-width: 220px;
+			max width: 78%;
+			background: white;
+			border: 2px solid white;
+			border-radius: 15px;
+			opacity: 0.9;
+			text-align: center;
+			padding: auto 5%;
+			margin: 2% auto;
+		}
+
+		.inline-field {
+	    text-align: center;
+	    width: 80%;
+	    margin: auto;
+		}
+
+		.copyright {
+			margin: auto;
+		}
+
+		#bkgd {
+			background-image: url('https://img1.coastalliving.timeinc.net/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2018/05/main/palancar-beach-cozumel912441986.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			position: sticky;
+			height: 100%;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		#lang-support-col {
+			margin-bottom: 5px;
+			margin-left: 5px;
+		}
+
+		#eng-lang, #esp-lang {
+			margin-left: 1%;
+		}
+
+		#js-admin-hidden-button {
+			display: none;
+		}
+
+		#js-listing-show, #js-listing-menu {
+			min-width: 240px;
+			text-align: center;
+			max-width: 65%;
+			margin: 7%;
+		}
+
+		#js-listing-menu {
+			text-align: left;
+		}
+
+		#new-bus {
+			text-align: center;
+		}
+
+		#js-radio-by-category {
+			padding-left: 100px;
+		}
+
+		#js-name-search, #js-category-search {
+			border-width: 0px;
+		}
+
+		#search-results-legend {
+			width: auto;
+		}
+
+		#listing-div {
+			padding: 3px;
+		}
 	}
