@@ -234,12 +234,12 @@ window.onload = function(){
 				renderComponent(mapHTML, user.businessListings);
 			}
 			if (objArray[3].length > 0){
-				let reviewsHTML = '';
+				let reviewsHTML = '<h5>Reviews</h5>';
 				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview(LANGUAGE));
 				renderComponent(reviewsHTML, user.businessListings);
 			}
 			if (objArray[2].length > 0) {
-				let imagesHTML = '';
+				let imagesHTML = '<h5>Photos</h5>';
 				objArray[2].forEach((img) => imagesHTML += img.renderImage());
 				renderComponent(imagesHTML, user.businessListings);
 			}
