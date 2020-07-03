@@ -12,382 +12,387 @@
     <header>
     </header>
     <main>
-			<div class='column'>
-				<img src="./assets/images/DirectoryCozumel.png" alt="Directory Cozumel Logo" class="logo-image">
+			<div id='bkgd'>
+				<div class='column'>
+					<img src="./assets/images/DirectoryCozumel.png" alt="Directory Cozumel Logo" class="logo-image">
 
-				<div id='lang-support-block'>
-					<div id='lang-support-col'>
-						<a href='index.html'><img id='eng-lang' class='lang-support' src='./assets/images/lang-support/United-States-icon.png' alt='United State Flag Icon for English Language Selection'></img>
-						<a href='index-es.html'><img id='esp-lang' class='lang-support' src='./assets/images/lang-support/Mexico-icon.png' alt='Mexican Flag Icon for Spanish Language Selection'></img></a>
-						</a>
+					<div id='lang-support-block'>
+						<div id='lang-support-col'>
+							<a href='index.html'><img id='eng-lang' class='lang-support' src='./assets/images/lang-support/United-States-icon.png' alt='United State Flag Icon for English Language Selection'></img>
+							<a href='index-es.html'><img id='esp-lang' class='lang-support' src='./assets/images/lang-support/Mexico-icon.png' alt='Mexican Flag Icon for Spanish Language Selection'></img></a>
+							</a>
+						</div>
 					</div>
-				</div>
 
-				<div id='sponsored-listing-container' class='tile'>
-					Sponsored Listings
-				</div>
+					<div id='sponsored-listing-container' class='tile'>
+						Sponsored Listings
+					</div>
 
-				<div id='ads-container' class='tile'>
-					Google Ads
-				</div>
+					<div id='ads-container' class='tile'>
+						Google Ads
+					</div>
 
-				<div id='js-searchbar-container' class='inner-tile'>
-					<fieldset>
-					 	<legend>Search Listings:</legend>
-						<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-name'>
-						<label> By Name </label>
-						<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-category'>
-						<label> By Category</label>
-					  <div id='js-search-by-category'>
-							<form>
-								<fieldset id='js-category-search'>
-									<legend >Search By Category:</legend>
-									<div id='js-search-category-menu'>
-									</div>
-									<br>
-									<input type='button' id='js-by-category-button' value='Search'/>
-								</fieldset>
-							</form>
-					  </div>
-						<br>
-					  <div id='js-search-by-name'>
-							<fieldset id='js-name-search'>
-								<legend>Search By Name:</legend>
-								<input type='text' id='js-search-name-text-field' name='name' value=''/>
-								<br><br>
-								<input type='button' id='js-by-name-button' value='Search'>
-							</fieldset>
-					  </div>
-					</fieldset>
-				</div>
-
-				<div id='listings-container' class='innermost-tile'>
-					<fieldset>
-					<legend>Search Results:</legend>
-						<div id='js-listing-show'>
-						</div>
-						<div id='js-google-maps-container'>
-							<div id='js-map'>
-								<!-- <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBX29nIU-xhny3UjlJ1M-zuOf-btW-3780&callback=initMap'
-								async defer></script> -->
-							</div>
-						</div>
-						<div id='js-listing-menu'>
-							<input type='checkbox' id= 'js-add-review-checkbox' name='review'>Add Review<br>
-							<input type='checkbox' id='js-add-image-checkbox' name='image'>Add Image<br>
-							<input type='checkbox' id='js-edit-business-checkbox' name='edit'>Suggest Edit<br>
-							<input type='checkbox' id='js-flag-business-checkbox' name='flag'>Flag Business<br>
-						</div>
-						<div id='js-business-index-container'>
-						</div>
-						<div id='js-add-review-form-container'>
-							<form>
-								<fieldset id='new-review'>
-									<legend>Add Review</legend>
-									<label> Rating:</label>
-									<input type='text' id='review-rating'/><br>
-									<label> Your Review:</label>
-									<input type='text' id='review-content'/><br>
-									<label> Your Name:</label>
-									<input type='text' id='review-contributor'/><br>
-									<label> Your Email</label>
-									<input type='text' id='review-contributor-email' name='contributor-email'/><br>
-									<input type='submit' value='Submit'>
-								</fieldset>
-							</form>
-						</div>
-						<div id='js-add-image-form-container'>
-							<form>
-								<fieldset id='new-image'>
-									<legend>Add Image</legend>
-									<label> URL:</label>
-									<input type='text' id='image-url'/><br>
-									<label> Description:</label>
-									<input type='text' id='image-description'/><br>
-									<label> Date:</label>
-									<input type='text' id='image-date'/><br>
-									<label> Your Name:</label>
-									<input type='text' id='image-contributor'/><br>
-									<label> Your Email</label>
-									<input type='text' id='image-email'/><br>
-									<input type='submit' value='Submit'>
-								</fieldset>
-							</form>
-						</div>
-						<div id='js-suggest-edit-form-container'>
-							<form>
-								<fieldset id='bus-edit'>
-									<legend>Suggest Edit</legend>
-									<label> How can we improve this listing?:</label>
-									<input type='text' id='edit-content'/><br>
-									<label> Your Name:</label>
-									<input type='text' id='edit-contributor'/><br>
-									<label> Your Email</label>
-									<input type='text' id='edit-email'/><br>
-									<input type='submit' value='Submit'>
-								</fieldset>
-							</form>
-						</div>
-						<div id='js-flag-business-form-container'>
-							<form>
-								<fieldset id='bus-flag'>
-									<legend>Flag Business Listing</legend>
-									<label> Reason for flagging:</label>
-									<input type='text' id='flag-content'/><br>
-									<label> Your Name:</label>
-									<input type='text' id='flag-contributor'/><br>
-									<label> Your Email</label>
-									<input type='text' id='flag-email'/><br>
-									<input type='submit' value='Submit'>
-								</fieldset>
-							</form>
-						</div>
-					<br>
-					</fieldset>
-				</div>
-
-				<div id='js-new-business-container' class='innermost-tile'>
-					<fieldset id='js-add-business'>
-						<legend>Add New Business:</legend>
-						<button id='js-add-business-button'>Add New Business</button>
-						<div id='js-add-business-form-container'>
-							<form id='js-new-business-form'>
-								<fieldset id='new-bus'>
-									<legend>Add Business</legend>
-									<label> Business Name:</label>
-									<input type='text' id='business-name'/><br>
-									<label> Address:</label>
-									<input type='text' id='bus-address'/><br>
-									<label> Phone Number:</label>
-									<input type='text' id='bus-phone-number'/><br>
-									<label> Website:</label>
-									<input type='text' id='bus-website'/><br><br>
-									<label id='js-new-bus-select-label'>Select a Business Category:</label><br>
-									<label> Is this a Sustainable Business?&#10067;</label><span class="glyphicon glyphicon-question-sign" id="sustainable-bus-question"><br></span>Yes<input type='checkbox' id='sustainable-biz-yes'/>&#09;No<input type='checkbox' id='sustainable-biz-no'/><br><br>
-									<label>Add Hours of Operation and CoVid Info?&#10068;</label>
-									<input type="checkbox" id="js-add-operation" autocomplete="off">
-									<br>
-									<div id='js-operation-form' style='display:none'>
-										<form>
-											<h6>Operation Details and CoVid Updates</h6>
-											<label> Are you currently open for business?</label>
-											Yes<input type='checkbox' id='current-status-yes'/>&#09;No<input type='checkbox' id='current-status-no'><br><br>
-											<label>What date do you plan to reopen?</label>
-											<input type='text' id='opening-date' style='display:none';><br><br>
-											<label> What % occupancy rate you are currently operating at? </label>
-											<input type='text' id='occupancy-rate'><br><br>
-											<label>Do customers need a reservation?</label><br>
-											Yes<input type='checkbox' id='reservation-required-yes' value=/>&#09;No<input type='checkbox' id='reservation-required-no'><br><br>
-											<label>Is there anything you would like to share with your customers? (ie. pick up & delivery service? specials? etc. 256 characters max.) </label><br>
-											<input type='textarea' id='operations-notes'><br>
-
-										<h6> CURRENT Hours of Operation</h6>
-
-										<p>Please enter hours of operation in the following format: (9am-1pm). Leave blank on days the business is closed. </p><br>
-
-										<input type='text' id='hours-0-1'/><label>&#09;Monday<label><br>
-
-										<input type='text' id='hours-1-1'><label>&#09;Tuesday<label><br>
-
-										<input type='text' id='hours-2-1'><label>&#09;Wednesday<label><br>
-
-										<input type='text' id='hours-3-1'><label>&#09;Thursday<label><br>
-
-										<input type='text' id='hours-4-1'/><label>&#09;Friday<label><br>
-
-										<input type='text' id='hours-5-1'/><label>&#09;Saturday<label><br>
-
-										<input type='text' id='hours-6-1'/><label>&#09;Sunday<label><br>
-										<br>
-										</form>
-									</div>
-									<br>
-									<input id='new-bus-submit' type='submit' value='Submit'><br><br>
-								</fieldset>
-							</form>
-						</div>
-					</fieldset>
-					<br>
-				</div>
-				<p><a href='http://www.harleighabel.com' class='copyright' id='user-page-copyright'>©2020 atxrenegade </a>
-				<button id='js-admin-hidden-button'>Admin</button></p>
-			</div>
-			<div id='js-admin-login-container' class='innermost-tile'>
-				<fieldset id='js-admin-login'>
-					<legend>Admin Login</legend>
-					<label>Username:</label>
-					<input type='text' id='js-admin-username'>
-					<br>
-					<label>Password:</label>
-					<input type='password' id='js-admin-password'>
-					<br><br>
-					<button id='js-admin-login-button'>Login</button>
-				</fieldset>
-
-				<div id='js-admin-user-info'>
-					<fieldset id='js-admin-user-panel'>
-						<legend>Admin LOGIN</legend>
-						<br>
-						<label id='admin-name'> Admin Username: </label>
-						<br>
-						<label id='admin-number'> Admin ID: </label>
-						<br>
-						<label id='admin-role'>Admin Role: </label>
-						<br>
-						<label id='admin-login-date'> Logged In At: </label>
-						<br>
-						<br>
-						<button id='js-admin-logout-button'>Log Out</button>
-					</fieldset>
-				</div>
-			</div>
-
-			<!-- ADMIN MENU HERE -->
-			<div id='js-admin-menu-container' class='admin innermost-tile'>
-				<fieldset id='js-super-admin-menu'>
-					<legend>SUPER ADMIN MENU</legend>
-					<button id='js-admin-show-super-admin'>TOGGLE SUPER ADMIN MENU </button>
-					<div id='js-admin-super-admin-open'>
-						<fieldset id='super-admin-modify-admin'>
-							<legend id='js-admin-auth'>ADMIN AUTHORIZATION</legend>
-							<br>
-							<button id='js-admin-create-admin'>CREATE ADMIN </button>
-							<button id='js-admin-edit-admin'>EDIT ADMIN </button>
-							<button id='js-admin-delete-admin'>DELETE ADMIN </button>
-							<br><br>
-						</fieldset>
-
+					<div id='js-searchbar-container' class='inner-tile'>
 						<fieldset>
-							<legend>CREATE / UPDATE / DELETE RECORDS</legend>
-							<div id='js-super-admin-modify-records-menu'>
-								<form id='js-super-admin-modify-records' class='admin-form'>
-									<label id='super-admin-modify-action'>What would you like to do?: </label><br><br>
-									<input type='radio' name='super-admin-modify-action' value='create' checked> CREATE Record <br>
-									<input type='radio' name='super-admin-modify-action' value='update' checked> UPDATE Record <br>
-									<input type='radio' name='super-admin-modify-action' value='delete' checked> DELETE Record <br><br><br>
-									<label id='super-admin-modify-type'>Which TYPE of Record would you like to CREATE, EDIT or DELETE?: </label><br><br>
-									<input type='radio' name='super-admin-modify-type' value='entries' checked> Entry <br>
-									<input type='radio' name='super-admin-modify-type' value='categories' checked> Category <br>
-									<input type='radio' name='super-admin-modify-type' value='businesses' checked> Business <br>
-									<input type='radio' name='super-admin-modify-type' value='listings' checked> Listing <br>
-									<input type='radio' name='super-admin-modify-type' value='maps' checked> Map <br>
-									<input type='radio' name='super-admin-modify-type' value='reviews' checked> Review <br>
-									<input type='radio' name='super-admin-modify-type' value='images' checked> Image <br>
-									<br>
-									<button id='js-super-admin-modify-menu'>DISPLAY FORM</button>
+						 	<legend>Search Listings:</legend>
+							<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-name'>
+							<label class='label'> By Name </label>
+							<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-category'>
+							<label class='label'> By Category</label>
+						  <div id='js-search-by-category'>
+								<form>
+									<fieldset id='js-category-search'>
+										<legend >Search By Category:</legend>
+										<div id='js-search-category-menu'>
+										</div>
+										<br>
+										<input type='button' id='js-by-category-button' value='Search'/>
+									</fieldset>
+								</form>
+						  </div>
+							<br>
+						  <div id='js-search-by-name'>
+								<fieldset id='js-name-search'>
+									<legend>Search By Name:</legend>
+									<input type='text' id='js-search-name-text-field' name='name' value=''/>
+									<br><br>
+									<input type='button' id='js-by-name-button' value='Search'>
+								</fieldset>
+						  </div>
+						</fieldset>
+					</div>
+
+					<div id='listings-container' class='innermost-tile'>
+						<fieldset>
+						<legend id='search-results-legend'>Search Results:</legend>
+							<div id='js-listing-show'>
+							</div>
+							<div id='js-google-maps-container'>
+								<div id='js-map'>
+									<!-- <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBX29nIU-xhny3UjlJ1M-zuOf-btW-3780&callback=initMap'
+									async defer></script> -->
+								</div>
+							</div>
+							<div id='js-listing-menu'>
+								<input type='checkbox' id= 'js-add-review-checkbox' name='review'>Add Review<br>
+								<input type='checkbox' id='js-add-image-checkbox' name='image'>Add Image<br>
+								<input type='checkbox' id='js-edit-business-checkbox' name='edit'>Suggest Edit<br>
+								<input type='checkbox' id='js-flag-business-checkbox' name='flag'>Flag Business<br>
+							</div>
+							<div id='js-business-index-container'>
+							</div>
+							<div id='js-add-review-form-container'>
+								<form>
+									<fieldset id='new-review'>
+										<legend>Add Review</legend>
+										<label> Rating:</label>
+										<input type='text' id='review-rating'/><br>
+										<label> Your Review:</label>
+										<input type='text' id='review-content'/><br>
+										<label> Your Name:</label>
+										<input type='text' id='review-contributor'/><br>
+										<label> Your Email:</label>
+										<input type='text' id='review-contributor-email' name='contributor-email'/><br>
+										<input type='submit' value='Submit'>
+									</fieldset>
 								</form>
 							</div>
-							<div id='super-admin-create-update-delete'>
-								<br>
+							<div id='js-add-image-form-container'>
+								<form>
+									<fieldset id='new-image'>
+										<legend>Add Image</legend>
+										<label> URL:</label>
+										<input type='text' id='image-url'/><br>
+										<label> Description:</label>
+										<input type='text' id='image-description'/><br>
+										<label> Date:</label>
+										<input type='text' id='image-date'/><br>
+										<label> Your Name:</label>
+										<input type='text' id='image-contributor'/><br>
+										<label> Your Email:</label>
+										<input type='text' id='image-email'/><br>
+										<input type='submit' value='Submit'>
+									</fieldset>
+								</form>
 							</div>
-							<br>
+							<div id='js-suggest-edit-form-container'>
+								<form>
+									<fieldset id='bus-edit'>
+										<legend>Suggest Edit</legend>
+										<label> How can we improve this listing?:</label>
+										<input type='text' id='edit-content'/><br>
+										<label> Your Name:</label>
+										<input type='text' id='edit-contributor'/><br>
+										<label> Your Email:</label>
+										<input type='text' id='edit-email'/><br>
+										<input type='submit' value='Submit'>
+									</fieldset>
+								</form>
+							</div>
+							<div id='js-flag-business-form-container'>
+								<form>
+									<fieldset id='bus-flag'>
+										<legend>Flag Business Listing</legend>
+										<label> Reason for flagging:</label>
+										<input type='text' id='flag-content'/><br>
+										<label> Your Name:</label>
+										<input type='text' id='flag-contributor'/><br>
+										<label> Your Email:</label>
+										<input type='text' id='flag-email'/><br>
+										<input type='submit' value='Submit'>
+									</fieldset>
+								</form>
+							</div>
+						<br>
 						</fieldset>
 					</div>
-				</fieldset>
-				<fieldset id='js-admin-menu'>
-					<legend>Admin Menu</legend>
-					<p>NOTE: All search results will appear in the ADMIN ENTRY RESULTS PANEL</p>
-					<fieldset>
-						<legend>ADMIN ENTRY SEARCH MENU</legend>
-						<br>
-						<form id='js-search-admin-entries' class='admin-form'>
-							<label id='js-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br><br>
-							<input type='radio' name='js-admin-search' value='entry-type' checked> Entry TYPE <br>
-							<input type='radio' name='js-admin-search' value='status' checked> Entry STATUS <br>
-							<input type='radio' name='js-admin-search' value='business-name' checked> Business NAME <br>
-							<input type='radio' name='js-admin-search' value='business-id'> Business ID <br>
-							<input type='radio' name='js-admin-search' value='id'> Entry ID <br>
-							<input type='radio' name='js-admin-search' value='contributor'> Contributor <br>
-							<input type='radio' name='js-admin-search' value='contributor-email'> Contributor EMAIL <br>
-							<input type='radio' name='js-admin-search' value='date'> Date <br><br>
-							<label>INPUT TO SEARCH FOR: </label>
-							<input type='text' name='js-admin-search-by-input'>
-							<br><br>
-							<button id='js-admin-search-entries'>SEARCH ENTRIES </button>
-							<br><br>
-						</form>
-					</fieldset>
-					<fieldset>
-						<legend>ADMIN ENTRY DISPLAY MENU</legend>
-						<br>
-							<button id='admin-show-resolved-button'>SHOW RESOLVED ENTRIES</button>
-							<button id='admin-show-pending-button'>SHOW PENDING ENTRIES</button>
-							<br><br>
-					</fieldset>
-				</fieldset>
-			</div>
-			<div id='js-admin-panel-container' class='admin innermost-tile'>
-				<fieldset id='js-admin-panel'>
-					<legend>ADMIN ENTRY RESULTS PANEL </legend>
-					<div id='admin-entry-table'>
-						<table id='admin-entry-log'>
-							<tr>
-								<th>ID </th>
-								<th>DATE CREATED</th>
-								<th>BUS ID </th>
-								<th>TYPE </th>
-								<th>DATA ARRAY</th>
-								<th>ADMIN ID</th>
-								<th>STATUS </th>
-								<th>NOTES</th>
-								<th>REVIEW DETAILS BUTTON</th>
-							</tr>
-							<tbody id='index-entry-table-body'>
-								<!-- dynamically generate pending entries here -->
-							</tbody>
-						</table>
+
+					<div id='js-new-business-container' class='innermost-tile'>
+						<fieldset id='js-add-business'>
+							<legend>Add New Business:</legend>
+							<button id='js-add-business-button'>Add New Business</button>
+							<div id='js-add-business-form-container'>
+								<form id='js-new-business-form'>
+									<fieldset id='new-bus'>
+										<label> Business Name:</label>
+										<input type='text' id='business-name'/><br>
+										<label> Address:</label>
+										<input type='text' id='bus-address'/><br>
+										<label> Phone Number:</label>
+										<input type='text' id='bus-phone-number'/><br>
+										<label> Website:</label>
+										<input type='text' id='bus-website'/><br><br>
+										<label id='js-new-bus-select-label'>Select a Business Category:</label><br>
+										<label> Is this a sustainable business?&nbsp;&#9432;</label></span>Yes<input type='checkbox' id='sustainable-biz-yes'/>&#09;No<input type='checkbox' id='sustainable-biz-no'/><br><br>
+										<label class='label'>Add hours of operation and CoVid info?&nbsp;&#9432;</label>
+										<input type="checkbox" id="js-add-operation" autocomplete="off">
+										<br>
+										<div id='js-operation-form' style='display:none'>
+											<form>
+												<label> Are you currently open for business?</label>
+												Yes<input type='checkbox' id='current-status-yes'/>&#09;No<input type='checkbox' id='current-status-no'><br><br>
+												<label>What date do you plan to reopen?</label>
+												<input type='text' id='opening-date' style='display:none';><br><br>
+												<label> What % occupancy rate you are currently operating at? </label>
+												<input type='text' id='occupancy-rate'><br><br>
+												<label>Do customers need a reservation?</label>
+												Yes<input type='checkbox' id='reservation-required-yes' value=/>&#09;No<input type='checkbox' id='reservation-required-no'><br><br>
+												<label>Is there anything you would like to share with your customers? (ie. pick up & delivery service? specials? etc. 256 characters max.) </label>
+												<input type='textarea' id='operations-notes'><br>
+
+											<p>Please enter hours of operation in the following format: (9am-1pm). Leave blank on days the business is closed. </p><br>
+												<div class='inline-field'>
+													<label class='label hours'>Monday:&#09;</label>
+													<input type='text' id='hours-0-1' placeholder='9am-5pm'/><br>
+
+													<label class='label hours'>Tuesday:&#09;</label>
+													<input type='text' id='hours-1-1' placeholder='9am-5pm'><br>
+
+													<label class='label hours'>Wednesday:&#09;</label>
+													<input type='text' id='hours-2-1' placeholder='9am-5pm'><br>
+
+													<label class='label hours'>Thursday:&#09;</label>
+													<input type='text' id='hours-3-1' placeholder='9am-5pm'><br>
+
+													<label class='label hours'>Friday:&#09;</label>
+													<input type='text' id='hours-4-1' placeholder='9am-5pm'><br>
+
+													<label class='label hours'>Saturday:&#09;</label>
+													<input type='text' id='hours-5-1' placeholder='9am-5pm'><br>
+
+													<label class='label hours'>Sunday:&#09;</label>
+													<input type='text' id='hours-6-1' placeholder='9am-5pm'>
+												</div>
+											</form>
+										</div>
+										<br>
+										<input id='new-bus-submit' type='submit' value='Submit'><br><br>
+									</fieldset>
+								</form>
+							</div>
+						</fieldset>
 						<br>
 					</div>
-					<div id='entry-details-tables'>
-						<h3> ENTRY DETAILS AND ADMIN FUNCTIONS </h3>
-						<table id='admin-entry-show-details-table-1'>
-							<tr>
-								<th>ID</th>
-								<th>DATE CREATED</th>
-								<th>BUS ID</th>
-								<th>BUS NAME</th>
-								<th>TYPE</th>
-							</tr>
-							<tbody id='detailed-entry-table-1'>
-							</tbody>
-						</table>
-						<table id='admin-entry-show-details-table-2'>
-							<tr>
-								<th>CONTRIBUTOR </th>
-								<th>CONTRIBUTOR EMAIL </th>
-								<th>DATA ARRAY</th>
-							</tr>
-							<tbody id='detailed-entry-table-2'>
-							</tbody>
-						</table>
-						<table id='admin-entry-show-details-table-3'>
-							<tr>
-								<th>ADMIN ID</th>
-								<th>STATUS </th>
-								<th>RESOLVED DATE</th>
-								<th>NOTES</th>
-							</tr>
-							<tbody id='detailed-entry-table-3'>
-							</tbody>
-						</table>
+					<p><a href='http://www.harleighabel.com' class='copyright' id='user-page-copyright'>©2020 atxrenegade </a>
+					<button id='js-admin-hidden-button'>Admin</button></p>
+				</div>
+				<div id='js-admin-login-container' class='innermost-tile'>
+					<fieldset id='js-admin-login'>
+						<legend>Admin Login</legend>
+						<label>Username:</label>
+						<input type='text' id='js-admin-username'>
 						<br>
-						<button id='admin-pending-index-button'>PENDING INDEX</button>
-						<button id='admin-resolved-index-button'>RESOLVED INDEX</button>
-						<button id='admin-notes-button'>ADD NOTES</button>
-						<button id='admin-approve-button'>APPROVE</button>
-						<button id='admin-reject-button'>REJECT</button>
-					</div>
-					<br>
-					<div id='admin-notes-form'>
-						<input type='hidden' name='-method' value='patch'>
-						<label>Notes:</label>
-							<input type='text' id='js-entry-notes'>
+						<label>Password:</label>
+						<input type='password' id='js-admin-password'>
 						<br><br>
+						<button id='js-admin-login-button'>Login</button>
+					</fieldset>
+
+					<div id='js-admin-user-info'>
+						<fieldset id='js-admin-user-panel'>
+							<legend>Admin LOGIN</legend>
+							<br>
+							<label id='admin-name'> Admin Username: </label>
+							<br>
+							<label id='admin-number'> Admin ID: </label>
+							<br>
+							<label id='admin-role'>Admin Role: </label>
+							<br>
+							<label id='admin-login-date'> Logged In At: </label>
+							<br>
+							<br>
+							<button id='js-admin-logout-button'>Log Out</button>
+						</fieldset>
+					</div>
+				</div>
+
+				<!-- ADMIN MENU HERE -->
+				<div id='js-admin-menu-container' class='admin innermost-tile'>
+					<fieldset id='js-super-admin-menu'>
+						<legend>SUPER ADMIN MENU</legend>
+						<button id='js-admin-show-super-admin'>TOGGLE SUPER ADMIN MENU </button>
+						<div id='js-admin-super-admin-open'>
+							<fieldset id='super-admin-modify-admin'>
+								<legend id='js-admin-auth'>ADMIN AUTHORIZATION</legend>
+								<br>
+								<button id='js-admin-create-admin'>CREATE ADMIN </button>
+								<button id='js-admin-edit-admin'>EDIT ADMIN </button>
+								<button id='js-admin-delete-admin'>DELETE ADMIN </button>
+								<br><br>
+							</fieldset>
+
+							<fieldset>
+								<legend>CREATE / UPDATE / DELETE RECORDS</legend>
+								<div id='js-super-admin-modify-records-menu'>
+									<form id='js-super-admin-modify-records' class='admin-form'>
+										<label id='super-admin-modify-action'>What would you like to do?: </label><br><br>
+										<input type='radio' name='super-admin-modify-action' value='create' checked> CREATE Record <br>
+										<input type='radio' name='super-admin-modify-action' value='update' checked> UPDATE Record <br>
+										<input type='radio' name='super-admin-modify-action' value='delete' checked> DELETE Record <br><br><br>
+										<label id='super-admin-modify-type'>Which TYPE of Record would you like to CREATE, EDIT or DELETE?: </label><br><br>
+										<input type='radio' name='super-admin-modify-type' value='entries' checked> Entry <br>
+										<input type='radio' name='super-admin-modify-type' value='categories' checked> Category <br>
+										<input type='radio' name='super-admin-modify-type' value='businesses' checked> Business <br>
+										<input type='radio' name='super-admin-modify-type' value='listings' checked> Listing <br>
+										<input type='radio' name='super-admin-modify-type' value='maps' checked> Map <br>
+										<input type='radio' name='super-admin-modify-type' value='reviews' checked> Review <br>
+										<input type='radio' name='super-admin-modify-type' value='images' checked> Image <br>
+										<br>
+										<button id='js-super-admin-modify-menu'>DISPLAY FORM</button>
+									</form>
+								</div>
+								<div id='super-admin-create-update-delete'>
+									<br>
+								</div>
+								<br>
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset id='js-admin-menu'>
+						<legend>Admin Menu</legend>
+						<p>NOTE: All search results will appear in the ADMIN ENTRY RESULTS PANEL</p>
+						<fieldset>
+							<legend>ADMIN ENTRY SEARCH MENU</legend>
+							<br>
+							<form id='js-search-admin-entries' class='admin-form'>
+								<label id='js-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br><br>
+								<input type='radio' name='js-admin-search' value='entry-type' checked> Entry TYPE <br>
+								<input type='radio' name='js-admin-search' value='status' checked> Entry STATUS <br>
+								<input type='radio' name='js-admin-search' value='business-name' checked> Business NAME <br>
+								<input type='radio' name='js-admin-search' value='business-id'> Business ID <br>
+								<input type='radio' name='js-admin-search' value='id'> Entry ID <br>
+								<input type='radio' name='js-admin-search' value='contributor'> Contributor <br>
+								<input type='radio' name='js-admin-search' value='contributor-email'> Contributor EMAIL <br>
+								<input type='radio' name='js-admin-search' value='date'> Date <br><br>
+								<label>INPUT TO SEARCH FOR: </label>
+								<input type='text' name='js-admin-search-by-input'>
+								<br><br>
+								<button id='js-admin-search-entries'>SEARCH ENTRIES </button>
+								<br><br>
+							</form>
+						</fieldset>
+						<fieldset>
+							<legend>ADMIN ENTRY DISPLAY MENU</legend>
+							<br>
+								<button id='admin-show-resolved-button'>SHOW RESOLVED ENTRIES</button>
+								<button id='admin-show-pending-button'>SHOW PENDING ENTRIES</button>
+								<br><br>
+						</fieldset>
+					</fieldset>
+				</div>
+				<div id='js-admin-panel-container' class='admin innermost-tile'>
+					<fieldset id='js-admin-panel'>
+						<legend>ADMIN ENTRY RESULTS PANEL </legend>
+						<div id='admin-entry-table'>
+							<table id='admin-entry-log'>
+								<tr>
+									<th>ID </th>
+									<th>DATE CREATED</th>
+									<th>BUS ID </th>
+									<th>TYPE </th>
+									<th>DATA ARRAY</th>
+									<th>ADMIN ID</th>
+									<th>STATUS </th>
+									<th>NOTES</th>
+									<th>REVIEW DETAILS BUTTON</th>
+								</tr>
+								<tbody id='index-entry-table-body'>
+									<!-- dynamically generate pending entries here -->
+								</tbody>
+							</table>
+							<br>
+						</div>
+						<div id='entry-details-tables'>
+							<h3> ENTRY DETAILS AND ADMIN FUNCTIONS </h3>
+							<table id='admin-entry-show-details-table-1'>
+								<tr>
+									<th>ID</th>
+									<th>DATE CREATED</th>
+									<th>BUS ID</th>
+									<th>BUS NAME</th>
+									<th>TYPE</th>
+								</tr>
+								<tbody id='detailed-entry-table-1'>
+								</tbody>
+							</table>
+							<table id='admin-entry-show-details-table-2'>
+								<tr>
+									<th>CONTRIBUTOR </th>
+									<th>CONTRIBUTOR EMAIL </th>
+									<th>DATA ARRAY</th>
+								</tr>
+								<tbody id='detailed-entry-table-2'>
+								</tbody>
+							</table>
+							<table id='admin-entry-show-details-table-3'>
+								<tr>
+									<th>ADMIN ID</th>
+									<th>STATUS </th>
+									<th>RESOLVED DATE</th>
+									<th>NOTES</th>
+								</tr>
+								<tbody id='detailed-entry-table-3'>
+								</tbody>
+							</table>
+							<br>
+							<button id='admin-pending-index-button'>PENDING INDEX</button>
+							<button id='admin-resolved-index-button'>RESOLVED INDEX</button>
+							<button id='admin-notes-button'>ADD NOTES</button>
+							<button id='admin-approve-button'>APPROVE</button>
+							<button id='admin-reject-button'>REJECT</button>
+						</div>
+						<br>
+						<div id='admin-notes-form'>
+							<input type='hidden' name='-method' value='patch'>
+							<label>Notes:</label>
+								<input type='text' id='js-entry-notes'>
+							<br><br>
 							<input id='admin-submit-notes-field' type='submit' value='Submit'>
 					</div>
 				</fieldset>
 			</div>
     </main>
+	</div>
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
 		<script type='text/javascript' src='config.js'></script>
 		<script type="module" src="index.js" ></script>
