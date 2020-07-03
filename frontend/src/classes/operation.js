@@ -19,8 +19,8 @@ export default class Operation {
 			var status = (this.currentStatus == true) ? 'Yes' : 'No';
 			var reservation = (this.reservationRequired == true) ? 'Yes' : 'No';
 			var reopening = (this.currentStatus == true) ? 'Open Now' : this.reopeningDate;
-			operation =  `<h5>Hours Of Operation: (CoVid)</h5><p class='listing-content-1'><b>M:</b>	  ${this.weekdayHours[0]}<br><b>Tu:</b>		${this.weekdayHours[1]}<br><b>W:</b>		${this.weekdayHours[2]}<br><b>Th:</b>		${this.weekdayHours[3]}<br><b>F:</b>		${ this.weekdayHours[4]}<br><b>Sat:</b>		${this.weekendHours[0]}<br><b>Sun:</b>		${this.weekendHours[1]}<br><br></p><h5>Post CoVid UPDATES:</h5><p class='listing-content-2'><b>Open For Business: </b>${status}<br><b>Estimated Reopening Date: </b>${reopening}<br><b>Operating Occupancy Rate: </b> ${this.occupancyRate}%<br><b>Reservation Required?</b>		${reservation}<br><b>Last Updated: </b> ${this.lastUpdate}</p>`
-			if (this.note !== null){ return operation + `<p class='listing-content-2'><b>${this.notes}</b></p><br>` }
+			operation =  `<div class='operation'><h5>Hours Of Operation: (CoVid)</h5><p class='listing-content-1'><b>M:</b>	  ${this.weekdayHours[0]}<br><b>Tu:</b>		${this.weekdayHours[1]}<br><b>W:</b>		${this.weekdayHours[2]}<br><b>Th:</b>		${this.weekdayHours[3]}<br><b>F:</b>		${ this.weekdayHours[4]}<br><b>Sat:</b>		${this.weekendHours[0]}<br><b>Sun:</b>		${this.weekendHours[1]}<br></p><h5>Post CoVid UPDATES:</h5><p class='listing-content-2'><b>Open For Business: </b>${status}<br><b>Estimated Reopening Date: </b>${reopening}<br><b>Operating Occupancy Rate: </b> ${this.occupancyRate}%<br><b>Reservation Required?</b>		${reservation}<br><b>Last Updated: </b> ${this.lastUpdate}</p>`
+			if (this.note !== null){ return operation + `<p class='listing-content-2'><b>${this.notes}</b></p></div>` }
 			return operation;
 		} else {
 			var status = (this.currentStatus == true) ? 'Si' : 'No';
