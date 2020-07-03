@@ -1,8 +1,4 @@
-	body, html {
-		height: 100%;
-		margin: 0px;
-	}
-	#bkgd {
+	html {
 		background-image: url('https://img1.coastalliving.timeinc.net/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2018/05/main/palancar-beach-cozumel912441986.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -17,7 +13,6 @@
 	.logo-image {
 		min-width: 75%;
 	}
-
 
 	/* CONTAINER STYLES */
 	.tile, .inner-tile, .innermost-tile {
@@ -410,7 +405,11 @@
 	}
 
 	/**** Media Queries ****/
-	@media only screen and (max-width: 600px) {
+	@media screen and (max-width: 600px) {
+		html {
+			min-height: 800px;
+		}
+
 		h5 {
 			padding: 5px;
 		}
@@ -419,7 +418,7 @@
 			text-align: center;
 			border-style: none;
 			margin: auto;
-			margin-top: 4%;
+			margin-top: 2%;
 		}
 
 		fieldset {
@@ -469,22 +468,22 @@
 		}
 
 		.copyright {
-			margin: auto;
+			margin: 9%;
 		}
 
-		#bkgd {
-			background-image: url('https://img1.coastalliving.timeinc.net/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2018/05/main/palancar-beach-cozumel912441986.jpg');
-			background-size: cover;
-			background-repeat: no-repeat;
-			position: sticky;
-			height: 100%;
-			margin: 0px;
-			padding: 0px;
+		.button-div {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 
 		#lang-support-col {
 			margin-bottom: 5px;
 			margin-left: 5px;
+		}
+
+		#lang-support-block {
+			margin-bottom: 55px;
 		}
 
 		#eng-lang, #esp-lang {
@@ -496,10 +495,10 @@
 		}
 
 		#js-listing-show, #js-listing-menu {
-			min-width: 240px;
+			min-width: 200px;
 			text-align: center;
 			max-width: 65%;
-			margin: 7%;
+			margin: auto;
 		}
 
 		#js-listing-menu {
@@ -518,8 +517,29 @@
 			border-width: 0px;
 		}
 
+		#name-search, #category-search {
+			margin: 0;
+		}
+
+		#js-searchbar-container, #listings-container {
+			padding-bottom: 27px;
+
+		}
+
+		#js-search-name-text-field {
+			width: 70%;
+		}
+
+		#js-radio-by-name {
+			margin-top: 9%;
+		}
+
 		#search-results-legend {
-			width: auto;
+
+		}
+
+		#js-bus-select {
+			word-break: break-word;
 		}
 
 		#listing-div {
