@@ -34,13 +34,18 @@
 				<div id='js-searchbar-container' class='inner-tile'>
 					<fieldset>
 					 	<legend>Search Listings:</legend>
-						<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-name'>
-						<label class='label'> By Name </label>
-						<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-category'>
-						<label class='label'> By Category</label>
+						<br>
+						<div class='radio-search-column'>
+							<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-name'>
+							<label class='label'> By Name </label>
+						</div>
+						<div class='radio-search-column'>
+							<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-category'>
+							<label class='label'> By Category</label>
+						</div>
+						<br>
 					  <div id='js-search-by-category'>
 							<form>
-							<br>
 								<fieldset id='js-category-search'>
 									<legend >Search By Category:</legend>
 									<div id='js-search-category-menu'>
@@ -53,7 +58,6 @@
 					  </div>
 						<br>
 					  <div id='js-search-by-name'>
-						<br>
 							<fieldset id='js-name-search'>
 								<legend>Search By Name:</legend>
 								<input type='text' id='js-search-name-text-field' name='name' value=''/>
