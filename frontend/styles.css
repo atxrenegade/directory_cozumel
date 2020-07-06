@@ -21,11 +21,15 @@
 		padding: 10px;
 		border: 2px solid white;
 		border-radius: 15px;
-		max-width: 80%;
 		margin: 1% auto;
 		opacity: 0.9;
 	}
 
+	.tile, .inner-tile, .innermost-tile, #js-search-by-name, #js-search-by-category, legend {
+		text-align: center;
+		margin-bottom: 1.75%;
+		max-width: 90%;
+	}
 
 	.tile-tile {
 		background: transparent;
@@ -67,9 +71,10 @@
 		color: #00abff;
 		padding: 4%;
 		margin: .5%;
+		line-height: 79%;
 	}
 
-	h4, legend {
+	h4 {
 		padding: 2%;
 		font-family: 'DM Serif Display', cursive;
 		font-size: 1.25em;
@@ -99,7 +104,12 @@
   }
 
 	legend {
+		padding: 2%;
+		font-family: 'DM Serif Display', cursive;
+		font-size: 1.50em;
+		color: #00abff; /* alternate color #00ccff; */
     letter-spacing: 1px;
+		margin: auto;
   }
 
 	p, label, div, button, input {
@@ -111,7 +121,7 @@
 		margin-bottom: 5px;
 		margin-top: 5px;
 		overflow-wrap: break-word;
-		text-align: left;
+		text-align: center;
 		color: grey;
 	}
 
@@ -119,20 +129,6 @@
 		display: block;
 	}
 
-	.label {
-		display: inline-block;
-	}
-
-	.inline-field {
-		text-align: right;
-		width: 80%;
-		margin-left: 6%;
-	}
-
-	#new-bus {
-		padding: 25px;
-		border-style: none;
-	}
 
 	/* IMAGE STYLES */
 	img {
@@ -186,7 +182,7 @@
 	}
 
 	select {
-		width: 60%;
+		width: 80%;
 		border-radius: 0;
 		margin: 1%;
 		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
@@ -206,7 +202,7 @@
 	}
 
 	input[type="text"], input[type="password"] {
-		width: 60%;
+		width: 80%;
 		border-radius: 0;
 		border-style: none;
 		margin: 1%;
@@ -224,6 +220,7 @@
 	}
 
 	/* MISC ELEMENT STYLES */
+
 	fieldset {
 		margin: 12px;
 		border-radius: .5em;
@@ -236,13 +233,18 @@
 		margin: 10px;
 	}
 
-	.glyphicon glyphicon-question-sign {
-		content:"\e085";
+	/* CLASS STYLES */
+
+	.label {
+		display: inline-block;
 	}
 
+	.inline-field {
+		text-align: right;
+		width: 80%;
+		margin-left: 6%;
+	}
 
-
-	/* SPECIFIC ID AND CLASS STYLES */
 	.logo-image {
 		max-width: 28%;
 		max-height: 28%;
@@ -273,15 +275,21 @@
 
 	.lang-support {
 		opacity: 0.9;
-  	width: 28px;
-		margin-left: 2px;
-		margin-bottom: 2px;
-		display: inline;
+  	width: 35px;
+		margin-left: 0px;
+		display: inline-block;
 		border-style: solid;
 		border-color: white;
 		border-width: 2px;
 		border-radius: 12px;
-		float: right;
+	}
+
+	.radio-search-column {
+		display: inline-block;
+	}
+
+	.radio-search-column label.label {
+		font-size: 1.25em;
 	}
 
 	.listing-div {
@@ -320,15 +328,16 @@
 		padding: 5%;
 	}
 
+	/* ELEMENT ID STYLING */
+
 	#lang-support-col {
-		max-width: 60%;
 		margin: 0 auto;
 	}
 
 	#lang-support-block {
+		margin-left: 80%;
+		margin-right: 3%;
 		display: block;
-		margin-bottom: 50px;
-
 	}
 
 	#js-map {
@@ -355,7 +364,7 @@
 		width: 12%;
 	}
 
-	#js-search-by-name, #js-listings-container, #js-admin-hidden-button, .logo-image {
+	#js-search-by-name, #js-listings-container, #js-admin-hidden-button, #ads-container .logo-image {
 		display: block;
 	}
 
@@ -381,6 +390,11 @@
 		margin: 10px 5px;
 	}
 
+	#new-bus {
+		padding: 25px;
+		border-style: none;
+	}
+
 
 	/* ADMIN TABLE ELEMENT STYLES */
 	th {
@@ -404,10 +418,18 @@
 		vertical-align: middle;
 	}
 
-	/**** Media Queries ****/
+	/**** Media Queries for responsive USER INTERFACE Mobile and Tablet Sizes ***/
+
+	/**** max-width 600PX ****/
 	@media screen and (max-width: 600px) {
 		html {
 			min-height: 800px;
+			min-width: 305px;
+		}
+
+		h3 {
+			line-height: 85%;
+			font-size: 1.5em;
 		}
 
 		h5 {
@@ -419,6 +441,7 @@
 			border-style: none;
 			margin: auto;
 			margin-top: 2%;
+			font-size: 1.25em;
 		}
 
 		fieldset {
@@ -426,19 +449,27 @@
 	    border-radius: .5em;
 	    border-width: 2px;
 	    border-style: double;
-			max-width: 90%;
+			max-width: 91%;
 			padding: 0px;
 			text-align: center;
 	  	align-items: center;
 	  	justify-content: center;
 		}
 
-		input[type="text"], select {
+		input {
+			text-align: center;
+		}
+
+		input[type="text"], select, {
 			width: 95%;
 		}
 
 		.logo-image {
 			min-width: 70%;
+		}
+
+		.lang-support {
+			width: 29px;
 		}
 
 		.column {
@@ -450,8 +481,8 @@
 		}
 
 		.tile, .inner-tile, .innermost-tile {
-			min-width: 220px;
-			max width: 78%;
+			min-width: 240px;
+			max-width: 85%;
 			background: white;
 			border: 2px solid white;
 			border-radius: 15px;
@@ -477,40 +508,59 @@
 			justify-content: center;
 		}
 
-		#lang-support-col {
-			margin-bottom: 5px;
-			margin-left: 5px;
+		.listing-div {
+			padding: 5px;
+		}
+
+		.listing-content-2 {
+			margin: 0% auto 2% auto;
+			padding: 5px;
+			width: auto;
+		}
+
+		.radio-search-column label.label {
+			font-size: 1em;
 		}
 
 		#lang-support-block {
-			margin-bottom: 55px;
+			margin-top: 5%;
+		  margin-left: 0;
+		  margin-right: 0;
+		  display: block;
 		}
 
-		#eng-lang, #esp-lang {
-			margin-left: 1%;
+		#sponsored-listing-container {
+			margin-top: 0px;
+		}
+
+		#js-listing-menu {
+			min-width: 200px;
+			max-width: 65%;
+			text-align: left;
+		}
+
+		#js-listing-show {
+	    min-width: 200px;
+	    max-width: 65%;
+	    margin: auto;
+		}
+
+		#js-listing-show-details  {
+			min-width: 200px;
+	    max-width: 95%;
+	    margin: auto;
 		}
 
 		#js-admin-hidden-button {
 			display: none;
 		}
 
-		#js-listing-show, #js-listing-menu {
-			min-width: 200px;
-			text-align: center;
-			max-width: 65%;
-			margin: auto;
+		#js-radio-by-name {
+			margin-top: 9%;
 		}
 
-		#js-listing-menu {
-			text-align: left;
-		}
-
-		#new-bus {
-			text-align: center;
-		}
-
-		#js-radio-by-category {
-			padding-left: 100px;
+		#js-search-name-text-field {
+			width: 90%;
 		}
 
 		#js-name-search, #js-category-search {
@@ -521,28 +571,58 @@
 			margin: 0;
 		}
 
+		#js-radio-by-category {
+			padding-left: 100px;
+		}
+
 		#js-searchbar-container, #listings-container {
 			padding-bottom: 27px;
-
 		}
 
-		#js-search-name-text-field {
-			width: 70%;
+		#js-listing-show-results {
+			width: auto;
+			margin: auto;
 		}
 
-		#js-radio-by-name {
-			margin-top: 9%;
+		#listings-container {
+			display: block;
+			min-width: 150px;
+			margin: auto;
 		}
 
-		#search-results-legend {
-
+		#listings-fieldset {
+			border-width: 0px;
 		}
 
 		#js-bus-select {
 			word-break: break-word;
 		}
 
-		#listing-div {
-			padding: 3px;
+		#new-bus {
+			text-align: center;
 		}
 	}
+
+	@media screen and (min-width: 341px){
+		#js-listing-show-results {
+	    margin: auto;
+			width: auto;
+		}
+	}
+
+	@media screen and (max-width: 360px){
+		.radio-search-column {
+			display: block;
+			text-align: left;
+			max-width: 60%;
+			margin: 0% 21% 0% 19%;
+		}
+	}
+
+	@media screen and (min-width: 10px) and (max-width: 340px) {
+		#js-listing-show-results, #js-search-bar-container, #js-new-business-container {
+	    width: auto;
+	    text-align: center;
+	    margin: 2% auto;
+	}
+}
