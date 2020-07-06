@@ -17,6 +17,7 @@
 
 			/* business listing elements */
 			businessListings: document.getElementById('js-listing-show'),
+			resultsListings: document.getElementById('js-listing-show-results'),
 			listingMenu: document.getElementById('js-listing-menu'),
 
 			/* add business form elements */
