@@ -31,7 +31,15 @@ class BusinessesController < ApplicationController
 	def index_by_category
 		businesses = BusinessCategory.filter_by_category(params[:lang], params[:category_name])
 		if businesses.present?
-			render json: businesses, except: [:created_at, :updated_at]
+			businesses_array = []
+			businesses.each do |el|
+				listing_element = el.to_json(:include => {
+					:listing => {:except => [:id, :created_at, :updated_at, :business_id]},
+					:categories => {:only => [:name, :nombre]}
+				})
+				businesses_array.push(listing_element)
+			end
+			render json: businesses_array
 		else
 			render json: {msg: 'There are no businesses listed in that category yet!', 'msg-esp': '¡No hay negocios listados en esa categoría todavía!'}
 		end
@@ -40,7 +48,15 @@ class BusinessesController < ApplicationController
 	def index_by_name
 		businesses = Business.filter_by_name(params[:name])
 		if businesses.present?
-			render json: businesses, except: [:created_at, :updated_at]
+			businesses_array = []
+			businesses.each do |el|
+				listing_element = el.to_json(:include => {
+					:listing => {:except => [:id, :created_at, :updated_at, :business_id]},
+					:categories => {:only => [:name, :nombre]}
+				})
+				businesses_array.push(listing_element)
+			end
+			render json: businesses_array
 		else
 			render json: {msg: 'No business in our directory match that name!', 'msg-esp': '¡Ningún negocio en nuestro directorio coincide con ese nombre!'}
 		end
