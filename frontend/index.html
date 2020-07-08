@@ -45,6 +45,7 @@
 						</div>
 						<br>
 					  <div id='js-search-by-category'>
+							<br>
 							<form>
 								<fieldset id='js-category-search'>
 									<legend >Search By Category:</legend>
@@ -70,85 +71,87 @@
 				</div>
 
 				<div id='listings-container' class='innermost-tile'>
-					<fieldset>
+					<fieldset id='listings-fieldset'>
 					<legend id='search-results-legend'>Search Results:</legend>
 						<div id='js-listing-show'>
 						</div>
-						<div id='js-google-maps-container'>
-							<div id='js-map'>
-								<!-- <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBX29nIU-xhny3UjlJ1M-zuOf-btW-3780&callback=initMap'
-								async defer></script> -->
+						<div id='js-listing-show-results'>
+							<div id='js-google-maps-container'>
+								<div id='js-map'>
+									<!-- <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBX29nIU-xhny3UjlJ1M-zuOf-btW-3780&callback=initMap'
+									async defer></script> -->
+								</div>
 							</div>
-						</div>
-						<div id='js-listing-menu'>
-							<input type='checkbox' id= 'js-add-review-checkbox' name='review'>Add Review<br>
-							<input type='checkbox' id='js-add-image-checkbox' name='image'>Add Image<br>
-							<input type='checkbox' id='js-edit-business-checkbox' name='edit'>Suggest Edit<br>
-							<input type='checkbox' id='js-flag-business-checkbox' name='flag'>Flag Business<br>
-						</div>
-						<div id='js-business-index-container'>
-						</div>
-						<div id='js-add-review-form-container'>
-							<form>
-								<fieldset id='new-review'>
-									<legend>Add Review</legend>
-									<label> Rating:</label>
-									<input type='text' id='review-rating'/><br>
-									<label> Your Review:</label>
-									<input type='text' id='review-content'/><br>
-									<label> Your Name:</label>
-									<input type='text' id='review-contributor'/><br>
-									<label> Your Email:</label>
-									<input type='text' id='review-contributor-email' name='contributor-email'/><br>
-									<input type='submit' value='Submit'>
-								</fieldset>
-							</form>
-						</div>
-						<div id='js-add-image-form-container'>
-							<form>
-								<fieldset id='new-image'>
-									<legend>Add Image</legend>
-									<label> URL:</label>
-									<input type='text' id='image-url'/><br>
-									<label> Description:</label>
-									<input type='text' id='image-description'/><br>
-									<label> Date:</label>
-									<input type='text' id='image-date'/><br>
-									<label> Your Name:</label>
-									<input type='text' id='image-contributor'/><br>
-									<label> Your Email:</label>
-									<input type='text' id='image-email'/><br>
-									<input type='submit' value='Submit'>
-								</fieldset>
-							</form>
-						</div>
-						<div id='js-suggest-edit-form-container'>
-							<form>
-								<fieldset id='bus-edit'>
-									<legend>Suggest Edit</legend>
-									<label> How can we improve this listing?:</label>
-									<input type='text' id='edit-content'/><br>
-									<label> Your Name:</label>
-									<input type='text' id='edit-contributor'/><br>
-									<label> Your Email:</label>
-									<input type='text' id='edit-email'/><br>
-									<input type='submit' value='Submit'>
-								</fieldset>
-							</form>
-						</div>
-						<div id='js-flag-business-form-container'>
-							<form>
-								<fieldset id='bus-flag'>
-									<legend>Flag Business Listing</legend>
-									<label> Reason for flagging:</label>
-									<input type='text' id='flag-content'/><br>
-									<label> Your Name:</label>
-									<input type='text' id='flag-contributor'/><br>
-									<label> Your Email:</label>
-									<input type='text' id='flag-email'/><br>
-									<input type='submit' value='Submit'>
-								</fieldset>
-							</form>
+							<div id='js-listing-menu'>
+								<input type='checkbox' id= 'js-add-review-checkbox' name='review'>Add Review<br>
+								<input type='checkbox' id='js-add-image-checkbox' name='image'>Add Image<br>
+								<input type='checkbox' id='js-edit-business-checkbox' name='edit'>Suggest Edit<br>
+								<input type='checkbox' id='js-flag-business-checkbox' name='flag'>Flag Business<br>
+							</div>
+							<div id='js-business-index-container'>
+							</div>
+							<div id='js-add-review-form-container'>
+								<form>
+									<fieldset id='new-review'>
+										<legend>Add Review</legend>
+										<label> Rating:</label>
+										<input type='text' id='review-rating'/><br>
+										<label> Your Review:</label>
+										<input type='text' id='review-content'/><br>
+										<label> Your Name:</label>
+										<input type='text' id='review-contributor'/><br>
+										<label> Your Email:</label>
+										<input type='text' id='review-contributor-email' name='contributor-email'/><br>
+										<input type='submit' value='Submit'>
+									</fieldset>
+								</form>
+							</div>
+							<div id='js-add-image-form-container'>
+								<form>
+									<fieldset id='new-image'>
+										<legend>Add Image</legend>
+										<label> URL:</label>
+										<input type='text' id='image-url'/><br>
+										<label> Description:</label>
+										<input type='text' id='image-description'/><br>
+										<label> Date:</label>
+										<input type='text' id='image-date'/><br>
+										<label> Your Name:</label>
+										<input type='text' id='image-contributor'/><br>
+										<label> Your Email:</label>
+										<input type='text' id='image-email'/><br>
+										<input type='submit' value='Submit'>
+									</fieldset>
+								</form>
+							</div>
+							<div id='js-suggest-edit-form-container'>
+								<form>
+									<fieldset id='bus-edit'>
+										<legend>Suggest Edit</legend>
+										<label> How can we improve this listing?:</label>
+										<input type='text' id='edit-content'/><br>
+										<label> Your Name:</label>
+										<input type='text' id='edit-contributor'/><br>
+										<label> Your Email:</label>
+										<input type='text' id='edit-email'/><br>
+										<input type='submit' value='Submit'>
+									</fieldset>
+								</form>
+							</div>
+							<div id='js-flag-business-form-container'>
+								<form>
+									<fieldset id='bus-flag'>
+										<legend>Flag Business Listing</legend>
+										<label> Reason for flagging:</label>
+										<input type='text' id='flag-content'/><br>
+										<label> Your Name:</label>
+										<input type='text' id='flag-contributor'/><br>
+										<label> Your Email:</label>
+										<input type='text' id='flag-email'/><br>
+										<input type='submit' value='Submit'>
+									</fieldset>
+								</form>
+							</div>
 						</div>
 					</fieldset>
 				</div>
@@ -220,7 +223,7 @@
 					</fieldset>
 					<br>
 				</div>
-				<p><a href='http://www.harleighabel.com' class='copyright' id='user-page-copyright'>©2020 atxrenegade </a>
+				<p id='footer'><a href='http://www.harleighabel.com' class='copyright' id='user-page-copyright'>©2020 atxrenegade </a>
 				<button id='js-admin-hidden-button'>Admin</button></p>
 			</div>
 			<div id='js-admin-login-container' class='innermost-tile'>
