@@ -261,7 +261,6 @@
 		text-align: left;
 		color: grey;
 		font-size: small;
-		margin-left: 20%;
 		padding: 0px;
 	}
 
@@ -292,6 +291,10 @@
 		font-size: 1.25em;
 	}
 
+	.index-listing-buttons {
+		margin: 4% 0%;
+	}
+
 	.listing-div {
 		text-align: center;
 		color: grey;
@@ -300,11 +303,12 @@
 		border-radius: 10px;
 		box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
 		max-width: 98%;
+		margin-top: 3%;
 	}
 
 	.listing-content-1 {
 		margin: 0% auto;
-		width: 140px;
+		width: auto;
 		padding-bottom: 0%;
 	}
 
@@ -355,17 +359,18 @@
 	}
 
 	#js-admin-hidden-button {
-		float: right;
-		margin-right: 18%;
-		margin-bottom: 5%;
 		border-style: none;
 		background: none;
 		opacity: 0.8;
-		width: 12%;
+		display: inline-block;
+		margin: auto;
+		text-align: right;
+		padding-left: 60%;
 	}
 
-	#js-search-by-name, #js-listings-container, #js-admin-hidden-button, #ads-container .logo-image {
+	#js-search-by-name, #js-search-by-category, #js-listings-container, #ads-container, .logo-image {
 		display: block;
+		margin: auto;
 	}
 
 	#js-search-by-category, #js-business-index-container, #js-business-listing-details, #js-add-business-form-container, #js-flag-business-form-container, #js-suggest-edit-form-container, 	#js-add-review-form-container, #js-add-image-form-container, #js-admin-login-container, 	#js-admin-panel-container, #js-admin-logout-button, #js-admin-user-info, #js-admin-menu-container, #js-notes-form, #entry-details-table, #js-map {
@@ -393,6 +398,12 @@
 	#new-bus {
 		padding: 25px;
 		border-style: none;
+	}
+
+	#footer {
+		width: 90%;
+		text-align: left;
+		margin: auto;
 	}
 
 
@@ -499,7 +510,9 @@
 		}
 
 		.copyright {
-			margin: 9%;
+			margin: 2% 9%;
+			width: auto;
+			display: inline-block;
 		}
 
 		.button-div {
@@ -600,6 +613,12 @@
 
 		#new-bus {
 			text-align: center;
+		}
+
+		#footer {
+			width: 90%;
+			text-align: center;
+			margin: auto;
 		}
 	}
 
