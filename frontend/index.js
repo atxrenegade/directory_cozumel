@@ -10,8 +10,6 @@ import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
 import * as adminInterface from	'./src/admin/interface/adminInterface.js';
 import * as storage from './src/sessionStorage/localStorage.js';
 
-
-
 window.onload = function(){
 	storage.initializeStorage();
 
@@ -98,7 +96,6 @@ window.onload = function(){
 	}
 
 	function toggleOperationForm() {
-		debugger;
 		const operationForm = document.getElementById('js-operation-form');
 		operationForm.style.display == 'none' ? operationForm.style.display = 'block' : operationForm.style.display = 'none';
 	}
@@ -190,6 +187,7 @@ window.onload = function(){
 	}
 
 	function returnResults(data) {
+		var newData;
 		if (data['msg'] !== undefined) {
 			if (LANGUAGE == 'esp' && data['msg-esp'] !== undefined ){
 				appendErrorMsg(data['msg-esp']);
@@ -197,13 +195,22 @@ window.onload = function(){
 				appendErrorMsg(data['msg']);
 			}
 		} else {
-			data = Array.from(data);
-			renderIndex(data);
+			cacheSearch(data);
+			newData = data.map(el => JSON.parse(el));
+			renderIndex(newData);
 		}
+		return newData;
+		//return data;
 	}
 
 	function displayBusObj(data) {
 		renderListing(buildListing(data));
+	}
+
+	function displaySearchResultsBusObj(data){
+		data.forEach( el => {
+			renderListing(buildListing(data));
+		})
 	}
 
 	function buildListing(data) {
@@ -218,30 +225,41 @@ window.onload = function(){
 		return objArray;
 	}
 
+	function renderListingOnly(objArray){
+		if (objArray != undefined) {
+			var business = Business.buildBusObj(objArray);
+			let busHTML = business.renderIndexBusListing(LANGUAGE);
+			renderComponent(busHTML, user.resultsListings);
+			let busButton = document.getElementById(`js-bus-${objArray.id}-more`);
+			busButton.addEventListener('click', postBusObjToRetrieve.bind(null, objArray.name))
+		}
+	}
+
 	function renderListing(objArray) {
 		// refactor this function
 		if (objArray != undefined) {
 			user.businessListings.innerHTML = '';
+			user.resultsListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing(LANGUAGE);
-			renderComponent(busHTML, user.businessListings);
+			renderComponent(busHTML, user.resultsListings);
 			if (objArray[4] != null) {
 				const operationsHTML = objArray[4].renderOperations(LANGUAGE);
-				renderComponent(operationsHTML, user.businessListings);
+				renderComponent(operationsHTML, user.resultsListings);
 			}
 
 			if (objArray[1].length > 0){
 				mapHTML = objArray[1].renderMap();
-				renderComponent(mapHTML, user.businessListings);
+				renderComponent(mapHTML, user.resultsListings);
 			}
 			if (objArray[3].length > 0){
 				let reviewsHTML = '<h5>Reviews</h5>';
 				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview(LANGUAGE));
-				renderComponent(reviewsHTML, user.businessListings);
+				renderComponent(reviewsHTML, user.resultsListings);
 			}
 			if (objArray[2].length > 0) {
 				let imagesHTML = '<h5>Photos</h5>';
 				objArray[2].forEach((img) => imagesHTML += img.renderImage());
-				renderComponent(imagesHTML, user.businessListings);
+				renderComponent(imagesHTML, user.resultsListings);
 			}
 			user.listingMenu.style.display = 'block';
 		}
@@ -271,11 +289,15 @@ window.onload = function(){
 	}
 
 	function renderIndex(resultsList) {
-		user.businessListings.innerHTML = '';
+		user.resultsListings.innerHTML = '';
 		user.businessListings.style.display = 'block';
 		resultsList.forEach(function(busObj) {
-			renderButton(busObj, postBusObjToRetrieve, user.businessListings);
+			renderListingOnly(busObj);
 		});
+	}
+
+	function cacheSearch(data){
+		sessionStorage.setItem('cachedSearch', data)
 	}
 
 	function renderButton(obj, functionToExec, elToAppendTo){
