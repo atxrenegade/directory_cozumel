@@ -262,11 +262,13 @@ window.onload = function(){
 				renderComponent(imagesHTML, user.resultsListings);
 			}
 			user.listingMenu.style.display = 'block';
+			document.getElementById('listing-back-button').addEventListener('click', returnedToCachedSearch)
 		}
 	}
 
 	function appendErrorMsg(msg) {
 		user.businessListings.innerHTML = '';
+		user.resultsListings.innerHTML = '';
 		const errorMsg = document.createElement('p');
 		errorMsg.innerHTML = `${msg}`
 		user.businessListings.appendChild(errorMsg);
@@ -289,6 +291,7 @@ window.onload = function(){
 	}
 
 	function renderIndex(resultsList) {
+		user.businessListings.innerHTML = '';
 		user.resultsListings.innerHTML = '';
 		user.businessListings.style.display = 'block';
 		resultsList.forEach(function(busObj) {
@@ -297,7 +300,22 @@ window.onload = function(){
 	}
 
 	function cacheSearch(data){
-		sessionStorage.setItem('cachedSearch', data)
+		sessionStorage.setItem('cachedSearchLen', data.length)
+		var num = 0;
+		data.forEach(el => {
+			sessionStorage.setItem(`cachedSearch${num}`, el)
+			num ++;
+		})
+	}
+
+	function returnedToCachedSearch(){
+		var length = sessionStorage.cachedSearchLen;
+		var dataArray = [];
+		for(let i = 0; i < length; i++){
+			let cachedSearch = sessionStorage.getItem(`cachedSearch${i}`);
+			dataArray.push(JSON.parse(cachedSearch));
+		}
+		renderIndex(dataArray);
 	}
 
 	function renderButton(obj, functionToExec, elToAppendTo){
