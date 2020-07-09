@@ -13,7 +13,7 @@ export default class Business {
 		if (LANGUAGE == 'eng'){
 			let rating;
 			this.overallRating === 0 ? rating = 'Not Yet Rated' : rating = `<b>Overall Rating:</b> ${this.overallRating}`
-			const listingHTML = `<div class='listing-div'><h3 id='listing-bus-name'> ${this.name}</h3>
+			const listingHTML = `<div id='back-button-div'><button id='listing-back-button'><<< Back</button><br><div class='listing-div'><h3 id='listing-bus-name'> ${this.name}</h3>
 			<b>${this.categories}</b><br>
 			${rating}<br>
 			<br>${this.address}
