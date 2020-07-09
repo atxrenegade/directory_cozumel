@@ -377,6 +377,17 @@
 		display: none;
 	}
 
+	#back-button-div {
+		text-align: left;
+	}
+
+	#listing-back-button {
+		border-width: 0;
+		background-color: white;
+		color: blue;
+		text-align: left;
+	}
+
 	#js-admin-CRUD-results {
 		margin: 10px 5px 5px 5px;
 		padding: 10px;
@@ -522,7 +533,7 @@
 		}
 
 		.listing-div {
-			padding: 5px;
+			padding: 3%;
 		}
 
 		.listing-content-2 {
