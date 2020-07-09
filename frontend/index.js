@@ -215,13 +215,15 @@ window.onload = function(){
 
 	function buildListing(data) {
 		const busObj = Business.buildBusObj(data);
-		let map;
+		var map;
+		var operationObj;
+
 		//data['map'] ?  map = GoogleMap.mapBuilder(data['map']) : map = []
 		map = []
 		const imagesCollection = Image.imagesBuilder(data['images']);
 		const reviewsCollection = Review.reviewsBuilder(data['reviews']);
-		const operationObj = Operation.operationBuilder(data['operation'])
-		const objArray= [busObj, map, imagesCollection, reviewsCollection, operationObj]
+		data['operation']? operationObj = Operation.operationBuilder(data['operation']) : operationObj = [];
+		const objArray = [busObj, map, imagesCollection, reviewsCollection, operationObj]
 		return objArray;
 	}
 
@@ -242,7 +244,7 @@ window.onload = function(){
 			user.resultsListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing(LANGUAGE);
 			renderComponent(busHTML, user.resultsListings);
-			if (objArray[4] != null) {
+			if (objArray[4].length > 0) {
 				const operationsHTML = objArray[4].renderOperations(LANGUAGE);
 				renderComponent(operationsHTML, user.resultsListings);
 			}
