@@ -244,7 +244,8 @@ window.onload = function(){
 			user.resultsListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing(LANGUAGE);
 			renderComponent(busHTML, user.resultsListings);
-			if (objArray[4].length > 0) {
+			if (objArray[4].currentStatus != undefined || objArray[4].currentStatus != null) {
+				//fix bug check for covid details render if present
 				const operationsHTML = objArray[4].renderOperations(LANGUAGE);
 				renderComponent(operationsHTML, user.resultsListings);
 			}
@@ -263,6 +264,7 @@ window.onload = function(){
 				objArray[2].forEach((img) => imagesHTML += img.renderImage());
 				renderComponent(imagesHTML, user.resultsListings);
 			}
+			debugger;
 			user.listingMenu.style.display = 'block';
 			document.getElementById('listing-back-button').addEventListener('click', returnedToCachedSearch)
 		}
