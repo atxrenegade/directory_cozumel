@@ -219,6 +219,10 @@
 		height: 15px;
 	}
 
+	input[type="submit"]{
+		margin-top: 3%;
+	}
+
 	/* MISC ELEMENT STYLES */
 
 	fieldset {
@@ -404,6 +408,7 @@
 		border-radius: 10px;
 		padding: 10px 5px;
 		margin: 10px 5px;
+		text-align: left;
 	}
 
 	#new-bus {
@@ -559,7 +564,6 @@
 
 		#js-listing-menu {
 			min-width: 200px;
-			max-width: 65%;
 			text-align: left;
 		}
 
@@ -615,7 +619,8 @@
 		}
 
 		#listings-fieldset {
-			border-width: 0px;
+			border-width: 2px;
+			padding: 3%;
 		}
 
 		#js-bus-select {
