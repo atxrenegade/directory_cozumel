@@ -264,7 +264,6 @@ window.onload = function(){
 				objArray[2].forEach((img) => imagesHTML += img.renderImage());
 				renderComponent(imagesHTML, user.resultsListings);
 			}
-			debugger;
 			user.listingMenu.style.display = 'block';
 			document.getElementById('listing-back-button').addEventListener('click', returnedToCachedSearch)
 		}
@@ -313,6 +312,7 @@ window.onload = function(){
 	}
 
 	function returnedToCachedSearch(){
+		user.listingMenu.style.display = 'none';
 		var length = sessionStorage.cachedSearchLen;
 		var dataArray = [];
 		for(let i = 0; i < length; i++){
