@@ -4,7 +4,7 @@
 
 function initializeStorage(){
 	var typeArray = ['cats', 'attributes', 'entries', 'response', 'result'];
-	typeArray.forEach( el => updateOrCreateStorage(el, ''));
+	typeArray.forEach( el => updateOrCreateStorage(el, 'empty'));
 }
 
 function updateOrCreateStorage(type, data){
