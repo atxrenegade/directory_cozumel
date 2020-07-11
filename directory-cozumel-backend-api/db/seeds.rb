@@ -98,7 +98,7 @@ categories_list = [
 	['Nail Salons', 'Salones de Uñas'],
 	['Nonprofit', 'Sin Ánimo de Lucro'],
 	['Nurse', 'Enfermera'],
-	['Optical', 'Óptico'],
+	['Optical', 'Optico'],
 	['Other', 'Otra'],
 	['Pediatrician', 'Pediatra'],
 	['Personal Care & Services', 'Cuidado y Servicios Personales'],
