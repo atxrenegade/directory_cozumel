@@ -11,6 +11,7 @@ import * as adminInterface from	'./src/admin/interface/adminInterface.js';
 import * as storage from './src/sessionStorage/localStorage.js';
 
 window.onload = function(){
+	sessionStorage.clear();
 	storage.initializeStorage();
 
 	const user = userVar.userVar();
@@ -69,6 +70,27 @@ window.onload = function(){
 		user.searchNameField.value = '';
 	}
 
+	/* New Business Form - Info PopUps */
+	function showSustainableInfo(){
+		if (LANGUAGE == 'eng') {
+			alert('Sustainable Business: incorporates principles of sustainability, supplies environmentally friendly products or services, is greener than competition, and has made an enduring commitment to environmental principles in operations.')
+		} else {
+			alert('Negocio sostenible: incorpora principios de sostenibilidad, proporciona productos o servicios respetuosos con el medio ambiente, es más ecológico que la competencia y ha asumido un compromiso duradero con los principios ambientales en las operaciones.')
+		}
+	}
+
+	function showOperationInfo(){
+		if (LANGUAGE == 'eng') {
+			alert('Add hours of operation, CoVid capacity, operations status, estimated opening date if not open yet, message to customers, etc.')
+		} else {
+			alert('Agregar horas de operación, capacidad CoVid, estado de las operaciones, fecha estimada de apertura si aún no está abierta, mensaje a los clientes, etc.')
+		}
+	}
+
+	function toggleOpeningDate(){
+		user.openingDate.style.display == 'block' ? 	user.openingDate.style.display = 'none' : user.openingDate.style.display = 'block';
+	}
+
 	function retrieveSearchCategoryResults() {
 		user.listingMenu.style.display = 'none';
 		user.listingsContainer.style.display = 'block';
@@ -93,6 +115,9 @@ window.onload = function(){
 			if (storage.getStorageItem('cats') == false) collectCategories();
 			if (categorySelectEl === null) renderNewBusCatSelect();
 		}
+		document.getElementById('sustainable-info').addEventListener('click', showSustainableInfo);
+		document.getElementById('operation-info').addEventListener('click', showOperationInfo);
+		document.getElementById('current-status-no').addEventListener('click', 	toggleOpeningDate);
 	}
 
 	function toggleOperationForm() {
@@ -176,11 +201,11 @@ window.onload = function(){
 		if (LANGUAGE == 'eng') {
 			catsCollection = categoryObjects.map((el) => {
 				return el['name'];
-			})
+			}).sort()
 		} else {
 			catsCollection = categoryObjects.map((el) => {
 				return el['nombre'];
-			})
+			}).sort()
 		}
 		let catsData = JSON.stringify(catsCollection);
 		storage.updateOrCreateStorage('cats', catsData);
@@ -265,7 +290,7 @@ window.onload = function(){
 				renderComponent(imagesHTML, user.resultsListings);
 			}
 			user.listingMenu.style.display = 'block';
-			document.getElementById('listing-back-button').addEventListener('click', returnedToCachedSearch)
+			document.getElementById('listing-back-button').addEventListener('click', returnToCachedSearch)
 		}
 	}
 
@@ -311,7 +336,15 @@ window.onload = function(){
 		})
 	}
 
-	function returnedToCachedSearch(){
+	function returnToCachedSearch(){
+		var checkboxes = document.querySelectorAll("input[type='checkbox']");
+		for(var i = 0; i < checkboxes.length; i++) {
+			checkboxes[i].checked = false;
+		}
+		document.getElementById('js-add-review-form-container').style.display = 'none';
+		document.getElementById('js-add-image-form-container').style.display = 'none';
+		document.getElementById('js-suggest-edit-form-container').style.display = 'none';
+		document.getElementById('js-flag-business-form-container').style.display = 'none';
 		user.listingMenu.style.display = 'none';
 		var length = sessionStorage.cachedSearchLen;
 		var dataArray = [];
@@ -345,7 +378,7 @@ window.onload = function(){
 		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
 		if (storage.getStorageItem('cats') == false) collectCategories();
 		let catMenu = document.createElement('div');
-		let html = '<select id="cat-select" multiple>';
+		let html = '<select id="cat-select">';
 		let catsData = JSON.parse(storage.getStorageItem('cats'));
 		const cats = catsData.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
@@ -524,8 +557,11 @@ window.onload = function(){
 	/* New Business Form Listener */
 	user.newBusinessButton.addEventListener('click', toggleNewBusinessForm);
 
+
 	/* Operations Form Event Listener */
 	user.operationFormCheckBox.addEventListener('click', toggleOperationForm)
+
+
 
 	/* Form Event Listeners */
 	document.addEventListener( 'submit', function(){
