@@ -6,7 +6,6 @@
 
     <link rel='stylesheet' href='styles.css'>
 		<link href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Open+Sans|Satisfy&display=swap" rel="stylesheet">
-
   </head>
   <body>
     <header>
@@ -14,7 +13,7 @@
     <main>
 			<div class='column'>
 				<img src="./assets/images/DirectoryCozumel.png" alt="Directory Cozumel Logo" class="logo-image">
-
+				
 				<div id='lang-support-block'>
 					<div id='lang-support-col'>
 						<a href='index.html'><img id='eng-lang' class='lang-support' src='./assets/images/lang-support/United-States-icon.png' alt='United State Flag Icon for English Language Selection'></img></a><a href='index-es.html'><img id='esp-lang' class='lang-support' src='./assets/images/lang-support/Mexico-icon.png' alt='Mexican Flag Icon for Spanish Language Selection'></img></a>
@@ -162,71 +161,73 @@
 
 				<div id='js-new-business-container' class='innermost-tile'>
 					<fieldset id='js-add-business'>
-						<legend>Add New Business:</legend>
-						<button id='js-add-business-button'>Add New Business</button>
+						<legend>Añadir Nuevo Negocio:</legend>
+						<button id='js-add-business-button'>Añadir Nuevo Negocio</button>
 						<br><br>
 						<div id='js-add-business-form-container'>
 							<form id='js-new-business-form'>
 								<fieldset id='new-bus'>
 									<label> Business Name:</label>
 									<input type='text' id='business-name'/><br>
-									<label> Address:</label>
+									<label> Dirección:</label>
 									<input type='text' id='bus-address'/><br>
-									<label> Phone Number:</label>
+									<label> Número de teléfono:</label>
 									<input type='text' id='bus-phone-number'/><br>
-									<label> Website:</label>
+									<label> Sitio Web:</label>
 									<input type='text' id='bus-website'/><br><br>
-									<label id='js-new-bus-select-label'>Select a Business Category:</label><br>
-									<label> Is this a sustainable business?&nbsp;&#9432;</label></span>Yes<input type='checkbox' id='sustainable-biz-yes'/>&#09;No<input type='checkbox' id='sustainable-biz-no'/><br><br>
-									<label class='label'>Add hours of operation and CoVid info?&nbsp;&#9432;</label>
-									<input type="checkbox" id="js-add-operation" autocomplete="off">
-									<br>
-									<div id='js-operation-form' style='display:none'>
+									<label id='js-new-bus-select-label'>Seleccione una Categoría de Negocios:</label><br>
+									<label>¿Es este un negocio sostenible?<strong id="sustainable-info">&nbsp;&#9432;</strong></label>Si<input type='checkbox' id='sustainable-biz-yes' autocomplete="off"/>&#09;No<input type='checkbox' id='sustainable-biz-no' autocomplete="off"/><br><br>
+									<label class='label'><span id='operations-menu-checkbox'>¿Agregar detalles de negocios e información de CoVid?<strong id="operation-info">&nbsp;&#9432;</strong></label>
+									<input type="checkbox" id="js-add-operation" autocomplete="off"></span>
+									<br><br>
+									<div id='js-operation-form' style='display:none;'>
 										<form>
-											<label> Are you currently open for business?</label>
-											Yes<input type='checkbox' id='current-status-yes'/>&#09;No<input type='checkbox' id='current-status-no'><br><br>
-											<label>What date do you plan to reopen?</label>
-											<input type='text' id='opening-date' style='display:none';><br><br>
-											<label> What % occupancy rate you are currently operating at? </label>
+											<label>¿Está abierto actualmente para los negocios?</label>
+											Si<input type='checkbox' id='current-status-yes' autocomplete="off"/>&#09;No<input type='checkbox' id='current-status-no' autocomplete="off"><br><br>
+											<div id='js-bus-form-reopen-date' style='display:none;'>
+												<label>¿En qué fecha planeas reabrir?</label>
+												<input id='opening-date' type='text'><br><br>
+											</div>
+											<label>¿En qué porcentaje de ocupación está operando actualmente? </label>
 											<input type='text' id='occupancy-rate'><br><br>
-											<label>Do customers need a reservation?</label>
-											Yes<input type='checkbox' id='reservation-required-yes' value=/>&#09;No<input type='checkbox' id='reservation-required-no'><br><br>
-											<label>Is there anything you would like to share with your customers? (ie. pick up & delivery service? specials? etc. 256 characters max.) </label>
-											<input type='textarea' id='operations-notes'><br>
+											<label>¿Los clientes necesitan una reserva o cita?</label>
+											Yes<input type='checkbox' id='reservation-required-yes' autocomplete="off">&#09;No<input type='checkbox' id='reservation-required-no' autocomplete="off"><br><br>
+											<label>¿Hay algo que le gustaría compartir con sus clientes? (es decir, servicio de recogida y entrega? especiales? etc. 256 caracteres máx.) </label>
+											<input type='textarea' id='operations-notes'><br><br>
 
-										<p>Please enter hours of operation in the following format: (9am-1pm). Leave blank on days the business is closed. </p><br>
+										<p>Ingrese las horas de operación en el siguiente formato: (9am - 1pm). Deje en blanco los días que el negocio está cerrado.</p><br>
 											<div class='inline-field'>
-												<label class='label hours'>Monday:&#09;</label>
-												<input type='text' id='hours-0-1' placeholder='9am-5pm'/><br>
+												<label class='label hours'>lunes:&#09;</label>
+												<input type='text' id='hours-0-1' placeholder=''/><br>
 
-												<label class='label hours'>Tuesday:&#09;</label>
-												<input type='text' id='hours-1-1' placeholder='9am-5pm'><br>
+												<label class='label hours'>martes:&#09;</label>
+												<input type='text' id='hours-1-1' placeholder=''><br>
 
-												<label class='label hours'>Wednesday:&#09;</label>
-												<input type='text' id='hours-2-1' placeholder='9am-5pm'><br>
+												<label class='label hours'>miércoles:&#09;</label>
+												<input type='text' id='hours-2-1' placeholder=''><br>
 
-												<label class='label hours'>Thursday:&#09;</label>
-												<input type='text' id='hours-3-1' placeholder='9am-5pm'><br>
+												<label class='label hours'>jueves:&#09;</label>
+												<input type='text' id='hours-3-1' placeholder=''><br>
 
-												<label class='label hours'>Friday:&#09;</label>
-												<input type='text' id='hours-4-1' placeholder='9am-5pm'><br>
+												<label class='label hours'>viernes:&#09;</label>
+												<input type='text' id='hours-4-1' placeholder=''><br>
 
-												<label class='label hours'>Saturday:&#09;</label>
-												<input type='text' id='hours-5-1' placeholder='9am-5pm'><br>
+												<label class='label hours'>sábado:&#09;</label>
+												<input type='text' id='hours-5-1' placeholder=''><br>
 
-												<label class='label hours'>Sunday:&#09;</label>
-												<input type='text' id='hours-6-1' placeholder='9am-5pm'>
+												<label class='label hours'>domingo:&#09;</label>
+												<input type='text' id='hours-6-1' placeholder=''>
 											</div>
 										</form>
 									</div>
-									<br>
-									<input id='new-bus-submit' type='submit' value='Submit'><br><br>
+									<input id='new-bus-submit' type='submit' value='Enviar'>
 								</fieldset>
 							</form>
 						</div>
 					</fieldset>
 					<br>
 				</div>
+
 				<p id='footer'><a href='http://www.harleighabel.com' class='copyright' id='user-page-copyright'>©2020 dotrenegade inc.</a>
 				</p>
 			</div>
