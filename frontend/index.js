@@ -12,6 +12,7 @@ import * as storage from './src/sessionStorage/localStorage.js';
 
 window.onload = function(){
 	sessionStorage.clear();
+	localStorage.clear();
 	storage.initializeStorage();
 
 	const user = userVar.userVar();
@@ -68,6 +69,13 @@ window.onload = function(){
 		user.listingsContainer.style.display = 'block';
 		postSearchByName(user.searchNameField.value);
 		user.searchNameField.value = '';
+	}
+
+	function setLocalDateTime(){
+		var date = new Date();
+		var dateString = date.toDateString();
+		var time = date.toLocaleTimeString();
+		return dateString + " " + time;
 	}
 
 	/* New Business Form - Info PopUps */
@@ -242,7 +250,6 @@ window.onload = function(){
 		const busObj = Business.buildBusObj(data);
 		var map;
 		var operationObj;
-
 		//data['map'] ?  map = GoogleMap.mapBuilder(data['map']) : map = []
 		map = []
 		const imagesCollection = Image.imagesBuilder(data['images']);
@@ -373,6 +380,54 @@ window.onload = function(){
 	}
 
 	/* FORM FUNCTIONs */
+	/* Handle New Business Form */
+	function formatNewBusinessFormData(event){
+	 // *****
+		event.preventDefault();
+		var data = Array.from(event.target.parentNode.elements)
+		var listingData = []
+		data.slice(0,5).forEach(el => {
+			listingData.push([el['id'], el['value']])
+		})
+		if (user.operationFormCheckBox.checked == true){
+			listingData.unshift(['new-bus', true])
+			if (data[8].checked) {
+				listingData[7] = ['current_status', true]
+			} else if (data[9].checked) {
+				listingData[7] = ['current_status', false]
+			} else {
+				listingData[7] = ['current_status', undefined]
+			}
+			listingData[8] = ['opening_date', data[10].value]
+			listingData[9] = ['occupancy_rate', data[11].value]
+			if (data[12].checked) {
+				listingData[10] = ['reservation_required', true];
+			} else if (data[13].checked) {
+				listingData[10] = ['reservation_required', false];
+			} else {
+				listingData[10] = ['reservation_required', undefined];
+			}
+			listingData[11] = ['business_hours', data[15].value, data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value ]
+			listingData[12] = ['notes', data[14].value] //notes
+			listingData[13] = ['last_updated', setLocalDateTime()] //update at *****
+		} else {
+			let sustainableArray = [];
+			if (data[6].checked) {
+				sustainableArray = ['sustainable_business', true]
+			} else if (data[7].checked) {
+				sustainableArray = ['sustainable_business', false]
+			} else {
+				sustainableArray = ['sustainable_business', undefined]
+			}
+			listingData.push(sustainableArray);
+			listingData.unshift(['new-bus', false])
+			// Add sustainable to js data array, seeds, model and search
+			// why is name duplicated?
+		}
+		postForm(listingData);
+		formSubmitted(event);
+	}
+
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect() {
 		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
@@ -400,7 +455,7 @@ window.onload = function(){
 	}
 
 	function submitForm(event) {
-		if (event.type === 'submit' &&  event.target.className !== 'admin-form') {
+		if (event.type === 'submit' && event.target.id !== 'js-new-business-form' && event.target.className !== 'admin-form' ) {
 			event.preventDefault();
 			const busName = getBusNameForAssoForm(event);
 			createPostData(event, busName);
@@ -415,26 +470,28 @@ window.onload = function(){
 			if (LANGUAGE == 'eng'){
 				if (storage.getStorageItem('response') !== false){
 					submittedEl.innerHTML = 'Thank you for your submission!'
-					submittedEl.innerHTML += '<br>' + 'It will be added to the directory as soon as it is confirmed!';
+					submittedEl.innerHTML += '<br>' + 'It will be added to the directory as soon as it is reviewed!';
 				} else {
 					submittedEl.innerHTML = 'Submission Unsuccessful!';
 				}
 			} else {
 				if (storage.getStorageItem('response') !== false){
 				submittedEl.innerHTML = '¡Gracias por tu envío!'
-				submittedEl.innerHTML += '<br>' + '¡Se agregará al directorio tan pronto como se revise!';
+				submittedEl.innerHTML += '<br>' + '¡Se agregará al directorio tan pronto como se aprobado!';
 				} else {
 					submittedEl.innerHTML = '¡Envío fallido!';
 				}
 			}
-			event.target.reset();
-			if (event.originalTarget[0].id === 'new-bus'){
+			if (event.target.id == 'new-bus-submit') {
+				event.target.parentElement.parentElement.reset()
+				user.newBusinessForm.style.display = 'none';
 				document.getElementById('js-add-business').appendChild(submittedEl);
 			} else {
+				event.target.reset();
 				user.listingMenu.appendChild(submittedEl)
 				clearCheckBox();
-			}
-			event.target.style.display = 'none';
+				event.target.style.display = 'none';
+			};
 		}, 250)
 	}
 
@@ -556,12 +613,10 @@ window.onload = function(){
 
 	/* New Business Form Listener */
 	user.newBusinessButton.addEventListener('click', toggleNewBusinessForm);
-
+	document.getElementById('new-bus-submit').addEventListener('click', formatNewBusinessFormData)
 
 	/* Operations Form Event Listener */
 	user.operationFormCheckBox.addEventListener('click', toggleOperationForm)
-
-
 
 	/* Form Event Listeners */
 	document.addEventListener( 'submit', function(){
