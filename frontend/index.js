@@ -409,7 +409,7 @@ window.onload = function(){
 			}
 			listingData[11] = ['business_hours', data[15].value, data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value ]
 			listingData[12] = ['notes', data[14].value] //notes
-			listingData[13] = ['last_updated', setLocalDateTime()] //update at *****
+			listingData[13] = ['user_updated', setLocalDateTime()] //update at *****
 		} else {
 			let sustainableArray = [];
 			if (data[6].checked) {
