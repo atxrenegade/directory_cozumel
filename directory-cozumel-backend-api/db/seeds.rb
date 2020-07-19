@@ -253,7 +253,8 @@ listings_list = [
 		"address": "Calle 22 de Enero No. 261, Cozumel",
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
-		"business_id": 3
+		"business_id": 3,
+		"sustainable_business": true
 	},
 	{
 		"overall_rating": 3 ,
@@ -375,7 +376,8 @@ listings_list = [
 		"address": "Km 11 Carreter Transversal, Cozumel",
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
-		"business_id": 20
+		"business_id": 20,
+		"sustainable_business": true
 	},
 
 	{
@@ -446,7 +448,8 @@ listings_list = [
 		"address": "Ave. Rafael E. Melgar, Esquina Calle 2 Norte",
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
-		"business_id": 29
+		"business_id": 29,
+		"sustainable_business": true
 	},
 	{
 		"overall_rating": 2,
@@ -460,8 +463,7 @@ listings_list = [
 operation_list = [
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -471,8 +473,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -482,8 +483,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -493,8 +493,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -504,8 +503,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -515,8 +513,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -526,8 +523,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -537,8 +533,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -548,8 +543,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -559,8 +553,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -570,8 +563,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -582,8 +574,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -593,8 +584,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -605,8 +595,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -615,8 +604,7 @@ operation_list = [
 	},
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -625,8 +613,7 @@ operation_list = [
 	},
 	{
 		'current_status': true,
-		'weekday_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm'],
-		'weekend_hours': ['closed', 'closed'],
+		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
