@@ -316,6 +316,11 @@ window.onload = function(){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
 			let catsData = JSON.parse(storage.getStorageItem('cats'));
+			if (LANGUAGE == 'eng') {
+				catsData.unshift('Sustainable Businesses');
+			} else {
+				catsData.unshift('Negocio Sustentable')
+			}
 			const cats = catsData.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
