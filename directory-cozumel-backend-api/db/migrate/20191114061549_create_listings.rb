@@ -5,6 +5,7 @@ class CreateListings < ActiveRecord::Migration[5.2]
       t.string :address
       t.string :phone_number
       t.string :website
+			t.boolean :sustainable_business, :null => true
 
 			t.references :business
 
