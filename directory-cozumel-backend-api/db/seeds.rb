@@ -5,7 +5,6 @@
 #comment out EVERYTHING below Categoires when not in TESTING mode
 
 categories_list = [
-	['Acupuncture', 'Acupuntura'],
 	['Airlines', 'Aerolíneas'],
 	['Animal Hospitals', 'Hospitales de Animales'],
 	['Artists', 'Artistas'],
@@ -175,7 +174,6 @@ categories_list = [
 	['Shipping - Packing & Shipping', 'Envío - Embalaje y Envío'],
 	['Shoe Repairs', 'Reparaciones de Calzado'],
 	['Shuttles', 'Lanzaderas'],
-	['Sustainable Businesses', 'Empresas Sostenibles'],
 	['Tailors', 'Sastres'],
 	['Taxi', 'Taxi'],
 	['Telephone Service Providers', 'Proveedores de Servicios Telefónicos'],
