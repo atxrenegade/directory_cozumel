@@ -1,13 +1,12 @@
 export default class Operation {
-	constructor(currentStatus, weekdayHours, weekendHours, openingDate, occupancyRate, reservationRequired, notes, lastUpdated){
+	constructor(currentStatus, businessHours, openingDate, occupancyRate, reservationRequired, notes, userUpdated){
 		this.currentStatus = currentStatus;
-		this.weekdayHours = weekdayHours;
-		this.weekendHours = weekendHours;
+		this.businessHours = businessHours
 		this.openingDate = openingDate;
 		this.occupancyRate = occupancyRate;
 		this.reservationRequired = reservationRequired;
 		this.notes = notes;
-		this.lastUpdate = lastUpdated;
+		this.userUpdate = userUpdated;
 	}
 
 	renderOperations(LANGUAGE){
@@ -19,7 +18,7 @@ export default class Operation {
 			var status = (this.currentStatus == true) ? 'Yes' : 'No';
 			var reservation = (this.reservationRequired == true) ? 'Yes' : 'No';
 			var reopening = (this.currentStatus == true) ? 'Open Now' : this.reopeningDate;
-			operation =  `<div class='operation'><h5>Hours Of Operation: (CoVid)</h5><p class='listing-content-1'><b>M:</b>	  ${this.weekdayHours[0]}<br><b>Tu:</b>		${this.weekdayHours[1]}<br><b>W:</b>		${this.weekdayHours[2]}<br><b>Th:</b>		${this.weekdayHours[3]}<br><b>F:</b>		${ this.weekdayHours[4]}<br><b>Sat:</b>		${this.weekendHours[0]}<br><b>Sun:</b>		${this.weekendHours[1]}<br></p><h5>Post CoVid UPDATES:</h5><p class='listing-content-2'><b>Open For Business: </b>${status}<br><b>Estimated Reopening Date: </b>${reopening}<br><b>Operating Occupancy Rate: </b> ${this.occupancyRate}%<br><b>Reservation Required?</b>		${reservation}<br><b>Last Updated: </b> ${this.lastUpdate}</p>`
+			operation =  `<div class='operation'><h5>Hours Of Operation: (CoVid)</h5><p class='listing-content-1'><b>M:</b>	  ${this.businessHours[0]}<br><b>Tu:</b>		${this.businessHours[1]}<br><b>W:</b>		${this.businessHours[2]}<br><b>Th:</b>		${this.businessHours[3]}<br><b>F:</b>		${ this.businessHours[4]}<br><b>Sat:</b>		${this.businessHours[5]}<br><b>Sun:</b>		${this.businessHours[6]}<br></p><h5>Post CoVid UPDATES:</h5><p class='listing-content-2'><b>Open For Business: </b>${status}<br><b>Estimated Reopening Date: </b>${reopening}<br><b>Operating Occupancy Rate: </b> ${this.occupancyRate}%<br><b>Reservation Required?</b>		${reservation}<br><b>Last Updated: </b> ${this.lastUpdate}</p>`
 			if (this.note !== null){ return operation + `<p class='listing-content-2'><b>${this.notes}</b></p></div>` }
 			return operation;
 		} else {
@@ -35,14 +34,13 @@ export default class Operation {
 
 	static operationBuilder(operationData){
 		let currentStatus = operationData['current_status'];
-		let weekdayHours = JSON.parse(operationData.weekday_hours);
-		let weekendHours = JSON.parse(operationData.weekend_hours);
+		let businessHours = JSON.parse(operationData.business_hours);
 		let openingDate = operationData['opening_date'];
 		let occupancyRate = operationData['occupancy_rate'];
 		let reservationRequired = operationData['reservation_required'];
-		let lastUpdated = operationData['updated_at']
+		let userUpdated = operationData['user_updated']
 		let notes = operationData['notes'];
-		let newOperation = new Operation(currentStatus, weekdayHours, weekendHours, openingDate, occupancyRate, reservationRequired, notes, lastUpdated)
+		let newOperation = new Operation(currentStatus, businessHours, openingDate, occupancyRate, reservationRequired, notes, userUpdated)
 		return newOperation;
 	}
 }
