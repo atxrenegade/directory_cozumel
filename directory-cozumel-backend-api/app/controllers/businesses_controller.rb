@@ -29,7 +29,11 @@ class BusinessesController < ApplicationController
 	end
 
 	def index_by_category
-		businesses = BusinessCategory.filter_by_category(params[:lang], params[:category_name])
+		if params[:category_name] == 'Sustainable Businesses' ||  params[:category_name] == 'Empresas Sostenibles'
+			businesses = Listing.filter_by_sustainable
+		else 
+			businesses = BusinessCategory.filter_by_category(params[:lang], params[:category_name])	
+		end 
 		if businesses.present?
 			businesses_array = []
 			businesses.each do |el|
@@ -42,7 +46,7 @@ class BusinessesController < ApplicationController
 			render json: businesses_array
 		else
 			render json: {msg: 'There are no businesses listed in that category yet!', 'msg-esp': '¡No hay negocios listados en esa categoría todavía!'}
-		end
+		end	
 	end
 
 	def index_by_name
