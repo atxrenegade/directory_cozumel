@@ -342,6 +342,19 @@
 		width: 340px;
 	}
 
+	img.sustainable {
+		padding: 5px;
+		border-color: white;
+		border-radius: 10px;
+		background-color: greenyellow;
+		text-align:center;
+		display:inline-block;
+		max-width:40px;
+		min-width:40px;
+		margin-top: 0px;
+		margin-bottom: 10px;
+	}	
+
 	.review {
 		border-radius: 4%;
 		border-width: 4px;
@@ -686,7 +699,6 @@
 	}
 
 	@media screen and (min-width: 10px) and (max-width: 340px) {
-
 
 		.radio-search-column label.label {
     font-size: .9em;
