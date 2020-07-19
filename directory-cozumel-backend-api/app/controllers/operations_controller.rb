@@ -45,6 +45,6 @@ class OperationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def operation_params
-      params.require(:operation).permit(:current_status, :boolean, :weekday_hours, :string, :weekend_hours, :opening_date, :date, :occupancy_rate, :integer, :reservation_required, :boolean, :notes, :string)
+      params.require(:operation).permit(:current_status, :opening_date, :occupancy_rate, :reservation_required, :business_hours, :notes, :user_updated)
     end
 end
