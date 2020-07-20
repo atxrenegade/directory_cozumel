@@ -78,6 +78,11 @@ window.onload = function(){
 		return dateString + " " + time;
 	}
 
+	function formatDate(dateString){
+		let dataArray = dateString.split('T')[0].split('-');
+		return [dataArray[1], dataArray[2], [dataArray[0]]].join('-');
+	}
+
 	/* New Business Form - Info PopUps */
 	function showSustainableInfo(){
 		if (LANGUAGE == 'eng') {
@@ -254,7 +259,7 @@ window.onload = function(){
 		map = []
 		const imagesCollection = Image.imagesBuilder(data['images']);
 		const reviewsCollection = Review.reviewsBuilder(data['reviews']);
-		data['operation']? operationObj = Operation.operationBuilder(data['operation']) : operationObj = [];
+		data['operation'] ? operationObj = Operation.operationBuilder(data['operation'], formatDate(data['updated_at'])) : operationObj = [];
 		const objArray = [busObj, map, imagesCollection, reviewsCollection, operationObj]
 		return objArray;
 	}
