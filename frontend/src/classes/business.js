@@ -73,7 +73,6 @@ export default class Business {
 		} else {
 			sustainable = `<br><img src="./assets/images/icons8-sustainability-50.png"  class="sustainable"><br>Negocio<br>Sustentable<br><br>`;
 		}
-		debugger;
 		return sustainable;
 	}
 
