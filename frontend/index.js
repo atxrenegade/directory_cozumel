@@ -526,27 +526,18 @@ window.onload = function(){
 
 	/* ADMIN LOGIN FUNCTIONS */
 	function clearDirectoryForAdminView() {
-		const sponsListContainer = document.getElementById('sponsored-listing-container');
-		const adsContainer = document.getElementById('ads-container');
-		const searchBarContainer = document.getElementById('js-searchbar-container');
-		const newBusContainer = document.getElementById('js-new-business-container');
-		const adminPanel = document.getElementById('js-admin-panel-container');
-		const adminMenu = document.getElementById('js-admin-menu-container');
-		const adminPanelLogout = document.getElementById('js-admin-logout-button');
-		const adminPanelForm = document.getElementById('js-admin-login');
-		const adminUserInfo = document.getElementById('js-admin-user-info');
-		sponsListContainer.style.display = 'none';
-		adsContainer.style.display = 'none';
-		searchBarContainer.style.display = 'none';
+		document.getElementById('sponsored-listing-container').style.display = 'none';
+		document.getElementById('ads-container').style.display = 'none';
+		document.getElementById('js-searchbar-container').style.display = 'none';
+		document.getElementById('js-new-business-container').style.display = 'none';
+		document.getElementById('js-admin-panel-container').style.display = 'block';
+		document.getElementById('js-admin-menu-container').style.display = 'block';
+		document.getElementById('js-admin-logout-button').style.display = 'block';
+		document.getElementById('js-admin-login').style.display = 'none';
+		document.getElementById('js-admin-user-info').style.display = 'block';
 		user.listingsContainer.style.display = 'none';
-		newBusContainer.style.display = 'none';
 		user.hiddenAdminButton.style.display = 'none';
-		adminPanel.style.display = 'block';
-		adminMenu.style.display = 'block';
 		user.adminPanelLogin.style.display = 'none';
-		adminPanelLogout.style.display = 'block';
-		adminPanelForm.style.display = 'none';
-		adminUserInfo.style.display = 'block';
 	}
 
 	function logInAdmin() {
