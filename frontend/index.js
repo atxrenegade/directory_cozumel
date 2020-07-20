@@ -9,6 +9,7 @@ import Operation from './src/classes/operation.js';
 import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
 import * as adminInterface from	'./src/admin/interface/adminInterface.js';
 import * as storage from './src/sessionStorage/localStorage.js';
+import * as googleMapsAPI from './src/api/googleMapsAPI.js';
 
 window.onload = function(){
 	sessionStorage.clear();
@@ -18,6 +19,7 @@ window.onload = function(){
 	const user = userVar.userVar();
 	const admin = adminVar.adminVar();
 	const adminFetch = adminAPI.adminAPIRequests(storage, Entry);
+	const mapsAPI = googleMapsAPI.googleMapsAPI();
 
 	const LAT = 20.42;
 	const LNG = -86.92;
@@ -255,8 +257,7 @@ window.onload = function(){
 		const busObj = Business.buildBusObj(data);
 		var map;
 		var operationObj;
-		//data['map'] ?  map = GoogleMap.mapBuilder(data['map']) : map = []
-		map = []
+		data['map'] !== undefined ? map = GoogleMap.mapBuilder(data['map']) : map = null;
 		const imagesCollection = Image.imagesBuilder(data['images']);
 		const reviewsCollection = Review.reviewsBuilder(data['reviews']);
 		data['operation'] ? operationObj = Operation.operationBuilder(data['operation'], formatDate(data['updated_at'])) : operationObj = [];
@@ -281,15 +282,14 @@ window.onload = function(){
 			user.resultsListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing(LANGUAGE);
 			renderComponent(busHTML, user.resultsListings);
+			debugger;
+			if (objArray[1] != undefined) {
+				var mapHTML = objArray[1].renderMap(mapsAPI.key);
+				renderComponent(mapHTML, user.resultsListings);
+			}
 			if (objArray[4].currentStatus != undefined || objArray[4].currentStatus != null) {
-				//fix bug check for covid details render if present
 				const operationsHTML = objArray[4].renderOperations(LANGUAGE);
 				renderComponent(operationsHTML, user.resultsListings);
-			}
-
-			if (objArray[1].length > 0){
-				mapHTML = objArray[1].renderMap();
-				renderComponent(mapHTML, user.resultsListings);
 			}
 			if (objArray[3].length > 0){
 				let reviewsHTML = '<h5>Reviews</h5>';
@@ -573,7 +573,7 @@ window.onload = function(){
 
 	/* PAGE RESET FUNCTION */
 	function resetPage() {
-		const mapContainer = document.getElementById('js-map');
+		const mapContainer = document.getElementById('mapDiv').innerHTML = "";
 		clearCheckBox();
 		user.nameRadioSelect.checked = true;
 		user.categoryRadioSelect.checked = false;
