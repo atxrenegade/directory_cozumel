@@ -9,7 +9,7 @@ import Operation from './src/classes/operation.js';
 import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
 import * as adminInterface from	'./src/admin/interface/adminInterface.js';
 import * as storage from './src/sessionStorage/localStorage.js';
-import * as googleMapsAPI from './src/api/googleMapsAPI.js';
+import * as googleAPI from './src/API/googleMapsAPI.js';
 
 window.onload = function(){
 	sessionStorage.clear();
@@ -19,10 +19,7 @@ window.onload = function(){
 	const user = userVar.userVar();
 	const admin = adminVar.adminVar();
 	const adminFetch = adminAPI.adminAPIRequests(storage, Entry);
-	const mapsAPI = googleMapsAPI.googleMapsAPI();
-
-	const LAT = 20.42;
-	const LNG = -86.92;
+	const mapAPI = googleAPI.googleMapsAPI();
 
 	var LANGUAGE = '';
 
@@ -282,9 +279,8 @@ window.onload = function(){
 			user.resultsListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing(LANGUAGE);
 			renderComponent(busHTML, user.resultsListings);
-			debugger;
 			if (objArray[1] != undefined) {
-				var mapHTML = objArray[1].renderMap(mapsAPI.key);
+				var mapHTML = objArray[1].renderMap(mapAPI.key);
 				renderComponent(mapHTML, user.resultsListings);
 			}
 			if (objArray[4].currentStatus != undefined || objArray[4].currentStatus != null) {
@@ -564,13 +560,12 @@ window.onload = function(){
 
 	/* PAGE RESET FUNCTION */
 	function resetPage() {
-		const mapContainer = document.getElementById('mapDiv').innerHTML = "";
+		document.getElementById('mapDiv').innerHTML = "";
 		clearCheckBox();
 		user.nameRadioSelect.checked = true;
 		user.categoryRadioSelect.checked = false;
 		user.listingsContainer.style.display = 'none';
 		user.listingMenu.style.display = 'none';
-		mapContainer.style.display = 'none';
 		user.businessListings.style.display = 'none';
 		const elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
