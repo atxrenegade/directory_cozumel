@@ -17,11 +17,14 @@
 
 			/* business listing elements */
 			businessListings: document.getElementById('js-listing-show'),
+			resultsListings: document.getElementById('js-listing-show-results'),
 			listingMenu: document.getElementById('js-listing-menu'),
 
 			/* add business form elements */
 			newBusinessButton: document.getElementById('js-add-business-button'),
 			newBusinessForm: document.getElementById('js-new-business-form'),
+			operationFormCheckBox:  document.getElementById('js-add-operation'),
+			openingDate: document.getElementById('js-bus-form-reopen-date'),
 
 			/* admin hidden button element */
 			hiddenAdminButton: document.getElementById('js-admin-hidden-button'),

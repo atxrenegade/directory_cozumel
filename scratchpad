@@ -22,7 +22,7 @@ WEDNESDAY
 	14. finish super admin search and forms
 
 THURSDAY
- 	15. admin authorization - admin panel - logout button - add super admin column and authorization
+ X	15. admin authorization - admin panel - logout button - add super admin column and authorization
 
 FRIDAY
  16. add validations
@@ -31,15 +31,15 @@ FRIDAY
  19. google maps
 
 SATURDAY
- 20. styling
- 21. admin entry seed file
+ X20. styling
+ X21. admin entry seed file
 
 SUNDAY
- 22. documentation
+ X22. documentation
 
 MONDAY
- 23. video
- 24. blogpost
+ X23. video
+X 24. blogpost
 
  Super SEARCH
  Super Create/Edit Form
@@ -64,23 +64,50 @@ MONDAY
  Second form show all attributes of instance and a confirm delete button
 
 
-LANGUAGE SUPPORT - add database column to category model of spanish name equivalent
+X LANGUAGE SUPPORT - add database column to category model of spanish name equivalent
 
-add spanish/english buttons to switch back and forth
+X add spanish/english buttons to switch back and forth
 create logo in spanish logo
-fix search functions in spanish
+X fix search functions in spanish
 CoronaVirus Update in english/spanish
-Save and Error messages in spanish
+X Save and Error messages in spanish
 
 
 Coronovirus functionality
 debug admin buttons
-JWT
+JWT - sticking with
 Photostorage
 styling
 mobile responsive
-landing page
-styling
+landing page and ad pages
+research services for deployment
 deploy - who should I deply this app with? - research deployment scaling operation costs
 
-email address confirmation for new reviews
+email address confirmation for new reviews***
+
+ADD STAR RATING
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<span class='fa fa-star checked'></span>
+<span class='fa fa-star checked'></span>
+<span class='fa fa-star checked'></span>
+<span class='fa fa-star'></span>
+<span class="fa fa-star"></span>
+
+.checked {
+  color: orange;
+}
+
+
+
+font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+font-size: 14px;
+font-weight: 200;
+letter-spacing: 1px;
+line-height: 21px;
+margin-bottom: 0px;
+margin-top: 0px;
+overflow-wrap: break-word;
+text-align: left;

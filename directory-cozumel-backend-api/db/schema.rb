@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_190111) do
     t.string "address"
     t.string "phone_number"
     t.string "website"
+    t.boolean "sustainable_business"
     t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -83,10 +84,25 @@ ActiveRecord::Schema.define(version: 2020_06_25_190111) do
   create_table "maps", force: :cascade do |t|
     t.float "lat"
     t.float "lng"
+    t.string "query_string"
     t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_maps_on_business_id"
+  end
+
+  create_table "operations", force: :cascade do |t|
+    t.boolean "current_status"
+    t.string "business_hours"
+    t.date "opening_date"
+    t.integer "occupancy_rate"
+    t.boolean "reservation_required"
+    t.string "notes"
+    t.date "user_updated"
+    t.integer "business_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_operations_on_business_id"
   end
 
   create_table "reviews", force: :cascade do |t|

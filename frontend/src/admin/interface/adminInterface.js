@@ -117,6 +117,9 @@
 		  admin.entryNotes.value = '';
 			admin.tableContainer.style.display = 'none';
 			admin.loginContainer.classList.add('admin');
+			document.getElementById('esp-lang').style.display = 'none';
+			document.getElementById('eng-lang').style.display = 'none';
+			document.getElementById('user-page-copyright').style.display = 'none';
 			appendAdminUserDetails();
 		}
 

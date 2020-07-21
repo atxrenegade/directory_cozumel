@@ -7,6 +7,7 @@ class Business < ApplicationRecord
 	has_many :reviews, dependent: :destroy
 	has_many :images, dependent: :destroy
 	has_one :map, dependent: :destroy
+	has_one :operation, dependent: :destroy
 
 	def category_names
     self.categories.pluck(:name)

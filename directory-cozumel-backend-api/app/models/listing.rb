@@ -6,6 +6,11 @@ class Listing < ApplicationRecord
 		self.business.name
 	end
 
+	def self.filter_by_sustainable
+		filtered = Listing.select('business_id').where('sustainable_business = ?', true).to_a.map{|bus| bus['business_id']}
+		return Business.build_filtered_list_for_export(filtered)
+	end	
+
 	def self.format_listing(business_id)
 		listing = {}
 		listObj = Listing.find_by(business_id: business_id)
@@ -17,6 +22,9 @@ class Listing < ApplicationRecord
 		listing['address'] = listObj.address
 		listing['phone_number'] = listObj.phone_number
 		listing['website'] = listObj.website
+		if listing['sustainable_business'].present?  
+			listing['sustainable_business'] = listObj.sustainable_business
+		end	
 		return listing
 	end
 

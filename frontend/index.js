@@ -5,21 +5,21 @@ import Image from './src/classes/image.js';
 import Review from './src/classes/review.js';
 import GoogleMap from './src/classes/GoogleMap.js';
 import Entry from './src/classes/entry.js';
+import Operation from './src/classes/operation.js';
 import * as adminAPI from	'./src/admin/api/adminAPIRequests.js';
 import * as adminInterface from	'./src/admin/interface/adminInterface.js';
 import * as storage from './src/sessionStorage/localStorage.js';
-
-
+import * as googleAPI from './src/API/googleMapsAPI.js';
 
 window.onload = function(){
+	sessionStorage.clear();
+	localStorage.clear();
 	storage.initializeStorage();
 
 	const user = userVar.userVar();
 	const admin = adminVar.adminVar();
 	const adminFetch = adminAPI.adminAPIRequests(storage, Entry);
-
-	const LAT = 20.42;
-	const LNG = -86.92;
+	const mapAPI = googleAPI.googleMapsAPI();
 
 	var LANGUAGE = '';
 
@@ -31,6 +31,18 @@ window.onload = function(){
 			LANGUAGE = 'esp';
 		}
 	}());
+
+	/* Initiate Admin Panel Listeners */
+	if (user.hiddenAdminButton !== null) {
+		user.hiddenAdminButton.addEventListener('click', function() {
+			const el = document.getElementById('js-admin-login-container')
+			toggleForm('click', el);
+		})
+		user.adminPanelLogin.addEventListener('click', logInAdmin);
+	}
+
+	/* SET PAGE LOAD VALUES */
+	resetPage();
 
 	/* SEARCH FUNCTIONS
 	/* Search Bar Toggle Functions */
@@ -58,6 +70,39 @@ window.onload = function(){
 		user.searchNameField.value = '';
 	}
 
+	function setLocalDateTime(){
+		var date = new Date();
+		var dateString = date.toDateString();
+		var time = date.toLocaleTimeString();
+		return dateString + " " + time;
+	}
+
+	function formatDate(dateString){
+		let dataArray = dateString.split('T')[0].split('-');
+		return [dataArray[1], dataArray[2], [dataArray[0]]].join('-');
+	}
+
+	/* New Business Form - Info PopUps */
+	function showSustainableInfo(){
+		if (LANGUAGE == 'eng') {
+			alert('Sustainable Business: incorporates principles of sustainability, supplies environmentally friendly products or services, is greener than competition, and has made an enduring commitment to environmental principles in operations.')
+		} else {
+			alert('Negocio sostenible: incorpora principios de sostenibilidad, proporciona productos o servicios respetuosos con el medio ambiente, es más ecológico que la competencia y ha asumido un compromiso duradero con los principios ambientales en las operaciones.')
+		}
+	}
+
+	function showOperationInfo(){
+		if (LANGUAGE == 'eng') {
+			alert('Add hours of operation, CoVid capacity, operations status, estimated opening date if not open yet, message to customers, etc.')
+		} else {
+			alert('Agregar horas de operación, capacidad CoVid, estado de las operaciones, fecha estimada de apertura si aún no está abierta, mensaje a los clientes, etc.')
+		}
+	}
+
+	function toggleOpeningDate(){
+		user.openingDate.style.display == 'block' ? 	user.openingDate.style.display = 'none' : user.openingDate.style.display = 'block';
+	}
+
 	function retrieveSearchCategoryResults() {
 		user.listingMenu.style.display = 'none';
 		user.listingsContainer.style.display = 'block';
@@ -82,6 +127,14 @@ window.onload = function(){
 			if (storage.getStorageItem('cats') == false) collectCategories();
 			if (categorySelectEl === null) renderNewBusCatSelect();
 		}
+		document.getElementById('sustainable-info').addEventListener('click', showSustainableInfo);
+		document.getElementById('operation-info').addEventListener('click', showOperationInfo);
+		document.getElementById('current-status-no').addEventListener('click', 	toggleOpeningDate);
+	}
+
+	function toggleOperationForm() {
+		const operationForm = document.getElementById('js-operation-form');
+		operationForm.style.display == 'none' ? operationForm.style.display = 'block' : operationForm.style.display = 'none';
 	}
 
 	/* API REQUEST FUNCTIONS */
@@ -160,17 +213,18 @@ window.onload = function(){
 		if (LANGUAGE == 'eng') {
 			catsCollection = categoryObjects.map((el) => {
 				return el['name'];
-			})
+			}).sort()
 		} else {
 			catsCollection = categoryObjects.map((el) => {
 				return el['nombre'];
-			})
+			}).sort()
 		}
 		let catsData = JSON.stringify(catsCollection);
 		storage.updateOrCreateStorage('cats', catsData);
 	}
 
 	function returnResults(data) {
+		var newData;
 		if (data['msg'] !== undefined) {
 			if (LANGUAGE == 'esp' && data['msg-esp'] !== undefined ){
 				appendErrorMsg(data['msg-esp']);
@@ -178,53 +232,79 @@ window.onload = function(){
 				appendErrorMsg(data['msg']);
 			}
 		} else {
-			data = Array.from(data);
-			renderIndex(data);
+			cacheSearch(data);
+			newData = data.map(el => JSON.parse(el));
+			renderIndex(newData);
 		}
+		return newData;
+		//return data;
 	}
 
 	function displayBusObj(data) {
 		renderListing(buildListing(data));
 	}
 
+	function displaySearchResultsBusObj(data){
+		data.forEach( el => {
+			renderListing(buildListing(data));
+		})
+	}
+
 	function buildListing(data) {
 		const busObj = Business.buildBusObj(data);
-		let map;
-		//data['map'] ?  map = GoogleMap.mapBuilder(data['map']) : map = []
-		map = []
+		var map;
+		var operationObj;
+		data['map'] !== undefined ? map = GoogleMap.mapBuilder(data['map']) : map = null;
 		const imagesCollection = Image.imagesBuilder(data['images']);
 		const reviewsCollection = Review.reviewsBuilder(data['reviews']);
-		const objArray= [busObj, map, imagesCollection, reviewsCollection]
+		data['operation'] ? operationObj = Operation.operationBuilder(data['operation'], formatDate(data['updated_at'])) : operationObj = [];
+		const objArray = [busObj, map, imagesCollection, reviewsCollection, operationObj]
 		return objArray;
+	}
+
+	function renderListingOnly(objArray){
+		if (objArray != undefined) {
+			var business = Business.buildBusObj(objArray);
+			let busHTML = business.renderIndexBusListing(LANGUAGE);
+			renderComponent(busHTML, user.resultsListings);
+			let busButton = document.getElementById(`js-bus-${objArray.id}-more`);
+			busButton.addEventListener('click', postBusObjToRetrieve.bind(null, objArray.name))
+		}
 	}
 
 	function renderListing(objArray) {
 		// refactor this function
 		if (objArray != undefined) {
 			user.businessListings.innerHTML = '';
+			user.resultsListings.innerHTML = '';
 			const busHTML = objArray[0].renderBusListing(LANGUAGE);
-			renderComponent(busHTML, user.businessListings);
-
-			if (objArray[1].length > 0){
-				mapHTML = objArray[1].renderMap();
-				renderComponent(mapHTML, user.businessListings);
+			renderComponent(busHTML, user.resultsListings);
+			if (objArray[1] != undefined) {
+				var mapHTML = objArray[1].renderMap(mapAPI.key);
+				renderComponent(mapHTML, user.resultsListings);
+			}
+			if (objArray[4].currentStatus != undefined || objArray[4].currentStatus != null) {
+				const operationsHTML = objArray[4].renderOperations(LANGUAGE);
+				renderComponent(operationsHTML, user.resultsListings);
 			}
 			if (objArray[3].length > 0){
-				let reviewsHTML = '';
+				let reviewsHTML = '<h5>Reviews</h5>';
 				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview(LANGUAGE));
-				renderComponent(reviewsHTML, user.businessListings);
+				renderComponent(reviewsHTML, user.resultsListings);
 			}
 			if (objArray[2].length > 0) {
-				let imagesHTML = '';
+				let imagesHTML = '<h5>Photos</h5>';
 				objArray[2].forEach((img) => imagesHTML += img.renderImage());
-				renderComponent(imagesHTML, user.businessListings);
+				renderComponent(imagesHTML, user.resultsListings);
 			}
 			user.listingMenu.style.display = 'block';
+			document.getElementById('listing-back-button').addEventListener('click', returnToCachedSearch)
 		}
 	}
 
 	function appendErrorMsg(msg) {
 		user.businessListings.innerHTML = '';
+		user.resultsListings.innerHTML = '';
 		const errorMsg = document.createElement('p');
 		errorMsg.innerHTML = `${msg}`
 		user.businessListings.appendChild(errorMsg);
@@ -237,6 +317,11 @@ window.onload = function(){
 			let catMenu = document.createElement('div');
 			let html = '<select id= "js-category-select">';
 			let catsData = JSON.parse(storage.getStorageItem('cats'));
+			if (LANGUAGE == 'eng') {
+				catsData.unshift('Sustainable Businesses');
+			} else {
+				catsData.unshift('Negocio Sustentable')
+			}
 			const cats = catsData.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
 			})
@@ -248,14 +333,43 @@ window.onload = function(){
 
 	function renderIndex(resultsList) {
 		user.businessListings.innerHTML = '';
+		user.resultsListings.innerHTML = '';
 		user.businessListings.style.display = 'block';
 		resultsList.forEach(function(busObj) {
-			renderButton(busObj, postBusObjToRetrieve, user.businessListings);
+			renderListingOnly(busObj);
 		});
 	}
 
+	function cacheSearch(data){
+		sessionStorage.setItem('cachedSearchLen', data.length)
+		var num = 0;
+		data.forEach(el => {
+			sessionStorage.setItem(`cachedSearch${num}`, el)
+			num ++;
+		})
+	}
+
+	function returnToCachedSearch(){
+		var checkboxes = document.querySelectorAll("input[type='checkbox']");
+		for(var i = 0; i < checkboxes.length; i++) {
+			checkboxes[i].checked = false;
+		}
+		document.getElementById('js-add-review-form-container').style.display = 'none';
+		document.getElementById('js-add-image-form-container').style.display = 'none';
+		document.getElementById('js-suggest-edit-form-container').style.display = 'none';
+		document.getElementById('js-flag-business-form-container').style.display = 'none';
+		user.listingMenu.style.display = 'none';
+		var length = sessionStorage.cachedSearchLen;
+		var dataArray = [];
+		for(let i = 0; i < length; i++){
+			let cachedSearch = sessionStorage.getItem(`cachedSearch${i}`);
+			dataArray.push(JSON.parse(cachedSearch));
+		}
+		renderIndex(dataArray);
+	}
+
 	function renderButton(obj, functionToExec, elToAppendTo){
-		const buttonHTML =`<input id='button_${obj.id}' type='button' class='js-bus-select' value='${obj.name}'>`;
+		const buttonHTML =`<div class='button-div'><input id='button_${obj.id}' type='button' class='js-bus-select' value='${obj.name}'></div>`;
 		renderComponent(buttonHTML, elToAppendTo);
 		const el = `button_${obj.id}`
 		const button = document.getElementById(el)
@@ -272,12 +386,60 @@ window.onload = function(){
 	}
 
 	/* FORM FUNCTIONs */
+	/* Handle New Business Form */
+	function formatNewBusinessFormData(event){
+	 // *****
+		event.preventDefault();
+		var data = Array.from(event.target.parentNode.elements)
+		var listingData = []
+		data.slice(0,5).forEach(el => {
+			listingData.push([el['id'], el['value']])
+		})
+		if (user.operationFormCheckBox.checked == true){
+			listingData.unshift(['new-bus', true])
+			if (data[8].checked) {
+				listingData[7] = ['current_status', true]
+			} else if (data[9].checked) {
+				listingData[7] = ['current_status', false]
+			} else {
+				listingData[7] = ['current_status', undefined]
+			}
+			listingData[8] = ['opening_date', data[10].value]
+			listingData[9] = ['occupancy_rate', data[11].value]
+			if (data[12].checked) {
+				listingData[10] = ['reservation_required', true];
+			} else if (data[13].checked) {
+				listingData[10] = ['reservation_required', false];
+			} else {
+				listingData[10] = ['reservation_required', undefined];
+			}
+			listingData[11] = ['business_hours', data[15].value, data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value ]
+			listingData[12] = ['notes', data[14].value] //notes
+			listingData[13] = ['user_updated', setLocalDateTime()] //update at *****
+		} else {
+			let sustainableArray = [];
+			if (data[6].checked) {
+				sustainableArray = ['sustainable_business', true]
+			} else if (data[7].checked) {
+				sustainableArray = ['sustainable_business', false]
+			} else {
+				sustainableArray = ['sustainable_business', undefined]
+			}
+			listingData.push(sustainableArray);
+			listingData.unshift(['new-bus', false])
+			// Add sustainable to js data array, seeds, model and search
+			// why is name duplicated?
+		}
+		postForm(listingData);
+		formSubmitted(event);
+	}
+
 	/* Render Categories Select For Bus Form */
 	function renderNewBusCatSelect() {
 		const newBusCatSelectEl = document.getElementById('js-new-bus-select-label');
 		if (storage.getStorageItem('cats') == false) collectCategories();
 		let catMenu = document.createElement('div');
-		let html = '<select id="cat-select" multiple>';
+		let html = '<select id="cat-select">';
 		let catsData = JSON.parse(storage.getStorageItem('cats'));
 		const cats = catsData.map((el) => {
 			return `<option value='${el}'> ${el} </option>`;
@@ -299,7 +461,7 @@ window.onload = function(){
 	}
 
 	function submitForm(event) {
-		if (event.type === 'submit' &&  event.target.className !== 'admin-form') {
+		if (event.type === 'submit' && event.target.id !== 'js-new-business-form' && event.target.className !== 'admin-form' ) {
 			event.preventDefault();
 			const busName = getBusNameForAssoForm(event);
 			createPostData(event, busName);
@@ -314,26 +476,28 @@ window.onload = function(){
 			if (LANGUAGE == 'eng'){
 				if (storage.getStorageItem('response') !== false){
 					submittedEl.innerHTML = 'Thank you for your submission!'
-					submittedEl.innerHTML += '<br>' + 'It will be added to the directory as soon as it is confirmed!';
+					submittedEl.innerHTML += '<br>' + 'It will be added to the directory as soon as it is reviewed!';
 				} else {
 					submittedEl.innerHTML = 'Submission Unsuccessful!';
 				}
 			} else {
 				if (storage.getStorageItem('response') !== false){
 				submittedEl.innerHTML = '¡Gracias por tu envío!'
-				submittedEl.innerHTML += '<br>' + '¡Se agregará al directorio tan pronto como se revise!';
+				submittedEl.innerHTML += '<br>' + '¡Se agregará al directorio tan pronto como se aprobado!';
 				} else {
 					submittedEl.innerHTML = '¡Envío fallido!';
 				}
 			}
-			event.target.reset();
-			if (event.originalTarget[0].id === 'new-bus'){
+			if (event.target.id == 'new-bus-submit') {
+				event.target.parentElement.parentElement.reset()
+				user.newBusinessForm.style.display = 'none';
 				document.getElementById('js-add-business').appendChild(submittedEl);
 			} else {
+				event.target.reset();
 				user.listingMenu.appendChild(submittedEl)
 				clearCheckBox();
-			}
-			event.target.style.display = 'none';
+				event.target.style.display = 'none';
+			};
 		}, 250)
 	}
 
@@ -358,27 +522,18 @@ window.onload = function(){
 
 	/* ADMIN LOGIN FUNCTIONS */
 	function clearDirectoryForAdminView() {
-		const sponsListContainer = document.getElementById('sponsored-listing-container');
-		const adsContainer = document.getElementById('ads-container');
-		const searchBarContainer = document.getElementById('js-searchbar-container');
-		const newBusContainer = document.getElementById('js-new-business-container');
-		const adminPanel = document.getElementById('js-admin-panel-container');
-		const adminMenu = document.getElementById('js-admin-menu-container');
-		const adminPanelLogout = document.getElementById('js-admin-logout-button');
-		const adminPanelForm = document.getElementById('js-admin-login');
-		const adminUserInfo = document.getElementById('js-admin-user-info');
-		sponsListContainer.style.display = 'none';
-		adsContainer.style.display = 'none';
-		searchBarContainer.style.display = 'none';
+		document.getElementById('sponsored-listing-container').style.display = 'none';
+		document.getElementById('ads-container').style.display = 'none';
+		document.getElementById('js-searchbar-container').style.display = 'none';
+		document.getElementById('js-new-business-container').style.display = 'none';
+		document.getElementById('js-admin-panel-container').style.display = 'block';
+		document.getElementById('js-admin-menu-container').style.display = 'block';
+		document.getElementById('js-admin-logout-button').style.display = 'block';
+		document.getElementById('js-admin-login').style.display = 'none';
+		document.getElementById('js-admin-user-info').style.display = 'block';
 		user.listingsContainer.style.display = 'none';
-		newBusContainer.style.display = 'none';
 		user.hiddenAdminButton.style.display = 'none';
-		adminPanel.style.display = 'block';
-		adminMenu.style.display = 'block';
 		user.adminPanelLogin.style.display = 'none';
-		adminPanelLogout.style.display = 'block';
-		adminPanelForm.style.display = 'none';
-		adminUserInfo.style.display = 'block';
 	}
 
 	function logInAdmin() {
@@ -405,13 +560,12 @@ window.onload = function(){
 
 	/* PAGE RESET FUNCTION */
 	function resetPage() {
-		const mapContainer = document.getElementById('js-map');
+		document.getElementById('mapDiv').innerHTML = "";
 		clearCheckBox();
 		user.nameRadioSelect.checked = true;
 		user.categoryRadioSelect.checked = false;
 		user.listingsContainer.style.display = 'none';
 		user.listingMenu.style.display = 'none';
-		mapContainer.style.display = 'none';
 		user.businessListings.style.display = 'none';
 		const elements = document.querySelectorAll('input[type="text"]');
 		Array.from(elements).forEach(el => el.value = '')
@@ -455,6 +609,10 @@ window.onload = function(){
 
 	/* New Business Form Listener */
 	user.newBusinessButton.addEventListener('click', toggleNewBusinessForm);
+	document.getElementById('new-bus-submit').addEventListener('click', formatNewBusinessFormData)
+
+	/* Operations Form Event Listener */
+	user.operationFormCheckBox.addEventListener('click', toggleOperationForm)
 
 	/* Form Event Listeners */
 	document.addEventListener( 'submit', function(){
@@ -466,16 +624,4 @@ window.onload = function(){
 		  e.parentNode.removeChild(e);
 		})
 	})
-
-	/* Initiate Admin Panel Listeners */
-	if (user.hiddenAdminButton !== null) {
-		user.hiddenAdminButton.addEventListener('click', function() {
-			const el = document.getElementById('js-admin-login-container')
-			toggleForm('click', el);
-		})
-		user.adminPanelLogin.addEventListener('click', logInAdmin);
-	}
-
-	/* SET PAGE LOAD VALUES */
-	resetPage();
 }

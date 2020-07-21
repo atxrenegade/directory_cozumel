@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang='esp'>
   <head>
     <meta charset='utf-8'>
-    <title>Directorio Cozumel</title>
+    <title>Directorio de Cozumel</title>
+
     <link rel='stylesheet' href='styles.css'>
 		<link href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Open+Sans|Satisfy&display=swap" rel="stylesheet">
   </head>
@@ -10,166 +11,228 @@
     <header>
     </header>
     <main>
-			<img src="./assets/images/DirectoryCozumel.png" alt="Directory Cozumel Logo" class="logo-image">
+			<div class='column'>
+				<img src="./assets/images/DirectoryCozumel.png" alt="Directory Cozumel Logo" class="logo-image">
 
-			<div id='lang-support-block'>
-				<div id='lang-support-col'>
-						<a href='index-es.html'><img id='esp-lang' class='lang-support' src='./assets/images/lang-support/Mexico-icon.png' alt='Mexican Flag Icon for Spanish Language Selection'></img></a>
-						<a href='index.html'><img id='eng-lang' class='lang-support' src='./assets/images/lang-support/United-States-icon.png' alt='United State Flag Icon for English Language Selection'></img></a>
+				<div id='lang-support-block'>
+					<div id='lang-support-col'>
+						<a href='index.html'><img id='eng-lang' class='lang-support' src='./assets/images/lang-support/United-States-icon.png' alt='United State Flag Icon for English Language Selection'></img></a><a href='index-es.html'><img id='esp-lang' class='lang-support' src='./assets/images/lang-support/Mexico-icon.png' alt='Mexican Flag Icon for Spanish Language Selection'></img></a>
+					</div>
 				</div>
-			</div>
 
-			<div id='sponsored-listing-container' class='tile'> Listados Atrocinados
-			</div>
+				<div id='sponsored-listing-container' class='inner-tile'>
+					<legend class='ads-legend'>Listados Atrocinados</legend>
+					<fieldset class='ads'>
+						Sabemos que los anuncios pueden ser molestos, pero nos ayudan a mantener esta aplicación como un servicio gratuito disponible para todos. ¡Haga que su negocio se destaque anunciando aquí en nuestro espacio de anuncios patrocinado con un enlace a su propia página de patrocinador! Haz click aqui para ver un <a href='static/sponsored-sample-esp.html'>ejemplo.</a>
+					</fieldset>
+				</div>
 
-			<div id='ads-container' class='tile'>
-				Anuncios De Google
-			</div>
+				<div id='ads-container' class='inner-tile'>
+					<legend class='ads-legend'>Foco Local</legend>
+					<fieldset class='ads'>
+						Nomine a su negocio local favorito de propiedad mexicana para que aparezca aquí y en nuestra página de foco local. Haga clic aquí para ver un <a href='static/local-spot-light-sample-esp.html'>página de enfoque local.</a>
+					</fieldset>
+				</div>
 
-			<div id='js-searchbar-container' class='inner-tile'>
-				<fieldset>
-				 	<legend>Buscar Listados:</legend>
-					<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-name'>
-					<label> Por Nombre </label>
-					<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-category'>
-					<label> Por Categoria</label>
-				  <div id='js-search-by-category'>
-						<form>
-							<fieldset id='js-category-search'>
-								<legend >Buscar Por Categoría:</legend>
-								<div id='js-search-category-menu'>
-								</div>
-								<br>
-								<input type='button' id='js-by-category-button' value='Buscar'/>
-							</fieldset>
-						</form>
-				  </div>
-					<br>
-				  <div id='js-search-by-name'>
-						<fieldset id='js-name-search'>
-							<legend>Buscar Por Nombre:</legend>
-							<input type='text' id='js-search-name-text-field' name='name' value=''/>
-							<br><br>
-							<input type='button' id='js-by-name-button' value='Buscar'>
-						</fieldset>
-				  </div>
-				</fieldset>
-			</div>
-
-			<div id='listings-container' class='innermost-tile'>
-				<fieldset>
-				<legend>Resultados De La Búsqueda:</legend>
-					<div id='js-listing-show'>
-					</div>
-					<div id='js-google-maps-container'>
-						<div id='js-map'>
-							<!-- <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBX29nIU-xhny3UjlJ1M-zuOf-btW-3780&callback=initMap'
-							async defer></script> -->
+				<div id='js-searchbar-container' class='inner-tile'>
+					<fieldset>
+					 	<legend>Buscar Listados:</legend>
+						<br>
+						<div class='radio-search-column'>
+							<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-name'>
+							<label class='label'> Por Nombre </label>
 						</div>
-					</div>
-					<div id='js-listing-menu'>
-						<input type='checkbox' id= 'js-add-review-checkbox' name='review'>Agregar Una Opinión<br>
-						<input type='checkbox' id='js-add-image-checkbox' name='image'>Añadir imagen<br>
-						<input type='checkbox' id='js-edit-business-checkbox' name='edit'>Sugerir Editar<br>
-						<input type='checkbox' id='js-flag-business-checkbox' name='flag'>Marcar Negocios<br>
-					</div>
-					<div id='js-business-index-container'>
-					</div>
-					<div id='js-add-review-form-container'>
-						<form>
-							<fieldset id='new-review'>
-								<legend>Agregar Una Opinión</legend>
-								<label> Clasificación:</label>
-								<input type='text' id='review-rating'/><br>
-								<label> Tu Reseña:</label>
-								<input type='text' id='review-content'/><br>
-								<label> Tu Nombre:</label>
-								<input type='text' id='review-contributor'/><br>
-								<label> Tu Correo Electrónico:</label>
-								<input type='text' id='review-contributor-email' name='contributor-email'/><br>
-								<input type='submit' value='Enviar'>
+						<div class='radio-search-column'>
+							<input type = 'radio' name = 'js-search-type' id = 'js-radio-by-category'>
+							<label class='label'> Por Categoria</label>
+						</div>
+						<br>
+					  <div id='js-search-by-category'>
+							<br>
+							<form>
+								<fieldset id='js-category-search'>
+									<legend >Buscar Por Categoría:</legend>
+									<div id='js-search-category-menu'>
+									</div>
+									<br>
+									<input type='button' id='js-by-category-button' value='Buscar'/>
+									<br>
+								</fieldset>
+							</form>
+					  </div>
+						<br>
+					  <div id='js-search-by-name'>
+							<fieldset id='js-name-search'>
+								<legend>Buscar Por Nombre:</legend>
+								<input type='text' id='js-search-name-text-field' name='name' value=''/>
+								<br><br>
+								<input type='button' id='js-by-name-button' value='Buscar'>
+								<br><br>
 							</fieldset>
-						</form>
-					</div>
-					<div id='js-add-image-form-container'>
-						<form>
-							<fieldset id='new-image'>
-								<legend>Añadir Imagen:</legend>
-								<label> URL:</label>
-								<input type='text' id='image-url'/><br>
-								<label> Descripción</label>
-								<input type='text' id='image-description'/><br>
-								<label> Fecha:</label>
-								<input type='text' id='image-date'/><br>
-								<label> Tu Nombre:</label>
-								<input type='text' id='image-contributor'/><br>
-								<label> Tu Correo Electrónico</label>
-								<input type='text' id='image-email'/><br>
-								<input type='submit' value='Enviar'>
-							</fieldset>
-						</form>
-					</div>
-					<div id='js-suggest-edit-form-container'>
-						<form>
-							<fieldset id='bus-edit'>
-								<legend>Sugerir Editar</legend>
-								<label> ¿Cómo podemos mejorar este listado?:</label>
-								<input type='text' id='edit-content'/><br>
-								<label> Tu Nombre:</label>
-								<input type='text' id='edit-contributor'/><br>
-								<label> Tu Correo Electrónico</label>
-								<input type='text' id='edit-email'/><br>
-								<input type='submit' value='Enviar'>
-							</fieldset>
-						</form>
-					</div>
-					<div id='js-flag-business-form-container'>
-						<form>
-							<fieldset id='bus-flag'>
-								<legend>Marcar Listado De Empresas</legend>
-								<label> Motivo Para Marcar:</label>
-								<input type='text' id='flag-content'/><br>
-								<label> Tu Nombre:</label>
-								<input type='text' id='flag-contributor'/><br>
-								<label> Tu Correo Electrónico</label>
-								<input type='text' id='flag-email'/><br>
-								<input type='submit' value='Enviar'>
-							</fieldset>
-						</form>
-					</div>
-				<br>
-				</fieldset>
-			</div>
+					  </div>
+					</fieldset>
+				</div>
 
-			<div id='js-new-business-container' class='innermost-tile'>
-				<fieldset id='js-add-business'>
-					<legend>Agregar Nuevos Negocios:</legend>
-					<button id='js-add-business-button'>Agregar Nuevos Negocios</button>
-					<div id='js-add-business-form-container'>
-						<form id='js-new-business-form'>
-							<fieldset id='new-bus'>
-								<legend>Añadir Negocio</legend>
-								<label> Nombre del Negocio:</label>
-								<input type='text' id='business-name'/><br>
-								<label> Dirección:</label>
-								<input type='text' id='bus-address'/><br>
-								<label> Número De Teléfono:</label>
-								<input type='text' id='bus-phone-number'/><br>
-								<label> Sitio Web:</label>
-								<input type='text' id='bus-website'/><br>
-								<label id='js-new-bus-select-label'>Categorias:</label><br>
-								<input type='submit' value='Enviar'>
-							</fieldset>
-						</form>
-					</div>
-				</fieldset>
-				<br>
+				<div id='listings-container' class='innermost-tile' style='display:none'>
+					<fieldset id='listings-fieldset'>
+					<legend id='search-results-legend'>Resultados De La Búsqueda:</legend>
+						<div id='js-listing-show'>
+						</div>
+						<div id='js-listing-show-results'>
+							<div id='js-google-maps-container'>
+								<div id='mapDiv'>
+								</div>
+							</div>
+						</div>
+						<div id='js-listing-menu'>
+							<input type='checkbox' id= 'js-add-review-checkbox' name='review'>Agregar Una Opinión<br>
+							<input type='checkbox' id='js-add-image-checkbox' name='image'>Añadir Imagen<br>
+							<input type='checkbox' id='js-edit-business-checkbox' name='edit'>Sugerir Editar<br>
+							<input type='checkbox' id='js-flag-business-checkbox' name='flag'>Marcar Negocios<br>
+						</div>
+						<div id='js-business-index-container'>
+						</div>
+						<div id='js-add-review-form-container'>
+							<form>
+								<fieldset id='new-review'>
+									<legend>Agregar Una Opinión</legend>
+									<label> Clasificación:</label>
+									<input type='text' id='review-rating'/><br>
+									<label> Tu Reseña:</label>
+									<input type='text' id='review-content'/><br>
+									<label> Tu Nombre:</label>
+									<input type='text' id='review-contributor'/><br>
+									<label> Tu Correo Electrónico:</label>
+									<input type='text' id='review-contributor-email' name='contributor-email'/><br>
+									<input type='submit' value='Enviar'>
+								</fieldset>
+							</form>
+						</div>
+						<div id='js-add-image-form-container'>
+							<form>
+								<fieldset id='new-image'>
+									<legend>Añadir Imagen</legend>
+									<label> URL:</label>
+									<input type='text' id='image-url'/><br>
+									<label> Descripción</label>
+									<input type='text' id='image-description'/><br>
+									<label> Fecha:</label>
+									<input type='text' id='image-date'/><br>
+									<label> Tu Nombre:</label>
+									<input type='text' id='image-contributor'/><br>
+									<label> Tu Correo Electrónico:</label>
+									<input type='text' id='image-email'/><br>
+									<input type='submit' value='Enviar'>
+								</fieldset>
+							</form>
+						</div>
+						<div id='js-suggest-edit-form-container'>
+							<form>
+								<fieldset id='bus-edit'>
+									<legend>Sugerir Editar</legend>
+									<label> ¿Cómo podemos mejorar este listado?:</label>
+									<input type='text' id='edit-content'/><br>
+									<label> Tu Nombre:</label>
+									<input type='text' id='edit-contributor'/><br>
+									<label> Tu Correo Electrónico<:</label>
+									<input type='text' id='edit-email'/><br>
+									<input type='submit' value='Enviar'>
+								</fieldset>
+							</form>
+						</div>
+						<div id='js-flag-business-form-container'>
+							<form>
+								<fieldset id='bus-flag'>
+									<legend>Marcar Listado De Empresas</legend>
+									<label> Motivo Para Marcar:</label>
+									<input type='text' id='flag-content'/><br>
+									<label> Tu Nombre:</label>
+									<input type='text' id='flag-contributor'/><br>
+									<label> Tu Correo Electrónico:</label>
+									<input type='text' id='flag-email'/><br>
+									<input type='submit' value='Enviar'>
+								</fieldset>
+							</form>
+						</div>
+					</fieldset>
+				</div>
+
+				<div id='js-new-business-container' class='innermost-tile'>
+					<fieldset id='js-add-business'>
+						<legend>Añadir Nuevo Negocio:</legend>
+						<button id='js-add-business-button'>Añadir Nuevo Negocio</button>
+						<br><br>
+						<div id='js-add-business-form-container'>
+							<form id='js-new-business-form'>
+								<fieldset id='new-bus'>
+									<label> Nombre del Negocio:</label>
+									<input type='text' id='business-name'/><br>
+									<label> Dirección:</label>
+									<input type='text' id='bus-address'/><br>
+									<label> Número de teléfono:</label>
+									<input type='text' id='bus-phone-number'/><br>
+									<label> Sitio Web:</label>
+									<input type='text' id='bus-website'/><br><br>
+									<label id='js-new-bus-select-label'>Seleccione una Categoría de Negocios:</label><br>
+									<label>¿Es este un negocio sostenible?<strong id="sustainable-info">&nbsp;&#9432;</strong></label>Si<input type='checkbox' id='sustainable-biz-yes' autocomplete="off"/>&#09;No<input type='checkbox' id='sustainable-biz-no' autocomplete="off"/><br><br>
+									<label class='label'><span id='operations-menu-checkbox'>¿Agregar detalles de negocios e información de CoVid?<strong id="operation-info">&nbsp;&#9432;</strong></label>
+									<input type="checkbox" id="js-add-operation" autocomplete="off"></span>
+									<br><br>
+									<div id='js-operation-form' style='display:none;'>
+										<form>
+											<label>¿Está abierto actualmente para los negocios?</label>
+											Si<input type='checkbox' id='current-status-yes' autocomplete="off"/>&#09;No<input type='checkbox' id='current-status-no' autocomplete="off"><br><br>
+											<div id='js-bus-form-reopen-date' style='display:none;'>
+												<label>¿En qué fecha planeas reabrir?</label>
+												<input id='opening-date' type='text'><br><br>
+											</div>
+											<label>¿En qué porcentaje de ocupación está operando actualmente? </label>
+											<input type='text' id='occupancy-rate'><br><br>
+											<label>¿Los clientes necesitan una reserva o cita?</label>
+											Yes<input type='checkbox' id='reservation-required-yes' autocomplete="off">&#09;No<input type='checkbox' id='reservation-required-no' autocomplete="off"><br><br>
+											<label>¿Hay algo que le gustaría compartir con sus clientes? (es decir, servicio de recogida y entrega? especiales? etc. 256 caracteres máx.) </label>
+											<input type='textarea' id='operations-notes'><br><br>
+
+										<p>Ingrese las horas de operación en el siguiente formato: (9am - 1pm). Deje en blanco los días que el negocio está cerrado.</p><br>
+											<div class='inline-field'>
+												<label class='label hours'>lunes:&#09;</label>
+												<input type='text' id='hours-0-1' placeholder=''/><br>
+
+												<label class='label hours'>martes:&#09;</label>
+												<input type='text' id='hours-1-1' placeholder=''><br>
+
+												<label class='label hours'>miércoles:&#09;</label>
+												<input type='text' id='hours-2-1' placeholder=''><br>
+
+												<label class='label hours'>jueves:&#09;</label>
+												<input type='text' id='hours-3-1' placeholder=''><br>
+
+												<label class='label hours'>viernes:&#09;</label>
+												<input type='text' id='hours-4-1' placeholder=''><br>
+
+												<label class='label hours'>sábado:&#09;</label>
+												<input type='text' id='hours-5-1' placeholder=''><br>
+
+												<label class='label hours'>domingo:&#09;</label>
+												<input type='text' id='hours-6-1' placeholder=''>
+											</div>
+										</form>
+									</div>
+									<input id='new-bus-submit' type='submit' value='Enviar'>
+								</fieldset>
+							</form>
+						</div>
+					</fieldset>
+					<br>
+				</div>
+
+				<p id='footer'><a href='http://www.dotrenegade.com' class='copyright' id='user-page-copyright'>©2020 dotrenegade llc.</a>
+				</p>
 			</div>
-			<p class='copyright-es'>©2020 atxrenegade</p>
-			<br>
-    </main>
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
-		<script type='text/javascript' src='config.js'></script>
-		<script type="module" src="index.js" ></script>
+		</div>
+  </main>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+	<script type='text/javascript' src='config.js'></script>
+	<script type="module" src="index.js" ></script>
   </body>
 </html>
