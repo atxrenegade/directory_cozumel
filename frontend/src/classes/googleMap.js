@@ -1,36 +1,16 @@
 export default class GoogleMap {
-	constructor(lat, lng) {
+	constructor(lat, lng, query_string) {
 		this.lat = lat;
 		this.lng = lng;
+		this.queryString = query_string;
 	}
 
-	/* initMap(lat, lng){
-		let options = {
-			 center: {lat: lat, lng: lng},
-			 zoom:11
-		 }
-
-		let map = new google.maps.Map(document.getElementById('js-map'), options);
-
-
-		let marker = new google.maps.Marker({
-			position:({lat: lat, lng: lng }),
-			map:map,
-			icon: 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
-		});
-
-		return map;
-
+	renderMap(key) {
+		var url = `https://www.google.com/maps/embed/v1/search?key=${key}&q=${this.lat},${this.lng}&zoom=16`
+		return '<div class="map-tile"><iframe src=' + url +  'width:"600" height="450" frameborder="0" style="border:0;" allowfullscreen></iframe></div>'
 	}
-
-	renderMap(){
-		this.initMap(this.lat, this.lng);
-	} */
-
+	
 	static mapBuilder(mapData) {
-	//	const lat = mapData['lat'];
-	//	const lng = mapData['lng'];
-	//	const newMap = new GoogleMap(lat, lng);
-	//	return newMap;
+		return new GoogleMap(mapData['lat'], mapData['lng'], mapData['query_string']);
 	}
 }
