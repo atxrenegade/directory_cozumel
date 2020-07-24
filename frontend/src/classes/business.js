@@ -71,7 +71,7 @@ export default class Business {
 		if (LANGUAGE == 'eng'){
 			sustainable = `<br><img src="./assets/images/icons8-sustainability-50.png"  class="sustainable"><br>Sustainable<br>Business<br><br>`;
 		} else {
-			sustainable = `<br><img src="./assets/images/icons8-sustainability-50.png"  class="sustainable"><br>Negocio<br>Sustentable<br><br>`;
+			sustainable = `<br><img src="./assets/images/icons8-sustainability-50.png"  class="sustainable"><br>Empresas<br>Sostenibles<br>`;
 		}
 		return sustainable;
 	}
