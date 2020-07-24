@@ -320,7 +320,7 @@ window.onload = function(){
 			if (LANGUAGE == 'eng') {
 				catsData.unshift('Sustainable Businesses');
 			} else {
-				catsData.unshift('Negocio Sustentable')
+				catsData.unshift('Empresas Sostenibles')
 			}
 			const cats = catsData.map((el) => {
 				return `<option value='${el}'> ${el} </option>`;
