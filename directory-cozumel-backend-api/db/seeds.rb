@@ -193,6 +193,7 @@ end
 # ***********COMMENT OUT EVERYTHING BELOW THIS LINE WHEN NOT IN TESTING********
 
 businesses_list_1 = [
+	['Meraki Cozumel', 'Retail - Specialty'],
 	[ 'Hotel Zilla', 'Lodging - Resorts' ],
 	[ 'Kernel Hotel', 'Lodging - Boutique Hotels' ],
 	[ 'Verge Hotel', 'Lodging - Boutique Hotels'],
@@ -228,17 +229,10 @@ businesses_list_2 = [
 	[ 'Simulation Car Rentals', 'Car Rentals' ],
 	[ 'Augmented Car Rentals', 	'Car Rentals' ],
 	[ 'Turbine Car Rentals', 'Car Rentals' ],
-	[ 'Budget Car Rentals', 'Car Rentals' ]
+	[ 'Budget Car Rentals', 'Car Rentals' ],
 ]
 
 listings_list = [
-	{
-		"overall_rating": 3 ,
-		"address": "Calle 22 de Enero No. 261, Cozumel",
-		"phone_number": "123-456-7890",
-		"website": "www.example.com",
-		"business_id": 1
-	},
 	{
 		"overall_rating": 3 ,
 		"address": "Calle 22 de Enero No. 261, Cozumel",
@@ -455,20 +449,21 @@ listings_list = [
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
 		"business_id": 30
+	},
+
+	{
+		"overall_rating": 5,
+		"address": "5av Sur Bis #1041 / 17sur & Av Xel Ha",
+		"phone_number": "987-102-4327",
+		"website": "https://www.instagram.com/meraki_cozumel",
+		"business_id": 1,
+		"sustainable_business": true,
+		"verified": true
 	}
 ]
 
-operation_list = [
-	{
-		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
-		'opening_date': 2020-07-01,
-		'occupancy_rate': 25,
-		'reservation_required': true,
-		'notes': 'Open for take out on weekends',
-		'business_id': 1
-	},
 
+operation_list = [
 	{
 		'current_status': true,
 		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
@@ -617,13 +612,22 @@ operation_list = [
 		'reservation_required': true,
 		'notes': 'Open for take out on weekends',
 		'business_id': 30
-	}
+	},
+
+	{
+		'current_status': true,
+		'business_hours': ['11am-6pm','11am-6pm', '11am-6pm','11am-6pm', '11am-6pm','12pm-6pm','closed'],
+		'opening_date': 2020-07-01,
+		'occupancy_rate': '',
+		'reservation_required': false,
+		'notes': 'Meraki Cozumel is a family business, we officially carry certified brands that guarantee the quality of our products. We offer delivery service for a minimal fee (we do the delivery no third party). Committed with our community we are a drop off center for recycling and host the work of local artists. <br><br>During this difficult times Meraki Cozumel has all the mandatory Sanitations and Regulations to operate safely, our working hours are promptly updated on our official websites according to the City Hall instructions for local business',
+
+		'notas_en_espanol': 'Meraki Cozumel es una empresa familiar, llevamos oficialmente marcas certificadas que garantizan la calidad de nuestros productos. Ofrecemos servicio de entrega por una tarifa mínima (no realizamos la entrega a terceros). Comprometidos con nuestra comunidad, somos un centro de entrega para el reciclaje y organizamos el trabajo de artistas locales. </br> Durante estos tiempos difíciles, Meraki Cozumel tiene todos los Reglamentos y Saneamientos obligatorios para operar de manera segura, nuestras horas de trabajo se actualizan rápidamente en nuestros sitios web oficiales de acuerdo con las instrucciones del Ayuntamiento para los negocios locales.',
+		'business_id': 1
+	}	
 ]
 
 images_list = [
-	{
-		description: 'Hotel', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
-	},
 	{
 		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://t-ec.bstatic.com/images/hotel/max1024x768/150/150315181.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 2
 	},
@@ -666,7 +670,6 @@ images_list = [
 	{
 		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 15
 	},
-
 	{
 		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 16
 	},
@@ -711,9 +714,7 @@ images_list = [
 	{
 		description: 'Here is a picture of our boss', date: '12/12/19', url: 'https://farm1.staticflickr.com/86/239197450_79d96e010c_z.jpg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 30
 	},
-	{
-		description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://www.jetsetter.com/uploads/sites/7/2018/06/7iBtDD5x-1380x1035.jpeg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 1
-	},
+
 	{
 		description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://www.jetsetter.com/uploads/sites/7/2018/06/7iBtDD5x-1380x1035.jpeg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 2
 	},
@@ -728,16 +729,19 @@ images_list = [
 	},
 	{
 		description: 'Here is a different picture of our boss', date: '12/12/19', url: 'https://www.jetsetter.com/uploads/sites/7/2018/06/7iBtDD5x-1380x1035.jpeg', contributor: 'Frank the Tank', contributor_email: 'frankjones@yahoo.com', business_id: 6
+	},
+
+	{	
+
+		description: 'Meraki Cozumel Storefront', date: '07/22/2020', url: 'assets/images/meraki_cozumel/meraki-cozumel2.jpg', contributor: 'Meraki Cozumel', contributor_email: 'hello@directorycozumel.com', business_id: 1
+	},
+
+	{
+		description: 'Meraki Cozumel Storefront 2', date: '07/22/2020', url: 'assets/images/meraki_cozumel/meraki10.jpg', contributor: 'Meraki Cozumel', contributor_email: 'hello@directorycozumel.com', business_id: 1
 	}
 ]
 
 reviews_list = [
-	{
-		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 1
-	},
-	{
-		content: 'This place sucks I changed my mind!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 1
-	},
 	{
 		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 2
 	},
@@ -824,16 +828,19 @@ reviews_list = [
 	},
 	{
 		content: 'This place is awesome!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 30
+	},
+
+	{
+		content: 'My favorite place to buy gifts and self care treats!', contributor: 'Sarah Little', contributor_email: 'sarahlittle@gmail.com', rating: 5, business_id: 1
 	}
 ]
 
 maps_list = [
-	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 1 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 2 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 3 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 4 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 5 },
-	{lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 6 },
+	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 6 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 7 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 8 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 9 },
@@ -857,7 +864,9 @@ maps_list = [
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 27 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 28 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 29 },
-	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 30 }
+	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 30 },
+	{ lat: '20.501938', lng: '-86.956283', query_string: "", business_id: 1 }
+
 ]
 
 businesses_list_1.each do |name, category_name|
