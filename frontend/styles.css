@@ -347,16 +347,29 @@
 
 	img.sustainable {
 		padding: 5px;
-		border-color: white;
+		background-color: white;
+		border-color:#00acf8;;
 		border-radius: 10px;
-		background-color: greenyellow;
 		text-align:center;
 		display:inline-block;
-		max-width:40px;
-		min-width:40px;
-		margin-top: 0px;
-		margin-bottom: 10px;
+		max-width:50px;
+		min-width: width 5px;0px;
+		margin: auto;
 	}	
+
+
+	img#verified {
+		background-color: white;
+		border-color:#00acf8;;
+		border-radius: 10px;
+		padding: 0px;
+		text-align: center;
+		display: block;
+		max-width:60px;
+		min-width:60px;
+		margin: auto;
+		margin-bottom: 5px;
+	}
 
 	.review {
 		border-radius: 4%;
@@ -396,6 +409,17 @@
 	#operations-menu-checkbox {
 		display: inline-block;
 	}
+
+	#content-notes {
+		color: #00abff;
+		font-style: italic;
+	}
+
+	#listing-phone-number {
+		font-size: 1.7em; 
+		font-weight:600;
+	}
+
 
 	#js-map {
     height: 400px;
