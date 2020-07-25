@@ -265,7 +265,7 @@ window.onload = function(){
 	function renderListingOnly(objArray){
 		if (objArray != undefined) {
 			var business = Business.buildBusObj(objArray);
-			let busHTML = business.renderIndexBusListing(LANGUAGE);
+			let busHTML = business.renderBusListing(LANGUAGE, formatDate, 'index');
 			renderComponent(busHTML, user.resultsListings);
 			let busButton = document.getElementById(`js-bus-${objArray.id}-more`);
 			busButton.addEventListener('click', postBusObjToRetrieve.bind(null, objArray.name))
@@ -277,7 +277,7 @@ window.onload = function(){
 		if (objArray != undefined) {
 			user.businessListings.innerHTML = '';
 			user.resultsListings.innerHTML = '';
-			const busHTML = objArray[0].renderBusListing(LANGUAGE);
+			const busHTML = objArray[0].renderBusListing(LANGUAGE, formatDate, 'details');
 			renderComponent(busHTML, user.resultsListings);
 			if (objArray[1] != undefined) {
 				var mapHTML = objArray[1].renderMap(mapAPI.key);
