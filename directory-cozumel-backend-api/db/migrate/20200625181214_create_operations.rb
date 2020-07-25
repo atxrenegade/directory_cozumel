@@ -7,6 +7,7 @@ class CreateOperations < ActiveRecord::Migration[5.2]
       t.integer :occupancy_rate
       t.boolean :reservation_required, :null => true
       t.string :notes
+      t.string :notas_en_espanol, :null => true 
 			t.date :user_updated
 
 			t.references :business
