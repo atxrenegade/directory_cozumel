@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 2020_06_25_190111) do
     t.string "phone_number"
     t.string "website"
     t.boolean "sustainable_business"
+    t.boolean "verified"
+    t.string "verfied_date"
     t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_190111) do
     t.integer "occupancy_rate"
     t.boolean "reservation_required"
     t.string "notes"
+    t.string "notas_en_espanol"
     t.date "user_updated"
     t.integer "business_id"
     t.datetime "created_at", null: false
