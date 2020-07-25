@@ -7,7 +7,7 @@ export default class Image {
 	}
 
 	renderImage(){
-		return `<figure><img src='${this.url}' alt='missing'></img><br><figcaption>${this.contributor}<br>${this.date}<br>${this.description}<br><br></figcaption></figure>`
+		return `<figure><img src='${this.url}' alt='missing'></img><figcaption>${this.description}<br>${this.date}<br>${this.contributor}<br><br></figcaption></figure>`
 	}
 
 	static imagesBuilder(imagesData){
