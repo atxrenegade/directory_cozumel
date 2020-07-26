@@ -1,35 +1,115 @@
 export default class Operation {
-	constructor(currentStatus, businessHours, openingDate, occupancyRate, reservationRequired, notes, userUpdated){
+	constructor(currentStatus, businessHours, openingDate, occupancyRate, reservationRequired, notes, notasEsp, userUpdated){
 		this.currentStatus = currentStatus;
 		this.businessHours = businessHours
 		this.openingDate = openingDate;
 		this.occupancyRate = occupancyRate;
 		this.reservationRequired = reservationRequired;
 		this.notes = notes;
+		this.notas = notasEsp;
 		this.userUpdated = userUpdated;
 	}
 
 	renderOperations(LANGUAGE){
 		var status;
 		var reservation;
-		var operation;
+		var operationHTML = '';
 
 		if (LANGUAGE == 'eng'){
-			var status = (this.currentStatus == true) ? 'Yes' : 'No';
-			var reservation = (this.reservationRequired == true) ? 'Yes' : 'No';
+			var status = (this.currentStatus == true) ? '  Yes' : '  No';
+			var reservation = (this.reservationRequired == true) ? ' Yes' : ' No';
 			var reopening = (this.currentStatus == true) ? 'Open Now' : this.reopeningDate;
-			operation =  `<div class='operation'><h5>Hours Of Operation: (CoVid)</h5><p class='listing-content-1'><b>M:</b>	  ${this.businessHours[0]}<br><b>Tu:</b>		${this.businessHours[1]}<br><b>W:</b>		${this.businessHours[2]}<br><b>Th:</b>		${this.businessHours[3]}<br><b>F:</b>		${ this.businessHours[4]}<br><b>Sat:</b>		${this.businessHours[5]}<br><b>Sun:</b>		${this.businessHours[6]}<br></p><h5>Post CoVid UPDATES:</h5><p class='listing-content-2'><b>Open For Business: </b>${status}<br><b>Estimated Reopening Date: </b>${reopening}<br><b>Operating Occupancy Rate: </b> ${this.occupancyRate}%<br><b>Reservation Required?</b>		${reservation}<br><b>Last Updated: </b> ${this.userUpdated}</p>`
-			if (this.note !== null){ return operation + `<p class='listing-content-2'><b>${this.notes}</b></p></div>` }
-			return operation;
+			var occupancyRate = (this.occupancyRate == true) ? `{this.occupancyRate}%` : "<br>Not Applicable";
+			var tableHTML = `<div class='operation'><p class='listing-content-1'><h5 style='letter-spacing:.5em;'>Business Hours (CoVid)</h5>
+				<table class='business-hours-table'>
+					<tr>
+						<th>Monday</th>
+						<td>${this.businessHours[0]}</td>
+					</tr>
+					<tr>
+						<th>Tuesday</th>
+						<td>${this.businessHours[1]}</td>
+					</tr>
+					<tr>
+						<th>Wednesday</th>
+						<td>${this.businessHours[2]}</td>
+					</tr>
+					<tr>
+						<th>Thursday</th>
+						<td>${this.businessHours[3]}</td>
+					</tr>
+					<tr>
+						<th>Friday</th>
+						<td>${this.businessHours[4]}</td>
+					</tr>
+					<tr>
+						<th>Saturday</th>
+						<td>${this.businessHours[5]}</td>
+					</tr>
+					<tr>
+						<th>Sunday</th>
+						<td>${this.businessHours[6]}</td>
+					</tr>
+				</table>
+      </p></div>`
+			var operationDetailsHTML =  `<h5>Post CoVid UPDATES:</h5><p class='listing-content-2'><b>Open For Business: </b>${status}<br><b>Estimated Reopening Date: </b>${reopening}<br><b>Operating Occupancy Rate: </b> ${occupancyRate}<br><b>Reservation or Appointment Required?</b>		${reservation}<br><b>Last Updated: </b> ${this.userUpdated}</p><br>`
+			operationHTML += tableHTML;
+			operationHTML += operationDetailsHTML;
+			if (this.note !== null) { operationHTML += `<p class='listing-content-2' id='content-notes'><b>${this.notes}</b></p><br></div>` }
+			return operationHTML;
 		} else {
-			var status = (this.currentStatus == true) ? 'Si' : 'No';
-			var reservation = (this.reservationRequired == true) ? 'Si' : 'No';
-			var reopening = (this.currentStatus == true) ? '¡Ya Abrimos!' : this.reopeningDate;
-			operation = `<div class='operation'><h5> Horas De Operación: (CoVid)</h5><p class='listing-content-1'><b>L:</b>	  ${this.businessHours[0]}<br><b>M:</b>		${this.businessHours[1]}<br><b>M:</b>		${this.businessHours[2]}<br><b>J:</b>		${this.businessHours[3]}<br><b>V:</b>		${this.businessHours[4]}<br><b>S:</b>		${this.businessHours[5]}<br><b>D:</b>		${this.businessHours[6]}<br><br><h5>Actualizaciones Posteriores A Covid:</h5><p class='listing-content-2'><b>¿Abierto para negocios?</b>	${status}<br><b>Fecha Estimada De Reapertura: </b>${reopening}<br><b>Operating Occupancy Rate: </b> ${this.occupancyRate}%<br><b>¿Se requiere reserva?</b>		${reservation}<br><b>Última Actualización: </b> ${this.userUpdated}</p><br>`
-			if (this.note != null){ return operation + `<p class='listing-content-2'><b>${notes}</b></p></div>` }
-			return operation;
+			var status = (this.currentStatus == true) ? '  Si' : '  No';
+			var reservation = (this.reservationRequired == true) ? '  Si' : '  No';
+			var reopening = (this.currentStatus == true) ? '<br>¡Ya Abrimos!' : this.reopeningDate;
+			var occupancyRate = (this.occupancyRate !== null) ? `${this.occupancyRate}%` : "<br>No Se Aplica";
+			var tableHTML = `<div class='operation'><p class='listing-content-1'><h5 style='letter-spacing:.5em;'>Horas en Operación(CoVid)</h5>
+				<table class='business-hours-table'>
+					<tr>
+						<th>lunes</th>
+						<td>${this.translateBusinessHours(this.businessHours[0])}</td>
+					</tr>
+					<tr>
+						<th>martes</th>
+						<td>${this.translateBusinessHours(this.businessHours[1])}</td>
+					</tr>
+					<tr>
+						<th>miércoles</th>
+						<td>${this.translateBusinessHours(this.businessHours[2])}</td>
+					</tr>
+					<tr>
+						<th>jueves</th>
+						<td>${this.translateBusinessHours(this.businessHours[3])}</td>
+					</tr>
+					<tr>
+						<th>viernes</th>
+						<td>${this.translateBusinessHours(this.businessHours[4])}</td>
+					</tr>
+					<tr>
+						<th>sábado</th>
+						<td>${this.translateBusinessHours(this.businessHours[5])}</td>
+					</tr>
+					<tr>
+						<th>domingo</th>
+						<td>${this.translateBusinessHours(this.businessHours[6])}</td>
+					</tr>
+				</table>
+			</p></div>`
+			var operationDetailsHTML = `<h5>Actualizaciones Posteriores A Covid:</h5><p class='listing-content-2'><b>¿Abierto para negocios?</b>	${status}<br><b>Fecha Estimada De Reapertura: </b>${reopening}<br><b>Tasa de Ocupación Operativa: </b> ${occupancyRate}<br><b>¿Se Requiere Reserva o Cita?</b>${reservation}<br><b>Última Actualización: </b> ${this.userUpdated}</p><br>`
+			operationHTML += tableHTML;
+			operationHTML += operationDetailsHTML;
+			if (this.notas == null) {
+				if (this.note !== null) { operationHTML += `<p class='listing-content-2' id='content-notes'><b>${this.notes}</b></p><br></div>` }
+			} else {
+				operationHTML += `<p class='listing-content-2' id='content-notes'><b>${this.notas}</b></p><br></div>`
+			}	
+			return operationHTML;
 		}
-		return operation;
+	}
+
+	translateBusinessHours(hours){
+		var translatedHours;
+		hours == 'closed'? translatedHours = 'cerrado' : translatedHours = hours;
+		return translatedHours;
 	}
 
 	static operationBuilder(operationData, formattedDate){
@@ -45,7 +125,8 @@ export default class Operation {
 			userUpdated = operationData['user_updated']
 		}	
 		let notes = operationData['notes'];
-		let newOperation = new Operation(currentStatus, businessHours, openingDate, occupancyRate, reservationRequired, notes, userUpdated)
+		let notasEsp = operationData['notas_en_espanol']
+		let newOperation = new Operation(currentStatus, businessHours, openingDate, occupancyRate, reservationRequired, notes, notasEsp, userUpdated)
 		return newOperation;
 	}
 }
