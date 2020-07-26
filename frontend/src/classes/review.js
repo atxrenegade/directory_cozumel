@@ -6,12 +6,11 @@ export default class Review {
 		this.date = date;
 	}
 
-	renderReview(LANGUAGE){
-		if (LANGUAGE == 'eng'){
-			return `<p class='review'>${this.content}<br>Rating: ${this.rating}<br>${this.contributor}<br>${this.date}</p>`
-		} else {
-			return `<p class='review'>${this.content}<br>Clasificación:  ${this.rating}<br>${this.contributor}<br>${this.date}</p>`
-		}
+	renderReview(LANGUAGE, formatDate){
+		var formattedDate = formatDate((this.date).toISOString());
+		var translatedText;
+		LANGUAGE == 'eng' ? translatedText = 'Rating:' : translatedText = 'Clasificación:'
+		return `<p class='review'>${translatedText} ${this.rating}<br>${this.content}<br>${this.contributor}<br>${formattedDate}<br></p>`
 	}
 
 	static reviewsBuilder(reviewsData){
