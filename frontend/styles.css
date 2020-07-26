@@ -386,6 +386,15 @@
 		padding: 5%;
 	}
 
+	.business-hours-table {
+		font-size:large; 
+		text-align:left; 
+		padding:auto; 
+		margin: auto;
+		border-style: none;
+	}
+	
+
 	/* ELEMENT ID STYLING */
 
 	#lang-support-col {
@@ -499,7 +508,7 @@
 	/* ADMIN TABLE ELEMENT STYLES */
 	th {
 		text-align: center;
-		background-color: #80808052;
+		background-color: #edebeb;
 		color: #00000096;
 	}
 
