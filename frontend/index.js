@@ -273,7 +273,6 @@ window.onload = function(){
 	}
 
 	function renderListing(objArray) {
-		// refactor this function
 		if (objArray != undefined) {
 			user.businessListings.innerHTML = '';
 			user.resultsListings.innerHTML = '';
@@ -289,7 +288,7 @@ window.onload = function(){
 			}
 			if (objArray[3].length > 0){
 				let reviewsHTML = '<h5>Reviews</h5>';
-				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview(LANGUAGE));
+				objArray[3].forEach((rev) => reviewsHTML += rev.renderReview(LANGUAGE, formatDate));
 				renderComponent(reviewsHTML, user.resultsListings);
 			}
 			if (objArray[2].length > 0) {
