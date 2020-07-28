@@ -65,7 +65,16 @@ window.onload = function(){
 	/* search by name functions */
 	function retrieveSearchNameResults(){
 		if (user.searchNameField.value == '') {
-			userInputError('INVALID SEARCH', "Please enter a search value!")
+			var title;
+			var msg;
+			if (LANGUAGE == 'eng') {
+				title = 'INVALID SEARCH';
+				msg = 'Please enter a search value!';
+			} else {
+				title = 'BÚSQUEDA NO VÁLIDA';
+				msg = 'Por favor, introduzca un valor de búsqueda!';
+			}
+			userInputError(`${title}`, `${msg}`)
 		} else {
 			user.listingMenu.style.display = 'none';
 			user.listingsContainer.style.display = 'block';
@@ -119,7 +128,7 @@ window.onload = function(){
 		
 		} else {
 			Swal.fire({
-				title: 'Negocio sostenible:',
+				title: 'Negocio Sostenible:',
 				text: 'Incorpora principios de sostenibilidad, proporciona productos o servicios respetuosos con el medio ambiente, es más ecológico que la competencia y ha asumido un compromiso duradero con los principios ambientales en las operaciones.',
 				icon: 'info',
 				confirmButtonText: 'Cerrar'
@@ -437,7 +446,16 @@ window.onload = function(){
 		var data = Array.from(event.target.parentNode.elements)
 		var required = checkRequiredInput([data[0], data[1], data[2], data[4]])
 		if (required == true) {
-				userInputError('Incomplete Form', 'Business name, address, phone number and category are mandatory fields!')
+			var title;
+			var msg;
+			if (LANGUAGE == 'eng'){
+				title = 'Incomplete Form';
+				msg = 'Business name, address, phone number and category are mandatory fields!';
+			} else  {
+				title = 'Forma Incompleta';
+				msg = '¡El nombre comercial, la dirección, el número de teléfono y la categoría son campos obligatorios!';
+			}
+				userInputError(`${title}`, `${msg}`)
 				required = undefined;
 		} else {
 			var listingData = []
@@ -481,7 +499,7 @@ window.onload = function(){
 			formSubmitted(event);
 		}
 	}
-	
+
 	/* Validate Form Data Before Submission */
 	function checkFormInput(event) {
 		event.preventDefault();
@@ -490,22 +508,41 @@ window.onload = function(){
 		var msg;
 		if (data[0].id = 'new-review') {
 			mandatoryEls = [data[1], data[3], data[4]]
-			msg = 'Rating, username, and email address are mandatory fields';
+			if (LANGUAGE == 'eng') {
+				msg = 'Rating, username, and email address are mandatory fields';
+			} else {
+				msg = 'La calificación, el nombre de usuario y la dirección de correo electrónico son campos obligatorios';
+			}
 		} else if (data[0].id = 'new-image') {
 			mandatoryEls = [data[1], data[4], data[5]]
-			msg = 'URL, username, and email address are mandatory fields';
+			if (LANGUAGE == 'eng') {
+				msg = 'URL, username, and email address are mandatory fields';
+			} else {
+				msg = 'URL, nombre de usuario y dirección de correo electrónico son campos obligatorios';
+			}
 		} else if (data[0].id = 'bus-edit') {
 			mandatoryEls = [data[1], data[2], data[3]]
-			msg = 'Edit content, username, and email address are mandatory fields';
+			if (LANGUAGE == 'eng') {
+				msg = 'Content, username, and email address are mandatory fields';
+			} else {
+				msg = 'El contenido, el nombre de usuario y la dirección de correo electrónico son campos obligatorios';
+			}
 		} else if (data[0].id = 'bus-flag') {
-			mandatoryEls = [data[1], data[3], data[4]]
-			msg = 'Reason, username, and email address are mandatory fields';
+			mandatoryEls = [data[1], data[3], data[4]];
+			if (LANGUAGE == 'eng') {
+				msg = 'Content, username, and email address are mandatory fields';
+			} else {
+				msg = 'El contenido, el nombre de usuario y la dirección de correo electrónico son campos obligatorios';
+			}
 		} else {
 			return;
 		}
 		var required = checkRequiredInput(mandatoryEls)
 		if (required == true) {
-			userInputError('Incomplete Form', `${msg}`)
+			var title;
+			debugger;
+			LANGUAGE == 'eng' ? title = 'Incomplete Form' : title = 'Forma Incompleta'
+			userInputError(`${title}`, `${msg}`)
 			required = undefined;
 		} else {
 			submitForm(event);
@@ -552,8 +589,6 @@ window.onload = function(){
 		submittedEl.className = 'succMsg'
 		setTimeout(function(){
 			if (LANGUAGE == 'eng'){
-
-				
 				if (storage.getStorageItem('response') !== false){
 					Swal.fire({
 						title: 'Thank you for your submission!',
