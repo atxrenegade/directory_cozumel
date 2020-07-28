@@ -4,7 +4,8 @@
     <meta charset='utf-8'>
     <title>Directorio de Cozumel</title>
 
-    <link rel='stylesheet' href='styles.css'>
+		<link rel='stylesheet' href='css/styles.css'>
+		<link rel="stylesheet" href="css/sweetalert2.min.css">
 		<link href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Open+Sans|Satisfy&display=swap" rel="stylesheet">
   </head>
   <body>
@@ -23,14 +24,14 @@
 				<div id='sponsored-listing-container' class='inner-tile'>
 					<legend class='ads-legend'>Listados Atrocinados</legend>
 					<fieldset class='ads'>
-						Sabemos que los anuncios pueden ser molestos, pero nos ayudan a mantener esta aplicación como un servicio gratuito disponible para todos. ¡Haga que su negocio se destaque anunciando aquí en nuestro espacio de anuncios patrocinado con un enlace a su propia página de patrocinador! Haz click aqui para ver un <a href='static/sponsored-sample-esp.html'>ejemplo.</a>
+						Sabemos que los anuncios pueden ser molestos, pero nos ayudan a mantener esta aplicación como un servicio gratuito disponible para todos. ¡Haga que su negocio se destaque anunciando aquí en nuestro espacio de anuncios patrocinado con un enlace a su propia página de patrocinador! <a href='static/sponsored-sample-esp.html'>Haz click aqui para ver un ejemplo.</a>
 					</fieldset>
 				</div>
 
 				<div id='ads-container' class='inner-tile'>
 					<legend class='ads-legend'>Foco Local</legend>
 					<fieldset class='ads'>
-						Nomine a su negocio local favorito de propiedad mexicana para que aparezca aquí y en nuestra página de foco local. Haga clic aquí para ver un <a href='static/local-spot-light-sample-esp.html'>página de enfoque local.</a>
+						Nomine a su negocio local favorito de propiedad mexicana para que aparezca aquí y en nuestra página de foco local. <a href='static/local-spot-light-sample-esp.html'>Haga clic aquí para ver un página de enfoque local.</a>
 					</fieldset>
 				</div>
 
@@ -96,13 +97,13 @@
 							<form>
 								<fieldset id='new-review'>
 									<legend>Agregar Una Opinión</legend>
-									<label> Clasificación:</label>
+									<label> *Clasificación:</label>
 									<input type='text' id='review-rating'/><br>
 									<label> Tu Reseña:</label>
 									<input type='text' id='review-content'/><br>
-									<label> Tu Nombre:</label>
+									<label> *Tu Nombre:</label>
 									<input type='text' id='review-contributor'/><br>
-									<label> Tu Correo Electrónico:</label>
+									<label> *Tu Correo Electrónico:</label>
 									<input type='text' id='review-contributor-email' name='contributor-email'/><br>
 									<input type='submit' value='Enviar'>
 								</fieldset>
@@ -112,15 +113,15 @@
 							<form>
 								<fieldset id='new-image'>
 									<legend>Añadir Imagen</legend>
-									<label> URL:</label>
+									<label> *URL:</label>
 									<input type='text' id='image-url'/><br>
 									<label> Descripción</label>
 									<input type='text' id='image-description'/><br>
 									<label> Fecha:</label>
 									<input type='text' id='image-date'/><br>
-									<label> Tu Nombre:</label>
+									<label> *Tu Nombre:</label>
 									<input type='text' id='image-contributor'/><br>
-									<label> Tu Correo Electrónico:</label>
+									<label> *Tu Correo Electrónico:</label>
 									<input type='text' id='image-email'/><br>
 									<input type='submit' value='Enviar'>
 								</fieldset>
@@ -130,11 +131,11 @@
 							<form>
 								<fieldset id='bus-edit'>
 									<legend>Sugerir Editar</legend>
-									<label> ¿Cómo podemos mejorar este listado?:</label>
+									<label> *¿Cómo podemos mejorar este listado?:</label>
 									<input type='text' id='edit-content'/><br>
-									<label> Tu Nombre:</label>
+									<label> *Tu Nombre:</label>
 									<input type='text' id='edit-contributor'/><br>
-									<label> Tu Correo Electrónico<:</label>
+									<label> *Tu Correo Electrónico<:</label>
 									<input type='text' id='edit-email'/><br>
 									<input type='submit' value='Enviar'>
 								</fieldset>
@@ -144,11 +145,11 @@
 							<form>
 								<fieldset id='bus-flag'>
 									<legend>Marcar Listado De Empresas</legend>
-									<label> Motivo Para Marcar:</label>
+									<label> *Motivo Para Marcar:</label>
 									<input type='text' id='flag-content'/><br>
-									<label> Tu Nombre:</label>
+									<label> *Tu Nombre:</label>
 									<input type='text' id='flag-contributor'/><br>
-									<label> Tu Correo Electrónico:</label>
+									<label> *Tu Correo Electrónico:</label>
 									<input type='text' id='flag-email'/><br>
 									<input type='submit' value='Enviar'>
 								</fieldset>
@@ -165,15 +166,15 @@
 						<div id='js-add-business-form-container'>
 							<form id='js-new-business-form'>
 								<fieldset id='new-bus'>
-									<label> Nombre del Negocio:</label>
+									<label> *Nombre del Negocio:</label>
 									<input type='text' id='business-name'/><br>
-									<label> Dirección:</label>
+									<label> *Dirección:</label>
 									<input type='text' id='bus-address'/><br>
-									<label> Número de teléfono:</label>
+									<label> *Número de teléfono:</label>
 									<input type='text' id='bus-phone-number'/><br>
 									<label> Sitio Web:</label>
 									<input type='text' id='bus-website'/><br><br>
-									<label id='js-new-bus-select-label'>Seleccione una Categoría de Negocios:</label><br>
+									<label id='js-new-bus-select-label'>*Seleccione una Categoría de Negocios:</label><br>
 									<label>¿Es este un negocio sostenible?<strong id="sustainable-info">&nbsp;&#9432;</strong></label>Si<input type='checkbox' id='sustainable-biz-yes' autocomplete="off"/>&#09;No<input type='checkbox' id='sustainable-biz-no' autocomplete="off"/><br><br>
 									<label class='label'><span id='operations-menu-checkbox'>¿Agregar detalles de negocios e información de CoVid?<strong id="operation-info">&nbsp;&#9432;</strong></label>
 									<input type="checkbox" id="js-add-operation" autocomplete="off"></span>
@@ -233,6 +234,7 @@
   </main>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
 	<script type='text/javascript' src='config.js'></script>
+	<script src="sweetalert2.min.js"></script>
 	<script type="module" src="index.js" ></script>
   </body>
 </html>
