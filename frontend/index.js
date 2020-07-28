@@ -64,10 +64,35 @@ window.onload = function(){
 
 	/* search by name functions */
 	function retrieveSearchNameResults(){
-		user.listingMenu.style.display = 'none';
-		user.listingsContainer.style.display = 'block';
-		postSearchByName(user.searchNameField.value);
-		user.searchNameField.value = '';
+		if (user.searchNameField.value == '') {
+			userInputError('INVALID SEARCH', "Please enter a search value!")
+		} else {
+			user.listingMenu.style.display = 'none';
+			user.listingsContainer.style.display = 'block';
+			postSearchByName(user.searchNameField.value);
+			user.searchNameField.value = '';
+		}
+	}
+
+	function userInputError(title, message){
+		Swal.fire({
+			title: `${title}`,
+			text: `${message}`,
+			icon: 'warning',
+			confirmButtonText: 'close'
+		})
+	}
+
+	function checkRequiredInput(fieldsArray){
+		var emptyValue;
+		var len = fieldsArray.length
+		for (let i = 0; i < len - 1; i++) {
+			if (fieldsArray[i].value == "") {
+				emptyValue = true;
+				break;
+			}
+		}
+		return emptyValue;
 	}
 
 	function setLocalDateTime(){
@@ -85,17 +110,38 @@ window.onload = function(){
 	/* New Business Form - Info PopUps */
 	function showSustainableInfo(){
 		if (LANGUAGE == 'eng') {
-			alert('Sustainable Business: incorporates principles of sustainability, supplies environmentally friendly products or services, is greener than competition, and has made an enduring commitment to environmental principles in operations.')
+			Swal.fire({
+				title: 'Sustainable Business',
+				text: 'Incorporates principles of sustainability, supplies environmentally friendly products or services, is greener than competition, and has made an enduring commitment to environmental principles in operations.',
+				icon: 'info',
+				confirmButtonText: 'Close'
+			})
+		
 		} else {
-			alert('Negocio sostenible: incorpora principios de sostenibilidad, proporciona productos o servicios respetuosos con el medio ambiente, es más ecológico que la competencia y ha asumido un compromiso duradero con los principios ambientales en las operaciones.')
+			Swal.fire({
+				title: 'Negocio sostenible:',
+				text: 'Incorpora principios de sostenibilidad, proporciona productos o servicios respetuosos con el medio ambiente, es más ecológico que la competencia y ha asumido un compromiso duradero con los principios ambientales en las operaciones.',
+				icon: 'info',
+				confirmButtonText: 'Cerrar'
+			})
 		}
 	}
 
 	function showOperationInfo(){
 		if (LANGUAGE == 'eng') {
-			alert('Add hours of operation, CoVid capacity, operations status, estimated opening date if not open yet, message to customers, etc.')
+			Swal.fire({
+				title: 'CoVid and Operating Details',
+				text: 'Add hours of operation, CoVid capacity, operations status, estimated opening date if not open yet, message to customers, etc.',
+				icon: 'info',
+				confirmButtonText: 'Close'
+			})
 		} else {
-			alert('Agregar horas de operación, capacidad CoVid, estado de las operaciones, fecha estimada de apertura si aún no está abierta, mensaje a los clientes, etc.')
+			Swal.fire({
+				title: 'CoVid y Detalles Operativos:',
+				text: 'Agregar horas de operación, capacidad CoVid, estado de las operaciones, fecha estimada de apertura si aún no está abierta, mensaje a los clientes, etc.',
+				icon: 'info',
+				confirmButtonText: 'Cerrar'
+			})
 		}
 	}
 
@@ -387,50 +433,83 @@ window.onload = function(){
 	/* FORM FUNCTIONs */
 	/* Handle New Business Form */
 	function formatNewBusinessFormData(event){
-	 // *****
 		event.preventDefault();
 		var data = Array.from(event.target.parentNode.elements)
-		var listingData = []
-		data.slice(0,5).forEach(el => {
-			listingData.push([el['id'], el['value']])
-		})
-		if (user.operationFormCheckBox.checked == true){
-			listingData.unshift(['new-bus', true])
-			if (data[8].checked) {
-				listingData[7] = ['current_status', true]
-			} else if (data[9].checked) {
-				listingData[7] = ['current_status', false]
-			} else {
-				listingData[7] = ['current_status', undefined]
-			}
-			listingData[8] = ['opening_date', data[10].value]
-			listingData[9] = ['occupancy_rate', data[11].value]
-			if (data[12].checked) {
-				listingData[10] = ['reservation_required', true];
-			} else if (data[13].checked) {
-				listingData[10] = ['reservation_required', false];
-			} else {
-				listingData[10] = ['reservation_required', undefined];
-			}
-			listingData[11] = ['business_hours', data[15].value, data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value ]
-			listingData[12] = ['notes', data[14].value] //notes
-			listingData[13] = ['user_updated', setLocalDateTime()] //update at *****
+		var required = checkRequiredInput([data[0], data[1], data[2], data[4]])
+		if (required == true) {
+				userInputError('Incomplete Form', 'Business name, address, phone number and category are mandatory fields!')
+				required = undefined;
 		} else {
-			let sustainableArray = [];
-			if (data[6].checked) {
-				sustainableArray = ['sustainable_business', true]
-			} else if (data[7].checked) {
-				sustainableArray = ['sustainable_business', false]
+			var listingData = []
+			data.slice(0, 5).forEach(el => {
+				listingData.push([el['id'], el['value']])
+			})
+			if (user.operationFormCheckBox.checked == true) {
+				listingData.unshift(['new-bus', true])
+				if (data[8].checked) {
+					listingData[7] = ['current_status', true]
+				} else if (data[9].checked) {
+					listingData[7] = ['current_status', false]
+				} else {
+					listingData[7] = ['current_status', undefined]
+				}
+				listingData[8] = ['opening_date', data[10].value]
+				listingData[9] = ['occupancy_rate', data[11].value]
+				if (data[12].checked) {
+					listingData[10] = ['reservation_required', true];
+				} else if (data[13].checked) {
+					listingData[10] = ['reservation_required', false];
+				} else {
+					listingData[10] = ['reservation_required', undefined];
+				}
+				listingData[11] = ['business_hours', data[15].value, data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value]
+				listingData[12] = ['notes', data[14].value] //notes
+				listingData[13] = ['user_updated', setLocalDateTime()] //update at *****
 			} else {
-				sustainableArray = ['sustainable_business', undefined]
+				let sustainableArray = [];
+				if (data[6].checked) {
+					sustainableArray = ['sustainable_business', true]
+				} else if (data[7].checked) {
+					sustainableArray = ['sustainable_business', false]
+				} else {
+					sustainableArray = ['sustainable_business', undefined]
+				}
+				listingData.push(sustainableArray);
+				listingData.unshift(['new-bus', false])
 			}
-			listingData.push(sustainableArray);
-			listingData.unshift(['new-bus', false])
-			// Add sustainable to js data array, seeds, model and search
-			// why is name duplicated?
+			postForm(listingData);
+			formSubmitted(event);
 		}
-		postForm(listingData);
-		formSubmitted(event);
+	}
+	
+	/* Validate Form Data Before Submission */
+	function checkFormInput(event) {
+		event.preventDefault();
+		var data = Array.from(event.target.elements)
+		var mandatoryEls = []
+		var msg;
+		if (data[0].id = 'new-review') {
+			mandatoryEls = [data[1], data[3], data[4]]
+			msg = 'Rating, username, and email address are mandatory fields';
+		} else if (data[0].id = 'new-image') {
+			mandatoryEls = [data[1], data[4], data[5]]
+			msg = 'URL, username, and email address are mandatory fields';
+		} else if (data[0].id = 'bus-edit') {
+			mandatoryEls = [data[1], data[2], data[3]]
+			msg = 'Edit content, username, and email address are mandatory fields';
+		} else if (data[0].id = 'bus-flag') {
+			mandatoryEls = [data[1], data[3], data[4]]
+			msg = 'Reason, username, and email address are mandatory fields';
+		} else {
+			return;
+		}
+		var required = checkRequiredInput(mandatoryEls)
+		if (required == true) {
+			userInputError('Incomplete Form', `${msg}`)
+			required = undefined;
+		} else {
+			submitForm(event);
+		}
 	}
 
 	/* Render Categories Select For Bus Form */
@@ -473,18 +552,37 @@ window.onload = function(){
 		submittedEl.className = 'succMsg'
 		setTimeout(function(){
 			if (LANGUAGE == 'eng'){
+
+				
 				if (storage.getStorageItem('response') !== false){
-					submittedEl.innerHTML = 'Thank you for your submission!'
-					submittedEl.innerHTML += '<br>' + 'It will be added to the directory as soon as it is reviewed!';
+					Swal.fire({
+						title: 'Thank you for your submission!',
+						text: 'It will be added to the directory as soon as it is reviewed!',
+						icon: 'success',
+						confirmButtonText: 'Close'
+					})
 				} else {
-					submittedEl.innerHTML = 'Submission Unsuccessful!';
+					Swal.fire({
+						title: 'Error: Submission Unsuccessful!',
+						icon: 'error',
+						confirmButtonText: 'Close'
+					})	
 				}
 			} else {
 				if (storage.getStorageItem('response') !== false){
-				submittedEl.innerHTML = '¡Gracias por tu envío!'
-				submittedEl.innerHTML += '<br>' + '¡Se agregará al directorio tan pronto como se aprobado!';
+					Swal.fire({
+						title: '¡Gracias por tu envío!',
+						text: '¡Se agregará al directorio tan pronto como se aprobado!',
+						icon: 'success',
+						confirmButtonText: 'Cerrar'
+					})
+
 				} else {
-					submittedEl.innerHTML = '¡Envío fallido!';
+					Swal.fire({
+						title: 'Error ¡Envío fallido!',
+						icon: 'error',
+						confirmButtonText: 'Cerrar'
+					})
 				}
 			}
 			if (event.target.id == 'new-bus-submit') {
@@ -552,8 +650,12 @@ window.onload = function(){
 			clearDirectoryForAdminView();
 			adminInterface.launchAdminInterface(user, admin, adminFetch, storage, Entry);
 		} else {
-			alert('You are not authorized to access administrative tasks!')
-			resetPage();
+			Swal.fire({
+				title: 'Admin ONLY',
+				text: 'You are not authorized to access administrative tasks!',
+				icon: 'warning',
+				confirmButtonText: 'Close'
+			})
 		}
 	}
 
@@ -615,12 +717,7 @@ window.onload = function(){
 
 	/* Form Event Listeners */
 	document.addEventListener( 'submit', function(){
-		submitForm(event);
+		checkFormInput(event);
 	});
-	/* remove form success message */
-	document.addEventListener( 'click', function (event) {
-		[].forEach.call(document.querySelectorAll('.succMsg'),function(e){
-		  e.parentNode.removeChild(e);
-		})
-	})
+
 }
