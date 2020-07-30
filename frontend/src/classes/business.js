@@ -84,7 +84,7 @@ export default class Business {
 	renderDetailsButton(LANGUAGE){
 		var translatedText;
 		LANGUAGE == 'eng' ? translatedText = 'Details' : translatedText = 'Detalles';
-		return `<button id='js-bus-${this.id}-more' class='index-listing-buttons'>${translatedText}</button><br><br>`
+		return `<button id='js-bus-${this.id}-more' class='index-listing-buttons'>${translatedText}</button><br>`
 	}
 
 	static buildBusObj(data) {
