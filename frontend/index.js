@@ -80,6 +80,7 @@ window.onload = function(){
 			user.listingsContainer.style.display = 'block';
 			postSearchByName(user.searchNameField.value);
 			user.searchNameField.value = '';
+			user.listingsContainer.scrollIntoView(true);
 		}
 	}
 
@@ -163,6 +164,7 @@ window.onload = function(){
 		user.listingsContainer.style.display = 'block';
 		const category = document.getElementById('js-category-select').value
 		const results = postSearchByCategory(LANGUAGE, category);
+		user.listingsContainer.scrollIntoView(true);
 	}
 
 	/* TOGGLE FORM FUNCTIONS */
@@ -297,6 +299,7 @@ window.onload = function(){
 
 	function displayBusObj(data) {
 		renderListing(buildListing(data));
+		user.listingsContainer.scrollIntoView(true);
 	}
 
 	function displaySearchResultsBusObj(data){
@@ -540,7 +543,6 @@ window.onload = function(){
 		var required = checkRequiredInput(mandatoryEls)
 		if (required == true) {
 			var title;
-			debugger;
 			LANGUAGE == 'eng' ? title = 'Incomplete Form' : title = 'Forma Incompleta'
 			userInputError(`${title}`, `${msg}`)
 			required = undefined;
@@ -703,11 +705,14 @@ window.onload = function(){
 		user.listingsContainer.style.display = 'none';
 		user.listingMenu.style.display = 'none';
 		user.businessListings.style.display = 'none';
-		const elements = document.querySelectorAll('input[type="text"]');
-		Array.from(elements).forEach(el => el.value = '')
+		const textElements = Array.from(document.querySelectorAll('input[type="text"]'));
+		const textareaElements = Array.from(document.querySelectorAll('textarea'));
+		textareaElements.concat(textElements).forEach(el => el.value = '')
+		document.getElementById('operations-notes').value = '';
 		if (document.getElementById('js-admin-password') !== null){
-			document.getElementById('js-admin-password').value = ''
+			document.getElementById('js-admin-password').value = '';
 		}
+		
 		/* repopulate categories for drop down menu */
 		collectCategories();
 	}
