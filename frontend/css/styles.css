@@ -5,6 +5,10 @@
 		position: sticky;
 	}
 
+	body {
+		min-width: 300px;
+	}
+
 	.column {
 		max-width: 600px;
 		margin: auto;
@@ -92,6 +96,7 @@
 		border-radius: 10px;
 		padding: 10px 5px;
 		margin-bottom: 5px;
+		margin-top: 5px;
 	}
 
 	h6 {
@@ -116,10 +121,11 @@
 	a {
 		color: #1316d787;
 		font-weight: 800;
-		text-decoration: none ;
+		text-decoration: none;
+		overflow-wrap: break-word;
 	}
 
-	p, label, div, button, input {
+	p, label, div, button, input, textarea {
 		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 		font-size: 16px;
 		font-weight: 400;
@@ -127,7 +133,6 @@
 		line-height: 21px;
 		margin-bottom: 5px;
 		margin-top: 5px;
-		overflow-wrap: break-word;
 		text-align: center;
 		color: grey;
 	}
@@ -172,13 +177,13 @@
 		justify-content: center;
 		align-items: center;
 		background-color: #faefd782;
-		margin: 5px 5px 40px 5px;
+		margin: 5px 5px 20px 5px;
 	}
 
 	/* INPUT ELEMENT STYLES */
 	input, button, select {
 		 text-transform: uppercase; /* Make text all uppercase */
-		 border: 5px solid #00ccff1c; /* 2px white border */
+		 border: 3px solid #4a535633; /* 2px white border */
 		 height: 30px; /* Increase input height */
 		 opacity: 1.0;
 		 font-size: .8em;
@@ -195,6 +200,12 @@
 		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
 	}
 
+	button {
+		background-color: whitesmoke;
+		border-width: 4px;
+		border: 3px solid #04acf996;
+	}
+
 	input[type="radio"] {
 		height: 10px;
 		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
@@ -206,12 +217,12 @@
 		padding: 0% 2%;
 		display: inline-block;
 		text-align: center;
+		border: 3px solid #04acf996;
 	}
 
-	input[type="text"], input[type="password"] {
+	input[type="text"],  input[type="password"], textarea {
 		width: 80%;
 		border-radius: 0;
-		border-style: none;
 		margin: 1%;
 		padding: 1%;
 		padding-left: 10px;
@@ -227,11 +238,14 @@
 	}
 
 	input[type="submit"]{
+		border: 3px solid #04acf996;
 		margin-top: 3%;
 		margin-bottom: 6%;
 	}
 
-	/* MISC ELEMENT STYLES */
+	textarea {
+		height: 3rem;
+	}
 
 	fieldset {
 		margin: 12px;
@@ -255,8 +269,8 @@
 	}
 
 	.inline-field {
-		text-align: right;
-		width: 80%;
+    text-align: right;
+    width: 300px;
 		margin-left: 6%;
 	}
 
@@ -333,7 +347,7 @@
 		border-radius: 10px;
 		box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
 		max-width: 100%;
-		margin: 0;
+		margin: 3.5% auto;
 		padding: 3%;
 	}
 
@@ -346,6 +360,10 @@
 	.listing-content-2 {
 		margin: 0% auto 2% auto;
 		width: 340px;
+	}
+
+	.map-tile {
+		margin-bottom: 3.5%;
 	}
 
 	img.sustainable {
@@ -396,8 +414,15 @@
 		margin: auto;
 		border-style: none;
 	}
-	
 
+	.operation {
+		margin: auto auto 3.5% auto;
+	}
+
+	div.inline-field input, input#occupancy-rate {
+		width: 90px;
+	}
+	
 	/* ELEMENT ID STYLING */
 
 	#lang-support-col {
@@ -443,7 +468,6 @@
 		font-size: 1.7em; 
 		font-weight:600;
 	}
-
 
 	#js-map {
     height: 400px;
@@ -553,12 +577,17 @@
 
 		h3 {
 			line-height: 85%;
-			font-size: 1.5em;
+			font-size: 2rem;
 		}
 
 		h5 {
 			padding: 5px;
 			margin: 0px;
+		}
+
+		div {
+			margin-top: 10px;
+			margin-bottom: 10px;
 		}
 
 		legend {
@@ -734,6 +763,20 @@
 		}
 	}
 
+	@media screen and (max-width: 400px){
+		h2 {
+			width: 100%;
+		}
+
+		.innermost-tile {
+			border: none;
+		}
+
+		.listing-div {
+			padding: 7%;
+		}
+	}
+
 	@media screen and (min-width: 341px){
 		#js-listing-show-results {
 	    margin: auto;
@@ -750,10 +793,21 @@
 		}
 	}
 
-	@media screen and (min-width: 10px) and (max-width: 340px) {
+	@media screen and (min-width: 356px){
+		#listings-fieldset {
+			padding: 4%;
+		}
+	}
 
+	@media screen and (max-width: 355px){
+		#listings-fieldset {
+			padding: 0px;
+		}
+	}
+
+	@media screen and (min-width: 10px) and (max-width: 340px) {
 		.radio-search-column label.label {
-    font-size: .9em;
+    	font-size: .9em;
 		}
 
 		#js-listing-show-results, #js-search-bar-container, #js-new-business-container {
@@ -767,5 +821,4 @@
 		fieldset {
 				border-width: 0;
 		}
-
 	}
