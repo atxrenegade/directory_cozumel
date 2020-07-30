@@ -246,7 +246,6 @@ listings_list = [
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
 		"business_id": 3,
-		"sustainable_business": true
 	},
 	{
 		"overall_rating": 3 ,
@@ -260,7 +259,8 @@ listings_list = [
 		"address": "Calle 22 de Enero No. 261, Cozumel",
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
-		"business_id": 5
+		"business_id": 5,
+		"sustainable_business": true
 	},
 	{
 		"overall_rating": 3 ,
@@ -369,7 +369,6 @@ listings_list = [
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
 		"business_id": 20,
-		"sustainable_business": true
 	},
 
 	{
@@ -401,7 +400,8 @@ listings_list = [
 		"address": "Av. Rafael E. Melgar, #261, San Miguel, Cozumel",
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
-		"business_id": 24
+		"business_id": 24,
+		"sustainable_business": true
 	},
 
 	{
@@ -425,7 +425,8 @@ listings_list = [
 		"address": "Av. Rafael E. Melgar, #33, San Miguel, Cozumel",
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
-		"business_id": 27
+		"business_id": 27,
+		"sustainable_business": true
 	},
 
 	{
@@ -441,14 +442,15 @@ listings_list = [
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
 		"business_id": 29,
-		"sustainable_business": true
 	},
+
 	{
 		"overall_rating": 2,
 		"address": "Ave. Rafael E. Melgar, Esquina Calle 2 Norte",
 		"phone_number": "123-456-7890",
 		"website": "www.example.com",
-		"business_id": 30
+		"business_id": 30,
+		"sustainable_business": true
 	},
 
 	{
@@ -865,8 +867,7 @@ maps_list = [
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 28 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 29 },
 	{ lat: '20.510199',lng: '-86.948970', query_string: "", business_id: 30 },
-	{ lat: '20.501938', lng: '-86.956283', query_string: "", business_id: 1 }
-
+	{ lat: '20.501737', lng: '-86.956830', query_string: "", business_id: 1 }
 ]
 
 businesses_list_1.each do |name, category_name|
