@@ -103,7 +103,7 @@
 									<label> *Rating:</label>
 									<input type='text' id='review-rating'/><br>
 									<label> Your Review:</label>
-									<input type='text' id='review-content'/><br>
+									<textarea id='review-content'></textarea><br>
 									<label> *Your Name:</label>
 									<input type='text' id='review-contributor'/><br>
 									<label> *Your Email:</label>
@@ -135,7 +135,7 @@
 								<fieldset id='bus-edit'>
 									<legend>Suggest Edit</legend>
 									<label> *How can we improve this listing?</label>
-									<input type='text' id='edit-content'/><br>
+									<textarea id='edit-content'></textarea><br>
 									<label> *Your Name:</label>
 									<input type='text' id='edit-contributor'/><br>
 									<label> *Your Email:</label>
@@ -149,7 +149,7 @@
 								<fieldset id='bus-flag'>
 									<legend>Flag Business Listing</legend>
 									<label> *Reason for flagging:</label>
-									<input type='text' id='flag-content'/><br>
+									<textarea id='flag-content'></textarea><br>
 									<label> *Your Name:</label>
 									<input type='text' id='flag-contributor'/><br>
 									<label> *Your Email:</label>
@@ -195,33 +195,34 @@
 											<label>Do customers need a reservation or appointment?</label>
 											Yes<input type='checkbox' id='reservation-required-yes' autocomplete="off">&#09;No<input type='checkbox' id='reservation-required-no' autocomplete="off"><br><br>
 											<label>Is there anything you would like to share with your customers? (ie. pick up & delivery service? specials? etc. 256 characters max.) </label>
-											<input type='textarea' id='operations-notes'><br><br>
+											<textarea id='operations-notes' rows="2" cols="70"></textarea><br><br>
 
 										<p>Please enter hours of operation in the following format: (9am-1pm). Leave blank on days the business is closed. </p><br>
 											<div class='inline-field'>
 												<label class='label hours'>Monday:&#09;</label>
-												<input type='text' id='hours-0-1' placeholder='Xam-Xpm'/><br>
+												<input type='text' id='hours-0-1' placeholder='am-pm'/><br>
 
 												<label class='label hours'>Tuesday:&#09;</label>
-												<input type='text' id='hours-1-1' placeholder='Xam-Xpm'><br>
+												<input type='text' id='hours-1-1' placeholder='am-pm'><br>
 
 												<label class='label hours'>Wednesday:&#09;</label>
-												<input type='text' id='hours-2-1' placeholder='Xam-Xpm'><br>
+												<input type='text' id='hours-2-1' placeholder='am-pm'><br>
 
 												<label class='label hours'>Thursday:&#09;</label>
-												<input type='text' id='hours-3-1' placeholder='Xam-Xpm'><br>
+												<input type='text' id='hours-3-1' placeholder='am-pm'><br>
 
 												<label class='label hours'>Friday:&#09;</label>
-												<input type='text' id='hours-4-1' placeholder='Xam-Xpm'><br>
+												<input type='text' id='hours-4-1' placeholder='am-pm'><br>
 
 												<label class='label hours'>Saturday:&#09;</label>
-												<input type='text' id='hours-5-1' placeholder='Xam-Xpm'><br>
+												<input type='text' id='hours-5-1' placeholder='am-pm'><br>
 
 												<label class='label hours'>Sunday:&#09;</label>
-												<input type='text' id='hours-6-1' placeholder='Xam-Xpm'>
+												<input type='text' id='hours-6-1' placeholder='am-pm'>
 											</div>
 										</form>
 									</div>
+									<br>
 									<input id='new-bus-submit' type='submit' value='Submit'>
 								</fieldset>
 							</form>
