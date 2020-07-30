@@ -52,10 +52,10 @@ export default class Operation {
 					</tr>
 				</table>
       </p></div>`
-			var operationDetailsHTML =  `<h5>Post CoVid UPDATES:</h5><p class='listing-content-2'><b>Open For Business: </b>${status}<br><b>Estimated Reopening Date: </b>${reopening}<br><b>Operating Occupancy Rate: </b> ${occupancyRate}<br><b>Reservation or Appointment Required?</b>		${reservation}<br><b>Last Updated: </b> ${this.userUpdated}</p><br>`
+			var operationDetailsHTML =  `<h5>Post CoVid UPDATES:</h5><p class='listing-content-2'><br><b>Open For Business: </b>${status}<br><b>Estimated Reopening Date: </b>${reopening}<br><b>Operating Occupancy Rate: </b> ${occupancyRate}<br><b>Reservation or Appointment Required?</b>		${reservation}<br><b>Last Updated: </b> ${this.userUpdated}</p><br>`
 			operationHTML += tableHTML;
 			operationHTML += operationDetailsHTML;
-			if (this.note !== null) { operationHTML += `<p class='listing-content-2' id='content-notes'><b>${this.notes}</b></p><br></div>` }
+			if (this.note !== null) { operationHTML += `<p class='listing-content-2' id='content-notes'><b>${this.notes}</b></p></div><br>` }
 			return operationHTML;
 		} else {
 			var status = (this.currentStatus == true) ? '  Si' : '  No';
@@ -94,7 +94,7 @@ export default class Operation {
 					</tr>
 				</table>
 			</p></div>`
-			var operationDetailsHTML = `<h5>Actualizaciones Posteriores A Covid:</h5><p class='listing-content-2'><b>¿Abierto para negocios?</b>	${status}<br><b>Fecha Estimada De Reapertura: </b>${reopening}<br><b>Tasa de Ocupación Operativa: </b> ${occupancyRate}<br><b>¿Se Requiere Reserva o Cita?</b>${reservation}<br><b>Última Actualización: </b> ${this.userUpdated}</p><br>`
+			var operationDetailsHTML = `<h5>Actualizaciones Posteriores A Covid:</h5><br><p class='listing-content-2'><b>¿Abierto para negocios?</b>	${status}<br><b>Fecha Estimada De Reapertura: </b>${reopening}<br><b>Tasa de Ocupación Operativa: </b> ${occupancyRate}<br><b>¿Se Requiere Reserva o Cita?</b>${reservation}<br><b>Última Actualización: </b> ${this.userUpdated}</p>`
 			operationHTML += tableHTML;
 			operationHTML += operationDetailsHTML;
 			if (this.notas == null) {
