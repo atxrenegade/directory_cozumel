@@ -23,7 +23,7 @@ class Entry < ApplicationRecord
 		case record_type
 		when 'new-bus'
 				new_bus_entry(data)
-				if data[0][1] ==  true  # check if operation data is presentq
+				if data[0][1] ==  true  # check if operation data is present
 					new_operation_entry(data)
 				end
 		when 'new-review'
@@ -65,8 +65,8 @@ class Entry < ApplicationRecord
 	def new_review_entry(data)
 		data_array = []
 		data_array[0] = 'new review'
-		data_array[1] = get_business_id(data[6][1])
-		data_array[2] = data[6][1]
+		data_array[1] = get_business_id(data[5][1])
+		data_array[2] = data[5][1]
 		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p")
 		data_array[4] = data[3][1] #contributor
 		data_array[5] = data[4][1] #contributor_email
@@ -83,8 +83,8 @@ class Entry < ApplicationRecord
 	def new_image_entry(data)
 		data_array = []
 		data_array[0] = 'new image'
-		data_array[1] = get_business_id(data[7][1])
-		data_array[2] = data[7][1]
+		data_array[1] = get_business_id(data[6][1]) #bus name
+		data_array[2] = data[6][1] 
 		data_array[3] = data[3][1] #date of image
 		data_array[4] = data[4][1] #contributor
 		data_array[5] = data[5][1] #contributor_email
@@ -101,8 +101,8 @@ class Entry < ApplicationRecord
 	def new_update_entry(data)
 		data_array = []
 		data_array[0] = 'update business'
-		data_array[1] = get_business_id(data[5][1])
-		data_array[2] = data[5][1]
+		data_array[1] = get_business_id(data[3][1])
+		data_array[2] = data[3][1]
 		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p") #date of update request
 		data_array[4] = data[2][1] #contributor
 		data_array[5] = data[3][1] #contributor_email
@@ -116,8 +116,8 @@ class Entry < ApplicationRecord
 	def new_flag_entry(data)
 		data_array = []
 		data_array[0] = 'flag business'
-		data_array[1] = get_business_id(data[5][1])
-		data_array[2] = data[5][1]
+		data_array[1] = get_business_id(data[4][1])
+		data_array[2] = data[4][1]
 		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p") #date of update request
 		data_array[4] = data[2][1] #contributor
 		data_array[5] = data[3][1] #contributor_email
@@ -140,16 +140,18 @@ class Entry < ApplicationRecord
 		#add categories to from for user to select values to be included in data_array
 		data_array[6] = {}
 		data_array[6]['business_id'] = 0
-		data_array[6]['business_name'] = [1][1]
-		data_array[6]['current_status'] = data[7][1]
-		data_array[6]['reservation_required'] = data[8][1]
-		data_array[6]['business_hours'] = data[9][1]
-		data_array[6]['occupancy_rate'] = data[7][1]
-		data_array[6]['opening_date'] = data[6][1]
-		data_array[6]['notes'] = data[10][1]
-		data_array[6]['updated_at'] = data[11][1]
+		data_array[6]['business_name'] = data[1][1]
+		data_array[6]['current_status'] = data[6][1] 
+		data_array[6]['reservation_required'] = data[9][1] 
+		data_array[6]['business_hours'] = data[10][1] 
+		data_array[6]['occupancy_rate'] = data[8][1] 
+		data_array[6]['opening_date'] = data[7][1] 
+		data_array[6]['notes'] = data[11][1] 
+		data_array[6]['updated_at'] = data[12][1]
 		build_record(data_array)
 	end
+
+	{"business_id"=>0, "business_name"=>"Banana Cake", "current_status"=>"", "reservation_required"=>"90%", "business_hours"=>true, "occupancy_rate"=>"", "opening_date"=>true, "notes"=>"3pm - 4pm", "updated_at"=>"Here is my message to the world"}
 
 	def get_business_id(name)
 		return Business.find_by_name(name).id
@@ -172,6 +174,9 @@ class Entry < ApplicationRecord
 		when 'new image'
 			return Image.create!(attributes)
 		when 'new operation'
+			attributes['business_id'] = Business.find_by_name(attributes['business_name']).id
+			attributes.delete('business_name')
+			binding.pry
 			return Operation.create!(attributes)
 		else
 			return false
