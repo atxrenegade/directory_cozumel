@@ -117,6 +117,15 @@ window.onload = function(){
 		return [dataArray[1], dataArray[2], [dataArray[0]]].join('-');
 	}
 
+	function capitalizeString(string) {
+		var splitStringArray = string.split(' ');
+		var newString = splitStringArray.map(el => {
+			var lowerCaseString = el.split('').splice(1).join('').toLowerCase();
+			return (el[0] + lowerCaseString);
+		})
+		return newString.join(' ');
+	}
+
 	/* New Business Form - Info PopUps */
 	function showSustainableInfo(){
 		if (LANGUAGE == 'eng') {
@@ -581,7 +590,8 @@ window.onload = function(){
 		if (event.type === 'submit' && event.target.id !== 'js-new-business-form' && event.target.className !== 'admin-form' ) {
 			event.preventDefault();
 			const busName = getBusNameForAssoForm(event);
-			createPostData(event, busName);
+			const capitalizedBusName = capitalizeString(busName);
+			createPostData(event, capitalizedBusName);
 			formSubmitted(event);
 		}
 	}
