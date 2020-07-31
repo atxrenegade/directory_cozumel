@@ -225,7 +225,7 @@ businesses_list_2 = [
 	[ 'Sweetharts Candy Store', 'Retail - Candy Store' ],
 
 	[ 'Car Rentals Savers', 'Car Rentals' ],
-	[ 'OneWorld Car Rentals',	'Car Rentals' ],
+	[ 'One World Car Rentals',	'Car Rentals' ],
 	[ 'Simulation Car Rentals', 'Car Rentals' ],
 	[ 'Augmented Car Rentals', 	'Car Rentals' ],
 	[ 'Turbine Car Rentals', 'Car Rentals' ],
