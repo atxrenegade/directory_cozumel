@@ -470,31 +470,31 @@ window.onload = function(){
 				userInputError(`${title}`, `${msg}`)
 				required = undefined;
 		} else {
-			var listingData = []
+			var businessData = []
 			data.slice(0, 5).forEach(el => {
-				listingData.push([el['id'], el['value']])
+				businessData.push([el['id'], el['value']])
 			})
 			if (user.operationFormCheckBox.checked == true) {
-				listingData.unshift(['new-bus', true])
+				businessData.unshift(['new-bus', true])
 				if (data[8].checked) {
-					listingData[7] = ['current_status', true]
+					businessData[7] = ['current_status', true]
 				} else if (data[9].checked) {
-					listingData[7] = ['current_status', false]
+					businessData[7] = ['current_status', false]
 				} else {
-					listingData[7] = ['current_status', undefined]
+					businessData[7] = ['current_status', undefined]
 				}
-				listingData[8] = ['opening_date', data[10].value]
-				listingData[9] = ['occupancy_rate', data[11].value]
+				businessData[8] = ['opening_date', data[10].value]
+				businessData[9] = ['occupancy_rate', data[11].value]
 				if (data[12].checked) {
-					listingData[10] = ['reservation_required', true];
+					businessData[10] = ['reservation_required', true];
 				} else if (data[13].checked) {
-					listingData[10] = ['reservation_required', false];
+					businessData[10] = ['reservation_required', false];
 				} else {
-					listingData[10] = ['reservation_required', undefined];
+					businessData[10] = ['reservation_required', undefined];
 				}
-				listingData[11] = ['business_hours', data[15].value, data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value]
-				listingData[12] = ['notes', data[14].value] //notes
-				listingData[13] = ['user_updated', setLocalDateTime()] //update at *****
+				businessData[11] = ['business_hours', data[15].value, data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value]
+				businessData[12] = ['notes', data[14].value] //notes
+				businessData[13] = ['user_updated', setLocalDateTime()] //update at *****
 			} else {
 				let sustainableArray = [];
 				if (data[6].checked) {
@@ -504,10 +504,10 @@ window.onload = function(){
 				} else {
 					sustainableArray = ['sustainable_business', undefined]
 				}
-				listingData.push(sustainableArray);
-				listingData.unshift(['new-bus', false])
+				businessData.push(sustainableArray);
+				businessData.unshift(['new-bus', false])
 			}
-			postForm(listingData);
+			postForm(businessData);
 			formSubmitted(event);
 		}
 	}
@@ -654,12 +654,16 @@ window.onload = function(){
 
 	/* Form Post functions */
 	function createPostData(event, busName) {
-		let data = Array.from(event.target.elements)
+		var data = Array.from(event.target.elements)
+		data.pop()
 		let dataArray = []
 		data.forEach(el => {
 			dataArray.push([el['id'], el['value']])
 		})
-		dataArray.pop
+		if (event.target.id !== 'new-bus'){
+			dataArray.shift()
+			dataArray.unshift([event.target.id])
+		}
 		dataArray.push(['name', busName]);
 		postForm(dataArray);
 	}
