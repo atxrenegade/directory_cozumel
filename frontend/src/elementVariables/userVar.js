@@ -23,7 +23,10 @@
 			/* add business form elements */
 			newBusinessButton: document.getElementById('js-add-business-button'),
 			newBusinessForm: document.getElementById('js-new-business-form'),
-			operationFormCheckBox:  document.getElementById('js-add-operation'),
+			operationFormRadioYes:  document.getElementById('js-add-operation-yes'),
+			operationFormRadioNo: document.getElementById('js-add-operation-no'),
+			operationStatusYes: document.getElementById('js-current-status-yes'),
+			operationStatusNo: document.getElementById('js-current-status-no'),
 			openingDate: document.getElementById('js-bus-form-reopen-date'),
 
 			/* admin hidden button element */
