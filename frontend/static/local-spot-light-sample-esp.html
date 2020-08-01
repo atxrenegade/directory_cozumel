@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Directorio de Cozumel - Foco Local</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Open+Sans|Satisfy&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <main class='fill' id='logo-img' style='background-color: #f4da45'>
+      <img src='images/samplebus2/islandburgerlogo.png'>
+    </main>
+    <div id="content1" class="content-div" style='padding: 0px; max-height: 100%; text-align: center;'>
+      <div id="map"></div>
+      <script>
+        // Initialize and add the map
+        function initMap() {
+          // The location of Uluru
+          var uluru = { lat: -25.344, lng: 131.036 };
+          // The map, centered at Uluru
+          var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 4, center: uluru });
+          // The marker, positioned at Uluru
+          var marker = new google.maps.Marker({ position: uluru, map: map });
+        }
+      </script>
+    </div>
+
+    <div id="content2" class="content-div aux page" style='background-color:#4b9a4f'>
+      <h4 style='color: white'>Directory Cozumel destaca cada mes un nuevo negocio local de propiedad mexicana que apoya a las empresas locales que
+      conforman el Cozumel que amamos. Este mes hemos elegido una de nuestras hamburguesas locales y chiringuitos favoritos.
+      Ya sea que esté buscando un lugar para disfrutar de música en vivo y cerveza fría!</h4><a href='local-spot-light-sample.html'><img src='images/eng-hello.png' class='lang-bubble'></a>
+    </div>
+
+    <div id="content3" class="content-div" style='background-color:#f4da45; padding:15px;'><br>
+      <div class='listing-paragraph'>
+        <h4 style='padding-bottom:3%; color: white; font-size: 1.5em;'>15 Avenida s/n 3 Y 4, Col. Centro, Cozumel<br>
+          www.islandburgerandbrews.com<br>
+          987 119 2385<br></h4>
+      </div>
+    </div>
+    <div id="content4" class="content-div" style='background-color: #4b9a4f; text-align:center' ;>
+      <br>
+      <div id='business-hours-paragraph' style='text-align: center; margin: auto;'>
+      <h3 style='color: white; letter-spacing: .5em'> Horario Comercial</h3><br>
+        <table style='font-size:large; text-align:left; padding:auto; margin: auto;'>
+          <tr>
+            <th>lunes</th>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <th>martes</th>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <th>miercoles</th>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <th>jueves</th>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <th>viernes</th>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <th>sabado</th>
+            <td>10am - 3pm</td>
+          </tr>
+          <tr>
+            <th>domingo</th>
+            <td>cerrado</td>
+          </tr>
+        </table>
+      </div><br>
+      <p>Texto de ejemplo. Texto de ejemplo.Texto de marcador de posición más galimatías.</p>
+    </div>
+    <div id="content5" class="content-div" style='margin: 0px; padding: 0px;'>
+      <div class="gallery-container" style='margin: 0px; padding: 0px;'>
+        <div class="gallery">
+          <div class="gallery-item">
+            <img class="gallery-image" src="/frontend/static/images/samplebus2/islandburger1.jpg">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/frontend/static/images/samplebus2/islandburgers2.jpg">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/frontend/static/images/samplebus2/islandburgers3.jpg">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/frontend/static/images/samplebus2/islandburgers4.jpg">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src='/frontend/static/images/samplebus2/islandburger5.jpeg'>
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/frontend/static/images/samplebus2/islandburger6.jpg">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/frontend/static/images/samplebus2/Island_Buger_8.jpg">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/frontend/static/images/samplebus2/Island_burger_7.jpg">
+          </div>
+        </div>
+        <br>
+        <p style='float: right; font-size: 12px;'>©2020 dotrenegade LLC.</p>
+      </div>
+    </div>
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGN8QdC5IfGCBYg7wHY1qdqvTyUR6Wndk&callback=initMap">
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Directory Cozumel - Sponsored Listings</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Open+Sans|Satisfy&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <main class='fill' id='logo-img' style='background-color: #fff8ed'>
+      <img src='images/samplebus1/hotel_zilla.png'>
+    </main>
+    <div id="content1" class="content-div" style='padding: 0px; max-height: 100%; text-align: center;'>
+      <div id="map"></div>
+      <script>
+        // Initialize and add the map
+        function initMap() {
+          // The location of Uluru
+          var uluru = { lat: -25.344, lng: 131.036 };
+          // The map, centered at Uluru
+          var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 4, center: uluru });
+          // The marker, positioned at Uluru
+          var marker = new google.maps.Marker({ position: uluru, map: map });
+        }
+      </script>
+    </div>
+
+    <div id="content2" class="content-div aux page" style='background-color:#77697d24;'>
+      <h4 style='color:#ce5500'><br><br>Typewriter polaroid asymmetrical, meh DIY fashion axe williamsburg 90's disrupt
+        mumblecore.
+        Vexillologist keytar
+        humblebrag listicle bicycle rights. Umami portland hammock, blue bottle mustache man bun twee viral bushwick
+        prism
+        live-edge. Af readymade banjo craft beer, direct trade cornhole marfa helvetica.</h4><a
+        href="sponsored-sample-esp.html"><img src='images/esp-hola.png' class='lang-bubble'></a>
+    </div>
+    <div id="content3" class="content-div" style='background-color:#fff8ed;'>
+      <div class='listing-paragraph'><br><br><br>
+        <h4 style='padding:3%; color:#ce5500; font-size: 1.5em; width: 97%; margin:auto;'>15 Avenida s/n 3 Y 4, Col. Centro, Cozumel<br>
+          www.zillahotelandresort.com<br>
+          987 119 2334</h4>
+      </div>
+    </div>
+    <div id="content4" class="content-div" style='background-color: #77697d24'>
+      <h4 style='color:#ce5500; padding-top: 3%;'>Luxury Oasis on Private Beach</h4><br>
+      <p>Williamsburg you probably haven't heard of them mlkshk four dollar toast. DIY distillery tote bag, wolf
+        heirloom 3 wolf
+        moon deep v selfies portland. VHS succulents cray marfa hoodie locavore hammock.</p>
+    </div>
+    
+    <div id="content5" class="content-div" style='margin: 0px; padding: 0px;'>
+      <div class="gallery-container" style='margin: 0px; padding: 0px;'>
+        <div class="gallery">
+          <div class="gallery-item">
+            <img class="gallery-image" src="/frontend/static/images/samplebus1/sample-bus1.jpg">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/frontend/static/images/samplebus1/luxury-spa.jpg">
+          </div>
+        </div>
+        <br>
+        <p style='float: right; font-size: 12px;'>©2020 dotrenegade LLC.</p>
+      </div>
+    </div>
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGN8QdC5IfGCBYg7wHY1qdqvTyUR6Wndk&callback=initMap">
+      </script>
+</body>
+
+</html>
