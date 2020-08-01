@@ -238,6 +238,8 @@
 					cell9.appendChild(button)
 					i += 1;
 				})
+				indexBody.scrollIntoView({
+					behavior: "smooth", block: "end"})
 			}	else {
 				const noEntries = document.createElement('p')
 				noEntries.innerHTML = `No ${indexType.toUpperCase()} results at this time!`
@@ -346,8 +348,8 @@
 			const status = 'rejected';
 			const data = getEntryData(status, event);
 			adminFetch.postEntryUpdate(data);
-			if (storage.getStorageItem('response').msg == "Entry Successfully Updated"){
-				updateEntryView(event, data);
+			if (storage.getStorageItem('result').msg == "Entry Successfully Updated"){
+				updateEntryView(data);
 			}
 		}
 
@@ -355,11 +357,12 @@
 			const status = 'approved';
 			const data = getEntryData(status, event);
 			adminFetch.postDatabaseObject(data);
+	
 			setTimeout(function(){
-				if (storage.getStorageItem('result').msg === 'Object Saved'){
+				if (storage.getStorageItem('result').msg == 'Object Saved'){
 					adminFetch.postEntryUpdate(data);
-					if (storage.getStorageItem('response').msg == "Entry Successfully Updated"){
-						updateEntryView(event, data);
+					if (storage.getStorageItem('result').msg == "Entry Successfully Updated"){
+						updateEntryView(data);
 					}
 				} else {
 					alert('Approval failed see console for details');
@@ -368,9 +371,9 @@
 			}, 1000)
 		}
 
-		function updateEntryView(event, data){
+		function updateEntryView(data){
 			setTimeout(function() {
-				if (storage.getStorageItem('result').msg === 'Entry Successfully Updated') {
+				if (storage.getStorageItem('result').msg == 'Entry Successfully Updated') {
 					displayResolved(data['admin_id'], data['resolved_date'], data['status']);
 					document.getElementById('admin-approve-button').style.display = 'none';
 					document.getElementById('admin-reject-button').style.display = 'none';
