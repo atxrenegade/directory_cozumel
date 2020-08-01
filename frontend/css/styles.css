@@ -25,7 +25,7 @@
 		padding: 10px;
 		border: 2px solid white;
 		border-radius: 15px;
-		margin: 1% auto;
+		margin: 3% auto auto auto; 
 		opacity: 0.9;
 	}
 
@@ -140,7 +140,6 @@
 	label {
 		display: block;
 	}
-
 
 	/* IMAGE STYLES */
 	img {
@@ -320,11 +319,9 @@
 
 	.ads {
 		color: whitesmoke;
-		margin-top: 0;
-		margin-bottom: 3%;
-		padding: 3%;
+		margin: 2% auto auto auto;
+		padding: 3% 3% 3% 3%;
 		border-color: #ecebe5ed;
-
 	}
 
 	.radio-search-column {
@@ -333,6 +330,10 @@
 
 	.radio-search-column label.label {
 		font-size: 1.25em;
+	}
+
+	.radio-status-span {
+		display: inline-block;
 	}
 
 	.index-listing-buttons {
@@ -374,10 +375,9 @@
 		text-align:center;
 		display:inline-block;
 		max-width:50px;
-		min-width: width 5px;0px;
+		min-width: width 5px;
 		margin: auto;
 	}	
-
 
 	img#verified {
 		background-color: white;
@@ -421,6 +421,10 @@
 
 	div.inline-field input, input#occupancy-rate {
 		width: 90px;
+	}
+
+	.radio-reservation-column, .radio-status-column, .radio-operation-column, .radio--column {
+		margin-left: -20px;
 	}
 	
 	/* ELEMENT ID STYLING */
@@ -537,11 +541,16 @@
 		margin: auto;
 	}
 
+	#ads-container, #sponsored-listing-container {
+		padding-bottom: 5%;
+	}
+
 	#footer {
 		width: 90%;
 		text-align: left;
 		margin: auto;
 	}
+
 
 
 	/* ADMIN TABLE ELEMENT STYLES */
