@@ -163,70 +163,94 @@
 						<legend>Añadir Nuevo Negocio:</legend>
 						<button id='js-add-business-button'>Añadir Nuevo Negocio</button>
 						<br><br>
-						<div id='js-add-business-form-container'>
-							<form id='js-new-business-form'>
-								<fieldset id='new-bus'>
-									<label> *Nombre del Negocio:</label>
-									<input type='text' id='business-name'/><br>
-									<label> *Dirección:</label>
-									<input type='text' id='bus-address'/><br>
-									<label> *Número de teléfono:</label>
-									<input type='text' id='bus-phone-number'/><br>
-									<label> Sitio Web:</label>
-									<input type='text' id='bus-website'/><br><br>
-									<label id='js-new-bus-select-label'>*Seleccione una Categoría de Negocios:</label><br>
-									<label>¿Es este un negocio sostenible?<strong id="sustainable-info">&nbsp;&#9432;</strong></label>Si<input type='checkbox' id='sustainable-biz-yes' autocomplete="off"/>&#09;No<input type='checkbox' id='sustainable-biz-no' autocomplete="off"/><br><br>
-									<label class='label'><span id='operations-menu-checkbox'>¿Agregar detalles de negocios e información de CoVid?<strong id="operation-info">&nbsp;&#9432;</strong></label>
-									<input type="checkbox" id="js-add-operation" autocomplete="off"></span>
-									<br><br>
-									<div id='js-operation-form' style='display:none;'>
-										<form>
-											<label>¿Está abierto actualmente para los negocios?</label>
-											Si<input type='checkbox' id='current-status-yes' autocomplete="off"/>&#09;No<input type='checkbox' id='current-status-no' autocomplete="off"><br><br>
-											<div id='js-bus-form-reopen-date' style='display:none;'>
-												<label>¿En qué fecha planeas reabrir?</label>
-												<input id='opening-date' type='text'><br><br>
-											</div>
-											<label>¿En qué porcentaje de ocupación está operando actualmente? </label>
-											<input type='text' id='occupancy-rate'><br><br>
-											<label>¿Los clientes necesitan una reserva o cita?</label>
-											Yes<input type='checkbox' id='reservation-required-yes' autocomplete="off">&#09;No<input type='checkbox' id='reservation-required-no' autocomplete="off"><br><br>
-											<label>¿Hay algo que le gustaría compartir con sus clientes? (es decir, servicio de recogida y entrega? especiales? etc. 256 caracteres máx.) </label>
-											<textarea id='operations-notes'></textarea><br><br>
-
-										<p>Ingrese las horas de operación en el siguiente formato: (9am - 1pm). Deje en blanco los días que el negocio está cerrado.</p><br>
-											<div class='inline-field'>
-												<label class='label hours'>lunes:&#09;</label>
-												<input type='text' id='hours-0-1' placeholder='am-pm'/><br>
-
-												<label class='label hours'>martes:&#09;</label>
-												<input type='text' id='hours-1-1' placeholder='am-pm'><br>
-
-												<label class='label hours'>miércoles:&#09;</label>
-												<input type='text' id='hours-2-1' placeholder='am-pm'><br>
-
-												<label class='label hours'>jueves:&#09;</label>
-												<input type='text' id='hours-3-1' placeholder='am-pm'><br>
-
-												<label class='label hours'>viernes:&#09;</label>
-												<input type='text' id='hours-4-1' placeholder='am-pm'><br>
-
-												<label class='label hours'>sábado:&#09;</label>
-												<input type='text' id='hours-5-1' placeholder='am-pm'><br>
-
-												<label class='label hours'>domingo:&#09;</label>
-												<input type='text' id='hours-6-1' placeholder='am-pm'>
-											</div>
-										</form>
-									</div>
-									<br>
-									<input id='new-bus-submit' type='submit' value='Enviar'>
-								</fieldset>
-							</form>
-						</div>
+					<div id='js-add-business-form-container'>
+						<form id='js-new-business-form'>
+							<fieldset id='new-bus'>
+								<label> *Nombre del Negocio:</label>
+								<input type='text' id='business-name' /><br>
+								<label> *Dirección:</label>
+								<input type='text' id='bus-address' /><br>
+								<label> *Número de teléfono:</label>
+								<input type='text' id='bus-phone-number' /><br>
+								<label> Sitio Web:</label>
+								<input type='text' id='bus-website' /><br><br>
+								<label id='js-new-bus-select-label'>*Categorías de Negocios:</label><br>
+								<label> ¿Es este un negocio sostenible?<strong id="sustainable-info">&nbsp;&#9432;</strong></label>
+								<div class='radio-sustainable-column'>
+									<input type='radio' name='sustainable' id='sustainable-biz-yes' autocomplete='off'>
+									<label class='label'>Si&emsp;</label>
+									<input type='radio' name='sustainable' id='sustainable-biz-yes' autocomplete='off'>
+									<label class='label'> No </label>
+								</div><br>
+								<label class='label'>¿Agregar detalles de negocios e información de CoVid?<strong
+										id="operation-info">&nbsp;&#9432;</strong></label>
+								<div class='radio-operation-form-column'>
+									<input type='radio' name='operation-form' id='js-add-operation-yes' autocomplete='off'>
+									<label class='label'>Si&emsp;</label>
+									<input type='radio' name='operation-form' id='js-add-operation-no' autocomplete='off'>
+									<label class='label'>No</label>
+								</div><br>
+					
+								<div id='js-operation-form' style='display:none;'>
+									<form>
+										<label> ¿Está abierto actualmente para los negocios?</label>
+										<div class='radio-status-column'>
+											<input type='radio' name='current-status' id='js-current-status-yes' autocomplete='off'>
+											<label class='label'>Si&emsp;</label>
+											<input type='radio' name='current-status' id='js-current-status-no' autocomplete='off'>
+											<label class='label'>No</label>
+										</div><br>
+										<div id='js-bus-form-reopen-date' style='display:none;'>
+											<label>¿En qué fecha planeas reabrir?</label>
+											<input id='opening-date' type='text'><br><br>
+										</div>
+										<label> ¿En qué porcentaje de ocupación está operando actualmente? </label>
+										<input type='text' id='occupancy-rate'><br><br>
+										<label>¿Los clientes necesitan una reserva o cita?</label>
+										<div class='radio-reservation-column' style='margin-left: -30px;'>
+											<input type='radio' name='reservation-required' id='reservation-required-yes' autocomplete='off'>
+											<label class='label'>Si&emsp; </label>
+											<input type='radio' name='reservation-required' id='reservation-required-no' autocomplete='off'>
+											<label class='label'>No</label>
+										</div><br>
+										<label>¿Hay algo que le gustaría compartir con sus clientes? (es decir, servicio de recogida y entrega? especiales? etc. 256
+										caracteres máx.)</label>
+										<textarea id='operations-notes' rows="2" cols="70"></textarea><br><br>
+					
+										<p>Ingrese las horas de operación en el siguiente formato: (9am - 5pm). Deje en blanco los días que el negocio está
+										cerrado.</p><br>
+										<div class='inline-field'>
+											<label class='label hours'>lunes:&#09;</label>
+											<input type='text' id='hours-0-1' placeholder='am-pm' /><br>
+					
+											<label class='label hours'>martes:&#09;</label>
+											<input type='text' id='hours-1-1' placeholder='am-pm'><br>
+					
+											<label class='label hours'>miércoles:&#09;</label>
+											<input type='text' id='hours-2-1' placeholder='am-pm'><br>
+					
+											<label class='label hours'>jueves:&#09;</label>
+											<input type='text' id='hours-3-1' placeholder='am-pm'><br>
+					
+											<label class='label hours'>viernes:&#09;</label>
+											<input type='text' id='hours-4-1' placeholder='am-pm'><br>
+					
+											<label class='label hours'>sábado:&#09;</label>
+											<input type='text' id='hours-5-1' placeholder='am-pm'><br>
+					
+											<label class='label hours'>domingo:&#09;</label>
+											<input type='text' id='hours-6-1' placeholder='am-pm'>
+										</div>
+									</form>
+								</div>
+								<br>
+								<input id='new-bus-submit' type='submit' value='Enviar'>
+							</fieldset>
+						</form>
+					</div>
 					</fieldset>
 					<br>
-				</div>
+					</div>
 
 				<p id='footer'><a href='http://www.dotrenegade.com' class='copyright' id='user-page-copyright'>©2020 dotrenegade llc.</a>
 				</p>
