@@ -37,6 +37,7 @@ window.onload = function(){
 		user.hiddenAdminButton.addEventListener('click', function() {
 			const el = document.getElementById('js-admin-login-container')
 			toggleForm('click', el);
+			el.scrollIntoView();
 		})
 		user.adminPanelLogin.addEventListener('click', logInAdmin);
 	}
@@ -474,26 +475,28 @@ window.onload = function(){
 			data.slice(0, 5).forEach(el => {
 				businessData.push([el['id'], el['value']])
 			})
-			if (user.operationFormCheckBox.checked == true) {
+			debugger;
+
+			if (user.operationFormRadioYes.checked ==  true) {
 				businessData.unshift(['new-bus', true])
 				if (data[8].checked) {
-					businessData[7] = ['current_status', true]
-				} else if (data[9].checked) {
 					businessData[7] = ['current_status', false]
+				} else if (data[7].checked) {
+					businessData[7] = ['current_status', true]
 				} else {
 					businessData[7] = ['current_status', undefined]
 				}
-				businessData[8] = ['opening_date', data[10].value]
-				businessData[9] = ['occupancy_rate', data[11].value]
-				if (data[12].checked) {
+				businessData[8] = ['opening_date', data[11].value]
+				businessData[9] = ['occupancy_rate', data[12].value]
+				if (data[13].checked) {
 					businessData[10] = ['reservation_required', true];
-				} else if (data[13].checked) {
+				} else if (data[14].checked) {
 					businessData[10] = ['reservation_required', false];
 				} else {
 					businessData[10] = ['reservation_required', undefined];
 				}
-				businessData[11] = ['business_hours', data[15].value, data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value]
-				businessData[12] = ['notes', data[14].value] //notes
+				businessData[11] = ['business_hours', data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value, data[22].value]
+				businessData[12] = ['notes', data[15].value] //notes
 				businessData[13] = ['user_updated', setLocalDateTime()] //update at *****
 			} else {
 				let sustainableArray = [];
@@ -767,11 +770,11 @@ window.onload = function(){
 	document.getElementById('new-bus-submit').addEventListener('click', formatNewBusinessFormData)
 
 	/* Operations Form Event Listener */
-	user.operationFormCheckBox.addEventListener('click', toggleOperationForm)
+	user.operationFormRadioYes.addEventListener('click', toggleOperationForm)
+	user.operationFormRadioNo.addEventListener('click', toggleOperationForm)
 
 	/* Form Event Listeners */
 	document.addEventListener( 'submit', function(){
 		checkFormInput(event);
 	});
-
 }
