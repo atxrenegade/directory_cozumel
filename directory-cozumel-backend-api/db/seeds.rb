@@ -213,7 +213,7 @@ businesses_list_2 = [
 	[ 'Gas Station Time', 'Gas Stations' ],
 	[ 'Midas Gas Station', 'Gas Stations' ],
 	[ 'Gas Stop', 'Gas Stations' ],
-	[ 'EagleEye Gas Station', 'Gas Stations' ],
+	[ 'Eagle Eye Gas Station', 'Gas Stations' ],
 	[ 'Compare Gas Station', 'Gas Stations' ],
 	[ 'Discount Gas Station', 'Gas Stations' ],
 
@@ -221,7 +221,7 @@ businesses_list_2 = [
 	[ 'Pre Candy Store', 'Retail - Candy Store' ],
 	[ 'Corpus Candy Store', 'Retail - Candy Store' ],
 	[ 'Net Candy Store', 'Retail - Candy Store' ],
-	[ 'ZeroPoint Candy Store', 'Retail - Candy Store' ],
+	[ 'Zero Point Candy Store', 'Retail - Candy Store' ],
 	[ 'Sweetharts Candy Store', 'Retail - Candy Store' ],
 
 	[ 'Car Rentals Savers', 'Car Rentals' ],
