@@ -182,7 +182,7 @@
 										<input type='radio' name='sustainable' id='sustainable-biz-yes' autocomplete='off'>
 										<label class='label'>Yes&emsp;</label>
 										<input type='radio' name='sustainable' id='sustainable-biz-yes' autocomplete='off'>
-										<label class='label'> No </label>
+										<label class='label'>No </label>
 									</div><br>
 									<label class='label'>Add business details and CoVid information?<strong id="operation-info">&nbsp;&#9432;</strong></label>
 									<div class='radio-operation-form-column'>
@@ -258,6 +258,7 @@
 						<button id='js-admin-hidden-button'>Admin</button>
 					</span>
 				</p>
+				
 				<div id='js-admin-login-container' class='innermost-tile'>
 					<fieldset id='js-admin-login'>
 						<legend>Admin Login</legend>
@@ -269,174 +270,182 @@
 						<br><br>
 						<button id='js-admin-login-button'>Login</button>
 					</fieldset>
-
-					<div id='js-admin-user-info'>
-						<fieldset id='js-admin-user-panel'>
-							<legend>Admin LOGIN</legend>
-							<br>
-							<label id='admin-name'> Admin Username: </label>
-							<br>
-							<label id='admin-number'> Admin ID: </label>
-							<br>
-							<label id='admin-role'>Admin Role: </label>
-							<br>
-							<label id='admin-login-date'> Logged In At: </label>
-							<br>
-							<br>
-							<button id='js-admin-logout-button'>Log Out</button>
-						</fieldset>
-					</div>
-				</div>
+				</div>	
+			</div>	
 
 			<!-- ADMIN MENU HERE -->
-			<div id='js-admin-menu-container' class='admin innermost-tile'>
-				<fieldset id='js-super-admin-menu'>
-					<legend>SUPER ADMIN MENU</legend>
-					<button id='js-admin-show-super-admin'>TOGGLE SUPER ADMIN MENU </button>
-					<div id='js-admin-super-admin-open'>
-						<fieldset id='super-admin-modify-admin'>
-							<legend id='js-admin-auth'>ADMIN AUTHORIZATION</legend>
-							<br>
-							<button id='js-admin-create-admin'>CREATE ADMIN </button>
-							<button id='js-admin-edit-admin'>EDIT ADMIN </button>
-							<button id='js-admin-delete-admin'>DELETE ADMIN </button>
-							<br><br>
-						</fieldset>
-
-						<fieldset>
-							<legend>CREATE / UPDATE / DELETE RECORDS</legend>
-							<div id='js-super-admin-modify-records-menu'>
-								<form id='js-super-admin-modify-records' class='admin-form'>
-									<label id='super-admin-modify-action'>What would you like to do?: </label><br><br>
-									<input type='radio' name='super-admin-modify-action' value='create' checked> CREATE Record <br>
-									<input type='radio' name='super-admin-modify-action' value='update' checked> UPDATE Record <br>
-									<input type='radio' name='super-admin-modify-action' value='delete' checked> DELETE Record <br><br><br>
-									<label id='super-admin-modify-type'>Which TYPE of Record would you like to CREATE, EDIT or DELETE?: </label><br><br>
-									<input type='radio' name='super-admin-modify-type' value='entries' checked> Entry <br>
-									<input type='radio' name='super-admin-modify-type' value='categories' checked> Category <br>
-									<input type='radio' name='super-admin-modify-type' value='businesses' checked> Business <br>
-									<input type='radio' name='super-admin-modify-type' value='listings' checked> Listing <br>
-									<input type='radio' name='super-admin-modify-type' value='maps' checked> Map <br>
-									<input type='radio' name='super-admin-modify-type' value='reviews' checked> Review <br>
-									<input type='radio' name='super-admin-modify-type' value='images' checked> Image <br>
-									<input type='radio' name='super-admin-modify-type' value='operations' checked> Operation <br>
-									<br>
-									<button id='js-super-admin-modify-menu'>DISPLAY FORM</button>
-								</form>
-							</div>
-							<div id='super-admin-create-update-delete'>
+			<div id='admin-align'>
+				<div id='js-admin-menu-container' class='admin innermost-tile'>
+					<div class='admin-row'>
+						<div class='admin-column'>
+							<fieldset id='js-admin-user-panel'>
+								<legend>Admin LOGIN</legend>
 								<br>
+								<label id='admin-name'> Admin Username: </label>
+								<br>
+								<label id='admin-number'> Admin ID: </label>
+								<br>
+								<label id='admin-role'>Admin Role: </label>
+								<br>
+								<label id='admin-login-date'> Logged In At: </label>
+								<br>
+								<br>
+								<button id='js-admin-logout-button'>Log Out</button>
+							</fieldset>
+							<fieldset id='js-admin-menu'>
+								<legend>Admin Menu</legend>
+								<fieldset>
+									<legend>ADMIN ENTRY SEARCH MENU</legend>
+									<form id='js-search-admin-entries' class='admin-form'>
+										<label id='js-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br>
+										<input type='radio' name='js-admin-search' value='entry-type' checked> Entry TYPE <br>
+										<input type='radio' name='js-admin-search' value='status' checked> Entry STATUS <br>
+										<input type='radio' name='js-admin-search' value='business-name' checked> Business NAME <br>
+										<input type='radio' name='js-admin-search' value='business-id'> Business ID <br>
+										<input type='radio' name='js-admin-search' value='id'> Entry ID <br>
+										<input type='radio' name='js-admin-search' value='contributor'> Contributor <br>
+										<input type='radio' name='js-admin-search' value='contributor-email'> Contributor EMAIL <br>
+										<input type='radio' name='js-admin-search' value='date'> Date <br><br>
+										<label>INPUT TO SEARCH FOR: </label>
+										<input type='text' name='js-admin-search-by-input'>
+										<br><br>
+										<button id='js-admin-search-entries'>SEARCH ENTRIES </button>
+										<br><br>
+									</form>
+								</fieldset>
+								<fieldset>
+									<legend>ADMIN ENTRY DISPLAY MENU</legend>
+									<br>
+										<button id='admin-show-resolved-button'>SHOW RESOLVED ENTRIES</button>
+										<button id='admin-show-pending-button'>SHOW PENDING ENTRIES</button>
+										<br><br>
+								</fieldset>
+							</fieldset>
+						</div>	
+					</div>
+					<div class='admin-column' id="admin-super-column">
+						<fieldset id='js-super-admin-menu'>
+							<legend>SUPER ADMIN MENU</legend>
+							<button id='js-admin-show-super-admin'>TOGGLE SUPER ADMIN MENU </button>
+							<div id='js-admin-super-admin-open'>
+								<fieldset id='super-admin-modify-admin'>
+									<legend id='js-admin-auth'>ADMIN AUTHORIZATION</legend>
+									<br>
+									<button id='js-admin-create-admin'>CREATE ADMIN </button>
+									<button id='js-admin-edit-admin'>EDIT ADMIN </button>
+									<button id='js-admin-delete-admin'>DELETE ADMIN </button>
+									<br><br>
+								</fieldset>
+					
+								<fieldset>
+									<legend>CREATE / UPDATE / DELETE RECORDS</legend>
+									<div id='js-super-admin-modify-records-menu'>
+										<form id='js-super-admin-modify-records' class='admin-form'>
+											<label id='super-admin-modify-action'>What would you like to do?: </label><br>
+											<input type='radio' name='super-admin-modify-action' value='create' checked> CREATE Record <br>
+											<input type='radio' name='super-admin-modify-action' value='update' checked> UPDATE Record <br>
+											<input type='radio' name='super-admin-modify-action' value='delete' checked> DELETE Record <br><br><br>
+											<label id='super-admin-modify-type'>Which TYPE of Record would you like to CREATE, EDIT or DELETE?:
+											</label><br>
+											<input type='radio' name='super-admin-modify-type' value='entries' checked> Entry <br>
+											<input type='radio' name='super-admin-modify-type' value='categories' checked> Category <br>
+											<input type='radio' name='super-admin-modify-type' value='businesses' checked> Business <br>
+											<input type='radio' name='super-admin-modify-type' value='listings' checked> Listing <br>
+											<input type='radio' name='super-admin-modify-type' value='maps' checked> Map <br>
+											<input type='radio' name='super-admin-modify-type' value='reviews' checked> Review <br>
+											<input type='radio' name='super-admin-modify-type' value='images' checked> Image <br>
+											<input type='radio' name='super-admin-modify-type' value='operations' checked> Operation <br>
+											<br>
+											<button id='js-super-admin-modify-menu'>DISPLAY FORM</button>
+										</form>
+									</div>
+									<div id='super-admin-create-update-delete'>
+										<br>
+									</div>
+								</fieldset>
 							</div>
-							<br>
 						</fieldset>
 					</div>
-				</fieldset>
-				<fieldset id='js-admin-menu'>
-					<legend>Admin Menu</legend>
-					<p>NOTE: All search results will appear in the ADMIN ENTRY RESULTS PANEL</p>
-					<fieldset>
-						<legend>ADMIN ENTRY SEARCH MENU</legend>
-						<form id='js-search-admin-entries' class='admin-form'>
-							<label id='js-admin-search-by'>SEARCH ADMIN ENTRIES BY: </label><br>
-							<input type='radio' name='js-admin-search' value='entry-type' checked> Entry TYPE <br>
-							<input type='radio' name='js-admin-search' value='status' checked> Entry STATUS <br>
-							<input type='radio' name='js-admin-search' value='business-name' checked> Business NAME <br>
-							<input type='radio' name='js-admin-search' value='business-id'> Business ID <br>
-							<input type='radio' name='js-admin-search' value='id'> Entry ID <br>
-							<input type='radio' name='js-admin-search' value='contributor'> Contributor <br>
-							<input type='radio' name='js-admin-search' value='contributor-email'> Contributor EMAIL <br>
-							<input type='radio' name='js-admin-search' value='date'> Date <br><br>
-							<label>INPUT TO SEARCH FOR: </label>
-							<input type='text' name='js-admin-search-by-input'>
-							<br><br>
-							<button id='js-admin-search-entries'>SEARCH ENTRIES </button>
-							<br><br>
-						</form>
-					</fieldset>
-					<fieldset>
-						<legend>ADMIN ENTRY DISPLAY MENU</legend>
-						<br>
-							<button id='admin-show-resolved-button'>SHOW RESOLVED ENTRIES</button>
-							<button id='admin-show-pending-button'>SHOW PENDING ENTRIES</button>
-							<br><br>
-					</fieldset>
-				</fieldset>
-			</div>
-			<div id='js-admin-panel-container' class='admin innermost-tile'>
-				<fieldset id='js-admin-panel'>
-					<legend>ADMIN ENTRY RESULTS PANEL </legend>
-					<div id='admin-entry-table'>
-						<table id='admin-entry-log'>
-							<tr>
-								<th>ID </th>
-								<th>DATE CREATED</th>
-								<th>BUS ID </th>
-								<th>TYPE </th>
-								<th>DATA ARRAY</th>
-								<th>ADMIN ID</th>
-								<th>STATUS </th>
-								<th>NOTES</th>
-								<th>REVIEW DETAILS BUTTON</th>
-							</tr>
-							<tbody id='index-entry-table-body'>
-								<!-- dynamically generate pending entries here -->
-							</tbody>
-						</table>
-					</div>
-					<div id='entry-details-tables'>
-						<h6> ENTRY DETAILS AND ADMIN FUNCTIONS </h6>
-						<table id='admin-entry-show-details-table-1'>
-							<tr>
-								<th>ID</th>
-								<th>DATE CREATED</th>
-								<th>BUS ID</th>
-								<th>BUS NAME</th>
-								<th>TYPE</th>
-							</tr>
-							<tbody id='detailed-entry-table-1'>
-							</tbody>
-						</table>
-						<table id='admin-entry-show-details-table-2'>
-							<tr>
-								<th>CONTRIBUTOR </th>
-								<th>CONTRIBUTOR EMAIL </th>
-								<th>DATA ARRAY</th>
-							</tr>
-							<tbody id='detailed-entry-table-2'>
-							</tbody>
-						</table>
-						<table id='admin-entry-show-details-table-3'>
-							<tr>
-								<th>ADMIN ID</th>
-								<th>STATUS </th>
-								<th>RESOLVED DATE</th>
-								<th>NOTES</th>
-							</tr>
-							<tbody id='detailed-entry-table-3'>
-							</tbody>
-						</table>
-						<br>
-						<button id='admin-pending-index-button'>PENDING INDEX</button>
-						<button id='admin-resolved-index-button'>RESOLVED INDEX</button>
-						<button id='admin-notes-button'>ADD NOTES</button>
-						<button id='admin-approve-button'>APPROVE</button>
-						<button id='admin-reject-button'>REJECT</button>
-					</div>
-					<br>
-					<div id='admin-notes-form'>
-						<input type='hidden' name='-method' value='patch'>
-						<label>Notes:</label>
-							<input type='text' id='js-entry-notes'>
-						<br><br>
-						<input id='admin-submit-notes-field' type='submit' value='Submit'>
 				</div>
-			</fieldset>
-		</div>
+			
+				<div id='js-admin-panel-container' class='admin innermost-tile'>
+					<fieldset id='js-admin-panel'>
+						<legend>ADMIN ENTRY RESULTS PANEL </legend>
+						<div id='admin-entry-table'>
+							<table id='admin-entry-log'>
+								<tr>
+									<th>ID </th>
+									<th>DATE CREATED</th>
+									<th>BUS ID </th>
+									<th>TYPE </th>
+									<th>DATA ARRAY</th>
+									<th>ADMIN ID</th>
+									<th>STATUS </th>
+									<th>NOTES</th>
+									<th>REVIEW DETAILS BUTTON</th>
+								</tr>
+								<tbody id='index-entry-table-body'>
+									<!-- dynamically generate pending entries here -->
+								</tbody>
+							</table>
+						</div>
+						<div id='entry-details-tables'>
+							<h6> ENTRY DETAILS AND ADMIN FUNCTIONS </h6>
+							<table id='admin-entry-show-details-table-1'>
+								<tr>
+									<th>ID</th>
+									<th>DATE CREATED</th>
+									<th>BUS ID</th>
+									<th>BUS NAME</th>
+									<th>TYPE</th>
+								</tr>
+								<tbody id='detailed-entry-table-1'>
+								</tbody>
+							</table>
+							<table id='admin-entry-show-details-table-2'>
+								<tr>
+									<th>CONTRIBUTOR </th>
+									<th>CONTRIBUTOR EMAIL </th>
+									<th>DATA ARRAY</th>
+								</tr>
+								<tbody id='detailed-entry-table-2'>
+								</tbody>
+									</table>
+									<table id='admin-entry-show-details-table-3'>
+										<tr>
+											<th>ADMIN ID</th>
+											<th>STATUS </th>
+											<th>RESOLVED DATE</th>
+											<th>NOTES</th>
+										</tr>
+										<tbody id='detailed-entry-table-3'>
+										</tbody>
+									</table>
+									<br>
+									<button id='admin-pending-index-button'>PENDING INDEX</button>
+									<button id='admin-resolved-index-button'>RESOLVED INDEX</button>
+									<button id='admin-notes-button'>ADD NOTES</button>
+									<button id='admin-approve-button'>APPROVE</button>
+									<button id='admin-reject-button'>REJECT</button>
+								</div>
+								<br>
+								<div id='admin-notes-form'>
+									<input type='hidden' name='-method' value='patch'>
+									<label>Notes:</label>
+										<input type='text' id='js-entry-notes'>
+									<br><br>
+									<input id='admin-submit-notes-field' type='submit' value='Submit'>
+								</div>	
+						</fieldset>
+					</div>
+				</div>	
+			</div>
+		</div>	
 	</main>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
 	<script type='text/javascript' src='config.js'></script>
 	<script src="sweetalert2.min.js"></script>
-	<script type="module" src="index.js" ></script>
+	<script type="module" src="index.js"></script>
   </body>
 </html>
 
