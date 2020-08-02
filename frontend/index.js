@@ -196,7 +196,7 @@ window.onload = function(){
 		}
 		document.getElementById('sustainable-info').addEventListener('click', showSustainableInfo);
 		document.getElementById('operation-info').addEventListener('click', showOperationInfo);
-		document.getElementById('current-status-no').addEventListener('click', 	toggleOpeningDate);
+		document.getElementById('js-current-status-no').addEventListener('click', 	toggleOpeningDate);
 	}
 
 	function toggleOperationForm() {
@@ -475,7 +475,6 @@ window.onload = function(){
 			data.slice(0, 5).forEach(el => {
 				businessData.push([el['id'], el['value']])
 			})
-			debugger;
 
 			if (user.operationFormRadioYes.checked ==  true) {
 				businessData.unshift(['new-bus', true])
@@ -676,15 +675,16 @@ window.onload = function(){
 		document.getElementById('sponsored-listing-container').style.display = 'none';
 		document.getElementById('ads-container').style.display = 'none';
 		document.getElementById('js-searchbar-container').style.display = 'none';
+		document.getElementById('js-admin-login-container').style.display = 'none';
 		document.getElementById('js-new-business-container').style.display = 'none';
-		document.getElementById('js-admin-panel-container').style.display = 'block';
-		document.getElementById('js-admin-menu-container').style.display = 'block';
+		document.getElementById('js-admin-panel-container').style.display = 'inline-block';
+		document.getElementById('js-admin-menu-container').style.display = 'inline-block';
 		document.getElementById('js-admin-logout-button').style.display = 'block';
 		document.getElementById('js-admin-login').style.display = 'none';
-		document.getElementById('js-admin-user-info').style.display = 'block';
 		user.listingsContainer.style.display = 'none';
 		user.hiddenAdminButton.style.display = 'none';
 		user.adminPanelLogin.style.display = 'none';
+
 	}
 
 	function logInAdmin() {
