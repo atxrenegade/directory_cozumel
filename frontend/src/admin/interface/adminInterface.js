@@ -348,9 +348,11 @@
 			const status = 'rejected';
 			const data = getEntryData(status, event);
 			adminFetch.postEntryUpdate(data);
-			if (storage.getStorageItem('result').msg == "Entry Successfully Updated"){
-				updateEntryView(data);
-			}
+			setTimeout(function() { 
+				if (storage.getStorageItem('result').msg == "Entry Successfully Updated") {
+					updateEntryView(data);
+				}
+			}, 800);
 		}
 
 		function approveEntry(event) {
@@ -361,14 +363,16 @@
 			setTimeout(function(){
 				if (storage.getStorageItem('result').msg == 'Object Saved'){
 					adminFetch.postEntryUpdate(data);
-					if (storage.getStorageItem('result').msg == "Entry Successfully Updated"){
-						updateEntryView(data);
-					}
+					setTimeout(function () {
+						if (storage.getStorageItem('result').msg == "Entry Successfully Updated") {
+							updateEntryView(data);
+						}
+					}, 800);
 				} else {
 					alert('Approval failed see console for details');
 					console.log(storage.getStorageItem('result').msg);
 				}
-			}, 1000)
+			}, 800)
 		}
 
 		function updateEntryView(data){
@@ -379,7 +383,7 @@
 					document.getElementById('admin-reject-button').style.display = 'none';
 				}
 			console.log(storage.getStorageItem('result').msg)
-			}, 1500)
+			}, 1000)
 		}
 
 		function displayResolved(adminId, resolvedDate, status) {
