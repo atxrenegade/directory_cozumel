@@ -176,7 +176,6 @@ class Entry < ApplicationRecord
 		when 'new operation'
 			attributes['business_id'] = Business.find_by_name(attributes['business_name']).id
 			attributes.delete('business_name')
-			binding.pry
 			return Operation.create!(attributes)
 		else
 			return false
