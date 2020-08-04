@@ -14,7 +14,7 @@ test:
   adapter: sqlite3
   database: db/test.sqlite3
 
-production: postgresql
+production: 
   adapter: postgresql
   database: development_directory_cozumel
   username: username
