@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+	root to: 'home#index'
 
 	post '/index_by_category', to: 'businesses#index_by_category'
 	post '/index_by_name', to: 'businesses#index_by_name'
