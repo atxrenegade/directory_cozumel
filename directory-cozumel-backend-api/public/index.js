@@ -494,7 +494,7 @@ window.onload = function(){
 				} else {
 					businessData[10] = ['reservation_required', undefined];
 				}
-				businessData[11] = ['business_hours', data[16].value, data[17].value, data[18].value, data[19].value, data[20].value, data[21].value, data[22].value]
+				businessData[11] = ['business_hours', data[16].value + '^' + data[17].value + '^' + data[18].value + '^' + data[19].value + '^' + data[20].value + '^' + data[21].value + '^' + data[22].value]
 				businessData[12] = ['notes', data[15].value] //notes
 				businessData[13] = ['user_updated', setLocalDateTime()] //update at *****
 			} else {
