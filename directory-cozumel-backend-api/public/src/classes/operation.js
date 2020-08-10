@@ -1,7 +1,7 @@
 export default class Operation {
 	constructor(currentStatus, businessHours, openingDate, occupancyRate, reservationRequired, notes, notasEsp, userUpdated){
 		this.currentStatus = currentStatus;
-		this.businessHours = businessHours
+		this.businessHours = businessHours.split('^')
 		this.openingDate = openingDate;
 		this.occupancyRate = occupancyRate;
 		this.reservationRequired = reservationRequired;
@@ -114,7 +114,7 @@ export default class Operation {
 
 	static operationBuilder(operationData, formattedDate){
 		let currentStatus = operationData['current_status'];
-		let businessHours = JSON.parse(operationData.business_hours);
+		let businessHours = operationData['business_hours'];
 		let openingDate = operationData['opening_date'];
 		let occupancyRate = operationData['occupancy_rate'];
 		let reservationRequired = operationData['reservation_required'];
