@@ -151,8 +151,6 @@ class Entry < ApplicationRecord
 		build_record(data_array)
 	end
 
-	{"business_id"=>0, "business_name"=>"Banana Cake", "current_status"=>"", "reservation_required"=>"90%", "business_hours"=>true, "occupancy_rate"=>"", "opening_date"=>true, "notes"=>"3pm - 4pm", "updated_at"=>"Here is my message to the world"}
-
 	def get_business_id(name)
 		return Business.find_by_name(name).id
 	end
