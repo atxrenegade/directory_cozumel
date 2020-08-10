@@ -183,16 +183,21 @@ class Entry < ApplicationRecord
 	end
 
 	def parse_entry_data
-		data_attributes = self.data_object.tr('"', '').tr('>', '').tr('=', ': ').tr('{', '').tr('}', '').split(',')
-		attrHash = {}
-		data_attributes.map do |el|
-			data_attribute = el.strip.split(':')
-			k = data_attribute[0]
-			val = data_attribute[1]
-			attrHash[k] = val
-		end
-		return attrHash
-	end
+		data_attributes = self.data_object.tr('{', '').tr('}', '').gsub(', "', '*').split('*') 
+    attr_hash = {}
+    data_attributes.map do |el|
+        new_el = el.tr('"', '')
+            if el.include?('=>')
+                data_attribute = new_el.strip.split('=>')
+            else 
+                data_attribute = new_el.strip.split(':')
+            end    	
+        k = data_attribute[0]
+        val = data_attribute[1]
+        attr_hash[k] = val
+        end
+    return attr_hash 
+	end 
 
 	def convert_to_business(attributes)
 		if Business.find_by_name(attributes['business_name']).nil?
