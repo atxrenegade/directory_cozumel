@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_06_25_190111) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "admins", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -66,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_190111) do
     t.string "url"
     t.string "contributor"
     t.string "contributor_email"
-    t.bigint "business_id"
+    t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_images_on_business_id"
@@ -80,7 +77,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_190111) do
     t.boolean "sustainable_business"
     t.boolean "verified"
     t.string "verfied_date"
-    t.bigint "business_id"
+    t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_listings_on_business_id"
@@ -90,7 +87,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_190111) do
     t.float "lat"
     t.float "lng"
     t.string "query_string"
-    t.bigint "business_id"
+    t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_maps_on_business_id"
@@ -105,7 +102,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_190111) do
     t.string "notes"
     t.string "notas_en_espanol"
     t.date "user_updated"
-    t.bigint "business_id"
+    t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_operations_on_business_id"
@@ -116,7 +113,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_190111) do
     t.string "contributor"
     t.string "contributor_email"
     t.integer "rating"
-    t.bigint "business_id"
+    t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_reviews_on_business_id"

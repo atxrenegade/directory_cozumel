@@ -468,7 +468,7 @@ listings_list = [
 operation_list = [
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -478,7 +478,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -488,7 +488,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -498,7 +498,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -508,7 +508,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -518,7 +518,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -528,7 +528,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -538,7 +538,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -548,7 +548,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -558,7 +558,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -569,7 +569,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -579,7 +579,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -590,7 +590,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -599,7 +599,7 @@ operation_list = [
 	},
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -608,7 +608,7 @@ operation_list = [
 	},
 	{
 		'current_status': true,
-		'business_hours': ['9am-5pm','9am-5pm', '9am-1pm','9am-7pm', '10am-10pm','closed', 'closed'],
+		'business_hours': '9am-5pm^9am-5pm^9am-1pm^9am-7pm^10am-10pm^closed^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': 25,
 		'reservation_required': true,
@@ -618,7 +618,7 @@ operation_list = [
 
 	{
 		'current_status': true,
-		'business_hours': ['11am-6pm','11am-6pm', '11am-6pm','11am-6pm', '11am-6pm','12pm-6pm','closed'],
+		'business_hours': '11am-6pm^11am-6pm^11am-6pm^11am-6pm^11am-6pm^12pm-6pm^closed',
 		'opening_date': 2020-07-01,
 		'occupancy_rate': '',
 		'reservation_required': false,
