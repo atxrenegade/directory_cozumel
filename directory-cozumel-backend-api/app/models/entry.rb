@@ -45,20 +45,20 @@ class Entry < ApplicationRecord
 		data_array = []
 		data_array[0] = 'new bus'
 		data_array[1] = 0
-		data_array[2] = data[1][1]
+		data_array[2] = data[3][1]
 		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p")
-		data_array[4] = 'unspecified'
-		data_array[5] = 'unspecified'
+		data_array[4] = [1][1]
+		data_array[5] = [2][1]
 		#data_array[6] should include name, categories, overall rating, address, phone number, website
 		#add categories to from for user to select values to be included in data_array
 		data_array[6] = {}
-		data_array[6]['business_name'] = data[1][1]
-		data_array[6]['categories'] = data[5][1]
+		data_array[6]['business_name'] = data[3][1]
+		data_array[6]['categories'] = data[7][1]
 		data_array[6]['overall_rating'] = 'not yet rated'
-		data_array[6]['address'] = data[2][1]
-		data_array[6]['phone_number'] = data[3][1]
-		data_array[6]['website'] = data[4][1]
-		data_array[6]['sustainable_business'] = data[6][1]
+		data_array[6]['address'] = data[4][1]
+		data_array[6]['phone_number'] = data[5][1]
+		data_array[6]['website'] = data[6][1]
+		data_array[6]['sustainable_business'] = data[8][1]
 		build_record(data_array)
 	end
 
@@ -101,7 +101,7 @@ class Entry < ApplicationRecord
 	def new_update_entry(data)
 		data_array = []
 		data_array[0] = 'update business'
-		data_array[1] = get_business_id(data[3][1])
+		data_array[1] = get_business_id(data[4][1])
 		data_array[2] = data[3][1]
 		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p") #date of update request
 		data_array[4] = data[2][1] #contributor
@@ -132,27 +132,27 @@ class Entry < ApplicationRecord
 		data_array = []
 		data_array[0] = 'new operation'
 		data_array[1] = 0
-		data_array[2] = data[1][1];
+		data_array[2] = data[3][1];
 		data_array[3] = Time.now.strftime("%a %b %d %Y %I:%M:%S %p")
-		data_array[4] = 'unspecified'
-		data_array[5] = 'unspecified'
+		data_array[4] = [1][1]
+		data_array[5] = [2][1]
 		#data_array[6] should include business id, current status, weekend hours, weekday hours, occupancy rate, opening date, notes and updated at
 		#add categories to from for user to select values to be included in data_array
 		data_array[6] = {}
 		data_array[6]['business_id'] = 0
-		data_array[6]['business_name'] = data[1][1]
-		data_array[6]['current_status'] = data[6][1] 
-		data_array[6]['reservation_required'] = data[9][1] 
-		data_array[6]['business_hours'] = data[10][1] 
-		data_array[6]['occupancy_rate'] = data[8][1] 
-		data_array[6]['opening_date'] = data[7][1] 
-		data_array[6]['notes'] = data[11][1] 
-		data_array[6]['updated_at'] = data[12][1]
+		data_array[6]['business_name'] = data[3][1]
+		data_array[6]['current_status'] = data[8][1] 
+		data_array[6]['reservation_required'] = data[11][1] 
+		data_array[6]['business_hours'] = data[12][1] 
+		data_array[6]['occupancy_rate'] = data[10][1] 
+		data_array[6]['opening_date'] = data[9][1] 
+		data_array[6]['notes'] = data[13][1] 
+		data_array[6]['updated_at'] = data[14][1]
 		build_record(data_array)
 	end
 
 	def get_business_id(name)
-		return Business.find_by_name(name).id
+		return Business.find_by(name: name).id
 	end
 
 	def get_business_name(id)
