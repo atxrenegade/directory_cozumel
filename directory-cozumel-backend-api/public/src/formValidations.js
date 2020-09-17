@@ -1,52 +1,76 @@
 
-function validateNewBus() {
-  var attsArray = [checkTelephone(userInputArr[1]), checkWebsite(userInputArr[5]), checkEmail(userInputArr[5])];
-  if (userInput[i] != null) {
-    attsArray.push(checkMessage(userInput[i]))
+function validateNewBus(userInputArr) {
+  debugger;
+  var attsArray = [checkEmail(userInputArr[1].value), checkTele(userInputArr[4].value), checkURL(userInputArr[5].value), ];
+  return checkValArr(attsArray)
+}
+
+function validateNewOp(userInputArr) {
+  debugger;
+  var attsArray;
+  if (userInput[17].value != null) {
+    attsArray.push(checkMessage(userInputArr[17].value)) 
   }
 
-  if (userInput[i] != null) {
-    attsArray.push(checkHours(userInput[i]))
+  if (userInput[18].value != null) {
+    attsArray.push(checkHours(userInputArr[18].value))
   }
-  return attsArray.filter(el => el !== true);
+
+  if (userInput[13].value != null) {
+    attsArray.push(checkDate(userInputArr[13].value))
+  }
+  return checkValArr(attsArray);
 }
 
 function validateNewReview(userInputArr) {
-  var attsArray = [checkRating(userInputArr[1]), checkEmail(userInputArr[4])];
-  return attsArray.filter(el => el !== true);
+  var attsArray = [checkRating(userInputArr[i]), checkEmail(userInputArr[i].value)];
+  return checkValArr(attsArray);
 }
 
 function validateNewImage(userInputArr) {
-  var attsArray = [checkURL(userInputArr[1]), checkEmail(userInputArr[5])];
-  return attsArray.filter(el => el !== true);
+  var attsArray = [checkURL(userInputArr[i]), checkEmail(userInputArr[i].value)];
+  return checkValArr(attsArray);
 }
 
 function validateNewFlag(userInputArr) {
-  return (checkEmail(userInputArr[4]);
+  var attsArray = [checkEmail(userInputArr[i].value)];
+  return checkValArr(attsArray);
 }
 
 
 function validateNewEdit(userInputArr) {
-  return (checkEmail(userInputArr[4]);
+  debugger;
+  var attsArray = [checkEmail(userInputArr[i].value)];
+  return checkValArr(attsArray);
 }
 
+function checkValArr(attsArr){
+  var fieldVals = attsArr.filter(el => el !== true);
+  if (fieldVals.length > 0) {
+    return createValErrMsg(fieldVals);
+  }
+}
 
 function checkEmail(userInput) {
+  debugger;
   var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
   return userInput.match(regex) != null ? true : 'Email Address';
 }
 
 function checkTele(userInput) {
+  debugger;
   var regex = /^\d{3}-\d{3}-\d{4}$/
   return userInput.match(regex) != null ? true : 'Phone Number';
 }
 
 function checkURL(userInput) {
+  debugger;
   var regex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
   return userInput.match(regex) != null ? true : 'URL';
 }
 
 function checkRating(userInput) {
+  debugger;
   return (parseInt(userInput, 10) > 0) && (parseInt(userInput, 10) < 6) ? true : 'Rating';
 }
 
@@ -60,7 +84,7 @@ function checkMessage(userInput) {
 }
 
 function checkHours(userInput) {
-
+  return true;
 }
 
 function validateTermsCond(checkboxValue) {
@@ -68,3 +92,26 @@ function validateTermsCond(checkboxValue) {
   //and link to terms and conditions
 }
 
+function createValErrMsg(fieldVals){
+  return fieldVals;
+  //if english
+  //return "Please correct errors: " 
+  //if spanish 
+  // translateFieldArr
+  // return "Please correct errors: "
+}
+
+function translateFieldArr(attributes){
+  //if LANGUAGE = 'esp' {
+    //attributes.map(att) {
+    //if (att == 'Rating')( return att = '');
+    //if (att == 'Phone Number') ( return att = '')
+    //if (att == 'Email Address') ( return att = '')
+    // if (att == 'Hours') ( return att = '')
+    // if (att == 'Message') ( return att = '')
+    //if (att == 'Date') ( return att = '')
+    // }
+    //}
+}
+
+export {validateNewBus, validateNewReview, validateTermsCond, validateNewImage, validateNewFlag, validateNewEdit, validateNewOp, validateTermsCond, createValErrMsg };
