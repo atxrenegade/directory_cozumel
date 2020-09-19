@@ -1,24 +1,35 @@
-
 function validateNewBus(userInputArr) {
-  debugger;
-  var attsArray = [checkEmail(userInputArr[1].value), checkTele(userInputArr[4].value), checkURL(userInputArr[5].value), ];
+  var attsArray = [checkEmail(userInputArr[1].value), checkTele(userInputArr[4].value), checkURL(userInputArr[5].value) ];
   return checkValArr(attsArray)
 }
 
 function validateNewOp(userInputArr) {
-  debugger;
-  var attsArray;
-  if (userInput[17].value != null) {
-    attsArray.push(checkMessage(userInputArr[17].value)) 
-  }
-
-  if (userInput[18].value != null) {
-    attsArray.push(checkHours(userInputArr[18].value))
-  }
-
-  if (userInput[13].value != null) {
+  var attsArray = [];
+ 
+  if (userInputArr[13].value != null) {
     attsArray.push(checkDate(userInputArr[13].value))
   }
+
+  if (userInputArr[14].value != null) {
+    attsArray.push(checkPercentage(userInputArr[14].value))
+  }
+
+  if (userInputArr[18].value != null) {
+    var hoursArr = [userInputArr[18].value, userInputArr[19].value, userInputArr[20].value, userInputArr[21].value, userInputArr[22].value, userInputArr[23].value, userInputArr[24].value]
+    hoursArr.map(function(hoursEl) {
+      if (attsArray.some(x => x == 'Hours')) {
+        return attsArray;
+      } else {
+        attsArray.push(checkHours(hoursEl));
+      }
+    })
+  }
+
+  if (userInputArr[17].value != null) {
+    attsArray.push(checkMessage(userInputArr[17].value))
+  }
+
+  debugger;
   return checkValArr(attsArray);
 }
 
@@ -37,40 +48,34 @@ function validateNewFlag(userInputArr) {
   return checkValArr(attsArray);
 }
 
-
 function validateNewEdit(userInputArr) {
-  debugger;
   var attsArray = [checkEmail(userInputArr[i].value)];
   return checkValArr(attsArray);
 }
 
 function checkValArr(attsArr){
+  var valid;
   var fieldVals = attsArr.filter(el => el !== true);
-  if (fieldVals.length > 0) {
-    return createValErrMsg(fieldVals);
-  }
+  fieldVals.length < 1 ? valid = true : valid = fieldVals;
+  return valid;
 }
 
 function checkEmail(userInput) {
-  debugger;
   var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
   return userInput.match(regex) != null ? true : 'Email Address';
 }
 
 function checkTele(userInput) {
-  debugger;
   var regex = /^\d{3}-\d{3}-\d{4}$/
   return userInput.match(regex) != null ? true : 'Phone Number';
 }
 
 function checkURL(userInput) {
-  debugger;
   var regex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
   return userInput.match(regex) != null ? true : 'URL';
 }
 
 function checkRating(userInput) {
-  debugger;
   return (parseInt(userInput, 10) > 0) && (parseInt(userInput, 10) < 6) ? true : 'Rating';
 }
 
@@ -84,34 +89,68 @@ function checkMessage(userInput) {
 }
 
 function checkHours(userInput) {
-  return true;
+  debugger;
+  var closedReg = /(closed)|(cerrado)/i;
+  if (userInput.match(closedReg) == null) || userInput !== '' {
+    var regex = /^(([0-1])[0-9]|2[0-3]):[0-5][0-9](am|pm)(-)[0-1][0-9]:[0-3][0-3](am|pm)*/i;
+    return userInput.match(regex) != null ? true : 'Hours';
+  } else {
+    return true;
+  }  
 }
 
-function validateTermsCond(checkboxValue) {
-  //send alert with checkbox in eng or span
-  //and link to terms and conditions
+function checkPercentage(userInput) {
+  return parseInt(userInput, 10) < 101 ? true: 'Occupancy Rate';
 }
 
-function createValErrMsg(fieldVals){
-  return fieldVals;
-  //if english
-  //return "Please correct errors: " 
-  //if spanish 
-  // translateFieldArr
-  // return "Please correct errors: "
+function createValErrMsg(fieldVals, lang){
+  var fields;
+  if (lang == 'esp') { fieldVals = translateFieldArr(fieldVals);} 
+  fields = `${fieldVals.join('  ')}`
+  fireValError(fields, lang);
 }
 
-function translateFieldArr(attributes){
-  //if LANGUAGE = 'esp' {
-    //attributes.map(att) {
-    //if (att == 'Rating')( return att = '');
-    //if (att == 'Phone Number') ( return att = '')
-    //if (att == 'Email Address') ( return att = '')
-    // if (att == 'Hours') ( return att = '')
-    // if (att == 'Message') ( return att = '')
-    //if (att == 'Date') ( return att = '')
-    // }
-    //}
+function translateFieldArr(atts){
+  var translated = atts.map(function (att) {
+    if (att == 'Rating') { return 'Clasificación'};
+    if (att == 'Phone Number') { return 'Número de Teléfono'};
+    if (att == 'Email Address') { return 'Email'};
+    if (att == 'Hours') { return 'Horarios' }; 
+    if (att == 'Message') { return 'Mensaje' };
+    if (att == 'Date') { return 'Fecha' };
+  })
+  return translated;
 }
 
-export {validateNewBus, validateNewReview, validateTermsCond, validateNewImage, validateNewFlag, validateNewEdit, validateNewOp, validateTermsCond, createValErrMsg };
+function missingBusFieldsErr() {
+  var title;
+  var msg;
+  if (LANGUAGE == 'eng') {
+    title = 'Incomplete Form';
+    msg = 'Contributor name, contributor email, business name, address, phone number and category are mandatory fields!';
+  } else {
+    title = 'Incompleta';
+    msg = '¡Nombre del colaborador, email de colaborador, el nombre comercial, la dirección, el número de teléfono y la categoría son campos obligatorios!';
+  }
+  userInputError(`${title}`, `${msg}`)
+}
+
+function fireValError(fields, lang){
+  if (lang == 'eng'){
+    Swal.fire({
+      title: 'Correct the following errors:',
+      text: fields,
+      icon: 'error',
+      confirmButtonText: 'Close'
+    })
+  } else {
+    Swal.fire({
+      title: 'Corregir los errores:',
+      text: fields,
+      icon: 'error',
+      confirmButtonText: 'Cerrar'
+    })
+  }  
+}
+
+export {validateNewBus, validateNewReview, validateNewImage, validateNewFlag, validateNewEdit, validateNewOp, createValErrMsg, missingBusFieldsErr };
